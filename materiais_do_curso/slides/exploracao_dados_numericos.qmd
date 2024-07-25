@@ -1,0 +1,137 @@
+---
+title: "Explorando dados numéricos"
+format: 
+  revealjs:
+      code-link: true
+      code-tools: true
+      code-line-numbers: false
+      theme: simple
+      fig-width: 6
+      fig-asp: 0.618
+      echo: false
+      message: false
+      warning: false
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+```{r}
+#| label: setup
+library(tidyverse)
+library(janitor)
+library(UsingR)
+library(carData)
+library(gt)
+library(conflicted)
+conflicts_prefer(dplyr::filter())
+conflicts_prefer(dplyr::select())
+conflicts_prefer(dplyr::lag())
+theme_set(theme_classic())
+set.seed(123)
+```
+
+```{r}
+#| label: data
+pai_e_filho <- father.son |> 
+  as_tibble() |> 
+  rename(
+    altura_do_pai = fheight,
+    alutra_do_filho = sheight
+  )
+
+brasileiro <- read_csv("C:/projetos_r/pesquisa_quanti_psi_ufc/data/brasileiro_2014_2023.csv")
+```
+
+## O que vamos aprender?
+-   Explorar de dados numéricos usando:
+-   Estatisticas descritivas e
+-   Gráficos
+
+# Gráficos de dispersão para dados pareados
+
+## Banco de dados `father.son`
+
+-   Formato: Um banco de dados com 1078 observações e duas variáveis
+    -   `altura_do_pai`: altura do pai em polegadas
+    -   `alutra_do_filho`: altura do filho em polegadas
+-   Como você imagina que será a relação entre essas duas variáveis?
+
+## Uma olhada nos dados
+
+```{r}
+#| label: tbl-pai-e-filho
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `father.son`
+pai_e_filho |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 1
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  )
+```
+
+## 
+
+```{r}
+#| label: pai-e-filho
+pai_e_filho |> 
+  ggplot(aes(altura_do_pai, alutra_do_filho)) +
+  geom_jitter(alpha = 0.3) +
+  geom_smooth(method = "lm", se = F,
+              color = "red") +
+  labs(
+    title = "Gráfico de dispersão das relação entre as alturas dos pais e dos filhos"
+  )
+```
+
+## Banco de dados `mtcars`
+-   Formato: Um banco de dados com 234 observações e algumas variáveis. Vamos usar:
+    -   `mpg`: milhas/galão (km/l)
+    -   `wt`: peso (1000 lbs)
+-   Como você imagina que será a relação entre essas duas variáveis?   
+    
+## Uma olhada nos dados
+
+```{r}
+#| label: tbl-mtcars
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `mtcars` 
+
+mtcars |> 
+  as_tibble() |> 
+  select(wt, mpg) |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 1
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  )
+```
+
+## 
+
+```{r}
+mtcars |> 
+  ggplot(aes(wt, mpg)) +
+  geom_jitter(alpha = 0.3) +
+  geom_smooth(method = "lm", se = F,
+              color = "red") + 
+  labs(
+    title = "Gráfico de diserpesão da relação \nentre peso e consumo de combustível"
+  )
+```
+
+

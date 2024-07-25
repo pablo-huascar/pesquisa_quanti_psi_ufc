@@ -1,0 +1,20 @@
+lang: pt-br
+project:
+  type: website
+
+website:
+  title: "pesquisa_quanti_psi_ufc"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+
