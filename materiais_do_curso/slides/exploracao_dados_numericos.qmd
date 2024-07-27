@@ -17,13 +17,16 @@ editor: visual
 editor_options: 
   chunk_output_type: console
 ---
+
 ```{r}
 #| label: setup
+
 library(tidyverse)
 library(janitor)
 library(UsingR)
 library(carData)
 library(gt)
+library(scales)
 library(conflicted)
 conflicts_prefer(dplyr::filter())
 conflicts_prefer(dplyr::select())
@@ -34,28 +37,32 @@ set.seed(123)
 
 ```{r}
 #| label: data
-pai_e_filho <- father.son |> 
-  as_tibble() |> 
-  rename(
-    altura_do_pai = fheight,
-    alutra_do_filho = sheight
-  )
+
+father.son <- father.son |> 
+  as_tibble()  
+
+airquality <- airquality |> 
+  as_tibble()
 
 brasileiro <- read_csv("C:/projetos_r/pesquisa_quanti_psi_ufc/data/brasileiro_2014_2023.csv")
+gols_brasileiro <- read_csv("C:/projetos_r/pesquisa_quanti_psi_ufc/data/gols_por_partida_2014_2023.csv")
 ```
 
 ## O que vamos aprender?
--   Explorar de dados numéricos usando:
--   Estatisticas descritivas e
--   Gráficos
+
+-   Explorar dados numéricos usando:
+    -   Estatisticas descritivas e
+    -   Gráficos
 
 # Gráficos de dispersão para dados pareados
 
 ## Banco de dados `father.son`
 
+Conjunto de dados de Pearson sobre alturas de pais e filhos
+
 -   Formato: Um banco de dados com 1078 observações e duas variáveis
-    -   `altura_do_pai`: altura do pai em polegadas
-    -   `alutra_do_filho`: altura do filho em polegadas
+    -   `fheighti`: altura do pai em polegadas
+    -   `sheight`: altura do filho em polegadas
 -   Como você imagina que será a relação entre essas duas variáveis?
 
 ## Uma olhada nos dados
@@ -63,7 +70,8 @@ brasileiro <- read_csv("C:/projetos_r/pesquisa_quanti_psi_ufc/data/brasileiro_20
 ```{r}
 #| label: tbl-pai-e-filho
 #| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `father.son`
-pai_e_filho |> 
+
+father.son |> 
   slice_sample(n = 10) |> 
   gt() |> 
   fmt_number(
@@ -82,8 +90,9 @@ pai_e_filho |>
 
 ```{r}
 #| label: pai-e-filho
-pai_e_filho |> 
-  ggplot(aes(altura_do_pai, alutra_do_filho)) +
+
+father.son |> 
+  ggplot(aes(fheight, sheight)) +
   geom_jitter(alpha = 0.3) +
   geom_smooth(method = "lm", se = F,
               color = "red") +
@@ -93,11 +102,14 @@ pai_e_filho |>
 ```
 
 ## Banco de dados `mtcars`
+
+Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo de combustível e 10 aspectos do design e desempenho de automóveis para 32 carros (modelos de 1973-74)
+
 -   Formato: Um banco de dados com 234 observações e algumas variáveis. Vamos usar:
     -   `mpg`: milhas/galão (km/l)
     -   `wt`: peso (1000 lbs)
--   Como você imagina que será a relação entre essas duas variáveis?   
-    
+-   Como você imagina que será a relação entre essas duas variáveis?
+
 ## Uma olhada nos dados
 
 ```{r}
@@ -105,7 +117,6 @@ pai_e_filho |>
 #| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `mtcars` 
 
 mtcars |> 
-  as_tibble() |> 
   select(wt, mpg) |> 
   slice_sample(n = 10) |> 
   gt() |> 
@@ -130,8 +141,175 @@ mtcars |>
   geom_smooth(method = "lm", se = F,
               color = "red") + 
   labs(
-    title = "Gráfico de diserpesão da relação \nentre peso e consumo de combustível"
+    title = "Gráfico de diserpesão da relação\nentre peso e consumo de combustível"
   )
 ```
 
+# A média
+
+## Banco de dados `airquality`
+
+Medições diárias da qualidade do ar em Nova York, de maio a setembro de 1973
+
+-   Formato: Um banco de dados com 153 observações e seis variáveis
+    -   `Ozone`: quantidade de ozônio (ppb - partes por bilhão)
+    -   `Solar.R`: irradiaçao solar (lang - 1 lang é igual a um caloria por centímetro quadrado)
+    -   `	Wind`: velocidade do vento (mph - milhas por hora)
+    -   `Temp`: temperatura (F - graus Fahrenheit)
+    -   `Month`: mês da medição
+    -   `Day`: dia da medição
+
+## Uma olhada nos dados
+
+```{r}
+#| label: tbl-airquality
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `airquality` 
+
+airquality |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 1
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  )
+```
+
+## O centro dos dados
+
+-   A média é uma maneira de medir o centro de uma distribuição de dados
+
+##
+
+```{r}
+media <- mean(airquality$Temp)
+media <- round(media, 2)
+
+airquality |> 
+  ggplot(aes(Temp)) +
+  geom_dotplot(color = "#569BBD", fill = "#569BBD", 
+               dotsize = 0.7) +
+  annotate("point", media, -0.05,
+           color = "red", fill = "red", 
+           shape = 24, size = 4) + 
+  theme(
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.y = element_blank()
+  ) 
+    
+  
+```
+
+## Como a média é calculada?
+
+- A fórmula da média:
+$$
+\bar{x} = \frac{\sum_{i=1}^n x_i}{n}
+$$
+- A formula da média em um formato um pouco mais simples:
+$$
+\bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}
+$$
+
+## Um pouco de nomenclaura
+
+-   $\mu$: média da popualação
+-   $\bar{x}$: média da amostra 
+-   $x$: qualquer caso da amostra
+-   $x_i$: representa os valores individuais de forma genérica, onde $i$ é um índice que varia de $1$ (primeiro caso) até $n$ (último caso e total de casos).
+
+## O cáculo da média
+
+Qual foi a média de temperatura dos cinco primeiros dias do mês de maio de 1973 em Nova York?
+
+```{r}
+airquality |> 
+  filter(Month == 5, Day <= 5) |> 
+  select(Month, Day, Temp) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100), 
+    table.font.size = "26px"
+  )
+  
+```
+
+## O cáculo da média
+
+$$
+\text{Temp} = \{67, 72, 74, 62, 56\}
+$$
+
+$$
+\bar{X} = \frac{67 + 72 + 74 + 62 + 56}{5}
+$$
+$$
+\bar{X} = \frac{331}{5}
+$$
+
+$$
+\bar{X} = 66.2
+$$
+
+## As médias das variáveis do banco de dados `airquality`
+
+```{r}
+airquality |> 
+  summarise(
+    across(where(is.numeric),
+           \(x) mean(x, na.rm = T))
+  ) |> 
+  pivot_longer(cols = everything(), names_to = "Variável", 
+               values_to = "M")  
+  
+```
+
+
+# Exercícios
+
+## Banco de dados `gols_do_brasileiro`
+
+-   Formato: Um banco de dados com 3.799 observações e cinco variáveis
+    -   `campeonato`: o ano do campeonato
+    -   `partida`: sequência da partida no campeonato
+    -   `data`: data de realização da partida
+    -   `estadia`: estádio em que a partida foi realizada
+    -   `gols`: número de gols da partida
+
+## Uma olhada nos dados
+
+```{r}
+#| label: tbl-gols-do-brasileiro
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `gols_do_brasileiro`
+
+gols_brasileiro |> 
+  mutate(
+    data = format(data, "%d-%m-%Y")
+  ) |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 0,sep_mark = ""
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  )
+```
 

@@ -5,6 +5,7 @@
 .Rapp.history
 .httr-oauth
 .DS_Store
+rascunhos.R
 
 *.key
 *.docx
