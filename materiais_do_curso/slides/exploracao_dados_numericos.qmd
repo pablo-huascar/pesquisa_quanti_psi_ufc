@@ -2,6 +2,7 @@
 title: "Explorando dados numéricos"
 format: 
   revealjs:
+      logo: brasao1_horizontal_cor_300dpi.png
       code-link: true
       code-tools: true
       code-line-numbers: false
@@ -19,6 +20,12 @@ editor_options:
 ---
 
 ```{r}
+#| include: false
+source("C:/projetos_r/pesquisa_quanti_psi_ufc/_common.R")
+```
+
+
+```{r}
 #| label: setup
 
 library(tidyverse)
@@ -31,7 +38,6 @@ library(conflicted)
 conflicts_prefer(dplyr::filter())
 conflicts_prefer(dplyr::select())
 conflicts_prefer(dplyr::lag())
-theme_set(theme_classic())
 set.seed(123)
 ```
 
@@ -70,6 +76,7 @@ Conjunto de dados de Pearson sobre alturas de pais e filhos
 ```{r}
 #| label: tbl-pai-e-filho
 #| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `father.son`
+#| tbl-cap-location: bottom
 
 father.son |> 
   slice_sample(n = 10) |> 
@@ -93,11 +100,14 @@ father.son |>
 
 father.son |> 
   ggplot(aes(fheight, sheight)) +
-  geom_jitter(alpha = 0.3) +
+  geom_jitter(alpha = 0.2, size = 3) +
   geom_smooth(method = "lm", se = F,
-              color = "red") +
+              color = "red", linetype = 2) +
   labs(
-    title = "Gráfico de dispersão das relação entre as alturas dos pais e dos filhos"
+    title = "Gráfico de dispersão da relação\nentre as alturas dos pais e dos filhos"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5) 
   )
 ```
 
@@ -114,7 +124,8 @@ Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo
 
 ```{r}
 #| label: tbl-mtcars
-#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `mtcars` 
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `mtcars`
+#| tbl-cap-location: bottom 
 
 mtcars |> 
   select(wt, mpg) |> 
@@ -137,15 +148,83 @@ mtcars |>
 ```{r}
 mtcars |> 
   ggplot(aes(wt, mpg)) +
-  geom_jitter(alpha = 0.3) +
+  geom_jitter(alpha = 0.2, size = 3) +
   geom_smooth(method = "lm", se = F,
-              color = "red") + 
+              color = "red",linetype = 2) + 
   labs(
     title = "Gráfico de diserpesão da relação\nentre peso e consumo de combustível"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5) 
   )
 ```
 
-# A média
+## Banco de dados `diamonds`
+
+Um conjunto de dados contendo os preços e outros atributos de quase 54.000 diamantes. 
+
+-   Formato: Um banco de dados com 53940 observações e algumas variáveis. Vamos usar:
+    -   `price`: preço em dólares americanos
+    -   `carat`: peso do diamante (quilates)
+-   Como você imagina que será a relação entre essas duas variáveis?
+
+## Uma olhada nos dados
+
+```{r}
+#| label: tbl-diamonds 
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `diamonds `
+#| tbl-cap-location: bottom 
+
+diamonds |> 
+  select(carat, price) |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 1
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  )
+```
+
+## 
+
+```{r}
+diamonds |> 
+  ggplot(aes(carat, price)) +
+  geom_jitter(alpha = 0.2, size = 3) +
+  geom_smooth(se = F, color = "red",
+              linetype = 2) + 
+  scale_x_log10() +
+  labs(
+    title = "Gráfico de diserpesão da relação\nentre o quilate e o preço de diamantes",
+    caption = "Diamantes maiores são exponencialmente mais caros"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.caption = element_text(hjust = 0)
+  )
+```
+
+## Relação entre o quilate e o preço de diamantes {.smaller}
+
+- Relação exponencial
+  -   Uma variável depende da outra elevada a uma potência constante
+  -   Crescimento ou decaimento rápido: a variável dependente aumenta ou diminui muito rapidamente à medida que a variável independente aumenta
+  -   Gráfico em forma de curva: o gráfico de uma relação exponencial é uma curva suave que se aproxima de zero em um dos extremos e cresce ou decresce rapidamente no outro extremo.
+  -   Não linearidade: a relação entre as variáveis não é linear, ou seja, não pode ser representada por uma linha reta.
+
+## Relação entre o quilate e o preço de diamantes
+
+-   Relação exponencial entre o peso e o preço de diamantes:
+    -   Diamantes maiores são muito mais raros do que diamantes pequenos, o que aumenta seu preço drasticamente
+    -   Diamantes maiores geralmente possuem maior qualidade e pureza, o que também contribui para seu preço elevado
+
+# Gráficos de pontos e a média
 
 ## Banco de dados `airquality`
 
@@ -163,13 +242,14 @@ Medições diárias da qualidade do ar em Nova York, de maio a setembro de 1973
 
 ```{r}
 #| label: tbl-airquality
-#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `airquality` 
+#| tbl-cap: Uma amostra dos dez primeiros casos do banco de dados `airquality`
+#| tbl-cap-location: bottom 
 
 airquality |> 
-  slice_sample(n = 10) |> 
+  slice(1:10) |> 
   gt() |> 
   fmt_number(
-    decimals = 1
+    decimals = 0
   ) |> 
   cols_align(
     align = "center"  
@@ -183,6 +263,7 @@ airquality |>
 ## O centro dos dados
 
 -   A média é uma maneira de medir o centro de uma distribuição de dados
+-   Os gráficos de pontos mostram o valor exato para cada observação
 
 ##
 
@@ -197,22 +278,33 @@ airquality |>
   annotate("point", media, -0.05,
            color = "red", fill = "red", 
            shape = 24, size = 4) + 
+  labs(
+    title = "Gráfico de pontos para temperatura Nova York",
+    subtitle = "Maio a setembro de 1973",
+    caption =  "O triângulo vermelho indica a posição da média"
+  ) +
   theme(
     axis.title.y = element_blank(),
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank(),
-    axis.line.y = element_blank()
-  ) 
-    
-  
+    axis.line.y = element_blank(),
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    plot.caption = element_text(hjust = 0)
+  )
 ```
 
 ## Como a média é calculada?
+
+. . .
 
 - A fórmula da média:
 $$
 \bar{x} = \frac{\sum_{i=1}^n x_i}{n}
 $$
+
+. . .
+
 - A formula da média em um formato um pouco mais simples:
 $$
 \bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}
@@ -220,22 +312,28 @@ $$
 
 ## Um pouco de nomenclaura
 
+::: {.incremental}
 -   $\mu$: média da popualação
 -   $\bar{x}$: média da amostra 
 -   $x$: qualquer caso da amostra
--   $x_i$: representa os valores individuais de forma genérica, onde $i$ é um índice que varia de $1$ (primeiro caso) até $n$ (último caso e total de casos).
+-   $x_i$: representa os valores individuais de forma genérica, onde $i$ é um índice que varia de $1$ (primeiro caso) até $n$ (último caso)
+-   $n$: total de casos
+:::
 
 ## O cáculo da média
 
 Qual foi a média de temperatura dos cinco primeiros dias do mês de maio de 1973 em Nova York?
 
 ```{r}
+#| label: tbl-cinco-dias-airquality
+#| tbl-cap: Temperatura dos cinco primeiros dias do mês de maio de 1973 em Nova York
+#| tbl-cap-location: bottom
 airquality |> 
   filter(Month == 5, Day <= 5) |> 
   select(Month, Day, Temp) |> 
   gt() |> 
   fmt_number(
-    decimals = 
+    decimals = 0
   ) |> 
   cols_align(
     align = "center"  
@@ -244,39 +342,138 @@ airquality |>
     table.width = pct(100), 
     table.font.size = "26px"
   )
-  
 ```
 
 ## O cáculo da média
+
 
 $$
 \text{Temp} = \{67, 72, 74, 62, 56\}
 $$
 
+. . .
+
 $$
 \bar{X} = \frac{67 + 72 + 74 + 62 + 56}{5}
 $$
+
+. . .
+
 $$
 \bar{X} = \frac{331}{5}
 $$
+
+. . .
 
 $$
 \bar{X} = 66.2
 $$
 
-## As médias das variáveis do banco de dados `airquality`
+## A média e a padronização de medidas
+
+-   A média é útil porque nos permite redimensionar ou padronizar uma métrica em algo mais facilmente interpretável e comparável
+
+## A média e a padronização de medidas
+
+-   Um novo medicamento é mais eficaz no tratamento de crises de asma do que o medicamento padrão?
+-   Um Teste com 1.500 adultos é delineado: 
+    -   500 recebem o novo medicamento 
+    -   1.000 recebem um medicamento padrão no grupo de controle
+
+## Resultados
+
+Qual medicamento é mais eficiente?
 
 ```{r}
-airquality |> 
-  summarise(
-    across(where(is.numeric),
-           \(x) mean(x, na.rm = T))
+#| label: tbl-asma
+#| tbl-cap: Resultados do experimento sobre o novo remédio pra asma
+#| tbl-cap-location: bottom
+
+asma <- tribble(
+  ~Droga, ~Pacientes, ~Ataques,
+  "Nova", 500, 200,
+  "Padrão", 1000, 300
+) |> 
+  mutate(
+    "Ataques/paciente" = Ataques/Pacientes
+  ) 
+
+asma |>   
+  gt() |> 
+  cols_hide(
+    columns = 4
   ) |> 
-  pivot_longer(cols = everything(), names_to = "Variável", 
-               values_to = "M")  
-  
+  cols_align(
+    align = "center",   
+  ) |> 
+  tab_options(
+    table.width = pct(100), 
+    table.font.size = "26px"
+  )
 ```
 
+## Resultados
+
+::: {.incremental}
+- Qual medicamento é mais eficiente?
+  -   Ataques/paciente:
+      -   Droga nova: $200/500 = 0.4$
+      -   Medicamento padrão: $300/1000 = 0.3$
+::: 
+
+. . .
+
+```{r}
+#| label: tbl-asma-medias
+#| tbl-cap: Resultados do experimento sobre o novo remédio pra asma
+#| tbl-cap-location: bottom
+asma |>
+  gt() |> 
+  cols_align(
+    align = "center",   
+  ) |> 
+  tab_options(
+    table.width = pct(100), 
+    table.font.size = "26px"
+  )
+```
+
+## Histogramas e forma
+
+-   Os gráficos de pontos mostram o valor exato para cada observação
+    -   Úteis para pequenos conjuntos de dados
+    -   Difíceis de ler com amostras maiores
+
+## Histogramas e forma {.smaller}
+-   Em vez de mostrar o valor de cada observação, vamos colocá-los em caixas ou grupos (bin) formados por intervalos
+
+## Histogramas e forma {.smaller}
+-   Variável `Temp` do banco de dados `airquality`: 
+        -   0-60, 60-65, 65-70...
+-   Na tabela abaixo, estão a contagem de observações que estão em cada intervalo
+
+```{r}
+#| label: tbl-bins-temp
+#| tbl-cap: Contagens para os dados de temperatura agrupados
+#| tbl-cap-location: bottom
+cortes <- c(0 ,60 ,65 ,70 ,75 ,80 ,85 , 90, 95, 100) 
+
+airquality |> 
+  mutate(
+    bins = cut(Temp, breaks = cortes <- c(0 ,60 ,65 ,70 ,75 ,80 ,85 , 90, 95, 100))
+  ) |> 
+  count(bins) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  )
+```
+
+    
 
 # Exercícios
 
@@ -294,6 +491,7 @@ airquality |>
 ```{r}
 #| label: tbl-gols-do-brasileiro
 #| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `gols_do_brasileiro`
+#| tbl-cap-location: bottom
 
 gols_brasileiro |> 
   mutate(
