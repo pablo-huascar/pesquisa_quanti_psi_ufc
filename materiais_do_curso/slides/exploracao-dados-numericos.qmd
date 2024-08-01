@@ -648,8 +648,6 @@ geom_density(fill = "#5BBAF7", color = "gray",
 ```
 :::
 
-# Teste (apagar)
-
 # Exercícios
 
 ## Banco de dados `gols_do_brasileiro`
