@@ -309,13 +309,13 @@ airquality |>
 
 . . .
 
--   A fórmula da média: $$
+A fórmula da média: $$
     \bar{x} = \frac{\sum_{i=1}^n x_i}{n}
     $$
 
 . . .
 
--   A formula da média em um formato um pouco mais simples: $$
+A formula da média em um formato um pouco mais simples: $$
     \bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}
     $$
 
@@ -449,25 +449,33 @@ asma |>
 
 # Histogramas e a forma dos dados
 
-## Histogramas e a distribuição dos dados {.smaller}
+## Banco de dados `Age dataset: life, work, and death of 1.22M people`
+
+O conjunto de dados contém informações estruturadas sobre a vida, obra e morte de mais de 1 milhão de pessoas famosas falecidas.
+
+-   Formato: Um banco de dados com 1.223.009 observações e algumas variáveis, por hora vamos usar: 
+    -   `Age of death`: idade com que a pessoa morrreu
+    
+
+## Histogramas e a forma dos dados {.smaller}
 
 -   Os gráficos de pontos mostram o valor exato para cada observação
     -   Úteis para pequenos conjuntos de dados
     -   Difíceis de ler com amostras maiores
 
-## Histogramas e a distribuição dos dados
+## Histogramas e a forma dos dados
 
 -   Em vez de mostrar o valor de cada observação, vamos colocá-los em caixas ou grupos (bins) formados por intervalos
 -   Variável `Temp` do banco de dados `airquality`:
     -   0-60, 60-65, 65-70...
 
-## Histogramas e a distribuição dos dados
+## Histogramas e a forma dos dados
 
 -   No slide a seguir, estão:
     -   A contagem de observações que estão em cada intervalo
     -   As contagens agrupadas são plotadas como barras no que é chamado de histograma
 
-## Histogramas e a distribuição dos dados
+## Histogramas e a forma dos dados
 
 ::: panel-tabset
 ### Tabela
@@ -524,12 +532,12 @@ airquality |>
 ```
 :::
 
-## Histogramas e a distribuição dos dados
+## Histogramas e a forma dos dados
 
 -   Os histogramas fornecem uma visão da densidade dos dados
     -   Barras mais altas representam onde os dados são relativamente mais comuns
 
-## Histogramas e a distribuição dos dados
+## Histogramas e a forma dos dados
 
 -   Houve mais dias com temperaturas entre 80°F e 85°F do que com temperaturas entre 0°F e 60°F
 
@@ -647,6 +655,9 @@ geom_density(fill = "#5BBAF7", color = "gray",
   )
 ```
 :::
+
+## Histogramas e a moda
+
 
 # Exercícios
 
