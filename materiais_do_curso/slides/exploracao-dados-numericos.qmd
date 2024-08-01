@@ -7,8 +7,6 @@ format:
       code-tools: true
       code-line-numbers: false
       theme: simple
-      fig-width: 6
-      fig-asp: 0.618
       echo: false
       message: false
       warning: false
@@ -21,9 +19,8 @@ editor_options:
 
 ```{r}
 #| include: false
-source("C:/projetos_r/pesquisa_quanti_psi_ufc/_common.R")
+source("C:/projetos-r/pesquisa_quanti-psi-ufc/_common.R")
 ```
-
 
 ```{r}
 #| label: setup
@@ -38,7 +35,6 @@ library(conflicted)
 conflicts_prefer(dplyr::filter())
 conflicts_prefer(dplyr::select())
 conflicts_prefer(dplyr::lag())
-set.seed(123)
 ```
 
 ```{r}
@@ -47,11 +43,16 @@ set.seed(123)
 father.son <- father.son |> 
   as_tibble()  
 
+mtcars <- mtcars |> 
+  as_tibble()
+
 airquality <- airquality |> 
   as_tibble()
 
-brasileiro <- read_csv("C:/projetos_r/pesquisa_quanti_psi_ufc/data/brasileiro_2014_2023.csv")
-gols_brasileiro <- read_csv("C:/projetos_r/pesquisa_quanti_psi_ufc/data/gols_por_partida_2014_2023.csv")
+age_data <- read_csv("C:/projetos-r/pesquisa_quanti_psi_ufc/data/AgeDataset-V1.csv")
+
+brasileiro <- read_csv("C:/projetos-r/pesquisa_quanti_psi_ufc/data/brasileiro_2014_2023.csv")
+gols_brasileiro <- read_csv("C:/projetos-r/pesquisa_quanti_psi_ufc/data/gols_por_partida_2014_2023.csv")
 ```
 
 ## O que vamos aprender?
@@ -93,10 +94,11 @@ father.son |>
   )
 ```
 
-## 
+##  {#slide6-id data-menu-title="Gráfico de dispersão da relação entre as alturas dos pais e dos filhos"}
 
 ```{r}
-#| label: pai-e-filho
+#| label: scatter-plot-fheight-sheight
+#| fig-align: center
 
 father.son |> 
   ggplot(aes(fheight, sheight)) +
@@ -143,9 +145,12 @@ mtcars |>
   )
 ```
 
-## 
+##  {#slide9-id data-menu-title="Gráfico de diserpesão da relação entre peso e consumo de combustível"}
 
 ```{r}
+#| label: scatter-plot-wt-mpg
+#| fig-align: center
+
 mtcars |> 
   ggplot(aes(wt, mpg)) +
   geom_jitter(alpha = 0.2, size = 3) +
@@ -161,7 +166,7 @@ mtcars |>
 
 ## Banco de dados `diamonds`
 
-Um conjunto de dados contendo os preços e outros atributos de quase 54.000 diamantes. 
+Um conjunto de dados contendo os preços e outros atributos de quase 54.000 diamantes.
 
 -   Formato: Um banco de dados com 53940 observações e algumas variáveis. Vamos usar:
     -   `price`: preço em dólares americanos
@@ -191,9 +196,12 @@ diamonds |>
   )
 ```
 
-## 
+##  {#slide12-id data-menu-title="Gráfico de diserpesão da relação entre o quilate e o preço de diamantes"}
 
 ```{r}
+#| label: scatter-plot-carat-price
+#| fig-align: center
+
 diamonds |> 
   ggplot(aes(carat, price)) +
   geom_jitter(alpha = 0.2, size = 3) +
@@ -212,11 +220,11 @@ diamonds |>
 
 ## Relação entre o quilate e o preço de diamantes {.smaller}
 
-- Relação exponencial
-  -   Uma variável depende da outra elevada a uma potência constante
-  -   Crescimento ou decaimento rápido: a variável dependente aumenta ou diminui muito rapidamente à medida que a variável independente aumenta
-  -   Gráfico em forma de curva: o gráfico de uma relação exponencial é uma curva suave que se aproxima de zero em um dos extremos e cresce ou decresce rapidamente no outro extremo.
-  -   Não linearidade: a relação entre as variáveis não é linear, ou seja, não pode ser representada por uma linha reta.
+-   Relação exponencial
+    -   Uma variável depende da outra elevada a uma potência constante
+    -   Crescimento ou decaimento rápido: a variável dependente aumenta ou diminui muito rapidamente à medida que a variável independente aumenta
+    -   Gráfico em forma de curva: o gráfico de uma relação exponencial é uma curva suave que se aproxima de zero em um dos extremos e cresce ou decresce rapidamente no outro extremo.
+    -   Não linearidade: a relação entre as variáveis não é linear, ou seja, não pode ser representada por uma linha reta.
 
 ## Relação entre o quilate e o preço de diamantes
 
@@ -226,14 +234,14 @@ diamonds |>
 
 # Gráficos de pontos e a média
 
-## Banco de dados `airquality`
+## Banco de dados `airquality` {.smaller}
 
 Medições diárias da qualidade do ar em Nova York, de maio a setembro de 1973
 
 -   Formato: Um banco de dados com 153 observações e seis variáveis
     -   `Ozone`: quantidade de ozônio (ppb - partes por bilhão)
     -   `Solar.R`: irradiaçao solar (lang - 1 lang é igual a um caloria por centímetro quadrado)
-    -   `	Wind`: velocidade do vento (mph - milhas por hora)
+    -   `Wind`: velocidade do vento (mph - milhas por hora)
     -   `Temp`: temperatura (F - graus Fahrenheit)
     -   `Month`: mês da medição
     -   `Day`: dia da medição
@@ -265,21 +273,24 @@ airquality |>
 -   A média é uma maneira de medir o centro de uma distribuição de dados
 -   Os gráficos de pontos mostram o valor exato para cada observação
 
-##
+##  {#slide19-id data-menu-title="Gráfico de pontos para temperatura de Nova York"}
 
 ```{r}
+#| label: dot-plot-Temp
+#| fig-align: center
+
 media <- mean(airquality$Temp)
 media <- round(media, 2)
 
 airquality |> 
   ggplot(aes(Temp)) +
-  geom_dotplot(color = "#569BBD", fill = "#569BBD", 
+  geom_dotplot(color = "gray", fill = "white", 
                dotsize = 0.7) +
   annotate("point", media, -0.05,
            color = "red", fill = "red", 
            shape = 24, size = 4) + 
   labs(
-    title = "Gráfico de pontos para temperatura Nova York",
+    title = "Gráfico de pontos para a temperatura de Nova York",
     subtitle = "Maio a setembro de 1973",
     caption =  "O triângulo vermelho indica a posição da média"
   ) +
@@ -298,23 +309,21 @@ airquality |>
 
 . . .
 
-- A fórmula da média:
-$$
-\bar{x} = \frac{\sum_{i=1}^n x_i}{n}
-$$
+-   A fórmula da média: $$
+    \bar{x} = \frac{\sum_{i=1}^n x_i}{n}
+    $$
 
 . . .
 
-- A formula da média em um formato um pouco mais simples:
-$$
-\bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}
-$$
+-   A formula da média em um formato um pouco mais simples: $$
+    \bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}
+    $$
 
 ## Um pouco de nomenclaura
 
-::: {.incremental}
+::: incremental
 -   $\mu$: média da popualação
--   $\bar{x}$: média da amostra 
+-   $\bar{x}$: média da amostra
 -   $x$: qualquer caso da amostra
 -   $x_i$: representa os valores individuais de forma genérica, onde $i$ é um índice que varia de $1$ (primeiro caso) até $n$ (último caso)
 -   $n$: total de casos
@@ -328,6 +337,7 @@ Qual foi a média de temperatura dos cinco primeiros dias do mês de maio de 197
 #| label: tbl-cinco-dias-airquality
 #| tbl-cap: Temperatura dos cinco primeiros dias do mês de maio de 1973 em Nova York
 #| tbl-cap-location: bottom
+
 airquality |> 
   filter(Month == 5, Day <= 5) |> 
   select(Month, Day, Temp) |> 
@@ -345,7 +355,6 @@ airquality |>
 ```
 
 ## O cáculo da média
-
 
 $$
 \text{Temp} = \{67, 72, 74, 62, 56\}
@@ -376,9 +385,9 @@ $$
 ## A média e a padronização de medidas
 
 -   Um novo medicamento é mais eficaz no tratamento de crises de asma do que o medicamento padrão?
--   Um Teste com 1.500 adultos é delineado: 
-    -   500 recebem o novo medicamento 
-    -   1.000 recebem um medicamento padrão no grupo de controle
+-   Um teste com 1.500 adultos foi delineado:
+    -   500 receberam o novo medicamento
+    -   1.000 receberam um medicamento padrão no grupo de controle
 
 ## Resultados
 
@@ -414,12 +423,12 @@ asma |>
 
 ## Resultados
 
-::: {.incremental}
-- Qual medicamento é mais eficiente?
-  -   Ataques/paciente:
-      -   Droga nova: $200/500 = 0.4$
-      -   Medicamento padrão: $300/1000 = 0.3$
-::: 
+::: incremental
+-   Qual medicamento é mais eficiente?
+    -   Ataques/paciente:
+        -   Droga nova: $200/500 = 0.4$
+        -   Medicamento padrão: $300/1000 = 0.3$
+:::
 
 . . .
 
@@ -438,31 +447,52 @@ asma |>
   )
 ```
 
-## Histogramas e forma
+# Histogramas e a forma dos dados
+
+## Histogramas e a distribuição dos dados {.smaller}
 
 -   Os gráficos de pontos mostram o valor exato para cada observação
     -   Úteis para pequenos conjuntos de dados
     -   Difíceis de ler com amostras maiores
 
-## Histogramas e forma {.smaller}
--   Em vez de mostrar o valor de cada observação, vamos colocá-los em caixas ou grupos (bin) formados por intervalos
+## Histogramas e a distribuição dos dados
 
-## Histogramas e forma {.smaller}
--   Variável `Temp` do banco de dados `airquality`: 
-        -   0-60, 60-65, 65-70...
--   Na tabela abaixo, estão a contagem de observações que estão em cada intervalo
+-   Em vez de mostrar o valor de cada observação, vamos colocá-los em caixas ou grupos (bins) formados por intervalos
+-   Variável `Temp` do banco de dados `airquality`:
+    -   0-60, 60-65, 65-70...
+
+## Histogramas e a distribuição dos dados
+
+-   No slide a seguir, estão:
+    -   A contagem de observações que estão em cada intervalo
+    -   As contagens agrupadas são plotadas como barras no que é chamado de histograma
+
+## Histogramas e a distribuição dos dados
+
+::: panel-tabset
+### Tabela
 
 ```{r}
 #| label: tbl-bins-temp
 #| tbl-cap: Contagens para os dados de temperatura agrupados
 #| tbl-cap-location: bottom
-cortes <- c(0 ,60 ,65 ,70 ,75 ,80 ,85 , 90, 95, 100) 
+
+cortes <- c(0 ,60 ,65 ,70 ,75 , 
+            80 ,85 , 90, 95, 100) 
+
+airquality <- airquality |> 
+  mutate(
+    bins = cut(Temp, breaks = cortes),
+    destacar = case_when(bins == "(0,60]" ~ "menor",
+                         bins == "(80,85]" ~ "maior",
+                         .default = "outros")
+  ) 
 
 airquality |> 
-  mutate(
-    bins = cut(Temp, breaks = cortes <- c(0 ,60 ,65 ,70 ,75 ,80 ,85 , 90, 95, 100))
-  ) |> 
   count(bins) |> 
+  rename(
+    "Contagem" = n
+  ) |> 
   gt() |> 
   cols_align(
     align = "center"  
@@ -473,7 +503,150 @@ airquality |>
   )
 ```
 
-    
+### Histograma
+
+```{r}
+#| label: histogram-Temp
+#| fig-align: center
+
+airquality |> 
+  ggplot(aes(Temp)) +
+  geom_histogram(bins = 9, fill = "white",
+                 color = "gray") +
+  labs(
+    title = "Histograma para a temperatura de Nova York",
+    subtitle = "Maio a setembro de 1973"
+    ) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  )
+```
+:::
+
+## Histogramas e a distribuição dos dados
+
+-   Os histogramas fornecem uma visão da densidade dos dados
+    -   Barras mais altas representam onde os dados são relativamente mais comuns
+
+## Histogramas e a distribuição dos dados
+
+-   Houve mais dias com temperaturas entre 80°F e 85°F do que com temperaturas entre 0°F e 60°F
+
+```{r}
+#| label: histogram-Temp-color
+#| fig-align: center
+
+airquality |> 
+  ggplot(aes(Temp, fill = destacar,
+             color = destacar)) +
+  geom_histogram(breaks = pretty(range(airquality$Temp),
+                                 n = nclass.Sturges(airquality$Temp),
+                                 min.n = 1)) + 
+  labs(
+    title = "Histograma para a temperatura de Nova York",
+    subtitle = "Maio a setembro de 1973",
+    ) +
+  scale_fill_manual(values = c(menor = "#6682F3", maior = "#EF7259", 
+                               outros = "white")) +
+  scale_color_manual(values = c(menor = "gray", maior = "gray", 
+                                outros = "gray")) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "none"
+  )
+```
+
+## Histogramas, gráficos de densidade e a forma dos dados {.smaller}
+
+-   Histogramas e gráficos de densidade (um histograma suavizado) são convenientes para entender a forma da distribuição de dados:
+    -   Quando a distribuição de uma variável segue para a direita e tem uma cauda direita mais longa: assimetria positiva
+    -   Variáveis com a característica inversa – uma cauda longa e mais fina para a esquerda: assimetria negativa
+    -   Variáveis que apresentam um declive aproximadamente igual em ambas as direções são chamadas simétricas
+
+## Formas das distribuições {.smaller}
+
+-   No slide a seguir, vamos ter as distribuições das seguintes variáveis
+    -   Preço de diamantes (`price`, do banco de dados `diamonds`)
+    -   Altura dos filhos (`sheight`, do banco de dados `father.son`)
+    -   Idade da morte de pessoas famosas (`Age of death`, do banco de dados `Age dataset: life, work, and death of 1.22M people`[^1])
+-   Como você imagina a forma dessas distribuições? Tente desenhá-las antes de ver os gráficos
+
+[^1]: Mantivemos somente as mortes por causas naturais e de pessoas que faleceram com menos de 80 anos
+
+## Formas das distribuições {.smaller}
+
+::: panel-tabset
+### Assimetria positiva
+
+```{r}
+#| fig-align: center
+diamonds |> 
+  ggplot(aes(price)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 breaks = pretty(range(diamonds$price),
+                                 n = nclass.Sturges(diamonds$price),
+                                 min.n = 1),
+                 color = "gray", fill = "white") +
+  geom_density(fill = "#5BBAF7", color = "gray", 
+               alpha = 0.2) +
+  labs(
+    title = "Histograma do preço dos diamantes"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5)
+    )
+```
+
+### Distribuição simétrica
+
+```{r}
+#| fig-align: center
+father.son |> 
+  ggplot(aes(sheight)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 breaks = pretty(range(father.son$sheight),
+                                 n = nclass.Sturges(father.son$sheight),
+                                 min.n = 1),
+                 color = "gray", fill = "white") +
+  geom_density(fill = "#5BBAF7", color = "gray",
+               alpha = 0.2) +
+  labs(
+    title = "Histograma da altura dos filhos"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+
+### Assimetria negativa
+
+```{r}
+#| fig-align: center
+age_data_filter <- age_data |> 
+  filter(`Manner of death` == "natural causes",
+         `Age of death` < 80 ) 
+
+age_data_filter |> 
+  ggplot(aes(x = `Age of death`)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 breaks = pretty(range(age_data_filter$`Age of death`),
+                                 n = nclass.Sturges(age_data_filter$`Age of death`), 
+                                 min.n = 1), 
+                 color = "gray", fill = "white") +
+geom_density(fill = "#5BBAF7", color = "gray",
+               alpha = 0.2) +
+  labs(
+    title = "Histograma da idade falecimento de pessoas famosas",
+    subtitle = "Causas naturais"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  )
+```
+:::
 
 # Exercícios
 
@@ -483,7 +656,7 @@ airquality |>
     -   `campeonato`: o ano do campeonato
     -   `partida`: sequência da partida no campeonato
     -   `data`: data de realização da partida
-    -   `estadia`: estádio em que a partida foi realizada
+    -   `estádio`: estádio em que a partida foi realizada
     -   `gols`: número de gols da partida
 
 ## Uma olhada nos dados
@@ -510,4 +683,3 @@ gols_brasileiro |>
     table.font.size = "22px"
   )
 ```
-
