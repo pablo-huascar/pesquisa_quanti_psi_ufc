@@ -331,7 +331,7 @@ A formula da média em um formato um pouco mais simples: $$
 -   $n$: total de casos
 :::
 
-## O cáculo da média
+## {#slide36-id data-menu-title="O cáculo da média"}
 
 Qual foi a média de temperatura dos cinco primeiros dias do mês de maio de 1973 em Nova York?
 
@@ -559,9 +559,9 @@ airquality |>
 -   Os histogramas fornecem uma visão da densidade dos dados
     -   Barras mais altas representam onde os dados são relativamente mais comuns
 
-## Histogramas e a forma dos dados
+## {#slide36-id data-menu-title="Histograma para a temperatura de Nova York"}
 
--   Houve mais dias com temperaturas entre 80°F e 85°F do que com temperaturas entre 0°F e 60°F
+Houve mais dias com temperaturas entre 80°F e 85°F do que com temperaturas entre 0°F e 60°F
 
 ```{r}
 #| label: histogram-Temp-color
@@ -579,7 +579,7 @@ airquality |>
     ) +
   scale_fill_manual(values = c(menor = "#6682F3", maior = "#EF7259", 
                                outros = "white")) +
-  scale_color_manual(values = c(menor = "gray", maior = "gray", 
+  scale_color_manual(values = c(menor =  "#6682F3", maior = "#EF7259", 
                                 outros = "gray")) +
   theme(
     plot.title = element_text(hjust = 0.5),
@@ -686,9 +686,10 @@ geom_density(fill = "#5BBAF7", color = "gray",
 
 -   Além de verificar se uma distribuição é assimétrica ou simétrica, os histogramas podem ser usados para identificar a moda
 -   Uma moda é representada por um pico proeminente na distribuição
--   Existe apenas um pico proeminente no histograma da altura dos filhos (`sheight`)
 
-##
+## {#slide-id data-menu-title="Histograma para a altura dos filhos (intervalo da moda destacado"}
+
+Existe apenas um pico proeminente no histograma da altura dos filhos (sheight)
 
 ```{r}
 #| fig-align: center
