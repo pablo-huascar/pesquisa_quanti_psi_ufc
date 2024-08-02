@@ -25,6 +25,8 @@ source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
 ```{r}
 #| label: setup
 
+## Analisar melhor o pacote conflicted e avaliar inserir em _common.R
+
 library(tidyverse)
 library(janitor)
 library(UsingR)
@@ -449,13 +451,33 @@ asma |>
 
 # Histogramas e a forma dos dados
 
-## Banco de dados `Age dataset: life, work, and death of 1.22M people`
+## Banco de dados `Age dataset`
 
 O conjunto de dados contém informações estruturadas sobre a vida, obra e morte de mais de 1 milhão de pessoas famosas falecidas.
 
 -   Formato: Um banco de dados com 1.223.009 observações e algumas variáveis, por hora vamos usar: 
     -   `Age of death`: idade com que a pessoa morrreu
     
+## Uma olhada nos dados
+
+```{r}
+#| label: tbl-agedata
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `Age dataset`
+#| tbl-cap-location: bottom 
+
+age_data |> 
+  select(Name, `Age of death`) |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  )
+```
+
 
 ## Histogramas e a forma dos dados {.smaller}
 
@@ -545,12 +567,12 @@ airquality |>
 #| label: histogram-Temp-color
 #| fig-align: center
 
+breaks_temp <- pretty(range(airquality$Temp), n = nclass.Sturges(airquality$Temp), min.n = 1)
+
 airquality |> 
   ggplot(aes(Temp, fill = destacar,
              color = destacar)) +
-  geom_histogram(breaks = pretty(range(airquality$Temp),
-                                 n = nclass.Sturges(airquality$Temp),
-                                 min.n = 1)) + 
+  geom_histogram(breaks = breaks_temp) + 
   labs(
     title = "Histograma para a temperatura de Nova York",
     subtitle = "Maio a setembro de 1973",
@@ -590,6 +612,7 @@ airquality |>
 
 ```{r}
 #| fig-align: center
+
 diamonds |> 
   ggplot(aes(price)) +
   geom_histogram(aes(y = after_stat(density)),
@@ -611,12 +634,14 @@ diamonds |>
 
 ```{r}
 #| fig-align: center
+
+breaks_sheight <- pretty(range(father.son$sheight),                                 n = nclass.Sturges(father.son$sheight),
+                                 min.n = 1)
+
 father.son |> 
   ggplot(aes(sheight)) +
   geom_histogram(aes(y = after_stat(density)),
-                 breaks = pretty(range(father.son$sheight),
-                                 n = nclass.Sturges(father.son$sheight),
-                                 min.n = 1),
+                 breaks = breaks_sheight,
                  color = "gray", fill = "white") +
   geom_density(fill = "#5BBAF7", color = "gray",
                alpha = 0.2) +
@@ -632,6 +657,7 @@ father.son |>
 
 ```{r}
 #| fig-align: center
+
 age_data_filter <- age_data |> 
   filter(`Manner of death` == "natural causes",
          `Age of death` < 80 ) 
@@ -657,6 +683,38 @@ geom_density(fill = "#5BBAF7", color = "gray",
 :::
 
 ## Histogramas e a moda
+
+-   Além de verificar se uma distribuição é assimétrica ou simétrica, os histogramas podem ser usados para identificar a moda
+-   Uma moda é representada por um pico proeminente na distribuição
+-   Existe apenas um pico proeminente no histograma da altura dos filhos (`sheight`)
+
+##
+
+```{r}
+#| fig-align: center
+
+father.son |>
+  mutate(
+    pico = case_when(sheight > 68 & sheight < 70  ~ "pico",
+                     .default = "não pico")
+  ) |> 
+  ggplot(aes(sheight, fill = pico,
+             color = pico)) +
+  geom_histogram(breaks = breaks_sheight) +
+  labs(
+    title = "Histograma da altura dos filhos",
+    subtitle = "Moda destacada"
+  ) +
+  scale_fill_manual(values = c(pico = "#EF7259", 
+                               "não pico" = "white")) +
+  scale_color_manual(values = c("não pico" = "gray", pico = "gray")) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "none"
+  )
+  
+```
 
 
 # Exercícios
