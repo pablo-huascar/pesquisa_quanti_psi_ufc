@@ -937,6 +937,217 @@ mtcars |>
 ```
 :::
 
+# Variância e desvio padrão
+
+## Variância e desvio padrão
+-   A média foi introduzida como um método para descrever o centro de uma variável
+-   A variabilidade nos dados também é importante:
+    - Variância
+    - Desvio padrão
+
+## Desvio padrão
+
+A princípio, a fórmula do desvio padrão parece complicada, mas vamos analisá-la parte por parte e você verá como ela pode ser simples de entender
+
+$$
+s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}}
+$$
+
+## Avaliações de um professor {.smaller}
+
+Na tabela a seguir, estão as avaliações que um professor recebeu de uma turma de cinco aluno em relação a uma disciplina ministrada. As notas atribuídas pelos alunos à avaliação do professor variavam de 1 a 5, onde 1 significa péssimo e 5 ótimo:
+
+```{r}
+#| label: tbl-av_prof
+#| tbl-cap: Avaliações do professor
+#| tbl-cap-location: bottom
+av_prof <- tribble(
+  ~Aluno, ~"Avaliação do professor",
+  "Joana", 1,
+  "Paulo", 2,
+  "Maria", 3,
+  "Adriana", 3,
+  "Pedro", 4
+)
+
+desvios <- tribble(
+  ~"Observaçao - média",
+  "1 - 2.6",
+  "2 - 2.6",
+  "3 - 2.6",
+  "3 - 2.6",
+   "4 - 2.6"
+  )
+
+m_av <- mean(av_prof$`Avaliação do professor`)
+
+av_prof <- av_prof |> 
+  bind_cols(desvios) |> 
+  mutate(
+    "Desvio da média" = `Avaliação do professor` - m_av,
+    "Desviso ao quadrado" = `Desvio da média`^2
+  )
+
+av_prof |>
+  select(Aluno, `Avaliação do professor`) |>
+  gt() |>
+  cols_align(align = "center") |>
+  tab_options(table.width = pct(100), table.font.size = "22px") |>
+  grand_summary_rows(
+    columns = "Avaliação do professor",
+    fns = list(
+      Média ~ mean(.)  
+    ),
+    fmt = ~ fmt_number(., decimals = 1),
+    missing_text = ""
+  ) |>
+  opt_stylize(style = 1, color = "gray") |>
+  tab_style(
+    locations = list(cells_grand_summary(), cells_stub_grand_summary()),
+    style = cell_fill(color = "gray" |> adjust_luminance(steps = +2))
+  ) |> 
+  tab_style(
+    style = list(
+      cell_text( align = "right")
+    ),
+    locations = cells_stub_grand_summary()
+  ) |> tab_style(
+    locations = list(cells_stub()),
+    style = cell_fill(color = "white")
+  )
+```
+
+$\bar{x} =$ `r m_av`
+
+## Desvios da média: $x_i - \bar{x}$ {.smaller}
+
+$$
+s = \sqrt{\frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})}^2}{n-1}}
+$$
+
+## Desvios da média: $x_i - \bar{x}$ {.smaller}
+
+
+-   Note que a média em algums momentos subestima a avaliação dada por cada aluno e, em outros, superestima:
+    -   Chamamos de desvio a distância de uma observação de sua média 
+
+```{r}
+
+av_prof |> 
+  select(Aluno:`Desvio da média`) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+$\bar{x} =$ `r m_av`
+
+## 
+
+```{r}
+av_prof |> 
+  mutate(
+    texto_y = (`Avaliação do professor` + m_av) / 2
+  ) |> 
+  ggplot(aes(fct_reorder(Aluno, `Avaliação do professor`, min), 
+             `Avaliação do professor`)) +
+  geom_point() +
+  annotate("segment", 
+           x = 1, xend = 5, 
+           y = m_av, yend = m_av, 
+           linetype = 2, color = "gray", 
+           linewidth = 1) +
+  geom_segment(aes(x = Aluno, xend = Aluno, 
+                   y = `Avaliação do professor`, 
+                   yend = m_av)) +
+  geom_text(aes(x = Aluno, y = texto_y, 
+                label = round(`Desvio da média`, 1)),
+            vjust = -0.5, hjust = -0.5,
+            size = 4) +
+  labs(
+    x = "Aluno",
+    title = "Desvios da média"
+  ) + 
+  theme(
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+
+## Soma dos erros {.smaller}
+
+Agora que já temos os desvios, para saber a variabilidade total dos dados podemos somá-los, certo?
+
+```{r}
+av_prof |> 
+  select(Aluno:`Desvio da média`) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  ) |> 
+  grand_summary_rows(
+    columns = "Desvio da média",
+     fns = list(
+      Soma ~ sum(.)  
+    ),
+    fmt = ~ fmt_number(., decimals = 0), 
+    missing_text = ""
+  ) |> 
+  tab_style(
+    locations = list(cells_grand_summary(), cells_stub_grand_summary()),
+    style = cell_fill(color = "gray" |> adjust_luminance(steps = +2))
+  ) |> 
+  tab_style(
+    style = list(
+      cell_text( align = "right")
+    ),
+    locations = cells_stub_grand_summary()
+  ) |> tab_style(
+    locations = list(cells_stub()),
+    style = cell_fill(color = "white")
+  )
+```
+
+Zero? Esse resultado não faz sentido, porque claramente há uma variabilidade, como visto no gráfico anterior
+
+## Soma dos desvios ao quadrado
+
+$$
+s = \sqrt{\frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})^2}}{n-1}}
+$$
+
+## Soma dos desvios ao quadrado
+
+Para evitar que os valores positivos e negativos se cancelem na soma, elevamos os desvios ao quadrado:
+
+$$
+{SS} = \sum (x_i - \bar{x}) (x_i - \bar{x})
+$$
+## Soma dos desvios ao quadrado
+
+```{r}
+av_prof |> 
+  mutate(
+    dv_quadrado = `Desvio da média`^2
+    ) |> 
+  gt()
+```
+
+
 
 # Exercícios
 
@@ -963,7 +1174,7 @@ gols_brasileiro |>
   slice_sample(n = 10) |> 
   gt() |> 
   fmt_number(
-    decimals = 0,sep_mark = ""
+    decimals = 0, sep_mark = ""
   ) |> 
   cols_align(
     align = "center"  
