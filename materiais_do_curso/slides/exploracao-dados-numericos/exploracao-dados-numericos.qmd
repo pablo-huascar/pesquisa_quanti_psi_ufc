@@ -217,10 +217,15 @@ O conjunto de dados contém informações estruturadas sobre a vida, obra e mort
 
 ```{r}
 #| label: tbl-agedata
-#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `Age dataset`
+#| tbl-cap: Uma amostra de dez casos do banco de dados `Age dataset`
 #| tbl-cap-location: bottom 
 
 age_data |> 
+  filter(Country == "Brazil", Name %in% c("Hebe Camargo", "Ayrton Senna",
+                                          "Carlos Lacerda", "João Guimarães Rosa",
+                                          "João Goulart", "Glauber Rocha",
+                                          "Arthur Bispo do Rosário", "Sócrates",
+                                          "Getúlio Vargas", "Paulo Freire")) |> 
   select(Name, `Age of death`) |> 
   slice_sample(n = 10) |> 
   gt() |> 
