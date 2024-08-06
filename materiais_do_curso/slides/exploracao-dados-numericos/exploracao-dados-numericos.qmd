@@ -35,10 +35,7 @@ library(palmerpenguins)
 library(gt)
 library(scales)
 library(ggthemes)
-library(conflicted)
-conflicts_prefer(dplyr::filter())
-conflicts_prefer(dplyr::select())
-conflicts_prefer(dplyr::lag())
+library(DT)
 ```
 
 ```{r}
@@ -48,6 +45,7 @@ father.son <- father.son |>
   as_tibble()  
 
 mtcars <- mtcars |> 
+  rownames_to_column(var = "Modelo") |> 
   as_tibble()
 
 airquality <- airquality |> 
@@ -243,10 +241,14 @@ age_data |>
 
 # Gráficos de dispersão para dados pareados
 
-## Gráficos de dispersão
+## Gráficos de dispersão {.smaller}
+
+-   Eixo x: variável independente[^1]
+-   Eixo y: variável dependente
+
+[^1]: Use os termos dependente e independente com ressalvas, pois estão sendo aplicados fora do contexto de um experimento.
 
 ::: panel-tabset
-
 ### Dados
 
 ```{r}
@@ -273,7 +275,7 @@ dispersao |>
 ### Gráfico
 
 ```{r}
-#| out-width: 70%
+#| out-width: 50%
 
 dispersao |> 
   ggplot(aes(x, y)) +
@@ -286,7 +288,6 @@ dispersao |>
                linetype = 2) +
   scale_y_continuous(breaks = y)
 ```
-
 :::
 
 ## Alturas dos pais X altura dos Filhos
@@ -341,7 +342,7 @@ mtcars |>
 
 ## Quilate X Preço dos diamantes
 
--   Como você imagina que será a realação entre o quilate e o  preço dos diamantes?
+-   Como você imagina que será a realação entre o quilate e o preço dos diamantes?
     -   Diamantes com mais quilates serão mais ou menos caros?
     -   E os diamantes com menos quilates?
 -   Tente fazer um desenho que represente essa relação
@@ -494,6 +495,84 @@ $$
 $$
 \bar{X} = 66.2
 $$
+
+## Consumo de combustível e peso de automóveis {.smaller}
+
+Vamos calcular a média do consumo e do peso dos automóveis abaixo:
+
+```{r}
+set.seed(123)
+mtcars |> 
+  slice_sample(n = 5) |> 
+  select(Modelo, mpg, wt) |>
+  add_row(Modelo = "Média", mpg = NA, wt = NA) |> 
+  datatable(
+    rownames = F, editable = T,
+    options = list(
+      lengthChange = FALSE,
+      dom = 't', ordering = FALSE,
+      columnDefs = 
+        list(list(className = 'dt-center', 
+                  targets = "_all"))
+    ),
+    class = 'cell-border stripe'
+  ) |> 
+  formatRound(
+    columns = c("mpg", "wt"),
+    digits = 1
+  ) |> 
+  formatStyle(
+    columns = "Modelo",
+    valueColumns = "Modelo",
+    target = 'cell',
+    textAlign = styleEqual('Média', 'right')
+  ) |> 
+  formatStyle(
+    columns = "Modelo",
+    valueColumns = "Modelo",
+    target = 'cell',
+    textAlign = styleEqual(c("Maserati Bora", "Cadillac Fleetwood",
+                             "Honda Civic", "Merc 450SLC", 
+                             "Datsun 710"),'left')
+    )
+```
+
+## Resultados
+
+```{r}
+set.seed(123)
+
+mtcars |> 
+  slice_sample(n = 5) |> 
+  summarise(
+    across(c(mpg, wt),
+           list(
+             Média = \(x) mean(x, na.rm = T) |> round(1)
+             ))
+  ) |> 
+  pivot_longer(
+    cols = everything(),
+    names_to = c("Variável", ".value"),
+               names_sep = "_"
+    ) |> 
+  gt() |> 
+  cols_align(
+    columns = 2,
+    align = "center" 
+  ) |> 
+  tab_options(
+    table.width = pct(50),
+    table.font.size = "22px"
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = Variável)
+    ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )  
+```
+
 
 ## A média e a padronização de medidas
 
@@ -697,10 +776,10 @@ airquality |>
 -   No slide a seguir, vamos ter as distribuições das seguintes variáveis
     -   Preço de diamantes (`price`, do banco de dados `diamonds`)
     -   Altura dos filhos (`sheight`, do banco de dados `father.son`)
-    -   Idade da morte de pessoas famosas (`Age of death`, do banco de dados `Age dataset: life, work, and death of 1.22M people`[^1])
+    -   Idade da morte de pessoas famosas (`Age of death`, do banco de dados `Age dataset: life, work, and death of 1.22M people`[^2])
 -   Como você imagina a forma dessas distribuições? Tente desenhá-las antes de ver os gráficos
 
-[^1]: Mantivemos somente as mortes por causas naturais e de pessoas que faleceram com menos de 80 anos
+[^2]: Mantivemos somente as mortes por causas naturais e de pessoas que faleceram com menos de 80 anos
 
 ## Formas das distribuições {.smaller}
 
@@ -785,7 +864,6 @@ geom_density(fill = "#5BBAF7", color = "gray",
 -   Além de verificar se uma distribuição é assimétrica ou simétrica, os histogramas podem ser usados para identificar a moda da distribuição
 -   Uma moda é representada por um pico proeminente na distribuição
 
-
 ## 
 
 Existe apenas um pico proeminente no histograma da altura dos filhos (`sheight`)
@@ -818,14 +896,13 @@ father.son |>
 -   Definição matemática: valor com mais ocorrências no conjunto de dados
 -   Para muitos conjuntos de dados do mundo real, é comum não haver observações com o mesmo valor, tornando esta definição impraticável na análise
 -   As distribuições podem ser:
-    -   unimodais 
-    -   bimodais 
+    -   unimodais
+    -   bimodais
     -   multimodais
 
 ## A moda das distribuições {.smaller}
 
 ::: panel-tabset
-
 ### Unimodal
 
 ```{r}
@@ -886,13 +963,11 @@ airquality |>
     legend.position = "none"
   )
 ```
-
 :::
 
 ## A moda em sua definição matemática {.smaller}
 
 ::: panel-tabset
-
 ### Tabela
 
 ```{r}
@@ -940,26 +1015,27 @@ mtcars |>
 # Variância e desvio padrão
 
 ## Variância e desvio padrão
+
 -   A média foi introduzida como um método para descrever o centro de uma variável
 -   A variabilidade nos dados também é importante:
-    - Variância
-    - Desvio padrão
+    -   Variância
+    -   Desvio padrão
 
-## Desvio padrão
+## Variância
 
-A princípio, a fórmula do desvio padrão parece complicada, mas vamos analisá-la parte por parte e você verá como ela pode ser simples de entender
+A princípio, a fórmula da variância parece complicada, mas vamos analisá-la parte por parte e você verá como ela pode ser simples de entender.
 
 $$
-s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}}
+s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}
 $$
 
-## Avaliações de um professor {.smaller}
+## Avaliações do professor Zé {.smaller}
 
-Na tabela a seguir, estão as avaliações que um professor recebeu de uma turma de cinco aluno em relação a uma disciplina ministrada. As notas atribuídas pelos alunos à avaliação do professor variavam de 1 a 5, onde 1 significa péssimo e 5 ótimo:
+Na tabela a seguir, estão as avaliações que o professor Zé recebeu de uma turma de cinco aluno em relação a uma disciplina ministrada. As notas atribuídas pelos alunos à avaliação do professor variavam de 1 a 5, onde 1 significa péssimo e 5 ótimo:
 
 ```{r}
 #| label: tbl-av_prof
-#| tbl-cap: Avaliações do professor
+#| tbl-cap: Avaliações do professor Zé
 #| tbl-cap-location: bottom
 av_prof <- tribble(
   ~Aluno, ~"Avaliação do professor",
@@ -985,7 +1061,7 @@ av_prof <- av_prof |>
   bind_cols(desvios) |> 
   mutate(
     "Desvio da média" = `Avaliação do professor` - m_av,
-    "Desviso ao quadrado" = `Desvio da média`^2
+    "Desvio ao quadrado" = `Desvio da média`^2
   )
 
 av_prof |>
@@ -1022,14 +1098,14 @@ $\bar{x} =$ `r m_av`
 ## Desvios da média: $x_i - \bar{x}$ {.smaller}
 
 $$
-s = \sqrt{\frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})}^2}{n-1}}
+s^2 = \frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})}^2}{n-1}
 $$
 
 ## Desvios da média: $x_i - \bar{x}$ {.smaller}
 
+Note que a média em algums momentos subestima a avaliação dada por cada aluno e, em outros, superestima:
 
--   Note que a média em algums momentos subestima a avaliação dada por cada aluno e, em outros, superestima:
-    -   Chamamos de desvio a distância de uma observação de sua média 
+-   Chamamos de desvio a distância de uma observação de sua média
 
 ```{r}
 
@@ -1059,7 +1135,7 @@ av_prof |>
   ) |> 
   ggplot(aes(fct_reorder(Aluno, `Avaliação do professor`, min), 
              `Avaliação do professor`)) +
-  geom_point() +
+  geom_point(size = 3) +
   annotate("segment", 
            x = 1, xend = 5, 
            y = m_av, yend = m_av, 
@@ -1074,6 +1150,7 @@ av_prof |>
             size = 4) +
   labs(
     x = "Aluno",
+    y = "Avaliação do professor Zé",
     title = "Desvios da média"
   ) + 
   theme(
@@ -1081,7 +1158,7 @@ av_prof |>
   )
 ```
 
-## Soma dos erros {.smaller}
+## Soma dos desvios {.smaller}
 
 Agora que já temos os desvios, para saber a variabilidade total dos dados podemos somá-los, certo?
 
@@ -1122,32 +1199,498 @@ av_prof |>
   )
 ```
 
-Zero? Esse resultado não faz sentido, porque claramente há uma variabilidade, como visto no gráfico anterior
+Zero? Esse resultado não faz sentido, porque claramente há variabilidade, como visto no gráfico anterior.
 
 ## Soma dos desvios ao quadrado
 
 $$
-s = \sqrt{\frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})^2}}{n-1}}
+s^2 = \frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})^2}}{n-1}
 $$
 
 ## Soma dos desvios ao quadrado
 
-Para evitar que os valores positivos e negativos se cancelem na soma, elevamos os desvios ao quadrado:
+Para evitar que os valores positivos e negativos se cancelem na soma e dar mais peso aos desvios maiores, elevamos os desvios ao quadrado:
 
 $$
-{SS} = \sum (x_i - \bar{x}) (x_i - \bar{x})
+{SS} = \sum_{i=1}^n (x_i - \bar{x})^2 =  \sum(x_i - \bar{x})(x_i - \bar{x}) 
 $$
+
 ## Soma dos desvios ao quadrado
 
 ```{r}
+ss <- sum(av_prof$`Desvio ao quadrado`)
+
 av_prof |> 
-  mutate(
-    dv_quadrado = `Desvio da média`^2
-    ) |> 
-  gt()
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  ) |> 
+  grand_summary_rows(
+    columns = "Desvio ao quadrado",
+     fns = list(
+      Soma ~ sum(.)  
+    ),
+    fmt = ~ fmt_number(., decimals = 1), 
+    missing_text = ""
+  ) |> 
+  tab_style(
+    locations = list(cells_grand_summary(), cells_stub_grand_summary()),
+    style = cell_fill(color = "gray" |> adjust_luminance(steps = +2))
+  ) |> 
+  tab_style(
+    style = list(
+      cell_text( align = "right")
+    ),
+    locations = cells_stub_grand_summary()
+  ) |> tab_style(
+    locations = list(cells_stub()),
+    style = cell_fill(color = "white")
+  )
 ```
 
+$SS =$ `r ss`
 
+## Variância {.smaller}
+
+```{r}
+n_prof_ze <- length(av_prof[, !is.na("Avaliação do professor")])
+```
+
+Com a soma dos erros dos desvios ao quadrao ($SS$), já resolvemos a parte de cima da equção! Sabenos o número de observações, então também já temos o valor de $n$ ($n =$ `r n_prof_ze`).
+
+$$
+s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} = \frac{\color{red}{\text{SS}}}{n-1} = \frac{5.2}{n-1} 
+$$
+
+$$
+s^2 = \frac{5.2}{5-1} = \frac{5.2}{4} = 1.3
+$$
+
+$$
+s^2 = 1.3
+$$
+
+## Desvio padrão {.smaller}
+
+-   A variância não permite uma interpretação intuitiva da variabilidade, pois os valores são apresentados elevados ao quadrado
+-   O desvio padrão é, portanto, a raiz quadrada da variância
+
+$$
+s = \sqrt{s^2}
+$$
+
+$$
+s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}}
+$$
+
+## Desvio padrão
+
+```{r}
+var_prof_ze <- var(av_prof$`Avaliação do professor`)
+
+dp_prof_ze <- sd(av_prof$`Avaliação do professor`)
+```
+
+Se já sabemos a variância das notas do professor Zé ($s$ = `r var_prof_ze`), para calcular o desvio padrão ($s^2$), basta tirar a raiz quadrada desse valor:
+
+$$
+s = \sqrt{1.3} = 1.14
+$$
+
+## Desvio padrão
+
+É um tipo de distância típica de uma observação em relação à média (raiz quadrada da variância).
+
+-   Propriedades:
+    -   É maior do zero
+    -   Só é igual a zero se todas as observações forem iguais
+    -   Quanto maior a variabilidade, maior o desvio padrão
+
+## Avaliações da professora Irene e professor Reinaldo
+
+Vamos calcular a média e o desvio padrão para as avaliações da professora Irente e do professor Reinaldo.
+
+##  {.smaller}
+
+::: panel-tabset
+### Tabela para os cálculos {.smaller}
+
+```{r}
+#| label: tbl-prof-irene
+#| tbl-cap:  Avaliações da professora Irene
+#| tbl-cap-location: top
+av_prof_irene_reinaldo <- tribble(
+  ~"Aluno", ~"Avaliação do professor", ~"Desvio da média", ~"Desviso ao quadrado", ~"Professor",
+  "Joana", 4, NA, NA, "Irene",
+  "Paulo", 1, NA, NA, "Irene",
+  "Maria", 5, NA, NA, "Irene",
+  "Adriana", 1, NA, NA, "Irene", 
+  "Pedro", 2, NA, NA, "Irene",
+  "Joana", 3, NA, NA, "Reinaldo", 
+  "Paulo", 2, NA, NA, "Reinaldo",
+  "Maria", 3, NA, NA, "Reinaldo",
+  "Adriana", 3, NA, NA, "Reinaldo",
+  "Pedro", 2, NA, NA, "Reinaldo"
+  )
+
+av_prof_irene_reinaldo |> 
+  filter(Professor == "Irene") |> 
+  select(-Professor) |> 
+  datatable(
+    rownames = F, editable = T,
+    options = list(
+      lengthChange = FALSE,
+      dom = 't', ordering = FALSE,
+      columnDefs = 
+        list(list(className = 'dt-center', 
+                  targets = "_all"))
+    ),
+    class = 'cell-border stripe'
+  ) |> 
+  formatStyle(
+    columns = 'Aluno',
+    valueColumns = 'Aluno',
+    target = 'cell',
+    textAlign = styleEqual(c('Joana', "Paulo",
+                             "Maria", "Adriana",
+                             "Pedro"), 'left')
+  )
+```
+
+```{r}
+res_profs <- tribble(
+  ~"", ~"Valor",
+  "n", NA,
+  "Média", NA,
+  "Soma dos devios ao quadrado", NA,
+  "Variância", NA, 
+  "Desvio padrão", NA
+)
+
+res_profs <- res_profs |> 
+  datatable(
+    rownames = F, editable = T,
+    options = list(
+      lengthChange = FALSE,
+      dom = 't', ordering = FALSE,
+      columnDefs = 
+        list(list(className = 'dt-center', 
+                  targets = "Valor"))
+    ),
+    class = 'cell-border stripe'
+  ) |> 
+  formatStyle(columns = c(1, 2), fontSize = '70%')
+
+res_profs
+```
+
+### Fórmulas {.smaller}
+
+$$
+{SS} = \sum_{i=1}^n (x_i - \bar{x})^2 =  \sum(x_i - \bar{x})(x_i - \bar{x})
+$$
+
+$$
+s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} = \frac{\text{SS}}{n-1}  
+$$
+
+$$
+s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
+$$
+:::
+
+##  {.smaller}
+
+::: panel-tabset
+### Tabela para os cálculos {.smaller}
+
+```{r}
+#| label: tbl-prof-reinaldo
+#| tbl-cap:  Avaliações do professor Reinaldo
+#| tbl-cap-location: top
+
+av_prof_irene_reinaldo |> 
+  filter(Professor == "Reinaldo") |> 
+  select(!Professor) |> 
+  datatable(
+    rownames = F, editable = T,
+    options = list(
+      lengthChange = FALSE,
+      dom = 't', ordering = FALSE,
+      columnDefs = 
+        list(list(className = 'dt-center', 
+                  targets = "_all"))
+    ),
+    class = 'cell-border stripe'
+  ) |> 
+  formatStyle(
+    columns = 'Aluno',
+    valueColumns = 'Aluno',
+    target = 'cell',
+    textAlign = styleEqual(c('Joana', "Paulo",
+                             "Maria", "Adriana",
+                             "Pedro"), 'left')
+  )
+```
+
+```{r}
+res_profs 
+```
+
+### Fórmulas {.smaller}
+
+$$
+{SS} = \sum_{i=1}^n (x_i - \bar{x})^2 =  \sum(x_i - \bar{x})(x_i - \bar{x})
+$$
+
+$$
+s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} = \frac{\text{SS}}{n-1}  
+$$
+
+$$
+s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
+$$
+:::
+
+## Resultados
+
+Os dois professores têm a mesma média, mas a desvio padrão no caso da professora Irene é bem mais alto. O que isso nos diz sobre os dados?
+
+```{r}
+av_prof_irene_reinaldo |> 
+  summarise(
+    Média = mean(`Avaliação do professor`) |> round(2),
+    "Desvio padrão" = sd(`Avaliação do professor`) |> round(2),
+    .by = Professor
+  ) |> 
+  gt() |> 
+  cols_align(
+    columns = c(2,3),
+    align = "center" 
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = Professor)
+    )
+```
+
+##  {.smaller}
+
+Os dois professores tem a mesma médias nas avaliações dos alunos, mas as pontuações da professora Irene são mais dispersas, por isso o desvio padrão maior.
+
+```{r}
+sd_values <- av_prof_irene_reinaldo |> 
+  summarise(
+    sd_val = sd(`Avaliação do professor`),
+    .by = Professor
+    )  |> 
+  mutate(
+    label_sd = str_c("Desvio padrão: ", 
+                  format(sd_val, digits = 2, nsmall = 2))
+    )
+
+title_media <- av_prof_irene_reinaldo |> 
+  filter(Professor == "Irene") |> 
+  summarise(
+    m_val = mean(`Avaliação do professor`)
+  ) |> 
+  mutate(
+    label_m = str_c("Média: ", 
+                  format(m_val, digits = 2, nsmall = 2))
+  ) |> 
+  pull()
+
+
+av_prof_irene_reinaldo |> 
+  ggplot(aes(Aluno,`Avaliação do professor`)) +
+  geom_point() +
+  annotate("segment", 
+           x = 1, xend = 5, 
+           y = m_av, yend = m_av, 
+           linetype = 2, color = "gray", 
+           linewidth = 1) + 
+  facet_wrap(~Professor) +
+  geom_text(data = sd_values, 
+            aes(x = Inf, y = Inf, label = label_sd), 
+            hjust = 1.5, vjust = 4, size = 3) +
+  labs(
+    title = title_media
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+  )
+```
+
+## 
+
+```{r}
+desvio_menor <- rnorm(1000, 0, 1)
+desvio_maior <- rnorm(1000, 0, 2.5)
+
+histogramas_desvio_padrao <- tibble(
+  desvios = c(desvio_menor, desvio_maior),
+  histogramas = c(rep("Desvio padrão menor", 1000), rep("Desvio padrão maior", 1000))
+)
+
+media_valores <- histogramas_desvio_padrao |> 
+  summarise(
+    media = mean(desvios) |> round(0),
+    .by = histogramas
+            )
+
+histogramas_desvio_padrao |>  
+  ggplot(aes(desvios, fill = histogramas)) +
+  geom_histogram(bins = 30, alpha = 0.6, color = "black") +
+  geom_vline(data = media_valores, 
+             aes(xintercept = media, color = histogramas), 
+             linetype = "dashed", size = 1) +
+  facet_wrap(~histogramas) +
+  labs(title = "Distribuições com a mesma média",
+       subtitle = "Desvios padrão distintos",
+       x = "Valores",
+       y = "Frequência") +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5)) +
+  scale_fill_manual(values = c("Desvio padrão menor" = "lightblue", 
+                               "Desvio padrão maior" = "lightcoral")) +
+  scale_color_manual(values = c("Desvio padrão menor" = "blue", 
+                                "Desvio padrão maior" = "red"))
+```
+
+## Aplicativo para ver a influência do desvio padrão na distribuição dos dados {.smaller}
+
+Use o qr-code ou o link abaixo para acessar o aplicativo:
+
+[![https://c35bp0-pablo-pinheiro.shinyapps.io/estatistica_apps/](img/qrcode_c35bp0-pablo-pinheiro.shinyapps.io.png){fig-alt="Qr-code para acessar aplicativo online para ver a influência do desvio padrão na distribuição dos dados." fig-align="center" width="308"}](https://c35bp0-pablo-pinheiro.shinyapps.io/estatistica_apps/)
+
+# 
+
+```{r}
+#| label: boxplot-explicado
+#| fig-width: 9.71
+
+quantiles_sheight <-  quantile(father.son$sheight)
+quantile(father.son$sheight, probs = c(0.15, 0.85))
+median_sheight <- median(father.son$sheight)
+points_quantile_sheight <- unname(breaks_box_plot_sheight)
+iqr_sheight <- IQR(father.son$sheight)
+
+box_plot_sheight <- father.son |> 
+  ggplot(aes(x = sheight)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = quantiles_sheight) +
+  coord_flip()
+
+box_plot_sheight <- box_plot_sheight +
+  geom_segment(x = median_sheight, 
+               xend = quantiles_box_plot_sheight[4], 
+               y = 0.3, yend = 0.3, 
+               arrow = arrow(length = unit(0.2, "cm"),
+                             type = "closed"),
+               color = "#EF7259") +
+  geom_segment(x = median_sheight, 
+               xend = quantiles_box_plot_sheight[2], 
+               y = 0.3, yend = 0.3, 
+               arrow = arrow(length = unit(0.2, "cm"),
+                             type = "closed"), 
+               color = "#EF7259") +
+  annotate("text", x = quantiles_box_plot_sheight[4] + 0.5, y = 0.3,  
+           label = "Intervalo interquartil", color = "#6682F3")
+  
+    
+box_plot_sheight +
+  geom_segment(x = quantiles_box_plot_sheight[4] + 4,
+               xend = quantiles_box_plot_sheight[4], 
+               y = 0.2, yend = 0.2, 
+               arrow = arrow(length = unit(0.2, "cm"),
+                             type = "closed"), 
+               color = "#EF7259") +
+  annotate("text", x = quantiles_box_plot_sheight[4] + 5, y = 0.2,
+           label = "percentil 75", color = "#6682F3") +
+  geom_segment(x = quantiles_box_plot_sheight[2] - 4,
+               xend = quantiles_box_plot_sheight[2],
+               y = 0.2, yend = 0.2, 
+               arrow = arrow(length = unit(0.2, "cm"),
+                             type = "closed"), 
+               color = "#EF7259") +
+  annotate("text", x = quantiles_box_plot_sheight[2] + -5, y = 0.2,
+           label = "percentil 25", color = "#6682F3")
+  
+  
+
+
+  
+
+
+
+
+```
+
+## Entendendo um diagrama de caixa (`geom_boxplot()`)
+
+```{r}
+#| label: boxplot_explicado
+#| echo: false
+#| fig-align: center
+#| out-width: "70%"
+#| fig-dpi: 600
+
+
+point <- 
+  penguins |> 
+  filter(species == "Chinstrap") |>  
+  mutate(
+    species == as.numeric(species)
+    ) |> 
+  ggplot(aes(species,
+             body_mass_g)) +
+  geom_point()
+
+histog <- 
+  penguins |> 
+  filter(species == "Chinstrap") |>
+  ggplot(aes(body_mass_g)) +
+  geom_histogram(
+    bins = 20
+    ) +
+  coord_flip()
+
+box_plot <-
+  penguins |> 
+  filter(species == "Chinstrap") |>
+  mutate(
+    species = as.numeric(species)
+    ) |> 
+  ggplot(aes(species,
+             body_mass_g)) +
+  geom_boxplot(
+    color = "gray"
+    ) +
+  scale_x_continuous(
+    breaks = 2,
+    labels = "Chinstrap"
+    ) +
+  theme(
+    axis.ticks = element_blank()
+    )
+  
+point + histog + box_plot
+```
 
 # Exercícios
 

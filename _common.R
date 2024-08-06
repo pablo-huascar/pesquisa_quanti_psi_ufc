@@ -31,8 +31,15 @@ options(
 
 # ggplot options ----------------------------------------------------------
 
-ggplot2::theme_set(ggplot2::theme_classic(12))
+ggplot2::theme_set(ggplot2::theme_minimal(12))
 
+# conflicted options ------------------------------------------------------
+
+conflicted::conflicts_prefer(dplyr::filter())
+conflicted::conflicts_prefer(dplyr::select())
+conflicted::conflicts_prefer(dplyr::lag())
+conflicted::conflicts_prefer(dplyr::summarize)
+conflicted::conflicts_prefer(dplyr::summarise)
 
 
 
