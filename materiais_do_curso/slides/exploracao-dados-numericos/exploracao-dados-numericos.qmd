@@ -1578,67 +1578,108 @@ Use o qr-code ou o link abaixo para acessar o aplicativo:
 
 [![https://c35bp0-pablo-pinheiro.shinyapps.io/estatistica_apps/](img/qrcode_c35bp0-pablo-pinheiro.shinyapps.io.png){fig-alt="Qr-code para acessar aplicativo online para ver a influência do desvio padrão na distribuição dos dados." fig-align="center" width="308"}](https://c35bp0-pablo-pinheiro.shinyapps.io/estatistica_apps/)
 
-# 
+# Diagrama de caixa, quartis e mediana
+
+## O diagrama de caixa
+
+-   Um gráfico de caixa resume um conjunto de dados usando cinco estatísticas e também identifica observações incomuns
+    -   Mediana
+
+
+## 
 
 ```{r}
 #| label: boxplot-explicado
 #| fig-width: 9.71
 
 quantiles_sheight <-  quantile(father.son$sheight)
-quantile(father.son$sheight, probs = c(0.15, 0.85))
 median_sheight <- median(father.son$sheight)
-points_quantile_sheight <- unname(breaks_box_plot_sheight)
 iqr_sheight <- IQR(father.son$sheight)
 
 box_plot_sheight <- father.son |> 
   ggplot(aes(x = sheight)) +
   geom_boxplot() +
+  stat_boxplot(geom = 'errorbar', width = 0.1) +
   scale_x_continuous(breaks = quantiles_sheight) +
   coord_flip()
 
 box_plot_sheight <- box_plot_sheight +
   geom_segment(x = median_sheight, 
-               xend = quantiles_box_plot_sheight[4], 
+               xend = quantiles_sheight[4], 
                y = 0.3, yend = 0.3, 
                arrow = arrow(length = unit(0.2, "cm"),
                              type = "closed"),
                color = "#EF7259") +
   geom_segment(x = median_sheight, 
-               xend = quantiles_box_plot_sheight[2], 
+               xend = quantiles_sheight[2], 
                y = 0.3, yend = 0.3, 
                arrow = arrow(length = unit(0.2, "cm"),
                              type = "closed"), 
                color = "#EF7259") +
-  annotate("text", x = quantiles_box_plot_sheight[4] + 0.5, y = 0.3,  
-           label = "Intervalo interquartil", color = "#6682F3")
-  
-    
-box_plot_sheight +
-  geom_segment(x = quantiles_box_plot_sheight[4] + 4,
-               xend = quantiles_box_plot_sheight[4], 
+  annotate("text", x = quantiles_sheight[4] + 0.5, y = 0.3,  
+           label = "intervalo interquartil", color = "#6682F3")
+
+box_plot_sheight <- box_plot_sheight + 
+  geom_segment(y = -0.375, yend = -0.375, 
+               x = quantiles_sheight[4], 
+               xend = (quantiles_sheight[4] + 1.5*iqr_sheight),
+               arrow = arrow(length = unit(0.2, "cm"),
+                             type = "closed"),
+               color = "#EF7259") +
+  geom_segment(y = -0.375, yend = -0.375, 
+               x = quantiles_sheight[2], 
+               xend = (quantiles_sheight[2] + -1.5*iqr_sheight),
+               arrow = arrow(length = unit(0.2, "cm"),
+                             type = "closed"),
+               color = "#EF7259") +
+  geom_segment(x = quantiles_sheight[2] - 2 , 
+               xend = quantiles_sheight[2] - 2, 
+               y = -0.3, yend = -0.37,
+               arrow = arrow(length = unit(0.2, "cm"),
+                             type = "closed"),
+               color = "#EF7259") +
+  annotate("text", label = "1.5 x intervalo interquartil",
+           x = quantiles_sheight[2] - 2, y = -0.23,
+           color = "#6682F3")
+
+
+box_plot_sheight <- box_plot_sheight +
+  geom_segment(x = quantiles_sheight[4] + 4,
+               xend = quantiles_sheight[4], 
                y = 0.2, yend = 0.2, 
                arrow = arrow(length = unit(0.2, "cm"),
                              type = "closed"), 
                color = "#EF7259") +
-  annotate("text", x = quantiles_box_plot_sheight[4] + 5, y = 0.2,
+  annotate("text", x = quantiles_sheight[4] + 5, y = 0.2,
            label = "percentil 75", color = "#6682F3") +
-  geom_segment(x = quantiles_box_plot_sheight[2] - 4,
-               xend = quantiles_box_plot_sheight[2],
+  geom_segment(x = quantiles_sheight[2] - 4,
+               xend = quantiles_sheight[2],
                y = 0.2, yend = 0.2, 
                arrow = arrow(length = unit(0.2, "cm"),
                              type = "closed"), 
                color = "#EF7259") +
-  annotate("text", x = quantiles_box_plot_sheight[2] + -5, y = 0.2,
+  annotate("text", x = quantiles_sheight[2] + -5, y = 0.2,
            label = "percentil 25", color = "#6682F3")
-  
-  
 
+box_plot_sheight <- box_plot_sheight +
+  geom_segment(x = median_sheight + 4,
+               xend = median_sheight, 
+               y = -0.2, yend = -0.2, 
+               arrow = arrow(length = unit(0.2, "cm"),
+                             type = "closed"), 
+               color = "#EF7259") +
+  annotate("text", x = median_sheight + 5, y = -0.2,
+           label = "percentil 50 (mediana)", color = "#6682F3")
 
-  
+box_plot_sheight <- box_plot_sheight +
+  geom_segment(x = quantiles_sheight[5], xend = quantiles_sheight[5],
+               y = 0.1, yend = 0.005, 
+               arrow = arrow(length = unit(0.2, "cm"),
+                             type = "closed"), color = "#EF7259") +
+  annotate("text", x = quantiles_sheight[5], y = 0.12,
+           label = "outlier", color = "#6682F3")
 
-
-
-
+box_plot_sheight
 ```
 
 ## Entendendo um diagrama de caixa (`geom_boxplot()`)
@@ -1649,6 +1690,7 @@ box_plot_sheight +
 #| fig-align: center
 #| out-width: "70%"
 #| fig-dpi: 600
+#| eval: false
 
 
 point <- 
