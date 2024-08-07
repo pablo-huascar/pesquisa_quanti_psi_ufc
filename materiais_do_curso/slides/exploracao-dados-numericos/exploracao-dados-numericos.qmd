@@ -1371,7 +1371,8 @@ av_prof_irene_reinaldo |>
     textAlign = styleEqual(c('Joana', "Paulo",
                              "Maria", "Adriana",
                              "Pedro"), 'left')
-  )
+  ) |> 
+  formatStyle(columns = c(1, 2), fontSize = '70%')
 ```
 
 ```{r}
@@ -1447,7 +1448,8 @@ av_prof_irene_reinaldo |>
     textAlign = styleEqual(c('Joana', "Paulo",
                              "Maria", "Adriana",
                              "Pedro"), 'left')
-  )
+  ) |> 
+  formatStyle(columns = c(1, 2), fontSize = '70%')
 ```
 
 ```{r}
@@ -1625,7 +1627,7 @@ hist + box
 
 ## Mediana {.smaller}
 
-:::: columns
+::: columns
 ::: {.column width="60%"}
 -   É a linha escura dentro da caixa
 -   Divide os dados pela metade, 50% ficam abaixo desse valor e 50% ficam acima
@@ -1647,11 +1649,11 @@ father.son |>
                color = "#569BBD")
 ```
 :::
-::::
+:::
 
 ## Primeiro quartil, terceiro quartil e intervalo interquartil {.smaller}
 
-:::: columns
+::: columns
 ::: {.column width="60%"}
 ::: {style="font-size: 70%"}
 -   O comprimento da caixa: intervalo interquartil (IQR, na abreviatura em inglês),
@@ -1661,7 +1663,7 @@ father.son |>
     -   Terceiro quartil - o 75º percentil: 75% dos dados estão abaixo deste valor
     -   São frequentemente rotulados como Q1 e Q3, respectivamente
 -   $IQR = Q1 - Q3$
-- Um percentil é um número com $\alpha\%$ das observações abaixo e 100 - $\alpha\%$ das observações acima. Por exemplo, o 90º percentil na média do ENEM tem 90% dos alunos abaixo desse valor e 10% dos alunos acima dele.
+-   Um percentil é um número com $\alpha\%$ das observações abaixo e 100 - $\alpha\%$ das observações acima. Por exemplo, o 90º percentil na média do ENEM tem 90% dos alunos abaixo desse valor e 10% dos alunos acima dele.
 :::
 :::
 
@@ -1674,13 +1676,12 @@ father.son |>
                color = "#569BBD")
 ```
 :::
-::::
+:::
 
 ## O intervalo interquartil como medida de variabilidade {.smaller}
-:::: {.columns}
 
+::: columns
 ::: {.column width="50%"}
-
 ```{r}
 desvio_maior <- rnorm(1000, 10, 5)
 desvio_menor <- rnorm(1000, 10, 2)
@@ -1738,12 +1739,9 @@ histogramas_desvio_padrao |>
                                 "Desvio padrão maior" = "#F05133"))
 ```
 :::
-
-::::
+:::
 
 ## Whiskers (bigodes) e outliers (valores discrepantes)
-
-
 
 ## 
 
