@@ -35,7 +35,13 @@ library(palmerpenguins)
 library(gt)
 library(scales)
 library(ggthemes)
+library(patchwork)
 library(DT)
+conflicted::conflicts_prefer(dplyr::filter())
+conflicted::conflicts_prefer(dplyr::select())
+conflicted::conflicts_prefer(dplyr::lag())
+conflicted::conflicts_prefer(dplyr::summarize)
+conflicted::conflicts_prefer(dplyr::summarise)
 ```
 
 ```{r}
@@ -279,13 +285,12 @@ dispersao |>
 
 dispersao |> 
   ggplot(aes(x, y)) +
-  geom_point(color = "red", size = 3) +
-  geom_segment(x = x, xend = x, 
-               y = (y-0.15), yend = 0,
-               linetype = 2) +
-  geom_segment(x = 0, xend = x-0.02,
-               y = y, yend = y,
-               linetype = 2) +
+  geom_point(color = "#569BBD", alpha = 0.6,
+             size = 3) +
+  geom_segment(x = x, xend = x, color = "#F05133",
+               y = (y-0.15), yend = 0, linetype = 2) +
+  geom_segment(x = 0, xend = x-0.02, color = "#F05133",
+               y = y, yend = y, linetype = 2) +
   scale_y_continuous(breaks = y)
 ```
 :::
@@ -304,9 +309,10 @@ dispersao |>
 
 father.son |> 
   ggplot(aes(fheight, sheight)) +
-  geom_jitter(alpha = 0.2, size = 3) +
+  geom_jitter(color = "#000000", alpha = 0.3, 
+              size = 3) +
   geom_smooth(method = "lm", se = F,
-              color = "red", linetype = 2) +
+              color = "#F05133", linetype = 2) +
   labs(
     title = "Gráfico de dispersão da relação\nentre as alturas dos pais e dos filhos"
   ) +
@@ -329,9 +335,10 @@ father.son |>
 
 mtcars |> 
   ggplot(aes(wt, mpg)) +
-  geom_jitter(alpha = 0.2, size = 3) +
+  geom_jitter(color = "#569BBD", alpha = 0.6,
+              size = 3) +
   geom_smooth(method = "lm", se = F,
-              color = "red",linetype = 2) + 
+              color = "#F05133",linetype = 2) + 
   labs(
     title = "Gráfico de diserpesão da relação\nentre peso e consumo de combustível"
   ) +
@@ -354,8 +361,9 @@ mtcars |>
 
 diamonds |> 
   ggplot(aes(carat, price)) +
-  geom_jitter(alpha = 0.2, size = 3) +
-  geom_smooth(se = F, color = "red",
+  geom_jitter(color = "#000000", alpha = 0.3, 
+              size = 3) +
+  geom_smooth(se = F, color = "#F05133",
               linetype = 2) + 
   scale_x_log10() +
   labs(
@@ -399,10 +407,10 @@ media <- round(media, 2)
 
 airquality |> 
   ggplot(aes(Temp)) +
-  geom_dotplot(color = "gray", fill = "white", 
+  geom_dotplot(color = "#569BBD", fill = "#569BBD", 
                dotsize = 0.7) +
   annotate("point", media, -0.05,
-           color = "red", fill = "red", 
+           color = "#F05133", fill = "#F05133", 
            shape = 24, size = 4) + 
   labs(
     title = "Gráfico de pontos para a temperatura de Nova York",
@@ -573,7 +581,6 @@ mtcars |>
   )  
 ```
 
-
 ## A média e a padronização de medidas
 
 -   A média é útil porque nos permite redimensionar ou padronizar uma métrica em algo mais facilmente interpretável e comparável
@@ -718,8 +725,8 @@ breaks_temp <- pretty(range(airquality$Temp), n = nclass.Sturges(airquality$Temp
 
 airquality |> 
   ggplot(aes(Temp)) +
-  geom_histogram(breaks = breaks_temp, fill = "white",
-                 color = "gray") +
+  geom_histogram(breaks = breaks_temp, fill = "#569BBD",
+                 color = "#FFFFFF") +
   scale_x_continuous(breaks = breaks_temp) +
   labs(
     title = "Histograma para a temperatura de Nova York",
@@ -752,10 +759,10 @@ airquality |>
     title = "Histograma para a temperatura de Nova York",
     subtitle = "Maio a setembro de 1973",
     ) +
-  scale_fill_manual(values = c(menor = "#6682F3", maior = "#EF7259", 
-                               outros = "white")) +
-  scale_color_manual(values = c(menor = "gray", maior = "gray", 
-                                outros = "gray")) +
+  scale_fill_manual(values = c(menor = "#6fc492", maior = "#EF7259", 
+                               outros = "#569BBD")) +
+  scale_color_manual(values = c(menor = "#FFFFFF", maior = "#FFFFFF", 
+                                outros = "#FFFFFF")) +
   scale_x_continuous(breaks = breaks_temp) +
   theme(
     plot.title = element_text(hjust = 0.5),
@@ -796,8 +803,8 @@ diamonds |>
                                  n = nclass.Sturges(diamonds$price),
                                  min.n = 1),
                  color = "gray", fill = "white") +
-  geom_density(fill = "#5BBAF7", color = "gray", 
-               alpha = 0.2) +
+  geom_density(fill = "#569BBD", color = "#569BBD", 
+               alpha = 0.5) +
   labs(
     title = "Histograma do preço dos diamantes"
   ) +
@@ -820,8 +827,8 @@ father.son |>
   geom_histogram(aes(y = after_stat(density)),
                  breaks = breaks_sheight,
                  color = "gray", fill = "white") +
-  geom_density(fill = "#5BBAF7", color = "gray",
-               alpha = 0.2) +
+  geom_density(fill = "#569BBD", color = "#569BBD", 
+               alpha = 0.5) +
   labs(
     title = "Histograma da altura dos filhos"
   ) +
@@ -846,8 +853,8 @@ age_data_filter |>
                                  n = nclass.Sturges(age_data_filter$`Age of death`), 
                                  min.n = 1), 
                  color = "gray", fill = "white") +
-geom_density(fill = "#5BBAF7", color = "gray",
-               alpha = 0.2) +
+  geom_density(fill = "#569BBD", color = "#569BBD", 
+               alpha = 0.5) +
   labs(
     title = "Histograma da idade falecimento de pessoas famosas",
     subtitle = "Causas naturais"
@@ -881,9 +888,9 @@ father.son |>
     title = "Histograma da altura dos filhos",
     subtitle = "Moda destacada"
   ) +
-  scale_fill_manual(values = c(pico = "#EF7259", 
-                               "não pico" = "white")) +
-  scale_color_manual(values = c("não pico" = "gray", pico = "gray")) +
+  scale_fill_manual(values = c(pico = "#F05133", 
+                               "não pico" = "#569BBD")) +
+  scale_color_manual(values = c("não pico" = "#FFFFFF", pico = "#FFFFFF")) +
   theme(
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
@@ -919,9 +926,9 @@ father.son |>
     title = "Histograma da altura dos filhos",
     subtitle = "Moda destacada"
   ) +
-  scale_fill_manual(values = c(pico = "#EF7259", 
-                               "não pico" = "white")) +
-  scale_color_manual(values = c("não pico" = "gray", pico = "gray")) +
+  scale_fill_manual(values = c(pico = "#F05133", 
+                               "não pico" = "#569BBD")) +
+  scale_color_manual(values = c("não pico" = "#FFFFFF", pico = "#FFFFFF")) +
   theme(
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
@@ -954,9 +961,10 @@ airquality |>
     subtitle = "Moda destacada"
   ) +
   scale_x_continuous(breaks = breaks_wind) +
-  scale_fill_manual(values = c(pico = "#EF7259", 
-                               "não pico" = "white")) +
-  scale_color_manual(values = c("não pico" = "gray", pico = "gray")) +
+  scale_fill_manual(values = c(pico = "#F05133", 
+                               "não pico" = "#569BBD")) +
+  scale_color_manual(values = c("não pico" = "#FFFFFF", 
+                                pico = "#FFFFFF")) +
   theme(
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
@@ -1007,8 +1015,10 @@ mtcars |>
   theme(
     legend.position = "none"
   ) +
-  scale_color_colorblind() +
-  scale_fill_colorblind()
+  scale_color_manual(values = c("#FFFFFF", "#FFFFFF",
+                                "#FFFFFF")) +
+  scale_fill_manual(values = c("#569BBD", "#F05133", 
+                               "#6fc492"))
 ```
 :::
 
@@ -1135,15 +1145,15 @@ av_prof |>
   ) |> 
   ggplot(aes(fct_reorder(Aluno, `Avaliação do professor`, min), 
              `Avaliação do professor`)) +
-  geom_point(size = 3) +
+  geom_point(color = "#569BBD", size = 3) +
   annotate("segment", 
            x = 1, xend = 5, 
            y = m_av, yend = m_av, 
-           linetype = 2, color = "gray", 
+           linetype = 2, color = "#F05133", 
            linewidth = 1) +
   geom_segment(aes(x = Aluno, xend = Aluno, 
                    y = `Avaliação do professor`, 
-                   yend = m_av)) +
+                   yend = m_av), color = "#569BBD") +
   geom_text(aes(x = Aluno, y = texto_y, 
                 label = round(`Desvio da média`, 1)),
             vjust = -0.5, hjust = -0.5,
@@ -1517,16 +1527,15 @@ title_media <- av_prof_irene_reinaldo |>
 
 av_prof_irene_reinaldo |> 
   ggplot(aes(Aluno,`Avaliação do professor`)) +
-  geom_point() +
+  geom_point(color = "#569BBD") +
   annotate("segment", 
-           x = 1, xend = 5, 
-           y = m_av, yend = m_av, 
-           linetype = 2, color = "gray", 
-           linewidth = 1) + 
+           x = 1, xend = 5, y = m_av, 
+           yend = m_av, linetype = 2, 
+           color = "#F05133", linewidth = 1) + 
   facet_wrap(~Professor) +
   geom_text(data = sd_values, 
             aes(x = Inf, y = Inf, label = label_sd), 
-            hjust = 1.5, vjust = 4, size = 3) +
+            hjust = 1.3, vjust = 4, size = 3) +
   labs(
     title = title_media
   ) +
@@ -1554,22 +1563,24 @@ media_valores <- histogramas_desvio_padrao |>
 
 histogramas_desvio_padrao |>  
   ggplot(aes(desvios, fill = histogramas)) +
-  geom_histogram(bins = 30, alpha = 0.6, color = "black") +
+  geom_histogram(bins = 30, alpha = 0.6, color = "#FFFFFF") +
   geom_vline(data = media_valores, 
              aes(xintercept = media, color = histogramas), 
-             linetype = "dashed", size = 1) +
+             linetype = "dashed", linewidth = 1) +
   facet_wrap(~histogramas) +
   labs(title = "Distribuições com a mesma média",
        subtitle = "Desvios padrão distintos",
        x = "Valores",
        y = "Frequência") +
-  theme(legend.position = "none",
-        plot.title = element_text(hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5)) +
-  scale_fill_manual(values = c("Desvio padrão menor" = "lightblue", 
-                               "Desvio padrão maior" = "lightcoral")) +
-  scale_color_manual(values = c("Desvio padrão menor" = "blue", 
-                                "Desvio padrão maior" = "red"))
+  theme(
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  scale_fill_manual(values = c("Desvio padrão menor" = "#569BBD", 
+                               "Desvio padrão maior" = "#F05133")) +
+  scale_color_manual(values = c("Desvio padrão menor" = "#569BBD", 
+                                "Desvio padrão maior" = "#F05133"))
 ```
 
 ## Aplicativo para ver a influência do desvio padrão na distribuição dos dados {.smaller}
@@ -1582,14 +1593,162 @@ Use o qr-code ou o link abaixo para acessar o aplicativo:
 
 ## O diagrama de caixa
 
--   Um gráfico de caixa resume um conjunto de dados usando cinco estatísticas e também identifica observações incomuns
+```{r}
+#| label: boxplot-explicado-1
+
+hist <- airquality |> 
+  ggplot(aes(Temp)) +
+  geom_histogram(bins = 8, fill = "#569BBD",
+                 color = "#FFFFFF"
+) +
+  coord_flip()
+
+
+box <- airquality |> 
+  ggplot(aes(Temp)) + 
+  geom_boxplot(color = "#569BBD") +
+  stat_boxplot(geom= 'errorbar' , width = 0.3) +
+  coord_flip()
+  
+  
+hist + box
+```
+
+## O diagrama de caixa
+
+-   Um gráfico de caixa resume um conjunto de dados usando algumas estatísticas e também identifica observações incomuns:
     -   Mediana
+    -   Primeiro quartil (25º percentil)
+    -   Terceiro quartil (75º percentil)
+    -   Intervalo interquartil
+    -   Bigodes
+
+## Mediana {.smaller}
+
+:::: columns
+::: {.column width="60%"}
+-   É a linha escura dentro da caixa
+-   Divide os dados pela metade, 50% ficam abaixo desse valor e 50% ficam acima
+-   Quando a amostra é impar:
+    -   É observação que está no centro da amostra ordenada
+    -   $\{2, 5, \color{red}{7}, 11, 15\}$
+-   Quando a amostra é par:
+    -   É a média das duas observações que estão no centro da amostra ordenada
+    -   $\{2, 5, \color{red}{7, 9}, 11, 15\}$
+    -   $Mediana = \frac{7+9}{2} = 8$
+:::
+
+::: {.column width="40%"}
+```{r}
+father.son |> 
+  ggplot(aes(sheight)) + 
+  geom_boxplot(color = "#569BBD") + 
+  stat_boxplot(geom = 'errorbar', width = 0.1,
+               color = "#569BBD")
+```
+:::
+::::
+
+## Primeiro quartil, terceiro quartil e intervalo interquartil {.smaller}
+
+:::: columns
+::: {.column width="60%"}
+::: {style="font-size: 70%"}
+-   O comprimento da caixa: intervalo interquartil (IQR, na abreviatura em inglês),
+    -   É uma medida da variabilidade dos dados: quanto mais variação nos dados, maior o desvio padrão e o intervalo interquartil tendem a ser
+-   Os dois limites da caixa são chamados de:
+    -   Primeiro quartil - o 25º percentil: 25% dos dados estão abaixo deste valor
+    -   Terceiro quartil - o 75º percentil: 75% dos dados estão abaixo deste valor
+    -   São frequentemente rotulados como Q1 e Q3, respectivamente
+-   $IQR = Q1 - Q3$
+- Um percentil é um número com $\alpha\%$ das observações abaixo e 100 - $\alpha\%$ das observações acima. Por exemplo, o 90º percentil na média do ENEM tem 90% dos alunos abaixo desse valor e 10% dos alunos acima dele.
+:::
+:::
+
+::: {.column width="40%"}
+```{r}
+father.son |> 
+  ggplot(aes(sheight)) + 
+  geom_boxplot(color = "#569BBD") + 
+  stat_boxplot(geom = 'errorbar', width = 0.1,
+               color = "#569BBD")
+```
+:::
+::::
+
+## O intervalo interquartil como medida de variabilidade {.smaller}
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+desvio_maior <- rnorm(1000, 10, 5)
+desvio_menor <- rnorm(1000, 10, 2)
+sd_desvio_maior <- sd(desvio_maior)
+iqr_desvio_maior <- IQR(desvio_maior)
+sd_desvio_menor <- sd(desvio_menor)
+iqr_desvio_menor <- IQR(desvio_menor)
+
+```
+
+-   Ambas as distribuições tem a mesma média
+-   A distribuição em vermelho tem
+    -   Desvio padrão: `r sd_desvio_maior`
+    -   IQR: `r iqr_desvio_maior`
+-   A distribuição em azul tem:
+    -   Desvio padrão: `r sd_desvio_menor`
+    -   IQR: `r iqr_desvio_menor`
+:::
+
+::: {.column width="50%"}
+```{r}
+desvio_menor <- rnorm(1000, 10, 2)
+desvio_maior <- rnorm(1000, 10, 5)
+
+histogramas_desvio_padrao <- tibble(
+  desvios = c(desvio_menor, desvio_maior),
+  histogramas = c(rep("Desvio padrão menor", 1000), rep("Desvio padrão maior", 1000))
+)
+
+media_valores <- histogramas_desvio_padrao |> 
+  summarise(
+    media = mean(desvios) |> round(0),
+    .by = histogramas
+  )
+
+histogramas_desvio_padrao |>  
+  ggplot(aes(desvios, fill = histogramas)) +
+  geom_histogram(bins = 30, alpha = 0.6, color = "#FFFFFF") +
+  geom_vline(data = media_valores, 
+             aes(xintercept = media, color = histogramas), 
+             linetype = "dashed", linewidth = 1) +
+  facet_grid(histogramas ~ .) +
+  labs(title = "Distribuições com a mesma média",
+       subtitle = "Desvios padrão distintos",
+       x = "Valores",
+       y = "Frequência") +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  scale_fill_manual(values = c("Desvio padrão menor" = "#569BBD", 
+                               "Desvio padrão maior" = "#F05133")) +
+  scale_color_manual(values = c("Desvio padrão menor" = "#569BBD", 
+                                "Desvio padrão maior" = "#F05133"))
+```
+:::
+
+::::
+
+## Whiskers (bigodes) e outliers (valores discrepantes)
+
 
 
 ## 
 
 ```{r}
-#| label: boxplot-explicado
+#| label: boxplot-explicado-2
 #| fig-width: 9.71
 
 quantiles_sheight <-  quantile(father.son$sheight)
@@ -1598,8 +1757,9 @@ iqr_sheight <- IQR(father.son$sheight)
 
 box_plot_sheight <- father.son |> 
   ggplot(aes(x = sheight)) +
-  geom_boxplot() +
-  stat_boxplot(geom = 'errorbar', width = 0.1) +
+  geom_boxplot(color = "#569BBD") +
+  stat_boxplot(geom = 'errorbar', width = 0.1,
+               color = "#569BBD") +
   scale_x_continuous(breaks = quantiles_sheight) +
   coord_flip()
 
@@ -1609,15 +1769,15 @@ box_plot_sheight <- box_plot_sheight +
                y = 0.3, yend = 0.3, 
                arrow = arrow(length = unit(0.2, "cm"),
                              type = "closed"),
-               color = "#EF7259") +
+               color = "#F05133") +
   geom_segment(x = median_sheight, 
                xend = quantiles_sheight[2], 
                y = 0.3, yend = 0.3, 
                arrow = arrow(length = unit(0.2, "cm"),
                              type = "closed"), 
-               color = "#EF7259") +
+               color = "#F05133") +
   annotate("text", x = quantiles_sheight[4] + 0.5, y = 0.3,  
-           label = "intervalo interquartil", color = "#6682F3")
+           label = "intervalo interquartil")
 
 box_plot_sheight <- box_plot_sheight + 
   geom_segment(y = -0.375, yend = -0.375, 
@@ -1625,22 +1785,21 @@ box_plot_sheight <- box_plot_sheight +
                xend = (quantiles_sheight[4] + 1.5*iqr_sheight),
                arrow = arrow(length = unit(0.2, "cm"),
                              type = "closed"),
-               color = "#EF7259") +
+               color = "#F05133") +
   geom_segment(y = -0.375, yend = -0.375, 
                x = quantiles_sheight[2], 
                xend = (quantiles_sheight[2] + -1.5*iqr_sheight),
                arrow = arrow(length = unit(0.2, "cm"),
                              type = "closed"),
-               color = "#EF7259") +
+               color = "#F05133") +
   geom_segment(x = quantiles_sheight[2] - 2 , 
                xend = quantiles_sheight[2] - 2, 
                y = -0.3, yend = -0.37,
                arrow = arrow(length = unit(0.2, "cm"),
                              type = "closed"),
-               color = "#EF7259") +
+               color = "#F05133") +
   annotate("text", label = "1.5 x intervalo interquartil",
-           x = quantiles_sheight[2] - 2, y = -0.23,
-           color = "#6682F3")
+           x = quantiles_sheight[2] - 2, y = -0.2)
 
 
 box_plot_sheight <- box_plot_sheight +
@@ -1651,7 +1810,7 @@ box_plot_sheight <- box_plot_sheight +
                              type = "closed"), 
                color = "#EF7259") +
   annotate("text", x = quantiles_sheight[4] + 5, y = 0.2,
-           label = "percentil 75", color = "#6682F3") +
+           label = "percentil 75") +
   geom_segment(x = quantiles_sheight[2] - 4,
                xend = quantiles_sheight[2],
                y = 0.2, yend = 0.2, 
@@ -1659,7 +1818,7 @@ box_plot_sheight <- box_plot_sheight +
                              type = "closed"), 
                color = "#EF7259") +
   annotate("text", x = quantiles_sheight[2] + -5, y = 0.2,
-           label = "percentil 25", color = "#6682F3")
+           label = "percentil 25")
 
 box_plot_sheight <- box_plot_sheight +
   geom_segment(x = median_sheight + 4,
@@ -1669,7 +1828,7 @@ box_plot_sheight <- box_plot_sheight +
                              type = "closed"), 
                color = "#EF7259") +
   annotate("text", x = median_sheight + 5, y = -0.2,
-           label = "percentil 50 (mediana)", color = "#6682F3")
+           label = "percentil 50 (mediana)")
 
 box_plot_sheight <- box_plot_sheight +
   geom_segment(x = quantiles_sheight[5], xend = quantiles_sheight[5],
@@ -1677,61 +1836,9 @@ box_plot_sheight <- box_plot_sheight +
                arrow = arrow(length = unit(0.2, "cm"),
                              type = "closed"), color = "#EF7259") +
   annotate("text", x = quantiles_sheight[5], y = 0.12,
-           label = "outlier", color = "#6682F3")
+           label = "outlier")
 
 box_plot_sheight
-```
-
-## Entendendo um diagrama de caixa (`geom_boxplot()`)
-
-```{r}
-#| label: boxplot_explicado
-#| echo: false
-#| fig-align: center
-#| out-width: "70%"
-#| fig-dpi: 600
-#| eval: false
-
-
-point <- 
-  penguins |> 
-  filter(species == "Chinstrap") |>  
-  mutate(
-    species == as.numeric(species)
-    ) |> 
-  ggplot(aes(species,
-             body_mass_g)) +
-  geom_point()
-
-histog <- 
-  penguins |> 
-  filter(species == "Chinstrap") |>
-  ggplot(aes(body_mass_g)) +
-  geom_histogram(
-    bins = 20
-    ) +
-  coord_flip()
-
-box_plot <-
-  penguins |> 
-  filter(species == "Chinstrap") |>
-  mutate(
-    species = as.numeric(species)
-    ) |> 
-  ggplot(aes(species,
-             body_mass_g)) +
-  geom_boxplot(
-    color = "gray"
-    ) +
-  scale_x_continuous(
-    breaks = 2,
-    labels = "Chinstrap"
-    ) +
-  theme(
-    axis.ticks = element_blank()
-    )
-  
-point + histog + box_plot
 ```
 
 # Exercícios
