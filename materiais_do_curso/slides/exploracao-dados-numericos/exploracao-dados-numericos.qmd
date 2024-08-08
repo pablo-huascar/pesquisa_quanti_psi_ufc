@@ -656,6 +656,90 @@ asma |>
     )
 ```
 
+## A média e a padronização de medidas
+
+Avalie qual time de basquete tem melhor desempenho em um campeonato:
+
+```{r}
+basquete <- tribble(
+  ~Time, ~Jogos, ~"Pontuação Total", ~'Pontos/jogo',
+  "Mogi", 20, 1500, NA,
+  "Fortaleza B. C. / CFO", 18, 1400, NA,
+  "Pato Basquete", 22, 1600, NA,
+  "Cerrado", 21, 1550, NA
+)
+
+basquete |> 
+  select(-`Pontos/jogo`) |> 
+  gt() |> 
+  cols_align(
+    columns = c(Jogos, 'Pontuação Total'),
+    align = "center" 
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = Time)
+    ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )  
+```
+
+## Tabela para os cálculos
+
+```{r}
+basquete |> 
+  datatable(
+    rownames = F, editable = T,
+    options = list(
+      lengthChange = FALSE,
+      dom = 't', ordering = FALSE,
+      columnDefs = 
+        list(list(className = 'dt-center', 
+                  targets = "_all"))
+    ),
+    class = 'cell-border stripe'
+  ) |> 
+  formatStyle(
+    columns = 'Time',
+    valueColumns = 'Time',
+    target = 'cell',
+    textAlign = styleEqual(c('Mogi', 'Fortaleza B. C. / CFO',
+                             'Pato Basquete', 'Cerrado'), 'left')
+  ) |> 
+  formatStyle(columns = c(1, 2), fontSize = '70%')
+```
+
+## Resultados
+
+```{r}
+basquete |> 
+  mutate(
+    'Pontos/jogo' = `Pontuação Total`/Jogos
+  ) |> 
+  gt() |> 
+  cols_align(
+    columns = c(Jogos, "Pontuação Total",
+                'Pontos/jogo'),
+    align = "center" 
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = Time)
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
 # Histogramas e a forma dos dados
 
 ## Histogramas e a forma dos dados {.smaller}
@@ -771,6 +855,144 @@ airquality |>
   )
 ```
 
+## Como construir um histograma?
+
+::: columns
+::: {.column width="40%"}
+::: {style="font-size: 70%"}
+-   O número de intervalos (bins) repercute na interpretação dos dados
+    -   Poucos intervalos: o verdadeiro padrão subjacente nos dados pode ficar oculto
+    -   Muitos intervalos: podemos estar apenas visualizando o ruído em um conjunto de dados
+:::
+:::
+
+::: {.column width="60%"}
+```{r}
+hist_60_bins <- airquality |> 
+  ggplot(aes(Temp)) +
+  geom_histogram(color = "#FFFFFF", fill = "#569BBD",
+                 bins = 60) +
+  labs(
+    title = "60 bins"
+  ) + 
+  theme(
+    plot.title = element_text(hjust =  0.5)
+  )
+
+hist_3_bins <- airquality |> 
+  ggplot(aes(Temp)) +
+  geom_histogram(color = "#FFFFFF", fill = "#569BBD",
+                 bins = 3) +
+  labs(
+    title = "3 bins"
+  ) + 
+  theme(
+    plot.title = element_text(hjust =  0.5)
+  )
+
+hist_3_bins + hist_60_bins
+
+```
+:::
+:::
+
+## Como construir um histograma? {.smaller}
+
+```{r}
+dados_hist <- c(52, 57, 53, 59, 62, 65, 67, 68, 69, 70,
+                72, 75, 78, 78, 79, 80, 82, 83, 85, 88,
+                90, 92, 93, 95, 96, 97, 98, 100, 102, 105)
+```
+
+Considere o seguinte conjunto de dados:
+
+{`r dados_hist`}
+
+1.  Coloque os valores em ordem crestente:
+
+{`r sort(dados_hist)`}
+
+2.  Conte o quantidade de dados no conjunto:
+
+$n$ = {`r length(dados_hist)`}
+
+3.    Calcule a amplitude: maior caso - menor caso
+
+$$
+Amplitude = 105 - 52 = 53
+$$
+
+## Como construir um histograma? 
+
+::: {style="font-size: 60%"}
+4.  Determine o número de intervalos (bins)
+    -   Regra de Sturgis:
+
+$$
+\text{Bins Ótimos} = \lceil \log_2 n + 1 \rceil
+$$ Onde:
+
+-   n: O número total de observações no conjunto de dados
+-   $\lceil \rceil$: Símbolos que significam “teto” – ou seja, arredondar a resposta para o número inteiro mais próximo.
+
+$$
+\text{Bins Ótimos} = \lceil \log_2(30) + 1 \rceil = 6
+$$
+
+5.    Largura das Classes: Divida a amplitude pelo número de classes:
+
+$$
+53/6 = 8.83 \approx 9
+$$
+:::
+
+## Como construir um histograma?
+
+::: {style="font-size: 60%"}
+6.    Calcule o limites das classes: Comece com o menor valor menor valor e adicione largura das classes para determinar o limite superior da primeira classe
+  
+$52 + 9 = 61$
+
+-   Intervalo 1: 52 - 61
+-   Intervalo 2: 62 - 71
+-   Intervalo 3: 72 - 81
+-   Intervalo 4: 82 - 91
+-   Intervalo 5: 92 - 101
+-   Intervalo 6: 102 - 111
+
+## Como construir um histograma
+
+7.    Conte dos dados em cada intervalo:
+Intervalo 1 (52 - 61): 4 dados (52  53  57  59)
+Intervalo 2 (62 - 71): 6 dados (62,  65,  67, 68, 69, 70)
+Intervalo 3 (72 - 81): 6 dados (72, 75,  78,  78,  79,  80)
+Intervalo 4 (82 - 91): 5 dados (82, 83, 85, 88,  90)  
+Intervalo 5 (92 - 101): 7 dados (92, 93, 95, 96, 97, 98, 100)
+Intervalo 6 (102 - 111): 2 dados (102 105)
+
+## Resultado
+
+```{r}
+breaks_x <- c(52, 61, 71, 81, 91, 101, 111)
+breaks_y <- seq(0, 7, 1)
+
+dados_hist |> 
+  tibble() |> 
+  ggplot(aes(dados_hist)) + 
+  geom_histogram(breaks = breaks_x, 
+                 color = "#FFFFFF", fill = "#569BBD") +
+  labs(
+    x = "dados"
+  ) +
+  scale_x_continuous(breaks = breaks_x) +
+  scale_y_continuous(breaks = breaks_y)
+```
+
+
+## 
+
+
+
 ## Histogramas, gráficos de densidade e a forma dos dados {.smaller}
 
 -   Histogramas e gráficos de densidade (um histograma suavizado) são convenientes para entender a forma da distribuição de dados:
@@ -783,7 +1005,7 @@ airquality |>
 -   No slide a seguir, vamos ter as distribuições das seguintes variáveis
     -   Preço de diamantes (`price`, do banco de dados `diamonds`)
     -   Altura dos filhos (`sheight`, do banco de dados `father.son`)
-    -   Idade da morte de pessoas famosas (`Age of death`, do banco de dados `Age dataset: life, work, and death of 1.22M people`[^2])
+    -   Idade da morte de pessoas famosas (`Age of death`, do banco de dados `Age dataset`[^2])
 -   Como você imagina a forma dessas distribuições? Tente desenhá-las antes de ver os gráficos
 
 [^2]: Mantivemos somente as mortes por causas naturais e de pessoas que faleceram com menos de 80 anos
