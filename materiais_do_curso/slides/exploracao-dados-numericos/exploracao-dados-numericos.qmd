@@ -121,7 +121,7 @@ Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo
 #| tbl-cap-location: bottom 
 
 mtcars |> 
-  select(wt, mpg) |> 
+  select(Modelo, wt, mpg, cyl) |> 
   slice_sample(n = 10) |> 
   gt() |> 
   fmt_number(
