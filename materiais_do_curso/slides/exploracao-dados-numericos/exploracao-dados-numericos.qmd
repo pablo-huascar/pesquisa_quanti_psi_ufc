@@ -904,7 +904,7 @@ dados_hist <- c(52, 57, 53, 59, 62, 65, 67, 68, 69, 70,
                 90, 92, 93, 95, 96, 97, 98, 100, 102, 105)
 ```
 
-Considere o seguinte conjunto de dados:
+-   Considere o seguinte conjunto de dados:
 
 {`r dados_hist`}
 
@@ -916,30 +916,30 @@ Considere o seguinte conjunto de dados:
 
 $n$ = {`r length(dados_hist)`}
 
-3.    Calcule a amplitude: maior caso - menor caso
+3.  Calcule a amplitude: maior caso - menor caso
 
 $$
 Amplitude = 105 - 52 = 53
 $$
 
-## Como construir um histograma? 
+## Como construir um histograma?
 
 ::: {style="font-size: 60%"}
 4.  Determine o número de intervalos (bins)
-    -   Regra de Sturgis:
+    -   Regra de Sturges:
 
 $$
-\text{Bins Ótimos} = \lceil \log_2 n + 1 \rceil
+\text{Bins Ótimos} = \lceil \log_2(n)  + 1 \rceil
 $$ Onde:
 
--   n: O número total de observações no conjunto de dados
--   $\lceil \rceil$: Símbolos que significam “teto” – ou seja, arredondar a resposta para o número inteiro mais próximo.
+-   n: o número total de observações no conjunto de dados
+-   $\lceil \rceil$: símbolos que significam “teto” – ou seja, arredondar a resposta para o número inteiro mais próximo.
 
 $$
 \text{Bins Ótimos} = \lceil \log_2(30) + 1 \rceil = 6
 $$
 
-5.    Largura das Classes: Divida a amplitude pelo número de classes:
+5.  Largura dos intervalos: divida a amplitude (53) pelo número de classes:
 
 $$
 53/6 = 8.83 \approx 9
@@ -949,8 +949,8 @@ $$
 ## Como construir um histograma?
 
 ::: {style="font-size: 60%"}
-6.    Calcule o limites das classes: Comece com o menor valor menor valor e adicione largura das classes para determinar o limite superior da primeira classe
-  
+6.  Calcule o limites das classes: Comece com o menor valor menor valor e adicione largura das classes para determinar o limite superior da primeira classe
+
 $52 + 9 = 61$
 
 -   Intervalo 1: 52 - 61
@@ -959,16 +959,17 @@ $52 + 9 = 61$
 -   Intervalo 4: 82 - 91
 -   Intervalo 5: 92 - 101
 -   Intervalo 6: 102 - 111
+:::
 
 ## Como construir um histograma
 
-7.    Conte dos dados em cada intervalo:
-Intervalo 1 (52 - 61): 4 dados (52  53  57  59)
-Intervalo 2 (62 - 71): 6 dados (62,  65,  67, 68, 69, 70)
-Intervalo 3 (72 - 81): 6 dados (72, 75,  78,  78,  79,  80)
-Intervalo 4 (82 - 91): 5 dados (82, 83, 85, 88,  90)  
-Intervalo 5 (92 - 101): 7 dados (92, 93, 95, 96, 97, 98, 100)
-Intervalo 6 (102 - 111): 2 dados (102 105)
+7.  Conte dos dados em cada intervalo:
+    -   Intervalo 1 (52 - 61): 4 dados (52 53 57 59)
+    -   Intervalo 2 (62 - 71): 6 dados (62, 65, 67, 68, 69, 70)
+    -   Intervalo 3 (72 - 81): 6 dados (72, 75, 78, 78, 79, 80)
+    -   Intervalo 4 (82 - 91): 5 dados (82, 83, 85, 88, 90)
+    -   Intervalo 5 (92 - 101): 7 dados (92, 93, 95, 96, 97, 98, 100)
+    -   Intervalo 6 (102 - 111): 2 dados (102 105)
 
 ## Resultado
 
@@ -988,9 +989,78 @@ dados_hist |>
   scale_y_continuous(breaks = breaks_y)
 ```
 
+## Histograma da altura dos alunos
 
-## 
+-   Gere um histograma a partir da amostra abaixo que representa a altura dos alunos de uma turma:
 
+```{r}
+hist_altura_da_turma <- c(152, 165, 158, 170, 
+                          162, 168, 155, 172, 
+                          160, 163, 157, 166, 
+                          159, 171, 164)
+```
+
+$\{ 152, 165, 158, 170, 162, 168, 155, 172, 160, 163, 157, 166, 159, 171, 164\}$
+
+## Histograma da altura dos alunos
+
+```{r}
+tribble(
+  ~'Passos', ~'Valor',
+  '1. Dados ordenados', NA,
+  '2. n', NA,
+  '3. Amplitude (maior - menor)', NA,
+  '4. Bins ótimos ([log2(n) + 1])', NA,
+  '5. Largura das Classes (amplitude/numero de classes)', NA
+) |> 
+  datatable(
+    rownames = F, editable = T,
+    options = list(
+      lengthChange = FALSE,
+      dom = 't', ordering = FALSE,
+      columnDefs = 
+        list(list(className = 'dt-center', 
+                  targets = c("Valor", "Passos")))
+    ),
+    class = 'cell-border stripe'
+  ) |> 
+  formatStyle(
+    columns = 'Passos',
+    valueColumns = 'Passos',
+    target = 'cell',
+    textAlign = styleEqual(c('1. Dados ordenados', '2. n',
+                             '3. Amplitude (maior - menor)',
+                             '4. Bins ótimos ([log2(n) + 1])',
+                             '5. Largura das Classes (amplitude/numero de classes)'
+    ), 'left')
+  ) |> 
+   formatStyle(columns = c(1, 2), fontSize = '50%')
+```
+
+```{r}
+tribble(
+  ~'Limite dos intervalos', ~'Contagem',
+  NA, NA,
+  NA, NA,
+  NA, NA,
+  NA, NA,
+) |> 
+  datatable(
+    rownames = FALSE, editable = TRUE,
+    options = list(
+      lengthChange = FALSE,
+      dom = 't',
+      ordering = FALSE,
+      columnDefs = list(
+        list(width = '300px', targets = 'Limite dos intervalos'),  
+        list(width = '50px', targets = 'Contagem'),  
+        list(className = 'dt-center', targets = c('Limite dos intervalos', 'Contagem'))
+      )
+    ),
+    class = 'cell-border stripe'
+  ) |> 
+  formatStyle(columns = c(1, 2), fontSize = '50%')
+```
 
 
 ## Histogramas, gráficos de densidade e a forma dos dados {.smaller}
