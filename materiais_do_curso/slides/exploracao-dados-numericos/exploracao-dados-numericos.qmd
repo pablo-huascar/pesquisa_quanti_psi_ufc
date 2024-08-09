@@ -581,6 +581,11 @@ mtcars |>
   )  
 ```
 
+## Propriedades da média [completar]
+
+-   A média é sensível a valores extremos
+-   
+
 ## A média e a padronização de medidas
 
 -   A média é útil porque nos permite redimensionar ou padronizar uma métrica em algo mais facilmente interpretável e comparável
