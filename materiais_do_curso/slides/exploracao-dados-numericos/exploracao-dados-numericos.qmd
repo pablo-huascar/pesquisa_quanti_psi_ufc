@@ -1,4 +1,5 @@
 ---
+_---
 title: "Explorando dados numéricos"
 format: 
   revealjs:
@@ -581,10 +582,9 @@ mtcars |>
   )  
 ```
 
-## Propriedades da média [completar]
+## [Propriedades da média \[completar\]]{style="color: red;"}
 
--   A média é sensível a valores extremos
--   
+-   Senvível a valores extremos
 
 ## A média e a padronização de medidas
 
@@ -1066,7 +1066,6 @@ tribble(
   ) |> 
   formatStyle(columns = c(1, 2), fontSize = '50%')
 ```
-
 
 ## Histogramas, gráficos de densidade e a forma dos dados {.smaller}
 
