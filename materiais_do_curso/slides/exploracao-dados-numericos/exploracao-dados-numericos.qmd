@@ -918,35 +918,39 @@ hist_3_bins + hist_60_bins
 dados_hist <- c(52, 57, 53, 59, 62, 65, 67, 68, 69, 70,
                 72, 75, 78, 78, 79, 80, 82, 83, 85, 88,
                 90, 92, 93, 95, 96, 97, 98, 100, 102, 105)
+
+n_dados_hist <- length(dados_hist)
+n_bins_dados_hist <- nclass.Sturges(dados_hist)
+max_dados_hist <- max(dados_hist)
+min_dados_hist <- min(dados_hist)
+amplitude_dados_hist <- diff(range(dados_hist))
 ```
 
-Considere o seguinte conjunto de dados:
+**Considere o seguinte conjunto de dados:**
 
 {`r dados_hist`}
 
-1.  Coloque os valores em ordem crestente:
+**1.  Coloque os valores em ordem crestente:**
 
 {`r sort(dados_hist)`}
 
-2.  Conte o quantidade de dados no conjunto:
+*2.  Conte a quantidade de casos no conjunto:*
 
-$n$ = {`r length(dados_hist)`}
+$n$ = `r n_dados_hist`
 
-3.  Calcule a amplitude: maior caso - menor caso
+**3.  Calcule a amplitude: maior caso - menor caso**
 
-$$
-Amplitude = 105 - 52 = 53
-$$
+$Amplitude =$ `r max_dados_hist` $-$ `r min_dados_hist` $=$ `r amplitude_dados_hist`
 
 ## Como construir um histograma?
 
 ::: {style="font-size: 60%"}
-4.  Determine o número de intervalos (bins)
+**4.  Determine o número de intervalos (bins)**
     -   Regra de Sturges:
 
 $$
 \text{Bins Ótimos} = \lceil \log_2(n)  + 1 \rceil
-$$ Onde:
+$$ *Onde:*
 
 -   n: o número total de observações no conjunto de dados
 -   $\lceil \rceil$: símbolos que significam “teto” – ou seja, arredondar a resposta para o número inteiro mais próximo.
@@ -955,7 +959,7 @@ $$
 \text{Bins Ótimos} = \lceil \log_2(30) + 1 \rceil = 6
 $$
 
-5.  Largura dos intervalos: divida a amplitude (53) pelo número de classes:
+**5.  Largura dos intervalos: divida a amplitude (53) pelo número de classes:**
 
 $$
 53/6 = 8.83 \approx 9
@@ -964,8 +968,9 @@ $$
 
 ## Como construir um histograma? 
 
-::: {"style = font-size: 70%"}
-6.  Calcule o limites das classes: Comece com o menor valor menor valor e adicione largura das classes para determinar o limite superior da primeira classe
+::: {style="font-size: 70%;"}
+
+**6.  Calcule o limites dos intervalos: comece com o menor valor menor valor e adicione largura dos intervalos para determinar o limite superior da primeira classe**
 
 $52 + 9 = 61$
 
@@ -975,12 +980,13 @@ $52 + 9 = 61$
 -   Intervalo 4: 82 - 91
 -   Intervalo 5: 92 - 101
 -   Intervalo 6: 102 - 111
+
 :::
 
 ## Como construir um histograma
 
-7.  Conte os casos em cada intervalo:
-    -   Intervalo 1 (52 - 61): 4  (52 53 57 59)
+**7.  Conte os casos em cada intervalo:**
+    -   Intervalo 1 (52 - 61): 4  (52, 53, 57, 59)
     -   Intervalo 2 (62 - 71): 6  (62, 65, 67, 68, 69, 70)
     -   Intervalo 3 (72 - 81): 6  (72, 75, 78, 78, 79, 80)
     -   Intervalo 4 (82 - 91): 5  (82, 83, 85, 88, 90)
@@ -1007,7 +1013,7 @@ dados_hist |>
 
 ## Histograma da altura dos alunos
 
--   Gere um histograma a partir da amostra abaixo que representa a altura dos alunos de uma turma:
+-   Gere um histograma a partir da amostra abaixo que representa a altura dos alunos de uma turma em centímetros:
 
 ```{r}
 hist_altura_da_turma <- c(152, 165, 158, 170, 
@@ -1016,7 +1022,8 @@ hist_altura_da_turma <- c(152, 165, 158, 170,
                           159, 171, 164)
 ```
 
-$\{ 152, 165, 158, 170, 162, 168, 155, 172, 160, 163, 157, 166, 159, 171, 164\}$
+{`r hist_altura_da_turma`} 
+
 
 ## Histograma da altura dos alunos
 
@@ -1025,9 +1032,10 @@ tribble(
   ~'Passos', ~'Valor',
   '1. Dados ordenados', NA,
   '2. n', NA,
-  '3. Amplitude (maior - menor)', NA,
-  '4. Bins ótimos ([log2(n) + 1])', NA,
-  '5. Largura das Classes (amplitude/numero de classes)', NA
+  '3. Mínimo', NA,
+  '4. Amplitude (maior - menor)', NA,
+  '5. Bins ótimos ([log2(n) + 1])', NA,
+  '6. Largura das Classes (amplitude/numero de intervalos)', NA
 ) |> 
   datatable(
     rownames = F, editable = T,
@@ -1044,10 +1052,11 @@ tribble(
     columns = 'Passos',
     valueColumns = 'Passos',
     target = 'cell',
-    textAlign = styleEqual(c('1. Dados ordenados', '2. n',
-                             '3. Amplitude (maior - menor)',
-                             '4. Bins ótimos ([log2(n) + 1])',
-                             '5. Largura das Classes (amplitude/numero de classes)'
+    textAlign = styleEqual(c('1. Dados ordenados', 
+                             '2. n', '3. Mínimo',
+                             '4. Amplitude (maior - menor)',
+                             '5. Bins ótimos ([log2(n) + 1])',
+                             '6. Largura das Classes (amplitude/numero de intervalos)'
     ), 'left')
   ) |> 
    formatStyle(columns = c(1, 2), fontSize = '50%')
@@ -1078,6 +1087,22 @@ tribble(
   formatStyle(columns = c(1, 2), fontSize = '50%')
 ```
 
+## Resultado
+
+```{r}
+breaks_altura_da_turma <- c(152, 156, 161, 166, 171)
+
+hist_altura_da_turma |> 
+  tibble() |> 
+  ggplot(aes(hist_altura_da_turma)) +
+  geom_histogram(breaks = breaks_altura_da_turma, color = "#FFFFFF", 
+                 fill = "#569BBD") +
+  labs(
+    x = "Altura da turma"
+  )
+```
+
+
 ## Histogramas, gráficos de densidade e a forma dos dados {.smaller}
 
 -   Histogramas e gráficos de densidade (um histograma suavizado) são convenientes para entender a forma da distribuição de dados:
@@ -1103,12 +1128,14 @@ tribble(
 ```{r}
 #| out-width: 70%
 
+breaks_diamonds <- pretty(range(diamonds$price),
+                          n = nclass.Sturges(diamonds$price),
+                          min.n = 1)
+
 diamonds |> 
   ggplot(aes(price)) +
   geom_histogram(aes(y = after_stat(density)),
-                 breaks = pretty(range(diamonds$price),
-                                 n = nclass.Sturges(diamonds$price),
-                                 min.n = 1),
+                 breaks = breaks_diamonds,
                  color = "gray", fill = "white") +
   geom_density(fill = "#569BBD", color = "#569BBD", 
                alpha = 0.5) +
