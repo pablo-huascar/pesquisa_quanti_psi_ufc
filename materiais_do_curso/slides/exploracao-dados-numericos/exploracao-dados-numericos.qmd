@@ -548,6 +548,10 @@ mtcars |>
 ## Resultados
 
 ```{r}
+#| label: tbl-resultados-media-mtcars
+#| tbl-cap: Médias de `mpg` e `wt` para uma amostra de automóveis
+#| tbl-cap-location: bottom
+
 set.seed(123)
 
 mtcars |> 
@@ -644,7 +648,7 @@ asma |>
 
 ```{r}
 #| label: tbl-asma-medias
-#| tbl-cap: Resultados do experimento sobre o novo remédio pra asma
+#| tbl-cap: "Resultados do experimento sobre o novo remédio pra asma: Médias padronizadas"
 #| tbl-cap-location: bottom
 asma |>
   gt() |> 
@@ -668,6 +672,7 @@ Avalie qual time de basquete tem melhor desempenho em um campeonato:
 #| label: tbl-basquete
 #| tbl-cap: Pontuações dos times de basquete
 #| tbl-cap-location: bottom
+
 basquete <- tribble(
   ~Time, ~Jogos, ~"Pontuação Total", ~'Pontos/jogo',
   "Mogi", 20, 1500, NA,
@@ -724,6 +729,10 @@ basquete |>
 ## Resultados
 
 ```{r}
+#| label: tbl-basquete-medias
+#| tbl-cap: "Pontuações dos times de basquete: Médias padronizadas"
+#| tbl-cap-location: bottom
+
 basquete |> 
   mutate(
     'Pontos/jogo' = `Pontuação Total`/Jogos
