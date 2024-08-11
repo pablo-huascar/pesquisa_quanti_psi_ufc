@@ -524,7 +524,12 @@ mtcars |>
       dom = 't', ordering = FALSE,
       columnDefs = 
         list(list(className = 'dt-center', 
-                  targets = "_all"))
+                  targets = "_all")),
+      headerCallback = DT::JS(
+        "function(thead) {",
+        "  $(thead).css('font-size', '0.75em');",
+        "}"
+      )
     ),
     class = 'cell-border stripe'
   ) |> 
@@ -711,7 +716,12 @@ basquete |>
       dom = 't', ordering = FALSE,
       columnDefs = 
         list(list(className = 'dt-center', 
-                  targets = "_all"))
+                  targets = "_all")),
+      headerCallback = DT::JS(
+        "function(thead) {",
+        "  $(thead).css('font-size', '0.75em');",
+        "}"
+      )
     ),
     class = 'cell-border stripe'
   ) |> 
@@ -1093,7 +1103,12 @@ av_prof_irene_reinaldo |>
       dom = 't', ordering = FALSE,
       columnDefs = 
         list(list(className = 'dt-center', 
-                  targets = "_all"))
+                  targets = "_all")),
+      headerCallback = DT::JS(
+        "function(thead) {",
+        "  $(thead).css('font-size', '0.75em');",
+        "}"
+      )
     ),
     class = 'cell-border stripe'
   ) |> 
@@ -1126,7 +1141,12 @@ res_profs <- res_profs |>
       dom = 't', ordering = FALSE,
       columnDefs = 
         list(list(className = 'dt-center', 
-                  targets = "Valor"))
+                  targets = "Valor")),
+      headerCallback = DT::JS(
+        "function(thead) {",
+        "  $(thead).css('font-size', '0.75em');",
+        "}"
+      )
     ),
     class = 'cell-border stripe'
   ) |> 
@@ -1170,7 +1190,12 @@ av_prof_irene_reinaldo |>
       dom = 't', ordering = FALSE,
       columnDefs = 
         list(list(className = 'dt-center', 
-                  targets = "_all"))
+                  targets = "_all")),
+      headerCallback = DT::JS(
+        "function(thead) {",
+        "  $(thead).css('font-size', '0.75em');",
+        "}"
+      )
     ),
     class = 'cell-border stripe'
   ) |> 
@@ -1475,7 +1500,6 @@ hist_3_bins <- airquality |>
   )
 
 hist_3_bins + hist_60_bins
-
 ```
 :::
 :::
@@ -1562,7 +1586,6 @@ tribble(
   opt_stylize(
     style = 1, color = "gray"
     )
-
 ```
 
 ## Como construir um histograma
@@ -1590,7 +1613,6 @@ tribble(
   opt_stylize(
     style = 1, color = "gray"
     )
-
 ```
 
 ## Resultado
@@ -1611,7 +1633,7 @@ dados_hist |>
   scale_y_continuous(breaks = breaks_y)
 ```
 
-## [Histograma da altura dos alunos ] {style="font-size: 75%"}
+## [Histograma da altura dos alunos](#histograma-da-altura-dos-alunos-1) {style="font-size: 75%"}
 
 [Gere um histograma a partir da amostra abaixo que representa a altura dos alunos de uma turma em centímetros:]{style="font-size: 60%"}
 
@@ -1654,7 +1676,7 @@ hist_altura_da_turma_gt <- hist_altura_da_turma |>
 hist_altura_da_turma_gt
 ```
 
-## Histograma da altura dos alunos
+## Histograma da altura dos alunos {#histograma-da-altura-dos-alunos-1}
 
 ```{r}
 tribble(
@@ -1673,7 +1695,12 @@ tribble(
       dom = 't', ordering = FALSE,
       columnDefs = 
         list(list(className = 'dt-center', 
-                  targets = c("Valor", "Passos")))
+                  targets = c("Valor", "Passos"))),
+      headerCallback = DT::JS(
+        "function(thead) {",
+        "  $(thead).css('font-size', '0.75em');",
+        "}"
+      )
     ),
     class = 'cell-border stripe'
   ) |> 
@@ -1709,6 +1736,11 @@ tribble(
         list(width = '300px', targets = 'Limite dos intervalos'),  
         list(width = '50px', targets = 'Contagem'),  
         list(className = 'dt-center', targets = c('Limite dos intervalos', 'Contagem'))
+      ),
+      headerCallback = DT::JS(
+        "function(thead) {",
+        "  $(thead).css('font-size', '0.75em');",
+        "}"
       )
     ),
     class = 'cell-border stripe'
@@ -1856,15 +1888,15 @@ $$
 \gamma_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^3}{n \cdot s^3}
 $$ Onde,
 
-$x_i - \bar{x}$: desvios da média 
+$x_i - \bar{x}$: desvios da média
 
-$n$: total de casos 
+$n$: total de casos
 
 $s$: desvio padrão
 
 ## 
 
-Vamos calcular o valor da assimetria a partir uma nova amostra de dados da altura:
+[Vamos calcular o valor da assimetria a partir de uma nova amostra de dados da altura:]{style="font-size: 60%;"}
 
 ```{r}
 #| label: tbl-altura-dos-alunos-2
@@ -1897,11 +1929,246 @@ hist_altura_2 |>
   ) |> 
   tab_options(
     table.width = pct(100),
-    table.font.size = "12px"
+    table.font.size = "16px"
   ) |> 
   opt_stylize(
     style = 1, color = "gray"
   )
+```
+
+## 
+
+::: panel-tabset
+
+### Tabela para os cálculos
+
+```{r}
+altura_2 <- tribble(
+  ~"Aluno", ~"Altura", ~"Desvio da média", ~"Desvio ao quadrado", ~"Desvios ao cubo",
+  "Leonardo", 152, NA, NA, NA,
+  "Mariana", 153, NA, NA, NA,
+  "Carlos", 151, NA, NA, NA,
+  "Ana", 154, NA, NA, NA,
+  "Bruno", 156, NA, NA, NA,
+  "Juliana", 160, NA, NA, NA,
+  "Renato", 159, NA, NA, NA,
+  "Fernanda", 163, NA, NA, NA,
+  "Lucas", 164, NA, NA, NA,
+  "Paula", 151, NA, NA, NA,
+  "Gabriel", 168, NA, NA, NA,
+  "Camila", 170, NA, NA, NA,
+  "Eduardo", 175, NA, NA, NA,
+  "Sofia", 180, NA, NA, NA,
+  "Ricardo", 182, NA, NA, NA
+) 
+
+altura_2 |> 
+  datatable(
+    rownames = F, editable = T,
+    class = 'cell-border stripe',
+    options = list(
+      lengthChange = FALSE,
+      pageLength = 15,
+      dom = 't', ordering = FALSE,
+      columnDefs = 
+        list(list(className = 'dt-center', 
+                  targets = "_all")),
+      headerCallback = DT::JS(
+        "function(thead) {",
+        "  $(thead).css('font-size', '0.5em');",
+        "}"
+      )
+    )
+  ) |> 
+  formatStyle(
+    columns = 'Aluno',
+    valueColumns = 'Aluno',
+    target = 'cell',
+    textAlign = styleEqual(c('Leonardo', "Mariana",
+                             "Carlos", "Ana",
+                             "Bruno", "Juliana",
+                             "Renato", "Fernanda",
+                             "Lucas", "Paula",
+                             "Gabriel", "Camila",
+                             "Eduardo", "Sofia",
+                             "Ricardo"), 'left')
+  ) |> 
+  formatStyle(columns = c(1, 2, 3, 4, 5), fontSize = '35%')
+```
+
+### Resultados
+
+```{r}
+tribble(
+  ~"", ~"Valor",
+  "n", NA,
+  "Média", NA,
+  "Soma dos devios ao quadrado", NA,
+  "Variância", NA, 
+  "Desvio padrão", NA,
+  "Soma dos desivos ao cubo", NA,
+  "Desvio padrão ao cubo", NA,
+  "n*s^3", NA,
+  "Assimetria", NA
+) |> 
+  datatable(
+    rownames = F, editable = T,
+    options = list(
+      lengthChange = FALSE,
+      dom = 't', ordering = FALSE,
+      columnDefs = 
+        list(list(className = 'dt-center', 
+                  targets = "Valor")),
+      headerCallback = DT::JS(
+        "function(thead) {",
+        "  $(thead).css('font-size', '0.5em');",
+        "}"
+      )
+    ),
+    class = 'cell-border stripe'
+  ) |> 
+  formatStyle(columns = c(1, 2, 3, 4, 5), fontSize = '50%')
+```
+
+### Formulas {.smaller}
+
+$$
+\gamma_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^3}{n \cdot s^3}
+$$
+$$
+{SS} = \sum_{i=1}^n (x_i - \bar{x})^2 =  \sum(x_i - \bar{x})(x_i - \bar{x})
+$$
+
+$$
+s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} = \frac{\text{SS}}{n-1}
+$$
+
+$$
+s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
+$$
+
+:::
+
+## Resultados
+
+```{r}
+n_altura2 <- length(altura_2$Altura)
+m_altura2 <- mean(altura_2$Altura)
+
+altura_2 |> 
+  mutate(
+    `Desvio da média` = Altura - m_altura2,
+    `Desvio ao quadrado` = `Desvio da média`^2,
+    `Desvios ao cubo` = `Desvio da média`^3
+  ) |> 
+  summarise(
+    n = n(),
+    Média = mean(Altura),
+    SS = sum(`Desvio ao quadrado`),
+    Variância = SS/(n_altura2 - 1),
+    "Desvio parão" = sqrt(Variância),
+    "Soma dos desvios ao cubo" = sum(`Desvios ao cubo`),
+    "n*s^3" = n_altura2*`Desvio parão`^3 |> round(),
+    Assimetria = `Soma dos desvios ao cubo`/`n*s^3`
+    ) |> 
+  pivot_longer(cols = everything(), names_to = "Estatística",  
+               values_to = "Valor") |> 
+  gt() |> 
+  fmt_number(columns = Valor, rows = c(1, 2, 3, 4, 6, 7), 
+             decimals = 0, use_seps = F) |> 
+  fmt_number(columns = Valor, rows = 5, 
+             decimals = 1) |> 
+  cols_align(
+    columns = 2,
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = "Estatística")
+    )
+```
+
+
+## Histograma da altura dos alunos 
+
+Agora gere um histograma com a nova amostra da altura dos alunos
+
+```{r}
+tribble(
+  ~'Passos', ~'Valor',
+  '1. Dados ordenados', NA,
+  '2. n', NA,
+  '3. Mínimo', NA,
+  '4. Amplitude', NA,
+  '5. Bins ótimos', NA,
+  '6. Largura dos intervalos', NA
+) |> 
+  datatable(
+    rownames = F, editable = T,
+    options = list(
+      lengthChange = FALSE,
+      dom = 't', ordering = FALSE,
+      columnDefs = 
+        list(list(className = 'dt-center', 
+                  targets = c("Valor", "Passos"))),
+      headerCallback = DT::JS(
+        "function(thead) {",
+        "  $(thead).css('font-size', '0.75em');",
+        "}"
+      )
+    ),
+    class = 'cell-border stripe'
+  ) |> 
+  formatStyle(
+    columns = 'Passos',
+    valueColumns = 'Passos',
+    target = 'cell',
+    textAlign = styleEqual(c('1. Dados ordenados', 
+                             '2. n', '3. Mínimo',
+                             '4. Amplitude',
+                             '5. Bins ótimos',
+                             '6. Largura dos intervalos'
+    ), 'left')
+  ) |> 
+  formatStyle(columns = c(1, 2), fontSize = '50%')
+```
+
+```{r}
+tribble(
+  ~'Limite dos intervalos', ~'Contagem',
+  NA, NA,
+  NA, NA,
+  NA, NA,
+  NA, NA,
+  NA, NA
+) |> 
+  datatable(
+    rownames = FALSE, editable = TRUE,
+    options = list(
+      lengthChange = FALSE,
+      dom = 't',
+      ordering = FALSE,
+      columnDefs = list(
+        list(width = '300px', targets = 'Limite dos intervalos'),  
+        list(width = '50px', targets = 'Contagem'),  
+        list(className = 'dt-center', targets = c('Limite dos intervalos', 'Contagem'))
+      ),
+      headerCallback = DT::JS(
+        "function(thead) {",
+        "  $(thead).css('font-size', '0.75em');",
+        "}"
+      )
+    ),
+    class = 'cell-border stripe'
+  ) |> 
+  formatStyle(columns = c(1, 2), fontSize = '50%')
 ```
 
 ## Histogramas e a moda
