@@ -25,8 +25,6 @@ source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
 ```{r}
 #| label: setup
 
-## Analisar melhor o pacote conflicted e avaliar inserir em _common.R
-
 library(tidyverse)
 library(janitor)
 library(UsingR)
@@ -856,12 +854,16 @@ $$
 
 ## Desvios da média: $x_i - \bar{x}$ {.smaller}
 
-Note que a média em algums momentos subestima a avaliação dada por cada aluno e, em outros, superestima:
+Note que a média em algums momentos subestima a avaliação dada por cada aluno e, em outros, superestima.
 
--   Chamamos de desvio a distância de uma observação da média da variável
+Chamamos de desvio a distância de uma observação da média da variável.
+
+$\bar{x} =$ `r m_av`
 
 ```{r}
-
+#| label: tbl-desviso-prof-ze
+#| tbl-cap: Desvios da média das avaliações do professor Zé
+#| tbl-cap-location: bottom
 av_prof |> 
   select(Aluno:`Desvio da média`) |> 
   gt() |> 
@@ -876,8 +878,6 @@ av_prof |>
     style = 1, color = "gray"
   )
 ```
-
-$\bar{x} =$ `r m_av`
 
 ## 
 
@@ -916,6 +916,10 @@ av_prof |>
 Agora que já temos os desvios, para saber a variabilidade total dos dados podemos somá-los, certo?
 
 ```{r}
+#| label: tbl-soma-desvios-ze
+#| tbl-cap: Soma dos desvios da média das avaliações do professor Zé
+#| tbl-cap-location: bottom
+
 av_prof |> 
   select(Aluno:`Desvio da média`) |> 
   gt() |> 
@@ -971,6 +975,10 @@ $$
 ## Soma dos desvios ao quadrado
 
 ```{r}
+#| label: tbl-soma-desivos-quadrado-ze
+#| tbl-cap: Soma dos desvios ao quadrado das avaliações do professor Zé
+#| tbl-cap-location: bottom
+
 ss <- sum(av_prof$`Desvio ao quadrado`)
 
 av_prof |> 
@@ -1076,9 +1084,8 @@ Vamos calcular a média e o desvio padrão para as avaliações da professora Ir
 ### Tabela para os cálculos {.smaller}
 
 ```{r}
-#| label: tbl-prof-irene
-#| tbl-cap:  Avaliações da professora Irene
-#| tbl-cap-location: top
+#| label: prof-irene-tabela-calculos
+
 av_prof_irene_reinaldo <- tribble(
   ~"Aluno", ~"Avaliação do professor", ~"Desvio da média", ~"Desviso ao quadrado", ~"Professor",
   "Joana", 4, NA, NA, "Irene",
@@ -1176,9 +1183,7 @@ $$
 ### Tabela para os cálculos {.smaller}
 
 ```{r}
-#| label: tbl-prof-reinaldo
-#| tbl-cap:  Avaliações do professor Reinaldo
-#| tbl-cap-location: top
+#| label: prof-reinaldo-tabela-calculos
 
 av_prof_irene_reinaldo |> 
   filter(Professor == "Reinaldo") |> 
@@ -1234,6 +1239,10 @@ $$
 Os dois professores têm a mesma média, mas a desvio padrão no caso da professora Irene é bem mais alto. O que isso nos diz sobre os dados?
 
 ```{r}
+#| label: tbl-m-dp-irene-reinaldo
+#| tbl-cap: Média e desvio padrão dos professores Reinaldo e Irene
+#| tbl-cap-location: bottom
+
 av_prof_irene_reinaldo |> 
   summarise(
     Média = mean(`Avaliação do professor`) |> round(2),
@@ -1554,7 +1563,7 @@ $$
 \text{Bins Ótimos} = \lceil \log_2(30) + 1 \rceil = 6
 $$
 
-**5. Largura dos intervalos: divida a amplitude (53) pelo número de classes:**
+**5. Largura dos intervalos: divida a amplitude (53) pelo número de intervalos:**
 
 $$
 53/6 = 8.83 \approx 9
@@ -1568,6 +1577,10 @@ $$
 $52 + 9 = 61$
 
 ```{r}
+#| label: tbl-limites-intervalos-histograma
+#| tbl-cap: Limites dos intervalos do histograma
+#| tbl-cap-location: bottom
+
 tribble(
   ~Intervalo, ~Limite,
   1, "52 - 61",
@@ -1595,6 +1608,10 @@ tribble(
 **7. Conte os casos em cada intervalo:**
 
 ```{r}
+#| label: tbl-casos-intervalos
+#| tbl-cap: Intervalos e casos do histograma
+#| tbl-cap-location: bottom
+
 tribble(
   ~Intervalo, ~Limite, ~n, ~Casos,
   1, "52 - 61", 4, "52, 53, 57, 59",
@@ -1642,7 +1659,7 @@ dados_hist |>
 ```{r}
 #| label: tbl-altura-dos-alunos
 #| tbl-cap: Altura dos alunos
-#| tbl-cap-location: top
+#| tbl-cap-location: bottom
 hist_altura_da_turma <- tribble(
   ~Aluno, ~Altura,
   "Pedro", 152, 
@@ -1678,7 +1695,7 @@ hist_altura_da_turma_gt <- hist_altura_da_turma |>
 hist_altura_da_turma_gt
 ```
 
-## Histograma da altura dos alunos 
+## Histograma da altura dos alunos {#histograma-da-altura-dos-alunos-1}
 
 ```{r}
 tribble(
@@ -1750,7 +1767,6 @@ tribble(
   ) |> 
   formatStyle(columns = c(1, 2), fontSize = '30%')
 ```
-
 
 ## Resultado
 
@@ -1943,7 +1959,6 @@ hist_altura_2 |>
 ## 
 
 ::: panel-tabset
-
 ### Tabela para os cálculos
 
 ```{r}
@@ -2038,8 +2053,7 @@ tribble(
 
 $$
 \gamma_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^3}{n \cdot s^3}
-$$
-$$
+$$ $$
 {SS} = \sum_{i=1}^n (x_i - \bar{x})^2 =  \sum(x_i - \bar{x})(x_i - \bar{x})
 $$
 
@@ -2050,7 +2064,6 @@ $$
 $$
 s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
 $$
-
 :::
 
 ## Resultados
@@ -2100,7 +2113,7 @@ altura_2 |>
     )
 ```
 
-## Histograma da altura dos alunos 
+## Histograma da altura dos alunos
 
 Agora gere um histograma com a nova amostra da altura dos alunos. A distribuição dos dados condiz com o valor da assimetria?
 
@@ -2195,7 +2208,6 @@ altura_2 |>
     plot.subtitle = element_text(hjust = 0.5)
   )
 ```
-
 
 ## Histogramas e a moda
 
@@ -2503,7 +2515,24 @@ histogramas_desvio_padrao |>
 :::
 :::
 
-## Whiskers (bigodes) e outliers (valores discrepantes)
+## Whiskers (bigodes) e outliers (valores discrepantes) {.smaller}
+
+-   Whiskers: capturaram a maior parte dos dados, excluindo os outliers
+    -   Se estendem até os valores máximo e mínimo, exceto quando há outliers
+-   Outliers: pontos excepcionalmente altos ou baixos, marcados separadamente no gráfico
+    -   Indicam observações distantes do restante dos dados
+    -   Observações além de 1,5 x IQR dos quartis são outliers
+-   Caixa como corpo, whiskers como braços tentando alcançar os dados até os outliers
+
+## Outliers são extremos {.smaller}
+
+Um outlier é uma observação que parece extrema em relação ao restante dos dados. Examinar os dados para identificar outliers tem vários propósitos úteis, incluindo:
+
+-   Identificar uma forte assimetria na distribuição,
+-   Identificar possíveis erros de coleta de dados ou de entrada de dados, e
+-   Fornecer insights sobre propriedades interessantes dos dados.
+
+No entanto, tenha em mente que alguns conjuntos de dados têm uma assimetria naturalmente longa, e pontos fora do padrão (outliers) não representam necessariamente qualquer tipo de problema no conjunto de dados.
 
 ## 
 
@@ -2599,6 +2628,122 @@ box_plot_sheight <- box_plot_sheight +
            label = "outlier")
 
 box_plot_sheight
+```
+
+## Estatísticas Robustas {.smaller}
+
+[Considere os cinco modelos de carro abaixo. Eles são os automóveis mais leves do banco de dados `mtcars`. O que aconteceria com as estatísticas dessa amostra se trocássemos o veículo mais leve (Lotus Europa) pelo quinto mais pesado de todo o banco de dados (Pontiac Firebird)? E o que aconteceria se o trocássemos pelo caro mais pesado de todos (Lincoln Continental)?]{style="font-size: 75%"}
+
+```{r}
+mtcars |> 
+  select(Modelo, wt) |> 
+  slice_min(wt, n = 5) |> 
+  gt() |> 
+  fmt_number(decimals = 2) |> 
+  cols_align(
+    columns = !1,
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = "Modelo")
+    )
+```
+
+## Estatísticas Robustas
+
+```{r}
+#| label: tbl-estatisticas-robustas
+#| tbl-cap: Uma comparação de como a mediana, o IQR, a média e o desvio padrão mudam à medida que o valor de uma observação extrema dos dados de interesse originais muda
+#| tbl-cap-location: bottom
+
+original_data <- mtcars |> 
+  select(Modelo, wt) |> 
+  slice_min(wt, n = 5)
+
+original_data_summary original_data |> 
+  summarise(
+    Mediana = median(wt),
+    IQR = IQR(wt),
+    Média = mean(wt),
+    "Desvio padrão" = sd(wt)
+  ) |> 
+  mutate(
+    Cenário = "Dados originais",
+    .before = 1
+  )
+  
+pontiac <- mtcars |> 
+  select(Modelo, wt) |> 
+  slice_max(wt, n = 5) |> 
+  slice(5)
+
+lincoln <- mtcars |> 
+  select(Modelo, wt) |> 
+  slice_max(wt, n = 5) |> 
+  slice(1)
+
+
+data_pontiac <- mtcars |> 
+  select(Modelo, wt) |> 
+  slice_min(wt, n = 5) |> 
+  slice(2:5) |> 
+  add_row(pontiac) |> 
+  summarise(
+    Mediana = median(wt),
+    IQR = IQR(wt),
+    Média = mean(wt),
+    "Desvio padrão" = sd(wt)
+  ) |> 
+  mutate(
+    Cenário = "Sai Lotus Europa entra Pontiac Firebird",
+    .before = 1
+  )
+
+data_lincoln <- mtcars |> 
+  select(Modelo, wt) |> 
+  slice_min(wt, n = 5) |> 
+  slice(2:5) |> 
+  add_row(lincoln) |> 
+  summarise(
+    Mediana = median(wt),
+    IQR = IQR(wt),
+    Média = mean(wt),
+    "Desvio padrão" = sd(wt)
+  ) |> 
+  mutate(
+    Cenário = "Sai Lotus Europa entra Lincoln Continental"
+  )
+
+original_data |> 
+  add_row(data_pontiac) |> 
+  add_row(data_lincoln) |> 
+  gt() |> 
+  fmt_number(decimals = 3) |> 
+  cols_align(
+    columns = !1,
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = "Cenário")
+    )
+
+
 ```
 
 # Exercícios
