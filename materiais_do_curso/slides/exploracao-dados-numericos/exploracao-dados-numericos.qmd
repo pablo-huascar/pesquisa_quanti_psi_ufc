@@ -858,7 +858,7 @@ $$
 
 Note que a média em algums momentos subestima a avaliação dada por cada aluno e, em outros, superestima:
 
--   Chamamos de desvio a distância de uma observação de sua média
+-   Chamamos de desvio a distância de uma observação da média da variável
 
 ```{r}
 
@@ -1414,7 +1414,9 @@ airquality |>
 #| label: histogram-Temp
 #| out-width: 70%
 
-breaks_temp <- pretty(range(airquality$Temp), n = nclass.Sturges(airquality$Temp), min.n = 1)
+breaks_temp <- pretty(range(airquality$Temp), 
+                      n = nclass.Sturges(airquality$Temp), 
+                      min.n = 1)
 
 airquality |> 
   ggplot(aes(Temp)) +
@@ -1676,7 +1678,7 @@ hist_altura_da_turma_gt <- hist_altura_da_turma |>
 hist_altura_da_turma_gt
 ```
 
-## Histograma da altura dos alunos {#histograma-da-altura-dos-alunos-1}
+## Histograma da altura dos alunos 
 
 ```{r}
 tribble(
@@ -1684,9 +1686,9 @@ tribble(
   '1. Dados ordenados', NA,
   '2. n', NA,
   '3. Mínimo', NA,
-  '4. Amplitude (maior - menor)', NA,
-  '5. Bins ótimos ([log2(n) + 1])', NA,
-  '6. Largura das Classes (amplitude/numero de intervalos)', NA
+  '4. Amplitude', NA,
+  '5. Bins ótimos', NA,
+  '6. Largura dos intervalos', NA
 ) |> 
   datatable(
     rownames = F, editable = T,
@@ -1698,7 +1700,7 @@ tribble(
                   targets = c("Valor", "Passos"))),
       headerCallback = DT::JS(
         "function(thead) {",
-        "  $(thead).css('font-size', '0.75em');",
+        "  $(thead).css('font-size', '0.5em');",
         "}"
       )
     ),
@@ -1710,12 +1712,12 @@ tribble(
     target = 'cell',
     textAlign = styleEqual(c('1. Dados ordenados', 
                              '2. n', '3. Mínimo',
-                             '4. Amplitude (maior - menor)',
-                             '5. Bins ótimos ([log2(n) + 1])',
-                             '6. Largura das Classes (amplitude/numero de intervalos)'
+                             '4. Amplitude',
+                             '5. Bins ótimos',
+                             '6. Largura dos intervalos'
     ), 'left')
   ) |> 
-   formatStyle(columns = c(1, 2), fontSize = '50%')
+  formatStyle(columns = c(1, 2), fontSize = '30%')
 ```
 
 ```{r}
@@ -1725,6 +1727,7 @@ tribble(
   NA, NA,
   NA, NA,
   NA, NA,
+  NA, NA
 ) |> 
   datatable(
     rownames = FALSE, editable = TRUE,
@@ -1739,14 +1742,15 @@ tribble(
       ),
       headerCallback = DT::JS(
         "function(thead) {",
-        "  $(thead).css('font-size', '0.75em');",
+        "  $(thead).css('font-size', '0.5em');",
         "}"
       )
     ),
     class = 'cell-border stripe'
   ) |> 
-  formatStyle(columns = c(1, 2), fontSize = '50%')
+  formatStyle(columns = c(1, 2), fontSize = '30%')
 ```
+
 
 ## Resultado
 
@@ -1755,8 +1759,8 @@ breaks_altura_da_turma <- c(152, 156, 161, 166, 171)
 
 hist_altura_da_turma |> 
   ggplot(aes(Altura)) +
-  geom_histogram(breaks = breaks_altura_da_turma, color = "#FFFFFF", 
-                 fill = "#569BBD") +
+  geom_histogram(breaks = breaks_altura_da_turma, 
+                 color = "#FFFFFF", fill = "#569BBD") +
   labs(
     x = "Altura da turma"
   ) +
@@ -2065,16 +2069,17 @@ altura_2 |>
     n = n(),
     Média = mean(Altura),
     SS = sum(`Desvio ao quadrado`),
-    Variância = SS/(n_altura2 - 1),
-    "Desvio parão" = sqrt(Variância),
+    Variância = var(Altura),
+    "Desvio parão" = sd(Altura),
     "Soma dos desvios ao cubo" = sum(`Desvios ao cubo`),
     "n*s^3" = n_altura2*`Desvio parão`^3 |> round(),
     Assimetria = `Soma dos desvios ao cubo`/`n*s^3`
     ) |> 
+  select(!c(`Soma dos desvios ao cubo`, `n*s^3`)) |> 
   pivot_longer(cols = everything(), names_to = "Estatística",  
                values_to = "Valor") |> 
   gt() |> 
-  fmt_number(columns = Valor, rows = c(1, 2, 3, 4, 6, 7), 
+  fmt_number(columns = Valor, rows = c(1, 2, 3, 4), 
              decimals = 0, use_seps = F) |> 
   fmt_number(columns = Valor, rows = 5, 
              decimals = 1) |> 
@@ -2095,10 +2100,9 @@ altura_2 |>
     )
 ```
 
-
 ## Histograma da altura dos alunos 
 
-Agora gere um histograma com a nova amostra da altura dos alunos
+Agora gere um histograma com a nova amostra da altura dos alunos. A distribuição dos dados condiz com o valor da assimetria?
 
 ```{r}
 tribble(
@@ -2120,7 +2124,7 @@ tribble(
                   targets = c("Valor", "Passos"))),
       headerCallback = DT::JS(
         "function(thead) {",
-        "  $(thead).css('font-size', '0.75em');",
+        "  $(thead).css('font-size', '0.5em');",
         "}"
       )
     ),
@@ -2137,7 +2141,7 @@ tribble(
                              '6. Largura dos intervalos'
     ), 'left')
   ) |> 
-  formatStyle(columns = c(1, 2), fontSize = '50%')
+  formatStyle(columns = c(1, 2), fontSize = '30%')
 ```
 
 ```{r}
@@ -2162,14 +2166,36 @@ tribble(
       ),
       headerCallback = DT::JS(
         "function(thead) {",
-        "  $(thead).css('font-size', '0.75em');",
+        "  $(thead).css('font-size', '0.5em');",
         "}"
       )
     ),
     class = 'cell-border stripe'
   ) |> 
-  formatStyle(columns = c(1, 2), fontSize = '50%')
+  formatStyle(columns = c(1, 2), fontSize = '30%')
 ```
+
+## Resultado
+
+```{r}
+breaks_altura_2 <- c(151, 157, 164, 171, 178, 185)
+
+altura_2 |> 
+  ggplot(aes(Altura)) +
+  geom_histogram(breaks = breaks_altura_2, 
+                 color = "#FFFFFF", fill = "#569BBD") +
+  labs(
+    title = "Histograma da altura da turma", 
+    subtitle = "Nova amostra"
+  ) +
+  scale_x_continuous(breaks = breaks_altura_2) +
+  scale_y_continuous(breaks = seq(0, 6, 1)) + 
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  )
+```
+
 
 ## Histogramas e a moda
 
@@ -2245,7 +2271,7 @@ father.son |>
 
 ```{r}
 #| out-width: 70%
-breaks_wind <- breaks_bill_length <- pretty(
+breaks_wind <- pretty(
   range(airquality$Wind),
   n = nclass.Sturges(airquality$Wind),
   min.n = 1
