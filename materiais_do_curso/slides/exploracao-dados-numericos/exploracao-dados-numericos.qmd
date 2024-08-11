@@ -37,11 +37,14 @@ library(scales)
 library(ggthemes)
 library(patchwork)
 library(DT)
+library(psych)
 conflicted::conflicts_prefer(dplyr::filter())
 conflicted::conflicts_prefer(dplyr::select())
 conflicted::conflicts_prefer(dplyr::lag())
 conflicted::conflicts_prefer(dplyr::summarize)
 conflicted::conflicts_prefer(dplyr::summarise)
+conflicted::conflicts_prefer(scales::alpha)
+conflicted::conflicts_prefer(scales::rescale)
 ```
 
 ```{r}
@@ -76,7 +79,7 @@ gols_brasileiro <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/gols_por
 Conjunto de dados de Pearson sobre alturas de pais e filhos
 
 -   Formato: Um banco de dados com 1078 observações e duas variáveis
-    -   `fheighti`: altura do pai em polegadas
+    -   `fheight`: altura do pai em polegadas
     -   `sheight`: altura do filho em polegadas
 
 ## Uma olhada em `father.son`
@@ -574,7 +577,7 @@ mtcars |>
   ) |> 
   tab_options(
     table.width = pct(50),
-    table.font.size = "22px"
+    table.font.size = "26px"
   ) |> 
   tab_style(
     style = cell_text(align = "center"),
@@ -584,10 +587,6 @@ mtcars |>
     style = 1, color = "gray"
   )  
 ```
-
-## [Propriedades da média \[completar\]]{style="color: red;"}
-
--   Senvível a valores extremos
 
 ## A média e a padronização de medidas
 
@@ -690,7 +689,7 @@ basquete |>
   ) |> 
   tab_options(
     table.width = pct(100),
-    table.font.size = "22px"
+    table.font.size = "26px"
   ) |> 
   tab_style(
     style = cell_text(align = "center"),
@@ -745,7 +744,7 @@ basquete |>
   ) |> 
   tab_options(
     table.width = pct(100),
-    table.font.size = "22px"
+    table.font.size = "26px"
   ) |> 
   tab_style(
     style = cell_text(align = "center"),
@@ -755,606 +754,6 @@ basquete |>
     style = 1, color = "gray"
   )
 ```
-
-# Histogramas e a forma dos dados
-
-## Histogramas e a forma dos dados {.smaller}
-
--   Os gráficos de pontos mostram o valor exato para cada observação
-    -   Úteis para pequenos conjuntos de dados
-    -   Difíceis de ler com amostras maiores
-
-## Histogramas e a forma dos dados
-
--   Em vez de mostrar o valor de cada observação, vamos colocá-los em caixas ou grupos (bins) formados por intervalos
--   Variável `Temp` do banco de dados `airquality`:
-    -   0-60, 60-65, 65-70...
-
-## Histogramas e a forma dos dados
-
--   No slide a seguir, estão:
-    -   A contagem de observações que estão em cada intervalo
-    -   As contagens agrupadas são plotadas como barras no que é chamado de histograma
-
-## Histogramas e a forma dos dados
-
-::: panel-tabset
-### Tabela
-
-```{r}
-#| label: tbl-bins-temp
-#| tbl-cap: Contagens para os dados de temperatura agrupados
-#| tbl-cap-location: bottom
-
-cortes <- c(0 ,60 ,65 ,70 ,75 , 
-            80 ,85 , 90, 95, 100) 
-
-airquality <- airquality |> 
-  mutate(
-    bins = cut(Temp, breaks = cortes),
-    destacar = case_when(bins == "(0,60]" ~ "menor",
-                         bins == "(80,85]" ~ "maior",
-                         .default = "outros")
-  ) 
-
-airquality |> 
-  count(bins) |> 
-  rename(
-    "Contagem" = n
-  ) |> 
-  gt() |> 
-  cols_align(
-    align = "center"  
-  ) |> 
-  tab_options(
-    table.width = pct(100),
-    table.font.size = "22px"
-  ) |> 
-  opt_stylize(
-    style = 1, color = "gray"
-    )
-```
-
-### Histograma
-
-```{r}
-#| label: histogram-Temp
-#| out-width: 70%
-
-breaks_temp <- pretty(range(airquality$Temp), n = nclass.Sturges(airquality$Temp), min.n = 1)
-
-airquality |> 
-  ggplot(aes(Temp)) +
-  geom_histogram(breaks = breaks_temp, fill = "#569BBD",
-                 color = "#FFFFFF") +
-  scale_x_continuous(breaks = breaks_temp) +
-  labs(
-    title = "Histograma para a temperatura de Nova York",
-    subtitle = "Maio a setembro de 1973"
-    ) +
-  theme(
-    plot.title = element_text(hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
-  )
-```
-:::
-
-## Histogramas e a forma dos dados
-
--   Os histogramas fornecem uma visão da densidade dos dados
-    -   Barras mais altas representam onde os dados são relativamente mais comuns
-
-## Histogramas e a forma dos dados
-
-Houve mais dias com temperaturas entre 80°F e 85°F do que com temperaturas entre 0°F e 60°F
-
-```{r}
-#| label: histogram-Temp-color
-
-airquality |> 
-  ggplot(aes(Temp, fill = destacar,
-             color = destacar)) +
-  geom_histogram(breaks = breaks_temp) + 
-  labs(
-    title = "Histograma para a temperatura de Nova York",
-    subtitle = "Maio a setembro de 1973",
-    ) +
-  scale_fill_manual(values = c(menor = "#6fc492", maior = "#EF7259", 
-                               outros = "#569BBD")) +
-  scale_color_manual(values = c(menor = "#FFFFFF", maior = "#FFFFFF", 
-                                outros = "#FFFFFF")) +
-  scale_x_continuous(breaks = breaks_temp) +
-  theme(
-    plot.title = element_text(hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5),
-    legend.position = "none"
-  )
-```
-
-## Como construir um histograma?
-
-::: columns
-::: {.column width="40%"}
-::: {style="font-size: 70%"}
--   O número de intervalos (bins) repercute na interpretação dos dados
-    -   Poucos intervalos: o verdadeiro padrão subjacente nos dados pode ficar oculto
-    -   Muitos intervalos: podemos estar apenas visualizando o ruído em um conjunto de dados
-:::
-:::
-
-::: {.column width="60%"}
-```{r}
-hist_60_bins <- airquality |> 
-  ggplot(aes(Temp)) +
-  geom_histogram(color = "#FFFFFF", fill = "#569BBD",
-                 bins = 60) +
-  labs(
-    title = "60 bins"
-  ) + 
-  theme(
-    plot.title = element_text(hjust =  0.5)
-  )
-
-hist_3_bins <- airquality |> 
-  ggplot(aes(Temp)) +
-  geom_histogram(color = "#FFFFFF", fill = "#569BBD",
-                 bins = 3) +
-  labs(
-    title = "3 bins"
-  ) + 
-  theme(
-    plot.title = element_text(hjust =  0.5)
-  )
-
-hist_3_bins + hist_60_bins
-
-```
-:::
-:::
-
-## Como construir um histograma? {.smaller}
-
-```{r}
-dados_hist <- c(52, 57, 53, 59, 62, 65, 67, 68, 69, 70,
-                72, 75, 78, 78, 79, 80, 82, 83, 85, 88,
-                90, 92, 93, 95, 96, 97, 98, 100, 102, 105)
-
-n_dados_hist <- length(dados_hist)
-n_bins_dados_hist <- nclass.Sturges(dados_hist)
-max_dados_hist <- max(dados_hist)
-min_dados_hist <- min(dados_hist)
-amplitude_dados_hist <- diff(range(dados_hist))
-```
-
-**Considere o seguinte conjunto de dados:**
-
-{`r dados_hist`}
-
-**1.  Coloque os valores em ordem crestente:**
-
-{`r sort(dados_hist)`}
-
-*2.  Conte a quantidade de casos no conjunto:*
-
-$n$ = `r n_dados_hist`
-
-**3.  Calcule a amplitude: maior caso - menor caso**
-
-$Amplitude =$ `r max_dados_hist` $-$ `r min_dados_hist` $=$ `r amplitude_dados_hist`
-
-## Como construir um histograma?
-
-::: {style="font-size: 60%"}
-**4.  Determine o número de intervalos (bins)**
-    -   Regra de Sturges:
-
-$$
-\text{Bins Ótimos} = \lceil \log_2(n)  + 1 \rceil
-$$ *Onde:*
-
--   n: o número total de observações no conjunto de dados
--   $\lceil \rceil$: símbolos que significam “teto” – ou seja, arredondar a resposta para o número inteiro mais próximo.
-
-$$
-\text{Bins Ótimos} = \lceil \log_2(30) + 1 \rceil = 6
-$$
-
-**5.  Largura dos intervalos: divida a amplitude (53) pelo número de classes:**
-
-$$
-53/6 = 8.83 \approx 9
-$$
-:::
-
-## Como construir um histograma? 
-
-::: {style="font-size: 70%;"}
-
-**6.  Calcule o limites dos intervalos: comece com o menor valor menor valor e adicione largura dos intervalos para determinar o limite superior da primeira classe**
-
-$52 + 9 = 61$
-
--   Intervalo 1: 52 - 61
--   Intervalo 2: 62 - 71
--   Intervalo 3: 72 - 81
--   Intervalo 4: 82 - 91
--   Intervalo 5: 92 - 101
--   Intervalo 6: 102 - 111
-
-:::
-
-## Como construir um histograma
-
-**7.  Conte os casos em cada intervalo:**
-    -   Intervalo 1 (52 - 61): 4  (52, 53, 57, 59)
-    -   Intervalo 2 (62 - 71): 6  (62, 65, 67, 68, 69, 70)
-    -   Intervalo 3 (72 - 81): 6  (72, 75, 78, 78, 79, 80)
-    -   Intervalo 4 (82 - 91): 5  (82, 83, 85, 88, 90)
-    -   Intervalo 5 (92 - 101): 7 (92, 93, 95, 96, 97, 98, 100)
-    -   Intervalo 6 (102 - 111): 2 (102 105)
-
-## Resultado
-
-```{r}
-breaks_x <- c(52, 61, 71, 81, 91, 101, 111)
-breaks_y <- seq(0, 7, 1)
-
-dados_hist |> 
-  tibble() |> 
-  ggplot(aes(dados_hist)) + 
-  geom_histogram(breaks = breaks_x, 
-                 color = "#FFFFFF", fill = "#569BBD") +
-  labs(
-    x = "dados"
-  ) +
-  scale_x_continuous(breaks = breaks_x) +
-  scale_y_continuous(breaks = breaks_y)
-```
-
-## Histograma da altura dos alunos
-
--   Gere um histograma a partir da amostra abaixo que representa a altura dos alunos de uma turma em centímetros:
-
-```{r}
-hist_altura_da_turma <- c(152, 165, 158, 170, 
-                          162, 168, 155, 172, 
-                          160, 163, 157, 166, 
-                          159, 171, 164)
-```
-
-{`r hist_altura_da_turma`} 
-
-
-## Histograma da altura dos alunos
-
-```{r}
-tribble(
-  ~'Passos', ~'Valor',
-  '1. Dados ordenados', NA,
-  '2. n', NA,
-  '3. Mínimo', NA,
-  '4. Amplitude (maior - menor)', NA,
-  '5. Bins ótimos ([log2(n) + 1])', NA,
-  '6. Largura das Classes (amplitude/numero de intervalos)', NA
-) |> 
-  datatable(
-    rownames = F, editable = T,
-    options = list(
-      lengthChange = FALSE,
-      dom = 't', ordering = FALSE,
-      columnDefs = 
-        list(list(className = 'dt-center', 
-                  targets = c("Valor", "Passos")))
-    ),
-    class = 'cell-border stripe'
-  ) |> 
-  formatStyle(
-    columns = 'Passos',
-    valueColumns = 'Passos',
-    target = 'cell',
-    textAlign = styleEqual(c('1. Dados ordenados', 
-                             '2. n', '3. Mínimo',
-                             '4. Amplitude (maior - menor)',
-                             '5. Bins ótimos ([log2(n) + 1])',
-                             '6. Largura das Classes (amplitude/numero de intervalos)'
-    ), 'left')
-  ) |> 
-   formatStyle(columns = c(1, 2), fontSize = '50%')
-```
-
-```{r}
-tribble(
-  ~'Limite dos intervalos', ~'Contagem',
-  NA, NA,
-  NA, NA,
-  NA, NA,
-  NA, NA,
-) |> 
-  datatable(
-    rownames = FALSE, editable = TRUE,
-    options = list(
-      lengthChange = FALSE,
-      dom = 't',
-      ordering = FALSE,
-      columnDefs = list(
-        list(width = '300px', targets = 'Limite dos intervalos'),  
-        list(width = '50px', targets = 'Contagem'),  
-        list(className = 'dt-center', targets = c('Limite dos intervalos', 'Contagem'))
-      )
-    ),
-    class = 'cell-border stripe'
-  ) |> 
-  formatStyle(columns = c(1, 2), fontSize = '50%')
-```
-
-## Resultado
-
-```{r}
-breaks_altura_da_turma <- c(152, 156, 161, 166, 171)
-
-hist_altura_da_turma |> 
-  tibble() |> 
-  ggplot(aes(hist_altura_da_turma)) +
-  geom_histogram(breaks = breaks_altura_da_turma, color = "#FFFFFF", 
-                 fill = "#569BBD") +
-  labs(
-    x = "Altura da turma"
-  )
-```
-
-
-## Histogramas, gráficos de densidade e a forma dos dados {.smaller}
-
--   Histogramas e gráficos de densidade (um histograma suavizado) são convenientes para entender a forma da distribuição de dados:
-    -   Quando a distribuição de uma variável segue para a direita e tem uma cauda direita mais longa: assimetria positiva
-    -   Variáveis com a característica inversa – uma cauda longa e mais fina para a esquerda: assimetria negativa
-    -   Variáveis que apresentam um declive aproximadamente igual em ambas as direções são chamadas simétricas
-
-## Formas das distribuições {.smaller}
-
--   No slide a seguir, vamos ter as distribuições das seguintes variáveis
-    -   Preço de diamantes (`price`, do banco de dados `diamonds`)
-    -   Altura dos filhos (`sheight`, do banco de dados `father.son`)
-    -   Idade da morte de pessoas famosas (`Age of death`, do banco de dados `Age dataset`[^2])
--   Como você imagina a forma dessas distribuições? Tente desenhá-las antes de ver os gráficos
-
-[^2]: Mantivemos somente as mortes por causas naturais e de pessoas que faleceram com menos de 80 anos
-
-## Formas das distribuições {.smaller}
-
-::: panel-tabset
-### Assimetria positiva
-
-```{r}
-#| out-width: 70%
-
-breaks_diamonds <- pretty(range(diamonds$price),
-                          n = nclass.Sturges(diamonds$price),
-                          min.n = 1)
-
-diamonds |> 
-  ggplot(aes(price)) +
-  geom_histogram(aes(y = after_stat(density)),
-                 breaks = breaks_diamonds,
-                 color = "gray", fill = "white") +
-  geom_density(fill = "#569BBD", color = "#569BBD", 
-               alpha = 0.5) +
-  labs(
-    title = "Histograma do preço dos diamantes"
-  ) +
-  theme(
-    plot.title = element_text(hjust = 0.5)
-    )
-```
-
-### Distribuição simétrica
-
-```{r}
-#| out-width: 70%
-
-breaks_sheight <- pretty(range(father.son$sheight),
-                         n = nclass.Sturges(father.son$sheight), 
-                         min.n = 1)
-
-father.son |> 
-  ggplot(aes(sheight)) +
-  geom_histogram(aes(y = after_stat(density)),
-                 breaks = breaks_sheight,
-                 color = "gray", fill = "white") +
-  geom_density(fill = "#569BBD", color = "#569BBD", 
-               alpha = 0.5) +
-  labs(
-    title = "Histograma da altura dos filhos"
-  ) +
-  theme(
-    plot.title = element_text(hjust = 0.5)
-  )
-```
-
-### Assimetria negativa
-
-```{r}
-#| out-width: 70%
-
-age_data_filter <- age_data |> 
-  filter(`Manner of death` == "natural causes",
-         `Age of death` < 80 ) 
-
-age_data_filter |> 
-  ggplot(aes(x = `Age of death`)) +
-  geom_histogram(aes(y = after_stat(density)),
-                 breaks = pretty(range(age_data_filter$`Age of death`),
-                                 n = nclass.Sturges(age_data_filter$`Age of death`), 
-                                 min.n = 1), 
-                 color = "gray", fill = "white") +
-  geom_density(fill = "#569BBD", color = "#569BBD", 
-               alpha = 0.5) +
-  labs(
-    title = "Histograma da idade falecimento de pessoas famosas",
-    subtitle = "Causas naturais"
-  ) +
-  theme(
-    plot.title = element_text(hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
-  )
-```
-:::
-
-## Histogramas e a moda
-
--   Além de verificar se uma distribuição é assimétrica ou simétrica, os histogramas podem ser usados para identificar a moda da distribuição
--   Uma moda é representada por um pico proeminente na distribuição
-
-## 
-
-Existe apenas um pico proeminente no histograma da altura dos filhos (`sheight`)
-
-```{r}
-father.son |>
-  mutate(
-    pico = case_when(sheight > 68 & sheight < 70  ~ "pico",
-                     .default = "não pico")
-  ) |> 
-  ggplot(aes(sheight, fill = pico,
-             color = pico)) +
-  geom_histogram(breaks = breaks_sheight) +
-  labs(
-    title = "Histograma da altura dos filhos",
-    subtitle = "Moda destacada"
-  ) +
-  scale_fill_manual(values = c(pico = "#F05133", 
-                               "não pico" = "#569BBD")) +
-  scale_color_manual(values = c("não pico" = "#FFFFFF", pico = "#FFFFFF")) +
-  theme(
-    plot.title = element_text(hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5),
-    legend.position = "none"
-  )
-```
-
-## A moda
-
--   Definição matemática: valor com mais ocorrências no conjunto de dados
--   Para muitos conjuntos de dados do mundo real, é comum não haver observações com o mesmo valor, tornando esta definição impraticável na análise
--   As distribuições podem ser:
-    -   unimodais
-    -   bimodais
-    -   multimodais
-
-## A moda das distribuições {.smaller}
-
-::: panel-tabset
-### Unimodal
-
-```{r}
-#| out-width: 70%
-father.son |>
-  mutate(
-    pico = case_when(sheight > 68 & sheight < 70  ~ "pico",
-                     .default = "não pico")
-  ) |> 
-  ggplot(aes(sheight, fill = pico,
-             color = pico)) +
-  geom_histogram(breaks = breaks_sheight) +
-  labs(
-    title = "Histograma da altura dos filhos",
-    subtitle = "Moda destacada"
-  ) +
-  scale_fill_manual(values = c(pico = "#F05133", 
-                               "não pico" = "#569BBD")) +
-  scale_color_manual(values = c("não pico" = "#FFFFFF", pico = "#FFFFFF")) +
-  theme(
-    plot.title = element_text(hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5),
-    legend.position = "none"
-  )
-```
-
-### Bimodal
-
-```{r}
-#| out-width: 70%
-breaks_wind <- breaks_bill_length <- pretty(
-  range(airquality$Wind),
-  n = nclass.Sturges(airquality$Wind),
-  min.n = 1
-)
-
-airquality <- airquality |> 
-  mutate(
-    pico = case_when((Wind > 6 & Wind <= 8) | (Wind  > 10 & Wind <= 12) ~ "pico",
-                     .default = "não pico")
-  )
-
-airquality |> 
-  ggplot(aes(Wind, fill = pico,
-             color = pico)) +
-  geom_histogram(breaks = breaks_wind) +
-  labs(
-    title = "Histograma do vento",
-    subtitle = "Moda destacada"
-  ) +
-  scale_x_continuous(breaks = breaks_wind) +
-  scale_fill_manual(values = c(pico = "#F05133", 
-                               "não pico" = "#569BBD")) +
-  scale_color_manual(values = c("não pico" = "#FFFFFF", 
-                                pico = "#FFFFFF")) +
-  theme(
-    plot.title = element_text(hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5),
-    legend.position = "none"
-  )
-```
-:::
-
-## A moda em sua definição matemática {.smaller}
-
-::: panel-tabset
-### Tabela
-
-```{r}
-#| label: tbl-moda-cyl
-#| tbl-cap: Tabela de frequência do número de cilindros dos carros
-#| tbl-cap-location: bottom
-
-mtcars |> 
-  count(cyl) |> 
-  gt() |> 
-  cols_align(
-    align = "center"  
-  ) |> 
-  tab_options(
-    table.width = pct(100),
-    table.font.size = "22px"
-  ) |> 
-  tab_footnote(
-    footnote = "Carros com 8 cilindros são mais frequentes"
-  ) |> 
-  opt_stylize(
-    style = 1, color = "gray"
-  )
-```
-
-### Gráfico de barras
-
-```{r}
-#| out-width: 60%
-mtcars |> 
-  mutate(
-    cyl = as_factor(cyl)
-  ) |> 
-  ggplot(aes(cyl, fill = cyl,
-             color = cyl)) +
-  geom_bar() +
-  theme(
-    legend.position = "none"
-  ) +
-  scale_color_manual(values = c("#FFFFFF", "#FFFFFF",
-                                "#FFFFFF")) +
-  scale_fill_manual(values = c("#569BBD", "#F05133", 
-                               "#6fc492"))
-```
-:::
 
 # Variância e desvio padrão
 
@@ -1823,7 +1222,7 @@ av_prof_irene_reinaldo |>
   ) |> 
   tab_options(
     table.width = pct(100),
-    table.font.size = "22px"
+    table.font.size = "26px"
   ) |> 
   opt_stylize(
     style = 1, color = "gray"
@@ -1924,6 +1323,742 @@ histogramas_desvio_padrao |>
 Use o qr-code ou o link abaixo para acessar o aplicativo:
 
 [![https://c35bp0-pablo-pinheiro.shinyapps.io/estatistica_apps/](img/qrcode_c35bp0-pablo-pinheiro.shinyapps.io.png){fig-alt="Qr-code para acessar aplicativo online para ver a influência do desvio padrão na distribuição dos dados." fig-align="center" width="308"}](https://c35bp0-pablo-pinheiro.shinyapps.io/estatistica_apps/)
+
+# Histogramas e a forma dos dados
+
+## Histogramas e a forma dos dados {.smaller}
+
+-   Os gráficos de pontos mostram o valor exato para cada observação
+    -   Úteis para pequenos conjuntos de dados
+    -   Difíceis de ler com amostras maiores
+
+## Histogramas e a forma dos dados
+
+-   Em vez de mostrar o valor de cada observação, vamos colocá-los em caixas ou grupos (bins) formados por intervalos
+-   Variável `Temp` do banco de dados `airquality`:
+    -   0-60, 60-65, 65-70...
+
+## Histogramas e a forma dos dados
+
+-   No slide a seguir, estão:
+    -   A contagem de observações que estão em cada intervalo
+    -   As contagens agrupadas são plotadas como barras no que é chamado de histograma
+
+## Histogramas e a forma dos dados
+
+::: panel-tabset
+### Tabela
+
+```{r}
+#| label: tbl-bins-temp
+#| tbl-cap: Contagens para os dados de temperatura agrupados
+#| tbl-cap-location: bottom
+
+cortes <- c(0 ,60 ,65 ,70 ,75 , 
+            80 ,85 , 90, 95, 100) 
+
+airquality <- airquality |> 
+  mutate(
+    bins = cut(Temp, breaks = cortes),
+    destacar = case_when(bins == "(0,60]" ~ "menor",
+                         bins == "(80,85]" ~ "maior",
+                         .default = "outros")
+  ) 
+
+airquality |> 
+  count(bins) |> 
+  rename(
+    "Contagem" = n
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
+```
+
+### Histograma
+
+```{r}
+#| label: histogram-Temp
+#| out-width: 70%
+
+breaks_temp <- pretty(range(airquality$Temp), n = nclass.Sturges(airquality$Temp), min.n = 1)
+
+airquality |> 
+  ggplot(aes(Temp)) +
+  geom_histogram(breaks = breaks_temp, fill = "#569BBD",
+                 color = "#FFFFFF") +
+  scale_x_continuous(breaks = breaks_temp) +
+  labs(
+    title = "Histograma para a temperatura de Nova York",
+    subtitle = "Maio a setembro de 1973"
+    ) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  )
+```
+:::
+
+## Histogramas e a forma dos dados
+
+-   Os histogramas fornecem uma visão da densidade dos dados
+    -   Barras mais altas representam onde os dados são relativamente mais comuns
+
+## Histogramas e a forma dos dados
+
+Houve mais dias com temperaturas entre 80°F e 85°F do que com temperaturas entre 0°F e 60°F
+
+```{r}
+#| label: histogram-Temp-color
+
+airquality |> 
+  ggplot(aes(Temp, fill = destacar,
+             color = destacar)) +
+  geom_histogram(breaks = breaks_temp) + 
+  labs(
+    title = "Histograma para a temperatura de Nova York",
+    subtitle = "Maio a setembro de 1973",
+    ) +
+  scale_fill_manual(values = c(menor = "#6fc492", maior = "#EF7259", 
+                               outros = "#569BBD")) +
+  scale_color_manual(values = c(menor = "#FFFFFF", maior = "#FFFFFF", 
+                                outros = "#FFFFFF")) +
+  scale_x_continuous(breaks = breaks_temp) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "none"
+  )
+```
+
+## Como construir um histograma?
+
+::: columns
+::: {.column width="40%"}
+::: {style="font-size: 70%"}
+-   O número de intervalos (bins) repercute na interpretação dos dados
+    -   Poucos intervalos: o verdadeiro padrão subjacente nos dados pode ficar oculto
+    -   Muitos intervalos: podemos estar apenas visualizando o ruído em um conjunto de dados
+:::
+:::
+
+::: {.column width="60%"}
+```{r}
+hist_60_bins <- airquality |> 
+  ggplot(aes(Temp)) +
+  geom_histogram(color = "#FFFFFF", fill = "#569BBD",
+                 bins = 60) +
+  labs(
+    title = "60 bins"
+  ) + 
+  theme(
+    plot.title = element_text(hjust =  0.5)
+  )
+
+hist_3_bins <- airquality |> 
+  ggplot(aes(Temp)) +
+  geom_histogram(color = "#FFFFFF", fill = "#569BBD",
+                 bins = 3) +
+  labs(
+    title = "3 bins"
+  ) + 
+  theme(
+    plot.title = element_text(hjust =  0.5)
+  )
+
+hist_3_bins + hist_60_bins
+
+```
+:::
+:::
+
+## Como construir um histograma? {.smaller}
+
+```{r}
+dados_hist <- c(52, 57, 53, 59, 62, 65, 67, 68, 69, 70,
+                72, 75, 78, 78, 79, 80, 82, 83, 85, 88,
+                90, 92, 93, 95, 96, 97, 98, 100, 102, 105)
+
+n_dados_hist <- length(dados_hist)
+n_bins_dados_hist <- nclass.Sturges(dados_hist)
+max_dados_hist <- max(dados_hist)
+min_dados_hist <- min(dados_hist)
+amplitude_dados_hist <- diff(range(dados_hist))
+```
+
+**Considere o seguinte conjunto de dados:**
+
+{`r dados_hist`}
+
+**1. Coloque os valores em ordem crestente:**
+
+{`r sort(dados_hist)`}
+
+*2. Conte a quantidade de casos no conjunto:*
+
+$n$ = `r n_dados_hist`
+
+**3. Calcule a amplitude: maior caso - menor caso**
+
+$Amplitude =$ `r max_dados_hist` $-$ `r min_dados_hist` $=$ `r amplitude_dados_hist`
+
+## Como construir um histograma?
+
+::: {style="font-size: 60%"}
+**4. Determine o número de intervalos (bins)**
+
+*Regra de Sturges:*
+
+$$
+\text{Bins Ótimos} = \lceil \log_2(n)  + 1 \rceil
+$$ *Onde:*
+
+-   n: o número total de observações no conjunto de dados
+-   $\lceil \rceil$: símbolos que significam “teto” – ou seja, arredondar a resposta para o número inteiro mais próximo.
+
+$$
+\text{Bins Ótimos} = \lceil \log_2(30) + 1 \rceil = 6
+$$
+
+**5. Largura dos intervalos: divida a amplitude (53) pelo número de classes:**
+
+$$
+53/6 = 8.83 \approx 9
+$$
+:::
+
+## Como construir um histograma?
+
+**6. Calcule o limites dos intervalos: comece com o menor valor e adicione largura dos intervalos para determinar o limite superior da primeira classe**
+
+$52 + 9 = 61$
+
+```{r}
+tribble(
+  ~Intervalo, ~Limite,
+  1, "52 - 61",
+  2, "62 - 71",
+  3, "72 - 81",
+  4, "82 - 91",
+  5, "92 - 101",
+  6, "102 - 111"
+) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
+
+```
+
+## Como construir um histograma
+
+**7. Conte os casos em cada intervalo:**
+
+```{r}
+tribble(
+  ~Intervalo, ~Limite, ~n, ~Casos,
+  1, "52 - 61", 4, "52, 53, 57, 59",
+  2, "62 - 71", 6, "62, 65, 67, 68, 69, 70",
+  3, "72 - 81", 6, "72, 75, 78, 78, 79, 80",
+  4, "82 - 91", 5, "82, 83, 85, 88, 90",
+  5, "92 - 101", 7, "92, 93, 95, 96, 97, 98, 100",
+  6, "102 - 111", 2, "102, 105"
+) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
+
+```
+
+## Resultado
+
+```{r}
+breaks_x <- c(52, 61, 71, 81, 91, 101, 111)
+breaks_y <- seq(0, 7, 1)
+
+dados_hist |> 
+  tibble() |> 
+  ggplot(aes(dados_hist)) + 
+  geom_histogram(breaks = breaks_x, 
+                 color = "#FFFFFF", fill = "#569BBD") +
+  labs(
+    x = "dados"
+  ) +
+  scale_x_continuous(breaks = breaks_x) +
+  scale_y_continuous(breaks = breaks_y)
+```
+
+## [Histograma da altura dos alunos ] {style="font-size: 75%"}
+
+[Gere um histograma a partir da amostra abaixo que representa a altura dos alunos de uma turma em centímetros:]{style="font-size: 60%"}
+
+```{r}
+#| label: tbl-altura-dos-alunos
+#| tbl-cap: Altura dos alunos
+#| tbl-cap-location: top
+hist_altura_da_turma <- tribble(
+  ~Aluno, ~Altura,
+  "Pedro", 152, 
+  "Paulo", 165,
+  "Ana", 158,
+  "Mariana", 170,
+  "João", 162,
+  "Clara", 168,
+  "Luiz", 155,
+  "Sofia", 172,
+  "Carlos", 160,
+  "Beatriz", 163,
+  "Ricardo", 157,
+  "Fernanda", 166,
+  "Lucas", 159,
+  "Julia", 171,
+  "Gabriel", 164
+) 
+
+hist_altura_da_turma_gt <- hist_altura_da_turma |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "14px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+
+hist_altura_da_turma_gt
+```
+
+## Histograma da altura dos alunos
+
+```{r}
+tribble(
+  ~'Passos', ~'Valor',
+  '1. Dados ordenados', NA,
+  '2. n', NA,
+  '3. Mínimo', NA,
+  '4. Amplitude (maior - menor)', NA,
+  '5. Bins ótimos ([log2(n) + 1])', NA,
+  '6. Largura das Classes (amplitude/numero de intervalos)', NA
+) |> 
+  datatable(
+    rownames = F, editable = T,
+    options = list(
+      lengthChange = FALSE,
+      dom = 't', ordering = FALSE,
+      columnDefs = 
+        list(list(className = 'dt-center', 
+                  targets = c("Valor", "Passos")))
+    ),
+    class = 'cell-border stripe'
+  ) |> 
+  formatStyle(
+    columns = 'Passos',
+    valueColumns = 'Passos',
+    target = 'cell',
+    textAlign = styleEqual(c('1. Dados ordenados', 
+                             '2. n', '3. Mínimo',
+                             '4. Amplitude (maior - menor)',
+                             '5. Bins ótimos ([log2(n) + 1])',
+                             '6. Largura das Classes (amplitude/numero de intervalos)'
+    ), 'left')
+  ) |> 
+   formatStyle(columns = c(1, 2), fontSize = '50%')
+```
+
+```{r}
+tribble(
+  ~'Limite dos intervalos', ~'Contagem',
+  NA, NA,
+  NA, NA,
+  NA, NA,
+  NA, NA,
+) |> 
+  datatable(
+    rownames = FALSE, editable = TRUE,
+    options = list(
+      lengthChange = FALSE,
+      dom = 't',
+      ordering = FALSE,
+      columnDefs = list(
+        list(width = '300px', targets = 'Limite dos intervalos'),  
+        list(width = '50px', targets = 'Contagem'),  
+        list(className = 'dt-center', targets = c('Limite dos intervalos', 'Contagem'))
+      )
+    ),
+    class = 'cell-border stripe'
+  ) |> 
+  formatStyle(columns = c(1, 2), fontSize = '50%')
+```
+
+## Resultado
+
+```{r}
+breaks_altura_da_turma <- c(152, 156, 161, 166, 171)
+
+hist_altura_da_turma |> 
+  ggplot(aes(Altura)) +
+  geom_histogram(breaks = breaks_altura_da_turma, color = "#FFFFFF", 
+                 fill = "#569BBD") +
+  labs(
+    x = "Altura da turma"
+  ) +
+  scale_x_continuous(breaks = breaks_altura_da_turma)
+```
+
+## Histogramas, gráficos de densidade e a forma dos dados: assimetria {.smaller}
+
+-   Histogramas e gráficos de densidade (um histograma suavizado) são convenientes para entender a forma da distribuição de dados:
+    -   Quando a distribuição de uma variável segue para a direita e tem uma cauda direita mais longa: assimetria positiva
+    -   Variáveis com a característica inversa – uma cauda longa e mais fina para a esquerda: assimetria negativa
+    -   Variáveis que apresentam um declive aproximadamente igual em ambas as direções são chamadas simétricas
+
+## Formas das distribuições {.smaller}
+
+-   No slide a seguir, vamos ter as distribuições das seguintes variáveis
+    -   Preço de diamantes (`price`, do banco de dados `diamonds`)
+    -   Altura dos filhos (`sheight`, do banco de dados `father.son`)
+    -   Idade da morte de pessoas famosas (`Age of death`, do banco de dados `Age dataset`[^2])
+-   Como você imagina a forma dessas distribuições? Tente desenhá-las antes de ver os gráficos
+
+[^2]: Mantivemos somente as mortes por causas naturais e de pessoas que faleceram com menos de 80 anos
+
+## Formas das distribuições {.smaller}
+
+::: panel-tabset
+### Assimetria positiva
+
+```{r}
+#| out-width: 70%
+
+breaks_diamonds_price <- pretty(range(diamonds$price),
+                          n = nclass.Sturges(diamonds$price),
+                          min.n = 1)
+
+skew_diamonds_price <- skew(diamonds$price)
+skew_diamonds_price <- round(skew_diamonds_price, 2)
+skew_diamonds_price <- str_c("Assimetria = ", skew_diamonds_price)
+
+diamonds |> 
+  ggplot(aes(price)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 breaks = breaks_diamonds_price,
+                 color = "gray", fill = "white") +
+  geom_density(fill = "#569BBD", color = "#569BBD", 
+               alpha = 0.5) +
+  annotate("text", label = skew_diamonds_price, 
+           x = 12500, y = 3e-04) +
+  labs(
+    title = "Histograma do preço dos diamantes"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5)
+    )
+```
+
+### Distribuição simétrica
+
+```{r}
+#| out-width: 70%
+
+breaks_sheight <- pretty(range(father.son$sheight),
+                         n = nclass.Sturges(father.son$sheight), 
+                         min.n = 1)
+
+skew_father.son_sheight <- skew(father.son$sheight)
+skew_father.son_sheight <- round(skew_father.son_sheight, 2)
+skew_father.son_sheight <- str_c("Assimetria = ", skew_father.son_sheight)
+
+father.son |> 
+  ggplot(aes(sheight)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 breaks = breaks_sheight,
+                 color = "gray", fill = "white") +
+  geom_density(fill = "#569BBD", color = "#569BBD", 
+               alpha = 0.5) +
+  annotate("text", label = skew_father.son_sheight,
+           x = 60, y = 0.125) +
+  labs(
+    title = "Histograma da altura dos filhos"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+
+### Assimetria negativa
+
+```{r}
+#| out-width: 70%
+
+age_data_filter <- age_data |> 
+  filter(`Manner of death` == "natural causes",
+         `Age of death` < 80 ) 
+
+age_data_filter_breaks <- pretty(range(age_data_filter$`Age of death`),
+          n = nclass.Sturges(age_data_filter$`Age of death`), 
+          min.n = 1)
+
+skew_age_data_age <- skew(age_data_filter$`Age of death`)
+skew_age_data_age <- round(skew_age_data_age, 2)
+skew_age_data_age <- str_c("Assimetria = ", skew_age_data_age)
+
+age_data_filter |> 
+  ggplot(aes(x = `Age of death`)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 breaks = age_data_filter_breaks, 
+                 color = "gray", fill = "white") +
+  geom_density(fill = "#569BBD", color = "#569BBD", 
+               alpha = 0.5) +
+  annotate("text", label = skew_age_data_age, 
+           x = 10, y = 0.025) + 
+  labs(
+    title = "Histograma da idade falecimento de pessoas famosas",
+    subtitle = "Causas naturais"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  )
+```
+:::
+
+## Como a assimetria é calculada
+
+Coeficiente de Assimetria de Fisher-Pearson:
+
+$$
+\gamma_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^3}{n \cdot s^3}
+$$ Onde,
+
+$x_i - \bar{x}$: desvios da média 
+
+$n$: total de casos 
+
+$s$: desvio padrão
+
+## 
+
+Vamos calcular o valor da assimetria a partir uma nova amostra de dados da altura:
+
+```{r}
+#| label: tbl-altura-dos-alunos-2
+#| tbl-cap: "Altura dos alunos: nova amostra"
+#| tbl-cap-location: top
+
+hist_altura_2 <- tribble(
+  ~Aluno, ~Altura,
+  "Leonardo", 152, 
+  "Mariana", 153,
+  "Carlos", 151,
+  "Ana", 154,
+  "Bruno", 156,
+  "Juliana", 160,
+  "Renato", 159,
+  "Fernanda", 163,
+  "Lucas", 164,
+  "Paula", 151,
+  "Gabriel", 168,
+  "Camila", 170,
+  "Eduardo", 175,
+  "Sofia", 180,
+  "Ricardo", 182
+) 
+
+hist_altura_2 |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "12px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Histogramas e a moda
+
+-   Além de verificar se uma distribuição é assimétrica ou simétrica, os histogramas podem ser usados para identificar a moda da distribuição
+-   Uma moda é representada por um pico proeminente na distribuição
+
+## 
+
+Existe apenas um pico proeminente no histograma da altura dos filhos (`sheight`)
+
+```{r}
+father.son |>
+  mutate(
+    pico = case_when(sheight > 68 & sheight < 70  ~ "pico",
+                     .default = "não pico")
+  ) |> 
+  ggplot(aes(sheight, fill = pico,
+             color = pico)) +
+  geom_histogram(breaks = breaks_sheight) +
+  labs(
+    title = "Histograma da altura dos filhos",
+    subtitle = "Moda destacada"
+  ) +
+  scale_fill_manual(values = c(pico = "#F05133", 
+                               "não pico" = "#569BBD")) +
+  scale_color_manual(values = c("não pico" = "#FFFFFF", pico = "#FFFFFF")) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "none"
+  )
+```
+
+## A moda
+
+-   Definição matemática: valor com mais ocorrências no conjunto de dados
+-   Para muitos conjuntos de dados do mundo real, é comum não haver observações com o mesmo valor, tornando esta definição impraticável na análise
+-   As distribuições podem ser:
+    -   unimodais
+    -   bimodais
+    -   multimodais
+
+## A moda das distribuições {.smaller}
+
+::: panel-tabset
+### Unimodal
+
+```{r}
+#| out-width: 70%
+father.son |>
+  mutate(
+    pico = case_when(sheight > 68 & sheight < 70  ~ "pico",
+                     .default = "não pico")
+  ) |> 
+  ggplot(aes(sheight, fill = pico,
+             color = pico)) +
+  geom_histogram(breaks = breaks_sheight) +
+  labs(
+    title = "Histograma da altura dos filhos",
+    subtitle = "Moda destacada"
+  ) +
+  scale_fill_manual(values = c(pico = "#F05133", 
+                               "não pico" = "#569BBD")) +
+  scale_color_manual(values = c("não pico" = "#FFFFFF", pico = "#FFFFFF")) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "none"
+  )
+```
+
+### Bimodal
+
+```{r}
+#| out-width: 70%
+breaks_wind <- breaks_bill_length <- pretty(
+  range(airquality$Wind),
+  n = nclass.Sturges(airquality$Wind),
+  min.n = 1
+)
+
+airquality <- airquality |> 
+  mutate(
+    pico = case_when((Wind > 6 & Wind <= 8) | (Wind  > 10 & Wind <= 12) ~ "pico",
+                     .default = "não pico")
+  )
+
+airquality |> 
+  ggplot(aes(Wind, fill = pico,
+             color = pico)) +
+  geom_histogram(breaks = breaks_wind) +
+  labs(
+    title = "Histograma do vento",
+    subtitle = "Moda destacada"
+  ) +
+  scale_x_continuous(breaks = breaks_wind) +
+  scale_fill_manual(values = c(pico = "#F05133", 
+                               "não pico" = "#569BBD")) +
+  scale_color_manual(values = c("não pico" = "#FFFFFF", 
+                                pico = "#FFFFFF")) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "none"
+  )
+```
+:::
+
+## A moda em sua definição matemática {.smaller}
+
+::: panel-tabset
+### Tabela
+
+```{r}
+#| label: tbl-moda-cyl
+#| tbl-cap: Tabela de frequência do número de cilindros dos carros
+#| tbl-cap-location: bottom
+
+mtcars |> 
+  count(cyl) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  tab_footnote(
+    footnote = "Carros com 8 cilindros são mais frequentes"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+### Gráfico de barras
+
+```{r}
+#| out-width: 60%
+mtcars |> 
+  mutate(
+    cyl = as_factor(cyl)
+  ) |> 
+  ggplot(aes(cyl, fill = cyl,
+             color = cyl)) +
+  geom_bar() +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_color_manual(values = c("#FFFFFF", "#FFFFFF",
+                                "#FFFFFF")) +
+  scale_fill_manual(values = c("#569BBD", "#F05133", 
+                               "#6fc492"))
+```
+:::
 
 # Diagrama de caixa, quartis e mediana
 
