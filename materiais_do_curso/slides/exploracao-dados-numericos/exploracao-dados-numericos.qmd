@@ -360,7 +360,7 @@ mtcars |>
 ```{r}
 #| label: scatter-plot-carat-price
 
-diamonds |> 
+scatter_plot_carat_price <- diamonds |> 
   ggplot(aes(carat, price)) +
   geom_jitter(color = "#000000", alpha = 0.3, 
               size = 3) +
@@ -375,6 +375,8 @@ diamonds |>
     plot.title = element_text(hjust = 0.5),
     plot.caption = element_text(hjust = 0)
   )
+
+scatter_plot_carat_price
 ```
 
 ## Relação entre o quilate e o preço de diamantes {.smaller}
@@ -650,7 +652,7 @@ asma |>
 
 ```{r}
 #| label: tbl-asma-medias
-#| tbl-cap: "Resultados do experimento sobre o novo remédio pra asma: Médias padronizadas"
+#| tbl-cap: "Resultados do experimento sobre o novo remédio pra asma: médias padronizadas"
 #| tbl-cap-location: bottom
 asma |>
   gt() |> 
@@ -737,7 +739,7 @@ basquete |>
 
 ```{r}
 #| label: tbl-basquete-medias
-#| tbl-cap: "Pontuações dos times de basquete: Médias padronizadas"
+#| tbl-cap: "Pontuações dos times de basquete: médias padronizadas"
 #| tbl-cap-location: bottom
 
 basquete |> 
@@ -2668,7 +2670,7 @@ original_data <- mtcars |>
   select(Modelo, wt) |> 
   slice_min(wt, n = 5)
 
-original_data_summary original_data |> 
+original_data_summary <- original_data |> 
   summarise(
     Mediana = median(wt),
     IQR = IQR(wt),
@@ -2695,7 +2697,9 @@ data_pontiac <- mtcars |>
   select(Modelo, wt) |> 
   slice_min(wt, n = 5) |> 
   slice(2:5) |> 
-  add_row(pontiac) |> 
+  add_row(pontiac) 
+  
+data_pontiac_summary <- data_pontiac |>   
   summarise(
     Mediana = median(wt),
     IQR = IQR(wt),
@@ -2703,7 +2707,7 @@ data_pontiac <- mtcars |>
     "Desvio padrão" = sd(wt)
   ) |> 
   mutate(
-    Cenário = "Sai Lotus Europa entra Pontiac Firebird",
+    Cenário = "Sai Lotus Europa e entra Pontiac Firebird",
     .before = 1
   )
 
@@ -2711,7 +2715,9 @@ data_lincoln <- mtcars |>
   select(Modelo, wt) |> 
   slice_min(wt, n = 5) |> 
   slice(2:5) |> 
-  add_row(lincoln) |> 
+  add_row(lincoln) 
+  
+data_lincoln_summary <- data_lincoln |>   
   summarise(
     Mediana = median(wt),
     IQR = IQR(wt),
@@ -2719,14 +2725,15 @@ data_lincoln <- mtcars |>
     "Desvio padrão" = sd(wt)
   ) |> 
   mutate(
-    Cenário = "Sai Lotus Europa entra Lincoln Continental"
+    Cenário = "Sai Lotus Europa e entra Lincoln Continental",
+    .before = 1
   )
 
-original_data |> 
-  add_row(data_pontiac) |> 
-  add_row(data_lincoln) |> 
+original_data_summary |> 
+  add_row(data_pontiac_summary) |> 
+  add_row(data_lincoln_summary) |> 
   gt() |> 
-  fmt_number(decimals = 3) |> 
+  fmt_number(decimals = 2) |> 
   cols_align(
     columns = !1,
     align = "center"  
@@ -2742,45 +2749,146 @@ original_data |>
     style = cell_text(align = "center"),
     locations = cells_column_labels(columns = "Cenário")
     )
-
-
 ```
 
-# Exercícios
+## Estatísticas Robustas
 
-## Banco de dados `gols_do_brasileiro`
+-   Estatísticas robustas: mediana e IQR são menos sensíveis a valores extremos
+    -   Mover valores extremos tem pouco impacto
+-   Estatísticas não robustas: média e desvio padrão são mais afetados por outliers
+-   A escolha entre estatísticas robustas e não robustas depende do contexto e da sensibilidade desejada a valores extremos
 
--   Formato: Um banco de dados com 3.799 observações e cinco variáveis
-    -   `campeonato`: o ano do campeonato
-    -   `partida`: sequência da partida no campeonato
-    -   `data`: data de realização da partida
-    -   `estádio`: estádio em que a partida foi realizada
-    -   `gols`: número de gols da partida
+## Qual é melhor, a média ou a mediana? Depende! {.smaller}
 
-## Uma olhada nos dados
+Considere os seguintes cenários: é melhor medir o lucro médio por cliente ou o lucro mediano por cliente?
+
+-   Se a preocupação for sobre a margem de lucro geral da empresa, a média é uma medida melhor para avaliar o que está acontecendo na empresa. A empresa pode ter um lucro mediano positivo por cliente e ainda assim não ser lucrativa.
+-   Se a preocupação for sobre entender o lucro por cliente típico, possivelmente para entender o espaço de crescimento para o lucro da empresa, o lucro mediano por cliente lhe diria mais sobre os lucros individuais dos clientes.
+
+## Preço dos diamantes {.smaller}
+
+A distribuição de valores do preço dos diamantes no banco de dados `diamonds` é assimétrico para a direita, com alguns diamantes caros na cauda direita. Se quiséssemos entender o preço típico de um diamante, você deveria estar mais interessado na média ou mediana?
 
 ```{r}
-#| label: tbl-gols-do-brasileiro
-#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `gols_do_brasileiro`
-#| tbl-cap-location: bottom
-
-gols_brasileiro |> 
-  mutate(
-    data = format(data, "%d-%m-%Y")
-  ) |> 
-  slice_sample(n = 10) |> 
-  gt() |> 
-  fmt_number(
-    decimals = 0, sep_mark = ""
-  ) |> 
-  cols_align(
-    align = "center"  
-  ) |> 
-  tab_options(
-    table.width = pct(100),
-    table.font.size = "22px"
-  ) |> 
-  opt_stylize(
-    style = 1, color = "gray"
+diamonds |> 
+  ggplot(aes(price)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 breaks = breaks_diamonds_price,
+                  fill = "#569BBD",
+                 color = "#FFFFFF") +
+  labs(
+    title = "Histograma do preço dos diamantes"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5)
     )
 ```
+
+## 
+
+```{r}
+media_preco_diamantes <- mean(diamonds$price)
+media_preco_diamantes <- round(media_preco_diamantes)
+mediana_preco_diamantes <- median(diamonds$price)
+label_mediana_diamantes <- str_c("Mediana: ", mediana_preco_diamantes)
+label_media_diamantes <- str_c("Média: ", media_preco_diamantes)
+
+diamonds |> 
+  ggplot(aes(price)) +
+  geom_histogram(breaks = seq(min(diamonds$price), 
+                              max(diamonds$price), by = 500),
+                 fill = "#569BBD", color = "#FFFFFF") +
+  geom_vline(aes(xintercept = media_preco_diamantes, 
+                 color = "Média"), 
+             linewidth = 1, linetype = 1) +
+  geom_vline(aes(xintercept = mediana_preco_diamantes, 
+                 color = "Mediana"), 
+             linewidth = 1, linetype = 2) +
+  annotate("text", x = 11600, y = 9700,
+           label = label_media_diamantes, 
+           color = "#569BBD") +
+  annotate("text", x = 11900, y = 8900,
+           label = label_mediana_diamantes, 
+           color = "#569BBD") + 
+  scale_color_manual(values = c("Média" = "#EF7259", 
+                                "Mediana" = "#EF7259")) +
+  labs(
+    title = "Histograma do preço dos diamantes",
+    y = "count",
+    color = NULL,
+    ) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    legend.position = "top"
+  )
+```
+
+# Transformação dos dados
+
+## Transformação de dados assimétricos {.smaller}
+
+[Quando os dados são muito assimétricos, as vezes é preciso transformá-los para que seja mais fácil construir modelos. Abaixo estão a distribuição do preço dos diamantes e sua transformação logarítmica. Uma transformação é um redimensionamento dos dados usando uma função.]{style="font-size: 75%;"}
+
+```{r}
+#| out-width: 70%
+p_price_diamonds <- diamonds |> 
+  ggplot(aes(price)) +
+  geom_histogram(breaks = seq(min(diamonds$price), 
+                              max(diamonds$price), by = 500),
+                 fill = "#569BBD", color = "#FFFFFF")
+
+p_log_10_price_diamonds <- diamonds |> 
+  ggplot(aes(x = price)) +
+  geom_histogram(fill = "#569BBD", color = "#FFFFFF") +
+  scale_x_log10() +
+  labs(
+    x = expression(log[10](price)) 
+  )
+
+p_price_diamonds + p_log_10_price_diamonds + 
+  plot_annotation(
+    title = "Transformação logarítmica do preço dos diamantes",
+    theme = theme(plot.title = element_text(hjust = 0.5))
+  ) 
+```
+
+## Transformação de dados assimétricos {.smaller}
+
+[Os dados transformados são simétricos, e quaisquer outliers potenciais parecem muito menos extremos do que no conjunto de dados original. Ao controlar os outliers e a distorção extrema, as transformações geralmente facilitam a construção de modelos estatísticos para os dados.]{style="font-size: 75%;"}
+
+
+```{r}
+#| out-width: 70%
+p_price_diamonds <- diamonds |> 
+  ggplot(aes(price)) +
+  geom_histogram(breaks = seq(min(diamonds$price), 
+                              max(diamonds$price), by = 500),
+                 fill = "#569BBD", color = "#FFFFFF")
+
+p_log_10_price_diamonds <- diamonds |> 
+  ggplot(aes(x = price)) +
+  geom_histogram(fill = "#569BBD", color = "#FFFFFF") +
+  scale_x_log10() +
+  labs(
+    x = expression(log[10](price)) 
+  )
+
+p_price_diamonds + p_log_10_price_diamonds + 
+  plot_annotation(
+    title = "Transformação logarítmica do preço dos diamantes",
+    theme = theme(plot.title = element_text(hjust = 0.5))
+  ) 
+```
+
+## Transformação de dados assimétricos
+
+-   Outras transformações possíveis:
+$$
+\sqrt{\text{variável original}}
+$$
+
+$$
+\frac{1}{\text{variável original}}
+$$
+
+

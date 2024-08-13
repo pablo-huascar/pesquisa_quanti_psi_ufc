@@ -1,0 +1,253 @@
+---
+title: "Explorando dados categóricos"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      code-link: true
+      code-tools: true
+      code-line-numbers: false
+      theme: simple
+      echo: false
+      message: false
+      warning: false
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+library(janitor)
+library(UsingR)
+library(carData)
+library(palmerpenguins)
+library(gt)
+library(scales)
+library(ggthemes)
+library(patchwork)
+library(DT)
+conflicted::conflicts_prefer(dplyr::filter())
+conflicted::conflicts_prefer(dplyr::select())
+conflicted::conflicts_prefer(dplyr::lag())
+conflicted::conflicts_prefer(dplyr::summarize)
+conflicted::conflicts_prefer(dplyr::summarise)
+conflicted::conflicts_prefer(scales::alpha)
+conflicted::conflicts_prefer(scales::rescale)
+```
+
+## O que vamos aprender?
+
+-   Explorar dados categóricos usando:
+    -   Tabelas e Gráficos
+
+# Bancos de dados utilizados
+
+##  {#slide3-id data-menu-title="Pinguins" background-image="img/pinguins.png"}
+
+## `penguins` {.smaller}
+
+Medidas de tamanho para pinguins forrageadores adultos perto da Estação Palmer, Antártida. Inclui medidas para espécies de pinguins, ilha no Arquipélago Palmer, tamanho (comprimento da nadadeira, massa corporal, dimensões do bico) e sexo.
+
+-   Formato: Um banco de dados com 344 observações e oito variáveis
+    -   `species`: espécies de pinguins (Adélie, Chinstrap e Gentoo)
+    -   `island`: ilha no arquipélago de Palmer, Antártida (Biscoe, Dream ou Torgersen)
+    -   `bill_length_mm`: comprimento do bico em milímetros
+    -   `flipper_length_mm`: comprimento da nadadeira em milímetros
+    -   `body_mass_g`: massa corporal em gramas
+    -   `sex`: sexo do pinguin (macho ou fêmea)
+    -   `year`: ano em que foi realizado o estudo
+
+## Uma olhada em `penguins`
+
+```{r}
+#| label: tbl-penguins
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `penguins`
+#| tbl-cap-location: bottom
+penguins |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+# Tabelas, Tabelas de contingência e gráficos de barras
+
+## Tabela para uma variável
+
+```{r}
+penguins |> 
+  count(species, sort = T) |>
+  mutate(
+    prop = n/sum(n),
+  ) |> 
+  rename(
+    Espécies = species,
+    "%" = prop
+  ) |> 
+  adorn_totals("row") |> 
+  gt() |>
+  fmt_percent(
+    columns = "%"
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_style(
+    style = cell_text(align = "left"),
+    locations = cells_body(columns = Espécies)
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = "Espécies")
+    ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Gráficos de barras
+
+```{r}
+bar_species_count <- penguins |> 
+  ggplot(aes(species, color = species,
+             fill = species)) +
+  geom_bar() +
+  labs(
+    y = "Contagem"
+  ) +
+  scale_color_colorblind() +
+  scale_fill_colorblind() +
+  theme(
+    legend.position = "none"
+  )
+
+bar_species_prop <- penguins |> 
+  ggplot(aes(species, y = after_stat(count/sum(count)),
+             color = species,
+             fill = species)) +
+  geom_bar() +
+  labs(
+    y = NULL
+  ) + 
+  scale_y_continuous(labels = percent_format()) +
+  scale_color_colorblind() +
+  scale_fill_colorblind() +
+  theme(
+    legend.position = "none"
+  )
+  
+bar_species_count + bar_species_prop
+```
+
+## Tabelas de contingência
+
+Resume dados para duas variáveis categóricas
+
+```{r}
+penguins |>
+  rename(
+    Ilha = island
+  ) |> 
+  count(Ilha, species) |> 
+  pivot_wider(id_cols = Ilha, names_from = species, 
+              values_from = n, values_fill = 0) |> 
+  adorn_totals(where = c("row", "col")) |> 
+  gt() |> 
+  tab_spanner(
+    label = "Espécie",
+    columns = c(Adelie, Gentoo,	Chinstrap)
+  ) |> 
+  cols_align(
+    columns = !1,
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  ) |> 
+  tab_style(
+    style = cell_text(align = "left"),
+    locations = cells_body(columns = Ilha)
+  )
+```
+
+## Gráficos de barras com duas variáveis
+
+```{r}
+empilhado <- penguins |> 
+  ggplot(aes(island, fill = species)) +
+  geom_bar() +
+  labs(caption = "Gráfico de barras empilhado") + 
+  scale_fill_colorblind() +
+  theme(
+    text = element_text(size = 8),
+    plot.caption = element_text(hjust = 0.5, size = 8)
+    )
+
+padronizado <- penguins |> 
+  ggplot(aes(island, fill = species)) +
+  geom_bar(position = "fill") +
+  labs(caption = "Gráfico de barras padronizado") +
+  scale_fill_colorblind() +
+  theme(
+    text = element_text(size = 8),
+    plot.caption = element_text(hjust = 0.5, size = 8)
+    )
+
+separado <- penguins |> 
+  ggplot(aes(island, fill = species)) +
+  geom_bar(position = "dodge") +
+  labs(caption = "Gráfico de barras separado") +
+  scale_fill_colorblind() +
+  theme(
+    text = element_text(size = 8),
+    plot.caption = element_text(hjust = 0.5, size = 8)
+    )
+
+(empilhado + padronizado)/separado +
+  plot_layout(guides = "collect")
+```
+
+## [Gráfico de Barras Empilhado (Stacked Bar Plot)]{style="font-size: 75%"} {.smaller}
+
+-   [Descrição: as barras para cada categoria do eixo x (neste caso, island) são empilhadas umas sobre as outras para mostrar a distribuição das subcategorias (neste caso, species) dentro de cada categoria]{style="font-size: 75%"}
+-   [Uso: é útil para visualizar a composição de cada categoria e comparar as somas totais de cada grupo]{style="font-size: 75%"}
+-   [Interpretação: você pode ver não apenas a contagem total para cada categoria do eixo x, mas também como essa contagem é dividida entre as diferentes subcategorias]{style="font-size: 75%"}
+
+```{r}
+empilhado
+```
+
+## [Gráfico de Barras Padronizado (Standardized Bar Plot ou Filled Bar Plot)]{style="font-size: 75%"} {.smaller}
+
+-   [Descrição: cada barra é padronizada para ter a mesma altura (1 ou 100%) e mostra a proporção de cada subcategoria dentro da categoria principal]{style="font-size: 75%"}
+-   [Uso: ideal para comparar as proporções relativas de subcategorias entre diferentes categorias principais, independentemente do tamanho total de cada categoria]{style="font-size: 75%"}
+-   [Interpretação: foco na proporção que cada subcategoria representa em relação ao total da categoria principal, eliminando a variação absoluta nas contagens]{style="font-size: 75%"}
+
+```{r}
+padronizado
+```

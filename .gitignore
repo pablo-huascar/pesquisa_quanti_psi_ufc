@@ -9,6 +9,7 @@ rascunhos.R
 
 AgeDataset-V1.csv
 
+*.rmarkdown
 *.key
 *.docx
 
