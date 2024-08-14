@@ -1,5 +1,5 @@
 ---
-title: "Explorando dados numéricos"
+title: "Exploração de dados numéricos"
 format: 
   revealjs:
       logo: img/brasao1_horizontal_cor_300dpi.png
@@ -67,8 +67,7 @@ gols_brasileiro <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/gols_por
 ## O que vamos aprender?
 
 -   Explorar dados numéricos usando:
-    -   Estatisticas descritivas e
-    -   Gráficos
+    -   Estatisticas descritivas e gráficos
 
 # Bancos de dados utilizados
 

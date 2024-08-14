@@ -1,5 +1,5 @@
 ---
-title: "Explorando dados categóricos"
+title: "Exploração de dados categóricos"
 format: 
   revealjs:
       logo: img/brasao1_horizontal_cor_300dpi.png
@@ -56,7 +56,7 @@ TitanicSurvival <- TitanicSurvival |>
 ## O que vamos aprender?
 
 -   Explorar dados categóricos usando:
-    -   Tabelas e Gráficos
+    -   Tabelas e gráficos
 
 # Bancos de dados utilizados
 
@@ -424,6 +424,8 @@ TitanicSurvival |>
 
 ## Proporções das colunas
 
+Contagem das células divididas pelo total das colunas
+
 ```{r}
 #| label: tbl-sobrevivente-classe-coluna
 #| tbl-cap: "Contagens e proporções de passageiros por classe: percentuais nas colunas"
@@ -567,8 +569,6 @@ penguins |>
   )
 ```
 
-
-
 ## {.smaller}
 ::: {style="font-size: 85%; line-height: 1"} 
 Como você avalia agora que a relação entre as dimesões pode ser vizualizada por espécie? 
@@ -597,4 +597,50 @@ penguins |>
     plot.title = element_text(hjust = 0.5),
   )
 ```
+
+
+## Tabelas
+
+```{r}
+#| label: tbl-descritivos-body-mass-sex
+#| tbl-cap: Estatísticas descritivas para a massa corporal dos pinguins por sexo
+#| tbl-cap-location: bottom
+penguins |> 
+  summarise(
+    n = n(),
+    Omisso = sum(is.na(body_mass_g)),
+    M = mean(body_mass_g, na.rm = T),
+    DP = sd(body_mass_g, na.rm = T),
+    MD = median(body_mass_g, na.rm = T),
+    MIN = min(body_mass_g, na.rm = T),
+    MAX = max (body_mass_g, na.rm = T),
+    IQR = IQR(body_mass_g, na.rm = T),
+    .by = sex
+  ) |> 
+  filter(sex != is.na(sex)) |> 
+  gt() |> 
+  fmt_number(
+    columns = c(M, DP, IQR), 
+    decimals = 1, use_seps = F
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_style_body(
+    style = cell_text(align = "left"),
+    values = c("male", "female")
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = "sex")
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
 
