@@ -52,7 +52,6 @@ TitanicSurvival <- TitanicSurvival |>
   tibble()
 ```
 
-
 ## O que vamos aprender?
 
 -   Explorar dados categóricos usando:
@@ -96,7 +95,7 @@ penguins |>
   )
 ```
 
-## {background-image="img/titanic.png" background-size="contain"}
+##  {background-image="img/titanic.png" background-size="contain"}
 
 ## `TitanicSurvival` {.smaller}
 
@@ -107,7 +106,7 @@ Informações sobre o status de sobrevivência, sexo, idade e classe de passagei
     -   sex (sexo): female or male (masculino ou feminino)
     -   age: idade em anos (frações quando crianças)
     -   passengerClass: classe do passageiro (1st, 2nd, or 3rd class - primeira, segunda ou terceira classe)
-    
+
 ## Uma olhada em `TitanicSurvival`
 
 ```{r}
@@ -343,7 +342,7 @@ padronizado
 separado
 ```
 
-## Gráficos de barra e associação entre variáveis 
+## Gráficos de barra e associação entre variáveis
 
 ```{r}
 #| out-width: 70%
@@ -529,9 +528,10 @@ box_mass_sex_penguins <- penguins |>
 box_mass_sex_penguins
 ```
 
-## {.smaller}
-::: {style="font-size: 75%; line-height: 1"} 
-Use os gráficos para comprar massa corporal dos pinguins pelos dois grupos. O que você nota sobre o centro aproximado de cada grupo? O que você nota sobre a variabilidade entre os grupos? A forma é relativamente consistente entre os grupos? Quantas modas proeminentes existem para cada grupo?   
+##  {.smaller}
+
+::: {style="font-size: 75%; line-height: 1"}
+Use os gráficos para comprar massa corporal dos pinguins pelos dois grupos. O que você nota sobre o centro aproximado de cada grupo? O que você nota sobre a variabilidade entre os grupos? A forma é relativamente consistente entre os grupos? Quantas modas proeminentes existem para cada grupo?
 :::
 
 ```{r}
@@ -539,9 +539,9 @@ Use os gráficos para comprar massa corporal dos pinguins pelos dois grupos. O q
 hist_mass_sex_penguins + box_mass_sex_penguins
 ```
 
+##  {.smaller}
 
-## {.smaller}
-::: {style="font-size: 85%; line-height: 1"} 
+::: {style="font-size: 85%; line-height: 1"}
 Como você avalia a relação entre o comprimento e profundidade da nadadeira dos pinguins?
 :::
 
@@ -569,9 +569,10 @@ penguins |>
   )
 ```
 
-## {.smaller}
-::: {style="font-size: 85%; line-height: 1"} 
-Como você avalia agora que a relação entre as dimesões pode ser vizualizada por espécie? 
+##  {.smaller}
+
+::: {style="font-size: 85%; line-height: 1"}
+Como você avalia agora que a relação entre as dimesões pode ser vizualizada por espécie?
 :::
 
 ```{r}
@@ -597,7 +598,6 @@ penguins |>
     plot.title = element_text(hjust = 0.5),
   )
 ```
-
 
 ## Tabelas
 
@@ -642,5 +642,3 @@ penguins |>
     style = 1, color = "gray"
   )
 ```
-
-
