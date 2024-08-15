@@ -102,11 +102,11 @@ penguins |>
 
 Informações sobre o status de sobrevivência, sexo, idade e classe de passageiros de 1.309 passageiros no desastre do Titanic em 1912.
 
--   Formato: Um data frame com 1309 observações e 4 variáveis
-    -   survived (sobreviveu): no or yes (não ou sim)
-    -   sex (sexo): female or male (masculino ou feminino)
-    -   age: idade em anos (frações quando crianças)
-    -   passengerClass: classe do passageiro (1st, 2nd, or 3rd class - primeira, segunda ou terceira classe)
+-   Formato: mm banco de dados com 1309 observações e 4 variáveis
+    -   `survived` (sobreviveu): no or yes (não ou sim)
+    -   `sex` (sexo): female or male (masculino ou feminino)
+    -   `age`: idade em anos (frações quando crianças)
+    -   `passengerClass`: classe do passageiro (1st, 2nd, or 3rd class - primeira, segunda ou terceira classe)
 
 ## Uma olhada em `TitanicSurvival`
 
@@ -608,7 +608,7 @@ penguins |>
 
 ## Gráfico de densidade sobreposto
 
-- Porque há dois picos tanto para pinguins machos como fêmeas?
+-   Porque há dois picos tanto para pinguins machos como fêmeas?
 
 ```{r}
 penguins |> 
@@ -663,7 +663,6 @@ penguins |>
   facet_grid(species~sex)
 ```
 
-
 ## Tabelas
 
 ```{r}
@@ -707,7 +706,6 @@ penguins |>
     style = 1, color = "gray"
   )
 ```
-
 
 ## Tabelas
 

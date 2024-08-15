@@ -6,9 +6,102 @@ toc: true
 editor_options: 
   chunk_output_type: console
 ---
+```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+library(janitor)
+library(gt)
+library(scales)
+library(ggthemes)
+library(patchwork)
+library(DT)
+conflicted::conflicts_prefer(dplyr::filter())
+conflicted::conflicts_prefer(dplyr::select())
+conflicted::conflicts_prefer(dplyr::lag())
+conflicted::conflicts_prefer(dplyr::summarize)
+conflicted::conflicts_prefer(dplyr::summarise)
+conflicted::conflicts_prefer(scales::alpha)
+conflicted::conflicts_prefer(scales::rescale)
+```
+
+```{r}
+#| label: data
+
+brasileiro <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/brasileiro_2014_2023.csv")
+```
+
+
 ## Introdução
 
 Você foi contratado como analista de dados de um canal no YouTube que tem programas de esportes, curiosidades, política, dentre outros. Os apresentadores precisam de informações precisas para usar nas transmissões. Sua missão é analisar bancos de dados e responder as questões e demandas abaixo que foram enviadas por cada equipe.
 
-## Esportes
+### Esportes
+
+Você recebeu o banco de dados `brasileiro_2014_2023` com informações sobre os campeonatos brasileiros de futebol entre os anos de 2014 e 2023. 
+
+-   Formato: mm banco de dados com `r nrow(brasileiro)` observações e `r ncol(brasileiro)` variáveis:
+    -   `campeonato`: ano do campeonato
+    -   `partida`: sequência da partida
+    -   `data`: data da partida
+    -   `gols`: quantidade gols do time
+    -   `pontos`: pontos obtidos pelo time
+    -   `gols_por_partida`: gols da partida
+    -   `estadio`: estádio em que a partida foi realizada
+    -   `mando_de_campo`: o time jogou a partida em casa (Mandante) ou fora de casa (Visitante)
+
+```{r}
+#| label: tbl-brasileiro
+#| tbl-cap: Uma amostra de dez casos do banco de dados `brasileiro_2014_2023`
+#| tbl-cap-location: bottom
+brasileiro |> 
+  filter(campeonato == 2023) |> 
+  slice(1:10) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+A equipe do programa de esportes precisa das seguintes informações sobre todo o período compreendido nos dados (2014 a 2023):
+
+**Quais times foram campeões**
+
+
+
+**Quais os times com maiores médias de gols?**
+
+```{r}
+#| eval: false
+brasileiro |> 
+  summarise(
+    m = mean(gols),
+    .by = c(campeonato, time)
+  ) |> 
+  group_by(campeonato) |> 
+  slice_max(m, n = 1) |> 
+  arrange(desc(campeonato))
+```
+
+
+```{r}
+brasileiro |> 
+  filter(campeonato == 2021) |> 
+  summarise(
+    m = mean(gols),
+    .by = time
+  ) |> 
+  arrange(desc(m))
+```
 
