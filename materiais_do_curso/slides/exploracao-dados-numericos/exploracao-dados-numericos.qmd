@@ -71,6 +71,8 @@ gols_brasileiro <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/gols_por
 
 # Bancos de dados utilizados
 
+##  {background-image="img/pai-e-filho.png" background-size="contain"}
+
 ## `father.son`
 
 Conjunto de dados de Pearson sobre alturas de pais e filhos
@@ -103,6 +105,8 @@ father.son |>
     style = 1, color = "gray"
     )
 ```
+
+##  {background-image="img/mtcars.png" background-size="contain"}
 
 ## `mtcars`
 
@@ -172,6 +176,8 @@ diamonds |>
     style = 1, color = "gray"
     )
 ```
+
+##  {background-image="img/nova-york.png" background-size="contain"}
 
 ## `airquality` {.smaller}
 
@@ -1534,48 +1540,68 @@ amplitude_dados_hist <- diff(range(dados_hist))
 
 {`r dados_hist`}
 
+. . .
+
 **1. Coloque os valores em ordem crestente:**
+
+. . .
 
 {`r sort(dados_hist)`}
 
-*2. Conte a quantidade de casos no conjunto:*
+. . .
+
+**2. Conte a quantidade de casos no conjunto:**
+
+. . .
 
 $n$ = `r n_dados_hist`
 
+. . .
+
 **3. Calcule a amplitude: maior caso - menor caso**
+
+. . .
 
 $Amplitude =$ `r max_dados_hist` $-$ `r min_dados_hist` $=$ `r amplitude_dados_hist`
 
 ## Como construir um histograma?
 
-::: {style="font-size: 60%"}
-**4. Determine o número de intervalos (bins)**
+[**4. Determine o número de intervalos (bins)**]{style="font-size: 60%"}
 
-*Regra de Sturges:*
+[*Regra de Sturges:*]{style="font-size: 60%"}
 
 $$
 \text{Bins Ótimos} = \lceil \log_2(n)  + 1 \rceil
-$$ *Onde:*
+$$ [*Onde:*]{style="font-size: 60%"}
 
--   n: o número total de observações no conjunto de dados
--   $\lceil \rceil$: símbolos que significam “teto” – ou seja, arredondar a resposta para o número inteiro mais próximo.
+-   [n: o número total de observações no conjunto de dados]{style="font-size: 60%"}
+-   [$\lceil \rceil$: símbolos que significam “teto” – ou seja, arredondar a resposta para o número inteiro mais próximo.]{style="font-size: 60%"}
+
+## Como construir um histograma?
+
+[**4. Determine o número de intervalos (bins)**]{style="font-size: 60%"}
 
 $$
 \text{Bins Ótimos} = \lceil \log_2(30) + 1 \rceil = 6
-$$
+$$ . . .
 
-**5. Largura dos intervalos: divida a amplitude (53) pelo número de intervalos:**
+[**5. Largura dos intervalos: divida a amplitude (53) pelo número de intervalos:**]{style="font-size: 60%"}
+
+. . .
 
 $$
 53/6 = 8.83 \approx 9
 $$
-:::
 
-## Como construir um histograma?
+## Como construir um histograma? {.smaller}
 
 **6. Calcule o limites dos intervalos: comece com o menor valor e adicione largura dos intervalos para determinar o limite superior da primeira classe**
 
+. . .
+
 $52 + 9 = 61$
+
+. . .
 
 ```{r}
 #| label: tbl-limites-intervalos-histograma
@@ -1607,6 +1633,8 @@ tribble(
 ## Como construir um histograma
 
 **7. Conte os casos em cada intervalo:**
+
+. . .
 
 ```{r}
 #| label: tbl-casos-intervalos
@@ -2404,24 +2432,26 @@ hist + box
 
 ::: columns
 ::: {.column width="60%"}
--   É a linha escura dentro da caixa
--   Divide os dados pela metade, 50% ficam abaixo desse valor e 50% ficam acima
--   Quando a amostra é impar:
-    -   É observação que está no centro da amostra ordenada
-    -   $\{2, 5, \color{red}{7}, 11, 15\}$
--   Quando a amostra é par:
-    -   É a média das duas observações que estão no centro da amostra ordenada
-    -   $\{2, 5, \color{red}{7, 9}, 11, 15\}$
-    -   $Mediana = \frac{7+9}{2} = 8$
+-   [É a linha escura dentro da caixa]{style="font-size: 75%"}
+-   [Divide os dados pela metade, 50% ficam abaixo desse valor e 50% ficam acima]{style="font-size: 75%"}
+-   [Quando a amostra é impar:]{style="font-size: 75%"}
+    -   [É observação que está no centro da amostra ordenada]{style="font-size: 75%"}
+    -   [$\{2, 5, \color{red}{7}, 11, 15\}$]{style="font-size: 75%"}
+-   [Quando a amostra é par:]{style="font-size: 75%"}
+    -   [É a média das duas observações que estão no centro da amostra ordenada]{style="font-size: 75%"}
+    -   [$\{2, 5, \color{red}{7, 9}, 11, 15\}$]{style="font-size: 75%"}
+    -   [$Mediana = \frac{7+9}{2} = 8$]{style="font-size: 75%"}
 :::
 
 ::: {.column width="40%"}
 ```{r}
-father.son |> 
+box_fs_sheight <- father.son |> 
   ggplot(aes(sheight)) + 
   geom_boxplot(color = "#569BBD") + 
   stat_boxplot(geom = 'errorbar', width = 0.1,
                color = "#569BBD")
+
+box_fs_sheight
 ```
 :::
 :::
@@ -2444,11 +2474,7 @@ father.son |>
 
 ::: {.column width="40%"}
 ```{r}
-father.son |> 
-  ggplot(aes(sheight)) + 
-  geom_boxplot(color = "#569BBD") + 
-  stat_boxplot(geom = 'errorbar', width = 0.1,
-               color = "#569BBD")
+box_fs_sheight
 ```
 :::
 :::
@@ -2518,12 +2544,28 @@ histogramas_desvio_padrao |>
 
 ## Whiskers (bigodes) e outliers (valores discrepantes) {.smaller}
 
--   Whiskers: capturaram a maior parte dos dados, excluindo os outliers
-    -   Se estendem até os valores máximo e mínimo, exceto quando há outliers
--   Outliers: pontos excepcionalmente altos ou baixos, marcados separadamente no gráfico
-    -   Indicam observações distantes do restante dos dados
-    -   Observações além de 1,5 x IQR dos quartis são outliers
--   Caixa como corpo, whiskers como braços tentando alcançar os dados até os outliers
+::: columns
+::: {.column width="50%"}
+-   ::: {style="font-size: 75%"}
+    -   Whiskers: capturaram a maior parte dos dados, excluindo os outliers
+
+        -   Se estendem até os valores máximo e mínimo, exceto quando há outliers
+
+    -   Outliers: pontos excepcionalmente altos ou baixos, marcados separadamente no gráfico
+
+        -   Indicam observações distantes do restante dos dados
+        -   Observações além de 1,5 x IQR dos quartis são outliers
+
+    -   Caixa como corpo, whiskers como braços tentando alcançar os dados até os outliers
+    :::
+:::
+
+::: {.column width="50%"}
+```{r}
+box_fs_sheight
+```
+:::
+:::
 
 ## Outliers são extremos {.smaller}
 
@@ -2855,7 +2897,6 @@ p_price_diamonds + p_log_10_price_diamonds +
 
 [Os dados transformados são simétricos, e quaisquer outliers potenciais parecem muito menos extremos do que no conjunto de dados original. Ao controlar os outliers e a distorção extrema, as transformações geralmente facilitam a construção de modelos estatísticos para os dados.]{style="font-size: 75%;"}
 
-
 ```{r}
 #| out-width: 70%
 p_price_diamonds <- diamonds |> 
@@ -2881,13 +2922,10 @@ p_price_diamonds + p_log_10_price_diamonds +
 
 ## Transformação de dados assimétricos
 
--   Outras transformações possíveis:
-$$
-\sqrt{\text{variável original}}
-$$
+-   Outras transformações possíveis: $$
+    \sqrt{\text{variável original}}
+    $$
 
 $$
 \frac{1}{\text{variável original}}
 $$
-
-
