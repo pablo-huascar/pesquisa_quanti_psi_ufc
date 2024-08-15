@@ -640,8 +640,28 @@ penguins |>
   scale_color_openintro("two")
 ```
 
-## Facetamento
+## Facetamento {.smaller}
 
+-   A exibição gráfica dos dados com base em grupos é dividida (facetada) em janelas diferentes
+-   A mesma escala nos eixos x e y é preservada para facilitar a comparação
+
+```{r}
+penguins |> 
+  drop_na(sex) |> 
+  ggplot(aes(body_mass_g)) + 
+  geom_histogram(color = "#FFFFFF", fill = "#569BBD") +
+  facet_wrap(~sex)
+```
+
+## Facetamento {.smaller}
+
+```{r}
+penguins |> 
+  drop_na(sex) |> 
+  ggplot(aes(body_mass_g)) + 
+  geom_histogram(color = "#FFFFFF", fill = "#569BBD") +
+  facet_grid(species~sex)
+```
 
 
 ## Tabelas
@@ -678,6 +698,51 @@ penguins |>
   tab_style(
     style = cell_text(align = "center"),
     locations = cells_column_labels(columns = "sex")
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+
+## Tabelas
+
+```{r}
+#| label: tbl-descritivos-body-mass-species
+#| tbl-cap: Estatísticas descritivas para a massa corporal dos pinguins por espécie
+#| tbl-cap-location: bottom
+penguins |> 
+  summarise(
+    n = n(),
+    Omisso = sum(is.na(body_mass_g)),
+    M = mean(body_mass_g, na.rm = T),
+    DP = sd(body_mass_g, na.rm = T),
+    MD = median(body_mass_g, na.rm = T),
+    MIN = min(body_mass_g, na.rm = T),
+    MAX = max (body_mass_g, na.rm = T),
+    IQR = IQR(body_mass_g, na.rm = T),
+    .by = species
+  ) |> 
+  filter(species != is.na(species)) |> 
+  gt() |> 
+  fmt_number(
+    columns = c(M, DP, IQR), 
+    decimals = 1, use_seps = F
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_style_body(
+    style = cell_text(align = "left"),
+    values = c("Adelie", "Gentoo", "Chinstrap")
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = "species")
   ) |> 
   tab_options(
     table.width = pct(100),
