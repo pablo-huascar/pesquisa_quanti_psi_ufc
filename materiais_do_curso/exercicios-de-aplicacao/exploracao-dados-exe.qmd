@@ -1,1 +1,14 @@
+---
+title: "Exploração de dados: exercícios"
+editor: visual
+format: html
+toc: true
+editor_options: 
+  chunk_output_type: console
+---
+## Introdução
+
+Você foi contratado como analista de dados de um canal no YouTube que tem programas de esportes, curiosidades, política, dentre outros. Os apresentadores precisam de informações precisas para usar nas transmissões. Sua missão é analisar bancos de dados e responder as questões e demandas abaixo que foram enviadas por cada equipe.
+
+## Esportes
 
