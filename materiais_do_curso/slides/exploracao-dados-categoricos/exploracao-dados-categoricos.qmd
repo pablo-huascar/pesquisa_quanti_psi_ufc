@@ -36,6 +36,7 @@ library(ggthemes)
 library(patchwork)
 library(DT)
 library(openintro)
+library(ggridges)
 conflicted::conflicts_prefer(dplyr::filter())
 conflicted::conflicts_prefer(dplyr::select())
 conflicted::conflicts_prefer(dplyr::lag())
@@ -311,9 +312,11 @@ separado <- penguins |>
 
 ## [Gráfico de Barras Empilhado]{style="font-size: 75%"} {.smaller}
 
--   [Descrição: as barras para cada categoria do eixo x (neste caso, island) são empilhadas umas sobre as outras para mostrar a distribuição das subcategorias (neste caso, species) dentro de cada categoria. Esse tipo de gráfico é útil quando é razoável atribuir uma variável como explicativa e a outra como resposta.]{style="font-size: 75%"}
--   [Uso: é útil para visualizar a composição de cada categoria e comparar as somas totais de cada grupo, agrupando primeiro por uma variável e depois subdividindo pela outra.]{style="font-size: 75%"}
--   [Interpretação: você pode ver não apenas a contagem total para cada categoria do eixo x, mas também como essa contagem é dividida entre as diferentes subcategorias.]{style="font-size: 75%"}
+::: {style="font-size: 75%; line-height: 1"}
+-   Descrição: as barras para cada categoria do eixo x (neste caso, island) são empilhadas umas sobre as outras para mostrar a distribuição das subcategorias (neste caso, species) dentro de cada categoria. Esse tipo de gráfico é útil quando é razoável atribuir uma variável como explicativa e a outra como resposta.
+-   Uso: é útil para visualizar a composição de cada categoria e comparar as somas totais de cada grupo, agrupando primeiro por uma variável e depois subdividindo pela outra.
+-   Interpretação: você pode ver não apenas a contagem total para cada categoria do eixo x, mas também como essa contagem é dividida entre as diferentes subcategorias.
+:::
 
 ```{r}
 #| out-width: 70%
@@ -322,9 +325,11 @@ empilhado
 
 ## [Gráfico de Barras Padronizado]{style="font-size: 70%"} {.smaller}
 
--   [Descrição: cada barra é padronizada para ter a mesma altura (1 ou 100%) e mostra a proporção de cada subcategoria dentro da categoria principal. Esse tipo de gráfico é útil quando a variável primária no gráfico de barras empilhado está relativamente desequilibrada.]{style="font-size: 70%"}
--   [Uso: ideal para comparar as proporções relativas de subcategorias entre diferentes categorias principais, independentemente do tamanho total de cada categoria. No entanto, perdemos a noção do número total de casos que cada barra representa.]{style="font-size: 70%"}
--   [Interpretação: foco na proporção que cada subcategoria representa em relação ao total da categoria principal, eliminando a variação absoluta nas contagens.]{style="font-size: 70%"}
+::: {style="font-size: 75%; line-height: 1"}
+-   Descrição: cada barra é padronizada para ter a mesma altura (1 ou 100%) e mostra a proporção de cada subcategoria dentro da categoria principal. Esse tipo de gráfico é útil quando a variável primária no gráfico de barras empilhado está relativamente desequilibrada.
+-   Uso: ideal para comparar as proporções relativas de subcategorias entre diferentes categorias principais, independentemente do tamanho total de cada categoria. No entanto, perdemos a noção do número total de casos que cada barra representa.
+-   Interpretação: foco na proporção que cada subcategoria representa em relação ao total da categoria principal, eliminando a variação absoluta nas contagens.
+:::
 
 ```{r}
 #| out-width: 50%
@@ -333,16 +338,18 @@ padronizado
 
 ## [Gráfico de Barras Separado]{style="font-size: 75%"} {.smaller}
 
--   [Descrição: as barras de cada subcategoria são colocadas lado a lado (ou "dodge") para cada categoria principal no eixo x. Esse tipo de gráfico é mais neutro na apresentação, sem priorizar uma variável como explicativa e outra como resposta.]{style="font-size: 75%"}
--   [Uso: útil para comparar diretamente as contagens (ou proporções) de cada subcategoria dentro das categorias principais. Entretanto, exige mais espaço horizontal, e pode ser difícil discernir associações entre variáveis quando os tamanhos dos grupos são muito diferentes.]{style="font-size: 75%"}
--   [Interpretação: permite uma comparação clara das contagens de subcategorias entre as diferentes categorias principais.]{style="font-size: 75%"}
+::: {style="font-size: 75%; line-height: 1"}
+-   Descrição: as barras de cada subcategoria são colocadas lado a lado (ou "dodge") para cada categoria principal no eixo x. Esse tipo de gráfico é mais neutro na apresentação, sem priorizar uma variável como explicativa e outra como resposta.
+-   Uso: útil para comparar diretamente as contagens (ou proporções) de cada subcategoria dentro das categorias principais. Entretanto, exige mais espaço horizontal, e pode ser difícil discernir associações entre variáveis quando os tamanhos dos grupos são muito diferentes.
+-   Interpretação: permite uma comparação clara das contagens de subcategorias entre as diferentes categorias principais.
+:::
 
 ```{r}
 #| out-width: 50%
 separado
 ```
 
-## Gráficos de barra e associação entre variáveis
+## Gráficos de barras e associação entre variáveis
 
 ```{r}
 #| out-width: 70%
@@ -598,6 +605,44 @@ penguins |>
     plot.title = element_text(hjust = 0.5),
   )
 ```
+
+## Gráfico de densidade sobreposto
+
+- Porque há dois picos tanto para pinguins machos como fêmeas?
+
+```{r}
+penguins |> 
+  drop_na(sex) |> 
+  ggplot(
+    aes(
+      x = body_mass_g, y = sex,
+      fill = sex, color = sex
+    )
+  ) +
+  geom_density_ridges(alpha = 0.5) +
+  scale_fill_openintro("two") +
+  scale_color_openintro("two")
+```
+
+## Gráfico de densidade sobreposto
+
+```{r}
+penguins |> 
+  drop_na(sex) |> 
+  ggplot(
+    aes(
+      x = body_mass_g, y = species,
+      fill = species, color = species
+    )
+  ) +
+  geom_density_ridges(alpha = 0.5) +
+  scale_fill_openintro("two") +
+  scale_color_openintro("two")
+```
+
+## Facetamento
+
+
 
 ## Tabelas
 
