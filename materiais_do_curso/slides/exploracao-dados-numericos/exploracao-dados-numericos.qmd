@@ -1800,7 +1800,7 @@ tribble(
 ## Resultado
 
 ```{r}
-breaks_altura_da_turma <- c(152, 156, 161, 166, 171)
+breaks_altura_da_turma <- c(152, 156, 161, 166, 171, 176)
 
 hist_altura_da_turma |> 
   ggplot(aes(Altura)) +
