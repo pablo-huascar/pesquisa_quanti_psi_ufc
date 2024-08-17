@@ -379,7 +379,7 @@ scatter_plot_carat_price <- diamonds |>
   theme(
     plot.title = element_text(hjust = 0.5),
     plot.caption = element_text(hjust = 0)
-  )
+  ) 
 
 scatter_plot_carat_price
 ```

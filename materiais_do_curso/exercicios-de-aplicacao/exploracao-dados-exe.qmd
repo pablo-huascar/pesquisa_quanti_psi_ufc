@@ -5,6 +5,7 @@ format: html
 toc: true
 editor_options: 
   chunk_output_type: console
+eval: false
 ---
 
 ```{r}
@@ -74,9 +75,9 @@ brasileiro |>
   )
 ```
 
-A equipe do programa de esportes precisa das seguintes informações sobre todo o período compreendido nos dados (2014 a 2023):
+A equipe do programa de esportes precisa das seguintes informações sobre todo o período compreendido nos dados (2014 a 2023), a não ser que a demanda diga o contrário:
 
-**Quais as pontuações e o total de gols dos times foram campeões?**
+**Quais as pontuações finais e o total de gols dos times foram campeões?**
 
 ```{r}
 brasileiro |> 
@@ -86,7 +87,8 @@ brasileiro |>
     .by = c(campeonato, time)
   ) |> 
   group_by(campeonato) |> 
-  slice_max(n = 1, total_de_pontos)
+  slice_max(n = 1, total_de_pontos) |> 
+  print(n = Inf)
 ```
 
 **Quais as pontuações e o total de gols dos times que foram rebaixados?**
@@ -102,8 +104,6 @@ brasileiro |>
   slice_min(n = 4, total_de_pontos)
 ```
 
-
-
 **Quais os times com maiores médias de gols?**
 
 ```{r}
@@ -117,4 +117,27 @@ brasileiro |>
   slice_max(m, n = 1) |> 
   arrange(desc(campeonato))
 ```
+
+
+**Gere gráficos que comparem o desempenho de gols e pontos entre os times mandantes e visitantes considerando o período como um todo, bem como por cada campeonado**
+
+```{r}
+brasileiro |> 
+  ggplot(aes(mando_de_campo, gols)) +
+  geom_boxplot() +
+  facet_wrap(~campeonato)
+```
+
+**Agora, gere tabelas que comprarem as médias de gols e de ponto sentre times mandantes e visitantes, considerando o período como um todo, bem como por cada campeonado**
+
+```{r}
+brasileiro |> 
+  summarise(
+    m_gols = mean(gols),
+    m_pontos = mean(pontos),
+    .by = c(mando_de_campo, campeonato)
+  )
+```
+
+
 
