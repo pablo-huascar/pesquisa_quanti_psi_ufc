@@ -121,6 +121,9 @@ TitanicSurvival |>
   cols_align(
     align = "center"  
   ) |> 
+  fmt_number(
+    decimals = 1
+    ) |> 
   tab_options(
     table.width = pct(100),
     table.font.size = "22px"
