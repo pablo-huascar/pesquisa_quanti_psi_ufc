@@ -66,7 +66,7 @@ TitanicSurvival <- TitanicSurvival |>
 
 Medidas de tamanho para pinguins forrageadores adultos perto da Estação Palmer, Antártida. Inclui medidas para espécies de pinguins, ilha no Arquipélago Palmer, tamanho (comprimento da nadadeira, massa corporal, dimensões do bico) e sexo.
 
--   Formato: Um banco de dados com 344 observações e oito variáveis
+-   Formato: Um banco de dados com `r nrow(penguins)` observações e `r ncol(penguins)` variáveis
     -   `species`: espécies de pinguins (Adélie, Chinstrap e Gentoo)
     -   `island`: ilha no arquipélago de Palmer, Antártida (Biscoe, Dream ou Torgersen)
     -   `bill_length_mm`: comprimento do bico em milímetros

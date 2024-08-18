@@ -1,274 +1,176 @@
 ---
-title: "Exploração de dados: exercícios"
+title: "Exploração de dados: projeto"
+lang: pt-br
+format: 
+  html:
+     fig.retina: 2
+     fig.width: 6
+     fig.asp: 2/3
+     fig-dpi: 300
+     fig-align: center
+     toc: true
+echo: false
+message: false
+warning: false
 editor: visual
-format: html
-toc: true
 editor_options: 
   chunk_output_type: console
-eval: false
 ---
 
 ```{r}
-#| include: false
-source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
-```
-
-```{r}
-#| label: setup
-
 library(tidyverse)
-library(janitor)
 library(gt)
-library(scales)
-library(ggthemes)
-library(patchwork)
-library(DT)
-conflicted::conflicts_prefer(dplyr::filter())
-conflicted::conflicts_prefer(dplyr::select())
-conflicted::conflicts_prefer(dplyr::lag())
-conflicted::conflicts_prefer(dplyr::summarize)
-conflicted::conflicts_prefer(dplyr::summarise)
-conflicted::conflicts_prefer(scales::alpha)
-conflicted::conflicts_prefer(scales::rescale)
 ```
 
 ```{r}
-#| label: data
+code_book <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/tmcs_assedio_moral_code_book.csv")
 
-brasileiro <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/brasileiro_2014_2023.csv")
+tmcs_assedio_moral <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/tmcs_assedio_moral.csv")
 ```
 
-## Introdução
+## Pesquisa sobre assédio moral no trabalho e saúde mental
 
-Você foi contratado como analista de dados de um canal no YouTube que tem programas de esportes, curiosidades, política, dentre outros. Os apresentadores precisam de informações precisas para usar nas transmissões. Sua missão é analisar bancos de dados e responder as questões e demandas que foram enviadas por cada equipe.
+Um estudo foi realizado com professores de escolas públicas de todo o Brasil (n = `r nrow(tmcs_assedio_moral)`) para avaliar a repercussão do assédio moral no trabalho para a saúde mental. A partir das orientações a seguir, explore o banco de dados do estudo utilizando gráficos e tabelas.
 
-### Esportes
+## Banco de Dados `tmcs_assedio_moral`
 
-Você recebeu o banco de dados `brasileiro_2014_2023` com informações sobre os campeonatos brasileiros de futebol entre os anos de 2014 e 2023.
+-   Formato: um banco de dados com `r nrow(tmcs_assedio_moral)` casos e `r ncol(tmcs_assedio_moral)` variáveis descritas no livro de códigos apresentado adiante.
 
--   Formato: mm banco de dados com `r nrow(brasileiro)` observações e `r ncol(brasileiro)` variáveis:
-    -   `campeonato`: ano do campeonato
-    -   `partida`: sequência da partida
-    -   `data`: data da partida
-    -   `gols`: quantidade gols do time
-    -   `pontos`: pontos obtidos pelo time
-    -   `gols_por_partida`: gols da    partida
-    -   `estadio`: estádio em que a partida foi realizada
-    -   `mando_de_campo`: o time jogou a partida em casa (Mandante) ou fora de casa (Visitante)
+### Livro de códigos
 
 ```{r}
-#| label: tbl-brasileiro
-#| tbl-cap: Uma amostra de dez casos do banco de dados `brasileiro_2014_2023`
-#| tbl-cap-location: bottom
-
-brasileiro |> 
-  filter(campeonato == 2023) |> 
-  slice(1:10) |> 
+code_book |> 
   gt() |> 
   cols_align(
-    align = "center"  
+    align =  "center",
+    columns = c(Índice, Item)
   ) |> 
-  tab_options(
-    table.width = pct(100),
-  ) |> 
-  opt_stylize(
-    style = 1, color = "gray"
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(
+      columns = Descrição)
   )
 ```
 
-A equipe do programa de esportes precisa das seguintes informações sobre todo o período compreendido nos dados (2014 a 2023), a não ser que a demanda diga o contrário:
+## Instrumentos
 
-**Quais a pontuação final, o total de gols marcados, o número de vitórias, empates, derrotas e o saldo de gols dos times que foram campeões?**
+### Transtornos Mentais Comuns
+
+O Self-Reporting Questionnaire-20 (SRQ-20) é uma ferramenta de triagem para transtornos mentais não psicóticos (transtornos mentais comuns - TMC), como insônia, dificuldade de concentração, fadiga, dores de cabeça e falta de apetite (por exemplo, “Faça você se cansa facilmente?”). Este instrumento é composto por 20 afirmações com opções binárias de resposta “sim” ou “não”. As respostas negativas são pontuadas como zero, enquanto as respostas positivas são pontuadas como 1. As pontuações são então somadas, com ponto de corte estabelecido em 7/8 para distinguir entre ausência e presença de TMC, respectivamente (Gonçalves et al., 2008).
 
 ```{r}
-#| eval: false
-
-brasileiro <- brasileiro |> 
-  mutate(
-    resultado = case_when(pontos == 3 ~ "Vitória", 
-                          pontos == 0 ~ "Derrota",
-                          pontos == 1 ~ "Empate")
+code_book |> 
+  select(Item, Descrição) |> 
+  filter(str_detect(Item, "srq")) |> 
+  gt() |> 
+  cols_align(
+    align =  "center",
+    columns = c(Item)
   ) |> 
-  mutate(
-    saldo_de_gols = gols - lag(gols),
-    saldo_de_gols = ifelse(is.na(saldo), gols - lead(gols), saldo),
-    .by = c(campeonato, partida)
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(
+      columns = Descrição)
+  ) |> 
+  cols_align(
+    align =  "left",
+    columns = c(Descrição)  
+  ) |> 
+  cols_width(
+    Item ~ px(50)
   )
-
-brasileiro |> 
-  summarise(
-    total_de_pontos = sum(pontos),
-    total_de_gols = sum(gols),
-    vitorias = sum(resultado == "Vitória"),
-    empate = sum(resultado == "Empate"),
-    derrota = sum(resultado == "Derrota"),
-    sg = sum(saldo_de_gols),
-    .by = c(campeonato, time)
-  ) |> 
-  slice_max(n = 1, total_de_pontos, 
-            by = campeonato) 
 ```
 
-**Quais a pontuação final, o total de gols marcados, o número de vitórias, empates, derrotas e o saldo de gols dos times que foram rebaixados?**
+### Assédio Moral no Local de Trabalho
+
+O NAQ-R mede a exposição ao assédio moral no local de trabalho durante os seis meses anteriores, utilizando uma escala de resposta de cinco níveis que varia de nunca a diariamente (Einarsen et al., 2009). A versão do NAQ-R validada para professores (Cunha, 2023) compreende 22 itens categorizados em dois fatores: assédio moral pessoal (e. g., “Foram feitos comentários ofensivos sobre a sua pessoa, suas atitudes ou sobre sua vida privada.”), assédio moral relacionado ao trabalho (por exemplo, “Foi obrigado(a) a realizar um trabalho abaixo do seu nível de competência”). Os itens da escala não mencionam explicitamente “assédio moral”; em vez disso, a avaliação baseia-se na autopercepção do entrevistado sobre a exposição a comportamentos característicos do bullying no local de trabalho (Christ, 2011). As pontuações para cada fator são derivadas do cálculo das médias de seus respectivos itens, conforme a tabela a seguir:
 
 ```{r}
-#| eval: false
+naq_tabela <- code_book |>
+  select(Item, Descrição) |>
+  filter(str_detect(Item, "^n2$|n5|n6|n7|n8|n9|n10|n11|n12|n13|n14|n15|n17|n20|n22|n3|n4|n16|n18|n19|n21")) |> 
+  arrange(fct_relevel(Item, "n2","n5","n6","n7","n8","n9","n10","n11","n12","n13","n14","n15","n17","n20","n22","n3","n4","n16","n18","n19","n21"))
+```
 
-brasileiro |> 
-  summarise(
-    total_de_pontos = sum(pontos),
-    total_de_gols = sum(gols),
-    vitorias = sum(resultado == "Vitória"),
-    empate = sum(resultado == "Empate"),
-    derrota = sum(resultado == "Derrota"),
-    sg = sum(saldo),
-    .by = c(campeonato, time)
+```{r}
+naq_tabela <- naq_tabela |> 
+  add_row(
+    Descrição = "Assédio moral pessoal", Item = NA,
+    .before = 1
+  ) |> 
+  add_row(
+    Descrição = "Assédio moral relacionado ao trabalho",
+    .before = 17
+  )
+```
+
+```{r}
+naq_tabela |> 
+  gt() |> 
+  sub_missing(missing_text = "") |> 
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_body(
+      columns = Descrição,
+      rows = c(1,17)
+    )
   ) |>
-  slice_min(n = 4, total_de_pontos, 
-            by = campeonato)
-```
-
-**Quais os times com maiores médias de gols?**
-
-```{r}
-#| eval: false
-
-brasileiro |> 
-  summarise(
-    m = mean(gols),
-    .by = c(campeonato, time)
+  cols_align(
+    align =  "center",
+    columns = c(Item)
   ) |> 
-  slice_max(m, n = 1, by = campeonato) |> 
-  arrange(desc(campeonato))
-```
-
-**Gere gráficos que comparem o número de gols e de pontos entre os times mandantes e visitantes considerando o período como um todo, bem como por cada campeonado**
-
-```{r}
-#| eval: false
-
-brasileiro |> 
-  ggplot(aes(mando_de_campo, gols)) +
-  geom_boxplot() 
-```
-
-```{r}
-#| eval: false
-
-brasileiro |> 
-  ggplot(aes(mando_de_campo, pontos)) +
-  geom_boxplot() 
-```
-
-```{r}
-#| eval: false
-
-brasileiro |> 
-  ggplot(aes(mando_de_campo, gols)) +
-  geom_boxplot() +
-  facet_wrap(~campeonato)
-```
-
-```{r}
-#| eval: false
-
-brasileiro |> 
-  ggplot(aes(mando_de_campo, pontos)) +
-  geom_boxplot() +
-  facet_wrap(~campeonato)
-```
-
-**Gere tabelas que comprarem as médias de gols e de pontos sentre times mandantes e visitantes, considerando o período como um todo, bem como por cada campeonado**
-
-```{r}
-#| eval: false
-
-brasileiro |> 
-  summarise(
-    mgols = mean(gols),
-    mpontos = mean(pontos),
-    .by = c(mando_de_campo, campeonato)
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(
+      columns = Descrição)
   ) |> 
-  pivot_wider(id_cols = campeonato, 
-              names_from = mando_de_campo, 
-              values_from = c(mgols, mpontos))
-```
-
-**Produza gráficos que avaliem a assoiação entre o resultado da partida e o mando de campo. Considere o período como um todo, bem como gere gráficos para cada campeonato**
-
-```{r}
-#| eval: false
-
-brasileiro |> 
-  ggplot(aes(mando_de_campo, 
-             fill = resultado)) +
-  geom_bar() +
-  scale_fill_colorblind()
-```
-
-```{r}
-#| eval: false
-
-brasileiro |> 
-  ggplot(aes(mando_de_campo,
-             fill = resultado)) +
-  geom_bar() +
-  scale_fill_colorblind() + 
-  facet_wrap(~campeonato)
-```
-
-**Produza tabelas com contagens e proporções que avaliem a assoiação entre o resultado da partida e o mando de campo. Considere o período como um todo, bem como gere gráficos para cada campeonato**
-
-```{r}
-#| eval: false
-
-brasileiro |> 
-  count(mando_de_campo, resultado) |> 
-  mutate(
-    prop = n/sum(n),
-    .by = mando_de_campo
+  cols_align(
+    align =  "left",
+    columns = c(Descrição)  
   ) |> 
-  pivot_wider(id_cols = mando_de_campo, names_from = resultado,
-              values_from =  c(n, prop), 
-              names_vary = "slowest")
-```
-
-```{r}
-#| eval: false
-brasileiro |> 
-  count(campeonato, mando_de_campo, 
-        resultado) |> 
-  mutate(
-    prop = n/sum(n),
-    .by = c(campeonato, mando_de_campo)
+  cols_width(
+    Item ~ px(50)
   )
 ```
 
-**desempenho estável**
+## Participantes
 
-```{r}
+### Descrição dos dados e tabela
 
-brasileiro |> 
-  filter(campeonato == 2023, 
-         time %in% c("Palmeiras", "América-MG")) |> 
-  ggplot(aes(partida, gols)) +
-  geom_jitter() +
-  geom_hline(yintercept = mean(brasileiro$gols), color = "red") +
-  facet_wrap(~time)
+Descreva o perfil sociodemográfico dos participantes do estudo e gere uma tabela que sintetize estes dados. Utilize as normas da APA para a construção da tabela, conforme exemplos que podem ser encontrados [aqui](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/sample-tables){.external target="_blank"}. 
+
+### Gráficos
+
+Gere gráficos para uma apresentação sobre as características sociodemográficas dos participantes da investigação.
+
+## Assédio moral e TMCs
+
+### Associação entre variáveis
+
+A partir da pontuação total do SRQ-20, construa gráficos que analisem a associação entre TMCs e:
+
+-   os dois tipos de assédio avaliados pelo NAQ-R (pessoal e relacionado ao trabalho);
+-   a idade;
+-   o tempo de experiência como professor e; 
+-   a renda familiar per capita.
+
+A partir das pontuações do assédio moral pessoal, bem como daquele relacionado ao trabalho, construa gráficos que avaliem a associação destas variáveis com:
+
+-   a idade;
+-   o tempo de experiência como professor e; 
+-   a renda familiar per capita.
+
+Discuta os achados de todos os gráficos obtidos.
+
+### Comparação entre grupos
+
+Construa gráficos que comparem os grupos de participantes gerados a partir do rastreio qualitativo de TMCs em relação:
+
+-   aos dois tipos de assédio avaliados pelo NAQ-R (pessoal e relacionado ao trabalho);
+-   à idade;
+-   ao tempo de experiência como professor e; 
+-   à renda familiar per capita.
 
 
-
-
-brasileiro |> 
-  filter(campeonato == 2023,
-         time %in% c("Palmeiras", "América-MG")) |> 
-  summarise(
-    m = mean(gols),
-    dp = sd(gols),
-    .by = time
-    
-  )
-
-```
 
 

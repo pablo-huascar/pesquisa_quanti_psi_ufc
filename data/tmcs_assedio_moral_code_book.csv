@@ -1,0 +1,52 @@
+Índice,Descrição,Item
+1,Alguém reteve informações que podem afetar o seu desempenho no trabalho.,n1
+2,Foi humilhado(a) ou ridicularizado(a) em relação ao seu trabalho.,n2
+3,Foi obrigado(a) a realizar um trabalho abaixo do seu nível de competência.,n3
+4,Áreas ou tarefas de sua responsabilidade foram retiradas ou substituídas por tarefas mais desagradáveis ou mais simples.,n4
+5,Espalharam boatos ou rumores sobre você.,n5
+6,"Foi ignorado(a), excluído(a) ou “colocado(a) na geladeira”.",n6
+7,"Foram feitos comentários ofensivos sobre a sua pessoa, suas atitudes ou sobre sua vida privada.",n7
+8,Gritaram com você ou você foi alvo de agressividade gratuita.,n8
+9,"Foi alvo de comportamentos intimidativos, tais como “apontar o dedo”, invasão do seu espaço pessoal, empurrões.",n9
+10,Recebeu sinais ou dicas de que você deve pedir demissão ou largar o emprego (transferir-se para outra unidade).,n10
+11,Foi constantemente lembrado dos seus erros ou omissões.,n11
+12,Foi ignorado ou foi recebido com uma reação hostil quando tentou uma aproximação.,n12
+13,Recebeu críticas persistentes ao seu trabalho e esforço.,n13
+14,Suas opiniões e pontos de vista foram ignorados.,n14
+15,"Pessoas com as quais você não tem intimidade lhe aplicaram “pegadinhas"".",n15
+16,Foi solicitado(a) a realizar tarefas despropositadas ou com um prazo impossível de ser cumprido.,n16
+17,Foram feitas alegações contra você.,n17
+18,Sofreu supervisão excessiva de seu trabalho.,n18
+19,Foi pressionado a não reclamar um direito que você tem.,n19
+20,Foi submetido(a) a sarcasmos ou alvo de brincadeiras excessivas.,n20
+21,Foi exposto(a) a uma carga de trabalho excessiva.,n21
+22,Foi ameaçado(a) de violência ou abuso físico ou foi alvo de violência real.,n22
+23,Tem dores de cabeça com frequência?,srq_1
+24,Tem falta de apetite?,srq_2
+25,Dorme mal?,srq_3
+26,Fica com medo com facilidade?,srq_4
+27,Suas mãos tremem?,srq_5
+28,"Sente-se nervoso (a), tenso (a) ou preocupado (a)?",srq_6
+29,Sua digestão não é boa ou sofre de perturbação digestiva?,srq_7
+30,Não consegue pensar com clareza?,srq_8
+31,Sente-se infeliz?,srq_9
+32,Chora mais que o comum?,srq_10
+33,Acha difícil apreciar (gostar de) suas atividades diárias?,srq_11
+34,Acha difícil tomar decisões?,srq_12
+35,Seu trabalho diário é um sofrimento? Tormento? Tem dificuldade de fazer seu trabalho?,srq_13
+36,Não é capaz de ter um papel útil na vida?,srq_14
+37,Perdeu o interesse nas coisas?,srq_15
+38,Acha que é uma pessoa que não vale nada?,srq_16
+39,O pensamento de acabar com a sua vida já passou por sua cabeça?,srq_17
+40,Sente-se cansado(a) todo o tempo?,srq_18
+41,Têm sensações desagradáveis no estômago?,srq_19
+42,Fica cansado(a) com facilidade?,srq_20
+43,Qual seu sexo?,sexo
+44,Qual a sua idade?,idade
+45,Qual a sua cor/raça?,raca
+46,Qual o seu nível de escolaridade?,escolaridade
+47,Em que região você trabalha,regiao
+48,Em que série(s) você atua? Você pode escolher mais de um item caso atue em mais de um nível de ensino.,nivel_de_ensino
+49,"Quanto anos de experiência você tem como professor, considerando a sua carreira como um todo?",experiencia_de_ensino
+50,Qual a renda mensal da sua família (estime o valor somado de todos que trabalham e colaboram com as despesas)?,renda_familiar_mensal
+51,Quantas pessoas moram com você e dependem da renda da sua família?,dependentes_da_renda_familiar

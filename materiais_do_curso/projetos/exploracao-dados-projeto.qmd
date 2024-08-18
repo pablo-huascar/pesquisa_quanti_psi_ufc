@@ -1,0 +1,290 @@
+---
+title: "Exploração de dados: projeto"
+editor: visual
+format: html
+toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+library(janitor)
+library(gt)
+library(scales)
+library(ggthemes)
+library(patchwork)
+library(DT)
+conflicted::conflicts_prefer(dplyr::filter())
+conflicted::conflicts_prefer(dplyr::select())
+conflicted::conflicts_prefer(dplyr::lag())
+conflicted::conflicts_prefer(dplyr::summarize)
+conflicted::conflicts_prefer(dplyr::summarise)
+conflicted::conflicts_prefer(scales::alpha)
+conflicted::conflicts_prefer(scales::rescale)
+```
+
+```{r}
+#| label: data
+
+brasileiro <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/brasileiro_2014_2023.csv")
+```
+
+## Introdução
+
+Você foi contratado como analista de dados de um canal no YouTube que tem programas de esportes, curiosidades, política, dentre outros. Os apresentadores necessitam de informações precisas para usar nas transmissões. Sua missão é analisar os bancos de dados indicados a seguir e produzir relatórios que respondam as questões demandadas por cada programa.
+
+### Esportes
+
+Você recebeu o banco de dados `brasileiro_2014_2023` com informações sobre os campeonatos brasileiros de futebol entre os anos de 2014 e 2023.
+
+-   Formato: mm banco de dados com `r nrow(brasileiro)` observações e `r ncol(brasileiro)` variáveis:
+    -   `campeonato`: ano do campeonato
+    -   `partida`: sequência da partida
+    -   `data`: data da partida
+    -   `gols`: quantidade gols do time
+    -   `pontos`: pontos obtidos pelo time
+    -   `gols_por_partida`: gols da partida
+    -   `estadio`: estádio em que a partida foi realizada
+    -   `mando_de_campo`: o time jogou a partida em casa (Mandante) ou fora de casa (Visitante)
+
+```{r}
+#| label: tbl-brasileiro
+#| tbl-cap: Uma amostra de dez casos do banco de dados `brasileiro_2014_2023`
+#| tbl-cap-location: bottom
+
+brasileiro |> 
+  filter(campeonato == 2023) |> 
+  slice(1:10) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+A equipe do programa de esportes precisa das seguintes informações sobre todo o período compreendido nos dados (2014 a 2023), a não ser que a demanda diga o contrário:
+
+**Quais a pontuação final, o total de gols marcados, o número de vitórias, empates, derrotas e o saldo de gols dos times que foram campeões?**
+
+```{r}
+#| eval: false
+
+brasileiro <- brasileiro |> 
+  mutate(
+    resultado = case_when(pontos == 3 ~ "Vitória", 
+                          pontos == 0 ~ "Derrota",
+                          pontos == 1 ~ "Empate")
+  ) |> 
+  mutate(
+    saldo_de_gols = gols - lag(gols),
+    saldo_de_gols = ifelse(is.na(saldo_de_gols), gols - lead(gols),
+                           saldo_de_gols),
+    .by = c(campeonato, partida)
+  )
+
+campeoes <- brasileiro |> 
+  summarise(
+    total_de_pontos = sum(pontos),
+    total_de_gols = sum(gols),
+    vitorias = sum(resultado == "Vitória"),
+    empate = sum(resultado == "Empate"),
+    derrota = sum(resultado == "Derrota"),
+    saldo_de_gols = sum(saldo_de_gols),
+    .by = c(campeonato, time)
+  ) |> 
+  slice_max(n = 1, total_de_pontos, 
+            by = campeonato) 
+
+campeoes
+```
+
+**Quais a pontuação final, o total de gols marcados, o número de vitórias, empates, derrotas e o saldo de gols dos times que foram rebaixados?**
+
+```{r}
+#| eval: false
+
+brasileiro |> 
+  summarise(
+    total_de_pontos = sum(pontos),
+    total_de_gols = sum(gols),
+    vitorias = sum(resultado == "Vitória"),
+    empate = sum(resultado == "Empate"),
+    derrota = sum(resultado == "Derrota"),
+    saldo_de_gols = sum(saldo_de_gols),
+    .by = c(campeonato, time)
+  ) |>
+  slice_min(n = 4, total_de_pontos, 
+            by = campeonato)
+```
+
+**Quais os times com maiores médias de gols?**
+
+```{r}
+#| eval: false
+
+brasileiro |> 
+  summarise(
+    m = mean(gols),
+    .by = c(campeonato, time)
+  ) |> 
+  slice_max(m, n = 1, by = campeonato) |> 
+  arrange(desc(campeonato))
+```
+
+**Gere gráficos que comparem o número de gols e de pontos entre os times mandantes e visitantes considerando o período como um todo, bem como por cada campeonado**
+
+```{r}
+#| eval: false
+
+brasileiro |> 
+  ggplot(aes(mando_de_campo, gols)) +
+  geom_boxplot() 
+```
+
+```{r}
+#| eval: false
+
+brasileiro |> 
+  ggplot(aes(mando_de_campo, pontos)) +
+  geom_boxplot() 
+```
+
+```{r}
+#| eval: false
+
+brasileiro |> 
+  ggplot(aes(mando_de_campo, gols)) +
+  geom_boxplot() +
+  facet_wrap(~campeonato)
+```
+
+```{r}
+#| eval: false
+
+brasileiro |> 
+  ggplot(aes(mando_de_campo, pontos)) +
+  geom_boxplot() +
+  facet_wrap(~campeonato)
+```
+
+**Gere tabelas que comprarem as médias de gols e de pontos sentre times mandantes e visitantes, considerando o período como um todo, bem como por cada campeonado**
+
+```{r}
+#| eval: false
+
+brasileiro |> 
+  summarise(
+    mgols = mean(gols),
+    mpontos = mean(pontos),
+    .by = c(mando_de_campo, campeonato)
+  ) |> 
+  pivot_wider(id_cols = campeonato, 
+              names_from = mando_de_campo, 
+              values_from = c(mgols, mpontos))
+```
+
+**Produza gráficos que avaliem a assoiação entre o resultado da partida e o mando de campo. Considere o período como um todo, bem como gere gráficos para cada campeonato**
+
+```{r}
+#| eval: false
+
+brasileiro |> 
+  ggplot(aes(mando_de_campo, 
+             fill = resultado)) +
+  geom_bar() +
+  scale_fill_colorblind()
+```
+
+```{r}
+#| eval: false
+
+brasileiro |> 
+  ggplot(aes(mando_de_campo,
+             fill = resultado)) +
+  geom_bar() +
+  scale_fill_colorblind() + 
+  facet_wrap(~campeonato)
+```
+
+**Produza tabelas com contagens e proporções que avaliem a assoiação entre o resultado da partida e o mando de campo. Considere o período como um todo, bem como gere gráficos para cada campeonato**
+
+```{r}
+#| eval: false
+
+brasileiro |> 
+  count(mando_de_campo, resultado) |> 
+  mutate(
+    prop = n/sum(n),
+    .by = mando_de_campo
+  ) |> 
+  pivot_wider(id_cols = mando_de_campo, names_from = resultado,
+              values_from =  c(n, prop), 
+              names_vary = "slowest")
+```
+
+```{r}
+#| eval: false
+brasileiro |> 
+  count(campeonato, mando_de_campo, 
+        resultado) |> 
+  mutate(
+    prop = n/sum(n),
+    .by = c(campeonato, mando_de_campo)
+  ) |> 
+  pivot_wider(id_cols = c(campeonato, mando_de_campo), 
+              names_from = resultado, 
+              values_from = c(n, prop),
+              names_vary = "slowest") 
+```
+
+**desempenho estável**
+
+```{r}
+#| eval: false
+
+times_campeoes <- campeoes$time
+
+media_gols <- brasileiro |>
+  filter(time %in% times_campeoes) |>
+  summarise(
+    media_gols = mean(gols),
+    .by = c(campeonato, time)
+  )
+
+
+
+brasileiro |> 
+  filter(campeonato == 2023, 
+         time %in% c("Palmeiras", "América-MG")) |> 
+  ggplot(aes(partida, gols)) +
+  geom_jitter() +
+  geom_hline(data = media_gols, 
+             aes(yintercept = media_gols), 
+             color = "red") +
+  facet_wrap(~time)
+
+
+brasileiro |> 
+  filter(campeonato == 2023,
+         time %in% c("Palmeiras", "América-MG")) |> 
+  summarise(
+    m = mean(gols),
+    dp = sd(gols),
+    .by = time
+    
+  )
+
+```
