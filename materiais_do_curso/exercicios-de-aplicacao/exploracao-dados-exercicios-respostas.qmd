@@ -1,0 +1,302 @@
+---
+title: "Exploração de dados: exercícios"
+lang: pt-br
+format: 
+  html:
+     fig.retina: 2
+     fig.width: 6
+     fig.asp: 2/3
+     fig-dpi: 300
+     fig-align: center
+     toc: true
+echo: false
+message: false
+warning: false
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+library(gt)
+library(ggthemes)
+library(scales)
+```
+
+```{r}
+code_book <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/tmcs_assedio_moral_code_book.csv")
+
+tmcs_assedio_moral <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/tmcs_assedio_moral.csv")
+```
+
+## Pesquisa sobre assédio moral no trabalho e saúde mental
+
+Um estudo foi realizado com professores de escolas públicas de todo o Brasil (n = `r nrow(tmcs_assedio_moral)`) para avaliar a repercussão do assédio moral no trabalho para a saúde mental. A partir das orientações a seguir, explore o banco de dados do estudo utilizando gráficos e tabelas.
+
+## Banco de Dados `tmcs_assedio_moral`
+
+-   Formato: um banco de dados com `r nrow(tmcs_assedio_moral)` casos e `r ncol(tmcs_assedio_moral)` variáveis descritas no livro de códigos apresentado adiante.
+
+### Livro de códigos
+
+```{r}
+code_book |> 
+  gt() |> 
+  cols_align(
+    align =  "center",
+    columns = c(Índice, Item)
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(
+      columns = Descrição)
+  )
+```
+
+## Instrumentos
+
+### Transtornos Mentais Comuns
+
+O Self-Reporting Questionnaire-20 (SRQ-20) é uma ferramenta de triagem para transtornos mentais não psicóticos (transtornos mentais comuns - TMC), como insônia, dificuldade de concentração, fadiga, dores de cabeça e falta de apetite (por exemplo, “Faça você se cansa facilmente?”). Este instrumento é composto por 20 afirmações com opções binárias de resposta “sim” ou “não”. As respostas negativas são pontuadas como zero, enquanto as respostas positivas são pontuadas como 1. As pontuações são então somadas, com ponto de corte estabelecido em 7/8 para distinguir entre ausência e presença de TMC, respectivamente (Gonçalves et al., 2008).
+
+```{r}
+code_book |> 
+  select(Item, Descrição) |> 
+  filter(str_detect(Item, "srq")) |> 
+  gt() |> 
+  cols_align(
+    align =  "center",
+    columns = c(Item)
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(
+      columns = Descrição)
+  ) |> 
+  cols_align(
+    align =  "left",
+    columns = c(Descrição)  
+  ) |> 
+  cols_width(
+    Item ~ px(50)
+  )
+```
+
+### Assédio Moral no Local de Trabalho
+
+O NAQ-R mede a exposição ao assédio moral no local de trabalho durante os seis meses anteriores, utilizando uma escala de resposta de cinco níveis que varia de nunca a diariamente (Einarsen et al., 2009). A versão do NAQ-R validada para professores (Cunha, 2023) compreende 22 itens categorizados em dois fatores: assédio moral pessoal (e. g., “Foram feitos comentários ofensivos sobre a sua pessoa, suas atitudes ou sobre sua vida privada.”), assédio moral relacionado ao trabalho (por exemplo, “Foi obrigado(a) a realizar um trabalho abaixo do seu nível de competência”). Os itens da escala não mencionam explicitamente “assédio moral”; em vez disso, a avaliação baseia-se na autopercepção do entrevistado sobre a exposição a comportamentos característicos do bullying no local de trabalho (Christ, 2011). As pontuações para cada fator são derivadas do cálculo das médias de seus respectivos itens, conforme a tabela a seguir:
+
+```{r}
+naq_tabela <- code_book |>
+  select(Item, Descrição) |>
+  filter(str_detect(Item, "^n2$|n5|n6|n7|n8|n9|n10|n11|n12|n13|n14|n15|n17|n20|n22|n3|n4|n16|n18|n19|n21")) |> 
+  arrange(fct_relevel(Item, "n2","n5","n6","n7","n8","n9","n10","n11","n12","n13","n14","n15","n17","n20","n22","n3","n4","n16","n18","n19","n21"))
+```
+
+```{r}
+naq_tabela <- naq_tabela |> 
+  add_row(
+    Descrição = "Assédio moral pessoal", Item = NA,
+    .before = 1
+  ) |> 
+  add_row(
+    Descrição = "Assédio moral relacionado ao trabalho",
+    .before = 17
+  )
+```
+
+```{r}
+naq_tabela |> 
+  gt() |> 
+  sub_missing(missing_text = "") |> 
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_body(
+      columns = Descrição,
+      rows = c(1,17)
+    )
+  ) |>
+  cols_align(
+    align =  "center",
+    columns = c(Item)
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(
+      columns = Descrição)
+  ) |> 
+  cols_align(
+    align =  "left",
+    columns = c(Descrição)  
+  ) |> 
+  cols_width(
+    Item ~ px(50)
+  )
+```
+
+## Participantes
+
+### Descrição dos dados e tabela
+
+Descreva o perfil sociodemográfico dos participantes do estudo e gere uma tabela que sintetize estes dados. Utilize as normas da APA para a construção da tabela, conforme exemplos que podem ser encontrados [aqui](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/sample-tables){.external target="_blank"}.
+
+```{r}
+
+levels_cat <- tmcs_assedio_moral |> 
+  select(sexo, raca, escolaridade,
+         regiao, nivel_de_ensino) |> 
+  colnames()
+
+
+tmcs_assedio_moral |> 
+  select(sexo, raca, escolaridade,
+         regiao, nivel_de_ensino) |> 
+  pivot_longer(cols = everything()) |> 
+  count(name, value) |> 
+  mutate(
+    prop = n/sum(n),
+    prop = percent_format(0.1)(prop),
+    .by = name
+  ) |> 
+  arrange(fct_relevel(name, levels_cat),n) |> 
+  group_by(name) |> 
+  gt() |> 
+  fmt_percent(
+    columns = prop, decimals = 1
+    ) |> 
+  cols_align(columns = c(n, prop),
+    align = "center"  
+  ) |> 
+  cols_label(
+    value = "Variável",
+    prop = "%"
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+   ) 
+
+```
+
+
+### Gráficos
+
+Gere gráficos para uma apresentação sobre as características sociodemográficas dos participantes da investigação.
+
+## Associação entre variáveis numéricas
+
+### TMCs
+
+```{r}
+tmcs_assedio_moral <- tmcs_assedio_moral |>
+  rowwise() |> 
+  mutate(
+    tmcs_total = sum(c_across(srq_1:srq_20)),
+    assedio_pessoal = mean(c(n2, n5, n6, n7,
+                             n8, n9, n10, n11, 
+                             n12, n13, n14, n15, 
+                             n17,n20, n22)), 
+    assedio_profissional = mean(c(n3, n4, n16, n18, 
+                                  n19, n21))
+  ) |> 
+  ungroup()
+```
+
+#### TMCs e assedio moral pessoal
+
+```{r}
+tmcs_assedio_moral |> 
+  ggplot(aes(assedio_pessoal, tmcs_total)) +
+  geom_jitter(color = "#569BBD", alpha = 0.6) +
+  geom_smooth(method = "lm", se = F, 
+              color = "#F05133")
+```
+
+#### TMCs e assedio moral profissional
+
+```{r}
+tmcs_assedio_moral |> 
+  ggplot(aes(assedio_profissional, tmcs_total)) +
+  geom_jitter(color = "#569BBD", alpha = 0.6) +
+  geom_smooth(method = "lm", se = F, 
+              color = "#F05133")
+```
+
+#### TMCs e idade
+
+```{r}
+tmcs_assedio_moral |> 
+  ggplot(aes(idade, tmcs_total)) +
+  geom_jitter(color = "#569BBD", alpha = 0.6) +
+  geom_smooth(method = "lm", se = F, 
+              color = "#F05133")
+```
+
+#### TMCs e tempo de experiência como professor
+
+```{r}
+tmcs_assedio_moral |> 
+  ggplot(aes(experiencia_de_ensino, tmcs_total)) +
+  geom_jitter(color = "#569BBD", alpha = 0.6) +
+  geom_smooth(method = "lm", se = F, 
+              color = "#F05133")
+```
+
+
+
+-   o tempo de experiência como professor e;
+-   a renda familiar per capita.
+
+
+
+
+Discuta os gráficos obtidos.
+
+### Assédio moral
+
+A partir das pontuações das duas variáveis pertinentes ao assédio moral, construa gráficos que avaliem a associação destas variáveis com:
+
+-   a idade;
+-   o tempo de experiência como professor e;
+-   a renda familiar per capita.
+
+Discuta os gráficos obtidos.
+
+## Comparação entre grupos
+
+### TMCs
+
+Construa gráficos que comparem os grupos de participantes gerados a partir da variável que faz o rastreio qualitativo de TMCs em relação:
+
+-   aos dois tipos de assédio avaliados pelo NAQ-R (pessoal e relacionado ao trabalho);
+-   à idade;
+-   ao tempo de experiência como professor e;
+-   à renda familiar per capita.
+
+Discuta os gráficos obtidos.
+
+### Assédio moral
+
+Formule gráficos que comparem as pontuações dos dois tipos de assédio moral entre os grupos das seguintes variáveis:
+
+-   `sexo`;
+-   `idade`: compare pessoas que estão acima e abaixo da média ou da mediana da idade (avalie qual estatística é mais adequada para avaliar um caso típico);
+-   `raca`: compare somente as pontuações de negros (pretos e partos) e brancos;
+-   `escolaridade`: compare os participantes que tem até curso superior completo com aquelas que tem algum tipo de pós-graduação;
+-   `regiao`: compare os casos da região nordeste, sudeste e demais regiões agrupadas;
+-   Renda per capita: compare pessoas que estão acima e abaixo da média ou da mediana da renda per capita (avalie qual estatística é mais adequada para avaliar um caso típico);
+-   `nivel_de_ensino`: compare somente os professores que atuam em mais de um nível de ensino com aqueles que atuam no ensino fundamental
+
+Discuta os gráficos obtidos.
+
+### Associação entre variáveis categóricas
+
+Crie gráficos que analisem a associação entre os grupos de participantes gerados a partir da variável que faz rastreio qualitativo de TMCs e os grupos das seguintes variáveis:
+
+-   `sexo`;
+-   `idade`: compare pessoas que estão acima e abaixo da média ou da mediana da idade (avalie qual estatística é mais adequada para avaliar um caso típico);
+-   `raca`: compare somente as pontuações de negros (pretos e partos) e brancos;
+-   `escolaridade`: compare os participantes que tem até curso superior completo com aquelas que tem algum tipo de pós-graduação;
+-   `regiao`: compare os casos da região nordeste, sudeste e demais regiões agrupadas;
+-   Renda per capita: compare pessoas que estão acima e abaixo da média ou da mediana da renda per capita (avalie qual estatística é mais adequada para avaliar um caso típico);
+-   `nivel_de_ensino`: compare somente os professores que atuam em mais de um nível de ensino com aqueles que atuam no ensino fundamental

@@ -196,28 +196,7 @@ brasileiro |>
               values_from = c(mgols, mpontos))
 ```
 
-**Produza gráficos que avaliem a assoiação entre o resultado da partida e o mando de campo. Considere o período como um todo, bem como gere gráficos para cada campeonato**
 
-```{r}
-#| eval: false
-
-brasileiro |> 
-  ggplot(aes(mando_de_campo, 
-             fill = resultado)) +
-  geom_bar() +
-  scale_fill_colorblind()
-```
-
-```{r}
-#| eval: false
-
-brasileiro |> 
-  ggplot(aes(mando_de_campo,
-             fill = resultado)) +
-  geom_bar() +
-  scale_fill_colorblind() + 
-  facet_wrap(~campeonato)
-```
 
 **Produza tabelas com contagens e proporções que avaliem a assoiação entre o resultado da partida e o mando de campo. Considere o período como um todo, bem como gere gráficos para cada campeonato**
 
@@ -247,7 +226,9 @@ brasileiro |>
   pivot_wider(id_cols = c(campeonato, mando_de_campo), 
               names_from = resultado, 
               values_from = c(n, prop),
-              names_vary = "slowest") 
+              names_vary = "slowest") |> 
+  group_by(campeonato) |> 
+  gt()
 ```
 
 **desempenho estável**

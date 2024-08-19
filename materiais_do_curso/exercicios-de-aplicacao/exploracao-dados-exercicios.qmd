@@ -1,5 +1,5 @@
 ---
-title: "Exploração de dados: projeto"
+title: "Exploração de dados: exercícios"
 lang: pt-br
 format: 
   html:
@@ -143,33 +143,68 @@ Descreva o perfil sociodemográfico dos participantes do estudo e gere uma tabel
 
 Gere gráficos para uma apresentação sobre as características sociodemográficas dos participantes da investigação.
 
-## Assédio moral e TMCs
+## Associação entre variáveis numéricas
 
-### Associação entre variáveis
+### TMCs
 
 A partir da pontuação total do SRQ-20, construa gráficos que analisem a associação entre TMCs e:
 
--   os dois tipos de assédio avaliados pelo NAQ-R (pessoal e relacionado ao trabalho);
+-   os dois tipos de assédio moral avaliados pelo NAQ-R;
 -   a idade;
 -   o tempo de experiência como professor e; 
 -   a renda familiar per capita.
 
-A partir das pontuações do assédio moral pessoal, bem como daquele relacionado ao trabalho, construa gráficos que avaliem a associação destas variáveis com:
+Discuta os gráficos obtidos.
+
+### Assédio moral
+
+A partir das pontuações das duas variáveis pertinentes ao assédio moral, construa gráficos que avaliem a associação destas variáveis com:
 
 -   a idade;
 -   o tempo de experiência como professor e; 
 -   a renda familiar per capita.
 
-Discuta os achados de todos os gráficos obtidos.
+Discuta os gráficos obtidos.
 
-### Comparação entre grupos
+## Comparação entre grupos
 
-Construa gráficos que comparem os grupos de participantes gerados a partir do rastreio qualitativo de TMCs em relação:
+### TMCs
+
+Construa gráficos que comparem os grupos de participantes gerados a partir da variável que faz o rastreio qualitativo de TMCs em relação:
 
 -   aos dois tipos de assédio avaliados pelo NAQ-R (pessoal e relacionado ao trabalho);
 -   à idade;
 -   ao tempo de experiência como professor e; 
 -   à renda familiar per capita.
+
+Discuta os gráficos obtidos.
+
+### Assédio moral
+
+Formule gráficos que comparem as pontuações dos dois tipos de assédio moral entre os grupos das seguintes variáveis:
+
+-   `sexo`; 
+-   `idade`: compare pessoas que estão acima e abaixo da média ou da mediana da idade (avalie qual estatística é mais adequada para avaliar um caso típico);
+-   `raca`: compare somente as pontuações de negros (pretos e partos) e brancos;
+-   `escolaridade`: compare os participantes que tem até curso superior completo com aquelas que tem algum tipo de pós-graduação;
+-   `regiao`: compare os casos da região nordeste, sudeste e demais regiões agrupadas;
+-   Renda per capita: compare pessoas que estão acima e abaixo da média ou da mediana da renda per capita (avalie qual estatística é mais adequada para avaliar um caso típico);
+-   `nivel_de_ensino`: compare somente os professores que atuam em mais de um nível de ensino com aqueles que atuam no ensino fundamental
+
+Discuta os gráficos obtidos.
+
+### Associação entre variáveis categóricas
+
+Crie gráficos que analisem a associação entre os grupos de participantes gerados a partir da variável que faz rastreio qualitativo de TMCs e os grupos das seguintes variáveis:
+
+-   `sexo`; 
+-   `idade`: compare pessoas que estão acima e abaixo da média ou da mediana da idade (avalie qual estatística é mais adequada para avaliar um caso típico);
+-   `raca`: compare somente as pontuações de negros (pretos e partos) e brancos;
+-   `escolaridade`: compare os participantes que tem até curso superior completo com aquelas que tem algum tipo de pós-graduação;
+-   `regiao`: compare os casos da região nordeste, sudeste e demais regiões agrupadas;
+-   Renda per capita: compare pessoas que estão acima e abaixo da média ou da mediana da renda per capita (avalie qual estatística é mais adequada para avaliar um caso típico);
+-   `nivel_de_ensino`: compare somente os professores que atuam em mais de um nível de ensino com aqueles que atuam no ensino fundamental
+
 
 
 
