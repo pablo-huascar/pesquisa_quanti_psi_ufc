@@ -9,7 +9,6 @@ format:
      fig-dpi: 300
      fig-align: center
      toc: true
-echo: false
 message: false
 warning: false
 editor: visual
@@ -142,7 +141,6 @@ naq_tabela |>
 Descreva o perfil sociodemográfico dos participantes do estudo e gere uma tabela que sintetize estes dados. Utilize as normas da APA para a construção da tabela, conforme exemplos que podem ser encontrados [aqui](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/sample-tables){.external target="_blank"}.
 
 ```{r}
-
 levels_cat <- tmcs_assedio_moral |> 
   select(sexo, raca, escolaridade,
          regiao, nivel_de_ensino) |> 
@@ -160,24 +158,8 @@ tmcs_assedio_moral |>
     .by = name
   ) |> 
   arrange(fct_relevel(name, levels_cat),n) |> 
-  group_by(name) |> 
-  gt() |> 
-  fmt_percent(
-    columns = prop, decimals = 1
-    ) |> 
-  cols_align(columns = c(n, prop),
-    align = "center"  
-  ) |> 
-  cols_label(
-    value = "Variável",
-    prop = "%"
-  ) |> 
-  tab_options(
-    table.width = pct(100),
-   ) 
-
+  print(n = Inf)
 ```
-
 
 ### Gráficos
 
@@ -199,10 +181,14 @@ tmcs_assedio_moral <- tmcs_assedio_moral |>
     assedio_profissional = mean(c(n3, n4, n16, n18, 
                                   n19, n21))
   ) |> 
-  ungroup()
+  ungroup() |> 
+  mutate(
+    renda_per_capita = renda_familiar_mensal/dependentes_da_renda_familiar
+  )
+  
 ```
 
-#### TMCs e assedio moral pessoal
+#### TMCs e o assedio moral pessoal
 
 ```{r}
 tmcs_assedio_moral |> 
@@ -212,7 +198,7 @@ tmcs_assedio_moral |>
               color = "#F05133")
 ```
 
-#### TMCs e assedio moral profissional
+#### TMCs e o assedio moral profissional
 
 ```{r}
 tmcs_assedio_moral |> 
@@ -222,7 +208,7 @@ tmcs_assedio_moral |>
               color = "#F05133")
 ```
 
-#### TMCs e idade
+#### TMCs e a idade
 
 ```{r}
 tmcs_assedio_moral |> 
@@ -232,7 +218,7 @@ tmcs_assedio_moral |>
               color = "#F05133")
 ```
 
-#### TMCs e tempo de experiência como professor
+#### TMCs e o tempo de experiência como professor
 
 ```{r}
 tmcs_assedio_moral |> 
@@ -242,19 +228,50 @@ tmcs_assedio_moral |>
               color = "#F05133")
 ```
 
+#### TMCS e a renda familiar per capita.
 
-
--   o tempo de experiência como professor e;
--   a renda familiar per capita.
-
-
-
-
-Discuta os gráficos obtidos.
+```{r}
+tmcs_assedio_moral |> 
+  ggplot(aes(renda_per_capita, tmcs_total)) +
+  geom_jitter(color = "#569BBD", alpha = 0.6) +
+  geom_smooth(method = "lm", se = F,
+              color = "#F05133")
+```
 
 ### Assédio moral
 
 A partir das pontuações das duas variáveis pertinentes ao assédio moral, construa gráficos que avaliem a associação destas variáveis com:
+
+#### Assédio moral pessoal e a idade
+
+```{r}
+tmcs_assedio_moral |> 
+  ggplot(aes(idade, assedio_pessoal)) +
+  geom_jitter(color = "#569BBD", alpha = 0.6) +
+  geom_smooth(method = "lm", se = F,
+              color = "#F05133")
+```
+
+#### Assédio moral pessoal e o tempo de experiência como professor
+
+```{r}
+tmcs_assedio_moral |> 
+  ggplot(aes(experiencia_de_ensino, assedio_pessoal)) +
+  geom_jitter(color = "#569BBD", alpha = 0.6) +
+  geom_smooth(method = "lm", se = F,
+              color = "#F05133")
+```
+
+#### Assédio moral pessoal e a renda familiar per capita
+
+```{r}
+tmcs_assedio_moral |> 
+  ggplot(aes(renda_per_capita, assedio_pessoal)) +
+  geom_jitter(color = "#569BBD", alpha = 0.6) +
+  geom_smooth(method = "lm", se = F,
+              color = "#F05133")
+```
+
 
 -   a idade;
 -   o tempo de experiência como professor e;
@@ -289,7 +306,7 @@ Formule gráficos que comparem as pontuações dos dois tipos de assédio moral 
 
 Discuta os gráficos obtidos.
 
-### Associação entre variáveis categóricas
+## Associação entre variáveis categóricas
 
 Crie gráficos que analisem a associação entre os grupos de participantes gerados a partir da variável que faz rastreio qualitativo de TMCs e os grupos das seguintes variáveis:
 

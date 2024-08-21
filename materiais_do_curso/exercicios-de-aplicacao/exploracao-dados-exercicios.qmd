@@ -137,7 +137,7 @@ naq_tabela |>
 
 ### Descrição dos dados e tabela
 
-Descreva o perfil sociodemográfico dos participantes do estudo e gere uma tabela que sintetize estes dados. Utilize as normas da APA para a construção da tabela, conforme exemplos que podem ser encontrados [aqui](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/sample-tables){.external target="_blank"}. 
+Descreva o perfil sociodemográfico dos participantes do estudo e gere uma tabela que sintetize estes dados. Utilize as normas da APA para a construção desta tabela e de todas as outras demandadas nesta atividade, conforme exemplos que podem ser encontrados [aqui](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/sample-tables){.external target="_blank"}.
 
 ### Gráficos
 
@@ -151,7 +151,7 @@ A partir da pontuação total do SRQ-20, construa gráficos que analisem a assoc
 
 -   os dois tipos de assédio moral avaliados pelo NAQ-R;
 -   a idade;
--   o tempo de experiência como professor e; 
+-   o tempo de experiência como professor e;
 -   a renda familiar per capita.
 
 Discuta os gráficos obtidos.
@@ -161,7 +161,7 @@ Discuta os gráficos obtidos.
 A partir das pontuações das duas variáveis pertinentes ao assédio moral, construa gráficos que avaliem a associação destas variáveis com:
 
 -   a idade;
--   o tempo de experiência como professor e; 
+-   o tempo de experiência como professor e;
 -   a renda familiar per capita.
 
 Discuta os gráficos obtidos.
@@ -170,20 +170,20 @@ Discuta os gráficos obtidos.
 
 ### TMCs
 
-Construa gráficos que comparem os grupos de participantes gerados a partir da variável que faz o rastreio qualitativo de TMCs em relação:
+Construa gráficos e tabelas que comparem os grupos de participantes gerados a partir da variável que faz o rastreio qualitativo de TMCs em relação:
 
 -   aos dois tipos de assédio avaliados pelo NAQ-R (pessoal e relacionado ao trabalho);
 -   à idade;
--   ao tempo de experiência como professor e; 
+-   ao tempo de experiência como professor e;
 -   à renda familiar per capita.
 
 Discuta os gráficos obtidos.
 
 ### Assédio moral
 
-Formule gráficos que comparem as pontuações dos dois tipos de assédio moral entre os grupos das seguintes variáveis:
+Formule gráficos e tabelas que comparem as pontuações dos dois tipos de assédio moral entre os grupos das seguintes variáveis:
 
--   `sexo`; 
+-   `sexo`;
 -   `idade`: compare pessoas que estão acima e abaixo da média ou da mediana da idade (avalie qual estatística é mais adequada para avaliar um caso típico);
 -   `raca`: compare somente as pontuações de negros (pretos e partos) e brancos;
 -   `escolaridade`: compare os participantes que tem até curso superior completo com aquelas que tem algum tipo de pós-graduação;
@@ -191,13 +191,13 @@ Formule gráficos que comparem as pontuações dos dois tipos de assédio moral 
 -   Renda per capita: compare pessoas que estão acima e abaixo da média ou da mediana da renda per capita (avalie qual estatística é mais adequada para avaliar um caso típico);
 -   `nivel_de_ensino`: compare somente os professores que atuam em mais de um nível de ensino com aqueles que atuam no ensino fundamental
 
-Discuta os gráficos obtidos.
+Discuta os gráficos e tabelas obtidos.
 
-### Associação entre variáveis categóricas
+## Associação entre variáveis categóricas
 
-Crie gráficos que analisem a associação entre os grupos de participantes gerados a partir da variável que faz rastreio qualitativo de TMCs e os grupos das seguintes variáveis:
+Crie gráficos e tabelas que analisem a associação entre os grupos de participantes gerados a partir da variável que faz rastreio qualitativo de TMCs e os grupos das seguintes variáveis:
 
--   `sexo`; 
+-   `sexo`;
 -   `idade`: compare pessoas que estão acima e abaixo da média ou da mediana da idade (avalie qual estatística é mais adequada para avaliar um caso típico);
 -   `raca`: compare somente as pontuações de negros (pretos e partos) e brancos;
 -   `escolaridade`: compare os participantes que tem até curso superior completo com aquelas que tem algum tipo de pós-graduação;
@@ -205,7 +205,4 @@ Crie gráficos que analisem a associação entre os grupos de participantes gera
 -   Renda per capita: compare pessoas que estão acima e abaixo da média ou da mediana da renda per capita (avalie qual estatística é mais adequada para avaliar um caso típico);
 -   `nivel_de_ensino`: compare somente os professores que atuam em mais de um nível de ensino com aqueles que atuam no ensino fundamental
 
-
-
-
-
+Discuta os gráficos e tabelas obtidos.
