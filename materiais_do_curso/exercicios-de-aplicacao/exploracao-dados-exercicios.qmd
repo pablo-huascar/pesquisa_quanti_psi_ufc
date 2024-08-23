@@ -16,6 +16,11 @@ editor: visual
 editor_options: 
   chunk_output_type: console
 ---
+```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
 
 ```{r}
 library(tidyverse)
@@ -56,7 +61,7 @@ code_book |>
 
 ### Transtornos Mentais Comuns
 
-O Self-Reporting Questionnaire-20 (SRQ-20) é uma ferramenta de triagem para transtornos mentais não psicóticos (transtornos mentais comuns - TMC), como insônia, dificuldade de concentração, fadiga, dores de cabeça e falta de apetite (por exemplo, “Faça você se cansa facilmente?”). Este instrumento é composto por 20 afirmações com opções binárias de resposta “sim” ou “não”. As respostas negativas são pontuadas como zero, enquanto as respostas positivas são pontuadas como 1. As pontuações são então somadas, com ponto de corte estabelecido em 7/8 para distinguir entre ausência e presença de TMC, respectivamente (Gonçalves et al., 2008).
+O Self-Reporting Questionnaire-20 (SRQ-20) é uma ferramenta de triagem para transtornos mentais não psicóticos (transtornos mentais comuns - TMC), como insônia, dificuldade de concentração, fadiga, dores de cabeça e falta de apetite (por exemplo, “Faça você se cansa facilmente?”). Este instrumento é composto por 20 afirmações com opções binárias de resposta (“sim” ou “não”). As respostas negativas são pontuadas como zero, enquanto as respostas positivas são pontuadas como 1. As pontuações são então somadas, com ponto de corte estabelecido em 7/8 para distinguir entre ausência e presença de TMC, respectivamente (Gonçalves et al., 2008).
 
 ```{r}
 code_book |> 
@@ -177,7 +182,7 @@ Construa gráficos e tabelas que comparem os grupos de participantes gerados a p
 -   ao tempo de experiência como professor e;
 -   à renda familiar per capita.
 
-Discuta os gráficos obtidos.
+Discuta as tabelas e os gráficos obtidos.
 
 ### Assédio moral
 
@@ -191,7 +196,7 @@ Formule gráficos e tabelas que comparem as pontuações dos dois tipos de assé
 -   Renda per capita: compare pessoas que estão acima e abaixo da média ou da mediana da renda per capita (avalie qual estatística é mais adequada para avaliar um caso típico);
 -   `nivel_de_ensino`: compare somente os professores que atuam em mais de um nível de ensino com aqueles que atuam no ensino fundamental
 
-Discuta os gráficos e tabelas obtidos.
+Discuta as tabelas e os gráficos obtidos.
 
 ## Associação entre variáveis categóricas
 

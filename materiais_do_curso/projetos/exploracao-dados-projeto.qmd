@@ -196,8 +196,6 @@ brasileiro |>
               values_from = c(mgols, mpontos))
 ```
 
-
-
 **Produza tabelas com contagens e proporções que avaliem a assoiação entre o resultado da partida e o mando de campo. Considere o período como um todo, bem como gere gráficos para cada campeonato**
 
 ```{r}

@@ -17,6 +17,11 @@ editor_options:
 ---
 
 ```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
+```{r}
 library(tidyverse)
 library(gt)
 library(ggthemes)
@@ -158,7 +163,9 @@ tmcs_assedio_moral |>
     .by = name
   ) |> 
   arrange(fct_relevel(name, levels_cat),n) |> 
-  print(n = Inf)
+  print(n = Inf) |> 
+  group_by(name) |> 
+  gt()
 ```
 
 ### Gráficos
@@ -170,6 +177,8 @@ Gere gráficos para uma apresentação sobre as características sociodemográfi
 ### TMCs
 
 ```{r}
+#> Manipulação dos dados
+
 tmcs_assedio_moral <- tmcs_assedio_moral |>
   rowwise() |> 
   mutate(
@@ -297,6 +306,15 @@ Discuta os gráficos obtidos.
 Formule gráficos que comparem as pontuações dos dois tipos de assédio moral entre os grupos das seguintes variáveis:
 
 -   `sexo`;
+
+```{r}
+tmcs_assedio_moral |> 
+  ggplot(aes(sexo, assedio_pessoal)) +
+  geom_boxplot() +
+  coord_flip()
+```
+
+
 -   `idade`: compare pessoas que estão acima e abaixo da média ou da mediana da idade (avalie qual estatística é mais adequada para avaliar um caso típico);
 -   `raca`: compare somente as pontuações de negros (pretos e partos) e brancos;
 -   `escolaridade`: compare os participantes que tem até curso superior completo com aquelas que tem algum tipo de pós-graduação;
