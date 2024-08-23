@@ -1,0 +1,51 @@
+---
+title: "Inferência para a média como estimador pontual"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      code-link: true
+      code-tools: true
+      code-line-numbers: false
+      theme: simple
+      echo: false
+      message: false
+      warning: false
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+library(janitor)
+library(UsingR)
+library(carData)
+library(palmerpenguins)
+library(gt)
+library(scales)
+library(ggthemes)
+library(patchwork)
+library(DT)
+library(openintro)
+library(ggridges)
+conflicted::conflicts_prefer(dplyr::filter())
+conflicted::conflicts_prefer(dplyr::select())
+conflicted::conflicts_prefer(dplyr::lag())
+conflicted::conflicts_prefer(dplyr::summarize)
+conflicted::conflicts_prefer(dplyr::summarise)
+conflicted::conflicts_prefer(scales::alpha)
+conflicted::conflicts_prefer(scales::rescale)
+```
+
+## O que vamos aprender?
+
+
