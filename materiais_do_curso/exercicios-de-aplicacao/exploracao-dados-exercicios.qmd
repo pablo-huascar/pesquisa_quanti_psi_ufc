@@ -15,6 +15,9 @@ warning: false
 editor: visual
 editor_options: 
   chunk_output_type: console
+bibliography: exercios_exploracao.bib
+reference-section-title: Referências
+csl: apa.csl
 ---
 ```{r}
 #| include: false
@@ -61,7 +64,7 @@ code_book |>
 
 ### Transtornos Mentais Comuns
 
-O Self-Reporting Questionnaire-20 (SRQ-20) é uma ferramenta de triagem para transtornos mentais não psicóticos (transtornos mentais comuns - TMC), como insônia, dificuldade de concentração, fadiga, dores de cabeça e falta de apetite (por exemplo, “Faça você se cansa facilmente?”). Este instrumento é composto por 20 afirmações com opções binárias de resposta (“sim” ou “não”). As respostas negativas são pontuadas como zero, enquanto as respostas positivas são pontuadas como 1. As pontuações são então somadas, com ponto de corte estabelecido em 7/8 para distinguir entre ausência e presença de TMC, respectivamente (Gonçalves et al., 2008).
+O Self-Reporting Questionnaire-20 (SRQ-20) é uma ferramenta de triagem para transtornos mentais não psicóticos (transtornos mentais comuns - TMC), como insônia, dificuldade de concentração, fadiga, dores de cabeça e falta de apetite (por exemplo, “Faça você se cansa facilmente?”). Este instrumento é composto por 20 afirmações com opções binárias de resposta (“sim” ou “não”). As respostas negativas são pontuadas como zero, enquanto as respostas positivas são pontuadas como 1. As pontuações são então somadas, com ponto de corte estabelecido em 7/8 para distinguir entre ausência e presença de TMC, respectivamente [@gonçalves_stein_kapczinski_2008].
 
 ```{r}
 code_book |> 
@@ -88,7 +91,7 @@ code_book |>
 
 ### Assédio Moral no Local de Trabalho
 
-O NAQ-R mede a exposição ao assédio moral no local de trabalho durante os seis meses anteriores, utilizando uma escala de resposta de cinco níveis que varia de nunca a diariamente (Einarsen et al., 2009). A versão do NAQ-R validada para professores (Cunha, 2023) compreende 22 itens categorizados em dois fatores: assédio moral pessoal (e. g., “Foram feitos comentários ofensivos sobre a sua pessoa, suas atitudes ou sobre sua vida privada.”), assédio moral relacionado ao trabalho (por exemplo, “Foi obrigado(a) a realizar um trabalho abaixo do seu nível de competência”). Os itens da escala não mencionam explicitamente “assédio moral”; em vez disso, a avaliação baseia-se na autopercepção do entrevistado sobre a exposição a comportamentos característicos do bullying no local de trabalho (Christ, 2011). As pontuações para cada fator são derivadas do cálculo das médias de seus respectivos itens, conforme a tabela a seguir:
+O NAQ-R mede a exposição ao assédio moral no local de trabalho durante os seis meses anteriores, utilizando uma escala de resposta de cinco níveis que varia de nunca a diariamente [@einarsen2009measuring]. A versão do NAQ-R validada para professores [@cunha2023contexto] compreende 21 itens categorizados em dois fatores: assédio moral pessoal (e. g., “Foram feitos comentários ofensivos sobre a sua pessoa, suas atitudes ou sobre sua vida privada.”), assédio moral relacionado ao trabalho (por exemplo, “Foi obrigado(a) a realizar um trabalho abaixo do seu nível de competência”). Os itens da escala não mencionam explicitamente “assédio moral”; em vez disso, a avaliação baseia-se na autopercepção do entrevistado sobre a exposição a comportamentos característicos do bullying no local de trabalho [@silva2017caracteristicas]. As pontuações para cada fator são derivadas do cálculo das médias de seus respectivos itens, conforme a tabela a seguir:
 
 ```{r}
 naq_tabela <- code_book |>
