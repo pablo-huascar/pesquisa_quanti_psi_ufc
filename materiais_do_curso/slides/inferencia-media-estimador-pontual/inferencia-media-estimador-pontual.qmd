@@ -49,3 +49,122 @@ conflicted::conflicts_prefer(scales::rescale)
 ## O que vamos aprender?
 
 
+## Erro amostral: a massa corporal dos pinguins
+
+```{r}
+n_bmass_penguins <- sum(!is.na(penguins$body_mass_g))
+mean_bmass_penguins <- mean(penguins$body_mass_g, na.rm = T)
+mean_bmass_penguins <- round(mean_bmass_penguins, 1)
+sd_bmass_penguins <- sd(penguins$body_mass_g, na.rm = T)
+sd_bmass_penguins <- round(sd_bmass_penguins, 1)
+range_bmass_penguins <- range(penguins$body_mass_g, na.rm = T)
+nclass_bmass_penguins <- nclass.Sturges(penguins$body_mass_g)
+breaks_bmass_penguins <- pretty(x = range_bmass_penguins,
+                                n = nclass_bmass_penguins,
+                                min.n = 1)
+n_label <- str_c("n = ", n_bmass_penguins)
+mean_label <- str_c("M = ", mean_bmass_penguins)
+sd_label <- str_c("DP = ", sd_bmass_penguins)
+
+penguins |> 
+  ggplot(aes(body_mass_g)) +
+  geom_histogram(breaks = breaks_bmass_penguins,
+                 fill = "#569BBD",
+                 color = "#FFFFFF") +
+  geom_vline(xintercept = mean_bmass_penguins, 
+             color = "#F05133", linetype = 2,
+             linewidth = 1) +
+  geom_text(label = n_label, x = 5895, y = 80) +
+  geom_text(label = mean_label, x = 6000, y = 75) +
+  geom_text(label = sd_label, x = 5950, y = 70)
+```
+
+## Amostras da população de pinguins
+
+```{r}
+body_mass_g <- penguins |> 
+  drop_na(body_mass_g) |> 
+  select(body_mass_g)
+
+amostras_label <- str_c("Amostra ", 1:5)
+
+amostras_body_mass_g <- map(1:5, \(x) slice_sample(body_mass_g, n = 5)) |> 
+  list_cbind() |> 
+  rename_with(~amostras_label)
+
+amostras_body_mass_g |> 
+  gt() |> 
+  grand_summary_rows(
+    columns = everything(), 
+    fns = list(
+      M = ~ mean(.),
+      DP = ~ sd(.)
+    ),
+    fmt = ~ fmt_number(., decimals = 1, use_seps = F)
+  ) |> 
+  cols_align(
+    align = "center"
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    ) |> 
+  tab_style(
+    locations = list(cells_grand_summary(), cells_stub_grand_summary()),
+    style = cell_fill(color = "gray" |> adjust_luminance(steps = +2))
+  ) |> 
+  tab_style(
+    style = list(
+      cell_text( align = "right")
+    ),
+    locations = cells_stub_grand_summary()
+  ) |> tab_style(
+    locations = list(cells_stub()),
+    style = cell_fill(color = "white")
+  )
+```
+
+## Amostras da população de pinguins
+
+```{r}
+amostras_bm_long <- amostras_body_mass_g |> 
+  pivot_longer(
+    cols = everything(), cols_vary = "slowest"
+    )
+
+mean_label <- str_c("Média da população = ", mean_bmass_penguins)
+
+amostras_bm_long |> 
+  summarise(
+    Média = mean(value),
+    .by = name
+  ) |> 
+ggplot(aes(Média, name)) +
+  geom_point(color = "#569BBD", size = 3) +
+  geom_vline(xintercept = mean_bmass_penguins, 
+             color = "#F05133", linetype = 2,
+             linewidth = 1) +
+  labs(
+    y = NULL
+  )
+```
+
+
+
+## Erro padrão
+
+```{r}
+
+
+se_bmass_penguins <- sd_bmass_penguins/sqrt(n_bmass_penguins)
+t.test(penguins$body_mass_g)
+
+confint(lm(body_mass_g ~ 1, penguins)) 
+
+```
+
+## Intervalo de confiança
+
