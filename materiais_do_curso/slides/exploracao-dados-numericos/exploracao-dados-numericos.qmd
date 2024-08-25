@@ -10,6 +10,7 @@ format:
       echo: false
       message: false
       warning: false
+      css: logo.css
 progress: true
 slide-number: true
 editor: visual
@@ -1583,7 +1584,9 @@ $$ [*Onde:*]{style="font-size: 60%"}
 
 $$
 \text{Bins Ótimos} = \lceil \log_2(30) + 1 \rceil = 6
-$$ . . .
+$$ 
+
+. . .
 
 [**5. Largura dos intervalos: divida a amplitude (53) pelo número de intervalos:**]{style="font-size: 60%"}
 

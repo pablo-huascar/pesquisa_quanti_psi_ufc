@@ -10,6 +10,7 @@ format:
       echo: false
       message: false
       warning: false
+      css: logo.css
 progress: true
 slide-number: true
 editor: visual

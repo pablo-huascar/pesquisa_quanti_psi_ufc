@@ -10,6 +10,7 @@ format:
       echo: false
       message: false
       warning: false
+      css: logo.css
 progress: true
 slide-number: true
 editor: visual
@@ -37,6 +38,9 @@ library(patchwork)
 library(DT)
 library(openintro)
 library(ggridges)
+library(latex2exp)
+library(ggtext)
+library(ggrepel)
 conflicted::conflicts_prefer(dplyr::filter())
 conflicted::conflicts_prefer(dplyr::select())
 conflicted::conflicts_prefer(dplyr::lag())
@@ -48,8 +52,88 @@ conflicted::conflicts_prefer(scales::rescale)
 
 ## O que vamos aprender?
 
+# Bancos de dados utilizados
 
-## Erro amostral: a massa corporal dos pinguins
+##  {background-image="img/pinguins.png" background-size="contain"}
+
+## `penguins` {.smaller}
+
+Medidas de tamanho para pinguins forrageadores adultos perto da Estação Palmer, Antártida. Inclui medidas para espécies de pinguins, ilha no Arquipélago Palmer, tamanho (comprimento da nadadeira, massa corporal, dimensões do bico) e sexo.
+
+-   Formato: Um banco de dados com `r nrow(penguins)` observações e `r ncol(penguins)` variáveis
+    -   `species`: espécies de pinguins (Adélie, Chinstrap e Gentoo)
+    -   `island`: ilha no arquipélago de Palmer, Antártida (Biscoe, Dream ou Torgersen)
+    -   `bill_length_mm`: comprimento do bico em milímetros
+    -   `flipper_length_mm`: comprimento da nadadeira em milímetros
+    -   `body_mass_g`: massa corporal em gramas
+    -   `sex`: sexo do pinguin (macho ou fêmea)
+    -   `year`: ano em que foi realizado o estudo
+
+## Uma olhada em `penguins`
+
+```{r}
+#| label: tbl-penguins
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `penguins`
+#| tbl-cap-location: bottom
+penguins |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+
+
+## A massa corporal dos pinguins {.smaller} 
+
+Para esta explicação, vamos imaginar que os `r nrow(penguins)` casos do banco de dados dos `penguins` correspondem a toda população de pinguins no arquipélogo Palmer.
+
+```{r}
+#| label: tbl-m-dp-massa-corporal
+#| tbl-cap: "Média e desvio padrão da massa corporal dos pinguins (g)"
+#| tbl-cap-location: bottom
+penguins |> 
+  summarise(
+    "\U03BC" = mean(body_mass_g, na.rm = TRUE),
+    "\U03C3" = sd(body_mass_g, na.rm = TRUE)
+  ) |> 
+  pivot_longer(
+    cols = everything(), names_to = "Parâmetro", 
+    values_to = "Valor"
+    ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  fmt_number(
+    columns = 2, rows =  1, 
+    decimals = 1, use_seps = F
+    ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+Lembre:
+
+-   Parâmetro: medida numérica que descreve uma característica de uma população
+    -   Valor fixo
+    -   Dificilmente conhecido devido ao custo ou pela inviabilidade da coleta de dados
+-   $\mu$: média da população
+-   $\sigma$: desvio padrão da população
+
+## Histograma distribuição da massa corporal da "população" de pinguins
 
 ```{r}
 n_bmass_penguins <- sum(!is.na(penguins$body_mass_g))
@@ -63,9 +147,9 @@ breaks_bmass_penguins <- pretty(x = range_bmass_penguins,
                                 n = nclass_bmass_penguins,
                                 min.n = 1)
 n_label <- str_c("n = ", n_bmass_penguins)
-mean_label <- str_c("M = ", mean_bmass_penguins)
-sd_label <- str_c("DP = ", sd_bmass_penguins)
-
+mean_label <- TeX(str_c("$\\mu$ = ", mean_bmass_penguins))
+sd_label <- TeX(str_c("$\\sigma$ = ", sd_bmass_penguins))
+  
 penguins |> 
   ggplot(aes(body_mass_g)) +
   geom_histogram(breaks = breaks_bmass_penguins,
@@ -74,10 +158,21 @@ penguins |>
   geom_vline(xintercept = mean_bmass_penguins, 
              color = "#F05133", linetype = 2,
              linewidth = 1) +
-  geom_text(label = n_label, x = 5895, y = 80) +
+  geom_text(label = n_label, x = 5900, y = 80) +
   geom_text(label = mean_label, x = 6000, y = 75) +
-  geom_text(label = sd_label, x = 5950, y = 70)
+  geom_text(label = sd_label, x = 5915, y = 70)
 ```
+
+
+## O que é um estimador pontual? {.smaller}    
+
+-   Um único valor que é calculado a partir de dados da amostra para estimar (fazer uma inferência sobre) um parâmetro populacional desconhecido
+-   É o "melhor palpite" ou a "melhor estimativa" sobre o parâmetro populacional
+-   Nunca são perfeitos: por ser baseado em uma amostra, o estimador pontual pode diferir do valor real do parâmetro populacional
+    -   Sempre haverá um componente de erro no estimador pontual
+-   Exemplos:
+    -   $\bar{x}$: média da amostra
+    -   $s$: desvio padrão da amostra
 
 ## Amostras da população de pinguins
 
@@ -97,8 +192,8 @@ amostras_body_mass_g |>
   grand_summary_rows(
     columns = everything(), 
     fns = list(
-      M = ~ mean(.),
-      DP = ~ sd(.)
+      "x\U0305" = ~ mean(.),
+      Erro = ~ (mean(.) - mean_bmass_penguins)
     ),
     fmt = ~ fmt_number(., decimals = 1, use_seps = F)
   ) |> 
@@ -127,15 +222,13 @@ amostras_body_mass_g |>
   )
 ```
 
-## Amostras da população de pinguins
+## Médias das amostras retiradas da população de pinguins
 
 ```{r}
 amostras_bm_long <- amostras_body_mass_g |> 
   pivot_longer(
     cols = everything(), cols_vary = "slowest"
     )
-
-mean_label <- str_c("Média da população = ", mean_bmass_penguins)
 
 amostras_bm_long |> 
   summarise(
@@ -147,14 +240,17 @@ ggplot(aes(Média, name)) +
   geom_vline(xintercept = mean_bmass_penguins, 
              color = "#F05133", linetype = 2,
              linewidth = 1) +
+  geom_text_repel(aes(label = Média)) +
+  geom_text(label = mean_label, x = 4300, y = 5) +
   labs(
-    y = NULL
+    y = NULL,
+    x = "x\U0305"
   )
 ```
 
 
 
-## Erro padrão
+## Erro padrão da média
 
 ```{r}
 
