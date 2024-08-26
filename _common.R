@@ -1,5 +1,5 @@
 set.seed(1014)
-options(digits = 3)
+options(digits = 5)
 
 # knitr chunk options ----------------------------------------------------------
 

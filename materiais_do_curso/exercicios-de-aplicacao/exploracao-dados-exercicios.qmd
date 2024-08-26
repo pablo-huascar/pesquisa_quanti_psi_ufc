@@ -19,11 +19,11 @@ bibliography: exercios_exploracao.bib
 reference-section-title: Referências
 csl: apa.csl
 ---
+
 ```{r}
 #| include: false
 source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
 ```
-
 
 ```{r}
 library(tidyverse)

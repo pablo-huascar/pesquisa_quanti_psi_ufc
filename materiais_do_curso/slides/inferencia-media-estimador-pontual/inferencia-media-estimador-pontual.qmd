@@ -52,6 +52,11 @@ conflicted::conflicts_prefer(scales::rescale)
 
 ## O que vamos aprender?
 
+-   Estimadores pontuais
+-   Distribuições amostrais
+-   Erro padrão da média
+-   Intervalos de confiança
+
 # Bancos de dados utilizados
 
 ##  {background-image="img/pinguins.png" background-size="contain"}
@@ -89,15 +94,13 @@ penguins |>
   )
 ```
 
-
-
-## A massa corporal dos pinguins {.smaller} 
+## A massa corporal dos pinguins {.smaller}
 
 Para esta explicação, vamos imaginar que os `r nrow(penguins)` casos do banco de dados dos `penguins` correspondem a toda população de pinguins no arquipélogo Palmer.
 
 ```{r}
 #| label: tbl-m-dp-massa-corporal
-#| tbl-cap: "Média e desvio padrão da massa corporal dos pinguins (g)"
+#| tbl-cap: "Média e desvio padrão da massa corporal (g) da população de pinguins"
 #| tbl-cap-location: bottom
 penguins |> 
   summarise(
@@ -125,15 +128,13 @@ penguins |>
   )
 ```
 
-Lembre:
-
 -   Parâmetro: medida numérica que descreve uma característica de uma população
     -   Valor fixo
     -   Dificilmente conhecido devido ao custo ou pela inviabilidade da coleta de dados
 -   $\mu$: média da população
 -   $\sigma$: desvio padrão da população
 
-## Histograma distribuição da massa corporal da "população" de pinguins
+## 
 
 ```{r}
 n_bmass_penguins <- sum(!is.na(penguins$body_mass_g))
@@ -159,24 +160,27 @@ penguins |>
              color = "#F05133", linetype = 2,
              linewidth = 1) +
   geom_text(label = n_label, x = 5900, y = 80) +
-  geom_text(label = mean_label, x = 6000, y = 75) +
-  geom_text(label = sd_label, x = 5915, y = 70)
+  geom_text(label = mean_label, x = 5900, y = 70) +
+  geom_text(label = sd_label, x = 5900, y = 60) +
+  labs(
+    title = "Histograma da massa corporal da “população” de pinguins"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5)
+  )
 ```
 
+# Amostragem e estimadores pontuais
 
-## O que é um estimador pontual? {.smaller}    
+## Amostras da população de pinguins {.smaller}
 
--   Um único valor que é calculado a partir de dados da amostra para estimar (fazer uma inferência sobre) um parâmetro populacional desconhecido
--   É o "melhor palpite" ou a "melhor estimativa" sobre o parâmetro populacional
--   Nunca são perfeitos: por ser baseado em uma amostra, o estimador pontual pode diferir do valor real do parâmetro populacional
-    -   Sempre haverá um componente de erro no estimador pontual
--   Exemplos:
-    -   $\bar{x}$: média da amostra
-    -   $s$: desvio padrão da amostra
-
-## Amostras da população de pinguins
+Sempre haverá algum erro entre o valor da média da amostra ($\bar{x}$), um estimador pontual, e a média da população ($\mu$).
 
 ```{r}
+#| label: tbl-amostras-bm
+#| tbl-cap: Amostra e médias amostrais da massa corporal (g) dos pinguins
+#| tbl-cap-location: bottom
+
 body_mass_g <- penguins |> 
   drop_na(body_mass_g) |> 
   select(body_mass_g)
@@ -222,7 +226,7 @@ amostras_body_mass_g |>
   )
 ```
 
-## Médias das amostras retiradas da população de pinguins
+## 
 
 ```{r}
 amostras_bm_long <- amostras_body_mass_g |> 
@@ -244,11 +248,127 @@ ggplot(aes(Média, name)) +
   geom_text(label = mean_label, x = 4300, y = 5) +
   labs(
     y = NULL,
-    x = "x\U0305"
+    x = "x\U0305",
+    title = "Médias das amostras retiradas da \"população\" de pinguins"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5)
   )
 ```
 
+## O que é um estimador pontual? {.smaller}
 
+-   Um único valor que é calculado a partir de dados da amostra para estimar (fazer uma inferência sobre) um parâmetro populacional desconhecido
+-   É o "melhor palpite" ou a "melhor estimativa" sobre o parâmetro populacional
+-   Nunca são perfeitos: por ser baseado em uma amostra, o estimador pontual pode diferir do valor real do parâmetro populacional
+    -   Sempre haverá um componente de erro no estimador pontual
+-   Exemplos:
+    -   $\bar{x}$: média da amostra
+    -   $s$: desvio padrão da amostra
+
+# Distribuição amostral da média amostral
+
+## O controle de qualidade dos salgadinhos Sobralitos {.smaller}
+
+::: columns
+::: {.column width="50%"}
+::: {style="font-size: 75%"}
+-   Os salgadinhos sobralitos devem ser vendidos em pacotes com peso médio de 300g e desvio padrão de 1g 
+-   A empresa que os fabrica precisa garantir este peso médio em cada lote de 10.000 pacotes
+    -   Não pode pesar a mais para não dar prejuízo
+    -   Não pode pesar a menos para não receber uma multa
+-   Não há como pesar todos os pacotes, então são retiradas amostras de 30 pacotes para avaliação
+-   A partir destas amostras, a empresa precisa fazer inferências sobre o todo o lote
+-   Lembre-se: as inferências feitas a parir de amostras são, por definição, incompletas
+    -   Sempre haverá algum erro
+:::
+:::
+
+::: {.column width="50%"}
+![](img/sobralitos.png){fig-align="center"}
+:::
+:::
+
+## Amostra de sobralitos {.smaller}
+
+```{r}
+#| eval: false
+
+lote_sobralitos <- tibble(
+  sobralitos = rnorm(n = 10000, mean = 300,
+                     sd = 1)
+  ) 
+
+amostras_label <- str_c("Amostra ", 1:1000)
+
+amostras_sobralistos <- map(1:1000, \(x) slice_sample(lote_sobralitos, n = 30)) |> 
+  list_cbind() |> 
+  rename_with(~amostras_label)
+
+amostras_sobralistos |> 
+  write_csv("./data/sobralitos.csv")
+```
+
+```{r}
+amostras_sobralistos <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/sobralitos.csv")
+```
+
+```{r}
+n_amostra1_sobralitos <- length(amostras_sobralistos$`Amostra 1`)
+mean_amostra1_sobralitos <- mean(amostras_sobralistos$`Amostra 1`)
+mean_amostra1_sobralitos <- round(mean_amostra1_sobralitos, 2)
+sd_amostra1_sobralitos <- sd(amostras_sobralistos$`Amostra 1`)
+sd_amostra1_sobralitos <- round(sd_amostra1_sobralitos, 2)
+```
+
+::: columns
+
+::: {.column width="50%"}
+-   O alvo da empresa é um peso de 300g
+-   A média da amostra foi $\bar{x}$ = `r mean_amostra1_sobralitos`
+-   Como se trata de uma amostra, não esperamos que a média seja extamente igual a 300
+-   `r mean_amostra1_sobralitos` é perto o suficiente da nossa meta para ser acetiável?
+:::
+
+::: {.column width="50%"}
+
+```{r}
+range_amostra1_sobralistos <- range(amostras_sobralistos$`Amostra 1`)
+nclass_sobralitos_amostra1 <- nclass.Sturges(amostras_sobralistos$`Amostra 1`)
+breaks_amostra1_sobralitos <- pretty(x = range_amostra1_sobralistos,
+                                     n = nclass_sobralitos_amostra1, min.n = 1)
+
+label_n_sobralitos <- str_c("n = ", n_amostra1_sobralitos)
+label_mean_sobralitos <- TeX(str_c("$\\bar{x}$ = ", mean_amostra1_sobralitos))
+label_sd_sobralitos <- TeX(str_c("$\\s$ = ", sd_amostra1_sobralitos))
+
+
+
+amostras_sobralistos |> 
+  ggplot(aes(`Amostra 1`)) +
+  geom_histogram(breaks = breaks_amostra1_sobralitos, 
+                 fill = "#569BBD", color = "#FFFFFF") +
+  geom_vline(xintercept = mean_amostra1_sobralitos, 
+             color = "#F05133", linetype = 2,
+             linewidth = 1) +
+  geom_text(label = label_n_sobralitos, 
+            x = 302, y = 10) +
+  geom_text(label = label_mean_sobralitos,
+            x = 302, y = 9) +
+  geom_text(label = label_sd_sobralitos,
+            x = 302, y = 8) +
+  labs(
+    title = "Histogram de uma amostra de sobralitos"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+:::
+
+:::
+
+## Distribuição amostral da média amostral
 
 ## Erro padrão da média
 
@@ -263,4 +383,3 @@ confint(lm(body_mass_g ~ 1, penguins))
 ```
 
 ## Intervalo de confiança
-

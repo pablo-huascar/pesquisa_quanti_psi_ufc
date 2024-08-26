@@ -758,6 +758,9 @@ basquete |>
                 'Pontos/jogo'),
     align = "center" 
   ) |> 
+  fmt_number(
+    columns = 'Pontos/jogo', decimals = 1
+    ) |> 
   tab_options(
     table.width = pct(100),
     table.font.size = "26px"
@@ -1584,7 +1587,7 @@ $$ [*Onde:*]{style="font-size: 60%"}
 
 $$
 \text{Bins Ótimos} = \lceil \log_2(30) + 1 \rceil = 6
-$$ 
+$$
 
 . . .
 
@@ -2119,15 +2122,19 @@ altura_2 |>
     "Soma dos desvios ao cubo" = sum(`Desvios ao cubo`),
     "n*s^3" = n_altura2*`Desvio parão`^3 |> round(),
     Assimetria = `Soma dos desvios ao cubo`/`n*s^3`
-    ) |> 
+  ) |> 
   select(!c(`Soma dos desvios ao cubo`, `n*s^3`)) |> 
   pivot_longer(cols = everything(), names_to = "Estatística",  
                values_to = "Valor") |> 
   gt() |> 
-  fmt_number(columns = Valor, rows = c(1, 2, 3, 4), 
-             decimals = 0, use_seps = F) |> 
-  fmt_number(columns = Valor, rows = 5, 
-             decimals = 1) |> 
+  fmt_number(
+    columns = Valor, rows = c(1, 2, 3, 4), 
+    decimals = 0, use_seps = F
+  ) |> 
+  fmt_number(
+    columns = Valor, rows = c(5,6), 
+    decimals = 2
+  ) |> 
   cols_align(
     columns = 2,
     align = "center"  
@@ -2142,7 +2149,7 @@ altura_2 |>
   tab_style(
     style = cell_text(align = "center"),
     locations = cells_column_labels(columns = "Estatística")
-    )
+  )
 ```
 
 ## Histograma da altura dos alunos
