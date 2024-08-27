@@ -306,7 +306,7 @@ ggplot(aes(Média, name)) +
 
 ::: columns
 ::: {.column width="50%"}
-::: {style="font-size: 75%"}
+::: {style="font-size: 70%"}
 -   Os salgadinhos sobralitos devem ser vendidos em pacotes com peso médio de 300g e desvio padrão de 5g[^1]
 -   A empresa que os fabrica precisa garantir este peso médio em cada lote de 10.000 pacotes
     -   Não pode pesar a mais para não dar prejuízo
@@ -319,7 +319,7 @@ ggplot(aes(Média, name)) +
 :::
 
 ::: {.column width="50%"}
-![](img/sobralitos.png){fig-align="center"}
+![](img/sobralitos.png){fig-align="center" width="378"}
 :::
 :::
 
@@ -383,11 +383,11 @@ amostras_sobralitos |>
              color = "#F05133", linetype = 2,
              linewidth = 1) +
   geom_text(label = label_n_sobralitos, 
-            x = 302, y = 10) +
+            x = 305, y = 10) +
   geom_text(label = label_mean_sobralitos,
-            x = 302, y = 9) +
+            x = 305, y = 9) +
   geom_text(label = label_sd_sobralitos,
-            x = 302, y = 8) +
+            x = 305, y = 8) +
   labs(
     title = "Histogram de uma amostra de sobralitos"
   ) +
@@ -600,13 +600,11 @@ amostras_price_diamonds |>
 
 [^2]: Da mesma forma que fizemos com o banco de dados dos pinguins, vamos tratar os diamantes como uma "população".
 
-## Média da distriuição amostral das médias amostrais: $\bar{X}$
+## Média de $\bar{X}$
 
 $$
 E(\bar{X}_n) = \mu \quad \\ \text{à medida que } n \rightarrow \text{cresce}
-$$
-
-$$
+$$ Onde, $$
 E(\bar{X}_n) = \text{o valor esperado da média de} \ \bar{X} 
 $$
 
@@ -614,7 +612,17 @@ $$
 \mu = \text{a média da população}
 $$
 
+## Média de $\bar{X}$ {.smaller}
+
+-   O valor esperado da média de $\bar{X}$ será, na melhor das hipóteses, uma estimativa de $\mu$
+-   Teríamos que tirar todas as amostras concebíveis da população para igualar perfeitamente a média populacional
+-   Mas, se fizermos isso, qual seria o propósito de amostrar, afinal?
+-   O melhor que podemos fazer é encontrar uma estimativa intervalar para a média populacional $\mu$
+-   Nossa estimativa intervalar será influenciada pelo tamanho da amostra e pelo grau de "confiança" com o qual estamos satisfeitos
+
 ## Erro padrão: o desvio padrão das distribuições amostrais
+
+
 
 ## Distribuições amostrais
 
