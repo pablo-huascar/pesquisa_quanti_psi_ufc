@@ -1844,8 +1844,8 @@ hist_altura_da_turma |>
 #| out-width: 70%
 
 breaks_diamonds_price <- pretty(range(diamonds$price),
-                          n = nclass.Sturges(diamonds$price),
-                          min.n = 1)
+                                n = nclass.Sturges(diamonds$price),
+                                min.n = 1)
 
 skew_diamonds_price <- skew(diamonds$price)
 skew_diamonds_price <- round(skew_diamonds_price, 2)
@@ -1865,7 +1865,7 @@ diamonds |>
   ) +
   theme(
     plot.title = element_text(hjust = 0.5)
-    )
+  )
 ```
 
 ### Distribuição simétrica
