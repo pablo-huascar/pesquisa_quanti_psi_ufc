@@ -578,7 +578,7 @@ amostras_price_diamonds |>
 ```{r}
 #| out-width: 70%
 
-amostras_price_diamonds <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data//amostras_price_diamonds.csv")
+amostras_price_diamonds <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/amostras_price_diamonds.csv")
 
 amostras_price_diamonds |> 
   summarise(
@@ -590,7 +590,8 @@ amostras_price_diamonds |>
     fill = "#569BBD", color = "#FFFFFF",) +
   labs(
     x = "Médias",
-    title = "Histograma das médias de 1000 amostras dos preços de 30 diamantes"
+    title = "Histograma das médias de 1000 amostras dos preços dos diamantes*",
+    caption = "*Cada amostra com 30 diamantes"
   ) +
   theme(
     plot.title = element_text(hjust = 0.5, size = 12)
@@ -620,9 +621,55 @@ $$
 -   O melhor que podemos fazer é encontrar uma estimativa intervalar para a média populacional $\mu$
 -   Nossa estimativa intervalar será influenciada pelo tamanho da amostra e pelo grau de "confiança" com o qual estamos satisfeitos
 
-## Erro padrão: o desvio padrão das distribuições amostrais
+## Erro padrão da média: o desvio padrão de $\bar{X}$ {.smaller}
+
+::: columns
+::: {.column width="50%"}
+
+**Erro padrão da média**
+
+$$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$
+$$\sigma_{\bar{x}} = \text{Erro padrão da média} $$  
 
 
+$$\sigma = \text{desvio padrão da população}$$  
+
+$$n = \text{tamanho da amostra}$$
+:::
+:::{.column width="50%"}
+```{r}
+amostras_sobralitos |> 
+  select(1:30) |> 
+  summarise(
+    across(everything(), mean)
+  ) |> 
+  pivot_longer(cols = everything()) |>   
+  ggplot(aes(value)) +
+  geom_histogram(bins = 5, fill = "#569BBD", 
+                 color = "#FFFFFF") +
+  labs(
+    x = "Médias das amostras",
+    title = "30 amostras de sobralitos*",
+    caption = "*Cada amostra com 30 pacotes"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+:::
+:::
+
+## Erro padrão: controle de qualidade do sobralitos
+::: columns
+::: {.column width="50%"}
+
+:::
+
+::: {.column width="50%"}
+
+:::
+
+:::
 
 ## Distribuições amostrais
 
