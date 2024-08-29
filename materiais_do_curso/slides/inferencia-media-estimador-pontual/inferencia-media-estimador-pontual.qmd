@@ -427,8 +427,9 @@ p_sobralitos_100 <- amostras_sobralitos_100 |>
   geom_histogram(breaks = breaks_100_sobralitos, 
                  fill = "#569BBD", color = "#FFFFFF") +
   labs(
-    title = "100 amostras de sobralitos",
-    x = "Médias das amostras"
+    title = "100 amostras de sobralitos*",
+    x = "Médias das amostras", 
+    caption = "*Cada amostra com 30 pacotes"
   ) +
   theme(
     plot.title = element_text(hjust = 0.5)
@@ -464,7 +465,8 @@ p_sobralitos_500 <- amostras_sobralitos_500 |>
                  fill = "#569BBD", color = "#FFFFFF") +
   labs(
     title = "500 amostras de sobralitos",
-    x = "Médias das amostras"
+    x = "Médias das amostras",
+    caption = "*Cada amostra com 30 pacotes"
   ) +
   theme(
     plot.title = element_text(hjust = 0.5)
@@ -500,7 +502,8 @@ p_sobralitos_1000 <- amostras_sobralitos_1000 |>
                  fill = "#569BBD", color = "#FFFFFF") +
   labs(
     title = "1000 amostras de sobralitos",
-    x = "Médias das amostras"
+    x = "Médias das amostras",
+    caption = "*Cada amostra com 30 pacotes"
   ) +
   theme(
     plot.title = element_text(hjust = 0.5)
@@ -625,18 +628,16 @@ $$
 
 ::: columns
 ::: {.column width="50%"}
-
 **Erro padrão da média**
 
-$$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$
-$$\sigma_{\bar{x}} = \text{Erro padrão da média} $$  
+$$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$ $$\sigma_{\bar{x}} = \text{Erro padrão da média} $$
 
-
-$$\sigma = \text{desvio padrão da população}$$  
+$$\sigma = \text{desvio padrão da população}$$
 
 $$n = \text{tamanho da amostra}$$
 :::
-:::{.column width="50%"}
+
+::: {.column width="50%"}
 ```{r}
 amostras_sobralitos |> 
   select(1:30) |> 
@@ -660,15 +661,13 @@ amostras_sobralitos |>
 :::
 
 ## Erro padrão: controle de qualidade do sobralitos
+
 ::: columns
 ::: {.column width="50%"}
-
 :::
 
 ::: {.column width="50%"}
-
 :::
-
 :::
 
 ## Distribuições amostrais
