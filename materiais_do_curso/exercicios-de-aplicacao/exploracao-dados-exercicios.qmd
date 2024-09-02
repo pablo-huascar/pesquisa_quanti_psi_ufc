@@ -64,7 +64,7 @@ code_book |>
 
 ### Transtornos Mentais Comuns
 
-O Self-Reporting Questionnaire-20 (SRQ-20) é uma ferramenta de triagem para transtornos mentais não psicóticos (transtornos mentais comuns - TMC), como insônia, dificuldade de concentração, fadiga, dores de cabeça e falta de apetite (por exemplo, “Faça você se cansa facilmente?”). Este instrumento é composto por 20 afirmações com opções binárias de resposta (“sim” ou “não”). As respostas negativas são pontuadas como zero, enquanto as respostas positivas são pontuadas como 1. As pontuações são então somadas, com ponto de corte estabelecido em 7/8 para distinguir entre ausência e presença de TMC, respectivamente [@gonçalves_stein_kapczinski_2008].
+O Self-Reporting Questionnaire-20 (SRQ-20) é uma ferramenta de triagem para transtornos mentais não psicóticos (transtornos mentais comuns - TMC), como insônia, dificuldade de concentração, fadiga, dores de cabeça e falta de apetite (por exemplo, “Você se cansa facilmente?”). Este instrumento é composto por 20 afirmações com opções binárias de resposta (“sim” ou “não”). As respostas negativas são pontuadas como zero, enquanto as respostas positivas são pontuadas como 1. As pontuações são então somadas, com ponto de corte estabelecido em 7/8 para distinguir entre ausência e presença de TMC, respectivamente [@gonçalves_stein_kapczinski_2008].
 
 ```{r}
 code_book |> 

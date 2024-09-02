@@ -1,0 +1,304 @@
+---
+title: "Regressão linear simples"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      code-link: true
+      code-tools: true
+      code-line-numbers: false
+      theme: simple
+      echo: false
+      message: false
+      warning: false
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+library(janitor)
+library(palmerpenguins)
+library(gt)
+library(patchwork)
+conflicted::conflicts_prefer(dplyr::filter())
+conflicted::conflicts_prefer(dplyr::select())
+conflicted::conflicts_prefer(dplyr::lag())
+conflicted::conflicts_prefer(dplyr::summarize)
+conflicted::conflicts_prefer(dplyr::summarise)
+conflicted::conflicts_prefer(scales::alpha)
+conflicted::conflicts_prefer(scales::rescale)
+```
+
+## O que vamos aprender?
+
+
+
+# Bancos de dados utilizados
+
+##  {background-image="img/pinguins.png" background-size="contain"}
+
+## `penguins` {.smaller}
+
+Medidas de tamanho para pinguins forrageadores adultos perto da Estação Palmer, Antártida. Inclui medidas para espécies de pinguins, ilha no Arquipélago Palmer, tamanho (comprimento da nadadeira, massa corporal, dimensões do bico) e sexo.
+
+-   Formato: Um banco de dados com `r nrow(penguins)` observações e `r ncol(penguins)` variáveis
+    -   `species`: espécies de pinguins (Adélie, Chinstrap e Gentoo)
+    -   `island`: ilha no arquipélago de Palmer, Antártida (Biscoe, Dream ou Torgersen)
+    -   `bill_length_mm`: comprimento do bico em milímetros
+    -   `flipper_length_mm`: comprimento da nadadeira em milímetros
+    -   `body_mass_g`: massa corporal em gramas
+    -   `sex`: sexo do pinguin (macho ou fêmea)
+    -   `year`: ano em que foi realizado o estudo
+
+## Uma olhada em `penguins`
+
+```{r}
+#| label: tbl-penguins
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `penguins`
+#| tbl-cap-location: bottom
+penguins |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+
+## Usos da regressão
+
+-   Examinar o efeito de diferentes variáveis (preditoras / independentes) em uma única variável de resultado (dependente)
+
+-   O uso o termo predição é essencial, pois a análise examina se uma variável prediz (explica ou repercute em) outra variável
+
+
+## A linha de regressão
+
+```{r}
+x <- c(0,1,2,3,4)
+
+y <- 2 + 2*x
+
+reg_line <- tibble(x,y)
+```
+
+
+```{r}
+reg_line |> 
+  ggplot(
+    aes(x,y)
+  ) +
+  geom_smooth(
+    method = "lm", se = F,
+    color = "#F05133", linetype = 2
+  ) + 
+  geom_point(
+    color = "#569BBD", alpha = 0.6,
+    size = 3
+  )
+```
+
+## A linha de regressão
+
+$$
+y = a + bx
+$$
+
+-   y = VI
+-   x = VD
+-   a = constante (local onde a linha intercepta o eixo y, ou seja, onde x = 0)
+-   b = inclinação da linha (cada vez que "x" aumenta 1 unidade, "y" aumenta "b" unidades)
+
+## A linha de regressão
+
+```{r}
+reg_line |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
+```
+
+Quais os valores de a e b para esta linha de regressão?
+
+a = 2
+
+b = 2
+
+
+## Regressão linear simples {.smaller}
+-   Correlação
+    -   Magnitude e direção
+-   Regressão
+    -   Descobrir o tamanho do efeito de uma variável $x$ (independente, previsora ou explicativa) em uma variável $y$ (dependente, critério ou desfecho)
+
+
+## Regressão linear simples: uma variável independente Contínua
+
+-   Quanto a massa corporal dos pinguins (`body_mass_g`) pode variar em função do comprimento da nadadeira (`flipper_length_mm`)?
+
+## Análise de dados exploratória {.smaller}
+
+-   Estatística descritiva
+    -   Mínimo
+    -   Máximo
+    -   Média
+    -   Desvio padrão
+    -   Histogramas
+-   Correlações
+    -   Bivariadas
+    -   Gráficos de dispersão
+
+
+## Análise de dados exploratória: estatísticas univariadas {.smaller}
+
+```{r}
+penguins |> 
+  summarise(
+    across(c(flipper_length_mm, body_mass_g),list(
+      N = \(x)  n(),
+      NAs = \(x) sum(is.na(x)),
+      Média = \(x) mean(x, na.rm = T),
+      "Desvio padrão" = \(x) sd(x, na.rm = T),
+      Mínimo = \(x) min(x, na.rm = T),
+      Máximo = \(x) max(x, na.rm = T)
+    ))
+  ) |> 
+  pivot_longer(
+    cols = everything(),
+    names_to = c("Variável", ".value"),
+    names_sep = "_(?=[^_]+$)"
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_style_body(
+    style = cell_text(align = "left"),
+    values = c("flipper_length_mm", "body_mass_g")
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Análise de dados exploratória: histogramas {.smaller}
+
+```{r}
+#| out-width: 70%
+hist_penguins_flipper <- penguins |> 
+  ggplot(
+    aes(flipper_length_mm)
+  ) +
+  geom_histogram(
+    fill = "#569BBD",
+    color = "#FFFFFF"
+  ) 
+
+hist_penguins_body_mass <- penguins |> 
+  ggplot(
+    aes(body_mass_g)
+  ) +
+  geom_histogram(
+    fill = "#569BBD",
+    color = "#FFFFFF"
+  )
+
+hist_penguins_flipper + hist_penguins_body_mass
+```
+
+## Análise de Dados Exploratória: gráfico de dispersão
+
+```{r}
+penguins |> 
+  ggplot(
+    aes(flipper_length_mm, body_mass_g)
+  ) +
+  geom_jitter(
+    color = "#569BBD", alpha = 0.6,
+    size = 3
+  ) +
+  geom_smooth(
+    method = "lm", se = F,
+    color = "#F05133",linetype = 2
+  ) + 
+  labs(
+    title = "Gráfico de diserpesão da relação\nentre massa corporal e comprimento da nadadeira"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5) 
+  )
+```
+
+
+## Análise de dados exploratória: estatísticas bivariadas {.smaller}
+
+-   2 variáveis numéricas
+    -   Coeficiente de Correlação
+    -   Gráfico de dispersão
+
+## Análise de dados exploratória: coeficiente de correlação {.smaller}
+
+```{r}
+#| label: tbl-correlacao-bmass-flipper
+#| tbl-cap: Correlação entre massa corporal e comprimento da nadadeira
+#| tbl-cap-location: bottom
+penguins |> 
+  select(flipper_length_mm, 
+         body_mass_g) |> 
+  drop_na() |> 
+  cor() |> 
+  as.data.frame() |> 
+  rownames_to_column() |> 
+  gt() |> 
+  sub_values(
+    columns = 3,
+    fn = function(x) x < 1, 
+    replacement = "-"
+  ) |> 
+  fmt_number(
+    decimals = 2, drop_trailing_zeros = T 
+  ) |> 
+  text_transform(
+    locations = cells_body(columns = 2, rows = 2),
+    fn = function(x) {
+      sub("^0\\.", ".", x)  # Remove o "0" antes de ".87"
+    }
+  ) |> 
+  tab_footnote(
+    locations = cells_body(columns = 2, rows = 2), 
+    footnote = md("*Nota. p* < .001"),
+    placement = "right"
+  ) |> 
+  opt_footnote_marks(marks = "extended")
+```
+
+

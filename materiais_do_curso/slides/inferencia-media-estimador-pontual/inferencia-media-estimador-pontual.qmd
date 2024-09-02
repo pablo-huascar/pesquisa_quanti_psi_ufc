@@ -464,7 +464,7 @@ p_sobralitos_500 <- amostras_sobralitos_500 |>
   geom_histogram(breaks = breaks_500_sobralitos, 
                  fill = "#569BBD", color = "#FFFFFF") +
   labs(
-    title = "500 amostras de sobralitos",
+    title = "500 amostras de sobralitos*",
     x = "Médias das amostras",
     caption = "*Cada amostra com 30 pacotes"
   ) +
@@ -501,7 +501,7 @@ p_sobralitos_1000 <- amostras_sobralitos_1000 |>
   geom_histogram(breaks = breaks_1000_sobralitos, 
                  fill = "#569BBD", color = "#FFFFFF") +
   labs(
-    title = "1000 amostras de sobralitos",
+    title = "1000 amostras de sobralitos*",
     x = "Médias das amostras",
     caption = "*Cada amostra com 30 pacotes"
   ) +
@@ -516,7 +516,7 @@ p_sobralitos_1000
 
 ::: columns
 ::: {.column width="50%"}
--   Quando se extraem muitas amostras aleatórias de uma população e se calcula a média para cada amostra, as médias dessas amostras formam uma distribuição conhecida como distribuição amostral da média: $\bar{X}$
+-   Quando se extraem muitas amostras aleatórias de uma população e se calcula a média para cada amostra, as médias dessas amostras formam uma distribuição conhecida como distribuição amostral das médias amostrais: $\bar{X}$
 :::
 
 ::: {.column width="50%"}

@@ -291,13 +291,21 @@ dispersao |>
 #| out-width: 50%
 
 dispersao |> 
-  ggplot(aes(x, y)) +
-  geom_point(color = "#569BBD", alpha = 0.6,
-             size = 3) +
-  geom_segment(x = x, xend = x, color = "#F05133",
-               y = (y-0.15), yend = 0, linetype = 2) +
-  geom_segment(x = 0, xend = x-0.02, color = "#F05133",
-               y = y, yend = y, linetype = 2) +
+  ggplot(
+    aes(x, y)
+  ) +
+  geom_point(
+    color = "#569BBD", alpha = 0.6,
+    size = 3
+  ) +
+  geom_segment(
+    x = x, xend = x, color = "#F05133",
+    y = (y-0.15), yend = 0, linetype = 2
+  ) +
+  geom_segment(
+    x = 0, xend = x-0.02, color = "#F05133",
+    y = y, yend = y, linetype = 2
+  ) +
   scale_y_continuous(breaks = y)
 ```
 :::
@@ -315,11 +323,17 @@ dispersao |>
 #| label: scatter-plot-fheight-sheight
 
 father.son |> 
-  ggplot(aes(fheight, sheight)) +
-  geom_jitter(color = "#000000", alpha = 0.3, 
-              size = 3) +
-  geom_smooth(method = "lm", se = F,
-              color = "#F05133", linetype = 2) +
+  ggplot(
+    aes(fheight, sheight)
+  ) +
+  geom_jitter(
+    color = "#000000", alpha = 0.3, 
+    size = 3
+  ) +
+  geom_smooth(
+    method = "lm", se = F,
+    color = "#F05133", linetype = 2
+  ) +
   labs(
     title = "Gráfico de dispersão da relação\nentre as alturas dos pais e dos filhos"
   ) +
@@ -341,11 +355,17 @@ father.son |>
 #| label: scatter-plot-wt-mpg
 
 mtcars |> 
-  ggplot(aes(wt, mpg)) +
-  geom_jitter(color = "#569BBD", alpha = 0.6,
-              size = 3) +
-  geom_smooth(method = "lm", se = F,
-              color = "#F05133",linetype = 2) + 
+  ggplot(
+    aes(wt, mpg)
+  ) +
+  geom_jitter(
+    color = "#569BBD", alpha = 0.6,
+    size = 3
+  ) +
+  geom_smooth(
+    method = "lm", se = F,
+    color = "#F05133",linetype = 2
+  ) + 
   labs(
     title = "Gráfico de diserpesão da relação\nentre peso e consumo de combustível"
   ) +
@@ -367,11 +387,17 @@ mtcars |>
 #| label: scatter-plot-carat-price
 
 scatter_plot_carat_price <- diamonds |> 
-  ggplot(aes(carat, price)) +
-  geom_jitter(color = "#000000", alpha = 0.3, 
-              size = 3) +
-  geom_smooth(se = F, color = "#F05133",
-              linetype = 2) + 
+  ggplot(
+    aes(carat, price)
+  ) +
+  geom_jitter(
+    color = "#000000", alpha = 0.3, 
+    size = 3
+  ) +
+  geom_smooth(
+    se = F, color = "#F05133",
+    linetype = 2
+  ) + 
   scale_x_log10() +
   labs(
     title = "Gráfico de diserpesão da relação\nentre o quilate e o preço de diamantes",
@@ -415,12 +441,18 @@ media <- mean(airquality$Temp)
 media <- round(media, 2)
 
 airquality |> 
-  ggplot(aes(Temp)) +
-  geom_dotplot(color = "#569BBD", fill = "#569BBD", 
-               dotsize = 0.7) +
-  annotate("point", media, -0.05,
-           color = "#F05133", fill = "#F05133", 
-           shape = 24, size = 4) + 
+  ggplot(
+    aes(Temp)
+  ) +
+  geom_dotplot(
+    color = "#569BBD", fill = "#569BBD", 
+    dotsize = 0.7
+  ) +
+  annotate(
+    "point", media, -0.05,
+    color = "#F05133", fill = "#F05133", 
+    shape = 24, size = 4
+  ) + 
   labs(
     title = "Gráfico de pontos para a temperatura de Nova York",
     subtitle = "Maio a setembro de 1973",
@@ -441,15 +473,18 @@ airquality |>
 
 . . .
 
-A fórmula da média: $$
+A fórmula da média:
+
+$$
     \bar{x} = \frac{\sum_{i=1}^n x_i}{n}
-    $$
+$$
 
 . . .
 
-A formula da média em um formato um pouco mais simples: $$
+A formula da média em um formato um pouco mais simples: 
+$$
     \bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}
-    $$
+$$
 
 ## Um pouco de nomenclaura
 
