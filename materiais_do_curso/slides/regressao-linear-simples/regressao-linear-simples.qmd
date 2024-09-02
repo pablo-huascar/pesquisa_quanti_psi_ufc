@@ -42,8 +42,6 @@ conflicted::conflicts_prefer(scales::rescale)
 
 ## O que vamos aprender?
 
-
-
 # Bancos de dados utilizados
 
 ##  {background-image="img/pinguins.png" background-size="contain"}
@@ -82,13 +80,11 @@ penguins |>
   )
 ```
 
-
 ## Usos da regressão
 
 -   Examinar o efeito de diferentes variáveis (preditoras / independentes) em uma única variável de resultado (dependente)
 
 -   O uso o termo predição é essencial, pois a análise examina se uma variável prediz (explica ou repercute em) outra variável
-
 
 ## A linha de regressão
 
@@ -99,7 +95,6 @@ y <- 2 + 2*x
 
 reg_line <- tibble(x,y)
 ```
-
 
 ```{r}
 reg_line |> 
@@ -146,23 +141,30 @@ reg_line |>
 
 Quais os valores de a e b para esta linha de regressão?
 
+. . .
+
 a = 2
+
+. . .
 
 b = 2
 
+# Regressão linear simples {.smaller}
 
-## Regressão linear simples {.smaller}
+## Correlação X Regressão {.smaller}
+
 -   Correlação
     -   Magnitude e direção
 -   Regressão
     -   Descobrir o tamanho do efeito de uma variável $x$ (independente, previsora ou explicativa) em uma variável $y$ (dependente, critério ou desfecho)
 
-
-## Regressão linear simples: uma variável independente Contínua
+## Uma variável independente Contínua
 
 -   Quanto a massa corporal dos pinguins (`body_mass_g`) pode variar em função do comprimento da nadadeira (`flipper_length_mm`)?
 
-## Análise de dados exploratória {.smaller}
+# Análise de dados exploratória 
+
+## Estatísticas e Gráficos {.smaller}
 
 -   Estatística descritiva
     -   Mínimo
@@ -174,8 +176,7 @@ b = 2
     -   Bivariadas
     -   Gráficos de dispersão
 
-
-## Análise de dados exploratória: estatísticas univariadas {.smaller}
+## Estatísticas univariadas {.smaller}
 
 ```{r}
 penguins |> 
@@ -204,13 +205,14 @@ penguins |>
   ) |> 
   tab_options(
     table.width = pct(100),
+    table.font.size = "26px"
   ) |> 
   opt_stylize(
     style = 1, color = "gray"
   )
 ```
 
-## Análise de dados exploratória: histogramas {.smaller}
+## Histogramas {.smaller}
 
 ```{r}
 #| out-width: 70%
@@ -235,9 +237,16 @@ hist_penguins_body_mass <- penguins |>
 hist_penguins_flipper + hist_penguins_body_mass
 ```
 
-## Análise de Dados Exploratória: gráfico de dispersão
+## Estatísticas bivariadas {.smaller}
+
+-   2 variáveis numéricas
+    -   Coeficiente de Correlação
+    -   Gráfico de dispersão
+
+## Gráfico de dispersão
 
 ```{r}
+#| out-width: 70%
 penguins |> 
   ggplot(
     aes(flipper_length_mm, body_mass_g)
@@ -258,18 +267,11 @@ penguins |>
   )
 ```
 
-
-## Análise de dados exploratória: estatísticas bivariadas {.smaller}
-
--   2 variáveis numéricas
-    -   Coeficiente de Correlação
-    -   Gráfico de dispersão
-
-## Análise de dados exploratória: coeficiente de correlação {.smaller}
+## Coeficiente de correlação {.smaller}
 
 ```{r}
 #| label: tbl-correlacao-bmass-flipper
-#| tbl-cap: Correlação entre massa corporal e comprimento da nadadeira
+#| tbl-cap: Correlação entre a massa corporal e o comprimento da nadadeira dos pinguins
 #| tbl-cap-location: bottom
 penguins |> 
   select(flipper_length_mm, 
@@ -298,7 +300,37 @@ penguins |>
     footnote = md("*Nota. p* < .001"),
     placement = "right"
   ) |> 
-  opt_footnote_marks(marks = "extended")
+  opt_footnote_marks(marks = "extended") |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  )
 ```
+
+## O que sabemos até agora sobre a relação entre o comprimento da nadadeira e a massa corporal dos pinguins? {.smaller}
+
+-   A partir do gráfico e do teste de correlação de pearson,  o que podemos dizer sobre a nossa equação?
+    -   b tem uma inclinação positiva!
+    -   Pinguins com com nadadeiras maiores tendem a ter maior massa corporal
+
+## Questões para a regressão {.smaller}
+
+$$
+y = a + bx
+$$
+
+-   Qual o valor numérico para a incliação (slope) *b*?
+-   E o valor do intercepto *a*?
+-   Vamos utilizar a regressão linear simples para obter essas respostas
+
+## Regressão linear simples
+
+
+
+
+
+
+
+
 
 
