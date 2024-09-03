@@ -31,6 +31,7 @@ library(janitor)
 library(palmerpenguins)
 library(gt)
 library(patchwork)
+library(broom)
 conflicted::conflicts_prefer(dplyr::filter())
 conflicted::conflicts_prefer(dplyr::select())
 conflicted::conflicts_prefer(dplyr::lag())
@@ -149,8 +150,6 @@ a = 2
 
 b = 2
 
-# Regressão linear simples {.smaller}
-
 ## Correlação X Regressão {.smaller}
 
 -   Correlação
@@ -158,9 +157,11 @@ b = 2
 -   Regressão
     -   Descobrir o tamanho do efeito de uma variável $x$ (independente, previsora ou explicativa) em uma variável $y$ (dependente, critério ou desfecho)
 
-## Uma variável independente Contínua
+# Uma variável independente Contínua
 
--   Quanto a massa corporal dos pinguins (`body_mass_g`) pode variar em função do comprimento da nadadeira (`flipper_length_mm`)?
+##
+
+Quanto a massa corporal dos pinguins (`body_mass_g`) pode variar em função do comprimento da nadadeira (`flipper_length_mm`)?
 
 # Análise de dados exploratória 
 
@@ -215,7 +216,6 @@ penguins |>
 ## Histogramas {.smaller}
 
 ```{r}
-#| out-width: 70%
 hist_penguins_flipper <- penguins |> 
   ggplot(
     aes(flipper_length_mm)
@@ -240,13 +240,15 @@ hist_penguins_flipper + hist_penguins_body_mass
 ## Estatísticas bivariadas {.smaller}
 
 -   2 variáveis numéricas
-    -   Coeficiente de Correlação
     -   Gráfico de dispersão
+    -   Coeficiente de Correlação
+    
 
 ## Gráfico de dispersão
 
 ```{r}
 #| out-width: 70%
+
 penguins |> 
   ggplot(
     aes(flipper_length_mm, body_mass_g)
@@ -270,17 +272,21 @@ penguins |>
 ## Coeficiente de correlação {.smaller}
 
 ```{r}
-#| label: tbl-correlacao-bmass-flipper
+#| label: tbl-cor-bmass-flipper
 #| tbl-cap: Correlação entre a massa corporal e o comprimento da nadadeira dos pinguins
 #| tbl-cap-location: bottom
-penguins |> 
+
+tbl_matrix_cor_bmass_flipper <- penguins |> 
   select(flipper_length_mm, 
          body_mass_g) |> 
   drop_na() |> 
   cor() |> 
   as.data.frame() |> 
   rownames_to_column() |> 
-  gt() |> 
+  gt() |>
+  cols_align(
+    align = "center", columns = c(2,3)
+  ) |> 
   sub_values(
     columns = 3,
     fn = function(x) x < 1, 
@@ -300,11 +306,41 @@ penguins |>
     footnote = md("*Nota. p* < .001"),
     placement = "right"
   ) |> 
-  opt_footnote_marks(marks = "extended") |> 
+  opt_footnote_marks(
+    marks = "extended"
+  ) |> 
   tab_options(
     table.width = pct(100),
     table.font.size = "26px"
   )
+```
+
+```{r}
+#| label: tbl-cor-stats-bmass-flipper
+#| tbl-cap: Estatísticas da correlação entre a massa corporal e o comprimento da nadadeira dos pinguins
+#| tbl-cap-location: bottom
+
+tbl_stats_cor_bmass_flipper <- cor.test(penguins$flipper_length_mm, 
+         penguins$body_mass_g) |> 
+  tidy() |> 
+  select(estimate,t = statistic) |> 
+  mutate(
+    r.squared = estimate^2,
+    across(everything(), 
+           \(x) round(x, 2))
+  ) |> 
+  select(!estimate) |> 
+  gt() |> 
+  cols_align(
+    align = "center"
+  )  
+  
+```
+
+
+```{r}
+tbl_matrix_cor_bmass_flipper
+tbl_stats_cor_bmass_flipper
 ```
 
 ## O que sabemos até agora sobre a relação entre o comprimento da nadadeira e a massa corporal dos pinguins? {.smaller}
@@ -323,14 +359,114 @@ $$
 -   E o valor do intercepto *a*?
 -   Vamos utilizar a regressão linear simples para obter essas respostas
 
-## Regressão linear simples
+## Tabela da regressão
+
+```{r}
+modelo_reg_simples_cont <- lm(body_mass_g ~ flipper_length_mm, 
+                         data = penguins)
+
+nomes_tabela_regressao_cont <- c("Preditor", "Estimativa",
+                            "Erro padrão", "t", "p")
+
+tabela_modelo_reg_simples_cont <- modelo_reg_simples_cont |> 
+  tidy() |> 
+  mutate(
+    across(where(is.double),
+           \(x) round(x, 2)),
+    ) |> 
+  rename_with(~nomes_tabela_regressao_cont) |> 
+  gt() |> 
+  sub_values(
+    columns = 5,
+    fn = function(x) x == 0 , 
+    replacement = "< .001"
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_style_body(
+    style = cell_text(align = "left"),
+    values = c("flipper_length_mm", "(Intercept)")
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+
+tabela_modelo_reg_simples_cont
+```
 
 
+## Interpretando a Tabela de Regressão {.smaller}
+
+```{r}
+a_cont <- modelo_reg_simples_cont$coefficients[[1]]
+a_cont <- round(a_cont, 2)
+b_cont <- modelo_reg_simples_cont$coefficients[[2]]
+b_cont <- round(b_cont, 2)
+```
+
+```{r}
+tabela_modelo_reg_simples_cont
+```
 
 
+$$
+y = a + bx
+$$
+
+-   Estimativas
+    -   a = Estimativa do Intercepto = `r a_cont`
+    -   b = Estimativa de `flipper_length_mm` = `r b_cont`
 
 
+$$
+body\_mass\_g = `r a_cont` + `r b_cont`flipper\_length\_mm
+$$
 
 
+::: aside
+Neste caso, o intercepto da linha de regressão tem uma interpretação matemática, mas ele não tem nenhuma interpretação prática, pois observar um valor de `flipper_length_mm` igual a 0 é impossível
+:::
+
+## Interpretando a Tabela de Regressão
+
+```{r}
+tabela_modelo_reg_simples_cont
+```
+
+$$
+body\_mass\_g = `r a_cont` + `r b_cont`flipper\_length\_mm
+$$
+
+::: {style="line-height: 1; font-size: 20pt"}
+-   Quais conclusões podemos tirar dessa equação?
+    -   O sinal de b é positivo, portanto há uma relação positiva entre as variáveis
+        -   Quanto maior a pontuação em `flipper_length_mm` maior a pontuação em `body_mass_g`
+        -   Ou seja: um tamanho maior da nadadeira está associado a mairo massa corporal dos pinguins
+    -   Interpretação do valor de b (estimativa de `flipper_length_mm`):
+        -   Para cada aumento de 1 unidade em `flipper_length_mm`, há um aumento associado de, em média, `r b_cont` unidades de `body_mass_g`
+:::
+
+## correlação e regressão linear simples
+
+```{r}
+cor.test(penguins$flipper_length_mm, 
+         penguins$body_mass_g) |> 
+  tidy() |> 
+  select(r = estimate,t = statistic, 
+         p = p.value) |> 
+  mutate(
+    r.squared = r^2,
+    across(everything(), 
+           \(x) round(x, 2))
+  )
+
+modelo_reg_simples_cont |> 
+  summary()
+```
 
 

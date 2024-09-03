@@ -874,7 +874,9 @@ av_prof |>
     fmt = ~ fmt_number(., decimals = 1),
     missing_text = ""
   ) |>
-  opt_stylize(style = 1, color = "gray") |>
+  opt_stylize(
+    style = 1, color = "gray"
+    ) |>
   tab_style(
     locations = list(cells_grand_summary(), cells_stub_grand_summary()),
     style = cell_fill(color = "gray" |> adjust_luminance(steps = +2))
