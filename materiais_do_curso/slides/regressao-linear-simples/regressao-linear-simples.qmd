@@ -276,7 +276,18 @@ penguins |>
 #| tbl-cap: Correlação entre a massa corporal e o comprimento da nadadeira dos pinguins
 #| tbl-cap-location: bottom
 
-tbl_matrix_cor_bmass_flipper <- penguins |> 
+stats_cor_bmass_flipper <- cor.test(penguins$flipper_length_mm, 
+         penguins$body_mass_g)  
+  
+
+t_cor_b_mass_flipper <- round(stats_cor_bmass_flipper$statistic[[1]],2)
+t_cor_b_mass_flipper <- str_c("t = ", t_cor_b_mass_flipper)  
+r_sqrt_b_mass_flipper <- round(stats_cor_bmass_flipper$estimate[[1]]^2,2)
+r_sqrt_b_mass_flipper <- str_c("r² = ", r_sqrt_b_mass_flipper)  
+t_r_cor_bmass_flipper <- str_c(t_cor_b_mass_flipper, 
+                               r_sqrt_b_mass_flipper, sep = "; ")  
+
+penguins |> 
   select(flipper_length_mm, 
          body_mass_g) |> 
   drop_na() |> 
@@ -309,39 +320,15 @@ tbl_matrix_cor_bmass_flipper <- penguins |>
   opt_footnote_marks(
     marks = "extended"
   ) |> 
+  tab_source_note(
+    source_note = t_r_cor_bmass_flipper
+    ) |> 
   tab_options(
     table.width = pct(100),
     table.font.size = "26px"
   )
 ```
 
-```{r}
-#| label: tbl-cor-stats-bmass-flipper
-#| tbl-cap: Estatísticas da correlação entre a massa corporal e o comprimento da nadadeira dos pinguins
-#| tbl-cap-location: bottom
-
-tbl_stats_cor_bmass_flipper <- cor.test(penguins$flipper_length_mm, 
-         penguins$body_mass_g) |> 
-  tidy() |> 
-  select(estimate,t = statistic) |> 
-  mutate(
-    r.squared = estimate^2,
-    across(everything(), 
-           \(x) round(x, 2))
-  ) |> 
-  select(!estimate) |> 
-  gt() |> 
-  cols_align(
-    align = "center"
-  )  
-  
-```
-
-
-```{r}
-tbl_matrix_cor_bmass_flipper
-tbl_stats_cor_bmass_flipper
-```
 
 ## O que sabemos até agora sobre a relação entre o comprimento da nadadeira e a massa corporal dos pinguins? {.smaller}
 
@@ -446,7 +433,7 @@ $$
 -   Quais conclusões podemos tirar dessa equação?
     -   O sinal de b é positivo, portanto há uma relação positiva entre as variáveis
         -   Quanto maior a pontuação em `flipper_length_mm` maior a pontuação em `body_mass_g`
-        -   Ou seja: um tamanho maior da nadadeira está associado a mairo massa corporal dos pinguins
+        -   Ou seja: um tamanho maior da nadadeira está associado a maior massa corporal dos pinguins
     -   Interpretação do valor de b (estimativa de `flipper_length_mm`):
         -   Para cada aumento de 1 unidade em `flipper_length_mm`, há um aumento associado de, em média, `r b_cont` unidades de `body_mass_g`
 :::
