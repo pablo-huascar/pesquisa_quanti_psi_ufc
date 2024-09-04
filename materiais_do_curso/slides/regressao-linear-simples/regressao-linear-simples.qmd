@@ -157,7 +157,7 @@ b = 2
 -   Regressão
     -   Descobrir o tamanho do efeito de uma variável $x$ (independente, previsora ou explicativa) em uma variável $y$ (dependente, critério ou desfecho)
 
-# Uma variável independente Contínua
+# Uma variável independente contínua
 
 ##
 
@@ -287,7 +287,7 @@ r_sqrt_b_mass_flipper <- str_c("r² = ", r_sqrt_b_mass_flipper)
 t_r_cor_bmass_flipper <- str_c(t_cor_b_mass_flipper, 
                                r_sqrt_b_mass_flipper, sep = "; ")  
 
-penguins |> 
+tbl_matrix_cor_bmass_flipper <- penguins |> 
   select(flipper_length_mm, 
          body_mass_g) |> 
   drop_na() |> 
@@ -327,6 +327,8 @@ penguins |>
     table.width = pct(100),
     table.font.size = "26px"
   )
+
+tbl_matrix_cor_bmass_flipper
 ```
 
 
@@ -346,9 +348,12 @@ $$
 -   E o valor do intercepto *a*?
 -   Vamos utilizar a regressão linear simples para obter essas respostas
 
-## Tabela da regressão
+## Tabela de regressão
 
 ```{r}
+#| label: tbl-reg-bmass-flipper
+#| tbl-cap: Tabela de regressão linear simples
+#| tbl-cap-location: bottom
 modelo_reg_simples_cont <- lm(body_mass_g ~ flipper_length_mm, 
                          data = penguins)
 
@@ -371,6 +376,9 @@ tabela_modelo_reg_simples_cont <- modelo_reg_simples_cont |>
   cols_align(
     align = "center"  
   ) |> 
+  tab_source_note(
+    source_note = r_sqrt_b_mass_flipper
+    ) |> 
   tab_style_body(
     style = cell_text(align = "left"),
     values = c("flipper_length_mm", "(Intercept)")
@@ -387,13 +395,13 @@ tabela_modelo_reg_simples_cont
 ```
 
 
-## Interpretando a Tabela de Regressão {.smaller}
+## Interpretando a tabela de regressão {.smaller}
 
 ```{r}
 a_cont <- modelo_reg_simples_cont$coefficients[[1]]
-a_cont <- round(a_cont, 2)
+a_cont <- round(a_cont, 3)
 b_cont <- modelo_reg_simples_cont$coefficients[[2]]
-b_cont <- round(b_cont, 2)
+b_cont <- round(b_cont, 3)
 ```
 
 ```{r}
@@ -411,7 +419,7 @@ $$
 
 
 $$
-body\_mass\_g = `r a_cont` + `r b_cont`flipper\_length\_mm
+body\_mass\_g = `r a_cont` + `r b_cont` * flipper\_length\_mm
 $$
 
 
@@ -419,41 +427,63 @@ $$
 Neste caso, o intercepto da linha de regressão tem uma interpretação matemática, mas ele não tem nenhuma interpretação prática, pois observar um valor de `flipper_length_mm` igual a 0 é impossível
 :::
 
-## Interpretando a Tabela de Regressão
-
-```{r}
-tabela_modelo_reg_simples_cont
-```
+## Interpretando a equação de regressão
 
 $$
-body\_mass\_g = `r a_cont` + `r b_cont`flipper\_length\_mm
+body\_mass\_g = `r a_cont` + `r b_cont` * flipper\_length\_mm
 $$
 
-::: {style="line-height: 1; font-size: 20pt"}
+::: {style="line-height: 1; font-size: 18pt"}
+
 -   Quais conclusões podemos tirar dessa equação?
     -   O sinal de b é positivo, portanto há uma relação positiva entre as variáveis
         -   Quanto maior a pontuação em `flipper_length_mm` maior a pontuação em `body_mass_g`
         -   Ou seja: um tamanho maior da nadadeira está associado a maior massa corporal dos pinguins
     -   Interpretação do valor de b (estimativa de `flipper_length_mm`):
-        -   Para cada aumento de 1 unidade em `flipper_length_mm`, há um aumento associado de, em média, `r b_cont` unidades de `body_mass_g`
+        -   O coeficiente associado ao comprimento da nadadeira é 49.7. Isso significa que, para cada aumento de 1 mm no comprimento da nadadeira, o peso dos pinguins aumenta em média 49.7 gramas, mantendo todas as outras variáveis constantes.
+
 :::
 
-## correlação e regressão linear simples
+
+## Correlação e regressão linear simples
 
 ```{r}
-cor.test(penguins$flipper_length_mm, 
-         penguins$body_mass_g) |> 
-  tidy() |> 
-  select(r = estimate,t = statistic, 
-         p = p.value) |> 
-  mutate(
-    r.squared = r^2,
-    across(everything(), 
-           \(x) round(x, 2))
-  )
-
-modelo_reg_simples_cont |> 
-  summary()
+tabela_modelo_reg_simples_cont
+tbl_matrix_cor_bmass_flipper
 ```
 
+## Valores observados, valores ajustados e os resíduos {.smaller}
 
+$$
+body\_mass\_g = `r a_cont` + `r b_cont`*flipper\_length\_mm
+$$
+
+```{r}
+penguins |> 
+  mutate(
+    id = 1:n()
+  ) |> 
+  select(id, body_mass_g, flipper_length_mm) |> 
+  slice_head(n = 1) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+
+
+y_cont <- a_cont + b_cont*penguins$flipper_length_mm[1]
+```
+
+- Valor observado de body_mass_g = $`r penguins[[1,6]]`$
+- Valor ajustado/previsto 
+  -   $body\_mass\_g = `r a_cont` + `r b_cont`* `r penguins[[1,5]]`$
+  -   $body\_mass\_g = `r y_cont`$
+- $\text{Resíduo} = \text{valor observado} - \text{valor ajustado}$
+  -   $\text{Resíduo} =  `r penguins[[1,6]]` - `r y_cont`  = `r penguins[[1,6]] -  y_cont`$
