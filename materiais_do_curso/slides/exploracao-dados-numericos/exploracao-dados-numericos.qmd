@@ -2448,17 +2448,26 @@ mtcars |>
 #| label: boxplot-explicado-1
 
 hist <- airquality |> 
-  ggplot(aes(Temp)) +
-  geom_histogram(bins = 8, fill = "#569BBD",
-                 color = "#FFFFFF"
-) +
+  ggplot(
+    aes(Temp)
+  ) +
+  geom_histogram(
+    bins = 8, fill = "#569BBD",
+    color = "#FFFFFF"
+  ) +
   coord_flip()
 
 
 box <- airquality |> 
-  ggplot(aes(Temp)) + 
-  geom_boxplot(color = "#569BBD") +
-  stat_boxplot(geom= 'errorbar' , width = 0.3) +
+  ggplot(
+    aes(Temp)
+  ) + 
+  geom_boxplot(
+    color = "#569BBD"
+  ) +
+  stat_boxplot(
+    geom= 'errorbar' , width = 0.3
+  ) +
   coord_flip()
   
   

@@ -42,6 +42,15 @@ conflicted::conflicts_prefer(scales::alpha)
 conflicted::conflicts_prefer(scales::rescale)
 ```
 
+```{r}
+#| label: data
+
+iris_filter <- iris |>
+  as_tibble() |> 
+  filter(Species %in% c("versicolor", "setosa"))
+```
+
+
 ## O que vamos aprender?
 
 # Bancos de dados utilizados
@@ -597,7 +606,7 @@ modelo_reg_simples_cont |>
 
 ## Pergunta de partida
 
-Quanto a lárgura da sépala (`Sepal.Width`) pode variar em função da espécie de flor (`Species`)?
+Quanto a lárgura da sépala (`Sepal.Width`) pode variar em função da espécie de flor (`Species`)? Para simplificar a explicação, vamos trabalhar somente com as espécies versicolor e setosa
 
 # Análise de dados exploratória
 
@@ -632,7 +641,7 @@ variavel <- tribble(
   "Sepal.Width"
 )
 
-iris |> 
+iris_filter |> 
   summarise(
     N = n(),
     NAs = sum(is.na(Sepal.Width)),
@@ -648,7 +657,7 @@ iris |>
   ) |> 
   tab_style_body(
     style = cell_text(align = "left"),
-    values = c("flipper_length_mm", "body_mass_g")
+    values = "Sepal.Width"
   ) |> 
   tab_options(
     table.width = pct(100),
@@ -662,7 +671,7 @@ iris |>
 ## Histograma
 
 ```{r}
-iris |> 
+iris_filter |> 
   ggplot(
     aes(Sepal.Width)
   ) +
@@ -678,7 +687,7 @@ iris |>
 ::: columns
 ::: {.column width="50%"}
 ```{r}
-iris |> 
+iris_filter |> 
   count(Species) |> 
   mutate(
     "%" = n/sum(n)
@@ -688,10 +697,10 @@ iris |>
     align = "center"  
   ) |> 
   fmt_number(
-    decimals = 3, 
+    decimals = 0, 
   ) |> 
   fmt_percent(
-    columns = 3
+    columns = 3, decimals = 1
     ) |> 
   tab_options(
     table.width = pct(100),
@@ -705,7 +714,7 @@ iris |>
 
 ::: {.column width="50%"}
 ```{r}
-iris |> 
+iris_filter |> 
   ggplot(
     aes(Species, fill =  Species)
     ) +
@@ -717,3 +726,109 @@ iris |>
 ```
 :::
 :::
+
+## Gráfico de caixa
+
+```{r}
+iris_filter |> 
+  ggplot(
+    aes(Sepal.Width, 
+        fct_reorder(Species, Sepal.Width, mean))
+  ) +
+  geom_boxplot(color = "#569BBD") +
+  stat_boxplot(
+    geom= 'errorbar' , width = 0.3
+  ) +
+  labs(
+    y = "Species"
+  )
+  
+  
+```
+
+## Comparação entre grupos
+
+```{r}
+iris_filter |> 
+  summarise(
+    N = n(),
+    NAs = sum(is.na(Sepal.Width)),
+    Média = mean(Sepal.Width),
+    "Desvio padrão" = sd(Sepal.Width),
+    Mínimo = min(Sepal.Width),
+    Máximo = max(Sepal.Width),
+    .by = Species
+  ) |> 
+  arrange(Média) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  fmt_number(
+    columns = c("Média", "Desvio padrão"),
+    decimals = 2
+  ) |> 
+  tab_style_body(
+    style = cell_text(align = "left"),
+    values = c("setosa", "virginica",
+               "versicolor")
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Diferença entre as Médias
+
+```{r}
+iris_filter |> 
+  summarise(
+    Média = mean(Sepal.Width),
+    .by = Species
+  ) |> 
+  arrange(Média) |> 
+  mutate(
+    Diferença = Média - lag(Média)
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  fmt_number(
+    columns = c("Média", "Diferença"),
+    decimals = 2
+  ) |> 
+  sub_missing(
+    missing_text = "-"
+  ) |> 
+  tab_style_body(
+    style = cell_text(align = "left"),
+    values = c("setosa", "virginica",
+               "versicolor")
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Teste T
+
+```{r}
+#| eval: false
+t.test(Sepal.Width ~ Species, data = iris_filter) |> 
+  tidy() |>
+  glimpse()
+```
+
+
+
+
+
