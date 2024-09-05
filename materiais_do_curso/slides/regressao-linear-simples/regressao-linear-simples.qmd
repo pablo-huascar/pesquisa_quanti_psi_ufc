@@ -32,6 +32,7 @@ library(palmerpenguins)
 library(gt)
 library(patchwork)
 library(broom)
+library(ggthemes)
 conflicted::conflicts_prefer(dplyr::filter())
 conflicted::conflicts_prefer(dplyr::select())
 conflicted::conflicts_prefer(dplyr::lag())
@@ -67,6 +68,40 @@ Medidas de tamanho para pinguins forrageadores adultos perto da Estação Palmer
 #| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `penguins`
 #| tbl-cap-location: bottom
 penguins |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+##  {background-image="img/iris.png" background-size="contain"}
+
+## `iris` {.smaller}
+
+Este famoso banco de dados fornece as medidas em centímetros das variáveis comprimento e largura da sépala e comprimento e largura da pétala, respectivamente, para 50 flores de cada uma das 3 espécies de íris. As espécies são setosa, versicolor e virginica.
+
+-   Formato: Um banco de dados com `r nrow(iris)` observações e `r ncol(iris)` variáveis
+    -   `Sepal.Length`: comprimento da sépala
+    -   `Sepal.Width`: largura da sépala
+    -   `Petal.Length`: comprimento da pétala
+    -   `Petal.Width`: largura da pétala
+    -   `Species`: espécie (setosa, versicolor, and virginica)
+
+## Uma olhada em `iris`
+
+```{r}
+#| label: tbl-iris
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `iris`
+#| tbl-cap-location: bottom
+iris |> 
   slice_sample(n = 10) |> 
   gt() |> 
   cols_align(
@@ -159,7 +194,7 @@ b = 2
 
 # Uma variável independente contínua
 
-## 
+## Pergunta de partida
 
 Quanto a massa corporal dos pinguins (`body_mass_g`) pode variar em função do comprimento da nadadeira (`flipper_length_mm`)?
 
@@ -173,14 +208,14 @@ Quanto a massa corporal dos pinguins (`body_mass_g`) pode variar em função do 
     -   Média
     -   Desvio padrão
     -   Histogramas
--   Correlações
-    -   Bivariadas
-    -   Gráficos de dispersão
+-   Estatística Bivariada
+    -   Gráfico de dispersão
+    -   Correlação
 
-## Estatísticas univariadas {.smaller}
+## Estatísticas descritivas {.smaller}
 
 ```{r}
-#| label: tbl-univariadas
+#| label: tbl-univariadas-penguins
 #| tbl-cap: Estatísticas univariadas para o comprimento da nadadeira e a massa corporal
 #| tbl-cap-location: bottom
 
@@ -241,17 +276,10 @@ hist_penguins_body_mass <- penguins |>
 hist_penguins_flipper + hist_penguins_body_mass
 ```
 
-## Estatísticas bivariadas {.smaller}
-
--   2 variáveis numéricas
-    -   Gráfico de dispersão
-    -   Coeficiente de Correlação
-
-## Gráfico de dispersão
+## 
 
 ```{r}
 #| out-width: 70%
-
 penguins |> 
   ggplot(
     aes(flipper_length_mm, body_mass_g)
@@ -447,7 +475,7 @@ tabela_modelo_reg_simples_cont
 tbl_matrix_cor_bmass_flipper
 ```
 
-## Valores observados, valores ajustados e os resíduos {.smaller}
+## Valores observados, valores ajustados (previstos) e os resíduos {.smaller}
 
 $$
 body\_mass\_g = `r a_cont` + `r b_cont`*flipper\_length\_mm
@@ -489,9 +517,10 @@ residuo <- observado - ajustado
 -   $\text{Resíduo} = \text{valor observado} - \text{valor ajustado}$
     -   $\text{Resíduo} =  `r observado` - `r  round(ajustado, 3)`  = `r round(residuo, 3)`$
 
-## Resíduos
+## 
 
 ```{r}
+#| out-width: 70%
 modelo_reg_simples_cont |> 
   augment() |> 
   ggplot(
@@ -503,6 +532,10 @@ modelo_reg_simples_cont |>
   ) +
   geom_point(data = penguins |>  filter(flipper_length_mm == 172), 
              aes(flipper_length_mm, body_mass_g), 
+             shape = 23, size = 5, color = "gray", stroke = 1.5) +
+  geom_point(data = penguins |>  filter(flipper_length_mm == 216,
+                                        body_mass_g == 4100), 
+             aes(flipper_length_mm, body_mass_g), 
              shape = 1, size = 5, color = "red", stroke = 1.5) +
   geom_smooth(
     method = "lm", se = F,
@@ -510,15 +543,177 @@ modelo_reg_simples_cont |>
   ) + 
   annotate(
     "segment",x = 171.9, xend = 171.9,
-    y = 2765, yend = 3100, color = "#F05133",
+    y = 2765, yend = 3050, color = "gray",
     linewidth = 1
   ) + 
-  
+  annotate(
+    "segment",x = 216, xend = 216,
+    y = 4951, yend = 4120, color = "#F05133",
+    linewidth = 1
+  ) +
   labs(
-    title = "Gráfico de diserpesão da relação\nentre massa corporal e comprimento da nadadeira"
+    title = "Gráfico de diserpesão da relação\nentre massa corporal e comprimento da nadadeira",
+    subtitle = "Resíduos realçados"
   ) +
   theme(
-    plot.title = element_text(hjust = 0.5) 
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
   )
 ```
 
+## Valores observados, valores ajustados (previstos) e os resíduos {.smaller}
+
+```{r}
+#| label: tbl-ajust-resid-cont
+#| tbl-cap: "Tabela com valores observados, valores previstos e os resíduos"
+#| tbl-cap-location: bottom
+modelo_reg_simples_cont |> 
+  augment() |> 
+  select(
+    id = .rownames, body_mass_g, 
+    flipper_length_mm, 
+    "Valores previstos" = .fitted,
+    "Resíduos" = .resid 
+  ) |> 
+  slice_head(n = 9) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  fmt_number(
+    columns = c(4,5),
+    decimals = 3, use_seps = F
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+# Uma variável independente categórica
+
+## Pergunta de partida
+
+Quanto a lárgura da sépala (`Sepal.Width`) pode variar em função da espécie de flor (`Species`)?
+
+# Análise de dados exploratória
+
+## Estatísticas e Gráficos {.smaller}
+
+::: {style="line-height: 1;"}
+-   Estatística descritiva
+    -   Variável Dependente (contínua)
+        -   Mínimo
+        -   Máximo
+        -   Média
+        -   Desvio padrão
+        -   Histograma
+    -   Variável independente (categórica)
+        -   Tabela de frequência
+        -   Gráfico de barras
+-   Estatística Bivariada
+    -   Boxplot
+    -   Tabelas para compração entre grupos
+    -   Teste T para amostras independentes (VI dicotômica)
+:::
+
+## Estatísticas descritivas {.smaller}
+
+```{r}
+#| label: tbl-univariadas-irs
+#| tbl-cap: Estatísticas univariadas para a largura da sépala
+#| tbl-cap-location: bottom
+
+variavel <- tribble(
+  ~Variável,
+  "Sepal.Width"
+)
+
+iris |> 
+  summarise(
+    N = n(),
+    NAs = sum(is.na(Sepal.Width)),
+    Média = mean(Sepal.Width),
+    "Desvio padrão" = sd(Sepal.Width),
+    Mínimo = min(Sepal.Width),
+    Máximo = max(Sepal.Width)
+  ) |> 
+  add_column(variavel, .before = 1) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_style_body(
+    style = cell_text(align = "left"),
+    values = c("flipper_length_mm", "body_mass_g")
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Histograma
+
+```{r}
+iris |> 
+  ggplot(
+    aes(Sepal.Width)
+  ) +
+  geom_histogram(
+    bins = 10,
+    fill = "#569BBD",
+    color = "#FFFFFF"
+  ) 
+```
+
+## Tabela de frequência e gráfico de barras
+
+::: columns
+::: {.column width="50%"}
+```{r}
+iris |> 
+  count(Species) |> 
+  mutate(
+    "%" = n/sum(n)
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  fmt_number(
+    decimals = 3, 
+  ) |> 
+  fmt_percent(
+    columns = 3
+    ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+iris |> 
+  ggplot(
+    aes(Species, fill =  Species)
+    ) +
+  geom_bar() +
+  scale_fill_colorblind() +
+  theme(
+    legend.position = "none"
+  )
+```
+:::
+:::

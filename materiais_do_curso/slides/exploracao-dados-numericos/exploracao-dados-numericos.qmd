@@ -481,8 +481,7 @@ $$
 
 . . .
 
-A formula da média em um formato um pouco mais simples: 
-$$
+A formula da média em um formato um pouco mais simples: $$
     \bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}
 $$
 
