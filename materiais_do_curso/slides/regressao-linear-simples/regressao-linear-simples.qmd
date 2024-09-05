@@ -180,6 +180,10 @@ Quanto a massa corporal dos pinguins (`body_mass_g`) pode variar em função do 
 ## Estatísticas univariadas {.smaller}
 
 ```{r}
+#| label: tbl-univariadas
+#| tbl-cap: Estatísticas univariadas para o comprimento da nadadeira e a massa corporal
+#| tbl-cap-location: bottom
+
 penguins |> 
   summarise(
     across(c(flipper_length_mm, body_mass_g),list(
@@ -484,3 +488,37 @@ residuo <- observado - ajustado
     -   $body\_mass\_g = `r round(ajustado, 3) `$
 -   $\text{Resíduo} = \text{valor observado} - \text{valor ajustado}$
     -   $\text{Resíduo} =  `r observado` - `r  round(ajustado, 3)`  = `r round(residuo, 3)`$
+
+## Resíduos
+
+```{r}
+modelo_reg_simples_cont |> 
+  augment() |> 
+  ggplot(
+    aes(flipper_length_mm, body_mass_g)
+  ) +
+  geom_point(
+    color = "#569BBD", alpha = 0.6,
+    size = 3
+  ) +
+  geom_point(data = penguins |>  filter(flipper_length_mm == 172), 
+             aes(flipper_length_mm, body_mass_g), 
+             shape = 1, size = 5, color = "red", stroke = 1.5) +
+  geom_smooth(
+    method = "lm", se = F,
+    color = "#F05133",linetype = 2
+  ) + 
+  annotate(
+    "segment",x = 171.9, xend = 171.9,
+    y = 2765, yend = 3100, color = "#F05133",
+    linewidth = 1
+  ) + 
+  
+  labs(
+    title = "Gráfico de diserpesão da relação\nentre massa corporal e comprimento da nadadeira"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5) 
+  )
+```
+
