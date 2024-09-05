@@ -159,11 +159,11 @@ b = 2
 
 # Uma variável independente contínua
 
-##
+## 
 
 Quanto a massa corporal dos pinguins (`body_mass_g`) pode variar em função do comprimento da nadadeira (`flipper_length_mm`)?
 
-# Análise de dados exploratória 
+# Análise de dados exploratória
 
 ## Estatísticas e Gráficos {.smaller}
 
@@ -242,7 +242,6 @@ hist_penguins_flipper + hist_penguins_body_mass
 -   2 variáveis numéricas
     -   Gráfico de dispersão
     -   Coeficiente de Correlação
-    
 
 ## Gráfico de dispersão
 
@@ -331,10 +330,9 @@ tbl_matrix_cor_bmass_flipper <- penguins |>
 tbl_matrix_cor_bmass_flipper
 ```
 
-
 ## O que sabemos até agora sobre a relação entre o comprimento da nadadeira e a massa corporal dos pinguins? {.smaller}
 
--   A partir do gráfico e do teste de correlação de pearson,  o que podemos dizer sobre a nossa equação?
+-   A partir do gráfico e do teste de correlação de pearson, o que podemos dizer sobre a nossa equação?
     -   b tem uma inclinação positiva!
     -   Pinguins com com nadadeiras maiores tendem a ter maior massa corporal
 
@@ -394,7 +392,6 @@ tabela_modelo_reg_simples_cont <- modelo_reg_simples_cont |>
 tabela_modelo_reg_simples_cont
 ```
 
-
 ## Interpretando a tabela de regressão {.smaller}
 
 ```{r}
@@ -408,7 +405,6 @@ b_cont <- round(b_cont, 3)
 tabela_modelo_reg_simples_cont
 ```
 
-
 $$
 y = a + bx
 $$
@@ -417,11 +413,9 @@ $$
     -   a = Estimativa do Intercepto = `r a_cont`
     -   b = Estimativa de `flipper_length_mm` = `r b_cont`
 
-
 $$
 body\_mass\_g = `r a_cont` + `r b_cont` * flipper\_length\_mm
 $$
-
 
 ::: aside
 Neste caso, o intercepto da linha de regressão tem uma interpretação matemática, mas ele não tem nenhuma interpretação prática, pois observar um valor de `flipper_length_mm` igual a 0 é impossível
@@ -434,16 +428,13 @@ body\_mass\_g = `r a_cont` + `r b_cont` * flipper\_length\_mm
 $$
 
 ::: {style="line-height: 1; font-size: 18pt"}
-
 -   Quais conclusões podemos tirar dessa equação?
     -   O sinal de b é positivo, portanto há uma relação positiva entre as variáveis
         -   Quanto maior a pontuação em `flipper_length_mm` maior a pontuação em `body_mass_g`
         -   Ou seja: um tamanho maior da nadadeira está associado a maior massa corporal dos pinguins
     -   Interpretação do valor de b (estimativa de `flipper_length_mm`):
         -   O coeficiente associado ao comprimento da nadadeira é 49.7. Isso significa que, para cada aumento de 1 mm no comprimento da nadadeira, o peso dos pinguins aumenta em média 49.7 gramas, mantendo todas as outras variáveis constantes.
-
 :::
-
 
 ## Correlação e regressão linear simples
 
@@ -478,12 +469,18 @@ penguins |>
   )
 
 
-y_cont <- a_cont + b_cont*penguins$flipper_length_mm[1]
+a <- modelo_reg_simples_cont$coefficients[[1]]
+b <- modelo_reg_simples_cont$coefficients[[2]]
+x <- penguins[[1, 5]]
+ajustado <- a + b*x
+observado <- penguins[[1, 6]]
+residuo <- observado - ajustado
+
 ```
 
-- Valor observado de body_mass_g = $`r penguins[[1,6]]`$
-- Valor ajustado/previsto 
-  -   $body\_mass\_g = `r a_cont` + `r b_cont`* `r penguins[[1,5]]`$
-  -   $body\_mass\_g = `r y_cont`$
-- $\text{Resíduo} = \text{valor observado} - \text{valor ajustado}$
-  -   $\text{Resíduo} =  `r penguins[[1,6]]` - `r y_cont`  = `r penguins[[1,6]] -  y_cont`$
+-   Valor observado de body_mass_g = $`r observado`$
+-   Valor ajustado/previsto
+    -   $body\_mass\_g = `r round(a, 3)` + `r round(b, 3)`* `r x`$
+    -   $body\_mass\_g = `r round(ajustado, 3) `$
+-   $\text{Resíduo} = \text{valor observado} - \text{valor ajustado}$
+    -   $\text{Resíduo} =  `r observado` - `r  round(ajustado, 3)`  = `r round(residuo, 3)`$
