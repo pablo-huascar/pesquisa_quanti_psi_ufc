@@ -302,7 +302,7 @@ penguins |>
     color = "#F05133",linetype = 2
   ) + 
   labs(
-    title = "Gráfico de diserpesão da relação\nentre massa corporal e comprimento da nadadeira"
+    title = "Gráfico de dispersão da relação\nentre massa corporal e comprimento da nadadeira"
   ) +
   theme(
     plot.title = element_text(hjust = 0.5) 
