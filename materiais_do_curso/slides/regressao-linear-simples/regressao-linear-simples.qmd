@@ -47,9 +47,8 @@ conflicted::conflicts_prefer(scales::rescale)
 
 iris_filter <- iris |>
   as_tibble() |> 
-  filter(Species %in% c("versicolor", "setosa"))
+  filter(Species != "virginica")
 ```
-
 
 ## O que vamos aprender?
 
@@ -366,6 +365,9 @@ tbl_matrix_cor_bmass_flipper <- penguins |>
   tab_options(
     table.width = pct(100),
     table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
   )
 
 tbl_matrix_cor_bmass_flipper
@@ -387,7 +389,9 @@ $$
 -   E o valor do intercepto *a*?
 -   Vamos utilizar a regressão linear simples para obter essas respostas
 
-## Tabela de regressão
+# A tabela e a equação da regressão
+
+## Tabela da regressão
 
 ```{r}
 #| label: tbl-reg-bmass-flipper
@@ -433,7 +437,7 @@ tabela_modelo_reg_simples_cont <- modelo_reg_simples_cont |>
 tabela_modelo_reg_simples_cont
 ```
 
-## Interpretando a tabela de regressão {.smaller}
+## Interpretando a tabela da regressão {.smaller}
 
 ```{r}
 a_cont <- modelo_reg_simples_cont$coefficients[[1]]
@@ -462,7 +466,7 @@ $$
 Neste caso, o intercepto da linha de regressão tem uma interpretação matemática, mas ele não tem nenhuma interpretação prática, pois observar um valor de `flipper_length_mm` igual a 0 é impossível
 :::
 
-## Interpretando a equação de regressão
+## Interpretando a equação da regressão
 
 $$
 body\_mass\_g = `r a_cont` + `r b_cont` * flipper\_length\_mm
@@ -476,13 +480,6 @@ $$
     -   Interpretação do valor de b (estimativa de `flipper_length_mm`):
         -   O coeficiente associado ao comprimento da nadadeira é 49.7. Isso significa que, para cada aumento de 1 mm no comprimento da nadadeira, o peso dos pinguins aumenta em média 49.7 gramas, mantendo todas as outras variáveis constantes.
 :::
-
-## Correlação e regressão linear simples
-
-```{r}
-tabela_modelo_reg_simples_cont
-tbl_matrix_cor_bmass_flipper
-```
 
 ## Valores observados, valores ajustados (previstos) e os resíduos {.smaller}
 
@@ -524,12 +521,14 @@ residuo <- observado - ajustado
     -   $body\_mass\_g = `r round(a, 3)` + `r round(b, 3)`* `r x`$
     -   $body\_mass\_g = `r round(ajustado, 3) `$
 -   $\text{Resíduo} = \text{valor observado} - \text{valor ajustado}$
-    -   $\text{Resíduo} =  `r observado` - `r  round(ajustado, 3)`  = `r round(residuo, 3)`$
+    -   $\text{Resíduo} =  `r observado` - `r  round(ajustado, 3)`$
+    -   $\text{Resíduo} = `r round(residuo, 3)`$
 
 ## 
 
 ```{r}
 #| out-width: 70%
+
 modelo_reg_simples_cont |> 
   augment() |> 
   ggplot(
@@ -600,6 +599,15 @@ modelo_reg_simples_cont |>
   opt_stylize(
     style = 1, color = "gray"
   )
+```
+
+## [Explicar R\^2]{style="color: red;"}
+
+## Correlação e regressão linear simples
+
+```{r}
+tabela_modelo_reg_simples_cont
+tbl_matrix_cor_bmass_flipper
 ```
 
 # Uma variável independente categórica
@@ -824,11 +832,24 @@ iris_filter |>
 ```{r}
 #| eval: false
 t.test(Sepal.Width ~ Species, data = iris_filter) |> 
-  tidy() |>
-  glimpse()
+  tidy() |> 
+  select(statistic, p.value) |> 
+  mutate(
+    Variável = "Sepal.Width",
+    teste = "t de Student",
+    gl = 98,
+    p.value = "< .001"
+  ) |> 
+  relocate(c("Variável", "teste"),
+           .before = 1) |> 
+  relocate(gl, .before = p.value) |> 
+  gt()
+  
+
+
 ```
 
-
+## O que sabemos até agora sobre a relação entre as espécies de flor e a lárgura da sépala?
 
 
 
