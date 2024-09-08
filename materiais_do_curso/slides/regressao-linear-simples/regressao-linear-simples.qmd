@@ -812,6 +812,9 @@ iris_filter |>
 ## Diferença entre as Médias
 
 ```{r}
+#| label: tbl-diferenca-medias
+#| tbl-cap: Diferença entre as médias de versicolor e setosa
+#| tbl-cap-location: bottom
 iris_filter |> 
   summarise(
     Média = mean(Sepal.Width),
@@ -912,7 +915,6 @@ r_sqrt_swidth_species <- round(r_sqrt_swidth_species, 2)
 r_sqrt_swidth_species <- str_c("r² = ", r_sqrt_swidth_species)
 ```
 
-
 ```{r}
 #| label: tbl-reg-swidth-species
 #| tbl-cap: "Tabela de regressão linear simples - VI categórica"
@@ -955,6 +957,30 @@ tabela_modelo_reg_simples_cat <- modelo_reg_simples_cat |>
 tabela_modelo_reg_simples_cat
 ```
 
-## Interpretando a tabela da regressão
+## Interpretando a tabela da regressão {.smaller}
 
+```{r}
+a_cat <- modelo_reg_simples_cat$coefficients[[1]]
+a_cat <- round(a_cat, 2)
+b_cat <- modelo_reg_simples_cat$coefficients[[2]]
+b_cat <- round(b_cat, 2)
+```
 
+```{r}
+tabela_modelo_reg_simples_cat
+```
+
+$$
+y = a + bx
+$$
+
+-   ::: {style="line-height: 1;"}
+    Estimativas
+
+    -   a = Estimativa do Intercepto = `r a_cat`
+        -   Intercepto = média da categoria de referência (setosa)
+    -   b = Estimativa de `Speciesversicolor` = `r b_cat`
+        -   b = Diferença entre a média de versicolor e a média da categoria de referência (setosa)
+        -   Média de setosa
+    -   Mesmos valores exibidos na @tbl-diferenca-medias
+    :::
