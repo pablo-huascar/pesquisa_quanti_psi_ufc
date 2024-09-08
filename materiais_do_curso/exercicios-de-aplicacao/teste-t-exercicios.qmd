@@ -3,12 +3,7 @@ title: "Teste T: exercícios"
 lang: pt-br
 format: 
   html:
-     fig.retina: 2
-     fig.width: 6
-     fig.asp: 2/3
-     fig-dpi: 300
-     fig-align: center
-     toc: true
+      toc: true
 echo: false
 message: false
 warning: false
@@ -16,7 +11,7 @@ eval: false
 editor: visual
 editor_options: 
   chunk_output_type: console
-bibliography: exercios_exploracao.bib
+bibliography: exercios.bib
 reference-section-title: Referências
 csl: apa.csl
 ---

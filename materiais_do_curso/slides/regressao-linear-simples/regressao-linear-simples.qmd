@@ -247,6 +247,11 @@ penguins |>
   cols_align(
     align = "center"  
   ) |> 
+  fmt_number(
+    columns = c("Média", "Desvio padrão"),
+    decimals = 2, 
+    use_seps = F
+    ) |> 
   tab_style_body(
     style = cell_text(align = "left"),
     values = c("flipper_length_mm", "body_mass_g")
@@ -316,8 +321,8 @@ penguins |>
 #| tbl-cap-location: bottom
 
 stats_cor_bmass_flipper <- cor.test(penguins$flipper_length_mm, 
-         penguins$body_mass_g)  
-  
+                                    penguins$body_mass_g)  
+
 
 t_cor_b_mass_flipper <- round(stats_cor_bmass_flipper$statistic[[1]],2)
 t_cor_b_mass_flipper <- str_c("t = ", t_cor_b_mass_flipper)  
@@ -348,7 +353,7 @@ tbl_matrix_cor_bmass_flipper <- penguins |>
   text_transform(
     locations = cells_body(columns = 2, rows = 2),
     fn = function(x) {
-      sub("^0\\.", ".", x)  # Remove o "0" antes de ".87"
+      sub("^0\\.", ".", x)  
     }
   ) |> 
   tab_footnote(
@@ -361,13 +366,20 @@ tbl_matrix_cor_bmass_flipper <- penguins |>
   ) |> 
   tab_source_note(
     source_note = t_r_cor_bmass_flipper
-    ) |> 
+  ) |> 
   tab_options(
     table.width = pct(100),
     table.font.size = "26px"
   ) |> 
   opt_stylize(
     style = 1, color = "gray"
+  ) |> 
+  tab_style(
+    locations = list(cells_stub()),
+    style = list(
+      cell_fill(color = "white"), 
+      cell_text(color = "black")
+    )
   )
 
 tbl_matrix_cor_bmass_flipper
@@ -375,7 +387,7 @@ tbl_matrix_cor_bmass_flipper
 
 ## O que sabemos até agora sobre a relação entre o comprimento da nadadeira e a massa corporal dos pinguins? {.smaller}
 
--   A partir do gráfico e do teste de correlação de pearson, o que podemos dizer sobre a nossa equação?
+-   A partir do gráfico de dispersão e do teste de correlação de pearson, o que podemos dizer sobre a nossa equação?
     -   b tem uma inclinação positiva!
     -   Pinguins com com nadadeiras maiores tendem a ter maior massa corporal
 
@@ -395,12 +407,13 @@ $$
 
 ```{r}
 #| label: tbl-reg-bmass-flipper
-#| tbl-cap: Tabela de regressão linear simples
+#| tbl-cap: "Tabela de regressão linear simples - VI contínua"
 #| tbl-cap-location: bottom
-modelo_reg_simples_cont <- lm(body_mass_g ~ flipper_length_mm, 
-                         data = penguins)
 
-nomes_tabela_regressao_cont <- c("Preditor", "Estimativa",
+modelo_reg_simples_cont <- lm(body_mass_g ~ flipper_length_mm, 
+                              data = penguins)
+
+nomes_tabela_regressao <- c("Preditor", "Estimativa",
                             "Erro padrão", "t", "p")
 
 tabela_modelo_reg_simples_cont <- modelo_reg_simples_cont |> 
@@ -408,8 +421,10 @@ tabela_modelo_reg_simples_cont <- modelo_reg_simples_cont |>
   mutate(
     across(where(is.double),
            \(x) round(x, 2)),
-    ) |> 
-  rename_with(~nomes_tabela_regressao_cont) |> 
+    term = case_when(term == "(Intercept)" ~ "Intercepto",
+                     .default = term)
+  ) |> 
+  rename_with(~nomes_tabela_regressao) |> 
   gt() |> 
   sub_values(
     columns = 5,
@@ -421,10 +436,10 @@ tabela_modelo_reg_simples_cont <- modelo_reg_simples_cont |>
   ) |> 
   tab_source_note(
     source_note = r_sqrt_b_mass_flipper
-    ) |> 
+  ) |> 
   tab_style_body(
     style = cell_text(align = "left"),
-    values = c("flipper_length_mm", "(Intercept)")
+    values = c("flipper_length_mm", "Intercepto")
   ) |> 
   tab_options(
     table.width = pct(100),
@@ -614,7 +629,7 @@ tbl_matrix_cor_bmass_flipper
 
 ## Pergunta de partida
 
-Quanto a lárgura da sépala (`Sepal.Width`) pode variar em função da espécie de flor (`Species`)? Para simplificar a explicação, vamos trabalhar somente com as espécies versicolor e setosa
+Quanto a lárgura da sépala (`Sepal.Width`) pode variar em função da espécie de flor (`Species`)? Inicialmente, vamos trabalhar somente com as espécies versicolor e setosa.
 
 # Análise de dados exploratória
 
@@ -663,6 +678,10 @@ iris_filter |>
   cols_align(
     align = "center"  
   ) |> 
+  fmt_number(
+    columns = c("Média", "Desvio padrão"),
+    decimals = 2
+    ) |> 
   tab_style_body(
     style = cell_text(align = "left"),
     values = "Sepal.Width"
@@ -827,29 +846,115 @@ iris_filter |>
   )
 ```
 
-## Teste T
+## Teste T para amostras independentes
 
 ```{r}
-#| eval: false
 t.test(Sepal.Width ~ Species, data = iris_filter) |> 
   tidy() |> 
-  select(statistic, p.value) |> 
+  select(
+    Estatística = statistic, 
+    p = p.value
+    ) |> 
   mutate(
     Variável = "Sepal.Width",
     teste = "t de Student",
     gl = 98,
-    p.value = "< .001"
+    p = "< .001"
   ) |> 
   relocate(c("Variável", "teste"),
            .before = 1) |> 
-  relocate(gl, .before = p.value) |> 
-  gt()
-  
-
-
+  relocate(gl, .before = p) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  cols_label(
+    Variável = "",
+    teste = ""
+  ) |> 
+  fmt_number(
+    columns = Estatística,
+    decimals = 3
+  ) |> 
+  tab_style_body(
+    style = cell_text(align = "left"),
+    values = "Sepal.Width"
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
 ```
 
 ## O que sabemos até agora sobre a relação entre as espécies de flor e a lárgura da sépala?
 
+-   A partir do gráfico de caixa e do teste de t para amostras independentes, o que podemos dizer sobre a nossa equação?
+    -   Há uma diferença entre as médias das espécies setosa e versicolor!
+    -   Flores da espécie setosa tem, em média, sépalas mais largas
+
+# A tabela e a equação da regressão
+
+## Tabela da regressão
+
+```{r}
+modelo_reg_simples_cat <- lm(Sepal.Width ~ Species, 
+                             data = iris_filter)
+
+r_sqrt_swidth_species <- modelo_reg_simples_cat |> 
+  glance() |> 
+  select(r.squared) |> 
+  pull()
+
+r_sqrt_swidth_species <- round(r_sqrt_swidth_species, 2)
+r_sqrt_swidth_species <- str_c("r² = ", r_sqrt_swidth_species)
+```
+
+
+```{r}
+#| label: tbl-reg-swidth-species
+#| tbl-cap: "Tabela de regressão linear simples - VI categórica"
+#| tbl-cap-location: bottom
+
+
+tabela_modelo_reg_simples_cat <- modelo_reg_simples_cat |> 
+  tidy() |> 
+  mutate(
+    across(where(is.double),
+           \(x) round(x, 2)),
+    term = case_when(term == "(Intercept)" ~ "Intercepto",
+                     .default = term)
+  ) |> 
+  rename_with(~nomes_tabela_regressao) |> 
+  gt() |> 
+  sub_values(
+    columns = 5,
+    fn = function(x) x == 0 , 
+    replacement = "< .001"
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_source_note(
+    source_note = r_sqrt_swidth_species
+  ) |> 
+  tab_style_body(
+    style = cell_text(align = "left"),
+    values = c("Intercepto", "Speciesversicolor")
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+
+tabela_modelo_reg_simples_cat
+```
+
+## Interpretando a tabela da regressão
 
 
