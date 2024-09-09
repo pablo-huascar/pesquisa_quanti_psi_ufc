@@ -169,6 +169,9 @@ $$
 ## A linha de regressão
 
 ```{r}
+#| label: tbl-linha-de-regressao
+#| tbl-cap: Valores de x e y para a linha de regressão
+#| tbl-cap-location: bottom
 reg_line |> 
   gt() |> 
   cols_align(
@@ -394,12 +397,16 @@ tbl_matrix_cor_bmass_flipper
 ## Questões para a regressão {.smaller}
 
 $$
-y = a + bx
+\hat{y} = a + bx
 $$
 
 -   Qual o valor numérico para a incliação (slope) *b*?
 -   E o valor do intercepto *a*?
 -   Vamos utilizar a regressão linear simples para obter essas respostas
+
+::: aside
+Por que colocamos um “chapéu” (acento circunflexo) em cima do $y$? É uma forma de notação comumente usada em regressão para indicar que temos um “valor ajustado”, ou o valor de $y$ na linha de regressão para um dado valor de $x$.
+:::
 
 # A tabela e a equação da regressão
 
@@ -466,7 +473,7 @@ tabela_modelo_reg_simples_cont
 ```
 
 $$
-y = a + bx
+\hat{y} = a + bx
 $$
 
 -   Estimativas
@@ -474,11 +481,11 @@ $$
     -   b = Estimativa de `flipper_length_mm` = `r b_cont`
 
 $$
-body\_mass\_g = `r a_cont` + `r b_cont` * flipper\_length\_mm
+\hat{body\_mass\_g} = `r a_cont` + `r b_cont` * flipper\_length\_mm
 $$
 
 ::: aside
-Neste caso, o intercepto da linha de regressão tem uma interpretação matemática, mas ele não tem nenhuma interpretação prática, pois observar um valor de `flipper_length_mm` igual a 0 é impossível
+Neste caso, o intercepto da linha de regressão tem uma interpretação matemática, mas ele não tem nenhuma interpretação prática, pois observar um valor de `flipper_length_mm` igual a 0 é impossível.
 :::
 
 ## Interpretando a equação da regressão
@@ -970,17 +977,29 @@ b_cat <- round(b_cat, 2)
 tabela_modelo_reg_simples_cat
 ```
 
+::: {style="line-height: 1; font-size: 75%"}
 $$
-y = a + bx
+\hat{y} = a + bx
 $$
 
--   ::: {style="line-height: 1;"}
-    Estimativas
 
-    -   a = Estimativa do Intercepto = `r a_cat`
-        -   Intercepto = média da categoria de referência (setosa)
-    -   b = Estimativa de `Speciesversicolor` = `r b_cat`
-        -   b = Diferença entre a média de versicolor e a média da categoria de referência (setosa)
-        -   Média de setosa
+-   Estimativas
+    -   a $=$ Estimativa do Intercepto $= `r a_cat`$
+        -   Intercepto $=$ média da categoria de referência (setosa)
+    -   b = Estimativa de `Speciesversicolor` $= `r b_cat`$
+        -   b $=$ Diferença entre a média de versicolor e a média da categoria de referência (setosa)
+        -   Média de versicolor $= Intercepto + b$  
+        -   Média de versicolor $= `r a_cat` +  (`r b_cat`)$ $= `r a_cat + b_cat`$
     -   Mesmos valores exibidos na @tbl-diferenca-medias
-    :::
+
+:::
+
+::: aside
+A categoria de referência é definida por ordem alfabética, mas esse comportamento pode ser alterado
+:::
+
+## Interpretando a equação da regressão
+
+$$
+\hat{y} = \hat{Sepal.Width} = b_0 + 1_{versicolor}(x)
+$$
