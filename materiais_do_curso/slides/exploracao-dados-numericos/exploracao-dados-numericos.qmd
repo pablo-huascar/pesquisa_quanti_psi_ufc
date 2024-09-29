@@ -1524,14 +1524,14 @@ airquality |>
 
 ## Como construir um histograma?
 
-::: columns
-::: {.column width="40%"}
+:::::: columns
+:::: {.column width="40%"}
 ::: {style="font-size: 70%"}
 -   O número de intervalos (bins) repercute na interpretação dos dados
     -   Poucos intervalos: o verdadeiro padrão subjacente nos dados pode ficar oculto
     -   Muitos intervalos: podemos estar apenas visualizando o ruído em um conjunto de dados
 :::
-:::
+::::
 
 ::: {.column width="60%"}
 ```{r}
@@ -1560,7 +1560,7 @@ hist_3_bins <- airquality |>
 hist_3_bins + hist_60_bins
 ```
 :::
-:::
+::::::
 
 ## Como construir um histograma? {.smaller}
 
@@ -2485,7 +2485,7 @@ hist + box
 
 ## Mediana {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="60%"}
 -   [É a linha escura dentro da caixa]{style="font-size: 75%"}
 -   [Divide os dados pela metade, 50% ficam abaixo desse valor e 50% ficam acima]{style="font-size: 75%"}
@@ -2509,12 +2509,12 @@ box_fs_sheight <- father.son |>
 box_fs_sheight
 ```
 :::
-:::
+:::::
 
 ## Primeiro quartil, terceiro quartil e intervalo interquartil {.smaller}
 
-::: columns
-::: {.column width="60%"}
+:::::: columns
+:::: {.column width="60%"}
 ::: {style="font-size: 70%"}
 -   O comprimento da caixa: intervalo interquartil (IQR, na abreviatura em inglês),
     -   É uma medida da variabilidade dos dados: quanto mais variação nos dados, maior o desvio padrão e o intervalo interquartil tendem a ser
@@ -2525,18 +2525,18 @@ box_fs_sheight
 -   $IQR = Q1 - Q3$
 -   Um percentil é um número com $\alpha\%$ das observações abaixo e 100 - $\alpha\%$ das observações acima. Por exemplo, o 90º percentil na média do ENEM tem 90% dos alunos abaixo desse valor e 10% dos alunos acima dele.
 :::
-:::
+::::
 
 ::: {.column width="40%"}
 ```{r}
 box_fs_sheight
 ```
 :::
-:::
+::::::
 
 ## O intervalo interquartil como medida de variabilidade {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r}
 desvio_maior <- rnorm(1000, 10, 5)
@@ -2595,11 +2595,11 @@ histogramas_desvio_padrao |>
                                 "Desvio padrão maior" = "#F05133"))
 ```
 :::
-:::
+:::::
 
 ## Whiskers (bigodes) e outliers (valores discrepantes) {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 -   ::: {style="font-size: 75%"}
     -   Whiskers: capturaram a maior parte dos dados, excluindo os outliers
@@ -2620,7 +2620,7 @@ histogramas_desvio_padrao |>
 box_fs_sheight
 ```
 :::
-:::
+:::::
 
 ## Outliers são extremos {.smaller}
 

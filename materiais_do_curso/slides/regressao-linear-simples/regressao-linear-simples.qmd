@@ -718,7 +718,7 @@ iris_filter |>
 
 ## Tabela de frequência e gráfico de barras
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r}
 iris_filter |> 
@@ -759,7 +759,7 @@ iris_filter |>
   )
 ```
 :::
-:::
+:::::
 
 ## Gráfico de caixa
 
@@ -982,16 +982,14 @@ $$
 \hat{y} = a + bx
 $$
 
-
 -   Estimativas
     -   a $=$ Estimativa do Intercepto $= `r a_cat`$
         -   Intercepto $=$ média da categoria de referência (setosa)
     -   b = Estimativa de `Speciesversicolor` $= `r b_cat`$
         -   b $=$ Diferença entre a média de versicolor e a média da categoria de referência (setosa)
-        -   Média de versicolor $= Intercepto + b$  
+        -   Média de versicolor $= Intercepto + b$\
         -   Média de versicolor $= `r a_cat` +  (`r b_cat`)$ $= `r a_cat + b_cat`$
     -   Mesmos valores exibidos na @tbl-diferenca-medias
-
 :::
 
 ::: aside
