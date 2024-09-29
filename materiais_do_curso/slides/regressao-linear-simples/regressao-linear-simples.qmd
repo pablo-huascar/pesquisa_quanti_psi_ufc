@@ -33,6 +33,7 @@ library(gt)
 library(patchwork)
 library(broom)
 library(ggthemes)
+library(corrr)
 conflicted::conflicts_prefer(dplyr::filter())
 conflicted::conflicts_prefer(dplyr::select())
 conflicted::conflicts_prefer(dplyr::lag())
@@ -75,6 +76,7 @@ Medidas de tamanho para pinguins forrageadores adultos perto da Estação Palmer
 #| label: tbl-penguins
 #| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `penguins`
 #| tbl-cap-location: bottom
+
 penguins |> 
   slice_sample(n = 10) |> 
   gt() |> 
@@ -323,9 +325,8 @@ penguins |>
 #| tbl-cap: Correlação entre a massa corporal e o comprimento da nadadeira dos pinguins
 #| tbl-cap-location: bottom
 
-stats_cor_bmass_flipper <- cor.test(penguins$flipper_length_mm, 
+stats_cor_bmass_flipper <- cor.test(penguins$flipper_length_mm,
                                     penguins$body_mass_g)  
-
 
 t_cor_b_mass_flipper <- round(stats_cor_bmass_flipper$statistic[[1]],2)
 t_cor_b_mass_flipper <- str_c("t = ", t_cor_b_mass_flipper)  
@@ -338,21 +339,19 @@ tbl_matrix_cor_bmass_flipper <- penguins |>
   select(flipper_length_mm, 
          body_mass_g) |> 
   drop_na() |> 
-  cor() |> 
-  as.data.frame() |> 
-  rownames_to_column() |> 
+  correlate(diagonal = 1) |>
+  shave() |> 
   gt() |>
   cols_align(
     align = "center", columns = c(2,3)
   ) |> 
-  sub_values(
-    columns = 3,
-    fn = function(x) x < 1, 
-    replacement = "-"
+  cols_label(
+    term = ""
   ) |> 
   fmt_number(
     decimals = 2, drop_trailing_zeros = T 
   ) |> 
+  sub_missing(missing_text = "") |> 
   text_transform(
     locations = cells_body(columns = 2, rows = 2),
     fn = function(x) {
