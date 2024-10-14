@@ -7,9 +7,6 @@ format:
       code-tools: true
       code-line-numbers: false
       theme: simple
-      echo: false
-      message: false
-      warning: false
       css: logo.css
 progress: true
 slide-number: true
@@ -29,6 +26,7 @@ source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
 #| include: false
 library(tidyverse)
 library(palmerpenguins)
+library(countdown)
 ```
 
 ## Por que usar o R?
@@ -91,17 +89,13 @@ E o [tidyverse](https://www.tidyverse.org/ "Tidyverse") facilita muito esse apre
 
 ## Criação de um projeto - Passo 4
 
-::::: columns
-::: {.column width="50%"}
-![](img/passo_4.png){width="772"}
-:::
+![](img/passo_4.png){width="710"}
 
-::: {.column width="50%"}
--   [É muito importante que todos os arquivos do projeto fiquem dentro de uma mesma pasta]{style="font-size:20pt;"}
--   [A pasta "raiz" não pode conter caracteres especiais]{style="font-size:20pt;"}
--   [Dica: crie uma pasta projetos_r dentro da pasta "C:" do Windows e, dentro dela, crie sub pastas para cada projeto]{style="font-size:20pt;"}
-:::
-:::::
+## Dicas
+
+-   É muito importante que todos os arquivos do projeto fiquem dentro de uma mesma pasta
+-   A pasta “raiz” não pode conter caracteres especiais
+-   Dica: crie uma pasta projetos-r dentro da pasta “C:” do Windows e, dentro dela, crie sub pastas para cada projeto
 
 ## E você vai chegar aqui
 
@@ -157,43 +151,17 @@ Neste painel são mostrados os arquivos do projeto, os gráficos produzidos, a a
 
 ::::: columns
 ::: {.column width="50%"}
-![](img/rstudio-ide-1.png)
+[![](img/rstudio-ide-1.png)](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html?_gl=1*7odx2p*_ga*MTQyNTUwMTY5MS4xNzIxNDk1NjA2*_ga_2C0WZ1JHG0*MTcyODc3MDYyOS4yMC4wLjE3Mjg3NzA2MjkuMC4wLjA.)
 :::
 
 ::: {.column width="50%"}
-![](img/rstudio-ide-2.png)
+[![](img/rstudio-ide-2.png)](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html?_gl=1*7odx2p*_ga*MTQyNTUwMTY5MS4xNzIxNDk1NjA2*_ga_2C0WZ1JHG0*MTcyODc3MDYyOS4yMC4wLjE3Mjg3NzA2MjkuMC4wLjA.)
 :::
 :::::
 
-## R for Data Science
+# Fluxo de trabalho: básico
 
-::::: columns
-::: {.column width="50%"}
-Livro base para o mini curso
-:::
-
-::: {.column width="50%"}
-[![](img/r_for_d_s.jpg){fig-alt="Capa do livro R for Data Science. Uma coruja se destaca na ilustração" fig-align="right" width="412"}](https://r4ds.had.co.nz/)
-:::
-:::::
-
-## R for Data Science
-
--   Neste [link](https://r4ds.had.co.nz/ "R for Data Science") você pode acessar a primeira edição do livro:
-
-<https://r4ds.had.co.nz/>
-
--   E [aqui](https://r4ds.hadley.nz/ "R for Data Science") você pode acessar a segunda edição:
-
-<https://r4ds.hadley.nz/>
-
-::: aside
-Estes slides tem como base o conteúdo da segunda edição
-:::
-
-# 3 Fluxo de trabalho: básico
-
-## 3.1 Noções básicas de codificação
+## Noções básicas de codificação
 
 Execução de códigos no Script
 
@@ -210,16 +178,32 @@ Execução de códigos no Script
 10*2+5
 10-3
 10^2
-sqrt(100)
+100^(1/2)
+27^(1/3)
 ```
 
+## Operadores Aritméticos
+
+-   `+`: adição
+-   `-`: subtração
+-   `*`: multiplicação
+-   `/`: divisão
+-   `^` ou `**`: exponenciação
+-   `x^(1/2)`: raiz quadrada
+-   `x^(1/3)`: raiz cúbica
+
 ## Exercício
+
+```{r}
+countdown(minutes = 3)
+```
 
 -   Divida 250 por 10
 -   Eleve 11 ao quadrado
 -   Multiplique 10 por 2 e some 5
 -   Subtraia 10 de 20 e divida por 10
 -   Some 40 e 50 e multiplique por 10
+-   Cálcule a raiz cúbica de 512
 
 ## Respostas
 
@@ -230,6 +214,7 @@ sqrt(100)
 10*2+5
 (20-10)/10
 (40+50)/10
+512^(1/3)
 ```
 
 ## Criação de objetos com o operador de atribuição `<-`
@@ -260,6 +245,10 @@ nome_do_objeto
 :::
 
 ## Exercício
+
+```{r}
+countdown(minutes = 3)
+```
 
 Crie os seguintes objetos:
 
@@ -294,6 +283,10 @@ a-b
 
 ## Exercício
 
+```{r}
+countdown(minutes = 3)
+```
+
 -   Divida `c` por `d` e some `a`
 -   Some `a` e `b` e divida por `c`
 -   Multiplique `a` por `b` e some `d`
@@ -309,7 +302,7 @@ a-b
 (c+d)/a
 ```
 
-## É possível combinar múltiplos elmentos em um vetor com c() - "concatenar"
+## É possível [c]{style="color: red;"}ombinar múltiplos elmentos em um vetor com c() - "[c]{style="color: red;"}oncatenar"
 
 ```{r}
 #| echo: true
@@ -340,14 +333,16 @@ z-w^2
 
 ## Exercício
 
-::: incremental
+```{r}
+countdown(minutes = 3)
+```
+
 -   Crie os vetores `z <- c(1,2,10,12)` e `w <- c(3,5,6,8)`
 -   Eleve `z` ao quadrado
 -   Some 10 a `w`
 -   Divida `z` por 3
 -   Multiplique `z` e `w`
 -   Divida `z` por `w`
-:::
 
 ## Respostas
 
@@ -362,8 +357,43 @@ w+10
 z/3
 z+w
 z/w
-
 ```
+
+## O que aconteceu aqui?
+
+```{r}
+#| echo: true
+#| warning: true
+a <- c(1,2)
+b <- c(1,2,3)
+a+b
+```
+
+## Reciclagem
+
+-   `a` e `b` têm comprimentos diferentes
+    -   `a` tem comprimento 2 e `b` tem comprimento 3
+-   Ao realizar a operação `a` + `b`, o R tenta reciclar os elementos do vetor menor para combinar com o vetor maior:
+    -   os elementos de `a` são repetidos para corresponder ao tamanho de `b`
+
+## Passo a passo
+::: {style="line-height: 0.5;"}
+-   `a`: 1, 2
+-   `b`: 1, 2, 3
+-   `a` + `b`
+
+1 2 [1]{style="color: red;"}
+
+\+ + +
+
+1 2 3
+
+=
+
+2 4 4
+
+:::
+
 
 ## Dica 1
 
@@ -372,15 +402,13 @@ z/w
 ```{r}
 #| echo: true
 #| code-line-numbers: "|3"
-#| eval: false
+#| error: true
 a <- letters
 
 A
 ```
 
-```         
-Error: object 'A' not found
-```
+## Letras
 
 ```{r}
 #| echo: true
@@ -397,14 +425,10 @@ a
 ```{r}
 #| echo: true
 #| code-line-numbers: "|3"
-#| eval: false
+#| error: true
 data("cars")
 
 carz
-```
-
-```         
-Error: object 'carz' not found
 ```
 
 # Cars
@@ -417,7 +441,7 @@ data("cars")
 cars 
 ```
 
-## 3.2 Comentários
+## Comentários
 
 R irá ignorar qualquer texto após \# para essa linha.
 
@@ -450,15 +474,16 @@ penguins <- penguins
 
 # Gráficos
 
-penguins |> 
-  filter(!is.na(sex)) |> 
+penguins |>
+  filter(!is.na(sex)) |>
   ggplot(
-    aes(flipper_length_mm, 
-        bill_length_mm, 
-        color = sex,
-    )
+    aes(flipper_length_mm,
+        bill_length_mm,
+        color = sex)
   ) +
-  geom_point(alpha = 0.5)
+  geom_point(
+    alpha = 0.5
+  )
 ```
 
 ### Gráfico
@@ -480,7 +505,7 @@ penguins |>
   ) +
   geom_point(
     alpha = 0.5
-    )
+  )
 ```
 :::
 
@@ -505,13 +530,15 @@ penguins |>
 penguins |> 
   filter(island == "Biscoe",
          !is.na(sex)) |>
-  ggplot(aes(flipper_length_mm, 
-             bill_length_mm, 
-             color = sex, 
-             size =body_mass_g)) +
+  ggplot(
+    aes(flipper_length_mm, 
+        bill_length_mm, 
+        color = sex, 
+        size =body_mass_g)
+  ) +
   geom_point(
     alpha = 0.5
-    ) +
+  ) +
   facet_wrap(~ species)
 ```
 
@@ -526,21 +553,22 @@ penguins |>
 #| fig-dpi: 600
 #| message: false
 #| warning: false
-# O relatório 3 só precisava dos 
-#dados da ilha Biscoe
+# O relatório 3 só precisava dos dados da ilha Biscoe
 penguins |> 
   filter(island == "Biscoe",
          !is.na(sex)) |>
-  ggplot(aes(flipper_length_mm, 
-             bill_length_mm, color = sex, 
-             size = body_mass_g)) +
+  ggplot(
+    aes(flipper_length_mm, 
+        bill_length_mm, color = sex, 
+        size = body_mass_g)
+  ) +
   geom_point(
     alpha = 0.5
-    ) +
+  ) +
   facet_wrap(~ species)
 ```
 
-## 3.3 O que é um nome?
+## O que é um nome?
 
 -   Os nomes dos objetos devem começar com uma letra
 -   Podem conter apenas `letras`, `números`, `_` e `.`
@@ -561,7 +589,7 @@ penguins |>
 -   O R Studio vai dar opções para escolher
 -   A função de auto completar é nossa amiga: use sempre!
 
-## 3.4 Usando Funções
+## Usando Funções
 
 O R possui uma grande coleção de funções integradas que são chamadas desta maneira:
 
@@ -790,11 +818,3 @@ library(tidyverse)
 library(car)
 library(psych)
 ```
-
-## Compartilhar conhecimento sempre!
-
-O código e as imagens utilizados para a construção desse slide estão disponíveis no [link](https://github.com/pablo-huascar/rpsi) a seguir:
-
-<https://github.com/pablo-huascar/rpsi>
-
-
