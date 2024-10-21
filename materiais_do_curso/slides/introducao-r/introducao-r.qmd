@@ -29,6 +29,34 @@ library(palmerpenguins)
 library(countdown)
 ```
 
+## R e Rstudio {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+![](img/Rlogo%20(1)-02.png){fig-align="center" width="148"}
+
+-   R é uma linguagem de programação estatística de código aberto
+-   R também é um ambiente para computação estatística e gráficos
+-   Pode ser facilmente expandido com pacotes
+:::
+
+::: {.column width="50%"}
+![](img/rstudio-logo-flat-02.png){fig-align="center" width="201"}
+
+-   RStudio é uma interface conveniente para R chamada IDE ((integrated development environment- ambiente de desenvolvimento integrado),
+-   Por exemplo: "Eu escrevo código R no RStudio IDE"
+-   RStudio não é um requisito para programação com R, mas é muito comumente usado por programadores R e cientistas de dados
+:::
+:::::
+
+##  {transition="convex" transition-speed="fast" background-image="img/ferrari.jpg"}
+
+[R]{style="font-size: 150pt;color: white;"}
+
+##  {transition="concave" transition-speed="fast" background-image="img/ferrari_panel.jpg"}
+
+[R Studio]{style="font-size: 100pt;color: white;"}
+
 ## Por que usar o R?
 
 ::: incremental
@@ -54,24 +82,6 @@ Sim, mas é como aprender um novo idioma: há desconforto inicial, mas, com a pr
 ::: aside
 E o [tidyverse](https://www.tidyverse.org/ "Tidyverse") facilita muito esse aprendizado
 :::
-
-##  {#slide2-id data-menu-title="R e R Studio"}
-
-::: {.fragment .fade-up}
-![](img/Rlogo%20(1)-02.png){width="298"}
-:::
-
-::: {.fragment .fade-right}
-![](img/rstudio-logo-flat-02.png){width="760"}
-:::
-
-##  {transition="convex" transition-speed="fast" background-image="img/ferrari.jpg"}
-
-[R]{style="font-size: 150pt;color: white;"}
-
-##  {transition="concave" transition-speed="fast" background-image="img/ferrari_panel.jpg"}
-
-[R Studio]{style="font-size: 100pt;color: white;"}
 
 ## [Vamos começar!]{style="font-size: 130pt; line-height: 0.7; text-align: left; display: flex; align-items: center; justify-content: center;"} {transition="fade-in fade-out" transition-speed="slow"}
 
@@ -117,7 +127,7 @@ E o [tidyverse](https://www.tidyverse.org/ "Tidyverse") facilita muito esse apre
 
 ::::: columns
 ::: {.column width="30%"}
-É onde o código é escrito. Vários tipos de arquivos podem ser utilizados: Scripts, Rmarkdown etc.
+É onde o código é escrito. Vários tipos de arquivos podem ser utilizados: Scripts, Rmarkdown, Quarto etc.
 :::
 
 ::: {.column width="70%"}
@@ -302,7 +312,7 @@ countdown(minutes = 3)
 (c+d)/a
 ```
 
-## É possível [c]{style="color: red;"}ombinar múltiplos elmentos em um vetor com c() - "[c]{style="color: red;"}oncatenar"
+## É possível [c]{style="color: red;"}ombinar múltiplos elmentos em um vetor com c()
 
 ```{r}
 #| echo: true
@@ -377,6 +387,7 @@ a+b
     -   os elementos de `a` são repetidos para corresponder ao tamanho de `b`
 
 ## Passo a passo
+
 ::: {style="line-height: 0.5;"}
 -   `a`: 1, 2
 -   `b`: 1, 2, 3
@@ -391,9 +402,7 @@ a+b
 =
 
 2 4 4
-
 :::
-
 
 ## Dica 1
 
@@ -646,14 +655,14 @@ seq(1,10,2)
 
 ## Exemplo: Função seq()
 
-[Ao explicitar os argumentos, eles podem aparecer em qualquer ordem:]{style="font-size:20pt;"}
+-   [Ao explicitar os argumentos, eles podem aparecer em qualquer ordem:]{style="font-size:20pt;"}
 
 ```{r}
 #| echo: true
 seq(by = 2, to = 10, from = 1)
 ```
 
-[Porém, não será obitdo o mesmo resultado mudando os valores de lugar sem a explicitação dos argumentos]{style="font-size:20pt;line-height: 50%"}
+-   [Porém, não será obitdo o mesmo resultado mudando os valores de lugar sem a explicitação dos argumentos]{style="font-size:20pt;"}
 
 ```{r}
 #| echo: true
@@ -732,7 +741,7 @@ countdown(minutes = 5)
 
 ::: {style="line-height: 1;font-size:22pt;"}
 -   Use a função `rnorm` e crie um objeto chamado `cem` com cem casos, cuja média seja 30 e o desvio padrão 4
-    -   Para que a sua resposta seja reprodutível use `set.seed(123)`   
+    -   Para que a sua resposta seja reprodutível use `set.seed(123)`\
 -   Crie um histograma
 -   Calcule as seguintes estatísticas do objeto `cem`:
     -   Soma
