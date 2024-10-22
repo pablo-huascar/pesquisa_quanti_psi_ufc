@@ -1,0 +1,754 @@
+---
+title: "Introdução ao R"
+subtitle: "Fluxo de Trabalho: Fundamentos"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      code-link: true
+      code-tools: true
+      code-line-numbers: false
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
+```{r}
+#| label: setup
+#| echo: false
+#| include: false
+library(tidyverse)
+library(palmerpenguins)
+library(countdown)
+```
+
+## R e Rstudio {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+![](img/Rlogo%20(1)-02.png){fig-align="center" width="148"}
+
+-   R é uma linguagem de programação estatística de código aberto
+-   R também é um ambiente para computação estatística e gráficos
+-   Pode ser facilmente expandido com pacotes
+:::
+
+::: {.column width="50%"}
+![](img/rstudio-logo-flat-02.png){fig-align="center" width="201"}
+
+-   RStudio é uma interface conveniente para R chamada IDE ((integrated development environment- ambiente de desenvolvimento integrado),
+-   Por exemplo: "Eu escrevo código R no RStudio IDE"
+-   RStudio não é um requisito para programação com R, mas é muito comumente usado por programadores R e cientistas de dados
+:::
+:::::
+
+##  {transition="convex" transition-speed="fast" background-image="img/ferrari.jpg"}
+
+[R]{style="font-size: 150pt;color: white;"}
+
+##  {transition="concave" transition-speed="fast" background-image="img/ferrari_panel.jpg"}
+
+[R Studio]{style="font-size: 100pt;color: white;"}
+
+## Por que usar o R? {.smaller}
+
+::: incremental
+-   Gratuito
+-   Pesquisa reprodutível (para outros cientistas e o seu eu do futuro)
+-   Flexível
+-   Milhares de funções para todo tipo de análise
+    -   Novos funções são desenvolvidas o tempo todo ao redor do mundo
+:::
+
+## Eu tenho que aprender uma linguagem de programação para usar o R? {.smaller transition="zoom" transition-speed="slow"}
+
+::::: columns
+::: {.column width="50%"}
+![](img/emogi_screaming.png){width="369"}
+:::
+
+::: {.column width="50%"}
+Sim, mas é como aprender um novo idioma: há desconforto inicial, mas, com a prática, é possível se tornar fluente!
+:::
+:::::
+
+::: aside
+E o [tidyverse](https://www.tidyverse.org/ "Tidyverse") facilita muito esse aprendizado
+:::
+
+## Condificação básica {.center transition="fade-in fade-out" transition-speed="slow"}
+
+## Painéis do R Studio: console
+
+![](img/passo_final.png)
+
+## Cálculos matemáticos básicos
+
+```{r}
+#| echo: true
+10+10
+10/2
+10*2+5
+10-3
+10^2
+100^(1/2)
+27^(1/3)
+```
+
+## Operadores Aritméticos {.smaller}
+
+-   `+`: adição
+-   `-`: subtração
+-   `*`: multiplicação
+-   `/`: divisão
+-   `^` ou `**`: exponenciação
+-   `x^(1/2)`: raiz quadrada
+-   `x^(1/3)`: raiz cúbica
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 3)
+```
+
+-   Divida 250 por 10
+-   Eleve 11 ao quadrado
+-   Multiplique 10 por 2 e some 5
+-   Subtraia 10 de 20 e divida por 10
+-   Some 40 e 50 e multiplique por 10
+-   Cálcule a raiz cúbica de 512
+
+## Respostas
+
+```{r}
+#| echo: true
+250/10
+11^2
+10*2+5
+(20-10)/10
+(40+50)/10
+512^(1/3)
+```
+
+## Criação de objetos com o operador de atribuição `<-` {.smaller}
+
+```{r}
+#| echo: true
+x <- 3
+x
+y <- 10*10
+y
+```
+
+-   O valores de `x` ou `y` não são impressos; apenas armazenados.
+-   Para visualizar o valor de um `objeto`, execute-o no script.
+
+## Todas as instruções de atribuição têm o mesmo formato {.smaller}
+
+```{r}
+#| echo: true
+nome_do_objeto <- "valor"
+
+nome_do_objeto
+```
+
+::: incremental
+-   Ao ler esse código, diga: "o nome do objeto obtém valor"
+-   Atalho de teclado do R Studio: Alt + "-" (sinal de menos)
+:::
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 3)
+```
+
+Crie os seguintes objetos:
+
+-   `a` com valor `2`
+-   `b` com valor `10`
+-   `c` com valor `5`
+-   `d` com valor `10*2`
+
+## Respostas
+
+```{r}
+#| echo: true
+a <- 2
+a
+b <- 10
+b
+c <- 5
+c
+d <- 10*2
+d
+```
+
+## As operações podem ser realizadas entre objetos
+
+```{r}
+#| echo: true
+a*b
+a+b
+a/b
+a-b
+```
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 3)
+```
+
+-   Divida `c` por `d` e some `a`
+-   Some `a` e `b` e divida por `c`
+-   Multiplique `a` por `b` e some `d`
+-   Some `c` com `d` e divida por `a`
+
+## Respostas
+
+```{r}
+#| echo: true
+(c/d) + a
+(a+b)/c
+(a*b)+d
+(c+d)/a
+```
+
+## É possível [c]{style="color: red;"}ombinar múltiplos elmentos em um vetor com c()
+
+```{r}
+#| echo: true
+z <- c(1,2,10,12)
+z
+w <- c(3,5,6,8)
+w
+```
+
+## Aritimética básica nos vetores é aplicada a cada elemento do vetor
+
+```{r}
+#| echo: true
+z
+z*2
+w
+w*3
+```
+
+## Também é possível realizar operações com vetores
+
+```{r}
+#| echo: true
+z+w
+z-w
+z-w^2
+```
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 3)
+```
+
+-   Crie os vetores `z <- c(1,2,10,12)` e `w <- c(3,5,6,8)`
+-   Eleve `z` ao quadrado
+-   Some 10 a `w`
+-   Divida `z` por 3
+-   Multiplique `z` e `w`
+-   Divida `z` por `w`
+
+## Respostas
+
+```{r}
+#| echo: true
+z <- c(1,2,10,12)
+z
+w <- c(3,5,6,8)
+w
+z^2
+w+10
+z/3
+z*w
+z/w
+```
+
+## O que aconteceu aqui?
+
+```{r}
+#| echo: true
+#| warning: true
+a <- c(1,2)
+b <- c(1,2,3)
+a+b
+```
+
+## Reciclagem {.smaller}
+
+-   `a` e `b` têm comprimentos diferentes
+    -   `a` tem comprimento 2 e `b` tem comprimento 3
+-   Ao realizar a operação `a` + `b`, o R tenta reciclar os elementos do vetor menor para combinar com o vetor maior:
+    -   os elementos de `a` são repetidos para corresponder ao tamanho de `b`
+
+## Passo a passo {.smaller}
+
+::: {style="line-height: 0.5;"}
+-   `a`: 1, 2
+-   `b`: 1, 2, 3
+-   `a` + `b`
+
+1 2 [1]{style="color: red;"}
+
+\+ + +
+
+1 2 3
+
+=
+
+2 4 4
+:::
+
+## Dica {.smaller}
+
+-   O R diferencia MAIÚSCULAS de minúsculas (case sensitive)
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|3"
+#| error: true
+a <- letters
+
+A
+```
+
+## Letras
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|3"
+a <- letters
+
+a
+```
+
+## Dica {.smaller}
+
+-   Cuidado com erros de digitação
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|3"
+#| error: true
+data("cars")
+
+carz
+```
+
+# Cars
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|3"
+data("cars")
+
+cars 
+```
+
+# Comentários {.center}
+
+## \#
+
+R irá ignorar qualquer texto após \# para essa linha.
+
+```{r}
+#| echo: true
+# Criação de um vetor com os 5 primeiros números pares
+
+pares <- c(2,4,6,8,10)
+
+pares
+
+# Elevando os pares ao quadrado
+
+(pares)^2
+```
+
+## Uso dos comentários {.smaller}
+
+-   Descrever brevemente o que o código seguinte faz:
+
+::: panel-tabset
+### Código
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|1|5|"
+#| eval: false
+
+# Obtenção dos dados
+
+df <- penguins
+
+# Criáção do gráfico
+
+df |>
+  filter(!is.na(sex)) |>
+  ggplot(
+    aes(flipper_length_mm,
+        bill_length_mm,
+        color = sex)
+  ) +
+  geom_point(
+    alpha = 0.5
+  )
+```
+
+### Gráfico
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 70%
+#| eval: true
+#| fig-dpi: 600
+
+penguins |> 
+  filter(!is.na(sex)) |> 
+  ggplot(
+    aes(flipper_length_mm, 
+        bill_length_mm, 
+        color = sex,
+    )
+  ) +
+  geom_point(
+    alpha = 0.5
+  )
+```
+:::
+
+## Outro uso dos comentários: explicações {.smaller}
+
+::: incremental
+-   Use comentários para explicar o porquê do seu código, não o como ou o quê
+-   O que e como do seu código são sempre possíveis de descobrir
+-   Descobrir por que algo foi feito é muito mais difícil
+:::
+
+## Sem explicações para a equipe
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|1|2|3|4|5|6|7|8|9|10|11|12|13"
+#| fig-align: center
+#| out-width: 70%
+#| output-location: slide
+#| fig-dpi: 600  
+
+penguins |> 
+  filter(island == "Biscoe",
+         !is.na(sex)) |>
+  ggplot(
+    aes(flipper_length_mm, 
+        bill_length_mm, 
+        color = sex, 
+        size =body_mass_g)
+  ) +
+  geom_point(
+    alpha = 0.5
+  ) +
+  facet_wrap(~ species)
+```
+
+## Com explicações para a equipe
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|1|2|3"
+#| output-location: slide
+#| out-width: 70%
+#| fig-align: center
+#| fig-dpi: 600
+#| message: false
+#| warning: false
+# O relatório 3 só precisava dos dados da ilha Biscoe
+penguins |> 
+  filter(island == "Biscoe",
+         !is.na(sex)) |>
+  ggplot(
+    aes(flipper_length_mm, 
+        bill_length_mm, color = sex, 
+        size = body_mass_g)
+  ) +
+  geom_point(
+    alpha = 0.5
+  ) +
+  facet_wrap(~ species)
+```
+
+# O que é um nome? {.center}
+
+## Nomes {.smaller}
+
+-   Os nomes dos objetos devem começar com uma letra
+-   Podem conter apenas `letras`, `números`, `_` e `.`
+-   Os nomes de seus objetos devem ser descritivos
+-   Sugerimos a seguinte convenção:
+    -   letras_minúsculas_separadas_com `_`
+
+## Exemplos de nomes {.smaller}
+
+-   i_use_snake_case
+-   otherPeopleUseCamelCase
+-   some.people.use.periods
+-   And_aFew.People_RENOUNCEconvention
+
+## Dica: auto completar {.smaller}
+
+-   Digite ao menos 3 caracteres e use a tecla tab
+-   O R Studio vai dar opções para escolher
+-   A função de auto completar é nossa amiga: use sempre!
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 3)
+```
+
+-   Crie um objeto com os 5 primeiros números pares e dê um nome para ele usando a convenção snake_case
+-   Faça o mesmo, mas agora com os 5 primeiros números ímpares
+-   Tente usar a tecla tab para chamar os dois objetos criados
+
+## Reposta
+
+```{r}
+#| echo: true
+numeros_pares <- c(2,4,6,8,10)
+numeros_impares <- c(1,3,5,7,11)
+numeros_pares
+numeros_impares
+```
+
+# Chamando Funções {.center}
+
+## Funções {.smaller}
+
+O R possui uma grande coleção de funções integradas que são chamadas desta maneira:
+
+```{r}
+#| echo: true
+#| eval: false
+nome_da_funcao(argumento1 = valor1, argumento2 = valor2, ...)
+```
+
+## Função `seq()` {.smaller}
+
+::::: columns
+::: {.column width="40%"}
+-   Gera sequências regulares de números
+-   Comece a digiar `se` e pressione tab
+    -   Um pop-up mostra as possíveis conclusões
+    -   Observe também a dica que aparece
+    -   Pressione F1 para detalhes na aba Help
+:::
+
+::: {.column width="60%"}
+![](img/tab_pop_up.png){fig-align="center" width="496"}
+:::
+:::::
+
+## Função `seq()` {.smaller}
+
+-   Quando você tiver selecionado a função desejada no pop up, pressione TAB novamente
+    -   O RStudio adicionará os parênteses de abertura (`(`) e fechamento (`)`) correspondentes
+
+```{r}
+#| echo: true
+#| eval: false
+seq()
+```
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 2)
+```
+
+-   Chame a função `rnorm`
+-   Use a dica para descobrir para que ela serve
+-   Use a tecla tab e descubra quais argumentos ela tem
+    -   Dica: os próximos argumentos só vão aparecer depois de colocar uma vírgula
+-   Tente utilizar a função
+
+## Resposta {.smaller}
+
+-   Gera uma distribuição normal com números aleatórios
+
+```{r}
+#| echo: true
+set.seed(123)
+rnorm(n = 10, mean = 5, sd = 0.3)
+```
+
+## Argumentos das funções
+
+[Os dois primeiros argumentos da função `seq()` são: `from` e `to`]{style="font-size:20pt;"}
+
+```{r}
+#| echo: true
+# Crie uma sequência de números de 1 a 10
+seq(from = 1, to = 10)
+```
+
+[Terceiro argumento: by]{style="font-size:20pt;"}
+
+```{r}
+#| echo: true
+# Agora, o incremento da sequência é por 2
+seq(from = 1, to = 10, by = 2)
+```
+
+[Se os valores dos argumentos estiverem na ordem da função, é possível omití-los]{style="font-size:20pt;"}
+
+```{r}
+#| echo: true
+seq(1,10,2)
+```
+
+## Argumentos das funções
+
+[Ao explicitar os argumentos, eles podem aparecer em qualquer ordem:]{style="font-size:20pt; line-height: 1"}
+
+```{r}
+#| echo: true
+seq(by = 2, to = 10, from = 1)
+```
+
+[Não será obitdo o mesmo resultado mudando os valores de lugar sem os argumentos]{style="font-size:20pt;"}
+
+```{r}
+#| echo: true
+seq(2,10,1)
+```
+
+## Outras formas de saber os argumentos e a utilidade das funções
+
+```{r}
+#| echo: true
+#| eval: false
+
+?nome_da_funcao
+
+help(nome_da_funcao)
+
+args(nome_da_funcao)
+```
+
+## Help
+
+```{r}
+#| echo: true
+#| eval: false
+?seq
+```
+
+![](img/help.png){width="610"}
+
+## `args()`
+
+```{r}
+#| echo: true
+args(rnorm)
+```
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 5)
+```
+
+-   A partir da ajuda, descubra para que servem as funções a seguir e tente utilizá-las:
+    -   `ls`
+    -   `round`
+    -   `set.seed`
+    -   `rnorm`
+    -   `hist`
+
+## Funções básicas importantes
+
+```{r}
+#| echo: true
+z <- c(2,2,6,11,9,20)
+sum(z)
+mean(z)
+median(z)
+```
+
+## Funções básicas importantes
+
+```{r}
+#| echo: true
+f <- c(2,2,6,11,9,20)
+range(f)
+min(f)
+max(f)
+quantile(f)
+```
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 5)
+```
+
+::: {style="line-height: 1;font-size:22pt;"}
+-   Use a função `rnorm` e crie um objeto chamado `cem` com cem casos, cuja média seja 30 e o desvio padrão 4
+    -   Para que a sua resposta seja reprodutível use `set.seed(123)`\
+-   Crie um histograma
+-   Calcule as seguintes estatísticas do objeto `cem`:
+    -   Soma
+    -   Média
+    -   Desvio padrão
+    -   Mediana
+    -   Mínimo
+    -   Máximo
+    -   Quartis
+:::
+
+## Resposta - Parte 1
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| out-width: 70%
+#| fig-dpi: 600
+
+set.seed(123)
+cem <- rnorm(n = 100, mean = 30, sd = 4)
+hist(cem)
+```
+
+## Resposta - Parte 2
+
+```{r}
+#| echo: true
+sum(cem)
+
+mean(cem)
+
+sd(cem)
+
+median(cem)
+
+min(cem)
+
+max(cem)
+
+quantile(cem)
+```
