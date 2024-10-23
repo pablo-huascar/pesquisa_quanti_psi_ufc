@@ -3,15 +3,7 @@ title: "Exploração de dados: exercícios"
 lang: pt-br
 format: 
   html:
-     fig.retina: 2
-     fig.width: 6
-     fig.asp: 2/3
-     fig-dpi: 300
-     fig-align: center
      toc: true
-echo: false
-message: false
-warning: false
 editor: visual
 editor_options: 
   chunk_output_type: console

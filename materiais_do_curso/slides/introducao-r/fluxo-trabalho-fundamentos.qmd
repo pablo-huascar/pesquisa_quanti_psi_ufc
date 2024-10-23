@@ -44,7 +44,7 @@ library(countdown)
 ::: {.column width="50%"}
 ![](img/rstudio-logo-flat-02.png){fig-align="center" width="201"}
 
--   RStudio é uma interface conveniente para R chamada IDE ((integrated development environment- ambiente de desenvolvimento integrado),
+-   RStudio é uma interface conveniente para R chamada IDE (integrated development environment - ambiente de desenvolvimento integrado),
 -   Por exemplo: "Eu escrevo código R no RStudio IDE"
 -   RStudio não é um requisito para programação com R, mas é muito comumente usado por programadores R e cientistas de dados
 :::
@@ -84,11 +84,11 @@ Sim, mas é como aprender um novo idioma: há desconforto inicial, mas, com a pr
 E o [tidyverse](https://www.tidyverse.org/ "Tidyverse") facilita muito esse aprendizado
 :::
 
-## Condificação básica {.center transition="fade-in fade-out" transition-speed="slow"}
-
 ## Painéis do R Studio: console
 
 ![](img/passo_final.png)
+
+## Codificação básica {.center transition="slide"}
 
 ## Cálculos matemáticos básicos
 
@@ -148,10 +148,12 @@ y <- 10*10
 y
 ```
 
--   O valores de `x` ou `y` não são impressos; apenas armazenados.
--   Para visualizar o valor de um `objeto`, execute-o no script.
+-   O valores de `x` ou `y` não são impressos; apenas armazenados
+-   Para visualizar o valor de um `objeto`, execute-o
 
-## Todas as instruções de atribuição têm o mesmo formato {.smaller}
+## Instruções de atribuição {.smaller}
+
+-   Todas as instruções de atribuição têm o mesmo formato
 
 ```{r}
 #| echo: true
@@ -328,8 +330,6 @@ a <- letters
 A
 ```
 
-## Letras
-
 ```{r}
 #| echo: true
 #| code-line-numbers: "|3"
@@ -351,8 +351,6 @@ data("cars")
 carz
 ```
 
-# Cars
-
 ```{r}
 #| echo: true
 #| code-line-numbers: "|3"
@@ -361,7 +359,7 @@ data("cars")
 cars 
 ```
 
-# Comentários {.center}
+# Comentários {.center transition="zoom"}
 
 ## \#
 
@@ -492,7 +490,7 @@ penguins |>
   facet_wrap(~ species)
 ```
 
-# O que é um nome? {.center}
+# O que é um nome? {.center transition="slide"}
 
 ## Nomes {.smaller}
 
@@ -535,7 +533,7 @@ numeros_pares
 numeros_impares
 ```
 
-# Chamando Funções {.center}
+# Chamando Funções {.center transition="slide-out"}
 
 ## Funções {.smaller}
 
@@ -676,9 +674,20 @@ countdown(minutes = 5)
 -   A partir da ajuda, descubra para que servem as funções a seguir e tente utilizá-las:
     -   `ls`
     -   `round`
-    -   `set.seed`
-    -   `rnorm`
-    -   `hist`
+    -   `rm()`
+    -   `lenght()`
+
+## Resposta
+
+```{r}
+#| echo: true
+ls()
+pi
+round(pi)
+rm(numeros_impares)
+ls()
+length(numeros_pares)
+```
 
 ## Funções básicas importantes
 

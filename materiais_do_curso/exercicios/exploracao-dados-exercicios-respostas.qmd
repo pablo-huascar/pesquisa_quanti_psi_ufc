@@ -15,7 +15,7 @@ warning: false
 editor: visual
 editor_options: 
   chunk_output_type: console
-bibliography: exercios_exploracao.bib
+bibliography: exercios.bib
 reference-section-title: Referências
 csl: apa.csl
 ---

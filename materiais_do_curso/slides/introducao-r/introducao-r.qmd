@@ -1,3 +1,36 @@
+---
+title: "Introdução ao R"
+subtitle: "Fluxo de Trabalho: Fundamentos"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      code-link: true
+      code-tools: true
+      code-line-numbers: false
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
+```{r}
+#| label: setup
+#| echo: false
+#| include: false
+library(tidyverse)
+library(palmerpenguins)
+library(countdown)
+```
+
+
 ## Noções básicas de codificação
 
 Execução de códigos no Script
@@ -5,7 +38,6 @@ Execução de códigos no Script
 -   Atalho de de teclado: ctrl + enter
 
 ![](img/rodar_codigo.png)
-
 
 ## Criação de um projeto - Passo 1
 
@@ -91,7 +123,6 @@ Neste painel são mostrados os arquivos do projeto, os gráficos produzidos, a a
 :::
 :::::
 
-
 ## Pacotes (packages)
 
 -   O que é um pacote?
@@ -167,4 +198,3 @@ library(tidyverse)
 library(car)
 library(psych)
 ```
-
