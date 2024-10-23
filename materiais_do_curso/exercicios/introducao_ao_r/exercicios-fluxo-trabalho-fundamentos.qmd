@@ -223,16 +223,81 @@ colnames()
 
 ## Exercício 13
 
-Crie um vetor chamado `idades` com as idades de cinco pessoas: `25, 30, 22, 28 e 35`. Em seguida, use a função `sort()` para ordenar as idades em ordem crescente e decrescente.
+Crie um vetor chamado `idades` com as idades de cinco pessoas: `25, 30, 22, 28 e 35`. Em seguida, ordene as idades em ordem crescente e decrescente.
+
+::: callout-tip
+```{r}
+#| echo: true
+#| eval: false
+sort()
+```
+:::
+
 
 ## Exercício 14
 
-Utilize a função `sample()` para gerar um vetor de 10 números inteiros aleatórios entre 1 e 50. Em seguida, calcule a média e o desvio padrão desses números. Use `set.seed(1)` para garantir que os números aleatórios gerados serão os mesmos para todos.
+Gerar um vetor de 10 números inteiros aleatórios entre 1 e 50. Em seguida, calcule a média e o desvio padrão desses números. Use `set.seed(1)` para garantir que os valores gerados serão os mesmos para todos.
+
+::: callout-tip
+```{r}
+#| echo: true
+#| eval: false
+sample()
+```
+:::
 
 ## Exercício 15
 
-Crie um objeto chamado `nomes` contendo os nomes: `"Ana"`, `"Bruno"`, `"Carlos",` `"Diana"` e `"Eduardo"`. Em seguida, use a função `paste()` para combinar os nomes com seus respectivos números de identificação, que são de 1 a 5.
+Crie um objeto chamado `nomes` contendo os nomes: `"Ana"`, `"Bruno"`, `"Carlos",` `"Diana"` e `"Eduardo"`. Em seguida, combine os nomes com seus respectivos números de identificação, que são de 1 a 5.
+
+::: callout-tip
+```{r}
+#| echo: true
+#| eval: false
+paste()
+```
+:::
 
 ## Exercício 16
 
-Use a função `factor()` para transformar o vetor sexo \<- c("M", "F", "F", "M", "F") em um fator. Em seguida, obtenha um resumo desse fator com a função `summary()`.
+Transforme o vetor sexo \<- c("M", "F", "F", "M", "F") em um fator. Em seguida, obtenha um resumo desse fator.
+
+::: callout-tip
+```{r}
+#| echo: true
+#| eval: false
+factor()
+summary()
+```
+:::
+
+## Exercício 17
+
+Cinco atletas participaram de uma corrida de 12 km e obtiveram os seguintes tempos (em minutos): 25.5, 30.2, 35.1, 40.8 e 45.9. Sabendo que a velocidade média é obtida dividindo a distância pela tempo, calcule a velocidade média de cada atleta em Km/h
+
+## Exercício 18
+
+Crie um objeto com 10 valores que tenham uma distribuição normal com média 7 e desvio padrão 2. Em seguida, obtenha um resumo estatístico dos valores.
+
+::: callout-tip
+```{r}
+#| echo: true
+#| eval: false
+rnorm()
+summary()
+```
+:::
+
+## Exercício 19
+
+Crie um objeto nomes com os nomes de 5 pessoas: João, Maria, Pedro, Ana e Carlos. Em seguida, ordene os nomes em ordem alfabética.
+
+::: callout-tip
+```{r}
+#| echo: true
+#| eval: false
+sort()
+```
+:::
+
+
