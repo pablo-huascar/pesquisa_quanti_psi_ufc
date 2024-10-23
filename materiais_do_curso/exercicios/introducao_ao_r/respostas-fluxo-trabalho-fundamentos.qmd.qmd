@@ -201,7 +201,7 @@ print(colunas)
 
 ## Exercício 13
 
-Crie um vetor chamado `idades` com as idades de cinco pessoas: `25, 30, 22, 28 e 35`. Em seguida, use a função `sort()` para ordenar as idades em ordem crescente e decrescente.
+Crie um vetor chamado `idades` com as idades de cinco pessoas: `25, 30, 22, 28 e 35`. Em seguida, ordene as idades em ordem crescente e decrescente.
 
 ```{r}
 #| echo: true
@@ -212,7 +212,7 @@ sort(idades, decreasing = T)
 
 ## Exercício 14
 
-Utilize a função `sample()` para gerar um vetor de 10 números inteiros aleatórios entre 1 e 50. Em seguida, calcule a média e o desvio padrão desses números. Use `set.seed(1)` para garantir que os números aleatórios gerados serão os mesmos para todos.
+Gerar um vetor de 10 números inteiros aleatórios entre 1 e 50. Em seguida, calcule a média e o desvio padrão desses números. Use `set.seed(1)` para garantir que os valores gerados serão os mesmos para todos.
 
 ```{r}
 #| echo: true
@@ -222,7 +222,7 @@ sample(1:50, size = 10)
 
 ## Exercício 15
 
-Crie um objeto chamado `nomes` contendo os nomes: `"Ana"`, `"Bruno"`, `"Carlos",` `"Diana"` e `"Eduardo"`. Em seguida, use a função `paste()` para combinar os nomes com seus respectivos números de identificação, que são de 1 a 5.
+Crie um objeto chamado `nomes` contendo os nomes: `"Ana"`, `"Bruno"`, `"Carlos",` `"Diana"` e `"Eduardo"`. Em seguida, combine os nomes com seus respectivos números de identificação, que são de 1 a 5.
 
 ```{r}
 #| echo: true
@@ -232,14 +232,62 @@ paste(nomes, 1:5)
 
 ## Exercício 16
 
-Use a função `factor()` para transformar o vetor `sexo` \<- c("M", "F", "F", "M", "F") em um fator. Em seguida, obtenha um resumo desse fator com a função `summary()`.
+Crie um vetor `sexo` com os seguintes valores: Masculino, F, F, Masculino e F. Em seguida, o tranforme em um fator. Obtenha também um resumo desse fator.
 
 ```{r}
 #| echo: true
-sexo <- c("M", "F", "F", "M", "F")
+sexo <- c("Masculino", "F", "F", "Masculino", "F")
 sexo <- factor(sexo)
 summary(sexo)
 ```
+
+## Exercício 17
+
+No vetor `sexo` criado anteriormente, substitua os valores F por Feminino e obtenha um novo resumo desse fator.
+
+```{r}
+sexo <- gsub(pattern = "F", replacement = "Feminino", x = sexo)
+sexo <- factor(sexo)
+summary(sexo)
+```
+
+
+## Exercício 18
+
+Cinco atletas participaram de uma corrida de 20 km e obtiveram os seguintes tempos (em minutos): 25.5, 30.2, 35.1, 40.8 e 45.9. Sabendo que a velocidade média é obtida dividindo a distância pela tempo, calcule a velocidade média de cada atleta em Km/h.
+
+```{r}
+#| echo: true
+tempos_min <- c(25.5, 30.2, 35.1, 40.8, 45.9)
+tempo_hora <- tempos_min/60
+velocidade <- 20/tempo_hora
+velocidade
+```
+
+## Exercício 19
+
+Crie um objeto `pontos` com 10 valores que tenham uma distribuição normal com média 10 e desvio padrão 3. Em seguida, obtenha um resumo estatístico dos valores. Use `set.seed(2)` para que todos encontrem os mesmos valores.
+
+```{r}
+#| echo: true
+set.seed(2)
+pontos <- rnorm(n = 10, mean = 10, sd = 3)
+summary(pontos)
+```
+
+
+## Exercício 20
+
+Crie um objeto `nomes` com os nomes de 5 pessoas: João, Maria, Pedro, Ana e Carlos. Em seguida, ordene os nomes em ordem alfabética.
+
+```{r}
+#| echo: true
+nomes <- c("João", "Maria", "Pedro", "Ana", "Carlos")
+sort(nomes)
+```
+
+
+
 
 
 
