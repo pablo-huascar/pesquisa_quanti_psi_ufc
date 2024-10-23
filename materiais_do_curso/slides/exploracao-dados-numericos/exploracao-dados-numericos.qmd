@@ -60,7 +60,6 @@ airquality <- airquality |>
   as_tibble()
 
 age_data <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/AgeDataset-V1.csv")
-
 brasileiro <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/brasileiro_2014_2023.csv")
 gols_brasileiro <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/gols_por_partida_2014_2023.csv")
 ```
