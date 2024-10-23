@@ -1,0 +1,200 @@
+---
+title: "Introdução ao R"
+subtitle: "Fluxo de Trabalho: Fundamentos"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      code-link: true
+      code-tools: true
+      code-line-numbers: false
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
+```{r}
+#| label: setup
+#| echo: false
+#| include: false
+library(tidyverse)
+library(palmerpenguins)
+library(countdown)
+```
+
+
+## Noções básicas de codificação
+
+Execução de códigos no Script
+
+-   Atalho de de teclado: ctrl + enter
+
+![](img/rodar_codigo.png)
+
+## Criação de um projeto - Passo 1
+
+![](img/new_project.png){fig-align="left" width="1000"}
+
+## Criação de um projeto - Passo 2
+
+![](img/passo2.png)
+
+## Criação de um projeto - Passo 3
+
+![](img/passo_3.png){fig-align="left"}
+
+## Criação de um projeto - Passo 4
+
+![](img/passo_4.png){width="710"}
+
+## Dicas
+
+-   É muito importante que todos os arquivos do projeto fiquem dentro de uma mesma pasta
+-   A pasta “raiz” não pode conter caracteres especiais
+-   Dica: crie uma pasta projetos-r dentro da pasta “C:” do Windows e, dentro dela, crie sub pastas para cada projeto
+
+## E você vai chegar aqui
+
+![](img/passo_final.png)
+
+## Criando o seu primeiro Script
+
+![](img/script_creat_1.png){fig-align="center" width="917"}
+
+## Paineis do R Studio
+
+![](img/paineis_r_studio.png)
+
+## Ajuste dos paineis
+
+![](img/ajuste_paineis.png){width="594"}
+
+## Source Code
+
+::::: columns
+::: {.column width="30%"}
+É onde o código é escrito. Vários tipos de arquivos podem ser utilizados: Scripts, Rmarkdown, Quarto etc.
+:::
+
+::: {.column width="70%"}
+![](img/script.png){fig-align="center" width="672"}
+:::
+:::::
+
+## Console
+
+Mostra a saída do que é feito no source code. Também pode ser usado para escrever códigos, mas não é possível salvá-los
+
+![](img/console.png){fig-align="left" width="900"}
+
+## Environment/History
+
+![](img/environment.png){fig-align="left" width="706"}
+
+No environment estão os diversos objetos que são criados pelo código: vetores, dataframes (bancos de dados), tibbles etc.
+
+## File/Plots/Packages/Help
+
+Neste painel são mostrados os arquivos do projeto, os gráficos produzidos, a ajuda e informações sobre os pacotes (instalar, ativar, desativar etc).
+
+![](img/files.png){fig-align="left"}
+
+## File/Plots/Packages/Help
+
+![](img/plots.png)
+
+## Cheat Sheets {transition="slide"}
+
+::::: columns
+::: {.column width="50%"}
+[![](img/rstudio-ide-1.png)](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html?_gl=1*7odx2p*_ga*MTQyNTUwMTY5MS4xNzIxNDk1NjA2*_ga_2C0WZ1JHG0*MTcyODc3MDYyOS4yMC4wLjE3Mjg3NzA2MjkuMC4wLjA.)
+:::
+
+::: {.column width="50%"}
+[![](img/rstudio-ide-2.png)](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html?_gl=1*7odx2p*_ga*MTQyNTUwMTY5MS4xNzIxNDk1NjA2*_ga_2C0WZ1JHG0*MTcyODc3MDYyOS4yMC4wLjE3Mjg3NzA2MjkuMC4wLjA.)
+:::
+:::::
+
+## Pacotes (packages)
+
+-   O que é um pacote?
+    -   Coleção de funções, objetos e documentação
+    -   Estendem as capacidades do R e adicionam novos recursos
+    -   Criados pela comunidade
+
+## Como instalar um pacote
+
+```{r}
+#| echo: true
+#| eval: false
+
+install.packages("tidyverse")
+```
+
+-   Só precisa ser feito uma vez
+-   Não coleque a instalação dos pacotes no script
+    -   Se o arquivo for compartilhado, não é legal modificar as configurações de outra pessoa
+
+## Como carregar o pacote
+
+```{r}
+#| echo: true
+library(tidyverse)
+```
+
+-   Precisa ser feito em cada novo script
+-   A cada novo uso do script
+-   Colocar todos os pacotes no início do script
+
+## Como obter informações sobre as funções do pacote
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyverse)
+?tidyverse
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 3)
+```
+
+Instale os seguintes pacotes: `tidyverse`, `car` e `psych`
+
+## Resposta
+
+```{r}
+#| echo: true
+#| eval: false
+
+install.packages("tidyverse")
+install.packages("car")
+install.packages("psych")
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 3)
+```
+
+Carregue os pacotes que foram instalados anteriormente
+
+## Resposta
+
+```{r}
+#| echo: true
+library(tidyverse)
+library(car)
+library(psych)
+```

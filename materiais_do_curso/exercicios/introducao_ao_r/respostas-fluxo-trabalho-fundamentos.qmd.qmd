@@ -1,0 +1,245 @@
+---
+title: "Introdução ao R - Respostas"
+subtitle: "Fluxo de Trabalho: Fundamentos"
+lang: pt-br
+sidebar: false
+format: 
+  html:
+     toc: true
+     code-link: true
+     code-line-numbers: false
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
+### Exercício 1
+
+Encontre o log natural, log na base 10, log na base 2 e a raiz quadrada de `12.43`. Some os resultados os resultados encontrados e arredonde a soma para duas casas decimais.
+
+```{r}
+#| echo: true
+log_natural <- log(12.43)
+log_10 <- log10(12.43)
+log_2 <- log2(12.43)
+raiz <- sqrt(12.43)
+soma <- log_natural + log_10 + log_2 + raiz
+round(soma, 2)
+```
+
+**Resposta**: c) 10.78
+
+### Exercício 2
+
+Determine a área de um círculo com diâmetro de `20` cm e atribua o resultado a um objeto chamado area_circulo. Eis a fórmula para calcular a área do círculo:
+
+$$ A = \pi r^2 $$
+
+```{r}
+#| echo: true
+r <- 20/2
+area_circulo <- pi*(r^2)
+print(area_circulo)
+```
+
+**Resposta**: b) 314.1593
+
+### Exercício 3
+
+Calcule a raiz cúbica de $14*0.51$. Arredonde os resultados para 2 casas decimais
+
+```{r}
+#| echo: true
+resultado <- (14*0.51)^(1/3)
+round(resultado, 2)
+```
+
+**Resposta**: b) 1.93
+
+### Exercício 4
+
+Para encontrar as soluções para uma equação do formato $ax^{2} + bx + c$, use a equação quadrática:
+
+$$
+x = \frac{-b \pm \sqrt{(b^2-4ac)}}{2a}
+$$
+
+Ache as duas soluções para $2x^2-x-4=0$. Arredonde o resultado para duas casas decimais
+
+```{r}
+#| echo: true
+a <- 2
+b <- -1
+c <- -4
+x1 <- (-b + sqrt(b^2 - 4*a*c))/(2*a)
+x2 <- (-b - sqrt(b^2 - 4*a*c))/(2*a)
+round(x1, 2)
+round(x2, 2)
+```
+
+**Resposta**: c) 1.69 e -1.19
+
+### Exercício 5
+
+Crie um vetor chamado `peso` contendo o peso (em kg) de 4 pessoas: `80.2, 56.3, 70.5 e 60.3`. Agora, calcule a média e o desvio padrão do vetor `peso`. Arredonde os resultados para uma casa decimal.
+
+```{r}
+#| echo: true
+peso <- c(80.2, 56.3, 70.5, 60.3)
+media_peso <- mean(peso)
+round(media_peso, 1)
+dp_peso <- sd(peso)
+round(dp_peso, 1)
+```
+
+**Resposta**: d) 66.8 e 10.7
+
+### Exercício 6
+
+Crie o objeto `altura` com os valores (em cm) para a altura das mesmas quatro pessoas que tiveram o peso registrado anteriormente: `175, 160, 165 e 172`. Agora, transforme o objeto `altura` de modo que os valores sejam apresentados em metros. Salve o resultado para um novo objeto chamado `altura_m`.
+
+Quais os valores encontrados para a mediana, o mínimo e o máximo do objeto `altura_m`, respectivamente?"
+
+```{r}
+#| echo: true
+altura <- c(175, 160, 165, 172)
+altura_m <- altura/100
+median(altura_m)
+min(altura_m)
+max(altura_m)
+```
+
+**Resposta**: a) 1.685, 1.6 e 1.75
+
+### Exercício 7
+
+Sabendo que o Índice de Massa Corpórea (IMC) é obtido dividindo o peso (em kg) pela altura (em metros) ao quadrado, recrie os objetos `peso` e `altura_m` e crie um objeto `imc` com os valores do IMC de cada caso.
+
+Qual o imc médio dessa amostra de quatro pessoas? Arredonde o resultado para três casas decimais.
+
+```{r}
+#| echo: true
+peso <- c(80.2, 56.3, 70.5, 60.3)
+altura <- c(175, 160, 165, 172)
+altura_m <- altura/100
+imc <- peso/altura_m^2
+media_imc <- mean(imc)
+round(media_imc, 3)
+```
+
+**Resposta**: c) 23.614
+
+### Exercício 8
+
+No R, é possível usar funções de dentro de funções. Veja o exemplo a seguir:
+
+```{r}
+#| echo: true
+a <- c(2.567,3.786,4.89,5.765,9.27) 
+round(mean(a), 2) 
+```
+
+Nesse código, criamos um objeto `a` e, em seguida, usamos a função `mean()` dentro da função `round()` para obter um resultado com duas casas decimais.
+
+Com as funções `paste()` e `rep()`, em uma única linha de código, crie um objeto `questoes` com os seguintes elementos `q1,q2,q3,q4 e q5`. Em uma segunda linha, imprima o objeto `questoes` com a função `print()` para conferir o resultado.
+
+```{r}
+questoes <- paste(rep("q",5), 1:5, sep = "")
+print(questoes)
+```
+
+### Exercício 9
+
+Agora, crie um objeto `questoes_` com os seguintes elementos: `q_1,q_2,q_3,q_4 e q_5`. Em seguida, em uma nova linha, imprima o objeto `questoes_` com a função `print()` para conferir o resultado.
+
+```{r}
+#| echo: true
+questoes_ <- paste(rep("q",5), 1:5, sep = "_")
+print(questoes_)
+```
+
+### Exercício 10
+
+Crie um objeto `mil` com 1000 valores que tenham uma distribuição normal com média 20 e desvio padrão 5. Em seguida, crie um histograma usando a função básica do R.
+
+```{r}
+#| echo: true
+set.seed(123)
+mil <- rnorm(1000, 20, 5)
+hist(mil)
+```
+
+### Exercício 11
+
+Use a função `replace()` para substituir os valores do objeto `a` que estão como caracteres pelo valor numérico correspondente.
+
+```{r}
+#| echo: true
+a <- c(1,2,"três",4,"cinco")
+print(a)
+replace(a, c(3,5), c(3,5))
+```
+
+### Exercício 12
+
+Extraía o nome das variáveis do banco de dados `mtcars` e salve num objeto chamado `colunas`. Em seguinda, imprima o objeto criado.
+
+`mtcars` é um banco de dados que vem com R e apresenta dados extraídos da revista Motor Trend US de 1974 e compreende o consumo de combustível e 10 aspectos do design e desempenho de automóveis para 32 automóveis (modelos de 1973 a 1974).
+
+Para saber mais sobre este banco use `?mtcars`. Se quiser ver outros banco de dados disponíveis no R, use a função `data()`
+
+```{r}
+#| echo: true
+colunas <- colnames(mtcars)
+print(colunas)
+```
+
+## Exercício 13
+
+Crie um vetor chamado `idades` com as idades de cinco pessoas: `25, 30, 22, 28 e 35`. Em seguida, use a função `sort()` para ordenar as idades em ordem crescente e decrescente.
+
+```{r}
+#| echo: true
+idades <- c(25, 30, 22, 28,  35)
+sort(idades)
+sort(idades, decreasing = T)
+```
+
+## Exercício 14
+
+Utilize a função `sample()` para gerar um vetor de 10 números inteiros aleatórios entre 1 e 50. Em seguida, calcule a média e o desvio padrão desses números. Use `set.seed(1)` para garantir que os números aleatórios gerados serão os mesmos para todos.
+
+```{r}
+#| echo: true
+set.seed(1)
+sample(1:50, size = 10)
+```
+
+## Exercício 15
+
+Crie um objeto chamado `nomes` contendo os nomes: `"Ana"`, `"Bruno"`, `"Carlos",` `"Diana"` e `"Eduardo"`. Em seguida, use a função `paste()` para combinar os nomes com seus respectivos números de identificação, que são de 1 a 5.
+
+```{r}
+#| echo: true
+nomes <- c("Ana", "Bruno", "Carlos","Diana", "Eduardo")
+paste(nomes, 1:5)
+```
+
+## Exercício 16
+
+Use a função `factor()` para transformar o vetor `sexo` \<- c("M", "F", "F", "M", "F") em um fator. Em seguida, obtenha um resumo desse fator com a função `summary()`.
+
+```{r}
+#| echo: true
+sexo <- c("M", "F", "F", "M", "F")
+sexo <- factor(sexo)
+summary(sexo)
+```
+
+
+
