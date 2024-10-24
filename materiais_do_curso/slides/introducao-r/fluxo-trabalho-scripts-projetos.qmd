@@ -1,6 +1,6 @@
 ---
 title: "Introdução ao R"
-subtitle: "Fluxo de Trabalho: Fundamentos"
+subtitle: "Fluxo de Trabalho: Scripts e Projetos"
 format: 
   revealjs:
       logo: img/brasao1_horizontal_cor_300dpi.png
@@ -25,53 +25,28 @@ source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
 #| label: setup
 #| echo: false
 #| include: false
-library(tidyverse)
-library(palmerpenguins)
 library(countdown)
 ```
 
+# Scripts
 
-## Noções básicas de codificação
+## Editor de scripts
 
-Execução de códigos no Script
+-   O console é um bom lugar pra começar, mas pode ficar apertado
+-   Códigos mais longos precisam de mais espaço
+-   Quando quiser mudar algo, não precisa digitar tudo de novo
+    -   Apenas edite o script e execute novamente.
+-   Salve um arquivo de script para retornar facilmente mais tarde.
 
--   Atalho de de teclado: ctrl + enter
+## Editor de scripts
 
-![](img/rodar_codigo.png)
+Para abrir um script use Cmd/Ctrl + Shift + N ou faça como na imagem
 
-## Criação de um projeto - Passo 1
-
-![](img/new_project.png){fig-align="left" width="1000"}
-
-## Criação de um projeto - Passo 2
-
-![](img/passo2.png)
-
-## Criação de um projeto - Passo 3
-
-![](img/passo_3.png){fig-align="left"}
-
-## Criação de um projeto - Passo 4
-
-![](img/passo_4.png){width="710"}
-
-## Dicas
-
--   É muito importante que todos os arquivos do projeto fiquem dentro de uma mesma pasta
--   A pasta “raiz” não pode conter caracteres especiais
--   Dica: crie uma pasta projetos-r dentro da pasta “C:” do Windows e, dentro dela, crie sub pastas para cada projeto
-
-## E você vai chegar aqui
-
-![](img/passo_final.png)
-
-## Criando o seu primeiro Script
-
-![](img/script_creat_1.png){fig-align="center" width="917"}
+![](img/iniciar_script.png){fig-align="center"}
 
 ## Paineis do R Studio
 
-![](img/paineis_r_studio.png)
+![](img/paineis_branco.png)
 
 ## Ajuste dos paineis
 
@@ -122,6 +97,46 @@ Neste painel são mostrados os arquivos do projeto, os gráficos produzidos, a a
 [![](img/rstudio-ide-2.png)](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html?_gl=1*7odx2p*_ga*MTQyNTUwMTY5MS4xNzIxNDk1NjA2*_ga_2C0WZ1JHG0*MTcyODc3MDYyOS4yMC4wLjE3Mjg3NzA2MjkuMC4wLjA.)
 :::
 :::::
+
+## Noções básicas de codificação
+
+Execução de códigos no Script
+
+-   Atalho de de teclado: ctrl + enter
+
+![](img/rodar_codigo.png)
+
+# Projetos
+
+## Criação de um projeto - Passo 1
+
+![](img/new_project.png){fig-align="left" width="1000"}
+
+## Criação de um projeto - Passo 2
+
+![](img/passo2.png)
+
+## Criação de um projeto - Passo 3
+
+![](img/passo_3.png){fig-align="left"}
+
+## Criação de um projeto - Passo 4
+
+![](img/passo_4.png){width="710"}
+
+## Dicas
+
+-   É muito importante que todos os arquivos do projeto fiquem dentro de uma mesma pasta
+-   A pasta “raiz” não pode conter caracteres especiais
+-   Dica: crie uma pasta projetos-r dentro da pasta “C:” do Windows e, dentro dela, crie sub pastas para cada projeto
+
+## E você vai chegar aqui
+
+![](img/passo_final.png)
+
+## Criando o seu primeiro Script
+
+![](img/script_creat_1.png){fig-align="center" width="917"}
 
 ## Pacotes (packages)
 

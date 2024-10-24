@@ -84,7 +84,7 @@ Sim, mas é como aprender um novo idioma: há desconforto inicial, mas, com a pr
 E o [tidyverse](https://www.tidyverse.org/ "Tidyverse") facilita muito esse aprendizado
 :::
 
-## Painéis do R Studio: console
+## Painéis do R Studio: console e Help
 
 ![](img/passo_final.png)
 
@@ -675,7 +675,7 @@ countdown(minutes = 5)
     -   `ls`
     -   `round`
     -   `rm()`
-    -   `lenght()`
+    -   `length()`
 
 ## Resposta
 

@@ -1,6 +1,6 @@
 ---
-title: "Introdução ao R - Respostas"
-subtitle: "Fluxo de Trabalho: Fundamentos"
+title: "Introdução ao R"
+subtitle: "Fluxo de Trabalho: Fundamentos - Respostas"
 lang: pt-br
 sidebar: false
 format: 
