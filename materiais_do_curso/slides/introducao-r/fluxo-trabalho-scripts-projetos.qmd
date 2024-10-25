@@ -36,7 +36,7 @@ library(countdown)
 -   Códigos mais longos precisam de mais espaço
 -   Quando quiser mudar algo, não precisa digitar tudo de novo
     -   Apenas edite o script e execute novamente.
--   Salve um arquivo de script para retornar facilmente mais tarde.
+-   Salve um arquivo de script para retornar facilmente mais tarde
 
 ## Editor de scripts
 
