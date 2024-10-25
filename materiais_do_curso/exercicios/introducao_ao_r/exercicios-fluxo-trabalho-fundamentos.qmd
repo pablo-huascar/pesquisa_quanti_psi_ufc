@@ -272,14 +272,14 @@ summary()
 
 ## Exercício 17
 
-No vetor `sexo` criado anteriormente, substitua os valores F por Feminino e obtenha um novo resumo desse fator. ::: callout-tip
+No vetor `sexo` criado anteriormente, substitua os valores F por Feminino e obtenha um novo resumo desse fator. 
 
+::: callout-tip
 ```{r}
 #| echo: true
 #| eval: false
 gsub()
 ```
-
 :::
 
 ## Exercício 18

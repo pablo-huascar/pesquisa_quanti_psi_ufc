@@ -251,7 +251,6 @@ sexo <- factor(sexo)
 summary(sexo)
 ```
 
-
 ## Exercício 18
 
 Cinco atletas participaram de uma corrida de 20 km e obtiveram os seguintes tempos (em minutos): 25.5, 30.2, 35.1, 40.8 e 45.9. Sabendo que a velocidade média é obtida dividindo a distância pela tempo, calcule a velocidade média de cada atleta em Km/h.
@@ -275,7 +274,6 @@ pontos <- rnorm(n = 10, mean = 10, sd = 3)
 summary(pontos)
 ```
 
-
 ## Exercício 20
 
 Crie um objeto `nomes` com os nomes de 5 pessoas: João, Maria, Pedro, Ana e Carlos. Em seguida, ordene os nomes em ordem alfabética.
@@ -285,9 +283,3 @@ Crie um objeto `nomes` com os nomes de 5 pessoas: João, Maria, Pedro, Ana e Car
 nomes <- c("João", "Maria", "Pedro", "Ana", "Carlos")
 sort(nomes)
 ```
-
-
-
-
-
-
