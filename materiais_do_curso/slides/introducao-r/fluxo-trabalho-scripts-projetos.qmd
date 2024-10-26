@@ -40,7 +40,7 @@ library(countdown)
 
 ## Editor de scripts
 
-Para abrir um script use Cmd/Ctrl + Shift + N ou faça como na imagem
+Para abrir um script use Ctrl + Shift + N ou faça como na imagem
 
 ![](img/iniciar_script.png){fig-align="center"}
 
@@ -98,13 +98,45 @@ Neste painel são mostrados os arquivos do projeto, os gráficos produzidos, a a
 :::
 :::::
 
-## Noções básicas de codificação
+## Execução de códigos no Script
 
-Execução de códigos no Script
-
--   Atalho de de teclado: ctrl + enter
+-   Coloque o cursor onde quer executar e pressione Ctrl + Enter ou
+-   Clique em Run
 
 ![](img/rodar_codigo.png)
+
+## Execução de códigos no Script {.smaller}
+
+::: {style="font-size: 16pt;"}
+-   Ao executar um bloco de código com Ctrl + Enter, o cursor se move para o próximo bloco
+
+-   Isso facilita a execução do script completo pressionando repetidamente Ctrl + Enter
+
+![](img/cursor_exe_code.mp4){.data-autoplay}
+:::
+
+## Execução de códigos no Script {.smaller}
+
+-   Você também pode rodar todo o código com
+    -   Ctrl + Shift + S (sem echo[^1])
+    -   Ctrl + Shift + Enter (com echo)
+-   Fazer isso regularmente garante que você capturou todas as partes importantes do seu código no script
+
+[^1]: Ver o que o código faz
+
+## Diagnósticos RStudio {.smaller}
+
+No editor de script, o RStudio destacará erros de sintaxe com uma linha vermelha ondulada e uma cruz na barra lateral:
+
+![](img/rstudio-diagnostic.png){width="200" height="67"}
+
+Passe o mouse sobre a cruz para ver qual é o problema:
+
+![](img/rstudio-diagnostic-tip.png){width="200"}
+
+O RStudio também informará você sobre possíveis problemas:
+
+![](img/rstudio-diagnostic-warn.png){width="300"}
 
 # Projetos
 
