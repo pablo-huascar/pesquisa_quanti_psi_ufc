@@ -317,10 +317,11 @@ a+b
 2 4 4
 :::
 
-## Dica {.smaller}
+## {.smaller}
 
--   O R diferencia MAIÚSCULAS de minúsculas (case sensitive)
-
+::: callout-tip
+O R diferencia MAIÚSCULAS de minúsculas (case sensitive)
+:::
 ```{r}
 #| echo: true
 #| code-line-numbers: "|3"
@@ -338,9 +339,11 @@ a <- letters
 a
 ```
 
-## Dica {.smaller}
+## {.smaller}
 
--   Cuidado com erros de digitação
+::: callout-tip
+Cuidado com erros de digitação
+:::
 
 ```{r}
 #| echo: true

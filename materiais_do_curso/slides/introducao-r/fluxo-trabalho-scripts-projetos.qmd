@@ -28,27 +28,27 @@ source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
 library(countdown)
 ```
 
-# Projetos
+# Projetos {transition="slide"}
 
 ## Para que servem os projetos? {.smaller}
 
--   Organização do trabalho: permitem manter todos os arquivos relacionados (scripts, dados, resultados) em uma única pasta, facilitando o gerenciamento.
+-   Organização do trabalho: permitem manter todos os arquivos relacionados (scripts, dados, resultados) em uma única pasta, facilitando o gerenciamento
 
--   Retomada fácil: facilitam o retorno à análise em outro momento, mantendo o ambiente configurado e os arquivos acessíveis.
+-   Retomada fácil: facilitam o retorno à análise em outro momento, mantendo o ambiente configurado e os arquivos acessíveis
 
--   Múltiplas análises simultâneas: ajudam a separar diferentes projetos, evitando confusão entre análises distintas.
+-   Múltiplas análises simultâneas: ajudam a separar diferentes projetos, evitando confusão entre análises distintas
 
--   Fluxo de dados: simplificam a importação de dados externos e a exportação de resultados e gráficos para uso fora do R.
+-   Fluxo de dados: simplificam a importação de dados externos e a exportação de resultados e gráficos para uso fora do R
 
 ## Para que servem os projetos? {.smaller}
 
--   Fonte da verdade: estabelecem um registro duradouro e consistente do trabalho realizado, essencial para reprodutibilidade.
+-   Fonte da verdade: estabelecem um registro duradouro e consistente do trabalho realizado, essencial para reprodutibilidade
 
--   Colaboração: facilitam o compartilhamento e a colaboração com outros, mantendo uma estrutura de projeto clara e organizada.
+-   Colaboração: facilitam o compartilhamento e a colaboração com outros, mantendo uma estrutura de projeto clara e organizada
 
--   Ambiente isolado: garantem que as configurações e pacotes usados no projeto não afetem outros trabalhos, evitando conflitos.
+-   Ambiente isolado: garantem que as configurações e pacotes usados no projeto não afetem outros trabalhos, evitando conflitos
 
--   Reprodutibilidade: ajudam a garantir que a análise possa ser replicada no futuro ou por outras pessoas, mantendo todos os componentes necessários juntos.
+-   Reprodutibilidade: ajudam a garantir que a análise possa ser replicada no futuro ou por outras pessoas, mantendo todos os componentes necessários juntos
 
 ## Criação de um projeto - Passo 1
 
@@ -78,14 +78,14 @@ library(countdown)
 
 ![](img/passo_final.png)
 
-# Scripts
+# Scripts {transition="slide"}
 
 ## Editor de scripts {.smaller}
 
 -   O console é um bom lugar pra começar, mas pode ficar apertado
 -   Códigos mais longos precisam de mais espaço
 -   Quando quiser mudar algo, não precisa digitar tudo de novo
-    -   Apenas edite o script e execute novamente.
+    -   Apenas edite o script e execute novamente
 -   Salve um arquivo de script para retornar facilmente mais tarde
 
 ## Editor de scripts
@@ -167,6 +167,25 @@ Neste painel são mostrados os arquivos do projeto, os gráficos produzidos, a a
 ![](img/cursor_exe_code.mp4){.data-autoplay}
 :::
 
+## Exercício {.smaller}
+```{r}
+countdown(minutes = 3)
+```
+-   No Script que foi criado:
+    -   Use a função `data()` para ver bancos de dados disponíveis no R
+    -   Escolha um banco de dados que tenha uma variável numérica
+    -   Você seleciona uma variável num banco usando `$`:
+        -   `banco_de_dados$variavel`
+    -   digite `banco_de_dados$` e pressione TAB para as variáveis disponíveis
+    -   Gere um histograma (`hist()`) com a variável numérica escolhida
+
+## Resposta
+
+```{r}
+#| echo: true
+hist(iris$Sepal.Length)
+```
+
 ## Execução de códigos no Script {.smaller}
 
 -   Você também pode rodar todo o código com
@@ -243,13 +262,9 @@ relatorio-rascunho.txt
 ```
 
 -   Numerar os scripts principais torna óbvio em que ordem executá-los
-
 -   Um esquema de nomenclatura consistente torna mais fácil ver o que varia
-
 -   As figuras são rotuladas de forma semelhante
-
 -   Os relatórios são diferenciados por datas incluídas nos nomes dos arquivos
-
 -   temp é renomeado para relatorio-rascunho para descrever melhor seu conteúdo
 
 ## 
@@ -260,30 +275,74 @@ Se você tem muitos arquivos em um diretório, é recomendável levar a organiza
 
 ## Qual a fonte da verdade? {.smaller}
 
--   Dependência do environment: como iniciante, é comum depender do environment para armazenar os objetos criados durante a análise
--   Scripts como fonte de verdade: para facilitar trabalhos maiores ou colaboração, seus scripts r devem ser a fonte de verdade\
--   Recriação do ambiente: com seus scripts e arquivos de dados, você pode recriar todo o ambiente facilmente\
--   Dificuldade sem scripts: dependendo apenas do environment, é difícil recriar os scripts:
-    -   Terá que reescrever código de memória, cometendo erros.\
-    -   Ou precisar vasculhar o histórico do R cuidadosamente.
+-   Como iniciante, é comum depender do environment para armazenar os objetos criados durante a análise
+-   Contudo, para facilitar trabalhos maiores ou colaboração, seus scripts R devem ser a fonte de verdade
+-   Com seus scripts e arquivos de dados, você pode recriar todo o ambiente facilmente
+-   Ao depender apenas do environment, é difícil recriar os scripts:
+    -   Terá que reescrever código de memória, cometendo erros
+    -   Ou precisar vasculhar o histórico do R cuidadosamente
 
 ## Não preservar o workspace {.smaller}
 
--   Recomenda-se configurar o rstudio para não preservar o workspace entre as sessões:
+-   Recomenda-se configurar o RStudio para não preservar o workspace entre as sessões:
     -   Execute usethis::use_blank_slate() no início do código ou
 
 ## Não preservar o workspace {.smaller}
-
--   Ajuste as opções nas configurações do RStudio
+Ajuste as opções nas configurações do RStudio
 
 ![](img/clean-slate.png){width="726"}
 
-## Pacotes (packages)
+## A casa do seu projeto
 
--   O que é um pacote?
-    -   Coleção de funções, objetos e documentação
-    -   Estendem as capacidades do R e adicionam novos recursos
-    -   Criados pela comunidade
+```{r}
+#| echo: true
+getwd()
+```
+
+## Salvando o seu projeto {.smaller}
+
+-   Digite o código abaixo  no editor de script do RStudio
+-   Salve o arquivo com o nome "carros.R"
+-   Crie uma nova pasta chamada "data"
+    -   No RStudio, vá ao painel Files e clique no botão "New Folder"    
+-   Execute todo o script que você escreveu
+-   O script irá salvar um arquivo PNG e um arquivo CSV no diretório do seu projeto
+
+```{r}
+#| echo: true
+#| eval: false
+data("mtcars")
+png("carros.png")
+hist(mtcars$mpg)
+dev.off()
+write.csv(mtcars, "./data/carros.csv")
+```
+
+## Fechando e reabrindo o RStudio {.smaller}
+
+-   Saia do RStudio completamente
+-   Inspecione a pasta do projeto:
+    -   Navegue até a pasta associada ao seu projeto
+    -   Observe o arquivo com extensão .Rproj.
+-   Reabra o projeto:  
+    -   Dê um duplo clique no arquivo .Rproj para reabrir o projeto no RStudio
+    -   Você retornará ao mesmo diretório de trabalho e histórico de comandos
+    -   Todos os arquivos em que estava trabalhando continuam abertos
+    -   Como configurado anteriormente, o ambiente estará completamente limpo
+
+## Localizando arquivos gerados e scripts {.smaller}
+
+-   Buscar arquivos no computador:
+    -   Use o método de busca do seu sistema operacional para procurar por carros.png
+    -   Você encontrará o arquivo de imagem carros.png.  
+    -   Além disso, encontrará o script que o gerou (carros.r).
+
+# Pacotes (packages) {transition="slide"}
+
+## O que é um pacote?
+-   Coleção de funções, objetos e documentação
+-   Estendem as capacidades do R e adicionam novos recursos
+-   Criados pela comunidade
 
 ## Como instalar um pacote
 
