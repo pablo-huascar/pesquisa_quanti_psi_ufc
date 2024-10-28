@@ -323,7 +323,7 @@ write.csv(mtcars, "./data/carros.csv")
 -   Saia do RStudio completamente
 -   Inspecione a pasta do projeto:
     -   Navegue até a pasta associada ao seu projeto
-    -   Observe o arquivo com extensão .Rproj.
+    -   Observe o arquivo com extensão .Rproj
 -   Reabra o projeto:  
     -   Dê um duplo clique no arquivo .Rproj para reabrir o projeto no RStudio
     -   Você retornará ao mesmo diretório de trabalho e histórico de comandos
