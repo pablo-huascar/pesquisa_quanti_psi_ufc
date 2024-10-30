@@ -1331,7 +1331,7 @@ dass_simulado |>
   ungroup()
 ```
 
-## Criação da variável `depressao com rowwise()`
+## Criação da variável `depressao` com `rowwise()`
 
 ```{r}
 #| echo: true
@@ -1347,7 +1347,15 @@ dass_simulado |>
   ungroup()
 ```
 
-## Salvar a variável `depressão` no banco de dados (`<-`)
+## Exercício 
+
+Salve a variável depressão no banco `dass_simulado`
+
+```{r}
+countdown(minutes = 3)
+```
+
+## Resposta
 
 ```{r}
 #| echo: true
