@@ -388,7 +388,7 @@ mpg |>
 
 -   Nunca altera o banco de dados original
 -   É criado um novo banco de dados
--   Para salvar o novo banco de dados, use o operador `<-`
+-   Para salvar o novo banco de dados, use o operador de atribuição `<-`
 
 ## [`filter()`](https://dplyr.tidyverse.org/reference/filter.html)
 
@@ -840,7 +840,7 @@ glimpse(economics)
 ## Banco para exercícios [`economics`](https://ggplot2.tidyverse.org/reference/economics.html)
 
 | Variável |   |
-|---------------------|---------------------------------------------------|
+|-----------------------|-------------------------------------------------|
 | date | Mês da coleta de dados (`r min(year(economics$date))`- `r max(year(economics$date))`) |
 | pce | Gastos de consumo pessoal, em bilhões de dólares |
 | pop | População total, em milhares |
@@ -850,7 +850,7 @@ glimpse(economics)
 
 ## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
 
--   `air_time`: quantidade de tempo gasta no ar, em minutos 
+-   `air_time`: quantidade de tempo gasta no ar, em minutos
 -   `air_time_horas`: `air_time`/60
 
 ```{r}
@@ -871,8 +871,9 @@ flights |>
 
 -   É possível usar um número ou o nome da coluna para indicar a posição
 
-::: {.panel-tabset}
+::: panel-tabset
 ### Número
+
 ```{r}
 #| echo: true
 flights |> 
@@ -883,6 +884,7 @@ flights |>
 ```
 
 ### Nome da coluna
+
 ```{r}
 #| echo: true
 flights |> 
@@ -903,9 +905,9 @@ flights |>
 
 ## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ### "used"
+
 ```{r}
 #| echo: true
 flights |> 
@@ -925,18 +927,16 @@ flights |>
     .keep = "none"
     )
 ```
-
 :::
-
 
 ## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
 
 -   Não altera o banco de dados orignial
 -   É preciso salvar a coluna nova no próprio banco ou em outro objeto com o operador de atribuição `<-`
 
-## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
+## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html)
 
-::: {.panel-tabset}
+::: panel-tabset
 ### Salvo no próprio banco
 
 ```{r}
@@ -968,7 +968,6 @@ air_time_horas
 ```{r}
 countdown(minutes = 2)
 ```
-
 
 Crie uma coluna (variável) chamada `consumo_percapita` que calcule a relação entre os gastos de consumo pessoal (`pce`) e a população (`pop`).
 
@@ -1008,11 +1007,9 @@ countdown(minutes = 3)
 
 Salve em um objeto chamado `des_hab_2008` somente a variável `des_hab` criada anteriormente, mas queremos apenas os dados referentes ao ano de 2008.
 
-Dica 1: você pude usar a função ([`year`](https://lubridate.tidyverse.org/reference/year.html)) para transmformar variável `date` em ano!
-
-Dica 2: lembre que o operador de atribuição (`<-`) é utilizado para salvar objetos
-
-Dica 3: lembre do que aprendemos com a função `filter()`
+-   Você pude usar a função ([`year`](https://lubridate.tidyverse.org/reference/year.html)) para transmformar variável `date` em ano!
+-   Lembre que o operador de atribuição (`<-`) é utilizado para salvar objetos
+-   Recorde o que aprendemos com a função `filter()`
 
 ## Resposta - parte 1
 
@@ -1177,7 +1174,9 @@ estresse_itens <-
 estresse_itens
 ```
 
-## `dass_simulado`: Importação do banco
+## `dass_simulado`: Importação do banco[^1]
+
+[^1]: Não se preocupe com esse código por hora. Vamos ter um módulo só sobre importação e exportação de dados no R.
 
 ```{r}
 #| include: false
@@ -1246,14 +1245,11 @@ glimpse(dass_simulado)
 depressao_itens
 ```
 
-## Criação da variável `depressao` 
+## Criação da variável `depressao`
 
 ```{r}
 #| echo: true
 #| code-line-numbers: "|1|2|3|4|5|6|7|8|9|10|11|"
-#| output-location: slide
-
-
 dass_simulado |>
   rowwise() |> 
   mutate(
@@ -1271,7 +1267,7 @@ dass_simulado |>
 -   `rowwise()`: faz o mutate operar nas linhas
     -   tipo especial de agrupamento
 
-## [`rowwise()`](https://dplyr.tidyverse.org/articles/rowwise.html)
+## Tibble simulada
 
 ```{r}
 #| echo: true
@@ -1280,7 +1276,7 @@ df <- tibble(x = 1:2, y = 3:4, z = 5:6)
 df
 ```
 
-## [`rowwise()`](https://dplyr.tidyverse.org/articles/rowwise.html)
+## `Sem rowwise()`
 
 Calculou a média de `x`, `y` e `z` através de todas as linhas
 
@@ -1294,7 +1290,7 @@ df |>
 (1+3+5+2+4+6)/6
 ```
 
-## [`rowwise()`](https://dplyr.tidyverse.org/articles/rowwise.html)
+## `Com rowwise()`
 
 Calculou a média para cada linha
 
@@ -1319,7 +1315,7 @@ df |>
 depressao_itens
 ```
 
-## Criação da variável `depressao`
+## Criação da variável `depressao` sem `rowwise()`
 
 ```{r}
 #| echo: true
@@ -1335,7 +1331,7 @@ dass_simulado |>
   ungroup()
 ```
 
-## Criação da variável `depressao`
+## Criação da variável `depressao com rowwise()`
 
 ```{r}
 #| echo: true
@@ -1368,16 +1364,15 @@ dass_simulado <- dass_simulado |>
 dass_simulado
 ```
 
-::: {.callout-warning}
+::: callout-warning
 Sempre que usar qualquer função de agrupamento como `rowwise()` ou `group_by()`, que veremos adiante, use `ungroup()` após concluir a operação, caso contrário o agrupamento será mantido no novo objeto salvo e vai se propagar pelas demais análises
-::: 
+:::
 
 ## Exercícios
 
 ```{r}
 countdown(minutes = 3)
 ```
-
 
 Salve a variável `ansiedade` no banco dass_simulado e faça com que ela seja a segunda coluna de dados, depois de `depressao`.
 
