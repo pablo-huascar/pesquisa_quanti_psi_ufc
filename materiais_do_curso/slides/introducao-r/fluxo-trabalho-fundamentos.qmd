@@ -317,11 +317,12 @@ a+b
 2 4 4
 :::
 
-## {.smaller}
+##  {.smaller}
 
 ::: callout-tip
 O R diferencia MAIÚSCULAS de minúsculas (case sensitive)
 :::
+
 ```{r}
 #| echo: true
 #| code-line-numbers: "|3"
@@ -339,7 +340,7 @@ a <- letters
 a
 ```
 
-## {.smaller}
+##  {.smaller}
 
 ::: callout-tip
 Cuidado com erros de digitação
@@ -675,8 +676,8 @@ countdown(minutes = 5)
 ```
 
 -   A partir da ajuda, descubra para que servem as funções a seguir e tente utilizá-las:
-    -   `ls`
-    -   `round`
+    -   `ls()`
+    -   `round()`
     -   `rm()`
     -   `length()`
 
@@ -720,7 +721,7 @@ countdown(minutes = 5)
 ```
 
 ::: {style="line-height: 1;font-size:22pt;"}
--   Use a função `rnorm` e crie um objeto chamado `cem` com cem casos, cuja média seja 30 e o desvio padrão 4
+-   Use a função `rnorm()` e crie um objeto chamado `cem` com cem casos, cuja média seja 30 e o desvio padrão 4
     -   Para que a sua resposta seja reprodutível use `set.seed(123)`\
 -   Crie um histograma
 -   Calcule as seguintes estatísticas do objeto `cem`:
