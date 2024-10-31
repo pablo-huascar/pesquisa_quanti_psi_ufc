@@ -766,4 +766,7 @@ max(cem)
 quantile(cem)
 ```
 
+```{r}
+data(cars)
+```
 
