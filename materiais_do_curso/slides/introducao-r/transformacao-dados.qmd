@@ -45,7 +45,7 @@ library(gt)
 -   [`dplyr`](https://dplyr.tidyverse.org/index.html)
 -   [`nycflights13`](https://rdrr.io/cran/nycflights13/man/flights.html)
 
-## Pacotes {.smaller}
+## Pacotes
 
 -   Carregue os pacotes abaixo
 
@@ -840,7 +840,7 @@ glimpse(economics)
 ## Banco para exercícios [`economics`](https://ggplot2.tidyverse.org/reference/economics.html)
 
 | Variável |   |
-|-----------------------|-------------------------------------------------|
+|-----------------------|------------------------------------------------|
 | date | Mês da coleta de dados (`r min(year(economics$date))`- `r max(year(economics$date))`) |
 | pce | Gastos de consumo pessoal, em bilhões de dólares |
 | pop | População total, em milhares |
@@ -1347,11 +1347,12 @@ dass_simulado |>
   ungroup()
 ```
 
-## Exercício 
+## Exercício
 
 Salve a variável depressão no banco `dass_simulado`
 
 ```{r}
+depressao_itens
 countdown(minutes = 3)
 ```
 
@@ -1372,8 +1373,10 @@ dass_simulado <- dass_simulado |>
 dass_simulado
 ```
 
+## 
+
 ::: callout-warning
-Sempre que usar qualquer função de agrupamento como `rowwise()` ou `group_by()`, que veremos adiante, use `ungroup()` após concluir a operação, caso contrário o agrupamento será mantido no novo objeto salvo e vai se propagar pelas demais análises
+Sempre que usar qualquer função de agrupamento como `rowwise()` ou `group_by()`, que veremos adiante, use `ungroup()` após concluir a operação, pois, caso contrário o agrupamento será mantido no novo objeto salvo e vai se propagar pelas demais análises
 :::
 
 ## Exercícios
@@ -1492,9 +1495,9 @@ glimpse(dass_simulado_seq)
 
 ## Uma olhada em `dass_simulado_seq`
 
--   d1:d7: depressão
--   a1:a7: ansiedade
--   e1:e7: estresse
+-   d1:d7 - depressão
+-   a1:a7 - ansiedade
+-   e1:e7 - estresse
 
 ```{r}
 #| echo: true
@@ -1633,10 +1636,38 @@ cut_ac_nutri
 ## Comparando os resultados de `cut()` e `case_when()`
 
 ```{r}
+#| echo: true
 case_ac_nutri$idade_corte == cut_ac_nutri$idade_corte
 ```
 
+## Comparando os resultados de `cut()` e `case_when()`
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+case_ac_nutri |> 
+  select(idade, idade_corte)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+cut_ac_nutri |> 
+  select(idade, idade_corte)
+```
+:::
+
+::::
+
 ## Exercícios {.smaller}
+
+```{r}
+countdown(minutes = 5)
+```
+
 
 Transforme as variáveis `imc` e `frequencia_treino` do banco `acompanhamento_nutri` conforme os pontos de corte a seguir a seguir:
 
