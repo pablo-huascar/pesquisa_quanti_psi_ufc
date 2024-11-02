@@ -1627,7 +1627,8 @@ cut_ac_nutri <- ac_nutri |>
   mutate(
     idade_corte = cut(idade, 
                       breaks = c(-Inf, 20, 65, +Inf),
-                      labels = c("adolescente", "adulto", "idoso"))
+                      labels = c("adolescente", "adulto", "idoso"),
+                      right = T) # Padrão: inclui o valor indicado no ponto de corte <= 20
   ) |> 
   relocate(idade_corte, .after = idade)
 
