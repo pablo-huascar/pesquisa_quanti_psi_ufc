@@ -934,7 +934,7 @@ flights |>
 -   Não altera o banco de dados orignial
 -   É preciso salvar a coluna nova no próprio banco ou em outro objeto com o operador de atribuição `<-`
 
-## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html)
+## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
 
 ::: panel-tabset
 ### Salvo no próprio banco
@@ -953,6 +953,7 @@ glimpse(flights)
 ### Salvo em um novo objeto
 
 ```{r}
+#| echo: true
 air_time_horas <- flights |> 
   mutate(
     air_time_horas = air_time/60,
@@ -1176,7 +1177,7 @@ estresse_itens
 
 ## `dass_simulado`: Importação do banco[^1]
 
-[^1]: Não se preocupe com esse código por hora. Vamos ter um módulo só sobre importação e exportação de dados no R.
+[^1]: Não se preocupe com esse código por hora. Vamos ter um módulo sobre importação e exportação de dados no R.
 
 ```{r}
 #| include: false
@@ -1349,7 +1350,7 @@ dass_simulado |>
 
 ## Exercício
 
-Salve a variável depressão no banco `dass_simulado`
+Salve a variável depressão no banco `dass_simulado`. Ela deve ser a primeira coluna
 
 ```{r}
 depressao_itens
@@ -1376,10 +1377,10 @@ dass_simulado
 ## 
 
 ::: callout-warning
-Sempre que usar qualquer função de agrupamento como `rowwise()` ou `group_by()`, que veremos adiante, use `ungroup()` após concluir a operação, pois, caso contrário o agrupamento será mantido no novo objeto salvo e vai se propagar pelas demais análises
+Sempre que usar qualquer função de agrupamento como `rowwise()` ou `group_by()`, que veremos adiante, use `ungroup()` após concluir a operação. Caso contrário, o agrupamento será mantido no novo objeto salvo e vai se propagar pelas demais análises
 :::
 
-## Exercícios
+## Exercício
 
 ```{r}
 countdown(minutes = 3)
@@ -1412,7 +1413,7 @@ dass_simulado <- dass_simulado |>
 dass_simulado
 ```
 
-## Exercícios
+## Exercício
 
 ```{r}
 countdown(minutes = 3)
@@ -1493,11 +1494,11 @@ dass_simulado_seq <- read_csv("https://tinyurl.com/dassseqq")
 glimpse(dass_simulado_seq)
 ```
 
-## Uma olhada em `dass_simulado_seq`
+## Uma olhada em `dass_simulado_seq` {.smaller}
 
--   d1:d7 - depressão
--   a1:a7 - ansiedade
--   e1:e7 - estresse
+-   depressão - d1:d7 
+-   ansiedade - a1:a7 
+-   estresse - e1:e7 
 
 ```{r}
 #| echo: true
@@ -1537,7 +1538,7 @@ dass_simulado_seq |>
   )
 ```
 
-## Exerícios
+## Exerício
 
 ```{r}
 countdown(minutes = 5)
@@ -1662,17 +1663,18 @@ cut_ac_nutri |>
 
 ::::
 
-## Exercícios {.smaller}
+## Exercício {.smaller}
 
 ```{r}
 countdown(minutes = 5)
 ```
 
 
-Transforme as variáveis `imc` e `frequencia_treino` do banco `acompanhamento_nutri` conforme os pontos de corte a seguir a seguir:
+Crie as variáveis `imc_corte` e `frequencia_treino_corte` no banco `acompanhamento_nutri` a partir dos pontos de corte a seguir a seguir:
 
-:::: {style="font-size: 75%;"}
-::: {layout-ncol="2";}
+:::: {.columns}
+
+::: {.column width="50%"}
 | IMC                                    | Faixa         |
 |----------------------------------------|---------------|
 | abaixo de 18,5                         | baixo peso    |
@@ -1681,7 +1683,9 @@ Transforme as variáveis `imc` e `frequencia_treino` do banco `acompanhamento_nu
 | maior ou igual a 30,0                  | obesidade     |
 
 : Pontos de Corte para IMC em adultos
+:::
 
+::: {.column width="50%"}
 | Frequência  | Faixa           |
 |-------------|-----------------|
 | 1 a 2 vezes | pouco frequente |
@@ -1690,7 +1694,22 @@ Transforme as variáveis `imc` e `frequencia_treino` do banco `acompanhamento_nu
 
 : Pontos de corte para frequência aos treinos
 :::
+
 ::::
+
+## Resposta - IMC
+
+```{r}
+#| echo: true
+ac_nutri |> 
+  mutate(
+    imc_corte = case_when(imc < 18.5 ~ "baixo peso",
+                          imc >= 18.5 & imc < 25 ~ "peso adequado",
+                          imc >= 25 & imc < 30 ~ "sobrepeso",
+                          imc >= 30 ~ "obesidade")
+  )
+```
+
 
 ## [`select()`](https://dplyr.tidyverse.org/reference/select.html)
 

@@ -62,7 +62,7 @@ library(countdown)
 
 ![](img/passo_3.png){fig-align="left"}
 
-##
+## 
 
 ::: callout-tip
 -   É muito importante que todos os arquivos do projeto fiquem dentro de uma mesma pasta
@@ -168,9 +168,11 @@ Neste painel são mostrados os arquivos do projeto, os gráficos produzidos, a a
 :::
 
 ## Exercício {.smaller}
+
 ```{r}
 countdown(minutes = 3)
 ```
+
 -   No Script que foi criado:
     -   Use a função `data()` para ver bancos de dados disponíveis no R
     -   Escolha um banco de dados que tenha uma variável numérica
@@ -288,6 +290,7 @@ Se você tem muitos arquivos em um diretório, é recomendável levar a organiza
     -   Execute usethis::use_blank_slate() no início do código ou
 
 ## Não preservar o workspace {.smaller}
+
 Ajuste as opções nas configurações do RStudio
 
 ![](img/clean-slate.png){width="726"}
@@ -301,10 +304,10 @@ getwd()
 
 ## Salvando o seu projeto {.smaller}
 
--   Digite o código abaixo  no editor de script do RStudio
+-   Digite o código abaixo no editor de script do RStudio
 -   Salve o arquivo com o nome "carros.R"
 -   Crie uma nova pasta chamada "data"
-    -   No RStudio, vá ao painel Files e clique no botão "New Folder"    
+    -   No RStudio, vá ao painel Files e clique no botão "New Folder"\
 -   Execute todo o script que você escreveu
 -   O script irá salvar um arquivo PNG e um arquivo CSV no diretório do seu projeto
 
@@ -324,7 +327,7 @@ write.csv(mtcars, "./data/carros.csv")
 -   Inspecione a pasta do projeto:
     -   Navegue até a pasta associada ao seu projeto
     -   Observe o arquivo com extensão .Rproj
--   Reabra o projeto:  
+-   Reabra o projeto:
     -   Dê um duplo clique no arquivo .Rproj para reabrir o projeto no RStudio
     -   Você retornará ao mesmo diretório de trabalho e histórico de comandos
     -   Todos os arquivos em que estava trabalhando continuam abertos
@@ -334,12 +337,13 @@ write.csv(mtcars, "./data/carros.csv")
 
 -   Buscar arquivos no computador:
     -   Use o método de busca do seu sistema operacional para procurar por carros.png
-    -   Você encontrará o arquivo de imagem carros.png.  
+    -   Você encontrará o arquivo de imagem carros.png.\
     -   Além disso, encontrará o script que o gerou (carros.r).
 
 # Pacotes (packages) {transition="slide"}
 
 ## O que é um pacote?
+
 -   Coleção de funções, objetos e documentação
 -   Estendem as capacidades do R e adicionam novos recursos
 -   Criados pela comunidade
