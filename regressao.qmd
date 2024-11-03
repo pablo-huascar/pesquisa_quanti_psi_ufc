@@ -1,0 +1,9 @@
+---
+title: "Análise de regressão"
+---
+
+## Regressão linear simples
+
+![](img/book.png){width="18"}[Leitura](https://moderndive.com/5-regression.html)
+
+![](img/slide.png){width="18"} [Slides](regressao-linear-simples.qmd){target="_blank"}
