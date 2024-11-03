@@ -1,0 +1,23 @@
+---
+title: "Introdução ao R"
+---
+
+## Fluxo de trabalho: fundamentos
+
+![](img/book.png){width="18"}[Leitura](https://cienciadedatos.github.io/pt-r4ds/workflow-scripts.html)
+
+![](img/slide.png){width="18"} [Slides](fluxo-trabalho-fundamentos.qmd)
+
+![](img/exercicios.png){width="18"} [Exercícios](exercicios-fluxo-trabalho-fundamentos.qmd)
+
+![](img/respostas.png){width="18"} [Soluções](respostas-fluxo-trabalho-fundamentos.qmd)
+
+## Fluxo de trabalho: scripts e projetos
+
+![](img/book.png){width="18"}[Leitura](https://cienciadedatos.github.io/pt-r4ds/workflow-scripts.html)
+
+![](img/slide.png){width="18"} [Slides](fluxo-trabalho-scripts-projetos.qmd)
+
+## Transformação de dados
+
+![](img/slide.png){width="18"} [Slides](transformacao-dados.qmd)

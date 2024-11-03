@@ -1,20 +1,59 @@
 lang: pt-br
 project:
   type: website
+   
 
 website:
-  title: "pesquisa_quanti_psi_ufc"
+  page-navigation: true
+  title: "Pesquisa Quantitativa"
+  repo-url: https://github.com/pablo-huascar/pesquisa_quanti_psi_ufc
+  repo-branch: main
+  page-footer:
+    left: "Esta página foi construída com [Quarto](https://quarto.org/)."    
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+    align: center
+    title: "Pesquisa Quantitativa"
+    background: "#FDFEFE"
+    search: true
+    collapse-below: lg
 
+    left:
+      - text: "Proposta"
+        file: index.qmd
+      - text: "Conteúdos"
+        file: conteudos.qmd      
+
+    right: 
+      - icon: "{{< fa brands github >}}"
+        href: https://github.com/pablo-huascar/pesquisa_quanti_psi_ufc
+      - text: "{{< fa brands github size=2x >}}"
+        href: https://github.com/pablo-huascar/pesquisa_quanti_psi_ufc
+      
+        
+  
+  sidebar:
+    - id: conteudos
+      title: "Conteúdos"
+      style: "floating"
+      align: left
+      contents:
+        - href: conteudos.qmd
+        - href: intro-r.qmd
+        - href: exploracao-dados.qmd
+       
+
+    
+    
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    code-link: true
+    code-line-numbers: false
+    theme: 
+      - cosmo
+      - styles.scss
     toc: true
+    code-copy: true
+    link-external-icon: true
+    link-external-newwindow: true
 
 editor: visual
-

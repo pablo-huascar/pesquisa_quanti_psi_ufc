@@ -18,7 +18,7 @@ editor_options:
 
 ```{r}
 #| include: false
-source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+source("./_common.R")
 ```
 
 ```{r}
@@ -788,6 +788,14 @@ flights |>
   print(n = Inf)
 ```
 
+## Resposta 3
+
+```{r}
+flights |> 
+  distinct(year, month, day) |> 
+  nrow()
+```
+
 ## Exercício
 
 ```{r}
@@ -812,7 +820,7 @@ flights |>
   arrange(desc(distance)) 
 ```
 
-# Colunas - columns
+# Colunas - columns {transition="fade"}
 
 ## Funções para as colunas (variáveis)
 
@@ -840,7 +848,7 @@ glimpse(economics)
 ## Banco para exercícios [`economics`](https://ggplot2.tidyverse.org/reference/economics.html)
 
 | Variável |   |
-|-----------------------|------------------------------------------------|
+|------------------------|------------------------------------------------|
 | date | Mês da coleta de dados (`r min(year(economics$date))`- `r max(year(economics$date))`) |
 | pce | Gastos de consumo pessoal, em bilhões de dólares |
 | pop | População total, em milhares |
@@ -1496,9 +1504,9 @@ glimpse(dass_simulado_seq)
 
 ## Uma olhada em `dass_simulado_seq` {.smaller}
 
--   depressão - d1:d7 
--   ansiedade - a1:a7 
--   estresse - e1:e7 
+-   depressão - d1:d7
+-   ansiedade - a1:a7
+-   estresse - e1:e7
 
 ```{r}
 #| echo: true
@@ -1573,7 +1581,7 @@ dass_simulado_seq |>
   glimpse()
 ```
 
-## `mutate()` e `case_when()`: Transformando uma variável contínua em categórica {.smaller}
+## `mutate()` e `case_when()`: variável contínua em categórica {.smaller}
 
 -   Avaliação qualitativa de escalas de rastreio (SRQ-20, DASS-21 etc.)
 -   Criação de faixas de idade, renda, dentre outras
@@ -1598,11 +1606,26 @@ ac_nutri
 
 ## Criação da variável: `idade_fases`
 
-| Fase         | Faixa        |
-|--------------|--------------|
-| 12 a 20 anos | adolescência |
-| 21 a 65      | fase adulta  |
-| acima de 65  | velhice      |
+```{r}
+idade_faixa <- tribble(
+  ~Fase,           ~Faixa,
+  "12 a 20 anos",  "adolescência",
+  "21 a 65",       "fase adulta",
+  "acima de 65",   "velhice"
+)
+
+idade_faixa |> 
+  gt() |> 
+  cols_align(
+    align = "center",
+  ) |> 
+  tab_options(
+    table.width = "100%"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
 
 ## Criação da variável: `idade_fases`
 
@@ -1619,7 +1642,9 @@ case_ac_nutri <- ac_nutri |>
 case_ac_nutri
 ```
 
-## `mutate()` e `cut()`: Transformando uma variável contínua em categórica
+## `mutate()` e `cut()`: variável contínua em categórica {.smaller}
+
+-   `right = T` (padrão): inclui o valor indicado no ponto de corte (\<= 20, \<= 65)
 
 ```{r}
 #| echo: true
@@ -1628,7 +1653,7 @@ cut_ac_nutri <- ac_nutri |>
     idade_corte = cut(idade, 
                       breaks = c(-Inf, 20, 65, +Inf),
                       labels = c("adolescente", "adulto", "idoso"),
-                      right = T) # Padrão: inclui o valor indicado no ponto de corte <= 20
+                      right = T)
   ) |> 
   relocate(idade_corte, .after = idade)
 
@@ -1644,8 +1669,7 @@ case_ac_nutri$idade_corte == cut_ac_nutri$idade_corte
 
 ## Comparando os resultados de `cut()` e `case_when()`
 
-:::: {.columns}
-
+::::: columns
 ::: {.column width="50%"}
 ```{r}
 #| echo: true
@@ -1661,8 +1685,7 @@ cut_ac_nutri |>
   select(idade, idade_corte)
 ```
 :::
-
-::::
+:::::
 
 ## Exercício {.smaller}
 
@@ -1670,11 +1693,9 @@ cut_ac_nutri |>
 countdown(minutes = 5)
 ```
 
-
 Crie as variáveis `imc_corte` e `frequencia_treino_corte` no banco `acompanhamento_nutri` a partir dos pontos de corte a seguir a seguir:
 
-:::: {.columns}
-
+::::: columns
 ::: {.column width="50%"}
 | IMC                                    | Faixa         |
 |----------------------------------------|---------------|
@@ -1695,8 +1716,7 @@ Crie as variáveis `imc_corte` e `frequencia_treino_corte` no banco `acompanhame
 
 : Pontos de corte para frequência aos treinos
 :::
-
-::::
+:::::
 
 ## Resposta - IMC
 
@@ -1710,7 +1730,6 @@ ac_nutri |>
                           imc >= 30 ~ "obesidade")
   )
 ```
-
 
 ## [`select()`](https://dplyr.tidyverse.org/reference/select.html)
 
