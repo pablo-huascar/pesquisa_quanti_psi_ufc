@@ -9,7 +9,9 @@ website:
   repo-url: https://github.com/pablo-huascar/pesquisa_quanti_psi_ufc
   repo-branch: main
   page-footer:
-    left: "Esta página foi construída com [Quarto](https://quarto.org/)."    
+    left: "Esta página foi construída com [Quarto](https://quarto.org/)."
+    right: 
+      <img src="img/brasao1_horizontal_cor_300dpi.png" width="200"> 
   navbar:
     align: center
     title: "Pesquisa Quantitativa"
