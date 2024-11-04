@@ -694,7 +694,7 @@ flights |>
   
 ```
 
-## Exercícios
+## Exercício
 
 Voaram para Houston (IAH ou HOU - `dest`)
 
@@ -706,7 +706,7 @@ flights |>
   filter(dest %in% c("IAH","HOU"))
 ```
 
-## Exercícios
+## Exercício
 
 Foram operados (`carrier`) pela United, American ou Delta. Podemos encontrar os códigos da transportadora para as companhias aéreas no banco de dados `airlines`
 
@@ -848,7 +848,7 @@ glimpse(economics)
 ## Banco para exercícios [`economics`](https://ggplot2.tidyverse.org/reference/economics.html)
 
 | Variável |   |
-|------------------------|------------------------------------------------|
+|------------------------|-----------------------------------------------|
 | date | Mês da coleta de dados (`r min(year(economics$date))`- `r max(year(economics$date))`) |
 | pce | Gastos de consumo pessoal, em bilhões de dólares |
 | pop | População total, em milhares |
@@ -1590,18 +1590,18 @@ dass_simulado_seq |>
 ## `acompanhamento_nutri`: importação do banco
 
 ```{r}
-ac_nutri <- read_csv("./data/acompanhamento_nutri.csv")
+acompanhamento_nutri <- read_csv("./data/acompanhamento_nutri.csv")
 ```
 
 ```{r}
 #| echo: true
 #| eval: false
-ac_nutri <- read_csv("https://tinyurl.com/ac-nutri")
+acompanhamento_nutri <- read_csv("https://tinyurl.com/ac-nutri")
 ```
 
 ```{r}
 #| echo: true
-ac_nutri
+acompanhamento_nutri
 ```
 
 ## Criação da variável: `idade_fases`
@@ -1631,7 +1631,7 @@ idade_faixa |>
 
 ```{r}
 #| echo: true
-case_ac_nutri <- ac_nutri |>
+case_acompanhamento_nutri <- acompanhamento_nutri |>
   mutate(
     idade_corte = case_when(idade <= 20 ~ "adolescente",
                             idade >= 21 & idade <= 65 ~ "adulto",
@@ -1639,7 +1639,7 @@ case_ac_nutri <- ac_nutri |>
   ) |> 
   relocate(idade_corte, .after = idade)
 
-case_ac_nutri
+case_acompanhamento_nutri
 ```
 
 ## `mutate()` e `cut()`: variável contínua em categórica {.smaller}
@@ -1648,23 +1648,22 @@ case_ac_nutri
 
 ```{r}
 #| echo: true
-cut_ac_nutri <- ac_nutri |> 
+cut_acompanhamento_nutri <- acompanhamento_nutri |> 
   mutate(
-    idade_corte = cut(idade, 
-                      breaks = c(-Inf, 20, 65, +Inf),
+    idade_corte = cut(idade, breaks = c(-Inf, 20, 65, +Inf),
                       labels = c("adolescente", "adulto", "idoso"),
                       right = T)
   ) |> 
   relocate(idade_corte, .after = idade)
 
-cut_ac_nutri
+cut_acompanhamento_nutri
 ```
 
 ## Comparando os resultados de `cut()` e `case_when()`
 
 ```{r}
 #| echo: true
-case_ac_nutri$idade_corte == cut_ac_nutri$idade_corte
+case_acompanhamento_nutri$idade_corte == cut_acompanhamento_nutri$idade_corte
 ```
 
 ## Comparando os resultados de `cut()` e `case_when()`
@@ -1673,7 +1672,7 @@ case_ac_nutri$idade_corte == cut_ac_nutri$idade_corte
 ::: {.column width="50%"}
 ```{r}
 #| echo: true
-case_ac_nutri |> 
+case_acompanhamento_nutri |> 
   select(idade, idade_corte)
 ```
 :::
@@ -1681,7 +1680,7 @@ case_ac_nutri |>
 ::: {.column width="50%"}
 ```{r}
 #| echo: true
-cut_ac_nutri |> 
+cut_acompanhamento_nutri |> 
   select(idade, idade_corte)
 ```
 :::
@@ -1690,13 +1689,11 @@ cut_ac_nutri |>
 ## Exercício {.smaller}
 
 ```{r}
-countdown(minutes = 5)
+countdown(minutes = 3)
 ```
 
-Crie as variáveis `imc_corte` e `frequencia_treino_corte` no banco `acompanhamento_nutri` a partir dos pontos de corte a seguir a seguir:
+Salve a variávél `imc_corte` no banco `acompanhamento_nutri` a partir dos pontos de corte a seguir a seguir:
 
-::::: columns
-::: {.column width="50%"}
 | IMC                                    | Faixa         |
 |----------------------------------------|---------------|
 | abaixo de 18,5                         | baixo peso    |
@@ -1705,9 +1702,50 @@ Crie as variáveis `imc_corte` e `frequencia_treino_corte` no banco `acompanhame
 | maior ou igual a 30,0                  | obesidade     |
 
 : Pontos de Corte para IMC em adultos
+
+::: {.callout-tip}
+Se usar `cut()`, lembre-se de usar `right = F` para não incluir o ponto de corte na categoria (< 18,5)
 :::
 
-::: {.column width="50%"}
+## Resposta - `case_when()`
+
+```{r}
+#| echo: true
+acompanhamento_nutri <- acompanhamento_nutri |> 
+  mutate(
+    imc_corte_case_when = case_when(imc < 18.5 ~ "baixo peso",
+                                    imc >= 18.5 & imc < 25 ~ "peso adequado",
+                                    imc >= 25 & imc < 30 ~ "sobrepeso",
+                                    imc >= 30 ~ "obesidade")
+  )
+
+acompanhamento_nutri
+```
+
+## Resposta - `cut()`
+
+```{r}
+#| echo: true
+acompanhamento_nutri <- acompanhamento_nutri |> 
+  mutate(
+    imc_corte_cut = cut(imc, 
+                        breaks = c(-Inf, 18.5, 25, 30, +Inf),
+                        labels = c("baixo peso", "peso adequado",
+                                   "sobrepeso", "obesidade"),
+                        right = F)
+  )
+
+acompanhamento_nutri
+```
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 5)
+```
+
+Salve a variável `frequencia_treino_corte` no banco `ac_nutri` a partir dos pontos de corte a seguir a seguir:
+
 | Frequência  | Faixa           |
 |-------------|-----------------|
 | 1 a 2 vezes | pouco frequente |
@@ -1715,27 +1753,17 @@ Crie as variáveis `imc_corte` e `frequencia_treino_corte` no banco `acompanhame
 | 6 a 7 vezes | muito frequente |
 
 : Pontos de corte para frequência aos treinos
-:::
-:::::
 
-## Resposta - IMC
+## Resposta
 
-```{r}
-#| echo: true
-ac_nutri |> 
-  mutate(
-    imc_corte = case_when(imc < 18.5 ~ "baixo peso",
-                          imc >= 18.5 & imc < 25 ~ "peso adequado",
-                          imc >= 25 & imc < 30 ~ "sobrepeso",
-                          imc >= 30 ~ "obesidade")
-  )
-```
+
 
 ## [`select()`](https://dplyr.tidyverse.org/reference/select.html)
 
-permite que você selecione rapidamente um subconjunto de variáveis a partir de operações usando os seus nomes
+Permite que você selecione rapidamente um subconjunto de variáveis a partir de operações usando os seus nomes
 
 ```{r}
+#| echo: true
 flights |> 
   glimpse()
 ```
@@ -1743,6 +1771,7 @@ flights |>
 ## [[`select()`](https://dplyr.tidyverse.org/reference/select.html): Seleciona as colunas pelo nome]{style="font-size: 40pt"}
 
 ```{r}
+#| echo: true
 flights |> 
   select(year,month,day)
 ```
