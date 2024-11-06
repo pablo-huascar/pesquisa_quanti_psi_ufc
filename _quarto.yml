@@ -43,10 +43,7 @@ website:
         - href: intro-r.qmd
         - href: exploracao-dados.qmd
         #- href: regressao.qmd
-       
-
-    
-    
+   
 format:
   html:
     code-link: true
