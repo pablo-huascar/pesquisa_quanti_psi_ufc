@@ -27,4 +27,4 @@ _main.*
 tmp-pdfcrop-*
 figures
 site_libs
-
+_publish.yml

@@ -1,0 +1,2184 @@
+---
+title: "Introdução ao R"
+subtitle: "Transformação de dados"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("./_common.R")
+```
+
+```{r}
+#| label: setup
+#| echo: false
+#| include: false
+library(tidyverse)
+library(nycflights13)
+library(janitor)
+library(countdown)
+library(gt)
+```
+
+# Introdução {transition="slide"}
+
+## Transformações {.smaller}
+
+-   É raro que os dados estejam da forma certa para fazer análises ou gráficos
+-   Transformações:
+    -   Criar novas variáveis
+    -   Resumir dados
+    -   Renomear variáveis
+    -   Reordenar casos
+-   [`dplyr`](https://dplyr.tidyverse.org/index.html)
+-   [`nycflights13`](https://rdrr.io/cran/nycflights13/man/flights.html)
+
+## Pacotes
+
+-   Carregue os pacotes abaixo
+
+```{r}
+#| eval: false
+#| echo: true
+
+library(tidyverse)
+library(nycflights13)
+library(janitor)
+```
+
+## [`nycflights13::flights`](https://rdrr.io/cran/nycflights13/man/flights.html) {.smaller}
+
+-   `r nrow(flights)` vôos que partiram de NYC em 2013
+-   [US Bureau of Transportation Statistics](http://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&Link=0)
+-   `?flights`
+
+## [`nycflights13::flights`](https://rdrr.io/cran/nycflights13/man/flights.html)
+
+```{r}
+#| label: flights
+#| echo: true
+
+flights
+```
+
+## [`nycflights13::flights`](https://rdrr.io/cran/nycflights13/man/flights.html) {.smaller}
+
+-   tibble: tipo especial de banco de dados usado pelo [`tydiverse`](https://www.tidyverse.org/)
+-   projetados para grandes conjuntos de dados
+    -   mostram apenas as primeiras linhas e apenas as colunas que cabem na tela
+    -   para ver todas as colunas: `glimpse`
+
+## [`nycflights13::flights`](https://rdrr.io/cran/nycflights13/man/flights.html)
+
+```{r}
+#| label: flights-glimpse
+#| echo: true
+
+glimpse(flights)
+```
+
+## [`nycflights13::flights`](https://rdrr.io/cran/nycflights13/man/flights.html) {.smaller}
+
+-   Tipo de cada variável
+    -   `<int>`: números inteiros
+    -   `<dbl>`: números reais
+    -   `<chr>`: caracteres
+    -   `<dttm>`: data e hora
+
+## Banco para exercícios: [`mpg`](https://ggplot2.tidyverse.org/reference/mpg.html) {.smaller}
+
+-   Incluído no pacote [`ggplot2`](https://ggplot2.tidyverse.org/index.html)
+-   Dados sobre economia de combustível
+-   Modelos que tiveram novos lançamentos entre 1999 e 2008
+-   `r nrow(mpg)` linhas (carros)
+-   `r ncol(mpg)` variáveis
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 1)
+```
+
+-   Use a função `glimpse` para olhar as variáveis do banco `mpg`
+
+## Resposta
+
+```{r}
+#| label: glimpse-mpg
+#| echo: true
+
+glimpse(mpg)
+```
+
+## Banco para exercícios: [`mpg`](https://ggplot2.tidyverse.org/reference/mpg.html)
+
+| Variável     |                                |
+|--------------|--------------------------------|
+| manufacturer | Nome do fabricante             |
+| model        | Nome do modelo                 |
+| displ        | Cilindrada do motor, em litros |
+| year         | Ano de fabricação              |
+| cyl          | Número de cilindros            |
+| trans        | Tipo de câmbio (transmissão)   |
+| drv          | tipo de tração                 |
+
+## Banco para exercícios: [mpg](https://ggplot2.tidyverse.org/reference/mpg.html)
+
+| Variável |                             |
+|----------|-----------------------------|
+| cty      | Milhas por galão na cidade  |
+| hwy      | Milhas por galão na estrada |
+| fl       | Tipo de combustível         |
+| class    | Tipo de carro               |
+|          |                             |
+
+## O Básico do `dplyr` {.smaller}
+
+-   Verbos do dplyr (funções): manipulação de dados
+    -   Primeiro argumento: banco de dados
+    -   Argumentos subsequentes: quais colunas operar
+        -   Nomes das variáveis sem aspas
+    -   Saída: novo banco de dados
+
+## O Básico do `dplyr`
+
+```{r}
+#| echo: true
+
+filter(mpg, manufacturer == "ford")
+```
+
+## O Básico do `dplyr`
+
+```{r}
+#| echo: true
+
+select(mpg, model)
+```
+
+## O Básico do `dplyr` {.smaller}
+
+pipe: `|>`: "e então"
+
+```{r}
+#| label: pipe
+#| echo: true
+
+mpg |> 
+  glimpse()
+```
+
+## Configurar o RStudio para usar o pipe nativo (`|>`)
+
+![](img/config-pipe-nativo.png){fig-align="center"}
+
+## `|>`
+
+```{r}
+#| echo: true
+#| label: pipe-2
+
+mpg |> 
+  filter(manufacturer == "audi") |> 
+  group_by(trans) |> 
+  summarise(
+    "média na cidade" = mean(cty),
+    "média na rodovia" = mean(hwy)
+    )
+```
+
+## `|>` {.smaller}
+
+-   Atalho de teclado (windows)
+    -   ctrl + shift + m
+-   Atalho de teclado (mac os)
+    -   cmd + shift + m
+
+# Linhas - rows
+
+## Funções para as linhas (casos/sujeitos/observações) {.smaller}
+
+-   [`filter()`](https://dplyr.tidyverse.org/reference/filter.html)
+-   [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)
+-   [`distinct()`](https://dplyr.tidyverse.org/reference/arrange.html)
+
+## [`filter()`](https://dplyr.tidyverse.org/reference/filter.html) {.smaller}
+
+-   filtra (mantém \| deixa passar) linhas baseado em valores das colunas (variáveis)
+-   primeiro argumento: banco de dados
+-   segundo e subsequentes: condições que devem ser verdade para manter a linha (caso)
+
+## [`filter()`](https://dplyr.tidyverse.org/reference/filter.html)
+
+```{r}
+#| echo: true
+flights |> 
+  filter(dep_delay > 120)
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+No banco de dados `mpg`, encontre os carros que tem um rendimento na cidade maior do que 17 milhas por galão (`cty`)
+
+## Resposta
+
+```{r}
+#| label: exercicio-filter-mpg
+#| echo: true
+
+mpg |> 
+  filter(cty > 17)
+```
+
+## Operadores lógicos {.smaller}
+
+-   `>` maior que
+-   `>=` maior ou igual que
+-   `<` menor que
+-   `<=` menor ou igual que
+-   `==` igual a
+-   `!=` não é igual a
+
+## Operadores lógicos {.smaller}
+
+-   Combinar codições:
+    -   `&` "e" ("verifique ambas as condições")
+    -   `,` "e" ("verifique ambas as condições")
+    -   `|` "ou" ("verifique qualquer uma das condições")
+
+## Operadores lógicos
+
+```{r}
+#| label: voos-1-de-janeiro
+#| echo: true
+
+flights |> 
+  filter(day == 1 & month == 1)
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+No banco de dados `mpg`, encontre os carros da fabricante (`manufacturer`) "jeep" que têm 6 cilindros (`cyl`)
+
+## Resposta
+
+```{r}
+#| label: exercicio-filter-&
+#| echo: true
+mpg |> 
+  filter(manufacturer == "jeep" & cyl == 6)
+```
+
+## Resposta
+
+```{r}
+#| label: exercicio-filter-&-alternativa)
+#| echo: true
+mpg |> 
+  filter(manufacturer == "jeep", cyl == 6)
+```
+
+## Operadores lógicos
+
+```{r}
+#| label: voos-janeiro-fevereiro
+#| echo: true
+
+flights |> 
+  filter(month == 1 | month == 2)
+```
+
+## Operadores lógicos
+
+```{r}
+#| label: "%in%"
+#| echo: true
+
+# jução do `==` e do `|`
+
+flights |> 
+  filter(month %in% c(1,2))
+```
+
+## Operadores lógicos
+
+```{r}
+#| echo: true
+
+# jução do `==` e do `|`
+
+flights |> 
+  filter(month %in% c(1,2,6,11))
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+No banco de dados `mpg`, localize os carros que tem 6 ou 8 cilindors (`cyl`)
+
+## Resposta
+
+```{r}
+#| label: exercicio-filter-|
+#| echo: true
+
+mpg |> 
+  filter(cyl == 6 | cyl == 8)
+```
+
+## Resposta
+
+```{r}
+#| label: exercicio-filter-|-alternativa
+#| echo: true
+
+mpg |> 
+  filter(cyl %in% c(6,8))
+```
+
+## Exercício
+
+No banco de dados `mpg`, ache os carros que foram fabricados (`manufacturer`) pelas marcas honda, nissan ou toyota
+
+## Resposta
+
+```{r}
+#| label: exercício-filter-%in%
+#| echo: true
+
+mpg |> 
+  filter(manufacturer %in% c("honda", "nissan", "toyota"))
+```
+
+## Resposta
+
+```{r}
+#| label: exercício-filter-%in%-alternativa
+#| echo: true
+
+mpg |> 
+  filter(manufacturer == "honda" | manufacturer == "nissan" | manufacturer == "toyota")
+
+```
+
+## [`filter()`](https://dplyr.tidyverse.org/reference/filter.html) {.smaller}
+
+-   Nunca altera o banco de dados original
+-   É criado um novo banco de dados
+-   Para salvar o novo banco de dados, use o operador de atribuição `<-`
+
+## [`filter()`](https://dplyr.tidyverse.org/reference/filter.html)
+
+```{r}
+#| echo: true
+jan1 <- flights |> 
+  filter(month == 1, day == 1)
+
+jan1
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+A partir do banco de dados `mpg`, salve um novo banco de dados chamado `ford` com todos os carros fabricados (`manufacturer`) por esta marca.
+
+## Resposta
+
+```{r}
+#| label: exe-salvar-dados-filtrados
+#| echo: true
+
+ford <- mpg |> 
+  filter(manufacturer == "ford")
+
+ford
+```
+
+## [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html) {.smaller}
+
+-   Muda a ordem das linhas baseado nos valores das colunas
+
+::: panel-tabset
+### Sem ordem
+
+```{r}
+#| label: variavel-sem-ordem
+#| echo: true
+
+flights  
+```
+
+### Atraso na partida
+
+```{r}
+#| label: exemplo-de-arranje
+#| echo: true
+
+flights |> 
+  arrange(dep_delay)
+```
+:::
+
+## [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html) {.smaller}
+
+-   Mais de um nome de coluna
+    -   Cada coluna adicional desempata os valores das colunas anteriores
+
+```{r}
+#| echo: true
+
+flights |> 
+  arrange(dep_delay, arr_time)
+```
+
+## [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html) {.smaller}
+
+-   Para ver do maior pro menor: `desc()`
+
+```{r}
+#| echo: true
+
+flights |> 
+  arrange(desc(dep_delay))
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+No banco `mpg`, identifique o modelo com pior rendimento na cidade (`cty`)
+
+## Resposta
+
+```{r}
+#| echo: true 
+mpg |> 
+  arrange(cty)
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+No banco `mpg`, encontre o modelo com melhor rendimento na estrada (`hwy`)
+
+## Resposta
+
+```{r}
+#| echo: true
+mpg |> 
+  arrange(desc(hwy))
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+No banco `mpg`, ache o carro da marca ford (`manufacturer`) com melhor rendimento na cidade (`cty`)
+
+## Resposta
+
+```{r}
+#| echo: true
+mpg |> 
+  filter(manufacturer == "ford") |> 
+  arrange(desc(cty))
+```
+
+## [`distinct()`](https://dplyr.tidyverse.org/reference/distinct.html) {.smaller}
+
+-   Localiza todas as linhas únicas em um conjunto de dados
+
+::: panel-tabset
+### Origem
+
+```{r}
+#| echo: true
+flights |> 
+  distinct(origin)
+```
+
+### Destino
+
+```{r}
+#| echo: true
+flights |> 
+  distinct(dest)
+```
+
+### Selecionar todas as combinações únicas de origem e destino
+
+```{r}
+#| echo: true
+flights |> 
+  distinct(origin,dest)
+```
+:::
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+Quais são os fabricantes (`manufacturer`) encontrados no banco `mpg`
+
+## Resposta
+
+```{r}
+#| echo: true
+mpg |> 
+  distinct(manufacturer)
+```
+
+## Exercícios
+
+```{r}
+countdown(minutes = 2)
+```
+
+No banco `mpg`, crie uma tabela com os fabricantes (`manufacturer`) e seus respectivos modelos (`model`)
+
+## Resposta
+
+```{r}
+#| echo: true
+mpg |> 
+  distinct(manufacturer,model) 
+```
+
+## [`count()`](https://dplyr.tidyverse.org/reference/count.html) {.smaller}
+
+-   Conta o número de ocorrências em cada categoria
+
+::: panel-tabset
+### *N* de voos na origem
+
+```{r}
+#| echo: true
+flights |> 
+  count(origin)
+```
+
+### *N* de voos no destino
+
+```{r}
+#| echo: true
+flights |> 
+  count(dest)
+```
+
+### *N* de voos no destino agrupados pela origem
+
+```{r}
+#| echo: true
+flights |> 
+  count(origin, dest) 
+```
+:::
+
+## [`count()`](https://dplyr.tidyverse.org/reference/count.html) {.smaller}
+
+-   O argumento `sort = TRUE` mostra o número de ocorrências em ordem descendente
+
+```{r}
+#| echo: true
+flights |> 
+  count(dest, sort = T)
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+A partir do banco `mpg`, crie uma tabela de frequência dos fabricandes (`manufacturer`)
+
+## Resposta
+
+```{r}
+#| echo: true
+mpg |> 
+  count(manufacturer)
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+Agora, mostre a quantidade de ocorrências somente do fabricante (`manufacturer`) jeep
+
+## Resposta
+
+```{r}
+#| echo: true
+mpg |> 
+  filter(manufacturer == "jeep") |> 
+  count(manufacturer)
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+A partir do banco `mpg`, crie uma tabela de frequência dos fabricandes (`manufacturer`) e seus respectivos modelos (`model`)
+
+## Resposta
+
+```{r}
+#| echo: true
+mpg |> 
+  count(manufacturer, model)
+```
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 6)
+```
+
+-   Em um único pipeline para cada condição, encontre todos os voos que atendem à condição:
+    -   Tiveram um atraso de chegada de duas ou mais horas;
+    -   Voaram para Houston (IAH ou HOU);
+    -   Foram operados pela United, American ou Delta;
+    -   Partiram no verão (julho, agosto e setembro);
+    -   Chegaram com mais de duas horas de atraso, mas não saíram atrasados.
+
+## Exercício
+
+Tiveram um atraso de chegada (`arr_delay`) de duas ou mais horas
+
+## Resposta
+
+```{r}
+#| echo: true
+flights |> 
+  filter(arr_delay >= 120)
+  
+```
+
+## Exercício
+
+Voaram para Houston (IAH ou HOU - `dest`)
+
+## Resposta
+
+```{r}
+#| echo: true
+flights |> 
+  filter(dest %in% c("IAH","HOU"))
+```
+
+## Exercício
+
+Foram operados (`carrier`) pela United, American ou Delta. Podemos encontrar os códigos da transportadora para as companhias aéreas no banco de dados `airlines`
+
+## Resposta
+
+```{r}
+#| echo: true
+flights |> 
+  filter(carrier %in% c("UA","AA","DL"))
+```
+
+## Exercício
+
+Partiram no verão (julho, agosto e setembro - `month`).
+
+## Resposta
+
+```{r}
+#| echo: true
+flights |> 
+  filter(month %in% c(7,8,9))
+```
+
+## Exercício
+
+Chegaram com mais de duas horas de atraso (`arr_delay`), mas não saíram atrasados (`dep_delay`).
+
+## Resposta
+
+```{r}
+#| echo: true
+flights |> 
+   filter(arr_delay > 120 &  dep_delay <= 0)
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+Organize o banco de dados `flights` para encontrar os voos com os maiores atrasos de partida (`dep_delay`) mais longos
+
+## Resposta
+
+```{r}
+#| echo: true
+flights |> 
+  arrange(desc(dep_delay))
+```
+
+## Exercícios
+
+```{r}
+countdown(minutes = 2)
+```
+
+Houve um voo em todos os dias de 2013?
+
+## Resposta 1
+
+```{r}
+#| echo: true
+flights  |> 
+  filter(year == 2013)  |>
+  distinct(month, day) |> 
+  count(month)
+  
+```
+
+## Resposta 2
+
+```{r}
+#| echo: true
+flights |> 
+  filter(year == 2013) |> 
+  distinct(month,day) |> 
+  count(day) |> 
+  print(n = Inf)
+```
+
+## Resposta 3
+
+```{r}
+flights |> 
+  distinct(year, month, day) |> 
+  nrow()
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+Quais voos viajaram a maior distância (`distance`)? Quais viajaram a menor distância?
+
+## Resposta
+
+```{r}
+#| echo: true
+flights |> 
+  arrange(distance)
+```
+
+## Resposta
+
+```{r}
+#| echo: true
+flights |> 
+  arrange(desc(distance)) 
+```
+
+# Colunas - columns {transition="fade"}
+
+## Funções para as colunas (variáveis)
+
+-   [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html): cria novas colunas derivadas das colunas existentes
+-   [`select()`](https://dplyr.tidyverse.org/reference/select.html): altera quais colunas estão presentes
+-   [`rename()`](https://dplyr.tidyverse.org/reference/rename.html): altera os nomes das colunas
+-   [`relocate()`](https://dplyr.tidyverse.org/reference/relocate.html): altera as posições das colunas
+
+## Banco para exercícios [`economics`](https://ggplot2.tidyverse.org/reference/economics.html)
+
+-   Incluído no pacote [`ggplot2`](https://ggplot2.tidyverse.org/)
+
+-   Série temporal sobre a economia dos EUA
+
+-   `r nrow(economics)` linhas (casos)
+
+-   `r ncol(economics)` colunas (variáveis)
+
+## Banco para exercícios [`economics`](https://ggplot2.tidyverse.org/reference/economics.html)
+
+```{r}
+glimpse(economics)
+```
+
+## Banco para exercícios [`economics`](https://ggplot2.tidyverse.org/reference/economics.html)
+
+| Variável |   |
+|------------------------------------|------------------------------------|
+| date | Mês da coleta de dados (`r min(year(economics$date))`- `r max(year(economics$date))`) |
+| pce | Gastos de consumo pessoal, em bilhões de dólares |
+| pop | População total, em milhares |
+| psavert | Taxa de poupança pessoal |
+| uempmed | Duração mediana do desemprego, em semanas |
+| unemploy | Número de desempregados em milhares |
+
+## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
+
+-   `air_time`: quantidade de tempo gasta no ar, em minutos
+-   `air_time_horas`: `air_time`/60
+
+```{r}
+#| echo: true
+flights |> 
+  mutate(
+    air_time_horas = air_time/60
+    )
+```
+
+## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
+
+-   Novas colunas são adicionadas no lado direito do conjunto de dados
+    -   difícil de vizualizar
+-   `.before` ("antes") e `.after` ("depois") para indicar onde a variável deve ficar
+
+## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
+
+-   É possível usar um número ou o nome da coluna para indicar a posição
+
+::: panel-tabset
+### Número
+
+```{r}
+#| echo: true
+flights |> 
+  mutate(
+    air_time_horas = air_time/60,
+    .before = 1
+    )
+```
+
+### Nome da coluna
+
+```{r}
+#| echo: true
+flights |> 
+  mutate(
+    air_time_horas = air_time/60,
+    .after = year
+    )
+```
+:::
+
+## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
+
+-   `.keep = c("all", "used", "unused", "none")`
+    -   `"all"` retém todas as colunas (padrão)
+    -   `"used"` retém apenas as colunas usadas para criar novas colunas
+    -   `"unused"` retém apenas as colunas não usadas
+    -   `"none"` não retém nenhuma coluna extra de `.data`. Apenas as variáveis de agrupamento e as colunas criadas são mantidas.
+
+## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
+
+::: panel-tabset
+### "used"
+
+```{r}
+#| echo: true
+flights |> 
+  mutate(
+    air_time_horas = air_time/60,
+    .keep = "used"
+    )
+```
+
+### "none"
+
+```{r}
+#| echo: true
+flights |> 
+  mutate(
+    air_time_horas = air_time/60,
+    .keep = "none"
+    )
+```
+:::
+
+## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
+
+-   Não altera o banco de dados orignial
+-   É preciso salvar a coluna nova no próprio banco ou em outro objeto com o operador de atribuição `<-`
+
+## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
+
+::: panel-tabset
+### Salvo no próprio banco
+
+```{r}
+#| echo: true
+flights <- flights |> 
+  mutate(
+    air_time_horas = air_time/60,
+    .after = day
+    )
+
+glimpse(flights)
+```
+
+### Salvo em um novo objeto
+
+```{r}
+#| echo: true
+air_time_horas <- flights |> 
+  mutate(
+    air_time_horas = air_time/60,
+    .keep = "none"
+    )
+
+air_time_horas
+```
+:::
+
+## Exercícios
+
+```{r}
+countdown(minutes = 2)
+```
+
+Crie uma coluna (variável) chamada `consumo_percapita` que calcule a relação entre os gastos de consumo pessoal (`pce`) e a população (`pop`).
+
+## Resposta
+
+```{r}
+#| echo: true
+economics |> 
+  mutate(
+    consumo_percapita = pce/pop
+    )
+```
+
+## Exercícios
+
+```{r}
+countdown(minutes = 2)
+```
+
+Crie uma variável chamada `des_hab` a taxa de desempregados (`unemploy`) por habitante (`pop`)
+
+## Resposta
+
+```{r}
+#| echo: true
+economics |> 
+  mutate(
+    des_hab = unemploy/pop
+  )
+```
+
+## Exercícios {.smaller}
+
+```{r}
+countdown(minutes = 3)
+```
+
+Salve em um objeto chamado `des_hab_2008` somente a variável `des_hab` criada anteriormente, mas queremos apenas os dados referentes ao ano de 2008.
+
+-   Você pude usar a função ([`year`](https://lubridate.tidyverse.org/reference/year.html)) para transmformar variável `date` em ano!
+-   Lembre que o operador de atribuição (`<-`) é utilizado para salvar objetos
+-   Recorde o que aprendemos com a função `filter()`
+
+## Resposta - parte 1
+
+```{r}
+#| echo: true
+economics |> 
+  mutate(
+    date = year(date)
+    )  
+```
+
+## Resposta - parte 2
+
+```{r}
+#| echo: true
+economics |> 
+  mutate(
+    date = year(date),
+    des_hab = unemploy/pop
+    )
+```
+
+## Resposta - parte 3
+
+```{r}
+#| echo: true
+economics |> 
+  mutate(
+    date = year(date),
+    des_hab = unemploy/pop,
+    .keep = "none"
+    )
+```
+
+## Resposta - parte 4
+
+```{r}
+#| echo: true
+economics |> 
+  mutate(
+    date = year(date),
+    des_hab = unemploy/pop,
+    .keep = "none"
+    ) |>
+  filter(date == 2008)
+```
+
+## Resposta - parte 5
+
+```{r}
+#| echo: true
+des_hab_2008 <- economics |> 
+  mutate(
+    date = year(date),
+    des_hab = unemploy/pop,
+    .keep = "none"
+    ) |>
+  filter(date == 2008)
+
+des_hab_2008
+```
+
+## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html): Criação de variáveis compostas {.smaller}
+
+-   Criadas a partir da combinação de duas ou mais variáveis originais
+-   Objetivo: capturar uma determinada dimensão ou constructo que não pode ser medido diretamente por nenhuma das variáveis isoladamente.
+-   Exemplo: fator ou componente de uma escala calculado pela média de um grupo de itens
+
+## DASS-21 {.smaller}
+
+-   Três dimensões: depressão, ansiedade e estresse
+-   21 itens, sendo 7 para cada dimensão
+-   Escalade resposta: 0 a 3
+-   Valores mais altos indicam níveis mais elevados de depressão, ansiedade e estresse
+-   Cada dimensão é calculada com a soma dos respectivos itens
+
+## DASS-21: depressão
+
+```{r}
+#| echo: false
+dass_itens <- read_csv("data/dass_21_itens.csv")
+
+depressao_itens <- 
+  dass_itens |> 
+  pivot_longer(
+    cols = everything()
+    ) |> 
+  select(value) |>
+  slice(c(3,5,10,13,16,17,21)) |>
+  mutate(
+    Item = c(3,5,10,13,16,17,21),
+    .before = 1
+    ) |> 
+  rename("Assertiva" = value) |> 
+  gt() |> 
+  cols_align(
+    align = "center",
+    columns = "Item"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+
+depressao_itens
+```
+
+## DASS-21: Ansiedade
+
+```{r}
+#| echo: false
+
+ansiedade_itens <- 
+  dass_itens |> 
+  pivot_longer(
+    cols = everything()
+    ) |> 
+  select(value) |> 
+  slice(c(2,4,7,9,15,19,20)) |> 
+  mutate(
+    Item = c(2,4,7,9,15,19,20),
+    .before = 1
+    ) |>
+  rename("Assertiva" = value) |> 
+  gt() |> 
+  cols_align(
+    align = "center",
+    columns = "Item"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+
+ansiedade_itens  
+```
+
+## DASS-21: Estresse
+
+```{r}
+#| echo: false
+
+estresse_itens <- 
+  dass_itens |> 
+  pivot_longer(
+    cols = everything()
+    ) |> 
+  select(value) |> 
+  slice(c(1,6,8,11,12,14,18)) |> 
+  mutate(
+    Item = c(1,6,8,11,12,14,18),
+    .before = 1
+    ) |> 
+  rename("Assertiva" = value) |> 
+  gt() |> 
+  cols_align(
+    align = "center",
+    columns = "Item"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+
+estresse_itens
+```
+
+## `dass_simulado`: Importação do banco[^1]
+
+[^1]: Não se preocupe com esse código por hora. Vamos ter um módulo sobre importação e exportação de dados no R.
+
+```{r}
+#| include: false
+#| eval: false
+
+# Definir a quantidade de participantes
+n_participants <- 100
+
+# Gerar as variáveis aleatórias para as questões da DASS-21
+dass_values <- replicate(21, sample(0:3, size = n_participants, replace = TRUE))
+dass_df <- data.frame(dass_values)
+
+# Adicionar variáveis para sexo e idade
+sex <- sample(c("M", "F"), n_participants, replace = TRUE)
+age <- sample(18:65, n_participants, replace = TRUE)
+
+# Combinar todas as variáveis em um único dataframe
+simulated_data <- bind_cols(dass_df, data.frame(sex = sex, age = age))
+
+# Alterar os nomes das colunas
+colnames(simulated_data) <- c(paste0("dass_", 1:21), "sex", "age")
+
+# Visualizar as primeiras linhas do dataframe simulado
+head(simulated_data)
+
+simulated_data |> 
+  summarise(
+    across(where(is.numeric),
+           list(min = min,
+                max = max))
+    )
+
+write_csv(simulated_data, file = "./data/dass_simulado.csv")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+dass_simulado <- read_csv("https://tinyurl.com/dassdata")
+```
+
+```{r}
+#| include: false
+dass_simulado <- read_csv("./data/dass_simulado.csv")
+```
+
+## `dass_simulado`
+
+```{r}
+#| echo: true
+glimpse(dass_simulado)
+```
+
+## `dass_simulado`
+
+| Variável       |       |
+|----------------|-------|
+| dass_1:dass_21 | DASS  |
+| sex            | Sexo  |
+| age            | Idade |
+
+## Criação da variável `depressao`
+
+```{r}
+#| echo: false
+depressao_itens
+```
+
+## Criação da variável `depressao`
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|1|2|3|4|5|6|7|8|9|10|11|"
+dass_simulado |>
+  rowwise() |> 
+  mutate(
+    depressao = sum(c(dass_3,dass_5,dass_10,
+                      dass_13,dass_16,dass_17,
+                      dass_21)),
+    .keep = "none"
+    ) |> 
+  ungroup()
+```
+
+## [`rowwise()`](https://dplyr.tidyverse.org/articles/rowwise.html) {.smaller}
+
+-   `mutate()`: opera nas colunas
+-   `rowwise()`: faz o mutate operar nas linhas
+    -   tipo especial de agrupamento
+
+## Tibble simulada
+
+```{r}
+#| echo: true
+df <- tibble(x = 1:2, y = 3:4, z = 5:6)
+
+df
+```
+
+## `Sem rowwise()`
+
+Calculou a média de `x`, `y` e `z` através de todas as linhas
+
+```{r}
+#| echo: true
+df |>  
+  mutate(
+    m = mean(c(x, y, z))
+    )
+
+(1+3+5+2+4+6)/6
+```
+
+## `Com rowwise()`
+
+Calculou a média para cada linha
+
+```{r}
+#| echo: true
+df |>  
+  rowwise() |>  
+  mutate(
+    m = mean(c(x, y, z))
+    ) |> 
+  ungroup()
+
+(1+3+5)/3
+
+(2+4+6)/3
+```
+
+## DASS-21: depressão
+
+```{r}
+#| echo: false
+depressao_itens
+```
+
+## Criação da variável `depressao` sem `rowwise()`
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|1|2|"
+dass_simulado |>
+  #rowwise() |> 
+  mutate(
+    depressao = sum(c(dass_3,dass_5,dass_10,
+                      dass_13,dass_16,dass_17,
+                      dass_21)),
+    .keep = "none"
+    ) |> 
+  ungroup()
+```
+
+## Criação da variável `depressao` com `rowwise()`
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|1|2|"
+dass_simulado |>
+  rowwise() |> 
+  mutate(
+    depressao = sum(c(dass_3,dass_5,dass_10,
+                      dass_13,dass_16,dass_17,
+                      dass_21)),
+    .keep = "none"
+    ) |> 
+  ungroup()
+```
+
+## Exercício
+
+Salve a variável depressão no banco `dass_simulado`. Ela deve ser a primeira coluna
+
+```{r}
+depressao_itens
+countdown(minutes = 3)
+```
+
+## Resposta
+
+```{r}
+#| echo: true
+dass_simulado <- dass_simulado |> 
+  rowwise() |> 
+  mutate(
+    depressao = sum(c(dass_3,dass_5,dass_10,
+                      dass_13,dass_16,dass_17,
+                      dass_21)),
+    .before = 1
+    ) |> 
+  ungroup()
+
+dass_simulado
+```
+
+## 
+
+::: callout-warning
+Sempre que usar qualquer função de agrupamento como `rowwise()` ou `group_by()`, que veremos adiante, use `ungroup()` após concluir a operação. Caso contrário, o agrupamento será mantido no novo objeto salvo e vai se propagar pelas demais análises
+:::
+
+## Exercício
+
+```{r}
+countdown(minutes = 3)
+```
+
+Salve a variável `ansiedade` no banco dass_simulado e faça com que ela seja a segunda coluna de dados, depois de `depressao`.
+
+## Ansiedade
+
+```{r}
+#| echo: false
+
+ansiedade_itens
+```
+
+## Resposta
+
+```{r}
+#| echo: true
+dass_simulado <- dass_simulado |> 
+  rowwise() |> 
+  mutate(
+    ansiedade = sum(c(dass_2,dass_4,dass_7,
+                      dass_9,dass_15,dass_19,
+                      dass_20)),
+    .after = depressao
+    ) |> 
+  ungroup()
+
+dass_simulado
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 3)
+```
+
+Salve a variável `estresse` no banco dass_simulado e faça com que ela seja a terceira coluna de dados, depois de `ansiedade`.
+
+## DASS-21: Estresse
+
+```{r}
+#| echo: false
+estresse_itens
+```
+
+## Resposta
+
+```{r}
+#| echo: true
+dass_simulado <- dass_simulado |> 
+  rowwise() |> 
+  mutate(
+    estresse = sum(dass_1,dass_6,dass_8,
+                   dass_11,dass_12,dass_14,
+                   dass_18),
+    .after = ansiedade
+    ) |> 
+  ungroup()
+
+dass_simulado
+```
+
+## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html): Criação de variáveis compostas
+
+-   variáveis no banco em sequência: `c_across()`
+
+```{r}
+#| eval: false
+#| include: false
+
+dass_simulado_seq <- read_csv("./data/dass_simulado.csv")
+
+dass_simulado_seq <- dass_simulado_seq |>
+  relocate(dass_3,dass_5,dass_10,dass_13,
+           dass_16,dass_17,dass_21,dass_2,
+           dass_4,dass_7,dass_9,dass_15,
+           dass_19,dass_20,dass_1,dass_6,
+           dass_8,dass_11,dass_12,dass_14,
+           dass_18) |> 
+  rename_with(~ str_c("d",1:7),
+              .cols = dass_3:dass_21) |> 
+  rename_with(~ str_c("a",1:7),
+              .cols = dass_2:dass_20) |> 
+  rename_with(~ str_c("e",1:7),
+              .cols = dass_1:dass_18)
+
+dass_simulado_seq |> 
+  write_csv("./data/dass_simulado_seq.csv")
+  
+```
+
+## `dass_simulado_seq`: Importação do banco
+
+```{r}
+#| include: false
+dass_simulado_seq <- read_csv("./data/dass_simulado_seq.csv")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+dass_simulado_seq <- read_csv("https://tinyurl.com/dassseqq")
+```
+
+## Uma olhada em `dass_simulado_seq`
+
+```{r}
+#| echo: true
+glimpse(dass_simulado_seq)
+```
+
+## Uma olhada em `dass_simulado_seq` {.smaller}
+
+-   depressão - d1:d7
+-   ansiedade - a1:a7
+-   estresse - e1:e7
+
+```{r}
+#| echo: true
+dass_simulado_seq
+```
+
+## Criação da variável `depressao`: `c_across()`
+
+```{r}
+#| echo: true
+dass_simulado_seq <- dass_simulado_seq |>
+  rowwise() |> 
+  mutate(
+    depressao = sum(c_across(d1:d7)),
+    .before = d1
+  ) |> 
+  ungroup()
+```
+
+## Conferindo o resultado
+
+```{r}
+#| echo: true
+dass_simulado |> 
+  summarise(
+    m = mean(depressao),
+    sd = sd(depressao)
+  )
+```
+
+```{r}
+#| echo: true
+dass_simulado_seq |> 
+  summarise(
+    m = mean(depressao),
+    sd = sd(depressao)
+  )
+```
+
+## Exerício
+
+```{r}
+countdown(minutes = 5)
+```
+
+Salve as variáveis depressao, ansiedade e estresse no banco dass_simulado_seq
+
+## Resposta - parte 1: calculando as variáveis
+
+```{r}
+#| include: false
+dass_simulado_seq <- read_csv("./data/dass_simulado_seq.csv")
+```
+
+```{r}
+#| echo: true
+dass_simulado_seq <- dass_simulado_seq |> 
+  rowwise() |> 
+  mutate(
+    depressao = sum(c_across(d1:d7)),
+    ansiedade = sum(c_across(a1:a7)),
+    estresse = sum(c_across(e1:e7))
+  ) |> 
+  ungroup()
+```
+
+## Respost parte 2: conferindo o resultado
+
+```{r}
+#| echo: true
+dass_simulado_seq |> 
+  glimpse()
+```
+
+## `mutate()` e `case_when()`: variável contínua em categórica {.smaller}
+
+-   Avaliação qualitativa de escalas de rastreio (SRQ-20, DASS-21 etc.)
+-   Criação de faixas de idade, renda, dentre outras
+-   Avaliação qualitativa de medidas em geral que tem pontos de corte
+
+## `acompanhamento_nutri`: importação do banco
+
+```{r}
+acompanhamento_nutri <- read_csv("./data/acompanhamento_nutri.csv")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+acompanhamento_nutri <- read_csv("https://tinyurl.com/ac-nutri")
+```
+
+```{r}
+#| echo: true
+acompanhamento_nutri
+```
+
+## Criação da variável: `idade_fases`
+
+```{r}
+idade_faixa <- tribble(
+  ~Fase,           ~Faixa,
+  "12 a 20 anos",  "adolescência",
+  "21 a 65",       "fase adulta",
+  "acima de 65",   "velhice"
+)
+
+idade_faixa |> 
+  gt() |> 
+  cols_align(
+    align = "center",
+  ) |> 
+  tab_options(
+    table.width = "100%"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Criação da variável: `idade_fases`
+
+```{r}
+#| echo: true
+case_acompanhamento_nutri <- acompanhamento_nutri |>
+  mutate(
+    idade_corte = case_when(idade <= 20 ~ "adolescente",
+                            idade >= 21 & idade <= 65 ~ "adulto",
+                            idade > 65 ~ "idoso")
+  ) |> 
+  relocate(idade_corte, .after = idade)
+
+case_acompanhamento_nutri
+```
+
+## `mutate()` e `cut()`: variável contínua em categórica {.smaller}
+
+-   `right = T` (padrão): inclui o valor indicado no ponto de corte (\<= 20, \<= 65)
+
+```{r}
+#| echo: true
+cut_acompanhamento_nutri <- acompanhamento_nutri |> 
+  mutate(
+    idade_corte = cut(idade, breaks = c(-Inf, 20, 65, +Inf),
+                      labels = c("adolescente", "adulto", "idoso"),
+                      right = T)
+  ) |> 
+  relocate(idade_corte, .after = idade)
+
+cut_acompanhamento_nutri
+```
+
+## Comparando os resultados de `cut()` e `case_when()`
+
+```{r}
+#| echo: true
+case_acompanhamento_nutri$idade_corte == cut_acompanhamento_nutri$idade_corte
+```
+
+## Comparando os resultados de `cut()` e `case_when()`
+
+::::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+case_acompanhamento_nutri |> 
+  select(idade, idade_corte)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+cut_acompanhamento_nutri |> 
+  select(idade, idade_corte)
+```
+:::
+:::::
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 3)
+```
+
+Salve a variávél `imc_corte` no banco `acompanhamento_nutri` a partir dos pontos de corte a seguir a seguir:
+
+| IMC                                    | Faixa         |
+|----------------------------------------|---------------|
+| abaixo de 18,5                         | baixo peso    |
+| maior ou igual a 18,5 e menor que 25,0 | peso adequado |
+| maior ou igual a 25,0 e menor que 30,0 | sobrepeso     |
+| maior ou igual a 30,0                  | obesidade     |
+
+: Pontos de Corte para IMC em adultos
+
+::: callout-tip
+Se usar `cut()`, lembre-se de usar `right = F` para não incluir o ponto de corte na categoria (\< 18,5)
+:::
+
+## Resposta - `case_when()`
+
+```{r}
+#| echo: true
+acompanhamento_nutri <- acompanhamento_nutri |> 
+  mutate(
+    imc_corte_case_when = case_when(imc < 18.5 ~ "baixo peso",
+                                    imc >= 18.5 & imc < 25 ~ "peso adequado",
+                                    imc >= 25 & imc < 30 ~ "sobrepeso",
+                                    imc >= 30 ~ "obesidade")
+  )
+
+acompanhamento_nutri
+```
+
+## Resposta - `cut()`
+
+```{r}
+#| echo: true
+acompanhamento_nutri <- acompanhamento_nutri |> 
+  mutate(
+    imc_corte_cut = cut(imc, 
+                        breaks = c(-Inf, 18.5, 25, 30, +Inf),
+                        labels = c("baixo peso", "peso adequado",
+                                   "sobrepeso", "obesidade"),
+                        right = F)
+  )
+
+acompanhamento_nutri
+```
+
+## Exercício {.smaller}
+
+```{r}
+countdown(minutes = 5)
+```
+
+Salve a variável `frequencia_treino_corte` no banco `ac_nutri` a partir dos pontos de corte a seguir a seguir:
+
+| Frequência  | Faixa           |
+|-------------|-----------------|
+| 1 a 2 vezes | pouco frequente |
+| 3 a 5 vezes | frequente       |
+| 6 a 7 vezes | muito frequente |
+
+: Pontos de corte para frequência aos treinos
+
+## Resposta
+
+```{r}
+#| echo: true
+acompanhamento_nutri <- acompanhamento_nutri |> 
+  mutate(
+    frequencia_treino_corte = cut(frequencia_treino,
+                                  breaks = c(-Inf, 2, 5, +Inf), 
+                                  labels = c("pouco frequente", 
+                                             "frequente",
+                                             "muito frequente")),
+    .after = frequencia_treino
+  )
+
+acompanhamento_nutri
+```
+
+## [`select()`](https://dplyr.tidyverse.org/reference/select.html)
+
+Permite que você selecione rapidamente um subconjunto de variáveis a partir de operações usando os seus nomes
+
+```{r}
+#| echo: true
+flights |> 
+  glimpse()
+```
+
+## [[`select()`](https://dplyr.tidyverse.org/reference/select.html): Seleciona as colunas pelo nome]{style="font-size: 40pt"}
+
+```{r}
+#| echo: true
+flights |> 
+  select(year,month,day)
+```
+
+## [[`select()`](https://dplyr.tidyverse.org/reference/select.html): Seleciona todas as colunas entre ano e dia (inclusive)]{style="font-size: 40pt"}
+
+```{r}
+#| echo: true
+flights |> 
+  select(year:day)
+```
+
+## [[`select()`](https://dplyr.tidyverse.org/reference/select.html): Seleciona todas as colunas, exceto as de ano a dia (inclusive)]{style="font-size: 40pt"}
+
+```{r}
+#| echo: true
+flights |> 
+  select(!year:day)
+```
+
+## [`select()`](https://dplyr.tidyverse.org/reference/select.html)
+
+::: panel-tabset
+### Seleciona caracteres
+
+```{r}
+#| echo: true
+flights |> 
+  select(where(is.character))
+```
+
+### Seleciona números
+
+```{r}
+#| echo: true
+flights |> 
+  select(where(is.double))
+```
+:::
+
+## [`select()`](https://dplyr.tidyverse.org/reference/select.html)
+
+::: panel-tabset
+### Começa com
+
+```{r}
+#| echo: true
+flights |> 
+  select(starts_with("dep"))
+```
+
+### Termina com
+
+```{r}
+#| echo: true
+flights |> 
+  select(ends_with("time"))
+```
+:::
+
+## [`rename()`](https://dplyr.tidyverse.org/reference/rename.html): renomeia as variáveis (colunas)
+
+Altera os nomes de variáveis individuais usando a sintaxe novo_nome = velho_nome
+
+```{r}
+#| echo: true
+glimpse(flights)
+```
+
+## [`rename()`](https://dplyr.tidyverse.org/reference/rename.html): renomeia as variáveis (colunas)
+
+```{r}
+#| echo: true
+flights |> 
+  rename(
+    ano = year,
+    mes = month,
+    dia = day
+    )
+```
+
+## [`janitor::clean_names()`](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html)
+
+Para bancos de dados com muitas inconsistências
+
+```{r}
+#| include: false
+#| eval: false
+
+tibble(
+  Nome.do.Cliente = c("João", "Maria", "Pedro"),
+  ID_Cliente = c(1, 2, 3),
+  Endereço_de.Email = c("joao@email.com", "maria@email.com", "pedro@email.com"),
+  "Número de Telefone" = c("123456789", "987654321", "555555555")
+) |> 
+  write_csv("./data/inconsistente.csv")
+```
+
+```{r}
+#| echo: true
+inconsistente <- read_csv("./data/inconsistente.csv")
+
+inconsistente
+```
+
+```{r}
+#| eval: false
+#| echo: true
+
+library(janitor)
+```
+
+## [`janitor::clean_names()`](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html)
+
+```{r}
+#| echo: true
+inconsistente |> 
+  clean_names()
+```
+
+## [`janitor::clean_names()`](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html)
+
+Não esqueça de salvar as alterações usando operador de atribuição `<-`
+
+```{r}
+#| echo: true
+consistente <- inconsistente |>
+  clean_names()
+
+inconsistente
+```
+
+## [`relocate()`](https://dplyr.tidyverse.org/reference/relocate.html)
+
+Use para mover as variáveis (colunas)
+
+```{r}
+#| echo: true
+glimpse(flights)
+```
+
+## [`relocate()`](https://dplyr.tidyverse.org/reference/relocate.html)
+
+```{r}
+#| echo: true
+flights |> 
+  relocate(dep_time)
+```
+
+## [`relocate()`](https://dplyr.tidyverse.org/reference/relocate.html)
+
+É possível escolher a posição em que a variável vai ficar usando `.after` (depois) ou `.before` (antes)
+
+```{r}
+#| echo: true
+flights |> 
+  relocate(dep_time,
+           .after  = month)
+```
+
+## [`relocate()`](https://dplyr.tidyverse.org/reference/relocate.html)
+
+É possível deslocar grupos de variáveis simultaneamente
+
+::: panel-tabset
+### Variáveis em sequência
+
+```{r}
+#| echo: true
+flights |> 
+  relocate(dep_delay:arr_delay,
+           .before = day)
+```
+
+### Quais quer grupos
+
+```{r}
+#| echo: true
+flights |> 
+  relocate(c(origin, air_time, time_hour),
+           .before = 1)
+```
+:::
+
+## Exercicio
+
+```{r}
+countdown(minutes = 2)
+```
+
+A partir do banco de dados `flights` crie um novo banco chamado `atrasos` contendo as variáveis `year` (ano), `month` (mês), `day` (dia), `dep_delay` (atraso na decolagem), `arr_delay` (atraso no pouso), `carrier` (companhia). Os nomes das variáveis devem estar em português e a primeira variável deve ser `carrier`.
+
+## Resposta
+
+::: panel-tabset
+### Código
+
+```{r}
+#| echo: true
+atrasos <- flights |> 
+  select(year:day, dep_delay,
+         arr_delay, carrier) |> 
+  rename(
+    ano = year, mes = month,
+    dia = day, atraso_decolagem = dep_delay,
+    atraso_pouso = arr_delay, companhia = carrier
+    ) |> 
+  relocate(companhia)
+```
+
+### Resultado
+
+```{r}
+#| echo: true
+atrasos
+```
+
+### Código alternativo
+
+```{r}
+#| echo: true
+atrasos_2 <- flights |> 
+  select(companhia = carrier,
+         ano = year, mes = month,
+         dia = day, atraso_decolagem = dep_delay,
+         atraso_pouso = arr_delay)
+```
+:::
+
+## Grupos
+
+-   [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)
+-   [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)
+-   [`.by`](https://dplyr.tidyverse.org/reference/dplyr_by.html)
+
+## [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)
+
+Resume as estatísticas
+
+```{r}
+#| echo: true
+flights |> 
+  summarise(
+    atraso_med_partida = mean(dep_delay,na.rm = T)
+    )
+```
+
+## Sumário de várias estatísticas
+
+Você pode calcular várias estatísticas de uma só vez
+
+```{r}
+#| echo: true
+flights |> 
+  summarise(
+    m_atraso_partida = mean(dep_delay,na.rm = T),
+    sd_atraso_partida = sd(dep_delay,na.rm = T),
+    n = n()
+    )
+```
+
+## [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)
+
+Divide o banco de dados em grupos significativos para a análise, mas não altera o banco
+
+```{r}
+#| echo: true
+flights |> 
+  group_by(month)
+```
+
+## [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html) {.smaller}
+
+-   O agrupamento é persistente e se propaga nas análises
+    -   Se salvar um novo objeto em uma operação com grupamento, desagrupe ao final com `ungroup()`
+
+::: panel-tabset
+## Sem desagrupar
+
+```{r}
+#| echo: true
+flights <- flights |> 
+  group_by(month)
+
+flights |> 
+  summarise(
+    M = mean(dep_delay, na.rm = T)
+  )
+```
+
+## Desagrupando
+
+```{r}
+#| echo: true
+flights <- flights |> 
+  group_by(month) |> 
+  ungroup()
+
+flights |> 
+  summarise(
+    M = mean(dep_delay, na.rm = T)
+  )
+```
+:::
+
+## [[`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)]{style="font-size: 36pt"}
+
+Se usado com `group_by()`, mostra uma linha para cada grupo
+
+```{r}
+#| echo: true
+flights |> 
+  group_by(month) |> 
+  summarise(
+    atraso_medio = mean(dep_delay,na.rm = T),
+    n = n()
+    )
+```
+
+## [[`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)]{style="font-size: 36pt"} {.smaller}
+
+-   Também pode ser usado com `.by` para mostrar uma linha para cada grupo.
+    -   `.by` não é persistente e por isso não propaga o agrupamento
+
+```{r}
+#| echo: true
+flights |> 
+  summarise(
+    atraso_medio = mean(dep_delay,na.rm = T),
+    n = n(), .by = month
+    )
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+Descubra qual companhia (`carrier`) tem, em média, os menores atrasos na decolagem (`dep_delay`).
+
+::: callout-tip
+Você vai precisar da função [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)
+:::
+
+## Resposta
+
+```{r}
+#| echo: true
+flights |> 
+  summarise(
+    m = mean(dep_delay, na.rm = T),
+    .by = carrier
+    ) |> 
+  arrange(m)
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+Descubra de qual aeroporto partem (`origin`) os voos com, em média, os maiores atrasos na decolagem (`dep_delay`).
+
+::: callout-tip
+Use a função [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html) com o argumento `desc()`
+:::
+
+## Resposta
+
+```{r}
+#| echo: true
+flights |> 
+  summarise(
+    m = mean(dep_delay,na.rm = T),
+    .by = origin
+    ) |> 
+  arrange(desc(m))
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+Descubra em qual aeroporto chegam (`dest`) os voos com maiores atrasos (`arr_delay`)
+
+## Resposta
+
+```{r}
+#| echo: true
+flights |> 
+  summarise(
+    m = mean(arr_delay,na.rm = T),
+    .by = dest
+    ) |> 
+  arrange(desc(m))
+```
