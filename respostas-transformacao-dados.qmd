@@ -1,0 +1,424 @@
+---
+sidebar: false
+title: "Transformação de dados com dplyr"
+subtitle: "Soluções"
+format: 
+  html:
+      code-link: true
+      code-line-numbers: false
+editor_options: 
+  chunk_output_type: console
+---
+
+![](img/dplyr.png){width="102"}
+
+```{r}
+#| include: false
+source("./_common.R")
+```
+
+### Pacotes necessários
+
+Para fazer estes exercícios, acione os pacotes do tidyverse:
+
+```{r}
+#| echo: true
+library(tidyverse)
+```
+
+### Obtenção dos dados
+
+Para obter os dados, execute o código a seguir:
+
+```{r}
+ufo <- read_csv("./data/ufo_sightings.csv")
+
+eventos <- read_csv("./data/noaa_data_clean.csv")
+
+srq20 <- read_csv("./data/srq_20_simulado.csv")
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| eval: false
+#| echo: true
+ufo <- read_csv("https://tinyurl.com/ufo-avist")
+
+eventos <- read_csv("https://tinyurl.com/noaa-clean")
+
+srq20 <- read_csv("https://tinyurl.com/srq20toy")
+```
+
+::: callout-note
+Lembre-se: do exercício 1 até o exercício 5, você vai utilizar o banco de dados `ufo_sightings.csv`
+:::
+
+```{r}
+#| echo: true
+glimpse(ufo)
+```
+
+### Exercício 1
+
+Considere a coluna intitulada `reported_date_time_utc` e filtre as linhas para todos os avistamentos ocorridos após 10 de setembro de 1993[^1].
+
+[^1]: Esta é a data de estreia da série Arquivo X.
+
+Conte o número de avistamentos de ovnis com formato chevron por cada estado dos EUA (US) e classifique em ordem decrescente.
+
+Qual o número de avistamentos do segundo estado dos EUA com maior número de aparições de ovnis com formato chevron?
+
+```{r}
+#| echo: true
+ufo |> 
+  filter(reported_date_time_utc > ymd("1993-9-10"),
+         country_code == "US",
+         shape == "chevron") |> 
+  count(state, sort = T)
+```
+
+**Resposta**: 84
+
+### Exercício 2
+
+Os avistamentos ocorrem em diversos estados dos EUA. Qual o tempo médio de duração (em horas) do estado que mais tem avistamentos de objetos com o formato cigar?
+
+```{r}
+#| echo: true
+ufo |> 
+  mutate(
+    dur_horas = duration_seconds/3600
+  ) |>
+  filter(country_code == "US",
+         shape == "cigar") |>
+  summarise(
+    n = n(), M = mean(dur_horas),
+    .by = state
+  ) |> 
+  arrange(desc(n))
+```
+
+**Resposta**: 2,39 horas
+
+### Exercício 3
+
+Em qual parte do dia os avistamentos tem maior tempo de duração médio?
+
+```{r}
+#| echo: true
+ufo |> 
+  drop_na(day_part) |> 
+  summarise(
+    M = (mean(duration_seconds, na.rm = T)),
+    .by = day_part
+  ) |> 
+  arrange(desc(M))
+```
+
+**Resposta**: night (noite)
+
+### Exercício 4
+
+Qual o ano com maior número de avistamentos nos EUA?
+
+```{r}
+#| echo: true
+ufo |> 
+  filter(country_code == "US") |> 
+  mutate(
+    ano = year(reported_date_time_utc)
+  ) |> 
+  count(ano, sort = T)
+```
+
+**Resposta**: 2014
+
+### Exercício 5
+
+Qual a quinta cidade dos EUA com o maior número de avistamentos? Em qual estado ela fica localizada?
+
+```{r}
+#| echo: true
+ufo |> 
+  filter(country_code == "US") |> 
+  count(state, city, sort = T)
+```
+
+**Resposta**: Los Angeles no estado da Califórnia
+
+### Exercício 6
+
+::: callout-note
+Entre os exercícios 6 e 13, você vai utilizar o banco de dados `noaa_data`.
+:::
+
+```{r}
+#| echo: true
+glimpse(eventos)
+```
+
+Em qual ano houve o maior número de pessoas feridas em decorrência de desastres naturais nos Estados Unidos? Qual tipo de evento que causou esses ferimentos?
+
+```{r}
+#| echo: true
+eventos |> 
+  summarise(
+    total_de_ferimentos = sum(injuries),
+    .by = c(year, evtype)
+  ) |> 
+  arrange(desc(total_de_ferimentos))
+
+```
+
+**Resposta**: Tornados em 1974
+
+### Exercício 7
+
+Em qual ano houve o maior número de fatalidades em decorrência de desastres naturais nos Estados Unidos? Qual tipo de evento causou essas mortes?
+
+```{r}
+#| echo: true
+eventos |> 
+  summarise(
+    total_de_fatalidades = sum(fatalities),
+    .by = c(year, evtype)
+  ) |> 
+  arrange(desc(total_de_fatalidades))
+```
+
+**Resposta**: Calor excessivo (excessive heat) em 1995
+
+### Exercício 8
+
+Qual evento levou ao maior número de pessoas feridas nos EUA?
+
+```{r}
+#| echo: true
+eventos |>
+  summarise(
+    total_de_ferimentos = sum(injuries),
+    .by = evtype
+  ) |> 
+  arrange(desc(total_de_ferimentos))
+```
+
+**Resposta**: Tornados
+
+### Exercício 9
+
+Qual evento, em média, levou ao maior número de pessoas feridas nos EUA?
+
+```{r}
+#| echo: true
+eventos |> 
+  summarise(
+    media_de_ferimentos = mean(injuries),
+    .by = evtype
+  ) |> 
+  arrange(desc(media_de_ferimentos))
+```
+
+**Resposta**: Furacões (Hurricane)
+
+### Exercício 10
+
+Qual evento causou o maior número de fatalidades nos EUA?
+
+```{r}
+#| echo: true
+eventos |> 
+  summarise(
+    total_de_fatalidades = sum(fatalities),
+    .by = evtype
+  ) |> 
+  arrange(desc(total_de_fatalidades))
+```
+
+**Resposta**: Tornados
+
+### Exercício 11
+
+Qual evento, em média, levou ao maior número de fatalidades nos EUA?
+
+```{r}
+#| echo: true
+eventos |> 
+  summarise(
+    media_de_fatalidades = mean(fatalities),
+    .by = evtype
+  ) |> 
+  arrange(desc(media_de_fatalidades))
+```
+
+**Resposta**: Calor excessivo (Excessive heat)
+
+### Exercício 12
+
+Qual estado tem, em média, o maior prejuízo a plantações causado por desastres naturais nos EUA?
+
+```{r}
+#| echo: true
+eventos |> 
+  summarise(
+    media_platacoes = mean(cropdmg),
+    .by = c(state, evtype)
+  ) |> 
+  arrange(desc(media_platacoes))
+```
+
+**Resposta**: MS (Mississippi)
+
+### Exercício 13
+
+Qual estado tem, em média, o maior prejuízo a propriedades causado por desastres naturais nos EUA?
+
+```{r}
+#| echo: true
+eventos |> 
+  summarise(
+    media_propriedades = mean(propdmg),
+    .by = c(state, evtype)
+  ) |> 
+  arrange(desc(media_propriedades))
+```
+
+**Resposta**: LA (Louisiana)
+
+::: callout-note
+A partir do exercício 14, você vai utilizar o banco de dados `srq_20_simulado.csv`
+:::
+
+```{r}
+#| echo: true
+glimpse(srq20)
+```
+
+### Exercício 14
+
+Qual o percentual de casos do banco de dados que tem indicativo de TMCs?
+
+#### Recodificação das variáveis do SRQ-20
+
+```{r}
+#| echo: true
+srq20 <- srq20 |> 
+  mutate(
+    across(srq1:srq20, \(x) case_when(x == "sim" ~ 1,
+                                      .default = 0))
+  )
+```
+
+#### Criação da variável que totaliza o resultado do SRQ-20
+
+```{r}
+#| echo: true
+srq20 <- srq20 |>
+  rowwise() |> 
+  mutate(
+    srq_soma = sum(c_across(srq1:srq20))
+  ) |> 
+  ungroup()
+```
+
+#### Criação da variável qualitativa de rastreio dos TMCs
+
+```{r}
+#| echo: true
+srq20 <- srq20 |> 
+  mutate(
+    srq_corte = case_when(srq_soma <= 7 ~ "Não",
+                          .default = "Sim")
+  )
+```
+
+Segunda opção com a função `cut`
+
+```{r}
+#| echo: true
+#| eval: false
+srq20 <- srq20 |> 
+  mutate(
+    srq_corte = cut(srq_soma,
+                    breaks = c(-Inf,7,+Inf),
+                    labels = c("Não", "Sim"))
+  )
+```
+
+#### Calculo do percentual
+
+```{r}
+#| echo: true
+srq20 |>
+  count(srq_corte) |>
+  mutate(
+    "%" = formattable::percent(n/sum(n))  
+  )
+```
+
+**Resposta**: 84.27%
+
+### Exercício 15
+
+Qual o percentual de casos com indicativo de tmcs entre os participantes que declararam o gênero feminino?
+
+```{r}
+#| echo: true
+srq20 |> 
+  count(genero, srq_corte) |> 
+  mutate(
+    "%" = formattable::percent(n/sum(n))
+  )
+```
+
+**Resposta**: 32.58%
+
+### Exercício 16
+
+Qual a média, o devio padrão, o máximo e mínimo do resultado do SRQ-20 entre todos os participantes?
+
+```{r}
+#| echo: true
+srq20 |> 
+  summarise(
+    M = mean(srq_soma),
+    DP = sd(srq_soma),
+    MAX = max(srq_soma),
+    MIN = min(srq_soma)
+  )
+```
+
+**Resposta**: M = 9,92; DP = 2.28; MAX = 13 e MIN = 6
+
+### Exercício 17
+
+Qual a média, o devio padrão, o máximo e mínimo do resultado do SRQ-20 entre s participantes que declararam o gênero masculino?
+
+```{r}
+#| echo: true
+srq20 |> 
+  summarise(
+    M = mean(srq_soma),
+    DP = sd(srq_soma),
+    MAX = max(srq_soma),
+    MIN = min(srq_soma),
+    .by = genero
+  )
+```
+
+-   Segunda opção com a função `filter`:
+
+```{r}
+#| echo: true
+srq20 |> 
+  filter(genero == "masculino") |> 
+  summarise(
+    M = mean(srq_soma),
+    DP = sd(srq_soma),
+    MAX = max(srq_soma),
+    MIN = min(srq_soma)
+  )
+```
+
+**Resposta**: M = 10,4; DP = 1.74; MAX = 13 e MIN = 8
+

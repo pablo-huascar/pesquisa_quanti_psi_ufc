@@ -845,7 +845,7 @@ glimpse(economics)
 ## Banco para exercícios [`economics`](https://ggplot2.tidyverse.org/reference/economics.html)
 
 | Variável |   |
-|------------------------------------|------------------------------------|
+|----|----|
 | date | Mês da coleta de dados (`r min(year(economics$date))`- `r max(year(economics$date))`) |
 | pce | Gastos de consumo pessoal, em bilhões de dólares |
 | pop | População total, em milhares |

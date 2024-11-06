@@ -25,3 +25,5 @@ title: "Introdução ao R"
 ![](img/slide.png){width="18"} [Slides](transformacao-dados.qmd){target="_blank"}
 
 ![](img/exercicios.png){width="18"} [Exercícios](exercicios-transformacao-dados.qmd){target="_blank"}
+
+![](img/respostas.png){width="18"} [Soluções](respostas-transformacao-dados.qmd){target="_blank"}
