@@ -1704,6 +1704,7 @@ flights |>
 ## [[`select()`](https://dplyr.tidyverse.org/reference/select.html): Seleciona as colunas pelo nome]{style="font-size: 40pt"}
 
 ```{r}
+#| echo: true
 flights |> 
   select(year,month,day)
 ```
@@ -1711,6 +1712,7 @@ flights |>
 ## [[`select()`](https://dplyr.tidyverse.org/reference/select.html): Seleciona todas as colunas entre ano e dia (inclusive)]{style="font-size: 40pt"}
 
 ```{r}
+#| echo: true
 flights |> 
   select(year:day)
 ```
@@ -1718,6 +1720,7 @@ flights |>
 ## [[`select()`](https://dplyr.tidyverse.org/reference/select.html): Seleciona todas as colunas, exceto as de ano a dia (inclusive)]{style="font-size: 40pt"}
 
 ```{r}
+#| echo: true
 flights |> 
   select(!year:day)
 ```
@@ -1728,6 +1731,7 @@ flights |>
 ### Seleciona caracteres
 
 ```{r}
+#| echo: true
 flights |> 
   select(where(is.character))
 ```
@@ -1735,6 +1739,7 @@ flights |>
 ### Seleciona números
 
 ```{r}
+#| echo: true
 flights |> 
   select(where(is.double))
 ```
@@ -1746,6 +1751,7 @@ flights |>
 ### Começa com
 
 ```{r}
+#| echo: true
 flights |> 
   select(starts_with("dep"))
 ```
@@ -1753,6 +1759,7 @@ flights |>
 ### Termina com
 
 ```{r}
+#| echo: true
 flights |> 
   select(ends_with("time"))
 ```
@@ -1763,12 +1770,14 @@ flights |>
 Altera os nomes de variáveis individuais usando a sintaxe novo_nome = velho_nome
 
 ```{r}
+#| echo: true
 glimpse(flights)
 ```
 
 ## [`rename()`](https://dplyr.tidyverse.org/reference/rename.html): renomeia as variáveis (colunas)
 
 ```{r}
+#| echo: true
 flights |> 
   rename(
     ano = year,
@@ -1782,12 +1791,14 @@ flights |>
 Renomeia as colunas usando uma função
 
 ```{r}
+#| echo: true
 glimpse(flights)
 ```
 
 ## [`rename_with()`](https://dplyr.tidyverse.org/reference/rename.html): renomeia as variáveis (colunas)
 
 ```{r}
+#| echo: true
 flights |> 
   rename_with(~ toupper(.),
               .cols = 1:3)
@@ -1796,6 +1807,7 @@ flights |>
 ## [`rename_with()`](https://dplyr.tidyverse.org/reference/rename.html): renomeia as variáveis (colunas)
 
 ```{r}
+#| echo: true
 flights |> 
   rename_with(~ str_remove_all(., "_"))
 ```
@@ -1831,6 +1843,7 @@ library(janitor)
 ## [`janitor::clean_names()`](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html)
 
 ```{r}
+#| echo: true
 inconsistente |> 
   clean_names()
 ```
@@ -1840,6 +1853,7 @@ inconsistente |>
 Não esqueça de salvar as alterações usando operador de atribuição `<-`
 
 ```{r}
+#| echo: true
 inconsistente <- inconsistente |>
   clean_names()
 
@@ -1851,12 +1865,14 @@ inconsistente
 Use para mover as variáveis (colunas)
 
 ```{r}
+#| echo: true
 glimpse(flights)
 ```
 
 ## [`relocate()`](https://dplyr.tidyverse.org/reference/relocate.html)
 
 ```{r}
+#| echo: true
 flights |> 
   relocate(dep_time)
 ```
@@ -1866,6 +1882,7 @@ flights |>
 É possível escolher a posição em que a variável vai ficar usando `.after` (depois) ou `.before` (antes)
 
 ```{r}
+#| echo: true
 flights |> 
   relocate(dep_time,
            .after  = month)
@@ -1876,6 +1893,7 @@ flights |>
 É possível deslocar grupos de variáveis simultaneamente
 
 ```{r}
+#| echo: true
 flights |> 
   relocate(dep_delay:arr_delay,
            .before = day)
@@ -1891,6 +1909,7 @@ A partir do banco de dados `flights` crie um novo banco chamado `atrasos` conten
 ## Código
 
 ```{r}
+#| echo: true
 atrasos <- flights |> 
   select(year:day,
          dep_delay,
@@ -1910,12 +1929,14 @@ atrasos <- flights |>
 ## Resultado
 
 ```{r}
+#| echo: true
 atrasos
 ```
 
 ## Código alternativo
 
 ```{r}
+#| echo: true
 flights |> 
   select(companhia = carrier,
          ano = year,
@@ -1937,18 +1958,20 @@ flights |>
 Divide o banco de dados em grupos significativos para a análise, mas não altera o banco.
 
 ```{r}
+#| echo: true
 flights |> 
   group_by(month)
 ```
 
 ## [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)
 
-resume as estatísticas.
+Resume as estatísticas
 
 ::: panel-tabset
 ## Variáveis ausentes (`NA`)
 
 ```{r}
+#| echo: true
 flights |> 
   summarise(
     atraso_medio = mean(dep_delay)
@@ -1958,6 +1981,7 @@ flights |>
 ## Correção das variáveis ausentes (`NA`)
 
 ```{r}
+#| echo: true
 flights |> 
   summarise(
     atraso_med_partida = mean(dep_delay,na.rm = T)
@@ -1970,6 +1994,7 @@ flights |>
 Você pode calcular várias estatísticas de uma só vez
 
 ```{r}
+#| echo: true
 flights |> 
   summarise(
     m_atraso_partida = mean(dep_delay,na.rm = T),
@@ -1983,6 +2008,7 @@ flights |>
 Se usado com `group_by()`, mostra uma linha para cada grupo
 
 ```{r}
+#| echo: true
 flights |> 
   group_by(month) |> 
   summarise(
@@ -1990,6 +2016,20 @@ flights |>
     n = n()
     )
 ```
+
+## `.by`
+
+```{r}
+#| echo: true
+flights |> 
+  summarise( 
+    atraso_medio = mean(dep_delay,na.rm = T),
+    n = n(),
+    .by = month
+  )
+  
+```
+
 
 ## Exercícios
 
