@@ -3,12 +3,7 @@ title: "Introdução ao R"
 subtitle: "Fluxo de Trabalho: Fundamentos - Exercícios"
 lang: pt-br
 sidebar: false
-format: 
-  html:
-     toc: true
-     code-link: true
-     code-line-numbers: false
-editor: visual
+format: html
 editor_options: 
   chunk_output_type: console
 ---

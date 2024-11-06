@@ -1,0 +1,254 @@
+---
+title: "Introdução ao R"
+subtitle: "Transformação de dados - Exercícios"
+lang: pt-br
+sidebar: false
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
+## Introdução
+
+![](img/dplyr.png){width="102"}
+
+Nestes blocos de exercícios você vai utilizar o pacote `dplyr` para responder as questões a seguir, de modo a trabalhar as seguintes habilidades:
+
+-   Filtrar dados (`filter`)
+-   Criar e modificar variáveis (`mutate`)
+-   Sumariar dados (`summarise`)
+-   Organizar os dados em ordem decrescente ou crescente (`arrange`)
+-   Agrupar dados (`group_by`)
+
+### Pacotes necessários
+
+Para fazer estes exercícios, acione os pacotes do tidyverse:
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+```
+
+### Primeiro bloco
+
+#### Banco de dados
+
+Entre os exercícios 1 e 5, o banco de dados `ufo_sightings.csv` vai ser empregado. Estes dados trazem informações sobre o avistamento de objetos voadores não identificados (ovinis ou ufo, na sigla em inglês). Os dados vêm do [National UFO Reporting Center](https://nuforc.org/webreports/ndxshape.html), limpos e enriquecidos com dados da [sunrise-sunset.org](https://sunrise-sunset.org/) por [Jon Harmon](https://github.com/jonthegeek/apis/).
+
+O livro de códigos dos dados inclui 11 variáveis:
+
+| Variável | Classe | Descrição |
+|:-----------------|:-----------------|:----------------------------------|
+| reported_date_time | datetime | A hora e data do avistamento, conforme aparece nos dados originais do NUFORC. |
+| reported_date_time_utc | datetime | A hora e data do avistamento, normalizadas para UTC. |
+| posted_date | datetime | A data em que o avistamento foi publicado no NUFORC. |
+| city | character | A cidade do avistamento. Alguns deles foram limpos dos dados originais. |
+| state | character | O estado, província ou divisão semelhante do avistamento. |
+| country_code | character | O código de 2 letras do país do avistamento, normalizado a partir dos dados originais. |
+| shape | character | A forma da nave relatada . |
+| reported_duration | character | A duração relatada do evento, nas palavras da testemunha. |
+| duration_seconds | double | A duração normalizada para segundos usando regex. |
+| summary | character | O resumo do evento relatado. |
+| has_images | logical | Se o avistamento possui imagens disponíveis no NUFORC. |
+| day_part | character | A parte aproximada do dia em que o avistamento ocorreu, com base na data e hora informadas, no local e nos dados de [sunrise-sunset.org.](https://sunrise-sunset.org/) A latitude e a longitude foram arredondadas para o dígito 10, e a data foi arredondada para a semana, para corresponder a pontos de tempo como "crepúsculo náutico", "nascer do sol" e "pôr do sol". |
+
+#### Obtenção dos dados do primeiro bloco
+
+Para obter os dados, execute o código a seguir:
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+ufo <- read_csv("./data/ufo_sightings.csv")
+
+eventos <- read_csv("./data/noaa_data_clean.csv")
+
+srq_20 <- read_csv("./data/srq_20_simulado.csv")
+
+```
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+#| eval: false
+ufo <- read_csv("https://tinyurl.com/ufo-avist")
+```
+
+### Exercício 1
+
+Considere a coluna intitulada `reported_date_time_utc` e filtre as linhas para todos os avistamentos ocorridos após 10 de setembro de 1993[^1].
+
+[^1]: Esta é a data de estreia da série Arquivo X.
+
+Conte o número de avistamentos de ovnis com formato chevron por cada estado dos EUA (US) e classifique em ordem decrescente.
+
+Qual o número de avistamentos do segundo estado dos EUA com maior número de aparições de ovnis com formato chevron?
+
+::: callout-tip
+```{r}
+#| echo: true
+#| eval: false
+ymd("1993-9-10")
+```
+:::
+
+### Exercício 2
+
+Os avistamentos ocorrem em diversos estados dos EUA. Qual o tempo médio de duração (em horas) do estado que mais tem avistamentos de objetos com o formato cigar?
+
+### Exercício 3
+
+Em qual parte do dia os avistamentos tem maior tempo de duração médio?
+
+### Exercício 4
+
+Qual o ano com maior número de avistamentos nos EUA?
+
+::: callout-tip
+```{r}
+#| echo: true
+#| eval: false
+year(reported_date_time_utc)
+```
+:::
+
+### Exercício 5
+
+Qual a quinta cidade dos EUA com o maior número de avistamentos? Em qual estado ela fica localizada?
+
+### Segundo bloco
+
+#### Banco de dados
+
+Entre os exercícios 6 e 13, o banco de dados `noaa_data` vai ser empregado. Estes dados trazem informações sobre desastres naturais nos Estados Unidos vindos do U.S. National Oceanic and Atmospheric Administration's (NOAA). A versão aqui utilizada foi limpa e simplificada, de modo que seu livro de códigos inclui 7 variáveis:
+
+| Variável | Classe | Descrição |
+|:-----------------|:-----------------|:----------------------------------|
+| year | double | Ano em que ocorreu o evento |
+| state | character | Sigla do estado em que o evento ocorreu |
+| evtype | character | Tipo de evento |
+| fatalities | double | Número de mortes decorrentes do evento |
+| injuries | double | Número de feridos deixados pelo evento |
+| propdmg | double | Montante em dólar dos prejuízos a propriedades em decorrência do evento |
+| cropdmg | double | Montante em dólar dos prejuízdos a plantações em decorrência do evento |
+
+#### Obtenção dos dados do segundo bloco
+
+Para obter os dados, execute o código a seguir:
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+#| eval: false
+eventos <- read_csv("https://tinyurl.com/noaa-clean")
+```
+
+### Exercício 6
+
+Em qual ano houve o maior número de pessoas feridas em decorrência de desastres naturais nos Estados Unidos? Qual tipo de evento que causou esses ferimentos?
+
+### Exercício 7
+
+Em qual ano houve o maior número de fatalidades em decorrência de desastres naturais nos Estados Unidos? Qual tipo de evento causou essas mortes?
+
+### Exercício 8
+
+Qual evento levou ao maior número de pessoas feridas nos EUA?
+
+### Exercício 9
+
+Qual evento que, em média, levou ao maior número de pessoas feridas nos EUA?
+
+### Exercício 10
+
+Qual evento causou o maior número de fatalidades?
+
+### Exercício 11
+
+Qual evento que, em média, levou ao maior número de fatalidades nos EUA?
+
+### Exercício 12
+
+Qual estado tem o maior prejuízo em relação a plantações causados por desastres naturais nos EUA?
+
+### Exercício 13
+
+Qual estado tem, em média, o maior prejuízo a propriedades causado por desastres naturais nos EUA?
+
+### Terceiro bloco
+
+#### Banco de dados
+
+No último bloco de exercícios, você vai utilizar um banco de dados toy[^2] srq_20_simulado.csv que simula uma coleta de dados de participantes que responderam o Self-Reporting Questionnaire-20 (SRQ-20).
+
+[^2]: Um banco de dados toy é um conjunto de dados simulado usado para fins educativos, de demonstração ou de teste, que ajuda a ilustrar tarefas de manipulação de dados, análises estatísticas, dentre outras.
+
+O SRQ-20 é uma ferramenta de triagem utilizada para avaliar a presença de Transtornos Mentais Comuns (TMCs) em indivíduos. Ela consiste em um questionário com 20 perguntas que abordam diferentes sintomas e questões relacionadas ao estado emocional e mental das pessoas.
+
+Cada pergunta no SRQ-20 tem duas opções de resposta: "sim" (1) e "não" (0). Dependendo das respostas dadas pelo indivíduo, é possível calcular uma pontuação total que varia de 0 a 20. O ponto de corte comumente utilizado é 7. Isso significa que se a pontuação total do indivíduo for igual ou inferior a 7, ele não apresenta indicativos significativos de Transtornos Mentais Comuns. No entanto, se a pontuação for maior do que 7, isso pode indicar a presença de sintomas que sugerem a necessidade de avaliação adicional ou intervenção profissional para possíveis problemas de saúde mental.
+
+O SRQ-20 é uma ferramenta de triagem amplamente utilizada em contextos clínicos e de pesquisa para identificar sinais iniciais de problemas de saúde mental em uma população. No entanto, é importante observar que o SRQ-20 não é uma ferramenta diagnóstica definitiva. Uma pontuação alta na SRQ-20 indica a possibilidade de problemas de saúde mental, mas um diagnóstico preciso requer avaliação mais aprofundada por profissionais de saúde mental qualificados.
+
+O livro de códigos desse banco simulado mostra as seguintes variáveis:
+
+| Variável | Classe    | Descrição                                               |
+|:-----------------|:-----------------|:----------------------------------|
+| id       | double    | Código de identificação do caso no banco de dados       |
+| genero   | character | Gênero do participante (masculino ou feminino)          |
+| srq1     | character | Assusta-se com facilidade?                              |
+| srq2     | character | Sente-se triste ultimamente?                            |
+| srq3     | character | Você chora mais do que de costume?                      |
+| srq4     | character | Tem dores de cabeça frequentemente?                     |
+| srq5     | character | Você dorme mal?                                         |
+| srq6     | character | Você sente desconforto estomacal?                       |
+| srq7     | character | Sente-se nervoso, tenso ou preocupado?                  |
+| srq8     | character | Você tem má digestão?                                   |
+| srq9     | character | Você tem falta de apetite?                              |
+| srq10    | character | Tem tremores nas mãos?                                  |
+| srq11    | character | Você se cansa com facilidade?                           |
+| srq12    | character | Tem dificuldade em tomar decisão?                       |
+| srq13    | character | Tem dificuldades de ter satisfação em suas tarefas?     |
+| srq14    | character | O seu trabalho traz sofrimento?                         |
+| srq15    | character | Sente-se cansado todo o tempo?                          |
+| srq16    | character | Tem dificuldade de pensar claramente?                   |
+| srq17    | character | Sente-se incapaz de desempenhar papel útil em sua vida? |
+| srq18    | character | Tem perdido o interesse pelas coisas?                   |
+| srq19    | character | Tem pensado em dar fim à sua vida?                      |
+| srq20    | character | Sente-se inútil em sua vida?                            |
+
+#### Obtenção dos dados do terceiro bloco
+
+Para obter os dados, execute o código a seguir:
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+#| eval: false
+srq20 <- read_csv("https://tinyurl.com/srq20toy")
+```
+
+### Exercício 14
+
+Qual o percentual de casos do banco de dados que tem indicativo de TMCs?
+
+### Exercício 15
+
+Qual o percentual de casos com indicativo de tmcs entre os participantes que declararam o gênero feminino?
+
+### Exercício 16
+
+Qual a média, o devio padrão, o máximo e mínimo do resultado do SRQ-20 entre todos os participantes?
+
+### Exercício 17
+
+Qual a média, o devio padrão, o máximo e mínimo do resultado do SRQ-20 entre s participantes que declararam o gênero masculino?

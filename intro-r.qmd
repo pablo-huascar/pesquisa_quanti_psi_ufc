@@ -23,3 +23,5 @@ title: "Introdução ao R"
 ![](img/book.png){width="18"}[Leitura](https://cienciadedatos.github.io/pt-r4ds/data-transform.html)
 
 ![](img/slide.png){width="18"} [Slides](transformacao-dados.qmd){target="_blank"}
+
+![](img/exercicios.png){width="18"} [Exercícios](exercicios-transformacao-dados.qmd){target="_blank"}

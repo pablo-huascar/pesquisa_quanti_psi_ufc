@@ -848,7 +848,7 @@ glimpse(economics)
 ## Banco para exercícios [`economics`](https://ggplot2.tidyverse.org/reference/economics.html)
 
 | Variável |   |
-|------------------------|-----------------------------------------------|
+|----|----|
 | date | Mês da coleta de dados (`r min(year(economics$date))`- `r max(year(economics$date))`) |
 | pce | Gastos de consumo pessoal, em bilhões de dólares |
 | pop | População total, em milhares |
@@ -1703,8 +1703,8 @@ Salve a variávél `imc_corte` no banco `acompanhamento_nutri` a partir dos pont
 
 : Pontos de Corte para IMC em adultos
 
-::: {.callout-tip}
-Se usar `cut()`, lembre-se de usar `right = F` para não incluir o ponto de corte na categoria (< 18,5)
+::: callout-tip
+Se usar `cut()`, lembre-se de usar `right = F` para não incluir o ponto de corte na categoria (\< 18,5)
 :::
 
 ## Resposta - `case_when()`
@@ -1770,7 +1770,6 @@ acompanhamento_nutri <- acompanhamento_nutri |>
 
 acompanhamento_nutri
 ```
-
 
 ## [`select()`](https://dplyr.tidyverse.org/reference/select.html)
 
@@ -1951,7 +1950,6 @@ flights |>
 É possível deslocar grupos de variáveis simultaneamente
 
 ::: panel-tabset
-
 ### Variáveis em sequência
 
 ```{r}
@@ -2022,8 +2020,8 @@ atrasos_2 <- flights |>
 -   [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)
 -   [`.by`](https://dplyr.tidyverse.org/reference/dplyr_by.html)
 
+## [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)
 
-## [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html) 
 Resume as estatísticas
 
 ```{r}
@@ -2062,7 +2060,7 @@ flights |>
 
 -   O agrupamento é persistente e se propaga nas análises
     -   Se salvar um novo objeto em uma operação com grupamento, desagrupe ao final com `ungroup()`
-    
+
 ::: panel-tabset
 ## Sem desagrupar
 
@@ -2092,7 +2090,6 @@ flights |>
 ```
 :::
 
-
 ## [[`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)]{style="font-size: 36pt"}
 
 Se usado com `group_by()`, mostra uma linha para cada grupo
@@ -2107,11 +2104,10 @@ flights |>
     )
 ```
 
-## [[`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)]{style="font-size: 36pt"} {.smaller} 
+## [[`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)]{style="font-size: 36pt"} {.smaller}
 
 -   Também pode ser usado com `.by` para mostrar uma linha para cada grupo.
     -   `.by` não é persistente e por isso não propaga o agrupamento
-
 
 ```{r}
 #| echo: true
@@ -2128,9 +2124,9 @@ flights |>
 countdown(minutes = 2)
 ```
 
-Descubra qual companhia (`carrier`) tem, em média, os menores atrasos na decolagem (`dep_delay`). 
+Descubra qual companhia (`carrier`) tem, em média, os menores atrasos na decolagem (`dep_delay`).
 
-::: {.callout-tip}
+::: callout-tip
 Você vai precisar da função [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)
 :::
 
@@ -2152,9 +2148,9 @@ flights |>
 countdown(minutes = 2)
 ```
 
-Descubra de qual aeroporto partem (`origin`) os voos com, em média, os maiores atrasos na decolagem (`dep_delay`). 
+Descubra de qual aeroporto partem (`origin`) os voos com, em média, os maiores atrasos na decolagem (`dep_delay`).
 
-::: {.callout-tip}
+::: callout-tip
 Use a função [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html) com o argumento `desc()`
 :::
 
