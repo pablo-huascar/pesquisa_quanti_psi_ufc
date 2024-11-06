@@ -4,9 +4,6 @@ subtitle: "Transformação de dados"
 format: 
   revealjs:
       logo: img/brasao1_horizontal_cor_300dpi.png
-      code-link: true
-      code-tools: true
-      code-line-numbers: false
       theme: simple
       css: logo.css
 progress: true
@@ -848,7 +845,7 @@ glimpse(economics)
 ## Banco para exercícios [`economics`](https://ggplot2.tidyverse.org/reference/economics.html)
 
 | Variável |   |
-|----|----|
+|------------------------------------|------------------------------------|
 | date | Mês da coleta de dados (`r min(year(economics$date))`- `r max(year(economics$date))`) |
 | pce | Gastos de consumo pessoal, em bilhões de dólares |
 | pop | População total, em milhares |

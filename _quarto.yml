@@ -51,11 +51,12 @@ format:
   html:
     code-link: true
     code-line-numbers: false
+    code-tools: true
+    code-copy: true
     theme: 
       - cosmo
       - styles.scss
     toc: true
-    code-copy: true
     link-external-icon: true
     link-external-newwindow: true
 
