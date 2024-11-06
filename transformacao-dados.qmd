@@ -2163,9 +2163,9 @@ Use a função [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)
 ```{r}
 #| echo: true
 flights |> 
-  group_by(origin) |> 
   summarise(
-    m = mean(dep_delay,na.rm = T)
+    m = mean(dep_delay,na.rm = T),
+    .by = origin
     ) |> 
   arrange(desc(m))
 ```
@@ -2183,11 +2183,9 @@ Descubra em qual aeroporto chegam (`dest`) os voos com maiores atrasos (`arr_del
 ```{r}
 #| echo: true
 flights |> 
-  group_by(dest) |> 
   summarise(
-    m = mean(arr_delay,na.rm = T)
+    m = mean(arr_delay,na.rm = T),
+    .by = dest
     ) |> 
   arrange(desc(m))
 ```
-
-
