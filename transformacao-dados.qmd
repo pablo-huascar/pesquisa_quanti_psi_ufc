@@ -342,7 +342,7 @@ No banco de dados `mpg`, localize os carros que tem 6 ou 8 cilindors (`cyl`)
 ## Resposta
 
 ```{r}
-#| label: exercício-filter-|
+#| label: exercicio-filter-|
 #| echo: true
 
 mpg |> 
@@ -352,7 +352,7 @@ mpg |>
 ## Resposta
 
 ```{r}
-#| label: exercício-filter-|-alternativa
+#| label: exercicio-filter-|-alternativa
 #| echo: true
 
 mpg |> 
@@ -1756,6 +1756,20 @@ Salve a variável `frequencia_treino_corte` no banco `ac_nutri` a partir dos pon
 
 ## Resposta
 
+```{r}
+#| echo: true
+acompanhamento_nutri <- acompanhamento_nutri |> 
+  mutate(
+    frequencia_treino_corte = cut(frequencia_treino,
+                                  breaks = c(-Inf, 2, 5, +Inf), 
+                                  labels = c("pouco frequente", 
+                                             "frequente",
+                                             "muito frequente")),
+    .after = frequencia_treino
+  )
+
+acompanhamento_nutri
+```
 
 
 ## [`select()`](https://dplyr.tidyverse.org/reference/select.html)
@@ -1779,6 +1793,7 @@ flights |>
 ## [[`select()`](https://dplyr.tidyverse.org/reference/select.html): Seleciona todas as colunas entre ano e dia (inclusive)]{style="font-size: 40pt"}
 
 ```{r}
+#| echo: true
 flights |> 
   select(year:day)
 ```
@@ -1786,6 +1801,7 @@ flights |>
 ## [[`select()`](https://dplyr.tidyverse.org/reference/select.html): Seleciona todas as colunas, exceto as de ano a dia (inclusive)]{style="font-size: 40pt"}
 
 ```{r}
+#| echo: true
 flights |> 
   select(!year:day)
 ```
@@ -1796,6 +1812,7 @@ flights |>
 ### Seleciona caracteres
 
 ```{r}
+#| echo: true
 flights |> 
   select(where(is.character))
 ```
@@ -1803,6 +1820,7 @@ flights |>
 ### Seleciona números
 
 ```{r}
+#| echo: true
 flights |> 
   select(where(is.double))
 ```
@@ -1814,6 +1832,7 @@ flights |>
 ### Começa com
 
 ```{r}
+#| echo: true
 flights |> 
   select(starts_with("dep"))
 ```
@@ -1821,6 +1840,7 @@ flights |>
 ### Termina com
 
 ```{r}
+#| echo: true
 flights |> 
   select(ends_with("time"))
 ```
@@ -1831,41 +1851,20 @@ flights |>
 Altera os nomes de variáveis individuais usando a sintaxe novo_nome = velho_nome
 
 ```{r}
+#| echo: true
 glimpse(flights)
 ```
 
 ## [`rename()`](https://dplyr.tidyverse.org/reference/rename.html): renomeia as variáveis (colunas)
 
 ```{r}
+#| echo: true
 flights |> 
   rename(
     ano = year,
     mes = month,
     dia = day
     )
-```
-
-## [`rename_with()`](https://dplyr.tidyverse.org/reference/rename.html): renomeia as variáveis (colunas)
-
-Renomeia as colunas usando uma função
-
-```{r}
-glimpse(flights)
-```
-
-## [`rename_with()`](https://dplyr.tidyverse.org/reference/rename.html): renomeia as variáveis (colunas)
-
-```{r}
-flights |> 
-  rename_with(~ toupper(.),
-              .cols = 1:3)
-```
-
-## [`rename_with()`](https://dplyr.tidyverse.org/reference/rename.html): renomeia as variáveis (colunas)
-
-```{r}
-flights |> 
-  rename_with(~ str_remove_all(., "_"))
 ```
 
 ## [`janitor::clean_names()`](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html)
@@ -1886,6 +1885,7 @@ tibble(
 ```
 
 ```{r}
+#| echo: true
 inconsistente <- read_csv("./data/inconsistente.csv")
 
 inconsistente
@@ -1893,12 +1893,15 @@ inconsistente
 
 ```{r}
 #| eval: false
+#| echo: true
+
 library(janitor)
 ```
 
 ## [`janitor::clean_names()`](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html)
 
 ```{r}
+#| echo: true
 inconsistente |> 
   clean_names()
 ```
@@ -1908,7 +1911,8 @@ inconsistente |>
 Não esqueça de salvar as alterações usando operador de atribuição `<-`
 
 ```{r}
-inconsistente <- inconsistente |>
+#| echo: true
+consistente <- inconsistente |>
   clean_names()
 
 inconsistente
@@ -1919,12 +1923,14 @@ inconsistente
 Use para mover as variáveis (colunas)
 
 ```{r}
+#| echo: true
 glimpse(flights)
 ```
 
 ## [`relocate()`](https://dplyr.tidyverse.org/reference/relocate.html)
 
 ```{r}
+#| echo: true
 flights |> 
   relocate(dep_time)
 ```
@@ -1934,6 +1940,7 @@ flights |>
 É possível escolher a posição em que a variável vai ficar usando `.after` (depois) ou `.before` (antes)
 
 ```{r}
+#| echo: true
 flights |> 
   relocate(dep_time,
            .after  = month)
@@ -1943,101 +1950,96 @@ flights |>
 
 É possível deslocar grupos de variáveis simultaneamente
 
+::: panel-tabset
+
+### Variáveis em sequência
+
 ```{r}
+#| echo: true
 flights |> 
   relocate(dep_delay:arr_delay,
            .before = day)
 ```
 
-## Exercicios
+### Quais quer grupos
+
+```{r}
+#| echo: true
+flights |> 
+  relocate(c(origin, air_time, time_hour),
+           .before = 1)
+```
+:::
+
+## Exercicio
+
+```{r}
+countdown(minutes = 2)
+```
 
 A partir do banco de dados `flights` crie um novo banco chamado `atrasos` contendo as variáveis `year` (ano), `month` (mês), `day` (dia), `dep_delay` (atraso na decolagem), `arr_delay` (atraso no pouso), `carrier` (companhia). Os nomes das variáveis devem estar em português e a primeira variável deve ser `carrier`.
 
 ## Resposta
 
 ::: panel-tabset
-## Código
+### Código
 
 ```{r}
+#| echo: true
 atrasos <- flights |> 
-  select(year:day,
-         dep_delay,
-         arr_delay,
-         carrier) |> 
+  select(year:day, dep_delay,
+         arr_delay, carrier) |> 
   rename(
-    ano = year,
-    mes = month,
-    dia = day,
-    atraso_decolagem = dep_delay,
-    atraso_pouso = arr_delay,
-    companhia = carrier
+    ano = year, mes = month,
+    dia = day, atraso_decolagem = dep_delay,
+    atraso_pouso = arr_delay, companhia = carrier
     ) |> 
   relocate(companhia)
 ```
 
-## Resultado
+### Resultado
 
 ```{r}
+#| echo: true
 atrasos
 ```
 
-## Código alternativo
+### Código alternativo
 
 ```{r}
-flights |> 
+#| echo: true
+atrasos_2 <- flights |> 
   select(companhia = carrier,
-         ano = year,
-         mes = month,
-         dia = day,
-         atraso_decolagem = dep_delay,
+         ano = year, mes = month,
+         dia = day, atraso_decolagem = dep_delay,
          atraso_pouso = arr_delay)
 ```
 :::
 
-## 4.5 Grupos
-
--   [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)
+## Grupos
 
 -   [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)
+-   [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)
+-   [`.by`](https://dplyr.tidyverse.org/reference/dplyr_by.html)
 
-## [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)
 
-Divide o banco de dados em grupos significativos para a análise, mas não altera o banco.
-
-```{r}
-flights |> 
-  group_by(month)
-```
-
-## [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)
-
-resume as estatísticas.
-
-::: panel-tabset
-## Variáveis ausentes (`NA`)
+## [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html) 
+Resume as estatísticas
 
 ```{r}
-flights |> 
-  summarise(
-    atraso_medio = mean(dep_delay)
-    )
-```
-
-## Correção das variáveis ausentes (`NA`)
-
-```{r}
+#| echo: true
 flights |> 
   summarise(
     atraso_med_partida = mean(dep_delay,na.rm = T)
     )
 ```
-:::
 
 ## Sumário de várias estatísticas
 
 Você pode calcular várias estatísticas de uma só vez
 
 ```{r}
+#| echo: true
 flights |> 
   summarise(
     m_atraso_partida = mean(dep_delay,na.rm = T),
@@ -2046,11 +2048,57 @@ flights |>
     )
 ```
 
+## [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)
+
+Divide o banco de dados em grupos significativos para a análise, mas não altera o banco
+
+```{r}
+#| echo: true
+flights |> 
+  group_by(month)
+```
+
+## [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html) {.smaller}
+
+-   O agrupamento é persistente e se propaga nas análises
+    -   Se salvar um novo objeto em uma operação com grupamento, desagrupe ao final com `ungroup()`
+    
+::: panel-tabset
+## Sem desagrupar
+
+```{r}
+#| echo: true
+flights <- flights |> 
+  group_by(month)
+
+flights |> 
+  summarise(
+    M = mean(dep_delay, na.rm = T)
+  )
+```
+
+## Desagrupando
+
+```{r}
+#| echo: true
+flights <- flights |> 
+  group_by(month) |> 
+  ungroup()
+
+flights |> 
+  summarise(
+    M = mean(dep_delay, na.rm = T)
+  )
+```
+:::
+
+
 ## [[`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)]{style="font-size: 36pt"}
 
 Se usado com `group_by()`, mostra uma linha para cada grupo
 
 ```{r}
+#| echo: true
 flights |> 
   group_by(month) |> 
   summarise(
@@ -2059,28 +2107,61 @@ flights |>
     )
 ```
 
-## Exercícios
+## [[`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)]{style="font-size: 36pt"} {.smaller} 
 
-Descubra qual companhia (`carrier`) tem, em média, os menores atrasos na decolagem (`dep_delay`). Dica: você vai precisar da função [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)
+-   Também pode ser usado com `.by` para mostrar uma linha para cada grupo.
+    -   `.by` não é persistente e por isso não propaga o agrupamento
+
+
+```{r}
+#| echo: true
+flights |> 
+  summarise(
+    atraso_medio = mean(dep_delay,na.rm = T),
+    n = n(), .by = month
+    )
+```
+
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
+
+Descubra qual companhia (`carrier`) tem, em média, os menores atrasos na decolagem (`dep_delay`). 
+
+::: {.callout-tip}
+Você vai precisar da função [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)
+:::
 
 ## Resposta
 
 ```{r}
+#| echo: true
 flights |> 
-  group_by(carrier) |> 
   summarise(
-    m = mean(dep_delay,na.rm = T)
+    m = mean(dep_delay, na.rm = T),
+    .by = carrier
     ) |> 
   arrange(m)
 ```
 
-## Exercícios
+## Exercício
 
-Descubra de qual aeroporto partem (`origin`) os voos com, em média, os maiores atrasos na decolagem (`dep_delay`). Dica: use a função [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html) com o argumento `desc()`
+```{r}
+countdown(minutes = 2)
+```
+
+Descubra de qual aeroporto partem (`origin`) os voos com, em média, os maiores atrasos na decolagem (`dep_delay`). 
+
+::: {.callout-tip}
+Use a função [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html) com o argumento `desc()`
+:::
 
 ## Resposta
 
 ```{r}
+#| echo: true
 flights |> 
   group_by(origin) |> 
   summarise(
@@ -2089,13 +2170,18 @@ flights |>
   arrange(desc(m))
 ```
 
-## Exercícios
+## Exercício
+
+```{r}
+countdown(minutes = 2)
+```
 
 Descubra em qual aeroporto chegam (`dest`) os voos com maiores atrasos (`arr_delay`)
 
 ## Resposta
 
 ```{r}
+#| echo: true
 flights |> 
   group_by(dest) |> 
   summarise(
@@ -2104,8 +2190,4 @@ flights |>
   arrange(desc(m))
 ```
 
-## Compartilhar conhecimento sempre!
 
-O código e as imagens utilizados para a construção desse slide estão disponíveis no [link](https://github.com/pablo-huascar/rpsi) a seguir:
-
-<https://github.com/pablo-huascar/rpsi>
