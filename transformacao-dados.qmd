@@ -788,6 +788,7 @@ flights |>
 ## Resposta 3
 
 ```{r}
+#| echo: true
 flights |> 
   distinct(year, month, day) |> 
   nrow()
@@ -1387,17 +1388,13 @@ Sempre que usar qualquer função de agrupamento como `rowwise()` ou `group_by()
 
 ## Exercício
 
-```{r}
-countdown(minutes = 3)
-```
-
 Salve a variável `ansiedade` no banco dass_simulado e faça com que ela seja a segunda coluna de dados, depois de `depressao`.
 
 ## Ansiedade
 
 ```{r}
 #| echo: false
-
+countdown(minutes = 3)
 ansiedade_itens
 ```
 
@@ -1420,16 +1417,13 @@ dass_simulado
 
 ## Exercício
 
-```{r}
-countdown(minutes = 3)
-```
-
 Salve a variável `estresse` no banco dass_simulado e faça com que ela seja a terceira coluna de dados, depois de `ansiedade`.
 
 ## DASS-21: Estresse
 
 ```{r}
 #| echo: false
+countdown(minutes = 3)
 estresse_itens
 ```
 
@@ -1577,6 +1571,98 @@ dass_simulado_seq <- dass_simulado_seq |>
 dass_simulado_seq |> 
   glimpse()
 ```
+
+## Inversão de Escores dos Itens
+
+-   Por que inverter os escores?
+    -   Em escalas de avaliação, alguns itens são formulados de maneira inversa para evitar vieses nas respostas
+    -   Itens com sentido conceitual oposto precisam ter seus escores invertidos para manter a consistência na análise
+    -   A inversão permite que todos os itens sejam interpretados na mesma direção: escores altos sempre indicam maior presença da característica avaliada
+    
+## Exemplo: Escala de Avaliação do Contexto de Trabalho Docente (EACTD) {.smaller}
+
+```{r}
+eactd_exemplo <- tribble(
+  ~Item, ~"Nunca", ~"Raramente", ~"Às vezes", ~"Frequentemente", ~"Sempre",
+  "A sala de aula é desconfortável (mesa, cadeira, iluminação, climatização, ventilação etc) - (R)", 1, 2, 3, 4, 5,
+  "A sala dos professores é confortável", 1, 2, 3, 4, 5
+)
+
+
+eactd_exemplo_tabela <- eactd_exemplo |> 
+  gt() |> 
+  cols_align(
+    align = "center", columns = 2:6
+  ) |>
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = Item)
+  ) |> 
+  tab_options(
+    table.width = "100%"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+
+eactd_exemplo_tabela
+```
+
+-   Análise dos itens:
+    -   Item 1 (Invertido): "A sala de aula é desconfortável"
+        -   Resposta "Nunca (1)" indica uma situação positiva (sala confortável).
+    -   Item 2: "A sala dos professores é confortável"
+        -   Resposta "Nunca (1)" indica uma situação negativa (sala desconfortável)
+-   Problema: os escores não estão alinhados; respostas iguais representam sentidos opostos   
+
+## Alinhando os Sentidos dos Itens
+
+-   Solução: Inverter os escores do item invertido para que todos os escores altos representem situações positivas
+-   Benefícios:
+    -   Facilita a interpretação dos dados
+    -   Garante consistência na análise estatística
+    
+## Como inverter os escores dos itens?
+
+-   Identifique o maior valor da escala Likert
+    -   No exemplo, o maior valor é 5
+-   Some 1 ao maior valor
+    -   $5 + 1 = 6$
+-   Subtraia o escore original desse resultado
+    -   Fórmula: escore invertido = 6 - escore original
+-   Aplique a fórmula aos itens que precisam ser invertidos    
+
+## Exemplo no R 
+
+::: {.panel-tabset}
+
+### Dados iniciais 
+```{r}
+dados <- tribble(
+  ~id, ~item_1, ~item_2, 
+   1,      1,       3,
+   2,      2,       4,
+   3,      3,       5,
+   4,      4,       2,
+   5,      5,       1,
+)
+
+dados
+```
+
+### Inversão dos escores do item 1
+
+```{r}
+#| echo: true
+
+dados |> 
+  mutate(
+    item_1_r = 6 - item_1,
+    .after = item_1 
+  )
+```
+:::
+
 
 ## `mutate()` e `case_when()`: variável contínua em categórica {.smaller}
 
