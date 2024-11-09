@@ -17,7 +17,7 @@ editor_options:
 source("./_common.R")
 ```
 
-### Pacotes necessários
+## Pacotes necessários
 
 Para fazer estes exercícios, acione os pacotes do tidyverse:
 
@@ -26,7 +26,7 @@ Para fazer estes exercícios, acione os pacotes do tidyverse:
 library(tidyverse)
 ```
 
-### Obtenção dos dados
+## Obtenção dos dados
 
 Para obter os dados, execute o código a seguir:
 
@@ -59,7 +59,7 @@ Lembre-se: do exercício 1 até o exercício 5, você vai utilizar o banco de da
 glimpse(ufo)
 ```
 
-### Exercício 1
+## Exercício 1
 
 Considere a coluna intitulada `reported_date_time_utc` e filtre as linhas para todos os avistamentos ocorridos após 10 de setembro de 1993[^1].
 
@@ -80,7 +80,7 @@ ufo |>
 
 **Resposta**: 84
 
-### Exercício 2
+## Exercício 2
 
 Os avistamentos ocorrem em diversos estados dos EUA. Qual o tempo médio de duração (em horas) do estado que mais tem avistamentos de objetos com o formato cigar?
 
@@ -101,7 +101,7 @@ ufo |>
 
 **Resposta**: 2,39 horas
 
-### Exercício 3
+## Exercício 3
 
 Em qual parte do dia os avistamentos tem maior tempo de duração médio?
 
@@ -118,7 +118,7 @@ ufo |>
 
 **Resposta**: night (noite)
 
-### Exercício 4
+## Exercício 4
 
 Qual o ano com maior número de avistamentos nos EUA?
 
@@ -134,7 +134,7 @@ ufo |>
 
 **Resposta**: 2014
 
-### Exercício 5
+## Exercício 5
 
 Qual a quinta cidade dos EUA com o maior número de avistamentos? Em qual estado ela fica localizada?
 
@@ -147,7 +147,7 @@ ufo |>
 
 **Resposta**: Los Angeles no estado da Califórnia
 
-### Exercício 6
+## Exercício 6
 
 ::: callout-note
 Entre os exercícios 6 e 13, você vai utilizar o banco de dados `noaa_data`.
@@ -173,7 +173,7 @@ eventos |>
 
 **Resposta**: Tornados em 1974
 
-### Exercício 7
+## Exercício 7
 
 Em qual ano houve o maior número de fatalidades em decorrência de desastres naturais nos Estados Unidos? Qual tipo de evento causou essas mortes?
 
@@ -189,7 +189,7 @@ eventos |>
 
 **Resposta**: Calor excessivo (excessive heat) em 1995
 
-### Exercício 8
+## Exercício 8
 
 Qual evento levou ao maior número de pessoas feridas nos EUA?
 
@@ -205,7 +205,7 @@ eventos |>
 
 **Resposta**: Tornados
 
-### Exercício 9
+## Exercício 9
 
 Qual evento, em média, levou ao maior número de pessoas feridas nos EUA?
 
@@ -221,7 +221,7 @@ eventos |>
 
 **Resposta**: Furacões (Hurricane)
 
-### Exercício 10
+## Exercício 10
 
 Qual evento causou o maior número de fatalidades nos EUA?
 
@@ -237,7 +237,7 @@ eventos |>
 
 **Resposta**: Tornados
 
-### Exercício 11
+## Exercício 11
 
 Qual evento, em média, levou ao maior número de fatalidades nos EUA?
 
@@ -253,7 +253,7 @@ eventos |>
 
 **Resposta**: Calor excessivo (Excessive heat)
 
-### Exercício 12
+## Exercício 12
 
 Qual estado tem, em média, o maior prejuízo a plantações causado por desastres naturais nos EUA?
 
@@ -269,7 +269,7 @@ eventos |>
 
 **Resposta**: MS (Mississippi)
 
-### Exercício 13
+## Exercício 13
 
 Qual estado tem, em média, o maior prejuízo a propriedades causado por desastres naturais nos EUA?
 
@@ -294,11 +294,11 @@ A partir do exercício 14, você vai utilizar o banco de dados `srq_20_simulado.
 glimpse(srq20)
 ```
 
-### Exercício 14
+## Exercício 14
 
 Qual o percentual de casos do banco de dados que tem indicativo de TMCs?
 
-#### Recodificação das variáveis do SRQ-20
+### Recodificação das variáveis do SRQ-20
 
 ```{r}
 #| echo: true
@@ -309,7 +309,7 @@ srq20 <- srq20 |>
   )
 ```
 
-#### Criação da variável que totaliza o resultado do SRQ-20
+### Criação da variável que totaliza o resultado do SRQ-20
 
 ```{r}
 #| echo: true
@@ -321,7 +321,7 @@ srq20 <- srq20 |>
   ungroup()
 ```
 
-#### Criação da variável qualitativa de rastreio dos TMCs
+### Criação da variável qualitativa de rastreio dos TMCs
 
 ```{r}
 #| echo: true
@@ -345,7 +345,7 @@ srq20 <- srq20 |>
   )
 ```
 
-#### Calculo do percentual
+### Calculo do percentual
 
 ```{r}
 #| echo: true
@@ -358,7 +358,7 @@ srq20 |>
 
 **Resposta**: 84.27%
 
-### Exercício 15
+## Exercício 15
 
 Qual o percentual de casos com indicativo de tmcs entre os participantes que declararam o gênero feminino?
 
@@ -373,7 +373,7 @@ srq20 |>
 
 **Resposta**: 32.58%
 
-### Exercício 16
+## Exercício 16
 
 Qual a média, o devio padrão, o máximo e mínimo do resultado do SRQ-20 entre todos os participantes?
 
@@ -390,7 +390,7 @@ srq20 |>
 
 **Resposta**: M = 9,92; DP = 2.28; MAX = 13 e MIN = 6
 
-### Exercício 17
+## Exercício 17
 
 Qual a média, o devio padrão, o máximo e mínimo do resultado do SRQ-20 entre s participantes que declararam o gênero masculino?
 
@@ -421,4 +421,3 @@ srq20 |>
 ```
 
 **Resposta**: M = 10,4; DP = 1.74; MAX = 13 e MIN = 8
-
