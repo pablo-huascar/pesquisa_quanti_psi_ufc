@@ -52,7 +52,6 @@ Carregue os pacotes abaixo:
 
 library(tidyverse)
 library(nycflights13)
-library(janitor)
 ```
 
 ## [`nycflights13::flights`](https://rdrr.io/cran/nycflights13/man/flights.html) {.smaller}
@@ -81,7 +80,6 @@ Dados de pontualidade de todos os voos que partiram de Nova York (ou seja, JFK, 
 ```{r}
 #| label: flights
 #| echo: true
-
 flights
 ```
 
@@ -97,7 +95,6 @@ flights
 ```{r}
 #| label: flights-glimpse
 #| echo: true
-
 glimpse(flights)
 ```
 

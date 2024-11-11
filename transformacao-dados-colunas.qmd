@@ -841,7 +841,7 @@ eactd_exemplo_tabela
 
 ## Alinhando os sentidos dos itens
 
--   Solução: Inverter os escores do item invertido para que todos os escores altos representem situações positivas
+-   Solução: inverter os escores do item invertido para que todos os escores altos representem situações positivas
 -   Benefícios:
     -   Facilita a interpretação dos dados
     -   Garante consistência na análise estatística
@@ -953,7 +953,7 @@ formacao_exemplo |>
 
 :::
 
-## Converter níveis de escalas likert em números
+## Converter níveis de escalas likert em números {.smaller}
 
 ::: panel-tabset
 
@@ -968,11 +968,14 @@ likert_converter <- tribble(
   "frequentemente",  "raramente",
   "sempre",          "nunca"
 )
+
+likert_converter
 ```
 
-
+### Conversão dos itens
 
 ```{r}
+#| echo: true
 likert_converter |> 
   mutate(
     item_1_num = case_when(item_1 == "nunca" ~ 1,
@@ -984,9 +987,13 @@ likert_converter |>
   )
 ```
 
-::: panel-tabset
+:::
 
 ## Transformar variáveis contínuas em categóricas
+
+::: panel-tabset
+
+### Dados iniciais
 
 ```{r}
 idade_exemplo <- tribble(
@@ -998,12 +1005,21 @@ idade_exemplo <- tribble(
   19,
 )
 
+idade_exemplo
+```
+
+### Variável transformada
+
+```{r}
+#| echo: true
 idade_exemplo |> 
   mutate(
     idade_dic = case_when(idade >= 18 ~ "Maior ou igual a 18 anos",
                           .default = "Menor de 18 anos")
   )
 ```
+
+:::
 
 ## Variável contínua em categórica {.smaller}
 
