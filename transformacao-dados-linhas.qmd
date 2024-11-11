@@ -24,7 +24,6 @@ source("./_common.R")
 #| include: false
 library(tidyverse)
 library(nycflights13)
-library(janitor)
 library(countdown)
 library(gt)
 ```
