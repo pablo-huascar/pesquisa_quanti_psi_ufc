@@ -62,11 +62,11 @@ TitanicSurvival <- TitanicSurvival |>
 
 ##  {background-image="img/pinguins.png" background-size="contain"}
 
-## `penguins` {.smaller}
+## [`penguins`](https://allisonhorst.github.io/palmerpenguins/) {.smaller}
 
 Medidas de tamanho para pinguins forrageadores adultos perto da Estação Palmer, Antártida. Inclui medidas para espécies de pinguins, ilha no Arquipélago Palmer, tamanho (comprimento da nadadeira, massa corporal, dimensões do bico) e sexo.
 
--   Formato: Um banco de dados com `r nrow(penguins)` observações e `r ncol(penguins)` variáveis
+-   Formato: um banco de dados com `r nrow(penguins)` observações e `r ncol(penguins)` variáveis
     -   `species`: espécies de pinguins (Adélie, Chinstrap e Gentoo)
     -   `island`: ilha no arquipélago de Palmer, Antártida (Biscoe, Dream ou Torgersen)
     -   `bill_length_mm`: comprimento do bico em milímetros
@@ -100,9 +100,9 @@ penguins |>
 
 ## `TitanicSurvival` {.smaller}
 
-Informações sobre o status de sobrevivência, sexo, idade e classe de passageiros de 1.309 passageiros no desastre do Titanic em 1912.
+Informações sobre o status de sobrevivência, sexo, idade e classe de passageiros de `r nrow(TitanicSurvival)` passageiros no desastre do Titanic em 1912.
 
--   Formato: mm banco de dados com 1309 observações e 4 variáveis
+-   Formato: um banco de dados com `r nrow(TitanicSurvival)` observações e `r ncol(TitanicSurvival)` variáveis
     -   `survived` (sobreviveu): no or yes (não ou sim)
     -   `sex` (sexo): female or male (masculino ou feminino)
     -   `age`: idade em anos (frações quando crianças)
