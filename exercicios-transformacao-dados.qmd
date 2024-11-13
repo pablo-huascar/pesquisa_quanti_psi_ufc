@@ -302,3 +302,104 @@ Qual a média, o devio padrão, o máximo e mínimo do resultado do SRQ-20 entre
 ### Exercício 17
 
 Qual a média, o devio padrão, o máximo e mínimo do resultado do SRQ-20 entre s participantes que declararam o gênero masculino?
+
+## Quarto bloco
+
+Neste bloco de exercícios, utilizaremos o banco de dados `starwars`, que faz parte do pacote dplyr. Este conjunto de dados contém informações sobre personagens da saga Star Wars, incluindo características físicas, dados demográficos e outras informações relevantes.
+
+O livro de códigos do banco de dados `starwars` inclui as seguintes variáveis:
+
+```{r}
+livro_codigos_starwars <- tribble(
+  ~Variável,     ~Classe,    ~Descrição,
+  "name",        "character","Nome do personagem",
+  "height",      "integer",  "Altura em centímetros",
+  "mass",        "numeric",  "Massa em quilogramas",
+  "hair_color",  "character","Cor do cabelo",
+  "skin_color",  "character","Cor da pele",
+  "eye_color",   "character","Cor dos olhos",
+  "birth_year",  "numeric",  "Ano de nascimento (ABY - Antes da Batalha de Yavin)",
+  "sex",         "character","Sexo biológico (masculino, feminino, hermafrodita, nenhum)",
+  "gender",      "character","Gênero (masculino, feminino, masculino feminino, nenhum)",
+  "homeworld",   "character","Planeta natal",
+  "species",     "character","Espécie",
+  "films",       "list",     "Lista de filmes em que o personagem aparece",
+  "vehicles",    "list",     "Lista de veículos pilotados pelo personagem",
+  "starships",   "list",     "Lista de naves estelares pilotadas pelo personagem"
+)
+```
+
+```{r}
+livro_codigos_starwars  |>  
+  gt()  |>  
+  cols_align(
+    align = "center", columns = 2
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = c(Variável, Descrição))
+  ) |>  
+  tab_options(
+    table.width = "100%"
+  ) |>  
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+
+```
+
+### Obtenção dos dados do quarto bloco
+
+Para carregar o banco de dados, execute o código a seguir:
+
+```{r}
+data("starwars")
+```
+
+### Exercício 18
+
+Quais são as três espécies com o maior número de personagens no banco de dados? Apresente os resultados em ordem decrescente de contagem.
+
+### Exercício 19
+
+Calcule a altura média, a massa média e o desvio padrão da massa para cada espécie, considerando apenas as espécies com pelo menos dois personagens. Ordene os resultados pela altura média em ordem decrescente.
+
+### Exercício 20
+
+Qual é o nome do personagem mais alto da espécie "Human"?
+
+### Exercício 21
+
+Crie uma nova coluna chamada imc (Índice de Massa Corporal) para cada personagem, calculada pela fórmula:
+
+$$
+\text{imc} = \frac{\text{massa}}{\left( \dfrac{\text{altura}}{100} \right)^2}
+$$
+
+### Exercício 22
+
+Filtre os personagens que possuem informações completas de altura e massa (não possuem valores NA nessas colunas) e ordene-os em ordem decrescente de IMC. Apresente os cinco primeiros personagens dessa lista.
+
+### Exercício 23
+
+Qual é a média de altura e massa dos personagens de cada gênero (gender)? Qual gênero possui a maior média de altura?
+
+### Exercício 24
+
+Crie uma nova coluna chamada categoria_imc que categorize os personagens de acordo com os seguintes critérios:
+
+Baixo peso: IMC abaixo de 18.5
+Peso normal: IMC entre 18.5 e 24.9
+Sobrepeso: IMC entre 25 e 29.9
+Obesidade: IMC de 30 ou mais
+Quantos personagens se enquadram em cada categoria? Apresente os resultados em uma tabela.
+
+### Exercício 25
+
+Entre os personagens com categoria de IMC Obesidade, quais são as três espécies mais comuns? Apresente a contagem de personagens obesos por espécie.
+
+### Exercício 26
+
+Filtre os personagens da espécie "Human" e descubra qual é a cor de olhos (eye_color) mais comum entre eles.
+
+

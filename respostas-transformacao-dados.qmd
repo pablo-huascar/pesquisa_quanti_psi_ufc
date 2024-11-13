@@ -421,3 +421,148 @@ srq20 |>
 ```
 
 **Resposta**: M = 10,4; DP = 1.74; MAX = 13 e MIN = 8
+
+### Exercício 18
+
+Quais são as três espécies com o maior número de personagens no banco de dados? Apresente os resultados em ordem decrescente de contagem.
+
+```{r}
+starwars |> 
+  count(species, sort = T)
+```
+
+**Resposta**: Human, Droid, Gungan
+
+### Exercício 19
+
+Calcule a altura média, a massa média e o desvio padrão da massa para cada espécie, considerando apenas as espécies com pelo menos dois personagens. Ordene os resultados pela altura média em ordem decrescente.
+
+```{r}
+starwars |> 
+  drop_na(species) |> 
+  group_by(species) |> 
+  filter(n() >= 2) |> 
+ summarise(
+    altura_media = mean(height, na.rm = T),
+    massa_media = mean(mass, na.rm = T),
+    dp_massa = sd(mass, na.rm = T),
+    n = n()
+  ) %>%
+  arrange(desc(altura_media))
+```
+ 
+### Exercício 20
+
+Qual é o nome do personagem mais alto da espécie "Human"?
+
+```{r}
+starwars |> 
+  filter(species == "Human") |> 
+  arrange(desc(height))
+```
+
+**Resposta**: Darth Vader 
+
+### Exercício 21
+
+Crie uma nova coluna chamada imc (Índice de Massa Corporal) para cada personagem, calculada pela fórmula:
+
+$$
+\text{imc} = \frac{\text{massa}}{\left( \dfrac{\text{altura}}{100} \right)^2}
+$$
+
+```{r}
+#| echo: true
+starwars <- starwars |> 
+  mutate(
+    imc = mass/((height/100)^2),
+    .after = mass
+  )
+```
+
+### Exercício 22
+
+Filtre os personagens que possuem informações completas de altura e massa (não possuem valores NA nessas colunas) e ordene-os em ordem decrescente de IMC. Apresente os cinco primeiros personagens dessa lista.
+
+```{r}
+#| echo: true
+starwars |> 
+  filter(!is.na(imc)) |> 
+  arrange(desc(imc)) |> 
+  select(name) |> 
+  slice(1:5)
+```
+
+**Resposta**: Jabba Desilijic Tiure, Dud Bolt, Yoda, Owen Lars, Owen Lars
+
+### Exercício 23
+
+Qual é a média de altura e massa dos personagens de cada gênero (gender)? Qual gênero possui a maior média de altura
+
+```{r}
+#| echo: true
+starwars |> 
+  drop_na(gender) |> 
+  summarise(
+    altura_media = mean(height, na.rm = T),
+    massa_media = mean(mass, na.rm = T),
+    .by = gender
+  ) |> 
+  arrange(desc(altura_media))
+```
+
+**Resposta**: Masculino
+
+### Exercício 24
+
+Crie uma nova coluna chamada `categoria_imc` que categorize os personagens de acordo com os seguintes critérios:
+
+-   Baixo peso: IMC abaixo de 18.5
+-   Peso normal: IMC entre 18.5 e 24.9
+-   Sobrepeso: IMC entre 25 e 29.9
+-   Obesidade: IMC de 30 ou mais
+
+Quantos personagens se enquadram em cada categoria? Apresente os resultados em uma tabela.
+
+```{r}
+#| echo: true
+starwars <- starwars |> 
+  drop_na(imc) |> 
+  mutate(
+    categoria_imc = cut(imc, breaks = c(-Inf, 18.5, 25, 30, +Inf),
+                        labels = c("Baixo peso", "Peso normal",
+                                   "Sobrepeso", "Obesidade"), right = F),
+    .after = imc
+  ) 
+
+starwars |> 
+  count(categoria_imc)
+```
+
+### Exercício 25
+
+Entre os personagens com categoria de IMC Obesidade, quais são as duas espécies mais comuns? Apresente a contagem de personagens obesos por espécie.
+
+```{r}
+#| echo: true
+starwars |> 
+  filter(categoria_imc == "Obesidade") |> 
+  count(species, sort = T)
+```
+
+**Resposta**: Droid e Human
+
+### Exercício 26
+
+Filtre os personagens da espécie "Human" e descubra qual é a cor de olhos (`eye_color`) mais comum entre eles.
+
+```{r}
+#| echo: true
+starwars |> 
+  filter(species == "Human") |> 
+  count(eye_color, sort = T)
+```
+
+**Resposta**: brown
+
+
