@@ -274,6 +274,7 @@ livro_codigos_srq |>
     style = 1, color = "gray"
   )
 ```
+
 ### Obtenção dos dados do terceiro bloco
 
 Para obter os dados, execute o código a seguir:

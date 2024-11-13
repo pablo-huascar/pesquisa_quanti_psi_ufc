@@ -56,10 +56,10 @@ library(janitor)
 Este conjunto de dados foi produzido a partir de dados de séries temporais econômicas dos EUA disponíveis em https://fred.stlouisfed.org/
 
 -   Formato: um banco de dados com `r nrow(economics)` observações e `r ncol(economics)` variáveis
-    -   `date`: mês da coleta de dados (`r min(year(economics$date))` \- `r max(year(economics$date))`)
-    -   `pce`: gastos de consumo pessoal, em bilhões de dólares 
-    -   `pop`:  população total, em milhares
-    -   `psavert`:  taxa de poupança pessoal
+    -   `date`: mês da coleta de dados (`r min(year(economics$date))` - `r max(year(economics$date))`)
+    -   `pce`: gastos de consumo pessoal, em bilhões de dólares
+    -   `pop`: população total, em milhares
+    -   `psavert`: taxa de poupança pessoal
     -   `uempmed`: duração mediana do desemprego, em semanas
     -   `unemploy`: número de desempregados em milhares
 
@@ -68,7 +68,6 @@ Este conjunto de dados foi produzido a partir de dados de séries temporais econ
 ```{r}
 glimpse(economics)
 ```
-
 
 ## [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) {.smaller}
 
@@ -538,12 +537,9 @@ df |>
 depressao_itens
 ```
 
-
-
 ## Criação da variável `depressao` {.smaller}
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ### Sem `rowwise()`
 
 ```{r}
@@ -575,7 +571,6 @@ dass_simulado |>
     ) |> 
   ungroup()
 ```
-
 :::
 
 ## Exercício
@@ -612,7 +607,7 @@ Sempre que usar qualquer função de agrupamento como `rowwise()` ou `group_by()
 
 ## Exercício
 
-Salve a variável `ansiedade` no banco dass_simulado e faça com que ela seja a segunda coluna de dados, depois de `depressao`.
+Salve a variável `ansiedade` no banco dass_simulado e faça com que ela seja a segunda coluna de dados, depois de `depressao`
 
 ## Ansiedade
 
@@ -896,7 +891,6 @@ dados |>
 ## Inverter os escores dos itens
 
 ::: panel-tabset
-
 ### Dados inciais
 
 ```{r}
@@ -917,13 +911,11 @@ dados |>
     .after = item_1
   )
 ```
-
 :::
 
 ## Reduzir o número de categorias {.smaller}
 
 ::: panel-tabset
-
 ### Dados iniciais
 
 ```{r}
@@ -950,13 +942,68 @@ formacao_exemplo |>
                              .default = "Com ensino superior")
   )
 ```
+:::
 
+## Exercicio
+
+No banco de dados `starwars`, a partir da variável `species`, crie uma nova coluna (`species_dic`) em que só existam duas categorias: “humanos” e “não humanos”.
+
+::: {.callout-tip}
+Você pode usar a função `distinct() ` para ver quais categorias estão presentes na variável
+:::
+
+
+```{r}
+countdown(minutes = 2)
+```
+
+## Resposta
+
+```{r}
+#| echo: true
+starwars |> 
+  mutate(
+    species_dic = case_when(species == "Human" ~ "humano",
+                            .default = "Não humano"),
+    .after = species
+  )
+```
+
+## Exercicio
+
+```{r}
+countdown(minutes = 3)
+```
+
+No banco de dados `gss_cat` recodifique a variável `relig` de modo que só restem três categorias “cristãos”, “não cristãos” e “indefinido”
+
+## Resposta
+
+::: {.panel-tabset}
+
+### Análise das categorias da variável
+
+```{r}
+gss_cat |> 
+  distinct(relig)
+```
+
+### Recodificação das categorias
+
+```{r}
+gss_cat |> 
+  mutate(
+    relig = case_when(relig %in% c("Protestant", "Orthodox-christian",
+                                   "Christian", "Catholic") ~ "cristão",
+                      relig %in% c("No answer", "Don't know") ~ "indefinido",
+                      .default = "não cristão")
+  )
+```
 :::
 
 ## Converter níveis de escalas likert em números {.smaller}
 
 ::: panel-tabset
-
 ### Dados iniciais
 
 ```{r}
@@ -986,13 +1033,11 @@ likert_converter |>
     .after = item_1
   )
 ```
-
 :::
 
 ## Transformar variáveis contínuas em categóricas
 
 ::: panel-tabset
-
 ### Dados iniciais
 
 ```{r}
@@ -1018,7 +1063,6 @@ idade_exemplo |>
                           .default = "Menor de 18 anos")
   )
 ```
-
 :::
 
 ## Variável contínua em categórica {.smaller}
@@ -1075,9 +1119,9 @@ case_acompanhamento_nutri <- acompanhamento_nutri |>
   mutate(
     idade_corte = case_when(idade <= 20 ~ "adolescente",
                             idade >= 21 & idade <= 65 ~ "adulto",
-                            idade > 65 ~ "idoso")
-  ) |> 
-  relocate(idade_corte, .after = idade)
+                            idade > 65 ~ "idoso"),
+    .after = idade
+  ) 
 
 case_acompanhamento_nutri
 ```
@@ -1147,7 +1191,11 @@ Salve a variávél `imc_corte` no banco `acompanhamento_nutri` a partir dos pont
 Se usar `cut()`, lembre-se de usar `right = F` para não incluir o ponto de corte na categoria (\< 18,5)
 :::
 
-## Resposta - `case_when()`
+## Resposta 
+
+::: panel-tabset
+
+### `case_when()`
 
 ```{r}
 #| echo: true
@@ -1162,7 +1210,7 @@ acompanhamento_nutri <- acompanhamento_nutri |>
 acompanhamento_nutri
 ```
 
-## Resposta - `cut()`
+### `cut()`
 
 ```{r}
 #| echo: true
@@ -1177,6 +1225,8 @@ acompanhamento_nutri <- acompanhamento_nutri |>
 
 acompanhamento_nutri
 ```
+
+:::
 
 ## Exercício {.smaller}
 
@@ -1627,4 +1677,3 @@ flights |>
     ) |> 
   arrange(desc(m))
 ```
-

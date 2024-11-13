@@ -71,7 +71,6 @@ Dados de pontualidade de todos os voos que partiram de Nova York (ou seja, JFK, 
     -   `distance`: distância entre aeroportos, em milhas
     -   `hour`, `minute`: horário de partida programado dividido em horas e minutos
     -   `time_hour`: Data e hora programadas do voo como uma data `POSIXct`. Junto com a `origin`, pode ser usado para unir dados de voos a dados meteorológicos (veja o banco de dados `weather`)
-
 :::
 
 ## [`nycflights13::flights`](https://rdrr.io/cran/nycflights13/man/flights.html)
@@ -817,4 +816,3 @@ flights |>
 flights |> 
   arrange(desc(distance)) 
 ```
-
