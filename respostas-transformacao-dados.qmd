@@ -422,7 +422,7 @@ srq20 |>
 
 **Resposta**: M = 10,4; DP = 1.74; MAX = 13 e MIN = 8
 
-### Exercício 18
+## Exercício 18
 
 Quais são as três espécies com o maior número de personagens no banco de dados? Apresente os resultados em ordem decrescente de contagem.
 
@@ -433,7 +433,7 @@ starwars |>
 
 **Resposta**: Human, Droid, Gungan
 
-### Exercício 19
+## Exercício 19
 
 Calcule a altura média, a massa média e o desvio padrão da massa para cada espécie, considerando apenas as espécies com pelo menos dois personagens. Ordene os resultados pela altura média em ordem decrescente.
 
@@ -450,8 +450,8 @@ starwars |>
   ) %>%
   arrange(desc(altura_media))
 ```
- 
-### Exercício 20
+
+## Exercício 20
 
 Qual é o nome do personagem mais alto da espécie "Human"?
 
@@ -461,9 +461,9 @@ starwars |>
   arrange(desc(height))
 ```
 
-**Resposta**: Darth Vader 
+**Resposta**: Darth Vader
 
-### Exercício 21
+## Exercício 21
 
 Crie uma nova coluna chamada imc (Índice de Massa Corporal) para cada personagem, calculada pela fórmula:
 
@@ -480,7 +480,7 @@ starwars <- starwars |>
   )
 ```
 
-### Exercício 22
+## Exercício 22
 
 Filtre os personagens que possuem informações completas de altura e massa (não possuem valores NA nessas colunas) e ordene-os em ordem decrescente de IMC. Apresente os cinco primeiros personagens dessa lista.
 
@@ -495,7 +495,7 @@ starwars |>
 
 **Resposta**: Jabba Desilijic Tiure, Dud Bolt, Yoda, Owen Lars, Owen Lars
 
-### Exercício 23
+## Exercício 23
 
 Qual é a média de altura e massa dos personagens de cada gênero (gender)? Qual gênero possui a maior média de altura
 
@@ -513,7 +513,7 @@ starwars |>
 
 **Resposta**: Masculino
 
-### Exercício 24
+## Exercício 24
 
 Crie uma nova coluna chamada `categoria_imc` que categorize os personagens de acordo com os seguintes critérios:
 
@@ -539,7 +539,7 @@ starwars |>
   count(categoria_imc)
 ```
 
-### Exercício 25
+## Exercício 25
 
 Entre os personagens com categoria de IMC Obesidade, quais são as duas espécies mais comuns? Apresente a contagem de personagens obesos por espécie.
 
@@ -552,7 +552,7 @@ starwars |>
 
 **Resposta**: Droid e Human
 
-### Exercício 26
+## Exercício 26
 
 Filtre os personagens da espécie "Human" e descubra qual é a cor de olhos (`eye_color`) mais comum entre eles.
 
@@ -564,5 +564,3 @@ starwars |>
 ```
 
 **Resposta**: brown
-
-
