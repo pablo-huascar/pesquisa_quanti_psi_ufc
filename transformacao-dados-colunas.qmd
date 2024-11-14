@@ -948,10 +948,9 @@ formacao_exemplo |>
 
 No banco de dados `starwars`, a partir da variável `species`, crie uma nova coluna (`species_dic`) em que só existam duas categorias: “humanos” e “não humanos”.
 
-::: {.callout-tip}
-Você pode usar a função `distinct() ` para ver quais categorias estão presentes na variável
+::: callout-tip
+Você pode usar a função `distinct()` para ver quais categorias estão presentes na variável
 :::
-
 
 ```{r}
 countdown(minutes = 2)
@@ -979,8 +978,7 @@ No banco de dados `gss_cat` recodifique a variável `relig` de modo que só rest
 
 ## Resposta
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ### Análise das categorias da variável
 
 ```{r}
@@ -1191,10 +1189,9 @@ Salve a variávél `imc_corte` no banco `acompanhamento_nutri` a partir dos pont
 Se usar `cut()`, lembre-se de usar `right = F` para não incluir o ponto de corte na categoria (\< 18,5)
 :::
 
-## Resposta 
+## Resposta
 
 ::: panel-tabset
-
 ### `case_when()`
 
 ```{r}
@@ -1225,7 +1222,6 @@ acompanhamento_nutri <- acompanhamento_nutri |>
 
 acompanhamento_nutri
 ```
-
 :::
 
 ## Exercício {.smaller}
@@ -1454,7 +1450,7 @@ flights |>
 ```{r}
 #| echo: true
 flights |> 
-  relocate(c(origin, air_time, time_hour),
+  relocate(origin, air_time, time_hour,
            .before = 1)
 ```
 :::

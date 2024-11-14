@@ -353,6 +353,7 @@ livro_codigos_starwars  |>
 Para carregar o banco de dados, execute o código a seguir:
 
 ```{r}
+#| echo: true
 data("starwars")
 ```
 
@@ -388,11 +389,7 @@ Qual é a média de altura e massa dos personagens de cada gênero (gender)? Qua
 
 Crie uma nova coluna chamada categoria_imc que categorize os personagens de acordo com os seguintes critérios:
 
-Baixo peso: IMC abaixo de 18.5
-Peso normal: IMC entre 18.5 e 24.9
-Sobrepeso: IMC entre 25 e 29.9
-Obesidade: IMC de 30 ou mais
-Quantos personagens se enquadram em cada categoria? Apresente os resultados em uma tabela.
+Baixo peso: IMC abaixo de 18.5 Peso normal: IMC entre 18.5 e 24.9 Sobrepeso: IMC entre 25 e 29.9 Obesidade: IMC de 30 ou mais Quantos personagens se enquadram em cada categoria? Apresente os resultados em uma tabela.
 
 ### Exercício 25
 
@@ -401,5 +398,3 @@ Entre os personagens com categoria de IMC Obesidade, quais são as três espéci
 ### Exercício 26
 
 Filtre os personagens da espécie "Human" e descubra qual é a cor de olhos (eye_color) mais comum entre eles.
-
-
