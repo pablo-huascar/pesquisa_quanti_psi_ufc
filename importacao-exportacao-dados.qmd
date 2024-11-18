@@ -1,0 +1,694 @@
+---
+title: "Introdução ao R"
+subtitle: "Importação e exportação de dados"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# Importação de dados
+
+```{r}
+#| include: false
+source("./_common.R")
+```
+
+```{r}
+#| label: setup
+#| echo: false
+#| include: false
+library(tidyverse)
+library(janitor)
+library(countdown)
+library(gt)
+library(haven)
+library(readxl)
+```
+
+## Pacotes necessários
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyverse)
+library(janitor)
+```
+
+```{r}
+#| include: false
+#| eval: false
+
+read_csv(
+"ID do Aluno,Nome Completo,Comida Favorita,Plano de Refeição,Idade
+1,Sunil Huffmann,Iogurte de Morango,Apenas Almoço,4
+2,Barclay Lynn,Batata Frita,Apenas Almoço,5
+3,Jayendra Lyne,N/A,Café da Manhã e Almoço,7
+4,Leon Rossini,Anchovas,Apenas Almoço,
+5,Chidiegwu Dunkel,Pizza,Café da Manhã e Almoço,cinco
+6,Güvenç Attila,Sorvete,Apenas Almoço,6"
+) |>
+  write_csv("./data/estudantes.csv")
+```
+
+## Lendo dados de um arquivo
+
+CSV = comma-separated values (valores separados por vírgulas)
+
+estudantes.csv
+
+```{r}
+#| echo: false
+read_lines("./data/estudantes.csv") |> 
+  cat(sep = "\n")
+```
+
+## Lendo arquivos CSV
+
+```{r}
+#| tbl-cap: Dados do arquivo estudantes.csv como uma tabela.
+estudantes <- read_csv("./data/estudantes.csv")  
+
+estudantes |>   
+  gt() |> 
+  cols_align(
+    align = "center",
+    columns = everything()
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+
+```
+
+## Lendo arquivos CSV {.smaller}
+
+```{r}
+#| echo: true
+#| message: true
+estudantes <- read_csv("./data/estudantes.csv")
+
+estudantes
+```
+
+-   `read_csv`
+-   Primeiro argumento: caminho do arquivo
+    -   caminho = endereço: o arquivo `estudantes.csv` mora na pasta `data`
+-   O código funciona se o arquivo `estudantes.csv` estiver na pasta `data`
+
+## Mensagem {.smaller}
+
+-   Ao executar `read_csv()`, é exibida uma mensagem informando:
+    -   **Número de linhas e colunas** dos dados
+    -   **Delimitador utilizado**
+    -   **Especificações das colunas**:
+        -   Nomes das colunas organizados pelo **tipo de dado** que cada coluna contém
+-   A mensagem também inclui informações sobre:
+    -   Como **recuperar a especificação completa** das colunas
+    -   Como **silenciar esta mensagem**
+
+## Lendo arquivos CSV
+
+-   É possível ler o arquivo direto de uma URL ([link](https://tinyurl.com/estudcsv)) onde ele esteja armazenado
+
+```{r}
+#| echo: true
+#| eval: false
+estudantes <- read_csv("https://tinyurl.com/estudcsv")
+```
+
+## Conselho prático
+
+Depois de ler os dados, é necessário transformá-los para facilitar o trabalho no restante da análise
+
+::: incremental
+-   valores ausentes
+-   nomes das variáveis
+-   tipos de variáveis
+:::
+
+## Lidando com códigos para valores ausentes {.smaller}
+
+```{r}
+estudantes
+```
+
+-   N/A parece ser um valor ausente válido na coluna `Comida Favorita`
+    -   argumento `na =`
+        -   padrão: reconhece espaços vazios (`""`) como `NA`s
+
+## Lidando com códigos para valores ausentes
+
+```{r}
+#| echo: true
+estudantes <- read_csv("./data/estudantes.csv", na = c("N/A","")) 
+
+estudantes
+```
+
+## Melhorando os nomes das variáveis
+
+```{r}
+#| echo: true
+estudantes
+```
+
+-   Espaços: variáveis entre \`\`\
+-   Maiúsculas e minúsculas
+-   acentos e ç
+-   `janitor::clean_names()`
+
+## Melhorando os nomes das variáveis
+
+```{r}
+#| echo: true
+estudantes <- estudantes |> 
+  clean_names()
+
+estudantes
+```
+
+## Organizando os tipos de variáveis
+
+```{r}
+#| echo: true
+estudantes
+```
+
+-   `plano_de_refeicao`: variável categórica (conjunto conhecido de valores possíveis)
+-   deveria ser representada como fator
+-   `factor()`
+
+## Organizando os tipos de variáveis
+
+```{r}
+#| echo: true
+estudantes <- read_csv("./data/estudantes.csv", na = c("N/A", "")) |> 
+  clean_names() |> 
+  mutate(
+    plano_de_refeicao = factor(plano_de_refeicao)
+  )
+
+estudantes
+```
+
+## Organizando os tipos de variáveis
+
+```{r}
+#| echo: true
+estudantes
+```
+
+-   `idade`: variável numérica, mas está como caractere
+-   `cinco` ao invés de `5`
+
+## Organizando os tipos de variáveis
+
+```{r}
+#| echo: true
+estudantes <- read_csv("./data/estudantes.csv", na = c("N/A", "")) |> 
+  clean_names() |> 
+  mutate(
+    plano_de_refeicao = as_factor(plano_de_refeicao),
+    idade = parse_number(if_else(idade == "cinco", "5",idade)) 
+  )
+
+estudantes
+```
+
+## `parse_number()`
+
+-   Analisa o primeiro número encontrado, descartando todos os caracteres não numéricos antes do primeiro número e todos os caracteres após o primeiro número
+
+## `if_else()`
+
+-   Argumentos: `condition`, `true`, `false`
+-   if_else(idade == "cinco", "5", idade)
+    -   `condition`: idade == "cinco"
+    -   `true`: "5"
+    -   `false`: idade
+
+## Exercícios
+
+```{r}
+#| eval: false
+#| include: false
+read_csv(
+"ID,Nome Completo,Idade,Sexo,Estado Civil
+1,João da Silva,trinta e dois,Masculino,Casado
+2,Maria de Souza,27,Feminino,Solteira
+3,José Pereira,45,Masculino,999
+4,Ana Santos,36,Feminino,Casada
+5,Pedro Almeida,41,Masculino,Solteiro"
+) |> 
+  write_csv("./data/demograficos.csv")
+```
+
+```{r}
+countdown(minutes = 2)
+```
+
+Use o link a seguir para baixar um banco de dados no formato CSV e salvá-lo no objeto `demograficos`. O dados estão separados por `,`
+
+https://tinyurl.com/ddmge99
+
+## Resposta
+
+```{r}
+#| include: false
+demograficos <- read_csv("./data/demograficos.csv")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+demograficos <- read_csv("https://tinyurl.com/ddmge99")
+```
+
+## Exercícios
+
+```{r}
+countdown(minutes = 5)
+```
+
+Agora, faça alterações no banco de modo que o trabalho em análises posteriores seja facilitado
+
+## Resposta - parte 1: dando uma olhada nos dados
+
+```{r}
+#| echo: true
+demograficos
+```
+
+## Resposta - parte 2: corrigindo valores ausentes
+
+```{r}
+#| echo: true
+demograficos
+```
+
+`999` é uma codificação comum para valores ausentes
+
+## Resposta - parte 2: corrigindo valores ausentes
+
+```{r}
+#| include: false
+demograficos <- read_csv("./data/demograficos.csv", na = c("", "999"))
+```
+
+```{r}
+#| echo: true
+#| eval: false
+demograficos <- read_csv("https://tinyurl.com/ddmge99", na = c("", "999"))
+```
+
+```{r}
+#| echo: true
+demograficos
+```
+
+## Resposta - parte 3: corrigindo o nome das variáveis
+
+```{r}
+#| include: false
+demograficos <- demograficos |> 
+  clean_names()
+```
+
+```{r}
+#| echo: true
+#| eval: false
+library(janitor)
+
+demograficos <- read_csv("https://tinyurl.com/ddmge99", na = c("", "999")) |> 
+  clean_names()
+```
+
+```{r}
+#| echo: true
+demograficos
+```
+
+## Resposta - parte 4: corrigindo as variáveis categóricas {.smaller}
+
+-   `sexo` e `estado_civil`: variáveis categóricas (conjunto conhecido de valores possíveis)
+-   deveriam ser representada como fator
+-   `factor()`
+
+```{r}
+#| include: false
+demograficos <- demograficos |> 
+  mutate(
+    sexo = factor(sexo),
+    estado_civil = as_factor(estado_civil)
+  )
+```
+
+```{r}
+#| echo: true
+#| eval: false
+demograficos <- read_csv("https://tinyurl.com/ddmge99", na = c("", "999")) |> 
+  clean_names() |> 
+  mutate(
+    sexo = as_factor(sexo),
+    estado_civil = as_factor(sexo)
+  )
+```
+
+```{r}
+#| echo: true
+demograficos
+```
+
+## Reposta - parte 5: corrigindo a variável numérica {.smaller}
+
+-   `idade`: `trinta e dois`
+
+```{r}
+#| include: false
+demograficos <- 
+  demograficos |> 
+  mutate(
+    idade = parse_number(if_else(idade == "trinta e dois", "32",idade))
+  )
+```
+
+```{r}
+#| echo: true
+#| eval: false
+demograficos <- read_csv("https://tinyurl.com/ddmge99", na = c("", "999")) |> 
+  clean_names() |> 
+  mutate(
+    sexo = as_factor(sexo),
+    estado_civil = factor(estado_civil),
+    idade = parse_number(if_else(idade == "trinta e dois", "32", idade))
+  )
+```
+
+```{r}
+#| echo: true
+demograficos
+```
+
+## E se os decimais forem separados por vírgula?
+
+-   CSV: valores separados por vírgulas
+-   Brasil: casas decimais são separadas por vírgula
+    -   2,4 e 5,7 e 6,7
+
+```{r}
+#| echo: false
+read_lines("./data/exemplo.txt") |> 
+  cat(sep = "\n")
+```
+
+## E se os decimais forem separados por vírgula?
+
+-   `read_csv()` não vai ler o arquivo corretamente
+
+::: panel-tabset
+### Resultado obtido
+
+```{r}
+#| message: false
+read_csv(
+  "a,b,c,
+  2,4,5,7,6,7"
+)
+```
+
+### Resultado esperado
+
+```{r}
+read_csv2(
+  "a;b;c
+  2,4;5,7;6,7"
+)
+```
+:::
+
+## `read_csv2()`
+
+-   Decimais separados por `,`: valores separados por `;`
+    -   2,4;5,7;6,7
+-   `read_csv2()`: lê arquivo separados por `;`
+-   academia.csv
+
+```{r}
+#| include: false
+#| eval: false
+
+read_csv2(
+"ID;Nome;Idade;Sexo;Altura;Peso;Cidade
+1;João;25;Masculino;1,75;70,25;Sobral
+2;Maria;32;Feminino;1,63;58,50;Fortaleza
+3;Pedro;45;Masculino;1,80;85,75;Pacajus
+4;Ana;28;Feminino;1,68;60,00;Fortaleza
+5;Carlos;33;Masculino;1,82;77,50;Sobral"
+) |> 
+  write_csv2("./data/academia.csv")
+```
+
+```{r}
+#| echo: false
+read_lines("./data/academia.csv") |> 
+  cat(sep = "\n")
+```
+
+## `read_csv2()`
+
+```{r}
+#| echo: false
+#| tbl-cap: Dados do arquivo academia.csv como uma tabela.
+academia <- read_csv2("./data/academia.csv") 
+
+academia|> 
+  gt() |> 
+  cols_align(
+    align = "center",
+    columns = everything()
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## `read_csv2()`
+
+```{r}
+#| echo: true
+academia <- read_csv2("./data/academia.csv")
+
+academia
+```
+
+## Outros argumentos
+
+read_csv() pode ler sequências de texto que você criou e formatou como um arquivo CSV
+
+```{r}
+#| echo: true
+read_csv(
+  "a,b,c
+  1,2,3
+  4,5,6"
+)
+```
+
+## Outros argumentos
+
+-   `read_csv()`: primeira linha para os nomes das colunas
+-   Não é incomum que algumas linhas de metadados sejam incluídas na parte superior do arquivo
+-   `skip = n`: pular as primeiras n linhas
+-   `comment = "#"`: eliminar todas as linhas que começam, por exemplo, com "\#"
+
+## `skip = n`
+
+```{r}
+#| echo: true
+#| message: false
+read_csv(
+   "A primeira linha de metadados
+   A segunda linha de metadados
+   x,y,z
+   1,2,3",
+   skip = 2
+)
+```
+
+## `comment = "#"`
+
+```{r}
+#| echo: true
+#| message: false
+read_csv(
+   "# Um comentário que eu quero pular
+   x,y,z
+   1,2,3",
+   comment = "#"
+)
+```
+
+## Outros argumentos
+
+-   `read_csv()`: primeira linha para os nomes das colunas
+-   Há casos em que os dados não tem nomes das colunas
+-   `col_names = F`: não tratar a primeira linha como títulos e, em vez disso, rotulá-los sequencialmente de X1 a Xn
+
+```{r}
+#| echo: true
+read_csv(
+  "1,2,3
+  4,5,6"
+)
+```
+
+## `col_names = F`
+
+```{r}
+#| echo: true
+read_csv(
+  "1,2,3
+  4,5,6",
+  col_names = F
+)
+```
+
+## `col_names =`
+
+É possível indicar o nome das colunas como um vetor de caracteres
+
+```{r}
+#| echo: true
+read_csv(
+  "1,2,3
+  4,5,6",
+  col_names = c("x", "y", "z")
+)
+```
+
+## `n_max =` {.smaller}
+
+-   É possível indicar o número máximo de linhas que se quer ler
+-   Se a primeira linha indica os rótulos, ela não conta no número máximo
+
+::: panel-tabset
+### `n_max = 3`: errado
+
+```{r}
+#| echo: true
+read_csv(
+  "coluna_a,coluna_b,coluna_c
+  1,2,3
+  4,5,6
+  não,não,não
+  não,não,não",
+  n_max = 3
+)
+```
+
+### `n_max = 2`: certo
+
+```{r}
+#| echo: true
+read_csv(
+  "coluna_a,coluna_b,coluna_c
+  1,2,3
+  4,5,6
+  não,não,não
+  não,não,não",
+  n_max = 2
+)
+```
+:::
+
+## Exportando um arquivo
+
+-   `write_csv()`
+    -   as informações do tipo de variável configuradas são perdidas
+
+```{r}
+#| echo: true
+estudantes
+```
+
+## `write_csv()`
+
+```{r}
+#| echo: true
+estudantes |>
+  write_csv("./data/estudantes_edit.csv")
+```
+
+```{r}
+#| echo: true
+#| message: false
+read_csv("./data/estudantes_edit.csv")
+```
+
+## Lendo arquivos do SPSS
+
+```{r}
+#| echo: true
+#| eval: false
+library(haven)
+```
+
+## `read_sav()`
+
+```{r}
+#| include: false
+estudantes_sav <- read_sav("./data/estudantes.sav")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+estudantes_sav <- read_sav("https://tinyurl.com/estudansav")
+```
+
+```{r}
+#| echo: true
+estudantes
+```
+
+## Lendo arquivos do excel
+
+```{r}
+#| echo: true
+#| eval: false
+library(readxl)
+```
+
+## `read_excel()`
+
+Por padrão, vai ler a primeira planilha
+
+```{r}
+#| echo: true
+read_excel("./data/exemplo_excel.xlsx")
+```
+
+## Obtendo os nomes das planilhas
+
+Liste os nomes das planilhas com `excel_sheets()`
+
+```{r}
+#| echo: true
+excel_sheets("./data/exemplo_excel.xlsx")
+```
+
+## Lendo uma planilha selecionada
+
+`sheet =` seleciona a planilha desejada
+
+```{r}
+#| echo: true
+read_excel("./data/exemplo_excel.xlsx", sheet = "estudantes")
+```

@@ -493,7 +493,10 @@ dass_simulado |>
 
 ```{r}
 #| echo: true
-df <- tibble(x = 1:2, y = 3:4, z = 5:6)
+df <- tibble(
+  x = 1:2, y = 3:4, 
+  z = 5:6
+  )
 
 df
 ```
@@ -1134,9 +1137,9 @@ cut_acompanhamento_nutri <- acompanhamento_nutri |>
   mutate(
     idade_corte = cut(idade, breaks = c(-Inf, 20, 65, +Inf),
                       labels = c("adolescente", "adulto", "idoso"),
-                      right = T)
-  ) |> 
-  relocate(idade_corte, .after = idade)
+                      right = T),
+    .after = idade
+  ) 
 
 cut_acompanhamento_nutri
 ```

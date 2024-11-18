@@ -305,6 +305,8 @@ Qual a média, o devio padrão, o máximo e mínimo do resultado do SRQ-20 entre
 
 ## Quarto bloco
 
+### Banco de dados
+
 Neste bloco de exercícios, utilizaremos o banco de dados `starwars`, que faz parte do pacote dplyr. Este conjunto de dados contém informações sobre personagens da saga Star Wars, incluindo características físicas, dados demográficos e outras informações relevantes.
 
 O livro de códigos do banco de dados `starwars` inclui as seguintes variáveis:

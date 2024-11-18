@@ -4,7 +4,7 @@ title: "Introdução ao R"
 
 ## Fluxo de trabalho: fundamentos
 
-![](img/book.png){width="18"}[Leitura](https://cienciadedatos.github.io/pt-r4ds/workflow-basics.html)
+![](img/book.png){width="18"}[Leitura](https://pt.r4ds.hadley.nz/workflow-basics.html)
 
 ![](img/slide.png){width="18"} [Slides](fluxo-trabalho-fundamentos.qmd){target="_blank"}
 
@@ -14,13 +14,13 @@ title: "Introdução ao R"
 
 ## Fluxo de trabalho: scripts e projetos
 
-![](img/book.png){width="18"}[Leitura](https://cienciadedatos.github.io/pt-r4ds/workflow-scripts.html)
+![](img/book.png){width="18"}[Leitura](https://pt.r4ds.hadley.nz/workflow-scripts.html)
 
 ![](img/slide.png){width="18"} [Slides](fluxo-trabalho-scripts-projetos.qmd){target="_blank"}
 
 ## Transformação de dados
 
-![](img/book.png){width="18"}[Leitura](https://cienciadedatos.github.io/pt-r4ds/data-transform.html)
+![](img/book.png){width="18"}[Leitura](https://pt.r4ds.hadley.nz/data-transform.html)
 
 ![](img/slide.png){width="18"} [Slides: linhas](transformacao-dados-linhas.qmd){target="_blank"}
 
@@ -29,3 +29,9 @@ title: "Introdução ao R"
 ![](img/exercicios.png){width="18"} [Exercícios](exercicios-transformacao-dados.qmd){target="_blank"}
 
 ![](img/respostas.png){width="18"} [Soluções](respostas-transformacao-dados.qmd){target="_blank"}
+
+## Importação e exportação de dados
+
+![](img/book.png){width="18"}[Leitura](https://pt.r4ds.hadley.nz/data-import.html)
+
+![](img/slide.png){width="18"} [Slides](importacao-exportacao-dados.qmd){target="_blank"}
