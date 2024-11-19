@@ -234,8 +234,6 @@ estudantes
     -   `true`: "5"
     -   `false`: idade
 
-
-
 ## Exercícios
 
 ```{r}
