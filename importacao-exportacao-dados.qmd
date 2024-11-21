@@ -346,7 +346,7 @@ demograficos
 demograficos <- demograficos |> 
   mutate(
     sexo = factor(sexo),
-    estado_civil = as_factor(estado_civil)
+    estado_civil = factor(estado_civil)
   )
 ```
 
@@ -356,8 +356,8 @@ demograficos <- demograficos |>
 demograficos <- read_csv("https://tinyurl.com/ddmge99", na = c("", "999")) |> 
   clean_names() |> 
   mutate(
-    sexo = as_factor(sexo),
-    estado_civil = as_factor(sexo)
+    sexo = factor(sexo),
+    estado_civil = factor(sexo)
   )
 ```
 
@@ -385,7 +385,7 @@ demograficos <-
 demograficos <- read_csv("https://tinyurl.com/ddmge99", na = c("", "999")) |> 
   clean_names() |> 
   mutate(
-    sexo = as_factor(sexo),
+    sexo = factor(sexo),
     estado_civil = factor(estado_civil),
     idade = parse_number(if_else(idade == "trinta e dois", "32", idade))
   )
