@@ -1,0 +1,169 @@
+---
+title: "Inferência"
+subtitle: "Comparar duas médias independentes"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+```
+
+```{r}
+#| include: false
+source("./_common.R")
+```
+
+```{r}
+#| label: setup
+library(tidyverse)
+library(janitor)
+library(gt)
+library(infer)
+library(car)
+```
+
+# Bancos de dados utilizados
+
+##  {background-image="img/mtcars.png" background-size="contain"}
+
+## `mtcars` {.smaller}
+
+::: {style="font-size: 18pt;"}
+Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo de combustível e 10 aspectos do design e desempenho de automóveis para 32 carros (modelos de 1973-74)
+
+-   Formato: Um banco de dados com `r nrow(mtcars)` observações e `r ncol(mtcars)` variáveis.
+    -   `mpg`: milhas/galão (km/l)
+    -   `cyl`: número de cilindros
+    -   `disp`: cilindrada (polegadas cúbicas)
+    -   `hp`: potência bruta (cavalos de potência)
+    -   `drat`: relação de transmissão do eixo traseiro
+    -   `wt`: peso (1000 lbs)
+    -   `qsec`: tempo para 1/4 de milha
+    -   `vs`: motor (0 = em forma de V, 1 = reto)
+    -   `am`: transmissão (0 = automática, 1 = manual)
+    -   `gear`: número de marchas para frente
+    -   `carb`: número de carburadores
+
+:::
+
+## Uma olhada em `mtcars`
+
+```{r}
+#| label: tbl-mtcars
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `mtcars`
+#| tbl-cap-location: bottom 
+
+set.seed(123)
+
+mtcars |> 
+  rownames_to_column(var = "Modelo") |> 
+  as_tibble() |> 
+  select(Modelo, wt, mpg, cyl) |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 1
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
+```
+
+## Pacotes
+
+Carregue os pacotes abaixo:
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyverse)
+library(janitor)
+library(infer)
+library(car)
+```
+
+# Modelo matemático para estimar a diferença de médias
+
+## Manipulação dos dados {.smaller}
+
+::: {.panel-tabset}
+
+### Código
+
+```{r}
+#| echo: true
+data("mtcars")
+
+dados_teste_t <- mtcars |>
+  rownames_to_column(var = "modelo") |> 
+  as_tibble() |> 
+  mutate(
+    vs = case_when(vs == 0 ~ "V-shaped",
+                   .default = "straight"),
+    vs = as_factor(vs),
+  ) |> 
+  select(mpg, vs)
+```
+
+### Resultado
+
+```{r}
+#| echo: true
+dados_teste_t
+```
+
+
+### Explicação {.smaller}
+-   Carregar o conjunto de dados mtcars: `data("mtcars")`
+-   Converter os nomes das linhas em uma coluna: `rownames_to_column`
+-   Transformar em tibble para facilitar a visualização: `as_tibble()`
+-   Recodficar a variável independente (`vs`) para facilitar a interpretação dos resultados
+-   Transformar a variável independente em fator: `as_factor()`
+-   Selecionar e salvar as variáveis que serão utilizadas no teste t para amostras independentes para facilitar a visualização: `select()`
+
+:::
+
+## Exploração dos dados {.smaller}
+
+::: {.panel-tabset}
+
+### Tabela 
+
+```{r}
+#| echo: true
+dados_teste_t |> 
+  summarise(
+    m = mean(mpg), .by = vs
+  ) |> 
+  mutate(
+    diferenca = m - lag(m)
+  )
+```
+
+### Gráfico
+
+```{r}
+#| echo: true
+#| out-width: 70%
+dados_teste_t |> 
+  ggplot(aes(vs, mpg)) +
+  geom_boxplot()
+```
+:::

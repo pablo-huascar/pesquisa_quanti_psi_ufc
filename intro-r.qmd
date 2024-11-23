@@ -1,7 +1,6 @@
 ---
 title: "Introdução ao R"
 ---
-
 ## Fluxo de trabalho: fundamentos
 
 ![](img/book.png){width="18"}[Leitura](https://pt.r4ds.hadley.nz/workflow-basics.html)

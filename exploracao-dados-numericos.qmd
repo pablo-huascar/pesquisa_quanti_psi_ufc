@@ -48,20 +48,15 @@ conflicted::conflicts_prefer(scales::rescale)
 
 ```{r}
 #| label: data
-
 father.son <- father.son |> 
   as_tibble()  
-
-mtcars <- mtcars |> 
-  rownames_to_column(var = "Modelo") |> 
-  as_tibble()
 
 airquality <- airquality |> 
   as_tibble()
 
-age_data <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/AgeDataset-V1.csv")
-brasileiro <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/brasileiro_2014_2023.csv")
-gols_brasileiro <- read_csv("C:/projetos-r/pesquisa-quanti-psi-ufc/data/gols_por_partida_2014_2023.csv")
+age_data <- read_csv("data/AgeDataset-V1.csv")
+brasileiro <- read_csv("data/brasileiro_2014_2023.csv")
+gols_brasileiro <- read_csv("data/gols_por_partida_2014_2023.csv")
 ```
 
 ## O que vamos aprender?
@@ -108,14 +103,26 @@ father.son |>
 
 ##  {background-image="img/mtcars.png" background-size="contain"}
 
-## `mtcars`
+## `mtcars` {.smaller}
+
+::: {style="font-size: 18pt;"}
 
 Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo de combustível e 10 aspectos do design e desempenho de automóveis para 32 carros (modelos de 1973-74)
 
--   Formato: Um banco de dados com 234 observações e algumas variáveis. Vamos usar:
+-   Formato: Um banco de dados com `r nrow(mtcars)` observações e `r ncol(mtcars)` variáveis.
     -   `mpg`: milhas/galão (km/l)
-    -   `wt`: peso (1000 lbs)
     -   `cyl`: número de cilindros
+    -   `disp`: cilindrada (polegadas cúbicas)
+    -   `hp`: potência bruta (cavalos de potência)
+    -   `drat`: relação de transmissão do eixo traseiro
+    -   `wt`: peso (1000 lbs)
+    -   `qsec`: tempo para 1/4 de milha
+    -   `vs`: motor (0 = em forma de V, 1 = reto)
+    -   `am`: transmissão (0 = automática, 1 = manual)
+    -   `gear`: número de marchas para frente
+    -   `carb`: número de carburadores
+
+:::
 
 ## Uma olhada em `mtcars`
 
@@ -123,8 +130,13 @@ Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo
 #| label: tbl-mtcars
 #| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `mtcars`
 #| tbl-cap-location: bottom 
+set.seed(123)
 
-mtcars |> 
+mtcars <- mtcars |> 
+  rownames_to_column(var = "Modelo") |> 
+  as_tibble()
+  
+mtcars |>   
   select(Modelo, wt, mpg, cyl) |> 
   slice_sample(n = 10) |> 
   gt() |> 
@@ -140,7 +152,7 @@ mtcars |>
   ) |> 
   opt_stylize(
     style = 1, color = "gray"
-    )
+  )
 ```
 
 ## `diamonds`
@@ -553,10 +565,10 @@ Vamos calcular a média do consumo e do peso dos automóveis abaixo:
 ```{r}
 set.seed(123)
 mtcars |> 
+  as_tibble() |> 
   slice_sample(n = 5) |> 
   select(Modelo, mpg, wt) |>
-  add_row(Modelo = "Média", mpg = NA, wt = NA) |> 
-  datatable(
+  add_row(Modelo = "Média", mpg = NA, wt = NA) |>   datatable(
     rownames = F, editable = T,
     options = list(
       lengthChange = FALSE,
