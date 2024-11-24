@@ -26,7 +26,6 @@ source("./_common.R")
 ```{r}
 #| label: setup
 library(tidyverse)
-library(janitor)
 library(gt)
 library(infer)
 library(broom)
@@ -54,7 +53,6 @@ Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo
     -   `am`: transmissão (0 = automática, 1 = manual)
     -   `gear`: número de marchas para frente
     -   `carb`: número de carburadores
-
 :::
 
 ## Uma olhada em `mtcars`
@@ -95,23 +93,29 @@ Carregue os pacotes abaixo:
 #| echo: true
 #| eval: false
 library(tidyverse)
-library(janitor)
-library(infer)
-library(car)
 library(broom)
+library(car)
+library(infer)
 ```
 
-# Modelo matemático para estimar a diferença de médias
+# Modelo matemático para testar e estimar a diferença entre médias: teste t para amostras independentes {style="font-size: 22pt;"}
 
-## Pergunta de pesquisa 
+## Exemplo {.smaller}
 
-
+-   Há diferença no consumo de combustível entre carros com motores em V e retos?
+-   Hipóteses (Bilateral):
+    -   Nula: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos
+        -   $$H_0: \mu_{\text{V}} = \mu_{\text{reto}}$$
+    -   Alternativa: a média do consumo de combustível dos carros com motores em V-shaped é diferente da média dos carros com motores straight
+        -   $$ H_a: \mu_{\text{V}} \ne \mu_{\text{reto}} $$
 
 ## Manipulação dos dados {.smaller}
 
-::: {.panel-tabset}
-### Ações 
+::: panel-tabset
+### Ações
+
 -   Carregar o conjunto de dados mtcars: `data("mtcars")`
+-   Converter os rótulos das lihas para uma coluna: `rownames_to_column()`
 -   Transformar em tibble para melhorar a visualização: `as_tibble()`
 -   Recodficar a variável independente (`vs`) para facilitar a interpretação dos resultados
 -   Transformar a variável independente em fator: `as_factor()`
@@ -126,17 +130,19 @@ library(broom)
 data("mtcars") 
 
 dados_teste_t <- mtcars |>
+  # Converter os rótulos das lihas
+  rownames_to_column(var = "modelo") |> 
   # Transformar em tibble
   as_tibble() |>
   mutate(
     # Recodficar a variável independente
-    vs = case_when(vs == 0 ~ "V-shaped", 
-                   .default = "straight"),
+    vs = case_when(vs == 0 ~ "V", 
+                   .default = "reto"),
     # Transformar em fator
     vs = as_factor(vs), 
   ) |> 
   # Selecionar as variáveis
-  select(mpg, vs) 
+  select(modelo, mpg, vs) 
 ```
 
 ### Resultado
@@ -149,9 +155,8 @@ dados_teste_t
 
 ## Exploração dos dados {.smaller}
 
-::: {.panel-tabset}
-
-### Tabela 
+::: panel-tabset
+### Tabela
 
 ```{r}
 #| echo: true
@@ -178,22 +183,47 @@ dados_teste_t |>
 
 ## Avaliação de pressupostos
 
-- Independência entre os grupos
-- Normalidade
-- Homogeneidade das variâncias
+-   Independência entre os grupos
+-   Normalidade
+-   Homogeneidade das variâncias
+
+## Independência entre os grupos {.smaller}
+
+-   As observações em cada grupo devem ser independentes entre si
+-   Não deve haver relação ou influência entre as observações dos grupos "V" e "reto"
+
+## Independência entre os grupos {.smaller}
+
+-   Cada linha representa um veículo distinto; não há veículos repetidos (32 modelos, 32 linhas)
+
+```{r}
+#| echo: true
+n_distinct(dados_teste_t$modelo)
+nrow(dados_teste_t)
+```
+
+- Cada modelo participa somente de um grupo
+
+```{r}
+#| echo: true
+dados_teste_t |> 
+  count(vs, modelo) |> 
+  distinct(vs, n)
+```
+
 
 ## Normalidade: teste de Shapiro-Wilk
 
--   Hipótese nula: a variável de interesse é oriunda de uma população com distribuição normal
--   Hipótese alternativa: a variável de interesse não é oriunda de uma população com distribuição normal
--   Avaliar a normalidade para cada grupo de `vs`:
-    -   "V-shaped" e "straight"
+-   Hipóteses:
+    -   $H_0$: a variável de interesse é oriunda de uma população com distribuição normal
+    -   $H_a$: a variável de interesse não é oriunda de uma população com distribuição normal
+-   Avaliar a normalidade da VD (`mgp`) para cada grupo da VI  (`vs`):
+    -   "V" e "reto"
 
 ## Normalidade: `shapiro.test()`
 
--   `shapiro.test()`
-    -   Valores ausentes são permitidos, mas o número de valores não ausentes deve estar entre 3 e 5000
-    -   Argumentos:
+-   Valores ausentes são permitidos, mas o número de valores não ausentes deve estar entre 3 e 5000
+-   Argumentos:
 
 ```{r}
 #| echo: true
@@ -203,25 +233,25 @@ shapiro.test(x = `vetor numérico`)
 
 ## Normalidade: `shapiro.test()`
 
-::: {.panel-tabset}
-### V-shaped
+::: panel-tabset
+### V
 
 ```{r}
 #| echo: true
 dados_teste_t |> 
-  filter(vs == "V-shaped") |> 
+  filter(vs == "V") |> 
   select(mpg) |> 
   pull() |> 
   shapiro.test() |> 
   tidy()
 ```
 
-### straight
+### reto
 
 ```{r}
 #| echo: true
 dados_teste_t |> 
-  filter(vs == "straight") |> 
+  filter(vs == "reto") |> 
   select(mpg) |> 
   pull() |> 
   shapiro.test() |> 
@@ -242,10 +272,58 @@ dados_teste_t |>
   pull() |> 
   # Realizar o teste
   shapiro.test() |> 
-  # Transforma o objeto em uma tibble "tidy" 
+  # Transformar o objeto em uma tibble "tidy" 
   # para melhorar a visualização do resultado
   tidy()
 ```
 :::
 
+## Homogeneidade de Variâncias: teste de Levene
+
+- Hipóteses:
+    - $H_0$: As variâncias populacionais são iguais entre os grupos
+    - $H_a$: As variâncias populacionais não são iguais entre os grupos
+- Avaliar a homogeneidade de variâncias da VD (`mpg`) entre os grupos da VI (`vs`):
+    - "V" e "reto"
+
+## Homogeneidade de Variâncias: `car::leveneTest()`
+
+-   Argumentos:
+
+```{r}
+#| echo: true
+#| eval: false
+leveneTest(VD ~ VI, center = "median", dados)
+```
+
+center: "mean" fornece o teste de Levene original; o padrão, "median", fornece um teste mais robusto
+
+## Homogeneidade de Variâncias: `car::leveneTest()`
+
+```{r}
+#| echo: true
+leveneTest(mpg ~ vs, center = "mean", dados_teste_t) |> 
+  tidy()
+```
+
+## Teste t para amostras independentes
+
+-   Hipóteses (Bilateral):
+    -   Nula: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos
+        -   $$H_0: \mu_{\text{V}} = \mu_{\text{reto}}$$
+    -   Alternativa: a média do consumo de combustível dos carros com motores em V-shaped é diferente da média dos carros com motores straight
+        -   $$ H_a: \mu_{\text{V}} \ne \mu_{\text{reto}} $$
+
+## Teste t para amostras independentes: `infer::t_test()`
+
+- Argumentos:
+
+```{r}
+#| echo: true
+#| eval: false
+t_test(x = dados, response = VD, explanatory = VI,
+       order = c("grupo_1", "grupo_2"), 
+       alternative = c("two-sided", "greater", "less"),
+       var.equal = F)
+```
 
