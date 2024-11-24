@@ -223,7 +223,7 @@ dados_teste_t |>
 ```{r}
 #| echo: true
 #| eval: false
-shapiro.test(x = vetor numérico)
+shapiro.test(x = `vetor numérico`)
 ```
 
 ## Normalidade: `shapiro.test()`
@@ -304,10 +304,10 @@ leveneTest(mpg ~ vs, center = "mean", dados_teste_t) |>
 ## Teste t para amostras independentes
 
 -   Hipóteses (Bilateral):
-    -   Nula: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos
+    -   $$H_0$$: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos
         -   $$H_0: \mu_{\text{V}} = \mu_{\text{reto}}$$
-    -   Alternativa: a média do consumo de combustível dos carros com motores em V-shaped é diferente da média dos carros com motores straight
-        -   $$ H_a: \mu_{\text{V}} \ne \mu_{\text{reto}} $$
+    -   $$H_a$$: a média do consumo de combustível dos carros com motores em V-shaped é diferente da média dos carros com motores straight
+        -   $$H_a: \mu_{\text{V}} \ne \mu_{\text{reto}} $$
 
 ## Teste t para amostras independentes: `infer::t_test()`
 

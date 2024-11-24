@@ -42,6 +42,7 @@ website:
         - href: conteudos.qmd
         - href: intro-r.qmd
         - href: exploracao-dados.qmd
+        - href: inferencia-estatistica.qmd
         #- href: regressao.qmd
    
 format:
