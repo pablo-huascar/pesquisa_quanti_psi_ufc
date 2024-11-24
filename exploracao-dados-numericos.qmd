@@ -106,7 +106,6 @@ father.son |>
 ## `mtcars` {.smaller}
 
 ::: {style="font-size: 18pt;"}
-
 Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo de combustível e 10 aspectos do design e desempenho de automóveis para 32 carros (modelos de 1973-74)
 
 -   Formato: Um banco de dados com `r nrow(mtcars)` observações e `r ncol(mtcars)` variáveis.
@@ -121,7 +120,6 @@ Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo
     -   `am`: transmissão (0 = automática, 1 = manual)
     -   `gear`: número de marchas para frente
     -   `carb`: número de carburadores
-
 :::
 
 ## Uma olhada em `mtcars`
@@ -1117,7 +1115,7 @@ var_prof_ze <- var(av_prof$`Avaliação do professor`)
 dp_prof_ze <- sd(av_prof$`Avaliação do professor`)
 ```
 
-Se já sabemos a variância das notas do professor Zé ($s$ = `r var_prof_ze`), para calcular o desvio padrão ($s^2$), basta tirar a raiz quadrada desse valor:
+Se já sabemos a variância das notas do professor Zé ($s^2$ = `r var_prof_ze`), para calcular o desvio padrão ($s$), basta tirar a raiz quadrada desse valor:
 
 $$
 s = \sqrt{1.3} = 1.14
@@ -2553,9 +2551,13 @@ box_fs_sheight
 desvio_maior <- rnorm(1000, 10, 5)
 desvio_menor <- rnorm(1000, 10, 2)
 sd_desvio_maior <- sd(desvio_maior)
+sd_desvio_maior <- round(sd_desvio_maior, 2)
 iqr_desvio_maior <- IQR(desvio_maior)
+iqr_desvio_maior <- round(iqr_desvio_maior, 2)
 sd_desvio_menor <- sd(desvio_menor)
+sd_desvio_menor <- round(sd_desvio_menor, 2)
 iqr_desvio_menor <- IQR(desvio_menor)
+iqr_desvio_menor <- round(iqr_desvio_menor, 2)
 
 ```
 

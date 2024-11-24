@@ -29,6 +29,7 @@ library(tidyverse)
 library(janitor)
 library(gt)
 library(infer)
+library(broom)
 library(car)
 ```
 
@@ -97,29 +98,45 @@ library(tidyverse)
 library(janitor)
 library(infer)
 library(car)
+library(broom)
 ```
 
 # Modelo matemático para estimar a diferença de médias
 
+## Pergunta de pesquisa 
+
+
+
 ## Manipulação dos dados {.smaller}
 
 ::: {.panel-tabset}
+### Ações 
+-   Carregar o conjunto de dados mtcars: `data("mtcars")`
+-   Transformar em tibble para melhorar a visualização: `as_tibble()`
+-   Recodficar a variável independente (`vs`) para facilitar a interpretação dos resultados
+-   Transformar a variável independente em fator: `as_factor()`
+-   Selecionar e salvar as variáveis que serão utilizadas para facilitar a visualização: `select()`
 
 ### Código
 
 ```{r}
 #| echo: true
-data("mtcars")
+
+# Carregar os dados
+data("mtcars") 
 
 dados_teste_t <- mtcars |>
-  rownames_to_column(var = "modelo") |> 
-  as_tibble() |> 
+  # Transformar em tibble
+  as_tibble() |>
   mutate(
-    vs = case_when(vs == 0 ~ "V-shaped",
+    # Recodficar a variável independente
+    vs = case_when(vs == 0 ~ "V-shaped", 
                    .default = "straight"),
-    vs = as_factor(vs),
+    # Transformar em fator
+    vs = as_factor(vs), 
   ) |> 
-  select(mpg, vs)
+  # Selecionar as variáveis
+  select(mpg, vs) 
 ```
 
 ### Resultado
@@ -128,16 +145,6 @@ dados_teste_t <- mtcars |>
 #| echo: true
 dados_teste_t
 ```
-
-
-### Explicação {.smaller}
--   Carregar o conjunto de dados mtcars: `data("mtcars")`
--   Converter os nomes das linhas em uma coluna: `rownames_to_column`
--   Transformar em tibble para facilitar a visualização: `as_tibble()`
--   Recodficar a variável independente (`vs`) para facilitar a interpretação dos resultados
--   Transformar a variável independente em fator: `as_factor()`
--   Selecionar e salvar as variáveis que serão utilizadas no teste t para amostras independentes para facilitar a visualização: `select()`
-
 :::
 
 ## Exploração dos dados {.smaller}
@@ -164,6 +171,81 @@ dados_teste_t |>
 #| out-width: 70%
 dados_teste_t |> 
   ggplot(aes(vs, mpg)) +
-  geom_boxplot()
+  geom_boxplot() +
+  stat_boxplot(geom = 'errorbar')
 ```
 :::
+
+## Avaliação de pressupostos
+
+- Independência entre os grupos
+- Normalidade
+- Homogeneidade das variâncias
+
+## Normalidade: teste de Shapiro-Wilk
+
+-   Hipótese nula: a variável de interesse é oriunda de uma população com distribuição normal
+-   Hipótese alternativa: a variável de interesse não é oriunda de uma população com distribuição normal
+-   Avaliar a normalidade para cada grupo de `vs`:
+    -   "V-shaped" e "straight"
+
+## Normalidade: `shapiro.test()`
+
+-   `shapiro.test()`
+    -   Valores ausentes são permitidos, mas o número de valores não ausentes deve estar entre 3 e 5000
+    -   Argumentos:
+
+```{r}
+#| echo: true
+#| eval: false
+shapiro.test(x = `vetor numérico`)
+```
+
+## Normalidade: `shapiro.test()`
+
+::: {.panel-tabset}
+### V-shaped
+
+```{r}
+#| echo: true
+dados_teste_t |> 
+  filter(vs == "V-shaped") |> 
+  select(mpg) |> 
+  pull() |> 
+  shapiro.test() |> 
+  tidy()
+```
+
+### straight
+
+```{r}
+#| echo: true
+dados_teste_t |> 
+  filter(vs == "straight") |> 
+  select(mpg) |> 
+  pull() |> 
+  shapiro.test() |> 
+  tidy()
+```
+
+### Passo-a-passo do código
+
+```{r}
+#| echo: true
+#| eval: false
+dados_teste_t |>
+  # Filtar os dados do grupo 
+  filter(vs == "straight") |> 
+  # Selecionar a variável dependente
+  select(mpg) |> 
+  # Extrair os valores da coluna
+  pull() |> 
+  # Realizar o teste
+  shapiro.test() |> 
+  # Transforma o objeto em uma tibble "tidy" 
+  # para melhorar a visualização do resultado
+  tidy()
+```
+:::
+
+
