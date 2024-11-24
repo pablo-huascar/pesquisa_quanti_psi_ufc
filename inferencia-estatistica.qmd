@@ -7,6 +7,3 @@ title: "Inferência estatística"
 
 ![](img/slide.png){width="18"} [Slides](inferencia-duas-medias.qmd){target="_blank"}
 
-![](img/exercicios.png){width="18"} [Exercícios](exercicios-fluxo-trabalho-fundamentos.qmd){target="_blank"}
-
-![](img/respostas.png){width="18"} [Soluções](respostas-fluxo-trabalho-fundamentos.qmd){target="_blank"}

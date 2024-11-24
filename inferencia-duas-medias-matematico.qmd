@@ -1,6 +1,6 @@
 ---
 title: "Inferência"
-subtitle: "Comparar duas médias independentes"
+subtitle: "Comparar duas médias independentes: modelo matemático"
 format: 
   revealjs:
       logo: img/brasao1_horizontal_cor_300dpi.png
@@ -98,16 +98,11 @@ library(car)
 library(infer)
 ```
 
-# Modelo matemático para testar e estimar a diferença entre médias: teste t para amostras independentes {style="font-size: 22pt;"}
+# Teste t para amostras independentes {style="font-size: 22pt;"}
 
 ## Exemplo {.smaller}
 
--   Há diferença no consumo de combustível entre carros com motores em V e retos?
--   Hipóteses (Bilateral):
-    -   Nula: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos
-        -   $$H_0: \mu_{\text{V}} = \mu_{\text{reto}}$$
-    -   Alternativa: a média do consumo de combustível dos carros com motores em V-shaped é diferente da média dos carros com motores straight
-        -   $$ H_a: \mu_{\text{V}} \ne \mu_{\text{reto}} $$
+-   Há diferença no consumo de combustível (`mpg`) entre carros com motores em V e retos (`vs`)?
 
 ## Manipulação dos dados {.smaller}
 
@@ -228,7 +223,7 @@ dados_teste_t |>
 ```{r}
 #| echo: true
 #| eval: false
-shapiro.test(x = `vetor numérico`)
+shapiro.test(x = vetor numérico)
 ```
 
 ## Normalidade: `shapiro.test()`
@@ -293,7 +288,7 @@ dados_teste_t |>
 ```{r}
 #| echo: true
 #| eval: false
-leveneTest(VD ~ VI, center = "median", dados)
+leveneTest(VD ~ VI, center = c("mean", "median"), data = dados)
 ```
 
 center: "mean" fornece o teste de Levene original; o padrão, "median", fornece um teste mais robusto
@@ -325,5 +320,17 @@ t_test(x = dados, response = VD, explanatory = VI,
        order = c("grupo_1", "grupo_2"), 
        alternative = c("two-sided", "greater", "less"),
        var.equal = F)
+```
+
+## Teste t para amostras independentes: `infer::t_test()`
+
+```{r}
+#| echo: true
+dados_teste_t |> 
+  t_test(
+    response = mpg, explanatory = vs,
+    order = c("reto", "V"), var.equal = T,
+    alternative = "two.sided"
+  )
 ```
 
