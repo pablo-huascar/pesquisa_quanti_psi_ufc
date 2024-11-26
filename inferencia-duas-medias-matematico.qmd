@@ -15,11 +15,6 @@ editor_options:
 
 ```{r}
 #| include: false
-source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
-```
-
-```{r}
-#| include: false
 source("./_common.R")
 ```
 
@@ -114,7 +109,7 @@ library(infer)
 -   Transformar em tibble para melhorar a visualização: `as_tibble()`
 -   Recodficar a variável independente (`vs`) para facilitar a interpretação dos resultados
 -   Transformar a variável independente em fator: `as_factor()`
--   Selecionar e salvar as variáveis que serão utilizadas para facilitar a visualização: `select()`
+-   Selecionar e salvar as variáveis que serão utilizadas em um novo objeto para facilitar a visualização: `select()`
 
 ### Código
 
@@ -304,9 +299,9 @@ leveneTest(mpg ~ vs, center = "mean", dados_teste_t) |>
 ## Teste t para amostras independentes
 
 -   Hipóteses (Bilateral):
-    -   $$H_0$$: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos
+    -   Hipótese nula: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos
         -   $$H_0: \mu_{\text{V}} = \mu_{\text{reto}}$$
-    -   $$H_a$$: a média do consumo de combustível dos carros com motores em V-shaped é diferente da média dos carros com motores straight
+    -   Hipótese alternativa: a média do consumo de combustível dos carros com motores em V é diferente da média dos carros com motores retos
         -   $$H_a: \mu_{\text{V}} \ne \mu_{\text{reto}} $$
 
 ## Teste t para amostras independentes: `infer::t_test()`
@@ -333,4 +328,60 @@ dados_teste_t |>
     alternative = "two.sided"
   )
 ```
+
+## Tamanho de efeito
+
+# Redação do método e dos resultados
+
+## Método
+
+Um teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores retos e motores em V.
+
+## Resultados no estilo APA
+
+```{r}
+descritivos_grupos <- dados_teste_t |> 
+  summarise(
+    n = n(),
+    m = mean(mpg), 
+    sd = sd(mpg),
+    .by = vs
+  ) |> 
+  mutate(
+    diferenca = m - lag(m)
+    )
+
+n_V <- descritivos_grupos[descritivos_grupos$vs == "V", "n"]
+n_V <- pull(n_V)
+n_reto <- descritivos_grupos[descritivos_grupos$vs == "reto", "n"]
+n_reto <- pull(n_reto)
+diferenca <- descritivos_grupos[[2, "diferenca"]]
+diferenca <- round(diferenca, 2)
+```
+
+
+```{r}
+resultado_teste_t <- dados_teste_t |> 
+  t_test(
+    response = mpg, explanatory = vs,
+    order = c("reto", "V"), var.equal = T,
+    alternative = "two.sided"
+  )
+
+t_df <- resultado_teste_t[[1, "t_df"]]
+statistic <- resultado_teste_t[[1, "statistic"]]
+statistic <- round(statistic, 2)
+lower_ci <- resultado_teste_t[[1, "lower_ci"]]
+lower_ci <- round(lower_ci, 2)
+upper_ci <- resultado_teste_t[[1, "upper_ci"]]
+upper_ci <- round(upper_ci, 2)
+```
+
+Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, *t*(`r t_df`) = `r statistic`, *p* < .001. Carros com motores retos apresentaram um desempenho  (n = `r n_reto`, M = 24.6, DP = 6.03) melhor do que aqueles com motores em V (n = `r n_V`, M = 16.6, DP = 3.56). A diferença média entre os grupos foi de `r diferenca` (IC 95%: `r lower_ci`, `r upper_ci`). O tamanho de efeito foi grande (d = 1.17). Esses resultados sugerem que o formato do motor influencia o consumo de combustível.
+
+
+
+
+
+
 
