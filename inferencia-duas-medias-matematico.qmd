@@ -337,7 +337,7 @@ dados_teste_t |>
 
 Um teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores retos e motores em V.
 
-## Resultados no estilo APA
+## Resultados no estilo APA {.smaller}
 
 ```{r}
 descritivos_grupos <- dados_teste_t |> 
@@ -353,12 +353,23 @@ descritivos_grupos <- dados_teste_t |>
 
 n_V <- descritivos_grupos[descritivos_grupos$vs == "V", "n"]
 n_V <- pull(n_V)
+m_V <- descritivos_grupos[descritivos_grupos$vs == "V", "m"]
+m_V <- pull(m_V)
+m_V <- round(m_V, 2)
+sd_V <- descritivos_grupos[descritivos_grupos$vs == "V", "sd"]
+sd_V <- pull(sd_V)
+sd_V <- round(sd_V, 2)
 n_reto <- descritivos_grupos[descritivos_grupos$vs == "reto", "n"]
 n_reto <- pull(n_reto)
+m_reto <- descritivos_grupos[descritivos_grupos$vs == "reto", "m"]
+m_reto <- pull(m_reto)
+m_reto <- round(m_reto, 2)
+sd_reto <- descritivos_grupos[descritivos_grupos$vs == "reto", "sd"]
+sd_reto <- pull(sd_reto)
+sd_reto <- round(sd_reto, 2)
 diferenca <- descritivos_grupos[[2, "diferenca"]]
 diferenca <- round(diferenca, 2)
 ```
-
 
 ```{r}
 resultado_teste_t <- dados_teste_t |> 
@@ -377,7 +388,7 @@ upper_ci <- resultado_teste_t[[1, "upper_ci"]]
 upper_ci <- round(upper_ci, 2)
 ```
 
-Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, *t*(`r t_df`) = `r statistic`, *p* < .001. Carros com motores retos apresentaram um desempenho  (n = `r n_reto`, M = 24.6, DP = 6.03) melhor do que aqueles com motores em V (n = `r n_V`, M = 16.6, DP = 3.56). A diferença média entre os grupos foi de `r diferenca` (IC 95%: `r lower_ci`, `r upper_ci`). O tamanho de efeito foi grande (d = 1.17). Esses resultados sugerem que o formato do motor influencia o consumo de combustível.
+Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, *t*(`r t_df`) = `r statistic`, *p* < .001. Carros com motores retos apresentaram um desempenho  (n = `r n_reto`, M = `r m_reto`, DP = `r sd_reto`) melhor do que aqueles com motores em V (n = `r n_V`, M = `r m_V`, DP = `r sd_V`). A diferença média  foi de `r diferenca` milhas por galão (IC 95%: `r lower_ci`, `r upper_ci`). O tamanho de efeito foi grande (d = 1.17). Esses resultados sugerem que o formato do motor influencia o consumo de combustível.
 
 
 
