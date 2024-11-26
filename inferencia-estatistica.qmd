@@ -6,4 +6,4 @@ title: "Inferência estatística"
 
 ![](img/book.png){width="18"}[Leitura](https://openintro-ims.netlify.app/inference-two-means)
 
-![](img/slide.png){width="18"} [Slides](inferencia-duas-medias.qmd){target="_blank"}
+![](img/slide.png){width="18"} [Slides](inferencia-duas-medias-matematico.qmd){target="_blank"}

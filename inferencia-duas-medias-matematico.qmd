@@ -333,11 +333,15 @@ dados_teste_t |>
 
 # Redação do método e dos resultados
 
-## Método
+## Método {.smaller}
+
+**Procedimentos**
+
+***Análise de Dados***
 
 Um teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores retos e motores em V.
 
-## Resultados no estilo APA {.smaller}
+## Resultados {.smaller}
 
 ```{r}
 descritivos_grupos <- dados_teste_t |> 
