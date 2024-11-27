@@ -1,6 +1,6 @@
 ---
 title: "Inferência"
-subtitle: "Comparar duas médias independentes: modelo matemático"
+subtitle: "Comparar duas médias independentes: aplicação do modelo matemático no R"
 format: 
   revealjs:
       logo: img/brasao1_horizontal_cor_300dpi.png
@@ -25,6 +25,7 @@ library(gt)
 library(infer)
 library(broom)
 library(car)
+library(effectsize)
 ```
 
 # Bancos de dados utilizados
@@ -150,13 +151,18 @@ dados_teste_t
 
 ```{r}
 #| echo: true
-dados_teste_t |> 
+descritivos_grupos <- dados_teste_t |> 
   summarise(
-    m = mean(mpg), .by = vs
+    n = n(),
+    m = mean(mpg), 
+    sd = sd(mpg),
+    .by = vs
   ) |> 
   mutate(
     diferenca = m - lag(m)
-  )
+    )
+
+descritivos_grupos
 ```
 
 ### Gráfico
@@ -192,7 +198,7 @@ n_distinct(dados_teste_t$modelo)
 nrow(dados_teste_t)
 ```
 
-- Cada modelo participa somente de um grupo
+-   Cada modelo participa somente de um grupo
 
 ```{r}
 #| echo: true
@@ -201,19 +207,19 @@ dados_teste_t |>
   distinct(vs, n)
 ```
 
-
 ## Normalidade: teste de Shapiro-Wilk
 
 -   Hipóteses:
     -   $H_0$: a variável de interesse é oriunda de uma população com distribuição normal
     -   $H_a$: a variável de interesse não é oriunda de uma população com distribuição normal
--   Avaliar a normalidade da VD (`mgp`) para cada grupo da VI  (`vs`):
+-   Avaliar a normalidade da VD (`mgp`) para cada grupo da VI (`vs`):
     -   "V" e "reto"
 
 ## Normalidade: `shapiro.test()`
 
 -   Valores ausentes são permitidos, mas o número de valores não ausentes deve estar entre 3 e 5000
--   Argumentos:
+
+Argumentos:
 
 ```{r}
 #| echo: true
@@ -270,15 +276,15 @@ dados_teste_t |>
 
 ## Homogeneidade de Variâncias: teste de Levene
 
-- Hipóteses:
-    - $H_0$: As variâncias populacionais são iguais entre os grupos
-    - $H_a$: As variâncias populacionais não são iguais entre os grupos
-- Avaliar a homogeneidade de variâncias da VD (`mpg`) entre os grupos da VI (`vs`):
-    - "V" e "reto"
+-   Hipóteses:
+    -   $H_0$: As variâncias populacionais são iguais entre os grupos
+    -   $H_a$: As variâncias populacionais não são iguais entre os grupos
+-   Avaliar a homogeneidade de variâncias da VD (`mpg`) entre os grupos da VI (`vs`):
+    -   "V" e "reto"
 
 ## Homogeneidade de Variâncias: `car::leveneTest()`
 
--   Argumentos:
+Argumentos:
 
 ```{r}
 #| echo: true
@@ -292,8 +298,11 @@ center: "mean" fornece o teste de Levene original; o padrão, "median", fornece 
 
 ```{r}
 #| echo: true
-leveneTest(mpg ~ vs, center = "mean", dados_teste_t) |> 
+resultado_levene <- leveneTest(mpg ~ vs, center = "mean",
+                               dados_teste_t) |> 
   tidy()
+
+resultado_levene
 ```
 
 ## Teste t para amostras independentes
@@ -306,7 +315,7 @@ leveneTest(mpg ~ vs, center = "mean", dados_teste_t) |>
 
 ## Teste t para amostras independentes: `infer::t_test()`
 
-- Argumentos:
+Argumentos:
 
 ```{r}
 #| echo: true
@@ -321,15 +330,39 @@ t_test(x = dados, response = VD, explanatory = VI,
 
 ```{r}
 #| echo: true
-dados_teste_t |> 
+resultado_teste_t <- dados_teste_t |> 
   t_test(
     response = mpg, explanatory = vs,
     order = c("reto", "V"), var.equal = T,
     alternative = "two.sided"
   )
+
+resultado_teste_t
 ```
 
 ## Tamanho de efeito
+
+## Tamanho de efeito: `effectsize::cohens_d()`
+
+Argumentos:
+
+```{r}
+#| echo: true
+#| eval: false
+cohens_d(VD ~ vI, pooled_sd = T, 
+         alternative = c("two.sided", "greater", "less"), 
+         data = dados)
+```
+
+## Tamanho de efeito: `effectsize::cohens_d()`
+
+```{r}
+#| echo: true
+resultado_cohens_d <- cohens_d(mpg ~ vs, pooled_sd = T, 
+                               alternative = "two.sided",
+                               data = dados_teste_t)
+resultado_cohens_d
+```
 
 # Redação do método e dos resultados
 
@@ -339,22 +372,52 @@ dados_teste_t |>
 
 ***Análise de Dados***
 
-Um teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores retos e motores em V.
+Um teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores retos e motores em V. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e homogeneidade das variâncias (teste de Levene).
 
 ## Resultados {.smaller}
 
 ```{r}
-descritivos_grupos <- dados_teste_t |> 
-  summarise(
-    n = n(),
-    m = mean(mpg), 
-    sd = sd(mpg),
-    .by = vs
-  ) |> 
-  mutate(
-    diferenca = m - lag(m)
-    )
+s_teste_v <- dados_teste_t |> 
+  filter(vs == "V") |> 
+  select(mpg) |> 
+  pull() |> 
+  shapiro.test() |> 
+  tidy()
 
+w_s_teste_v <- s_teste_v[[1, "statistic"]]  
+w_s_teste_v <- round(w_s_teste_v, 2)
+p_s_teste_v <- s_teste_v[[1, "p.value"]]
+p_s_teste_v <- round(p_s_teste_v, 2)
+```
+
+```{r}
+s_teste_r <- dados_teste_t |> 
+  filter(vs == "reto") |> 
+  select(mpg) |> 
+  pull() |> 
+  shapiro.test() |> 
+  tidy()
+
+w_s_teste_r <- s_teste_r[[1, "statistic"]]  
+w_s_teste_r <- round(w_s_teste_r, 2)
+p_s_teste_r <- s_teste_r[[1, "p.value"]]
+p_s_teste_r <- round(p_s_teste_r, 2)
+```
+
+
+
+```{r}
+#| label: resultados-levene
+df_levene <- resultado_levene$df
+df_res_levene <- resultado_levene$df.residual
+levene_f <- resultado_levene$statistic
+levene_f <- round(levene_f, 2)
+levene_p <- resultado_levene$p.value
+levene_p <- round(levene_p, 2)
+```
+
+```{r}
+#| label: resultados-descritivos
 n_V <- descritivos_grupos[descritivos_grupos$vs == "V", "n"]
 n_V <- pull(n_V)
 m_V <- descritivos_grupos[descritivos_grupos$vs == "V", "m"]
@@ -376,13 +439,7 @@ diferenca <- round(diferenca, 2)
 ```
 
 ```{r}
-resultado_teste_t <- dados_teste_t |> 
-  t_test(
-    response = mpg, explanatory = vs,
-    order = c("reto", "V"), var.equal = T,
-    alternative = "two.sided"
-  )
-
+#| label: resultados-teste-t
 t_df <- resultado_teste_t[[1, "t_df"]]
 statistic <- resultado_teste_t[[1, "statistic"]]
 statistic <- round(statistic, 2)
@@ -392,11 +449,14 @@ upper_ci <- resultado_teste_t[[1, "upper_ci"]]
 upper_ci <- round(upper_ci, 2)
 ```
 
-Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, *t*(`r t_df`) = `r statistic`, *p* < .001. Carros com motores retos apresentaram um desempenho  (n = `r n_reto`, M = `r m_reto`, DP = `r sd_reto`) melhor do que aqueles com motores em V (n = `r n_V`, M = `r m_V`, DP = `r sd_V`). A diferença média  foi de `r diferenca` milhas por galão (IC 95%: `r lower_ci`, `r upper_ci`). O tamanho de efeito foi grande (d = 1.17). Esses resultados sugerem que o formato do motor influencia o consumo de combustível.
+```{r}
+#| label: resultados-cohens-d
+d_valor <- resultado_cohens_d$Cohens_d
+d_valor <- round(d_valor, 2)
+ci_low <- resultado_cohens_d$CI_low
+ci_low <- round(ci_low, 2)
+ci_high <- resultado_cohens_d$CI_high
+ci_high <- round(ci_high, 2)
+```
 
-
-
-
-
-
-
+O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo com motores em V (*W* = `r w_s_teste_v`, *p* = `r p_s_teste_v`), nem para o grupo com motores retos (*W* =  `r w_s_teste_r`, *p* = `r p_s_teste_r`). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (*F*(`r df_levene`, `r df_res_levene`) = `r levene_f`, *p* = `r levene_p`). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, *t*(`r t_df`) = `r statistic`, *p* \< .001. Carros com motores retos (n = `r n_reto`, M = `r m_reto`, DP = `r sd_reto`) apresentaram um desempenho melhor do que aqueles com motores em V (n = `r n_V`, M = `r m_V`, DP = `r sd_V`). A diferença média foi de `r diferenca` milhas por galão (IC 95% \[`r lower_ci`, `r upper_ci`\]). O tamanho de efeito foi grande (d = `r d_valor`, IC 95% \[`r ci_low`, `r ci_high`\] ). Esses resultados sugerem que o formato do motor influencia o consumo de combustível.
