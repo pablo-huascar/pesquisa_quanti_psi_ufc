@@ -53,7 +53,7 @@ format:
     code-copy: true
     theme: 
       - cosmo
-      - styles.scss
+      - styles.css
     toc: true
     link-external-icon: true
     link-external-newwindow: true

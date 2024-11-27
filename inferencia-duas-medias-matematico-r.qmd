@@ -404,8 +404,6 @@ p_s_teste_r <- s_teste_r[[1, "p.value"]]
 p_s_teste_r <- round(p_s_teste_r, 2)
 ```
 
-
-
 ```{r}
 #| label: resultados-levene
 df_levene <- resultado_levene$df
@@ -459,4 +457,4 @@ ci_high <- resultado_cohens_d$CI_high
 ci_high <- round(ci_high, 2)
 ```
 
-O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo com motores em V (*W* = `r w_s_teste_v`, *p* = `r p_s_teste_v`), nem para o grupo com motores retos (*W* =  `r w_s_teste_r`, *p* = `r p_s_teste_r`). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (*F*(`r df_levene`, `r df_res_levene`) = `r levene_f`, *p* = `r levene_p`). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, *t*(`r t_df`) = `r statistic`, *p* \< .001. Carros com motores retos (n = `r n_reto`, M = `r m_reto`, DP = `r sd_reto`) apresentaram um desempenho melhor do que aqueles com motores em V (n = `r n_V`, M = `r m_V`, DP = `r sd_V`). A diferença média foi de `r diferenca` milhas por galão (IC 95% \[`r lower_ci`, `r upper_ci`\]). O tamanho de efeito foi grande (d = `r d_valor`, IC 95% \[`r ci_low`, `r ci_high`\] ). Esses resultados sugerem que o formato do motor influencia o consumo de combustível.
+O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo com motores em V (*W* = `r w_s_teste_v`, *p* = `r p_s_teste_v`), nem para o grupo com motores retos (*W* = `r w_s_teste_r`, *p* = `r p_s_teste_r`). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (*F*(`r df_levene`, `r df_res_levene`) = `r levene_f`, *p* = `r levene_p`). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, *t*(`r t_df`) = `r statistic`, *p* \< .001. Carros com motores retos (n = `r n_reto`, M = `r m_reto`, DP = `r sd_reto`) apresentaram um desempenho melhor do que aqueles com motores em V (n = `r n_V`, M = `r m_V`, DP = `r sd_V`). A diferença média foi de `r diferenca` milhas por galão (IC 95% \[`r lower_ci`, `r upper_ci`\]). O tamanho de efeito foi grande (d = `r d_valor`, IC 95% \[`r ci_low`, `r ci_high`\] ). Esses resultados sugerem que o formato do motor influencia o consumo de combustível.

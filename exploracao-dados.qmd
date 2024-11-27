@@ -2,13 +2,13 @@
 title: "Exploração de dados"
 ---
 
-## Exploração de dados numéricos
+## Dados numéricos
 
 ![](img/book.png){width="18"}[Leitura](https://openintro-ims.netlify.app/explore-numerical)
 
 ![](img/slide.png){width="18"} [Slides](exploracao-dados-numericos.qmd){target="_blank"}
 
-## Exploração de dados categóricos
+## Dados categóricos
 
 ![](img/book.png){width="18"}[Leitura](https://openintro-ims.netlify.app/explore-categorical)
 
