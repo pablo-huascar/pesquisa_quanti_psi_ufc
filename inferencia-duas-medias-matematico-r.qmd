@@ -172,8 +172,8 @@ descritivos_grupos
 #| out-width: 70%
 dados_teste_t |> 
   ggplot(aes(vs, mpg)) +
-  geom_boxplot() +
-  stat_boxplot(geom = 'errorbar')
+  geom_boxplot(color = "#569BBD") +
+  stat_boxplot(geom = 'errorbar', color = "#569BBD")
 ```
 :::
 
