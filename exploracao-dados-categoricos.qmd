@@ -190,14 +190,18 @@ bar_species_count <- penguins |>
   )
 
 bar_species_prop <- penguins |> 
-  ggplot(aes(species, y = after_stat(count/sum(count)),
-             color = species,
-             fill = species)) +
+  ggplot(
+    aes(species, y = after_stat(count/sum(count)),
+        color = species,
+        fill = species)
+  ) +
   geom_bar() +
   labs(
     y = NULL
   ) + 
-  scale_y_continuous(labels = percent_format()) +
+  scale_y_continuous(
+    labels = percent_format()
+  ) +
   scale_color_colorblind() +
   scale_fill_colorblind() +
   theme(

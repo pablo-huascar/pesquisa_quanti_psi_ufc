@@ -7,3 +7,7 @@ title: "Inferência estatística"
 ![](img/book.png){width="18"}[Leitura](https://openintro-ims.netlify.app/inference-two-means)
 
 ![](img/slide.png){width="18"} [Slides: aplicação do modelo matemático no R](inferencia-duas-medias-matematico-r.qmd){target="_blank"}
+
+## Inferência para avaliar a associação entre duas variáveis contínuas
+
+![](img/slide.png){width="18"} [Slides: aplicação do modelo matemático no R](inferencia-correlacao.qmd){target="_blank"}

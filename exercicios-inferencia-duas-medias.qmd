@@ -1,5 +1,5 @@
 ---
-title: "Teste T: exercícios"
+title: "Comparar duas médias independentes: exercícios"
 lang: pt-br
 format: 
   html:
@@ -8,41 +8,37 @@ echo: false
 message: false
 warning: false
 eval: false
-editor: visual
 editor_options: 
   chunk_output_type: console
 bibliography: exercios.bib
 reference-section-title: Referências
-csl: apa.csl
 ---
 
 ```{r}
 #| include: false
-source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+source("/_common.R")
 ```
 
 ```{r}
+#| label: setup
 library(tidyverse)
 library(janitor)
-library(rstatix)
 library(tidymodels)
 library(cowplot)
 library(gapminder)
 library(openintro)
-conflicted::conflicts_prefer(dplyr::lag)
-conflicted::conflicts_prefer(rstatix::t_test)
+library(infer)
 ```
 
 ```{r}
 df_mtcars <- mtcars |> 
-  rownames_to_column(var = "modelo")
+  rownames_to_column(var = "modelo") |> 
+  as_tibble()
 ```
 
-## Atividades
+As atividades a seguir dizem respeito à comparação de duas médias. Para cada exercício, aplique os modelos matemático e computacional. Antes de realizar as análises inferenciais, explore os dados com estatísticas descritivas e gráficos para variável dependente em cada grupo da variável independente. Em seguida, relate os resultados adequadamente.
 
-As atividades a seguir dizem respeito ao uso do teste t para amostras independentes. Antes de realizá-las, explore os dados gerando estatísticas descritivas e gráficos para variável dependente em cada grupo da variável independente. Em seguida, relate os resultados adequadamente.
-
-### `mtcars`
+## `mtcars`
 
 O banco de dados `mtcars` (Motor Trend Car Road Tests) contém informações extraído da revista Motor Trend US de 1974 e compreende o consumo de combustível e 10 aspectos de design e desempenho de automóveis para 32 automóveis (modelos de 1973 a 1974). O livro de códigos é apresentado a seguir:
 
@@ -62,12 +58,6 @@ O banco de dados `mtcars` (Motor Trend Car Road Tests) contém informações ext
 
 : Livro de códigos para `mtcars`
 
-```{r}
-#| eval: false
-mtcars |> 
-  rownames_to_column(var = "Model") |> 
-  write_csv("./data/mtcars.csv")
-```
 
 #### 1.Compare a média de consumo de combustível entre carros com motores em V e retos.
 
