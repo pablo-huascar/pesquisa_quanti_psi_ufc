@@ -221,7 +221,7 @@ dados_teste_t |>
 -   Avaliar a normalidade da VD (`mgp`) para cada grupo da VI (`vs`):
     -   "V" e "reto"
 
-## Normalidade: `shapiro.test()` 
+## Normalidade: `shapiro.test()`
 
 ::: panel-tabset
 ### Uso
@@ -292,10 +292,9 @@ dados_teste_t |>
 -   Avaliar a homogeneidade de variâncias da VD (`mpg`) entre os grupos da VI (`vs`):
     -   "V" e "reto"
 
-## Homogeneidade de Variâncias: `car::leveneTest()` 
+## Homogeneidade de Variâncias: `car::leveneTest()`
 
-::: panel-tabset
-
+:::: panel-tabset
 ### Uso
 
 ```{r}
@@ -304,7 +303,8 @@ dados_teste_t |>
 leveneTest(y, group, center = "median", data)
 ```
 
-### Argumentos 
+### Argumentos
+
 ::: {style="font-size: 16pt;"}
 -   **y**: variável de resposta para o método padrão, ou um objeto lm ou fórmula. Se y for um objeto de modelo linear ou uma fórmula, as variáveis no lado direito do modelo devem ser todas fatores e devem ser completamente cruzadas
 
@@ -314,8 +314,7 @@ leveneTest(y, group, center = "median", data)
 
 -   **data**: um banco de dados para avaliar a fórmula
 :::
-
-:::
+::::
 
 ## Homogeneidade de Variâncias: `car::leveneTest()`
 
@@ -396,7 +395,6 @@ resultado_teste_t
 ## Tamanho de efeito: `effectsize::cohens_d()`
 
 :::: panel-tabset
-
 ### Uso
 
 ```{r}
@@ -423,10 +421,9 @@ cohens_d(
 
 -   **ci**: Nível de Intervalo de Confiança (CI)
 
--   **alternative**: uma sequência de caracteres especificando a hipótese alternativa; Controla o tipo de CI retornado: "two.sided" (padrão, CI bilateral), "greater" ou "less" (CI unilateral). Correspondência parcial é permitida (por exemplo, "g", "l", "two"...) 
+-   **alternative**: uma sequência de caracteres especificando a hipótese alternativa; Controla o tipo de CI retornado: "two.sided" (padrão, CI bilateral), "greater" ou "less" (CI unilateral). Correspondência parcial é permitida (por exemplo, "g", "l", "two"...)
 :::
-
-:::
+::::
 
 ## Tamanho de efeito: `effectsize::cohens_d()`
 
