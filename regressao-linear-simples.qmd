@@ -499,7 +499,7 @@ $$
         -   Quanto maior a pontuação em `flipper_length_mm` maior a pontuação em `body_mass_g`
         -   Ou seja: um tamanho maior da nadadeira está associado a maior massa corporal dos pinguins
     -   Interpretação do valor de b (estimativa de `flipper_length_mm`):
-        -   O coeficiente associado ao comprimento da nadadeira é 49.7. Isso significa que, para cada aumento de 1 mm no comprimento da nadadeira, o peso dos pinguins aumenta em média 49.7 gramas, mantendo todas as outras variáveis constantes.
+        -   O coeficiente associado ao comprimento da nadadeira é 49.7. Isso significa que, para cada aumento de 1 mm no comprimento da nadadeira, o peso dos pinguins aumenta em média 49.7 gramas
 :::
 
 ## Valores observados, valores ajustados (previstos) e os resíduos {.smaller}

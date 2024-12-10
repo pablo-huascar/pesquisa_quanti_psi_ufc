@@ -3,6 +3,9 @@ title: "Inferência"
 subtitle: "Associação entre duas variáveis contínuas: aplicação do modelo matemático no R"
 format: 
   revealjs:
+      code-link: true
+      code-tools: true
+      code-line-numbers: false
       logo: img/brasao1_horizontal_cor_300dpi.png
       theme: simple
       css: logo.css
@@ -474,7 +477,6 @@ resultado_correlacao |>
     r_sq = estimate^2 |> round(2)
   )
 ```
-
 
 # Redação do método e dos resultados
 

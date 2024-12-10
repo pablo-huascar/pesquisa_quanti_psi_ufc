@@ -4,9 +4,6 @@ lang: pt-br
 format: 
   html:
       toc: true
-echo: false
-message: false
-warning: false
 eval: false
 editor_options: 
   chunk_output_type: console
@@ -57,7 +54,6 @@ O banco de dados `mtcars` (Motor Trend Car Road Tests) contém informações ext
 |   carb   | Número de carburadores                       |
 
 : Livro de códigos para `mtcars`
-
 
 #### 1.Compare a média de consumo de combustível entre carros com motores em V e retos.
 

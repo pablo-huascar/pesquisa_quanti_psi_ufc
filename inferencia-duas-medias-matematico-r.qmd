@@ -3,6 +3,9 @@ title: "Inferência"
 subtitle: "Comparar duas médias independentes: aplicação do modelo matemático no R"
 format: 
   revealjs:
+      code-link: true
+      code-tools: true
+      code-line-numbers: false
       logo: img/brasao1_horizontal_cor_300dpi.png
       theme: simple
       css: logo.css
