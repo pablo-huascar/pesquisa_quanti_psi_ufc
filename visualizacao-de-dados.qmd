@@ -490,7 +490,7 @@ ggplot(
   )
 ```
 
-## Exercícios
+## Exercício
 
 O que acontece se você fizer um gráfico de dispersão de `species` versus `bill_depth_mm`? O que poderia ser uma melhor escolha de geom?
 
@@ -515,7 +515,7 @@ ggplot(
 #| echo: true
 #| fig-align: center
 #| out-width: "70%"
-#| fig-dpi: 600
+#| fig-dpi: 300
 ggplot(
   data = penguins,
   aes(x = species,
@@ -524,7 +524,7 @@ ggplot(
   geom_boxplot()
 ```
 
-## Exercícios
+## Exercício
 
 Recrie a seguinte visualização. Para qual estética o bill_depth_mm deve ser mapeado? E deve ser mapeado no nível global ou no nível do `geom`?
 
@@ -553,7 +553,7 @@ ggplot(
 #| out-width: 70%
 #| output-location: slide
 #| code-line-numbers: "|7"
-#| fig-dpi: 600
+#| fig-dpi: 300
 
 ggplot(
   data = penguins,
@@ -567,4 +567,228 @@ ggplot(
     method = "lm"
   )
 ```
+
+## Chamadas do ggplot2 {.smaller}
+
+-   `data`
+-   `mapping(aes(x = ... , y = ...)`
+
+::: panel-tabset
+### Código completo
+
+```{r}
+#| echo: true
+#| eval: false
+ggplot(
+  data = penguins,
+  mapping = aes(x = flipper_length_mm,
+                y = body_mass_g)
+) +
+  geom_point()
+```
+
+### Código com omissões
+
+```{r}
+#| echo: true
+#| eval: false
+ggplot(
+  penguins,
+  aes(flipper_length_mm,
+      body_mass_g)
+) +
+  geom_point()
+```
+
+### Código usando pipe `|>`
+
+```{r}
+#| echo: true
+#| output-location: slide
+#| fig-align: center
+#| out-width: "70%"
+#| fig-dpi: 300 
+penguins |> 
+  ggplot(
+    aes(flipper_length_mm,
+        body_mass_g)
+  ) +
+  geom_point()
+```
+:::
+
+## Visualizando distribuições
+
+-   A visualização vai depender do tipo de variável
+    -   Categórica
+    -   Numérica
+    
+## Variável categórica: Gráfico de Barras -`geom_bar()`
+
+[Altura das barras: número de observações em cada valor de x]{style="font-size:20pt;"}
+
+```{r}
+#| echo: true
+#| output-location: column-fragment
+#| fig-align: center
+#| out-width: "100%"
+#| fig-dpi: 300
+penguins |> 
+  ggplot(
+    aes(species)
+  ) +
+  geom_bar()
+```
+
+## Gráfico de Barras - `geom_bar()`: variáveis ordendas pela frequência (decrescente)
+
+```{r}
+#| echo: true
+#| output-location: column-fragment
+#| fig-align: center
+#| out-width: "100%"
+#| fig-dpi: 600
+penguins |> 
+  ggplot(
+    aes(fct_infreq(species))
+  ) +
+  geom_bar()
+```
+
+## Gráfico de Barras - `geom_bar()`: variáveis ordendas pela frequência (crescente)
+
+```{r}
+#| echo: true
+#| output-location: column-fragment
+#| fig-align: center
+#| out-width: "100%"
+#| fig-dpi: 600
+penguins |> 
+  ggplot(       
+    aes(fct_infreq(species) |> fct_rev())
+  ) +
+  geom_bar()
+```
+
+## Gráfico de Barras - `geom_bar()`: proporções {.smaller}
+
+::: panel-tabset
+### Código para percentuais
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+
+library(scales)
+
+penguins |> ggplot(
+  aes(fct_infreq(species),
+      y = after_stat(count/sum(count)),
+      fill = species)
+) +
+  geom_bar() +
+  geom_text(aes(label = percent(after_stat(count/sum(count)))),
+            stat = "count",
+            nudge_y = 0.02) +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_y_continuous(
+    labels = percent
+  ) +
+  labs(
+    x = "Espécies",
+    y = NULL
+  )
+```
+
+### Gráfico com percentuais
+
+```{r}
+#| fig-align: center
+#| out-width: "50%"
+#| fig-dpi: 300
+penguins |> ggplot(
+  aes(fct_infreq(species),
+      y = after_stat(count/sum(count)),
+      fill = species)
+) +
+  geom_bar() +
+  geom_text(aes(label = percent(after_stat(count/sum(count)))),
+            stat = "count",
+            nudge_y = 0.02) +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_y_continuous(
+    labels = percent
+  ) +
+  labs(
+    x = "Espécies",
+    y = NULL
+  )
+```
+:::
+
+## Gráfico de Barras - `geom_bar()`: proporções {.smaller}
+
+::: panel-tabset
+### Código com Eixo y de 0 a 100
+
+```{r}
+#| echo: true
+#| eval: false
+#| fig-align: center
+#| out-width: "50%"
+#| fig-dpi: 300
+penguins |> ggplot(
+  aes(fct_infreq(species),
+      y = after_stat(count/sum(count)),
+      fill = species)
+) +
+  geom_bar() +
+  geom_text(aes(label = percent(after_stat(count/sum(count)))),
+            stat = "count",
+            nudge_y = 0.03) +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_y_continuous(
+    labels = percent, limits = c(0, 1)
+  ) +
+  labs(
+    x = "Espécies",
+    y = NULL
+  )
+```
+
+### Gráfico com eixo y de 0 a 100
+
+```{r}
+#| fig-align: center
+#| out-width: "50%"
+#| fig-dpi: 300
+penguins |> ggplot(
+  aes(fct_infreq(species),
+      y = after_stat(count/sum(count)),
+      fill = species)
+) +
+  geom_bar() +
+  geom_text(aes(label = percent(after_stat(count/sum(count)))),
+            stat = "count",
+            nudge_y = 0.03) +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_y_continuous(
+    labels = percent, limits = c(0, 1)
+  ) +
+  labs(
+    x = "Espécies",
+    y = NULL
+  )
+```
+:::
 
