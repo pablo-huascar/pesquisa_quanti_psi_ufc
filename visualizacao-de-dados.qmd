@@ -82,6 +82,40 @@ penguins |>
   )
 ```
 
+## `diamonds`
+
+Um conjunto de dados contendo os preços e outros atributos de quase 54.000 diamantes.
+
+-   Formato: Um banco de dados com 53940 observações e algumas variáveis. Vamos usar:
+    -   `price`: preço em dólares americanos
+    -   `carat`: peso do diamante (quilates)
+
+## Uma olhada em `diamonds`
+
+```{r}
+#| label: tbl-diamonds 
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `diamonds `
+#| tbl-cap-location: bottom 
+
+diamonds |> 
+  select(carat, price) |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 1
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
+```
+
 ## Introdução {.smaller}
 
 -   [ggplot2](https://ggplot2.tidyverse.org/): grammar of graphics (gramática dos gráficos)
@@ -623,7 +657,9 @@ penguins |>
     -   Categórica
     -   Numérica
     
-## Variável categórica: Gráfico de Barras -`geom_bar()`
+# Variável categórica: 
+
+## Gráfico de Barras: `geom_bar()`
 
 [Altura das barras: número de observações em cada valor de x]{style="font-size:20pt;"}
 
@@ -680,27 +716,29 @@ penguins |>
 #| eval: false
 #| message: false
 #| warning: false
-
 library(scales)
 
-penguins |> ggplot(
+penguins |> 
+  ggplot(
   aes(fct_infreq(species),
       y = after_stat(count/sum(count)),
       fill = species)
 ) +
   geom_bar() +
-  geom_text(aes(label = percent(after_stat(count/sum(count)))),
-            stat = "count",
-            nudge_y = 0.02) +
+  geom_text(
+    aes(label = percent(after_stat(count/sum(count)))),
+    stat = "count",
+    nudge_y = 0.02
+  ) +
   theme(
     legend.position = "none"
   ) +
   scale_y_continuous(
     labels = percent
   ) +
+  scale_fill_colorblind() +
   labs(
-    x = "Espécies",
-    y = NULL
+    x = "Espécies", y = NULL
   )
 ```
 
@@ -710,24 +748,27 @@ penguins |> ggplot(
 #| fig-align: center
 #| out-width: "50%"
 #| fig-dpi: 300
-penguins |> ggplot(
+penguins |> 
+  ggplot(
   aes(fct_infreq(species),
       y = after_stat(count/sum(count)),
       fill = species)
 ) +
   geom_bar() +
-  geom_text(aes(label = percent(after_stat(count/sum(count)))),
-            stat = "count",
-            nudge_y = 0.02) +
+  geom_text(
+    aes(label = percent(after_stat(count/sum(count)))),
+    stat = "count",
+    nudge_y = 0.02
+  ) +
   theme(
     legend.position = "none"
   ) +
   scale_y_continuous(
     labels = percent
   ) +
+  scale_fill_colorblind() +
   labs(
-    x = "Espécies",
-    y = NULL
+    x = "Espécies", y = NULL
   )
 ```
 :::
@@ -743,21 +784,25 @@ penguins |> ggplot(
 #| fig-align: center
 #| out-width: "50%"
 #| fig-dpi: 300
-penguins |> ggplot(
-  aes(fct_infreq(species),
-      y = after_stat(count/sum(count)),
-      fill = species)
-) +
+penguins |> 
+  ggplot(
+    aes(fct_infreq(species),
+        y = after_stat(count/sum(count)),
+        fill = species)
+  ) +
   geom_bar() +
-  geom_text(aes(label = percent(after_stat(count/sum(count)))),
-            stat = "count",
-            nudge_y = 0.03) +
+  geom_text(
+    aes(label = percent(after_stat(count/sum(count)))),
+    stat = "count",
+    nudge_y = 0.03
+  ) +
   theme(
     legend.position = "none"
   ) +
   scale_y_continuous(
     labels = percent, limits = c(0, 1)
   ) +
+  scale_fill_colorblind() +
   labs(
     x = "Espécies",
     y = NULL
@@ -770,21 +815,25 @@ penguins |> ggplot(
 #| fig-align: center
 #| out-width: "50%"
 #| fig-dpi: 300
-penguins |> ggplot(
-  aes(fct_infreq(species),
-      y = after_stat(count/sum(count)),
-      fill = species)
-) +
+penguins |> 
+  ggplot(
+    aes(fct_infreq(species),
+        y = after_stat(count/sum(count)),
+        fill = species)
+  ) +
   geom_bar() +
-  geom_text(aes(label = percent(after_stat(count/sum(count)))),
-            stat = "count",
-            nudge_y = 0.03) +
+  geom_text(
+    aes(label = percent(after_stat(count/sum(count)))),
+    stat = "count",
+    nudge_y = 0.03
+  ) +
   theme(
     legend.position = "none"
   ) +
   scale_y_continuous(
     labels = percent, limits = c(0, 1)
   ) +
+  scale_fill_colorblind() +
   labs(
     x = "Espécies",
     y = NULL
@@ -792,3 +841,100 @@ penguins |> ggplot(
 ```
 :::
 
+# Variável numérica
+
+## Histograma: `geom_histogram()`
+
+-   Divide o eixo x em caixas igualmente espaçadas
+-   Usa a altura de uma barra para exibir o número de observações em cada caixa
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| out-width: "70%"
+#| fig-dpi: 300
+#| output-location: column-fragment
+penguins |> 
+  ggplot( 
+    aes(body_mass_g)
+  ) +
+  geom_histogram(
+    binwidth = 200,
+    color = "white"
+  )
+```
+
+
+## Histograma -`geom_histogram()`: `binwidth()` {.smaller}
+
+-   Define a largura dos intervalos
+
+::: panel-tabset
+## `binwidth(20)`
+
+```{r}
+#| echo: true
+#| output-location: column
+#| out-width: 70%
+#| fig-dpi: 300
+penguins |> 
+  ggplot(
+    aes(x = body_mass_g)) +
+  geom_histogram(
+    binwidth = 20
+  )
+```
+
+## `binwidth(2000)`
+
+```{r}
+#| echo: true
+#| output-location: column
+#| out-width: 70%
+#| fig-dpi: 300
+penguins |> 
+  ggplot(
+    aes(body_mass_g)) +
+  geom_histogram(
+    binwidth = 2000
+  )
+```
+:::
+
+## Exercícios
+
+Faça um gráfico de barras das espécies (`species`) de pinguins, onde você atribui espécies (`species`) ao eixo y. Como esse gráfico é diferente?
+
+## Resposta
+
+```{r}
+#| echo: true
+#| output-location: slide
+#| fig-align: center
+#| out-width: 70%
+#| fig-dpi: 300
+penguins |> 
+  ggplot(
+    aes(y = species)) +
+  geom_bar()
+```
+
+## Exercícios
+
+Faça um histograma da variável quilate (`carat`) no conjunto de dados de `diamonds` (diamantes) Experimente diferentes larguras de caixa (`bin`). Qual largura de `bin` revela os padrões mais interessantes?
+
+## Resposta
+
+::: panel-tabset
+## `bin` padrão (30)
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| out-width: 45%
+#| fig-dpi: 300
+diamonds |> 
+  ggplot(
+    aes(carat)) +
+  geom_histogram()
+```
