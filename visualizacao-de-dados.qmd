@@ -32,6 +32,7 @@ library(scales)
 library(patchwork)
 library(gt)
 library(gapminder)
+theme_set(theme_grey())
 ```
 
 ## Pacotes
@@ -129,10 +130,8 @@ diamonds |>
 #| out-width: 50%
 library(ggplot2)
 library(palmerpenguins)
-
 penguins |> 
-  ggplot() +
-  theme_gray()
+  ggplot()
 ```
 
 ### `mapping`
@@ -433,7 +432,7 @@ ggplot(
   scale_color_colorblind()
 ```
 
-# Cores para daltônicos {style="font-size:20pt;"}
+## Cores para daltônicos {style="font-size:20pt;"}
 
 [ggthemes](https://cran.r-project.org/package=ggthemes)
 
@@ -630,13 +629,14 @@ penguins |>
 ```
 :::
 
-## Visualizando distribuições
+# Distribuições
 
+## Visualizando distribuições
 -   A visualização vai depender do tipo de variável
     -   Categórica
     -   Numérica
     
-# Variável categórica: 
+# Variável categórica
 
 ## Gráfico de Barras: `geom_bar()`
 
@@ -824,7 +824,7 @@ penguins |>
 ```{r}
 #| echo: true
 #| fig-align: center
-#| out-width: "70%"
+#| out-width: 100%
 #| output-location: column-fragment
 penguins |> 
   ggplot( 
@@ -847,7 +847,7 @@ penguins |>
 ```{r}
 #| echo: true
 #| output-location: column
-#| out-width: 70%
+#| out-width: 100%
 penguins |> 
   ggplot(
     aes(x = body_mass_g)) +
@@ -923,6 +923,8 @@ diamonds |>
 :::
 
 
+# Relacionamentos entre variáveis
+
 ## Visualizando relacionamentos
 
 -   2 variáveis
@@ -950,5 +952,326 @@ penguins |>
   ) +
   geom_boxplot()
 ```
+
+## Duas variáveis categóricas
+
+-   Relacionamento entre ilha (`island`) e espécie (`species`)
+    -   Distribuição das espécies dentro de cada ilha
+
+## Tabela de Frequência
+
+```{r}
+penguins |> 
+  count(island,species) |>
+  pivot_wider(
+    names_from = species,
+    values_from = n
+    ) |>
+  rowwise() |> 
+  mutate(
+    total_island = sum(c_across(Adelie:Chinstrap),na.rm = T)
+    ) |> 
+  ungroup()
+```
+
+## Gráfico de barras emplilhados (stacked bar plots)
+
+```{r}
+#| echo: true
+#| output-location: slide
+#| fig-align: center
+#| out-width: "60%"
+penguins |> 
+  ggplot(
+    aes(island, fill = species)) +
+  geom_bar()
+```    
+
+## Gráfico de frequência relativa (relative frequency plot)
+
+-   `position = "fill"`
+-   Útil para comparar a distribuição de espécies nas ilhas
+    -   Não é afetado pelo número desigual de pinguins nas ilhas
     
-    
+```{r}
+#| echo: true
+#| output-location: slide
+#| fig-align: center
+#| out-width: "60%"
+penguins |> 
+  ggplot(
+    aes(island, fill = species))+
+  geom_bar(
+    position = "fill"
+  )
+```
+
+## Grafico de barras
+
+-   `position = "dodge"`
+
+```{r}
+#| echo: true
+#| output-location: slide
+#| fig-align: center
+#| out-width: "70%"
+penguins |> 
+  ggplot(
+    aes(island, fill = species)) +
+  geom_bar(
+    position = "dodge"
+  )
+```
+
+## Duas variáveis numéricas
+
+-   `geom_point()`
+-   `geom_smooth()`
+
+```{r}
+#| echo: true
+#| label: dispresao
+#| fig-align: center
+#| out-width: "70%"
+#| output-location: slide
+penguins |> 
+  ggplot(       
+    aes(flipper_length_mm, body_mass_g)) +
+  geom_point() +
+  geom_smooth(
+    method = "lm"
+  )
+```
+
+## Três ou mais variáveis {.smaller}
+
+-   Podem ser mapeadas para diferntes estéticas (aesthetics)
+-   `color` = espécies (`species`)
+-   `shape` = ilhas (`island`)
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| out-width: "70%"
+#| output-location: slide
+penguins |> 
+  ggplot(
+    aes(flipper_length_mm, body_mass_g)
+  ) +
+  geom_point(aes(color = species, shape = island))
+```
+
+## facets {.samller}
+
+-   Muitas variáveis nas estéticas pode deixar o gráfico confuso
+-   `facet_`
+
+```{r}
+#| echo: true
+#| label: facets
+#| fig-align: center
+#| out-width: "70%"
+#| output-location: slide
+penguins |> 
+  ggplot(
+    aes(flipper_length_mm, body_mass_g)) +
+  geom_point(
+    aes(color = species, shape = species)
+  ) +
+  facet_wrap(~ island)
+```
+
+## Series temporais
+
+-   `geom_line()`
+-   `geom_point()`
+
+```{r}
+#| echo: true
+#| output-location: slide
+#| fig-align: center
+#| out-width: 70%
+gapminder |>
+  summarise(
+    lifeExpm = mean(lifeExp),
+    .by = c(continent, year)
+  ) |> 
+  ggplot(
+    aes(year, lifeExpm, color = continent)
+  ) +
+  geom_line() +
+  geom_point() + 
+  scale_color_colorblind()
+```
+
+## Exercícios
+
+O banco de dados `mpg` que acompanha o pacote ggplot2 contém `r nrow(mpg)` observações coletadas pela Agência de Proteção Ambiental dos EUA em `r mpg |> distinct(model) |> nrow()` modelos de carros. Quais variáveis em mpg são categóricas? Quais variáveis são numéricas? (Dica: digite `?mpg` para ler a documentação do banco de dados.) Como você pode ver essas informações ao executar `mpg`?
+
+## Reposta
+
+```{r}
+#| echo: true
+glimpse(mpg)
+```
+
+## Exercícios
+
+Faça um gráfico de dispersão de `hwy` vs. `displ` usando o banco de dados `mpg` Em seguida, mapeie uma terceira variável numérica para `color`, depois para `size`, então para `color` e `size` ao mesmo tempo, então para `shape.` Como essas estéticas se comportam de maneira diferente para variáveis categóricas e numéricas?
+
+## Resposta
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| output-location: slide
+#| out-width: 70%
+p <- mpg |> 
+  ggplot(
+    aes(hwy, displ)
+  ) +
+  geom_point() +
+  geom_smooth(
+    method = "lm", se = F
+  )
+
+p
+```
+
+## Resposta
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| output-location: slide
+#| out-width: 70%
+p + geom_point(aes(color = cty))
+```
+
+## Resposta
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| output-location: slide
+#| out-width: 70%
+p + geom_point(aes(size = cty))
+```
+
+## Resposta
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| output-location: slide
+#| out-width: 70%
+p + geom_point(aes(color = cty, size = cty))
+```
+
+## Resposta
+
+```{r}
+#| echo: true
+#| warning: true
+#| error: true
+p + geom_point(aes(shape = cty))
+```
+
+## Resposta
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| output-location: slide
+#| out-width: 70%
+p + geom_point(aes(color = cty, size = cty,
+                 shape = drv))
+```
+
+## Exercícios
+
+O que acontece se você mapear a mesma variável para várias estéticas?
+
+## Resposta
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| output-location: slide
+#| out-width: 70%
+penguins |> 
+  ggplot(
+    aes(flipper_length_mm, body_mass_g)) +
+  geom_point(
+    aes(color = sex, shape = sex)
+  )
+```
+
+## Exercícios
+
+Faça um gráfico de dispersão de bill_depth_mm vs. bill_length_mm. Você deve colorir os pontos por espécies. O que a adição de coloração por espécie revela sobre a relação entre essas duas variáveis? Que tal facetar por espécie?
+
+## Resposta
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| output-location: slide
+#| out-width: 70%
+penguins |> 
+  ggplot(
+    aes(bill_depth_mm, bill_length_mm)) +
+  geom_point(
+    aes(color = species)
+  ) +
+  geom_smooth(
+    method = "lm", se = F
+  )
+```
+
+## Resposta
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| output-location: slide
+#| out-width: 7-%
+#| fig-dpi: 600
+penguins |> 
+  ggplot(       
+    aes(bill_depth_mm, bill_length_mm)) +
+  geom_point() +
+  geom_smooth(
+    method = "lm",
+    se = F
+  ) +
+  facet_wrap(~ species)
+```
+
+# Salvando seus gráficos
+
+## `ggsave()`
+
+-   Gráficos ficam salvos no diretório de trabalho
+    -   `getwd()`
+-   É possível especificar `width` (largura) e `height` (altura)
+-   `?ggsave()`
+
+## Código
+
+```{r}
+#| echo: true
+#| eval: false
+histograma <- penguins |> 
+  ggplot(
+    aes(body_mass_g)) +
+  geom_histogram(
+  ) +
+  theme_classic()
+
+ggsave(filename = "histograma.png", dpi = 300)
+```
+
+## Resultado
+
+![](histograma.png)
