@@ -14,6 +14,7 @@ slide-number: true
 editor: visual
 editor_options: 
   chunk_output_type: console
+fig-dpi: 300
 ---
 
 ```{r}
@@ -96,7 +97,6 @@ Um conjunto de dados contendo os preços e outros atributos de quase 54.000 diam
 #| label: tbl-diamonds 
 #| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `diamonds `
 #| tbl-cap-location: bottom 
-
 diamonds |> 
   select(carat, price) |> 
   slice_sample(n = 10) |> 
@@ -127,7 +127,6 @@ diamonds |>
 ```{r}
 #| fig-align: center
 #| out-width: 50%
-#| fig-dpi: 300
 library(ggplot2)
 library(palmerpenguins)
 
@@ -141,7 +140,6 @@ penguins |>
 ```{r}
 #| fig-align: center
 #| out-width: 50%
-#| fig-dpi: 300
 penguins |> 
   ggplot(
     aes(flipper_length_mm, 
@@ -154,7 +152,6 @@ penguins |>
 ```{r}
 #| fig-align: center
 #| out-width: 50%
-#| fig-dpi: 300
 penguins |> 
   ggplot(
     aes(flipper_length_mm, 
@@ -179,7 +176,6 @@ penguins |>
 ```{r}
 #| out-width: 70%
 #| fig-align: center
-#| fig-dpi: 300
 penguins |> 
   ggplot(
     aes(flipper_length_mm, 
@@ -213,7 +209,6 @@ penguins |>
 #| echo: true
 #| out-width: 70%
 #| fig-align: center
-#| fig-dpi: 300
 ggplot(
   data = penguins
   )
@@ -227,8 +222,7 @@ ggplot(
 #| echo: true
 #| fig-align: center
 #| out-width: 70%
-#| code-line-numbers: "|2|3|"
-#| fig-dpi: 300
+#| code-line-numbers: "|3|4|"
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm, 
@@ -245,15 +239,14 @@ ggplot(
 -   Gráficos de caixa de bigodes: [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
 -   Gráficos de dispersão: [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html)
 
-## [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) {.smaller}
+## [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html)
 
 ```{r}
 #| echo: true
 #| fig-align: center
-#| out-width: 70%
+#| out-width: 50%
 #| code-line-numbers: "|6"
 #| message: true
-#| fig-dpi: 300
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm,
@@ -271,7 +264,6 @@ ggplot(
 #| output-location: slide
 #| fig-align: center
 #| out-width: 70%
-#| fig-dpi: 300
 #| code-line-numbers: "|5"
 ggplot(
   data = penguins,
@@ -292,7 +284,6 @@ ggplot(
 #| fig-align: center
 #| out-width: 70% 
 #| code-line-numbers: "|6"
-#| fig-dpi: 300
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm,
@@ -313,7 +304,6 @@ ggplot(
 #| fig-align: center
 #| code-line-numbers: "|9|10|11|"
 #| out-width: 70% 
-#| fig-dpi: 300
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm,
@@ -332,7 +322,6 @@ ggplot(
 ```{r}
 #| fig-align: center
 #| out-width: 70%
-#| fig-dpi: 300
 penguins |> 
   ggplot(
     aes(flipper_length_mm, 
@@ -366,7 +355,6 @@ penguins |>
 #| fig-align: center
 #| code-line-numbers: "|6|7|8"
 #| out-width: 70%
-#| fig-dpi: 300 
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm, 
@@ -391,7 +379,6 @@ ggplot(
 #| fig-align: center
 #| code-line-numbers: "|13|14|15|16|17|18|19|"
 #| out-width: 70%
-#| fig-dpi: 300 
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm, 
@@ -423,7 +410,6 @@ ggplot(
 #| echo: true
 #| eval: false
 #| code-line-numbers: "|21|"
-#| fig-dpi: 300
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm,
@@ -457,7 +443,6 @@ ggplot(
 #| fig-align: center
 #| code-line-numbers: "|13"
 #| out-width: 70%
-#| fig-dpi: 300
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm,
@@ -512,7 +497,7 @@ bill = bico
 #| echo: true
 #| fig-align: center
 #| out-width: 70%
-#| fig-dpi: 300
+#| output-location: slide
 ggplot(
   data = penguins,
   aes(x = bill_length_mm,
@@ -534,7 +519,6 @@ O que acontece se você fizer um gráfico de dispersão de `species` versus `bil
 #| echo: true
 #| fig-align: center
 #| out-width: 70%
-#| fig-dpi: 300
 ggplot(
   data = penguins,
   aes(x = species,
@@ -549,7 +533,6 @@ ggplot(
 #| echo: true
 #| fig-align: center
 #| out-width: "70%"
-#| fig-dpi: 300
 ggplot(
   data = penguins,
   aes(x = species,
@@ -565,7 +548,6 @@ Recrie a seguinte visualização. Para qual estética o bill_depth_mm deve ser m
 ```{r}
 #| fig-align: center
 #| out-width: "70%"
-#| fig-dpi: 300
 ggplot(
   data = penguins,
   aes(x = flipper_length_mm,
@@ -587,8 +569,6 @@ ggplot(
 #| out-width: 70%
 #| output-location: slide
 #| code-line-numbers: "|7"
-#| fig-dpi: 300
-
 ggplot(
   data = penguins,
   aes(x = flipper_length_mm,
@@ -641,7 +621,6 @@ ggplot(
 #| output-location: slide
 #| fig-align: center
 #| out-width: "70%"
-#| fig-dpi: 300 
 penguins |> 
   ggplot(
     aes(flipper_length_mm,
@@ -668,7 +647,6 @@ penguins |>
 #| output-location: column-fragment
 #| fig-align: center
 #| out-width: "100%"
-#| fig-dpi: 300
 penguins |> 
   ggplot(
     aes(species)
@@ -683,7 +661,6 @@ penguins |>
 #| output-location: column-fragment
 #| fig-align: center
 #| out-width: "100%"
-#| fig-dpi: 600
 penguins |> 
   ggplot(
     aes(fct_infreq(species))
@@ -698,7 +675,6 @@ penguins |>
 #| output-location: column-fragment
 #| fig-align: center
 #| out-width: "100%"
-#| fig-dpi: 600
 penguins |> 
   ggplot(       
     aes(fct_infreq(species) |> fct_rev())
@@ -747,7 +723,6 @@ penguins |>
 ```{r}
 #| fig-align: center
 #| out-width: "50%"
-#| fig-dpi: 300
 penguins |> 
   ggplot(
   aes(fct_infreq(species),
@@ -783,7 +758,6 @@ penguins |>
 #| eval: false
 #| fig-align: center
 #| out-width: "50%"
-#| fig-dpi: 300
 penguins |> 
   ggplot(
     aes(fct_infreq(species),
@@ -814,7 +788,6 @@ penguins |>
 ```{r}
 #| fig-align: center
 #| out-width: "50%"
-#| fig-dpi: 300
 penguins |> 
   ggplot(
     aes(fct_infreq(species),
@@ -852,7 +825,6 @@ penguins |>
 #| echo: true
 #| fig-align: center
 #| out-width: "70%"
-#| fig-dpi: 300
 #| output-location: column-fragment
 penguins |> 
   ggplot( 
@@ -876,7 +848,6 @@ penguins |>
 #| echo: true
 #| output-location: column
 #| out-width: 70%
-#| fig-dpi: 300
 penguins |> 
   ggplot(
     aes(x = body_mass_g)) +
@@ -891,7 +862,6 @@ penguins |>
 #| echo: true
 #| output-location: column
 #| out-width: 70%
-#| fig-dpi: 300
 penguins |> 
   ggplot(
     aes(body_mass_g)) +
@@ -912,7 +882,6 @@ Faça um gráfico de barras das espécies (`species`) de pinguins, onde você at
 #| output-location: slide
 #| fig-align: center
 #| out-width: 70%
-#| fig-dpi: 300
 penguins |> 
   ggplot(
     aes(y = species)) +
@@ -926,15 +895,60 @@ Faça um histograma da variável quilate (`carat`) no conjunto de dados de `diam
 ## Resposta
 
 ::: panel-tabset
-## `bin` padrão (30)
+## `bin` padrão: 30
 
 ```{r}
 #| echo: true
 #| fig-align: center
 #| out-width: 45%
-#| fig-dpi: 300
 diamonds |> 
   ggplot(
     aes(carat)) +
   geom_histogram()
 ```
+
+## `bin`: 100
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| out-width: 45%
+diamonds |> 
+  ggplot(
+    aes(carat)) +
+  geom_histogram(
+    bins =  100
+  )
+```
+:::
+
+
+## Visualizando relacionamentos
+
+-   2 variáveis
+    -   categórica x numérica
+    -   categórica x categórica
+    -   numérica x numérica
+-   3 ou mais variáveis
+
+## Variáveis numéricas e categóricas
+
+-   Diagrama de caixa: `geom_boxplot()`
+    -   Atalho visual para medidas de posição (percentis) que descrevem uma distribuição
+    -   Útil para identificar possíveis outliers
+    
+## `geom_boxplot()`
+    
+```{r}
+#| echo: true
+#| fig-align: center
+#| out-width: 45%
+penguins |>
+  filter(species == "Chinstrap") |> 
+  ggplot(
+    aes(species, body_mass_g)
+  ) +
+  geom_boxplot()
+```
+    
+    
