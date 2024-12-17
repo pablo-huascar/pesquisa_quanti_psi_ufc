@@ -120,7 +120,6 @@ library(rstatix)
 
 ```{r}
 #| echo: true
-
 # Carregar os dados
 data("mtcars") 
 
@@ -244,13 +243,17 @@ shapiro_test(data, ..., vars = NULL)
 
 ## Normalidade: `rstatix::levene_test()`
 
+
 ```{r}
-dados_teste_t |> 
+#| echo: true
+resultado_shapiro <- dados_teste_t |> 
   group_by(vs) |> 
   shapiro_test(mpg)
+
+resultado_shapiro
 ```
 
-### Passo-a-passo do código
+## Passo-a-passo do código
 
 ```{r}
 #| echo: true
@@ -261,7 +264,6 @@ dados_teste_t |>
   # Indicar a VD a ser analisada
   shapiro_test(mpg)
 ```
-:::
 
 ## Homogeneidade de Variâncias: teste de Levene
 
@@ -291,12 +293,12 @@ levene_test(data, formula, center = median)
 :::
 ::::
 
-## Homogeneidade de Variâncias: `car::leveneTest()`
+## Homogeneidade de Variâncias: `rstatix::levene_test()`
 
 ```{r}
 #| echo: true
 resultado_levene <- dados_teste_t |> 
-  levene_test(mpg ~ vs, center = "mean")
+  levene_test(formula =  mpg ~ vs, center = "mean")
 
 resultado_levene
 ```
@@ -307,7 +309,7 @@ resultado_levene
     -   Hipótese nula: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos $$H_0: \mu_{\text{V}} = \mu_{\text{reto}}$$
     -   Hipótese alternativa: a média do consumo de combustível dos carros com motores em V é diferente da média dos carros com motores retos $$H_a: \mu_{\text{V}} \ne \mu_{\text{reto}}$$
 
-## Teste t para amostras independentes: `infer::t_test()`
+## Teste t para amostras independentes: `rstatix::t_test()`
 
 :::: panel-tabset
 ### Uso
@@ -316,49 +318,36 @@ resultado_levene
 #| echo: true
 #| eval: false
 t_test(
-  x,
+  data,
   formula,
-  response = NULL,
-  explanatory = NULL,
-  order = NULL,
-  alternative = "two-sided",
-  var.equal = F,
-  mu = 0,
-  conf_int = TRUE,
-  conf_level = 0.95,
+  ref.group = NULL,
+  var.equal = FALSE,
+  alternative = "two.sided",
+  conf.level = 0.95,
+  detailed = FALSE
 )
 ```
 
 ### Argumentos
 
 ::: {style="font-size: 14pt;"}
--   **x**: um banco de dados que pode ser forçado em um tibble.
-
--   **formula**: uma fórmula com a variável de resposta à esquerda e a explicativa à direita. Como alternativa, uma resposta e um argumento explicativo podem ser fornecidos.
-
--   **response**: o nome da variável em x que servirá como a resposta. Esta é uma alternativa ao uso do argumento formula.
-
--   **explanatory**: o nome da variável em x que servirá como a variável explicativa. Esta é uma alternativa ao uso do argumento formula.
-
--   **order**: um vetor de caracteres especificando a ordem na qual os níveis da variável explicativa devem ser ordenados para subtração, onde order = c("first", "second") significa ("first" - "second").
-
--   **alternative**: sequência de caracteres que fornece a direção da hipótese alternativa. As opções são "two-sided" (padrão), "greater" ou "less"
-
+-   **data**: um banco de dados contendo as variáveis na fórmula.
+-   **formula**: uma fórmula com a variável de resposta à esquerda e a explicativa à direita. 
+-   **ref.group**: uma sequência de caracteres especificando o grupo de referência.
 -   **var.equal**: uma variável lógica indicando se deve tratar as duas variâncias como sendo iguais. Se TRUE, então a variância combinada é usada para estimar a variância, caso contrário, a aproximação de Welch (ou Satterthwaite) para os graus de liberdade é usada.
-
--   **conf_int**: um valor lógico para incluir ou não o intervalo de confiança. TRUE por padrão.
-
+-   **alternative**: sequência de caracteres que fornece a direção da hipótese alternativa. As opções são "two-sided" (padrão), "greater" ou "less". Você pode especificar a letra inicial.
 -   **conf_level**: um valor numérico entre 0 e 1. O valor padrão é 0.95.
+-   **detailed**: valor lógico. O padrão é FALSE. Se TRUE, um resultado detalhado é mostrado.
 :::
 ::::
 
-## Teste t para amostras independentes: `infer::t_test()`
+## Teste t para amostras independentes: `rstatix::t_test()`
 
 ```{r}
 #| echo: true
 resultado_teste_t <- dados_teste_t |> 
   t_test(
-    formula = mpg ~ vs,ref.group = "reto",
+    formula = mpg ~ vs, ref.group = "reto",
     var.equal = T, alternative = "two.sided", 
     detailed = T
   )
@@ -366,7 +355,7 @@ resultado_teste_t <- dados_teste_t |>
 resultado_teste_t
 ```
 
-## Tamanho de efeito: `effectsize::cohens_d()`
+## Tamanho de efeito: `rstatix::cohens_d()`
 
 :::: panel-tabset
 ### Uso
@@ -375,38 +364,34 @@ resultado_teste_t
 #| echo: true
 #| eval: false
 cohens_d(
-  x,
-  y = NULL,
-  data = NULL,
-  pooled_sd = TRUE,
-  ci = 0.95,
-  alternative = "two.sided"
+  data,
+  formula,
+  ref.group = NULL,
+  var.equal = FALSE,
+  ci = FALSE,
 )
 ```
 
 ### Argumentos
 
 ::: {style="font-size: 16pt;"}
--   **x, y**: um vetor numérico ou o nome de vetor nos dados. Quaisquer valores ausentes (NAs) são descartados do vetor resultante. x também pode ser uma fórmula (consulte stats::t.test()), caso em que y é ignorado
-
--   **data**: um banco de dados opcional contendo as variáveis.
-
--   **pooled_sd**: se TRUE (padrão), um sd_pooled() é usado (assumindo variância igual). Caso contrário, o DP médio de ambos os grupos é usado
-
--   **ci**: Nível de Intervalo de Confiança (CI)
-
--   **alternative**: uma sequência de caracteres especificando a hipótese alternativa; Controla o tipo de CI retornado: "two.sided" (padrão, CI bilateral), "greater" ou "less" (CI unilateral). Correspondência parcial é permitida (por exemplo, "g", "l", "two"...)
+-   **data**: um banco de dados contendo as variáveis na fórmula.
+-   **formula**: uma fórmula com a variável de resposta à esquerda e a explicativa à direita.
+-   **ref.group**: uma sequência de caracteres especificando o grupo de referência.
+-   **var.equal**: uma variável lógica indicando se deve tratar as duas variâncias como sendo iguais. Se TRUE, então a variância combinada é usada para estimar a variância, caso contrário, a aproximação de Welch (ou Satterthwaite) para os graus de liberdade é usada.
+-   **ci**: se TRUE, retorna os intervalos de confiança por bootstrap.
 :::
 ::::
 
-## Tamanho de efeito: `effectsize::cohens_d()`
+## Tamanho de efeito: `rstatix::cohens_d()`
 
 ```{r}
 #| echo: true
-resultado_cohens_d <- cohens_d(
-  mpg ~ vs, pooled_sd = T, 
-  alternative = "two.sided",
-  data = dados_teste_t
+set.seed(123)
+resultado_cohens_d <- dados_teste_t |> 
+  cohens_d(
+  mpg ~ vs, ref.group = "reto",
+  var.equal = T, ci = T
 )
 
 resultado_cohens_d
@@ -425,31 +410,11 @@ Um teste t para amostras independentes foi realizado para comparar o consumo de 
 ## Resultados {.smaller}
 
 ```{r}
-s_teste_v <- dados_teste_t |> 
-  filter(vs == "V") |> 
-  select(mpg) |> 
-  pull() |> 
-  shapiro.test() |> 
-  tidy()
-
-w_s_teste_v <- s_teste_v[[1, "statistic"]]  
-w_s_teste_v <- round(w_s_teste_v, 2)
-p_s_teste_v <- s_teste_v[[1, "p.value"]]
-p_s_teste_v <- round(p_s_teste_v, 2)
-```
-
-```{r}
-s_teste_r <- dados_teste_t |> 
-  filter(vs == "reto") |> 
-  select(mpg) |> 
-  pull() |> 
-  shapiro.test() |> 
-  tidy()
-
-w_s_teste_r <- s_teste_r[[1, "statistic"]]  
-w_s_teste_r <- round(w_s_teste_r, 2)
-p_s_teste_r <- s_teste_r[[1, "p.value"]]
-p_s_teste_r <- round(p_s_teste_r, 2)
+#| label: resultados-shapiro
+w_s_teste_v <- resultado_shapiro[[1, "statistic"]] |> round(2)
+p_s_teste_v <- resultado_shapiro[[1, "p"]] |> round(2)
+w_s_teste_r <- resultado_shapiro[[2, "statistic"]]  |> round(2)
+p_s_teste_r <- resultado_shapiro[[2, "p"]] |> round(2)
 ```
 
 ```{r}
@@ -484,23 +449,17 @@ diferenca <- round(diferenca, 2)
 
 ```{r}
 #| label: resultados-teste-t
-t_df <- resultado_teste_t[[1, "t_df"]]
-statistic <- resultado_teste_t[[1, "statistic"]]
-statistic <- round(statistic, 2)
-lower_ci <- resultado_teste_t[[1, "lower_ci"]]
-lower_ci <- round(lower_ci, 2)
-upper_ci <- resultado_teste_t[[1, "upper_ci"]]
-upper_ci <- round(upper_ci, 2)
+t_df <- resultado_teste_t[[1, "df"]]
+statistic <- resultado_teste_t[[1, "statistic"]] |> round(2)
+lower_ci <- resultado_teste_t[[1, "conf.low"]] |> round(2)
+upper_ci <- resultado_teste_t[[1, "conf.high"]] |> round(2)
 ```
 
 ```{r}
 #| label: resultados-cohens-d
-d_valor <- resultado_cohens_d$Cohens_d
-d_valor <- round(d_valor, 2)
-ci_low <- resultado_cohens_d$CI_low
-ci_low <- round(ci_low, 2)
-ci_high <- resultado_cohens_d$CI_high
-ci_high <- round(ci_high, 2)
+d_valor <- resultado_cohens_d[[1, "effsize"]] |> round(2)
+ci_low <- resultado_cohens_d[[1, "conf.low"]] |> round(2)
+ci_high <- resultado_cohens_d[[1, "conf.high"]] |> round(2)
 ```
 
 O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo com motores em V (*W* = `r w_s_teste_v`, *p* = `r p_s_teste_v`), nem para o grupo com motores retos (*W* = `r w_s_teste_r`, *p* = `r p_s_teste_r`). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (*F*(`r df_levene`, `r df_res_levene`) = `r levene_f`, *p* = `r levene_p`). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, *t*(`r t_df`) = `r statistic`, *p* \< .001. Carros com motores retos (n = `r n_reto`, M = `r m_reto`, DP = `r sd_reto`) apresentaram um desempenho melhor do que aqueles com motores em V (n = `r n_V`, M = `r m_V`, DP = `r sd_V`). A diferença média foi de `r diferenca` milhas por galão (IC 95% \[`r lower_ci`, `r upper_ci`\]). O tamanho de efeito foi grande (d = `r d_valor`, IC 95% \[`r ci_low`, `r ci_high`\] ). Esses resultados sugerem que o formato do motor influencia o consumo de combustível.
