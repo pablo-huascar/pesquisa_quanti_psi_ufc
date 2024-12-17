@@ -23,12 +23,14 @@ source("./_common.R")
 
 ```{r}
 #| label: setup
+library(conflicted)
 library(tidyverse)
+conflicts_prefer(dplyr::lag)
 library(gt)
-library(infer)
-library(broom)
-library(car)
-library(effectsize)
+library(rstatix)
+#library(broom)
+#library(car)
+#library(effectsize)
 ```
 
 # Bancos de dados utilizados
@@ -60,7 +62,6 @@ Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo
 #| label: tbl-mtcars
 #| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `mtcars`
 #| tbl-cap-location: bottom 
-
 set.seed(123)
 
 mtcars |> 
@@ -92,9 +93,9 @@ Carregue os pacotes abaixo:
 #| echo: true
 #| eval: false
 library(tidyverse)
-library(broom)
-library(car)
-library(infer)
+#library(broom)
+#library(car)
+library(rstatix)
 ```
 
 # Teste t para amostras independentes {style="font-size: 22pt;"}
@@ -224,7 +225,7 @@ dados_teste_t |>
 -   Avaliar a normalidade da VD (`mgp`) para cada grupo da VI (`vs`):
     -   "V" e "reto"
 
-## Normalidade: `shapiro.test()`
+## Normalidade: `rstatix::shapiro_test()`
 
 ::: panel-tabset
 ### Uso
@@ -232,39 +233,21 @@ dados_teste_t |>
 ```{r}
 #| echo: true
 #| eval: false
-shapiro.test(x)
+shapiro_test(data, ..., vars = NULL)
 ```
 
 ### Argumentos
 
--   **x**: um vetor numérico de valores de dados. Valores ausentes são permitidos, mas o número de valores não ausentes deve estar entre 3 e 5000.
+-   **data**: um banco de dados. Colunas são variáveis.
+-   **vars**: vetor de caracteres opcional contendo nomes de variáveis. Ignorado quando dot vars são especificados.
 :::
 
-## Normalidade: `shapiro.test()`
-
-::: panel-tabset
-### V
+## Normalidade: `rstatix::levene_test()`
 
 ```{r}
-#| echo: true
 dados_teste_t |> 
-  filter(vs == "V") |> 
-  select(mpg) |> 
-  pull() |> 
-  shapiro.test() |> 
-  tidy()
-```
-
-### reto
-
-```{r}
-#| echo: true
-dados_teste_t |> 
-  filter(vs == "reto") |> 
-  select(mpg) |> 
-  pull() |> 
-  shapiro.test() |> 
-  tidy()
+  group_by(vs) |> 
+  shapiro_test(mpg)
 ```
 
 ### Passo-a-passo do código
@@ -272,18 +255,11 @@ dados_teste_t |>
 ```{r}
 #| echo: true
 #| eval: false
-dados_teste_t |>
-  # Filtar os dados do grupo 
-  filter(vs == "straight") |> 
-  # Selecionar a variável dependente
-  select(mpg) |> 
-  # Extrair os valores da coluna
-  pull() |> 
-  # Realizar o teste
-  shapiro.test() |> 
-  # Transformar o objeto em uma tibble "tidy" 
-  # para melhorar a visualização do resultado
-  tidy()
+dados_teste_t |> 
+  # Agrupar pela VI
+  group_by(vs) |> 
+  # Indicar a VD a ser analisada
+  shapiro_test(mpg)
 ```
 :::
 
@@ -295,7 +271,7 @@ dados_teste_t |>
 -   Avaliar a homogeneidade de variâncias da VD (`mpg`) entre os grupos da VI (`vs`):
     -   "V" e "reto"
 
-## Homogeneidade de Variâncias: `car::leveneTest()`
+## Homogeneidade de Variâncias: `rstatix::levene_test()`
 
 :::: panel-tabset
 ### Uso
@@ -303,19 +279,15 @@ dados_teste_t |>
 ```{r}
 #| echo: true
 #| eval: false
-leveneTest(y, group, center = "median", data)
+levene_test(data, formula, center = median)
 ```
 
 ### Argumentos
 
 ::: {style="font-size: 16pt;"}
--   **y**: variável de resposta para o método padrão, ou um objeto lm ou fórmula. Se y for um objeto de modelo linear ou uma fórmula, as variáveis no lado direito do modelo devem ser todas fatores e devem ser completamente cruzadas
-
--   **group**: fator que define grupos
-
--   **center**: o nome de uma função para calcular o centro de cada grupo; "mean" fornece o teste de Levene original; o padrão, "median", fornece um teste mais robusto.
-
--   **data**: um banco de dados para avaliar a fórmula
+-   **data**: um banco de dados para avaliar a fórmula ou um modelo.
+-   **formula**: uma fórmula.
+-   **center**: o nome de uma função para calcular o centro de cada grupo; "mean" (média) fornece o teste de Levene original; o padrão, "median" (mediana), fornece um teste mais robusto.
 :::
 ::::
 
@@ -323,9 +295,8 @@ leveneTest(y, group, center = "median", data)
 
 ```{r}
 #| echo: true
-resultado_levene <- leveneTest(mpg ~ vs, center = "mean",
-                               dados_teste_t) |> 
-  tidy()
+resultado_levene <- dados_teste_t |> 
+  levene_test(mpg ~ vs, center = "mean")
 
 resultado_levene
 ```
@@ -387,9 +358,9 @@ t_test(
 #| echo: true
 resultado_teste_t <- dados_teste_t |> 
   t_test(
-    response = mpg, explanatory = vs,
-    order = c("reto", "V"), var.equal = T,
-    alternative = "two.sided"
+    formula = mpg ~ vs,ref.group = "reto",
+    var.equal = T, alternative = "two.sided", 
+    detailed = T
   )
 
 resultado_teste_t
@@ -483,12 +454,10 @@ p_s_teste_r <- round(p_s_teste_r, 2)
 
 ```{r}
 #| label: resultados-levene
-df_levene <- resultado_levene$df
-df_res_levene <- resultado_levene$df.residual
-levene_f <- resultado_levene$statistic
-levene_f <- round(levene_f, 2)
-levene_p <- resultado_levene$p.value
-levene_p <- round(levene_p, 2)
+df_levene <- resultado_levene$df1
+df_res_levene <- resultado_levene$df2
+levene_f <- resultado_levene$statistic |> round(2)
+levene_p <- resultado_levene$p |> round(2)
 ```
 
 ```{r}
