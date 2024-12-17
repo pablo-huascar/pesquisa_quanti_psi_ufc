@@ -395,6 +395,7 @@ resultado_cohens_d <- dados_teste_t |>
 )
 
 resultado_cohens_d
+##
 ```
 
 # Redação do método e dos resultados
