@@ -632,10 +632,11 @@ penguins |>
 # Distribuições
 
 ## Visualizando distribuições
+
 -   A visualização vai depender do tipo de variável
     -   Categórica
     -   Numérica
-    
+
 # Variável categórica
 
 ## Gráfico de Barras: `geom_bar()`
@@ -836,7 +837,6 @@ penguins |>
   )
 ```
 
-
 ## Histograma -`geom_histogram()`: `binwidth()` {.smaller}
 
 -   Define a largura dos intervalos
@@ -922,7 +922,6 @@ diamonds |>
 ```
 :::
 
-
 # Relacionamentos entre variáveis
 
 ## Visualizando relacionamentos
@@ -938,9 +937,9 @@ diamonds |>
 -   Diagrama de caixa: `geom_boxplot()`
     -   Atalho visual para medidas de posição (percentis) que descrevem uma distribuição
     -   Útil para identificar possíveis outliers
-    
+
 ## `geom_boxplot()`
-    
+
 ```{r}
 #| echo: true
 #| fig-align: center
@@ -985,14 +984,14 @@ penguins |>
   ggplot(
     aes(island, fill = species)) +
   geom_bar()
-```    
+```
 
 ## Gráfico de frequência relativa (relative frequency plot)
 
 -   `position = "fill"`
 -   Útil para comparar a distribuição de espécies nas ilhas
     -   Não é afetado pelo número desigual de pinguins nas ilhas
-    
+
 ```{r}
 #| echo: true
 #| output-location: slide

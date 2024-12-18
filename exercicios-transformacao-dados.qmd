@@ -10,7 +10,7 @@ editor_options:
 
 ```{r}
 #| include: false
-source("C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R")
+source("./_common.R")
 ```
 
 ## Introdução

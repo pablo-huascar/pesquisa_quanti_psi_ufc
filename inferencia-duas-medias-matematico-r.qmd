@@ -28,9 +28,6 @@ library(tidyverse)
 conflicts_prefer(dplyr::lag)
 library(gt)
 library(rstatix)
-#library(broom)
-#library(car)
-#library(effectsize)
 ```
 
 # Bancos de dados utilizados
@@ -93,8 +90,6 @@ Carregue os pacotes abaixo:
 #| echo: true
 #| eval: false
 library(tidyverse)
-#library(broom)
-#library(car)
 library(rstatix)
 ```
 
@@ -232,7 +227,11 @@ dados_teste_t |>
 ```{r}
 #| echo: true
 #| eval: false
-shapiro_test(data, ..., vars = NULL)
+shapiro_test(
+  data, 
+  ..., 
+  vars = NULL
+)
 ```
 
 ### Argumentos
@@ -242,7 +241,6 @@ shapiro_test(data, ..., vars = NULL)
 :::
 
 ## Normalidade: `rstatix::levene_test()`
-
 
 ```{r}
 #| echo: true
@@ -281,7 +279,10 @@ dados_teste_t |>
 ```{r}
 #| echo: true
 #| eval: false
-levene_test(data, formula, center = median)
+levene_test(
+  data, formula, 
+  center = median
+)
 ```
 
 ### Argumentos
@@ -332,7 +333,7 @@ t_test(
 
 ::: {style="font-size: 14pt;"}
 -   **data**: um banco de dados contendo as variáveis na fórmula.
--   **formula**: uma fórmula com a variável de resposta à esquerda e a explicativa à direita. 
+-   **formula**: uma fórmula com a variável de resposta à esquerda e a explicativa à direita.
 -   **ref.group**: uma sequência de caracteres especificando o grupo de referência.
 -   **var.equal**: uma variável lógica indicando se deve tratar as duas variâncias como sendo iguais. Se TRUE, então a variância combinada é usada para estimar a variância, caso contrário, a aproximação de Welch (ou Satterthwaite) para os graus de liberdade é usada.
 -   **alternative**: sequência de caracteres que fornece a direção da hipótese alternativa. As opções são "two-sided" (padrão), "greater" ou "less". Você pode especificar a letra inicial.
