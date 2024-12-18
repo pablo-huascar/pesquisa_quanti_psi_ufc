@@ -29,7 +29,6 @@ library(tidyverse)
 conflicts_prefer(dplyr::lag)
 library(gt)
 library(rstatix)
-#
 ```
 
 # Bancos de dados utilizados
