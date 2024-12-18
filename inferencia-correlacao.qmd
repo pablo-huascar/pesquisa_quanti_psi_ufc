@@ -29,6 +29,7 @@ library(patchwork)
 library(corrr)
 library(ggrepel)
 library(broom)
+library(rstatix)
 ```
 
 # Bancos de dados utilizados
@@ -60,7 +61,6 @@ Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo
 #| label: tbl-mtcars
 #| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `mtcars`
 #| tbl-cap-location: bottom 
-
 set.seed(123)
 
 mtcars |> 
@@ -93,6 +93,7 @@ Carregue os pacotes abaixo:
 #| eval: false
 library(tidyverse)
 library(broom)
+library(rstatix)
 ```
 
 # Correlação de pearson {style="font-size: 22pt;"}
@@ -115,7 +116,6 @@ library(broom)
 
 ```{r}
 #| echo: true
-
 # Carregar os dados
 data("mtcars") 
 
@@ -160,9 +160,11 @@ descritivos
 ```{r}
 #| echo: true
 descritivos |> 
-  pivot_longer(cols = m_mpg:sd_wt,
-               names_to = c(".value", "Variável"),
-               names_sep = "_") |> 
+  pivot_longer(
+    cols = m_mpg:sd_wt,
+    names_to = c(".value", "Variável"),
+    names_sep = "_"
+  ) |> 
   relocate(n, .after = sd)
 ```
 
@@ -336,7 +338,7 @@ dados_correlacao |>
     -   $H_a$: a variável de interesse não é oriunda de uma população com distribuição normal
 -   Avaliar a normalidade da VD (`mgp`) e da VI (`wt`):
 
-## Normalidade: `shapiro.test()` {.smaller}
+## Normalidade: `rstatix::shapiro_test()`
 
 ::: panel-tabset
 ### Uso
@@ -344,42 +346,27 @@ dados_correlacao |>
 ```{r}
 #| echo: true
 #| eval: false
-shapiro.test(x)
+shapiro_test(
+  data, 
+  ..., 
+  vars = NULL
+)
 ```
 
 ### Argumentos
 
--   **x**: um vetor numérico de valores de dados. Valores ausentes são permitidos, mas o número de valores não ausentes deve estar entre 3 e 5000.
+-   **data**: um banco de dados. Colunas são variáveis.
+-   **vars**: vetor de caracteres opcional contendo nomes de variáveis. Ignorado quando dot vars são especificados.
 :::
 
 ## Normalidade: `shapiro.test()`
 
-::: panel-tabset
-### Resultado
-
 ```{r}
-#| echo: true
-norm_mpg <- shapiro.test(dados_correlacao$mpg)
-norm_mpg
-norm_wt <- shapiro.test(dados_correlacao$wt)
-norm_wt
+resultado_shapiro <- dados_correlacao |> 
+  shapiro_test(mpg, wt)
+
+resultado_shapiro
 ```
-
-### Resultado `tidy()`
-
-```{r}
-#| echo: true
-norm_mpg <- shapiro.test(dados_correlacao$mpg) |> 
-  tidy()
-
-norm_mpg
-
-norm_wt <- shapiro.test(dados_correlacao$wt) |> 
-  tidy()
-
-norm_wt
-```
-:::
 
 ## Relação linear {.smaller}
 
@@ -434,39 +421,17 @@ cor.test(
 -   **conf.level**: nível de confiança para o intervalo de confiança retornado. Atualmente usado somente para o coeficiente de correlação de momento do produto de Pearson se houver pelo menos 4 pares completos de observações.
 :::
 
-## Correlação de pearson: `cor.test()`
-
-::: panel-tabset
-### Resultado
+## Correlação de pearson: `rstatix::cor_test()`
 
 ```{r}
-#| echo: true
-cor.test(
-  dados_correlacao$mpg, 
-  dados_correlacao$wt, 
-  alternative = "less"
-) 
-```
-
-### Resultado `tidy()`
-
-```{r}
-#| echo: true
-resultado_correlacao <- cor.test(
-  dados_correlacao$mpg, 
-  dados_correlacao$wt, 
-  alternative = "less"
-) |> 
-  tidy() |> 
-  select(where(is.double)) |> 
-  mutate(
-    across(where(is.double),
-           \(x) round(x, 2))
+resultado_correlacao <- dados_correlacao |> 
+  select(mpg, wt) |> 
+  cor_test(
+    alternative = "two.sided", method = "pearson" 
   )
 
 resultado_correlacao
 ```
-:::
 
 ## Coeficiente de determinação (R²)
 
@@ -474,7 +439,7 @@ resultado_correlacao
 #| echo: true
 resultado_correlacao |> 
   mutate(
-    r_sq = estimate^2 |> round(2)
+    r_sq = cor^2 
   )
 ```
 
@@ -491,10 +456,10 @@ Um teste de correlação de Pearson foi realizado para avaliar a associação en
 ## Resultados {.smaller}
 
 ```{r}
-w_mpg <- norm_mpg[[1, "statistic"]] |> round(2)
-p_w_mpg <- norm_mpg[[1, "p.value"]] |> round(3)
-w_wt <- norm_wt[[1, "statistic"]] |> round(2)
-p_w_wt <- norm_wt[[1, "p.value"]] |> round(3)
+w_mpg <- resultado_shapiro[[1, "statistic"]] |> round(2)
+p_w_mpg <- resultado_shapiro[[1, "p"]] |> round(2)
+w_wt <- resultado_shapiro[[2, "statistic"]] |> round(2)
+p_w_wt <- resultado_shapiro[[2, "p"]] |> round(2)
 df_corr <- nrow(dados_correlacao) - 2
 r_corr <- resultado_correlacao[[1, "estimate"]]
 r_sq <- r_corr^2 |> round(2)

@@ -16,7 +16,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-
 ```{r}
 #| include: false
 source("./_common.R")
@@ -241,7 +240,7 @@ shapiro_test(
 -   **vars**: vetor de caracteres opcional contendo nomes de variáveis. Ignorado quando dot vars são especificados.
 :::
 
-## Normalidade: `rstatix::levene_test()`
+## Normalidade: `rstatix::shapiro_test()`
 
 ```{r}
 #| echo: true
