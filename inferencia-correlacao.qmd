@@ -26,13 +26,16 @@ source("./_common.R")
 library(tidyverse)
 library(gt)
 library(patchwork)
-library(corrr)
 library(ggrepel)
-library(broom)
 library(rstatix)
 ```
 
 # Bancos de dados utilizados
+
+```{r}
+library(tidyverse)
+library(rstatix)
+```
 
 ##  {background-image="img/mtcars.png" background-size="contain"}
 
@@ -66,7 +69,7 @@ set.seed(123)
 mtcars |> 
   rownames_to_column(var = "Modelo") |> 
   as_tibble() |> 
-  select(Modelo, wt, mpg, cyl) |> 
+  select(Modelo, wt, mpg, cyl, drat) |> 
   slice_sample(n = 10) |> 
   gt() |> 
   fmt_number(
@@ -92,7 +95,6 @@ Carregue os pacotes abaixo:
 #| echo: true
 #| eval: false
 library(tidyverse)
-library(broom)
 library(rstatix)
 ```
 
@@ -100,7 +102,9 @@ library(rstatix)
 
 ## Exemplo {.smaller}
 
--   Há uma associação entre o consumo de combustível (`mpg`) e o peso dos carros (`wt`)?
+-   Há uma associação entre o consumo de combustível (`mpg`) com o peso dos carros (`wt`) e com a relação do eixo traseiro[^1] (`drat`)?
+
+[^1]: Refere-se à relação do eixo traseiro ("Rear axle ratio"). Essa métrica é o quociente entre o número de rotações do eixo de transmissão para cada rotação completa do eixo traseiro do veículo
 
 ## Manipulação dos dados {.smaller}
 
@@ -125,7 +129,7 @@ dados_correlacao <- mtcars |>
   # Transformar em tibble
   as_tibble() |>
   # Selecionar as variáveis
-  select(modelo, mpg, wt) 
+  select(modelo, mpg, wt, drat) 
 ```
 
 ### Resultado
@@ -149,7 +153,9 @@ descritivos <- dados_correlacao |>
     m_mpg = mean(mpg), 
     sd_mpg = sd(mpg),
     m_wt = mean(wt),
-    sd_wt = sd(wt)
+    sd_wt = sd(wt),
+    m_drat = mean(drat),
+    sd_drat = sd(drat)
   )  
 
 descritivos
@@ -161,14 +167,14 @@ descritivos
 #| echo: true
 descritivos |> 
   pivot_longer(
-    cols = m_mpg:sd_wt,
+    cols = m_mpg:sd_drat,
     names_to = c(".value", "Variável"),
     names_sep = "_"
   ) |> 
   relocate(n, .after = sd)
 ```
 
-### Gráfico
+### Gráfico: `wt` x `mpg`
 
 ```{r}
 #| echo: true
@@ -176,6 +182,24 @@ descritivos |>
 dados_correlacao |> 
   ggplot(
     aes(wt, mpg)
+  ) +
+  geom_point(
+    color = "#569BBD"
+  ) +
+  geom_smooth(
+    method = "lm", se = F,
+    color = "#F05133"
+  )
+```
+
+### Gráfico: `drat` x `mpg`
+
+```{r}
+#| echo: true
+#| out-width: 50%
+dados_correlacao |> 
+  ggplot(
+    aes(drat, mpg)
   ) +
   geom_point(
     color = "#569BBD"
@@ -212,13 +236,17 @@ dados_correlacao |>
 
 dados_correlacao |> 
   filter(is.na(wt))
+
+dados_correlacao |> 
+  filter(is.na(drat))
 ```
 
 ## Ausência de outliers: gráfico de caixa {.smaller}
 
 ```{r}
 #| echo: true
-#| out-width: 80%
+#| out-width: 70%
+#| output-location: slide
 box_mpg <- dados_correlacao |> 
   ggplot(
     aes(mpg)
@@ -233,13 +261,19 @@ box_wt <- dados_correlacao |>
   geom_boxplot() +
   coord_flip()
 
-box_mpg + box_wt
+box_drat <- dados_correlacao |> 
+  ggplot(
+    aes(drat)
+    ) +
+  geom_boxplot() +
+  coord_flip()
+
+box_mpg + box_wt + box_drat
 ```
 
 ## Ausência de outliers: gráfico de caixa
 
 ```{r}
-#| out-width: 70%
 iqr_mpg <- IQR(dados_correlacao$mpg) 
 q3_mpg <- quantile(dados_correlacao$mpg)[[4]]
 out_mpg <- (q3_mpg + 1.5*iqr_mpg)
@@ -283,7 +317,7 @@ box_wt_out <- dados_correlacao |>
   geom_text_repel(
     data = out_wt,
     aes(x = "", y = wt, label = modelo),
-    hjust = -0.3, color = "red",
+    hjust = -0.7, color = "red",
     size = 2
   ) +
   labs(
@@ -292,8 +326,21 @@ box_wt_out <- dados_correlacao |>
 ```
 
 ```{r}
-#| out-width: 70%
-box_mpg_out + box_wt_out
+box_drat_out <- dados_correlacao |> 
+  ggplot(
+    aes(x = "", y = drat)
+  ) +
+  geom_boxplot(
+    color = "#569BBD"
+  ) +
+  labs(
+    x = NULL
+  )
+```
+
+```{r}
+#| out-width: 60%
+box_mpg_out + box_wt_out + box_drat_out
 ```
 
 ## Ausência de outliers: escores z
@@ -306,7 +353,8 @@ box_mpg_out + box_wt_out
 dados_correlacao <- dados_correlacao |> 
   mutate(
     z_mpg = scale(mpg) |> as.double(),
-    z_wt = scale(wt) |> as.double()
+    z_wt = scale(wt) |> as.double(),
+    z_drat = scale(drat) |> as.double()
   )
 
 dados_correlacao
@@ -329,6 +377,15 @@ dados_correlacao |>
   filter(z_wt > 2 | z_wt < -2) |> 
   arrange(desc(wt))
 ```
+
+### `drat`
+
+```{r}
+#| echo: true
+dados_correlacao |> 
+  filter(z_drat > 2 | z_drat < -2) |> 
+  arrange(desc(drat))
+```
 :::
 
 ## Normalidade: teste de Shapiro-Wilk
@@ -336,7 +393,7 @@ dados_correlacao |>
 -   Hipóteses:
     -   $H_0$: a variável de interesse é oriunda de uma população com distribuição normal
     -   $H_a$: a variável de interesse não é oriunda de uma população com distribuição normal
--   Avaliar a normalidade da VD (`mgp`) e da VI (`wt`):
+-   Avaliar a normalidade da VD (`mgp`) e das VIs (`wt` e `drat`):
 
 ## Normalidade: `rstatix::shapiro_test()`
 
@@ -359,20 +416,24 @@ shapiro_test(
 -   **vars**: vetor de caracteres opcional contendo nomes de variáveis. Ignorado quando dot vars são especificados.
 :::
 
-## Normalidade: `shapiro.test()`
+## Normalidade: `rstatix::shapiro_test()`
 
 ```{r}
+#| echo: true
 resultado_shapiro <- dados_correlacao |> 
-  shapiro_test(mpg, wt)
+  shapiro_test(mpg, wt, drat)
 
 resultado_shapiro
 ```
 
 ## Relação linear {.smaller}
 
+::: panel-tabset
+### `wt` X `mpg`
+
 ```{r}
 #| echo: true
-#| out-width: 60%
+#| out-width: 50%
 dados_correlacao |> 
   ggplot(
     aes(wt, mpg)
@@ -386,6 +447,25 @@ dados_correlacao |>
   )
 ```
 
+### `drat` X `mpg`
+
+```{r}
+#| echo: true
+#| out-width: 50%
+dados_correlacao |> 
+  ggplot(
+    aes(drat, mpg)
+  ) +
+  geom_point(
+    color = "#569BBD"
+  ) +
+  geom_smooth(
+    method = "lm", se = F,
+    color = "#F05133"
+  )
+```
+:::
+
 ## Correlação de pearson {.smaller}
 
 -   Hipóteses (correlação negativa):
@@ -396,7 +476,7 @@ Onde:
 
 $\rho$ representa o coeficiente de correlação de Pearson entre as variáveis `mpg` e `wt`
 
-## Correlação de pearson: `cor.test()` {.smaller}
+## Correlação de pearson (duas variáveis): `rstatix::cor_test()` {.smaller}
 
 ::: panel-tabset
 ### Uso
@@ -404,42 +484,46 @@ $\rho$ representa o coeficiente de correlação de Pearson entre as variáveis `
 ```{r}
 #| echo: true
 #| eval: false
-
-cor.test(
-  x, y,
-  alternative = c("two.sided", "less", "greater"),
-  method = c("pearson", "kendall", "spearman"),
-  conf.level = 0.95
+cor_test(
+  data,
+  alternative = "two.sided",
+  method = "pearson",
+  conf.level = 0.95,
 )
 ```
 
 ### Argumentos
 
--   **x, y**: vetores numéricos de valores de dados. x e y devem ter o mesmo comprimento
+-   **data**: um banco de dados contendo as variáveis
 -   **alternative**: indica a hipótese alternativa e deve ser uma de "two.sided", "greater" ou "less". Você pode especificar apenas a letra inicial. "greater" corresponde à associação positiva, "less" à associação negativa.
--   **method**: uma sequência de caracteres indicando qual coeficiente de correlação deve ser usado para o teste: "pearson", "kendall" ou "spearman"
+-   **method**: uma sequência de caracteres indicando qual coeficiente de correlação deve ser usado para o teste: "pearson", "kendall" ou "spearman", pode ser abreviado.
 -   **conf.level**: nível de confiança para o intervalo de confiança retornado. Atualmente usado somente para o coeficiente de correlação de momento do produto de Pearson se houver pelo menos 4 pares completos de observações.
 :::
 
-## Correlação de pearson: `rstatix::cor_test()`
+## Correlação de pearson (duas variáveis): `rstatix::cor_test()`
 
 ```{r}
+#| echo: true
 resultado_correlacao <- dados_correlacao |> 
   select(mpg, wt) |> 
   cor_test(
-    alternative = "two.sided", method = "pearson" 
+    alternative = "less", method = "pearson" 
   )
 
-resultado_correlacao
+resultado_correlacao |> 
+  mutate(
+    across(where(is.double),
+                 \(x) round(x, 2))
+    )
 ```
 
-## Coeficiente de determinação (R²)
+## Coeficiente de determinação (*R²*)
 
 ```{r}
 #| echo: true
 resultado_correlacao |> 
   mutate(
-    r_sq = cor^2 
+    r_sq = cor^2 |> round(2)
   )
 ```
 
@@ -451,7 +535,7 @@ resultado_correlacao |>
 
 ***Análise de Dados***
 
-Um teste de correlação de Pearson foi realizado para avaliar a associação entre o consumo de combustível e o peso dos automóveis. O pressuposto de normalidade (teste de Shapiro-Wilk) foi avaliado.
+Um teste de correlação de Pearson foi realizado para avaliar a associação entre o consumo de combustível e o peso dos automóveis. O pressuposto de normalidade foi avaliado com o teste de Shapiro-Wilk.
 
 ## Resultados {.smaller}
 
@@ -461,9 +545,47 @@ p_w_mpg <- resultado_shapiro[[1, "p"]] |> round(2)
 w_wt <- resultado_shapiro[[2, "statistic"]] |> round(2)
 p_w_wt <- resultado_shapiro[[2, "p"]] |> round(2)
 df_corr <- nrow(dados_correlacao) - 2
-r_corr <- resultado_correlacao[[1, "estimate"]]
+r_corr <- resultado_correlacao[[1, "cor"]]
 r_sq <- r_corr^2 |> round(2)
 r_sq_prop <- scales::percent_format()(r_sq)
 ```
 
 O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o consumo de combustível (*W* = `r w_mpg`, *p* = `r p_w_mpg`), nem para o peso dos carros (*W* = `r w_wt`, *p* = `r p_w_wt`). Os resultados indicaram uma associação estatisticamente significativa entre as duas variáveis, *r*(`r df_corr`) = `r r_corr`, *p* \< .001. O coeficiente de determinação (*R*²) foi de `r r_sq`, indicando que aproximadamente `r r_sq_prop` da variação no consumo de combustível pode ser explicada pelo peso dos automóveis Esses resultados sugerem que existe uma forte associação negativa entre as variáveis, onde veículos mais pesados tendem a apresentar menor eficiência em milhas por galão.
+
+## Matriz de correlação {.smaller}
+
+::: panel-tabset
+### `rstatix::cor_mat()`
+
+```{r}
+#| echo: true
+matriz_de_correlacao_r <- dados_correlacao |> 
+  select(wt, drat, mpg) |> 
+  cor_mat(
+    method = "pearson",
+    alternative = "two.sided"
+  )
+
+matriz_de_correlacao_r
+```
+
+### `rstatix::cor_pmat()` {.smaller}
+
+```{r}
+#| echo: true
+matriz_de_correlacao_p <- dados_correlacao |> 
+  select(wt, drat, mpg) |> 
+  cor_pmat(
+    method = "pearson",
+    alternative = "two.sided"
+  )
+
+matriz_de_correlacao_p
+
+matriz_de_correlacao_p |> 
+  mutate(
+    across(where(is.double),
+           \(x) round(x, 3))
+  )
+```
+:::
