@@ -36,6 +36,8 @@ title: "Introdução ao R"
 
 ![](img/slide.png){width="18"} [Slides](visualizacao-de-dados.qmd){target="_blank"}
 
+![](img/exercicios.png){width="18"} [Exercícios](exercicios-visualizacao-de-dados.qmd){target="_blank"}
+
 ## Importação e exportação de dados
 
 ![](img/book.png){width="18"}[Leitura](https://pt.r4ds.hadley.nz/data-import.html)

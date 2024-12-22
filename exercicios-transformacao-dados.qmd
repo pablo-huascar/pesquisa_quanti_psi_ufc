@@ -1,7 +1,6 @@
 ---
 title: "Introdução ao R"
 subtitle: "Transformação de dados - Exercícios"
-lang: pt-br
 sidebar: false
 format: html
 editor_options: 
