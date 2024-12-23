@@ -6,7 +6,6 @@ format: html
 editor_options: 
   chunk_output_type: console
 out-width: 70%
-
 ---
 
 ## Introdução
@@ -15,7 +14,6 @@ out-width: 70%
 #| include: false
 source("./_common.R")
 ```
-
 
 ![](img/ggplot_logo.png){width="102"}
 
@@ -38,9 +36,11 @@ Para fazer estes exercícios, acione os pacotes a seguir:
 library(tidyverse)
 library(gapminder)
 library(ggthemes)
+theme_set(theme_grey())
 ```
 
 Caso ainda não tenha instalado os pacotes, use:
+
 ```{r}
 #| eval: false
 install.packages("tidyverse")
@@ -82,8 +82,7 @@ starwars |>
   ggplot(
     aes(sex)
   ) +
-  geom_bar() +
-  theme_grey()
+  geom_bar()
 ```
 
 ::: callout-tip
@@ -140,8 +139,7 @@ starwars |>
   ) +
   geom_bar(
     position = "fill"
-  ) +
-  theme_gray()
+  ) 
 ```
 
 ```{r}
@@ -194,8 +192,7 @@ starwars |>
   ) +
   geom_histogram(
     bins = 18
-  ) +
-  theme_grey()
+  ) 
 ```
 
 ::: callout-tip
@@ -252,8 +249,7 @@ starwars |>
   ggplot(
     aes(species, height)
   ) +
-  geom_boxplot() +
-  theme_grey()
+  geom_boxplot() 
 ```
 
 ::: callout-tip
@@ -333,8 +329,7 @@ gapminder |>
   ggplot(
     aes(gdpPercap, lifeExp)
   ) +
-  geom_point() +
-  theme_gray()
+  geom_point() 
 ```
 
 ### Exercício 10
@@ -385,8 +380,7 @@ gapminder |>
   ) +
   geom_point(aes(color = continent, shape = continent)) +
   scale_color_colorblind() +
-  facet_wrap(~ continent) +
-  theme_gray()
+  facet_wrap(~ continent)
 ```
 
 ### Exercício 12
@@ -438,8 +432,7 @@ gapminder |>
     aes(year, lifeExp, color = continent)
     ) +
   geom_line() +
-  geom_point() +
-  theme_gray()
+  geom_point() 
 ```
 
 ### Exercício 14

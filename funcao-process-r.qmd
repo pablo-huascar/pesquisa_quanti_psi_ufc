@@ -1,0 +1,353 @@
+---
+title: Função PROCESS para R
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+source("./_common.R")
+#source("./process.R")
+```
+
+## Uso  
+```{r}
+#| echo: true
+#| eval: false  
+process(
+  data,
+  y, #####
+  x, #####
+  m = NULL, #####
+  w = NULL, #####
+  z = NULL, #####
+  cov = NULL, #####
+  model = NULL, #####
+  converge = 0.0001, #####
+  iterate = 100, #####
+  hc = NULL, #####
+  jn = NULL, #####
+  effsize = 0, #####
+  stand = 0, ####
+  xmtest = 0,
+  normal = 0,
+  mdichok = NULL,
+  contrast = NULL,
+  modelbt = 0, #####
+  matrices = 0,
+  covmy = 0,
+  covcoeff = 0,
+  boot = 5000, #### 
+  mc = 0,
+  intprobe = 0.10,
+  plot = 0, #####
+  total = 0,
+  save = 0,
+  mcx = 0,
+  mcw = 0,
+  mcz = 0,
+  moments = 0,
+  progress = 1, #####
+  exclude = NULL,
+  bmatrix = NULL,
+  wmatrix = NULL,
+  zmatrix = NULL,
+  wzmatrix = NULL,
+  cmatrix = NULL,
+  xcatcode = NULL,
+  wcatcode = NULL,
+  zcatcode = NULL,
+  wmodval = NULL,
+  zmodval = NULL,
+  center = 0,
+  conf = 95,
+  seed = NULL, ####
+  decimals = 10.4, #####
+  maxboot = 10000,
+  modelres = 0,
+  bc = 0,
+  outscreen = 1, #####
+  activate = NULL,
+  describe = 0, #####
+  listmiss = NULL,
+  linsum = NULL,
+  xmint = NULL,
+  xrefval = NULL,
+  coval = NULL,
+  cdeval = NULL
+)
+```
+
+## Argumentos  
+
+**data**: O conjunto de dados contendo as variáveis necessárias para a análise.
+
+**y**:  Uma string especificando a variável dependente.
+
+**x** : Uma string especificando a variável independente.
+
+**m**: Um vetor de variáveis mediadoras.
+
+**w**: Uma variável moderadora.
+
+**z**: Uma variável moderadora adicional .
+
+**cov**: Um vetor de covariáveis a serem incluídas no modelo.
+
+**model**: Um número inteiro especificando o modelo predefinido.
+
+**converge**: Critério de convergência para regressão logística. O critério de convergência é atendido quando mudanças nos coeficientes de regressão logística resultam em uma mudança na probabilidade de menos do que o critério especificado. Nesse ponto, a iteração para e a solução é fornecida. Uma falha na convergência pode às vezes ser retificada aumentando o número de iterações ou aumentando o critério de convergência. No entanto, isso aumentará o tempo computacional. Isso pode ser feito com as opções `iterate` e `converge`.
+
+**iterate**: Número máximo de iterações para regressão logística.
+
+**hc**: Método para erros padrão heterocedásticos (0–4). Por padrão, o PROCESS usa um estimador para os erros padrão dos coeficientes de regressão que assumem homocedasticidade dos resíduos na estimativa da variável de resultado. O PROCESS também pode gerar erros padrão usando estimadores de matriz de covariância consistentes com heterocedasticidade HC0, HC1, HC2, HC3 e HC4. Um desses métodos consistentes com heterocedasticidade é solicitado definindo o argumento na opção hc para um número de 0 a 4 (por exemplo, para o estimador HC3, especifique `hc = 3`). Qualquer computação que use o erro padrão de um coeficiente de regressão empregará automaticamente o estimador HC quando esta opção for solicitada, incluindo o teste de Sobel, intervalos de confiança de Monte Carlo para efeitos indiretos, o método Johnson-Neyman, testes de efeitos condicionais em análise de moderação e o teste de significância de $Rˆ2$ para modelos de `yvar`, bem como para testes de interações com base na diferença em $Rˆ2$ quando a interação é incluída versus excluída do modelo.
+
+**jn**: Lógico; realiza análise de Johnson-Neyman para regiões de significância (0 = não, 1 = sim).
+
+- **effsize**: Lógico. Calcula tamanhos de efeito (parcialmente padronizados e efeitos indiretos completamente padronizados; 0 = não, 1 = sim). 
+
+**stand** Lógico; gera coeficientes padronizados do modelo e efeitos diretos, indiretos e totais padronizados (0 = não, 1 = sim). Coeficientes padronizados não disponíveis para modelos com moderadores.
+
+- **xmtest**  
+  Lógico; testa a interação entre X e o mediador.
+
+- **normal**  
+  Lógico; realiza o teste de Sobel (0 = não, 1 = sim).
+
+- **mdichok**  
+  (Opcional) Permite mediação com \(Y\) dicotômica.
+
+- **contrast**  
+  Especifica contrastes para comparar efeitos.
+
+**modelbt**:  Lógico; gera intervalos de confiança com bootstrap para coeficientes de regressão não padronizados em cada equação de regressão que define o modelo (0 = não, 1 = sim). Esses intervalos de confiança bootstrap estarão sob as colunas “BootLLCI” e “BootULCI”. A média e o desvio padrão das estimativas bootstrap são exibidos sob as colunas intituladas “Boot-Mean” e “BootSE”. Os coeficientes de regressão originais são encontrados sob a coluna rotulada “Coeﬀ”. Como o número padrão de amostras de bootstrap para os modelos 1, 2 e 3 é zero, a opção `modelbt` não terá efeito para esses modelos, a menos que o número de amostras de bootstrap seja explicitamente declarado usando a opção `boot`.
+
+- **matrices**  
+  Lógico; exibe a representação matricial do modelo.
+
+- **covmy**  
+  Lógico; especifica inclusão de covariáveis em modelos de mediadores ou da variável dependente.
+
+- **covcoeff**  
+  Lógico; exibe matriz de covariância dos coeficientes.
+
+**boot**: Número de amostras para bootstrap.
+
+- **mc**  
+  Número de amostras Monte Carlo para intervalos de confiança (padrão = 0).
+
+- **intprobe**  
+  Nível de alfa para avaliação de interações (padrão = 0.10).
+
+**plot**: Lógico; produz uma tabela de dados para visualizar uma interação (0 = não, 1 = sim).
+
+- **total**  
+  Lógico; inclui efeitos totais na saída (0 = não, 1 = sim).
+
+- **save**  
+  Lógico; salva estimativas bootstrap ou saída numérica completa (1 ou 2).
+
+- **mcx, mcw, mcz**  
+  Lógico; define \(X\), \(W\) ou \(Z\) como multicategóricos e especifica método de codificação (1–5).
+
+- **moments**  
+  Lógico; calcula efeitos condicionais baseados na média ± DP dos moderadores.
+
+**progress**: Lógico; exibe um contador gráfico indicando o progresso em direção à conclusão da amostragem por bootstrap (0 = não, 1 = sim).
+
+- **exclude**  
+  (Opcional) Exclui variáveis específicas do modelo.
+
+- **bmatrix, wmatrix, zmatrix, wzmatrix, cmatrix**  
+  Matrizes personalizadas de modelo.
+
+- **xcatcode, wcatcode, zcatcode**  
+  Codificações personalizadas para variáveis multicategóricas.
+
+- **wmodval**  
+  Especifica valores do moderador \(W\) para análise de efeitos condicionais.
+
+- **zmodval**  
+  Especifica valores do moderador \(Z\) para análise de efeitos condicionais.
+
+- **center**  
+  Lógico; centraliza variáveis (0 = nenhuma, 1 = todas, 2 = apenas preditores).
+
+- **conf**  
+  Nível de confiança para intervalos (padrão = 95).
+
+**seed**: Um número inteiro para reprodutibilidade no bootstrap.
+
+**decimals**: valor especificando precisão decimal (padrão = 10.4 - quatro casas decimais).
+
+- **maxboot**  
+  Máximo de tentativas para substituir amostras bootstrap inválidas.
+
+- **modelres**  
+  Lógico; exibe correlações residuais entre variáveis consequentes.
+
+- **bc**  
+  Lógico; usa intervalos de confiança bootstrap com correção de viés (0 = não, 1 = sim).
+
+**outscreen**: Lógico; direciona saída para o console (0 = não, 1 = sim).
+
+- **activate**  
+  (Opcional) Ativa o uso de macros no software.
+
+**describe**: Lógico; exibe estatísticas descritivas das variáveis do modelo (0 = não, 1 = sim).
+
+- **listmiss**  
+  (Opcional) Lista casos com dados ausentes.
+
+- **linsum**  
+  (Opcional) Exibe somatórios lineares.
+
+- **xmint**  
+  (Opcional) Controla a interação de \(X\) com variáveis específicas.
+
+- **xrefval**  
+  Especifica valores de referência para a variável \(X\).
+
+- **coval**  
+  Especifica valores específicos de covariáveis para análise.
+
+- **cdeval**  
+  Especifica valores para efeitos diretos condicionais.
+
+## Instruções gerais
+
+-   PROCESS para R somente aceita dados em formato numérico. Assim, por exemplo, se uma variável chamada `sex` fosse codificada como "M" e "F" nos dados, esses códigos alfabéticos devem ser convertidos para o formato numérico (por exemplo, 0 e 1) antes de seu uso na função.
+
+```{r}
+dados <- tribble(
+  ~sex, ~v1, ~v2,
+  "M", 5, 3,
+  "F", 1, 4,
+  "F", 2, 5,
+  "M", 5, 3,
+  "F", 1, 4
+) |> 
+  mutate(
+    sex = as_factor(sex)
+  )
+```
+
+```{r}
+#| echo: true
+dados
+
+dados <- dados |> 
+  mutate(
+    sex_process = case_when(sex == "M" ~ 0, 
+                            .default = 1),
+    .after = sex
+  )
+
+dados
+```
+
+-   PROCESS não aceitará variáveis que são designadas como fatores. A designação de fator deve ser removida de uma variável antes que ela possa ser usada.
+
+```{r}
+dados <- dados |> 
+  select(!sex) |> 
+  rename(sex = sex_process) |> 
+  mutate(
+    sex = as_factor(sex)
+  )
+```
+
+```{r}
+#| echo: true
+dados
+
+dados <- dados |> 
+  mutate(
+    sex = as.double(sex)
+  )
+
+dados
+```
+
+-   Dados ausentes devem ser representados no banco de dados como `NA`.
+
+```{r}
+dados <- tribble(
+  ~sex, ~v1, ~v2,
+  "M", 5, 3,
+  "999", 1, 4,
+  "F", 2, 5,
+  "M", 5, 3,
+  "F", 1, 999
+)
+```
+
+```{r}
+#| echo: true
+dados
+
+dados <- dados |> 
+ mutate(
+   across(everything(),
+          \(x) case_when(x == 999 ~ NA, .default = x))
+ )
+
+dados
+```
+
+-   PROCESS para R requer que nomes de variáveis sejam colocados entre aspas duplas (por exemplo, y = "hello").
+
+-   Quando mais de uma variável é listada como mediadora ou covariável, os nomes das variáveis devem ser separados por uma vírgula e colocados na função `c()`, como em `m = c("med1", "med2", "med3")` e `cov = c("cov1", "cov2")`.
+
+-   A opção `plot` no PROCESS para R produz uma tabela de dados para visualizar uma interação, mas não escreve nenhum código R para produzir o gráfico, nem o PROCESS produzirá um gráfico na janela R. Salve a tabela num objeto usando a função `tribble()` e utilize ggplot2 para gerar o gráfico.
+
+```{r}
+#| echo: true
+#| eval: false
+Focal predictor: X (X)
+      Moderator: W (W)
+
+Data for visualizing the conditional effect of the focal predictor:
+                   X                    W                    Y
+                 2.286	              0.000	               3.471
+                 3.000	              0.000	               4.471
+                 3.703	              0.000	               5.456
+                 2.286	              1.000	               2.000
+                 3.000	              1.000	               3.500
+                 3.703	              1.000	               5.000
+```
+
+```{r}
+#| echo: true
+library(tidyverse)
+
+dados <- tribble(
+  ~X,     ~W,     ~Y,
+  2.286,  0.000,  3.471,
+  3.000,  0.000,  4.471,
+  3.703,  0.000,  5.456,
+  2.286,  1.000,  2.000,
+  3.000,  1.000,  3.500,
+  3.703,  1.000,  5.000
+)
+
+dados
+```
+
+```{r}
+#| echo: true
+dados |> 
+  ggplot(
+    aes(x = X, y = Y, 
+        color = as_factor(W))
+  ) +
+  geom_point() +
+  geom_smooth(
+    method = "lm", se = F
+  )
+```
+
+-   O gerador de números aleatórios padrão em R é diferente do gerador de números aleatórios padrão em SPSS e SAS. Assim, os intervalos de confiança bootstrap gerados pelo R serão diferentes daqueles produzidos por SPSS e SAS, mesmo quando a mesma semente for usada ao estimar o mesmo modelo usando os mesmos dados.
