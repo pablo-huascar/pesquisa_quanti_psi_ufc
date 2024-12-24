@@ -1,5 +1,6 @@
 ---
 title: "Regressão linear simples"
+subtitle: "Em construção"
 format: 
   revealjs:
       logo: img/brasao1_horizontal_cor_300dpi.png

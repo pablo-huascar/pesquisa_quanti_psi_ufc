@@ -43,7 +43,7 @@ website:
         - href: intro-r.qmd
         - href: exploracao-dados.qmd
         - href: inferencia-estatistica.qmd
-        #- href: regressao.qmd
+        - href: regressao.qmd
    
 format:
   html:
