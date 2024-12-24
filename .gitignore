@@ -30,6 +30,5 @@ site_libs
 _publish.yml
 materiais_do_curso/
 pesquisa-quanti-psi-ufc.Rproj
-macro-process-r.qmd
 process.R
 teste_jasp.csv
