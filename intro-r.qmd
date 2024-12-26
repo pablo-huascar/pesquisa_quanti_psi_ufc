@@ -6,7 +6,7 @@ title: "Introdução ao R"
 
 ![](img/book.png){width="18"}[Leitura](https://pt.r4ds.hadley.nz/workflow-basics.html)
 
-![](img/slide.png){width="18"} [Slides](fluxo-trabalho-fundamentos.qmd){target="_blank"}
+![](img/slide.png){width="18"} [Slides](slide-fluxo-trabalho-fundamentos.qmd){target="_blank"}
 
 ![](img/exercicios.png){width="18"} [Exercícios](exercicios-fluxo-trabalho-fundamentos.qmd){target="_blank"}
 
@@ -16,15 +16,15 @@ title: "Introdução ao R"
 
 ![](img/book.png){width="18"}[Leitura](https://pt.r4ds.hadley.nz/workflow-scripts.html)
 
-![](img/slide.png){width="18"} [Slides](fluxo-trabalho-scripts-projetos.qmd){target="_blank"}
+![](img/slide.png){width="18"} [Slides](slide-fluxo-trabalho-scripts-projetos.qmd){target="_blank"}
 
 ## Transformação de dados
 
 ![](img/book.png){width="18"}[Leitura](https://pt.r4ds.hadley.nz/data-transform.html)
 
-![](img/slide.png){width="18"} [Slides: linhas](transformacao-dados-linhas.qmd){target="_blank"}
+![](img/slide.png){width="18"} [Slides: linhas](slide-transformacao-dados-linhas.qmd){target="_blank"}
 
-![](img/slide.png){width="18"} [Slides: colunas](transformacao-dados-colunas.qmd){target="_blank"}
+![](img/slide.png){width="18"} [Slides: colunas](slide-transformacao-dados-colunas.qmd){target="_blank"}
 
 ![](img/exercicios.png){width="18"} [Exercícios](exercicios-transformacao-dados.qmd){target="_blank"}
 
@@ -34,15 +34,14 @@ title: "Introdução ao R"
 
 ![](img/book.png){width="18"}[Leitura](https://pt.r4ds.hadley.nz/data-visualize.html)
 
-![](img/slide.png){width="18"} [Slides](visualizacao-de-dados.qmd){target="_blank"}
+![](img/slide.png){width="18"} [Slides](slide-visualizacao-de-dados.qmd){target="_blank"}
 
 ![](img/exercicios.png){width="18"} [Exercícios](exercicios-visualizacao-de-dados.qmd){target="_blank"}
 
 ![](img/respostas.png){width="18"} [Soluções](respostas-visualizacao-de-dados.qmd){target="_blank"}
 
-
 ## Importação e exportação de dados
 
 ![](img/book.png){width="18"}[Leitura](https://pt.r4ds.hadley.nz/data-import.html)
 
-![](img/slide.png){width="18"} [Slides](importacao-exportacao-dados.qmd){target="_blank"}
+![](img/slide.png){width="18"} [Slides](slide-importacao-exportacao-dados.qmd){target="_blank"}

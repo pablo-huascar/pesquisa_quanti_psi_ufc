@@ -6,10 +6,10 @@ title: "Exploração de dados"
 
 ![](img/book.png){width="18"}[Leitura](https://openintro-ims.netlify.app/explore-numerical)
 
-![](img/slide.png){width="18"} [Slides](exploracao-dados-numericos.qmd){target="_blank"}
+![](img/slide.png){width="18"} [Slides](slide-exploracao-dados-numericos.qmd){target="_blank"}
 
 ## Dados categóricos
 
 ![](img/book.png){width="18"}[Leitura](https://openintro-ims.netlify.app/explore-categorical)
 
-![](img/slide.png){width="18"} [Slides](exploracao-dados-categoricos.qmd){target="_blank"}
+![](img/slide.png){width="18"} [Slides](slide-exploracao-dados-categoricos.qmd){target="_blank"}
