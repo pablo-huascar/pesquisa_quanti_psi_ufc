@@ -26,6 +26,7 @@ source("./_common.R")
 library(conflicted)
 library(tidyverse)
 conflicts_prefer(dplyr::lag)
+conflicts_prefer(dplyr::filter)
 library(gt)
 library(rstatix)
 ```
@@ -99,13 +100,14 @@ library(rstatix)
 
 -   Há diferença no consumo de combustível (`mpg`) entre carros com motores em V e retos (`vs`)?
 
+
 ## Manipulação dos dados {.smaller}
 
 ::: panel-tabset
 ### Ações
 
 -   Carregar o conjunto de dados mtcars: `data("mtcars")`
--   Converter os rótulos das lihas para uma coluna: `rownames_to_column()`
+-   Converter os rótulos das linhas para uma coluna: `rownames_to_column()`
 -   Transformar em tibble para melhorar a visualização: `as_tibble()`
 -   Recodficar a variável independente (`vs`) para facilitar a interpretação dos resultados
 -   Transformar a variável independente em fator: `as_factor()`
@@ -119,7 +121,7 @@ library(rstatix)
 data("mtcars") 
 
 dados_teste_t <- mtcars |>
-  # Converter os rótulos das lihas
+  # Converter os rótulos das linhas
   rownames_to_column(var = "modelo") |> 
   # Transformar em tibble
   as_tibble() |>
@@ -280,7 +282,8 @@ dados_teste_t |>
 #| echo: true
 #| eval: false
 levene_test(
-  data, formula, 
+  data, 
+  formula, 
   center = median
 )
 ```
@@ -396,7 +399,6 @@ resultado_cohens_d <- dados_teste_t |>
 )
 
 resultado_cohens_d
-##
 ```
 
 # Redação do método e dos resultados
@@ -465,3 +467,207 @@ ci_high <- resultado_cohens_d[[1, "conf.high"]] |> round(2)
 ```
 
 O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo com motores em V (*W* = `r w_s_teste_v`, *p* = `r p_s_teste_v`), nem para o grupo com motores retos (*W* = `r w_s_teste_r`, *p* = `r p_s_teste_r`). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (*F*(`r df_levene`, `r df_res_levene`) = `r levene_f`, *p* = `r levene_p`). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, *t*(`r t_df`) = `r statistic`, *p* \< .001. Carros com motores retos (n = `r n_reto`, M = `r m_reto`, DP = `r sd_reto`) apresentaram um desempenho melhor do que aqueles com motores em V (n = `r n_V`, M = `r m_V`, DP = `r sd_V`). A diferença média foi de `r diferenca` milhas por galão (IC 95% \[`r lower_ci`, `r upper_ci`\]). O tamanho de efeito foi grande (d = `r d_valor`, IC 95% \[`r ci_low`, `r ci_high`\] ). Esses resultados sugerem que o formato do motor influencia o consumo de combustível.
+
+# Violação de pressupostos: homogeneidade de variâncias {style="font-size: 22pt;"}
+
+## Exemplo {.smaller}
+
+-   Há diferença no consumo de combustível (`mpg`) entre carros com motores de 4 e 6 cilindros (`cyl`)?
+
+## Manipulação dos dados {.smaller}
+
+::: panel-tabset
+### Ações
+
+-   Carregar o conjunto de dados mtcars: `data("mtcars")`
+-   Converter os rótulos das linhas para uma coluna: `rownames_to_column()`
+-   Transformar em tibble para melhorar a visualização: `as_tibble()`
+-   Filtrar a variável independente (`cyl`) para que o banco contenha somente as categorias que serão utilizadas (4 e 6): `filter()`
+-   Transformar a variável independente em fator: `as_factor()`
+-   Selecionar e salvar as variáveis que serão utilizadas em um novo objeto para facilitar a visualização: `select()`
+
+### Código
+
+```{r}
+#| echo: true
+# Carregar os dados
+data("mtcars") 
+
+dados_teste_t <- mtcars |>
+  # Converter os rótulos das linhas
+  rownames_to_column(var = "modelo") |> 
+  # Transformar em tibble
+  as_tibble() |>
+  # Filtrar as categorias utilizads
+  filter(cyl %in% c(4, 6)) |> 
+  mutate(
+    # Transformar em fator
+    cyl = as_factor(cyl) 
+  ) |> 
+  # Selecionar as variáveis
+  select(modelo, mpg, cyl) 
+```
+
+### Resultado
+
+```{r}
+#| echo: true
+dados_teste_t
+```
+:::
+
+## Exploração dos dados {.smaller}
+
+::: panel-tabset
+### Tabela
+
+```{r}
+#| echo: true
+descritivos_grupos <- dados_teste_t |> 
+  summarise(
+    n = n(),
+    m = mean(mpg), 
+    sd = sd(mpg),
+    .by = cyl
+  ) |> 
+  mutate(
+    diferenca = m - lag(m)
+    )
+
+descritivos_grupos
+```
+
+### Gráfico
+
+```{r}
+#| echo: true
+#| out-width: 50%
+dados_teste_t |> 
+  ggplot(
+    aes(cyl, mpg)
+    ) +
+  geom_boxplot(
+    color = "#569BBD"
+    ) +
+  stat_boxplot(
+    geom = 'errorbar', color = "#569BBD"
+    )
+```
+:::
+
+## Avaliação de pressupostos
+
+-   Normalidade
+-   Homogeneidade das variâncias
+
+## Normalidade: `rstatix::shapiro_test()`
+
+```{r}
+#| echo: true
+resultado_shapiro <- dados_teste_t |> 
+  group_by(cyl) |> 
+  shapiro_test(mpg)
+
+resultado_shapiro
+```
+
+## Homogeneidade de Variâncias: `rstatix::levene_test()`
+
+```{r}
+#| echo: true
+resultado_levene <- dados_teste_t |> 
+  levene_test(formula =  mpg ~ cyl, center = "mean")
+
+resultado_levene
+```
+
+## Teste t para amostras independentes (variâncias diferentes): `rstatix::t_test()` {.smaller}
+
+```{r}
+#| echo: true
+resultado_teste_t <- dados_teste_t |> 
+  t_test(
+    formula = mpg ~ cyl, ref.group = "4",
+    var.equal = F, alternative = "two.sided", 
+    detailed = T
+  )
+
+resultado_teste_t
+```
+
+
+## Tamanho de efeito: `rstatix::cohens_d()`
+
+```{r}
+#| echo: true
+set.seed(123)
+resultado_cohens_d <- dados_teste_t |> 
+  cohens_d(
+  mpg ~ cyl, ref.group = "4",
+  var.equal = F, ci = T
+)
+
+resultado_cohens_d
+```
+
+# Redação do método e dos resultados
+
+## Método {.smaller}
+
+**Procedimentos**
+
+***Análise de Dados***
+
+Um teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores de 4 e 6 cilindros. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e homogeneidade das variâncias (teste de Levene).
+
+## Resultados {.smaller}
+
+```{r}
+w_s_teste_4 <- resultado_shapiro[[1, "statistic"]] |> round(2)
+p_s_teste_4 <- resultado_shapiro[[1, "p"]] |> round(2)
+w_s_teste_6 <- resultado_shapiro[[2, "statistic"]]  |> round(2)
+p_s_teste_6 <- resultado_shapiro[[2, "p"]] |> round(2)
+```
+
+```{r}
+df_levene <- resultado_levene$df1
+df_res_levene <- resultado_levene$df2
+levene_f <- resultado_levene$statistic |> round(2)
+levene_p <- resultado_levene$p |> round(3)
+```
+
+```{r}
+n_6 <- descritivos_grupos[descritivos_grupos$cyl == "6", "n"]
+n_6 <- pull(n_6)
+m_6 <- descritivos_grupos[descritivos_grupos$cyl == "6", "m"]
+m_6 <- pull(m_6)
+m_6 <- round(m_6, 2)
+sd_6 <- descritivos_grupos[descritivos_grupos$cyl == "6", "sd"]
+sd_6 <- pull(sd_6)
+sd_6 <- round(sd_6, 2)
+n_4 <- descritivos_grupos[descritivos_grupos$cyl == "4", "n"]
+n_4 <- pull(n_4)
+m_4 <- descritivos_grupos[descritivos_grupos$cyl == "4", "m"]
+m_4 <- pull(m_4)
+m_4 <- round(m_4, 2)
+sd_4 <- descritivos_grupos[descritivos_grupos$cyl == "4", "sd"]
+sd_4 <- pull(sd_4)
+sd_4 <- round(sd_4, 2)
+diferenca <- descritivos_grupos[[2, "diferenca"]]
+diferenca <- round(diferenca, 2)
+```
+
+```{r}
+t_df <- resultado_teste_t[[1, "df"]] |> round(0)
+statistic <- resultado_teste_t[[1, "statistic"]] |> round(2)
+lower_ci <- resultado_teste_t[[1, "conf.low"]] |> round(2)
+upper_ci <- resultado_teste_t[[1, "conf.high"]] |> round(2)
+```
+
+```{r}
+d_valor <- resultado_cohens_d[[1, "effsize"]] |> round(2)
+ci_low <- resultado_cohens_d[[1, "conf.low"]] |> round(2)
+ci_high <- resultado_cohens_d[[1, "conf.high"]] |> round(2)
+```
+
+O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo com motores de 4 cilindros (*W* = `r w_s_teste_4`, *p* = `r p_s_teste_4`), nem para o grupo com motores de 6 cilindros (*W* = `r w_s_teste_6`, *p* = `r p_s_teste_6`). O teste de Levene mostrou que não havia homogeneidade na variância entre os grupos, (*F*(`r df_levene`, `r df_res_levene`) = `r levene_f`, *p* = `r levene_p`). Diante da violação deste pressuposto, foi realizado o teste t de Welch (ou teste t de variâncias desiguais). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, *t*(`r t_df`) = `r statistic`, *p* \< .001. Carros com motores de 4 cilindros (n = `r n_4`, M = `r m_4`, DP = `r sd_4`) apresentaram um desempenho melhor do que aqueles com motores de 6 cilindros (n = `r n_6`, M = `r m_6`, DP = `r sd_6`). A diferença média foi de `r diferenca` milhas por galão (IC 95% \[`r lower_ci`, `r upper_ci`\]). O tamanho de efeito foi grande (d = `r d_valor`, IC 95% \[`r ci_low`, `r ci_high`\] ). Esses resultados sugerem que o número de cilindros do motor influencia o consumo de combustível.
