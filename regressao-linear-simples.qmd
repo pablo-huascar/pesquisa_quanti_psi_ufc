@@ -56,7 +56,7 @@ iris_filter <- iris |>
 
 # Bancos de dados utilizados
 
-##  {background-image="img/pinguins.png" background-size="contain"}
+##  {background-image="img/pinguins.png" background-size="contain" #slide3-id data-menu-title="Desenho dos pinguins"}
 
 ## `penguins` {.smaller}
 
@@ -93,7 +93,7 @@ penguins |>
   )
 ```
 
-##  {background-image="img/iris.png" background-size="contain"}
+##  {background-image="img/iris.png" background-size="contain" #slide6-id data-menu-title="Desenho das flores"}
 
 ## `iris` {.smaller}
 
@@ -623,7 +623,23 @@ modelo_reg_simples_cont |>
   )
 ```
 
-## [Explicar R\^2]{style="color: red;"}
+## Coeficiente de Determinação ($R^2$) {.smaller}
+
+O coeficiente de determinação ($R^2$) mede a proporção da variância da variável dependente ($y$) que é explicada pela variável independente ($x$) no modelo de regressão
+
+-   Interpretação:
+    -   Um valor de $R^2$ próximo a 1 indica que uma grande parte da variabilidade de $y$ é explicada pelo modelo
+    -   Um valor próximo a 0 indica que o modelo explica muito pouco da variabilidade de $y$
+-   No contexto da regressão linear simples:
+    -   $R^2$ também é o quadrado do coeficiente de correlação de Pearson ($r$) entre $x$ e $y$
+    -   No modelo ajustado para os pinguins, se $R^2 = 0.76$, isso indica que 76% da variação na massa corporal dos pinguins é explicada pelo comprimento da nadadeira
+
+## Importância do $R^2$:
+
+-   Ajuda a avaliar a qualidade do ajuste do modelo [^1]
+-   É fundamental para comparar diferentes modelos em termos de poder explicativo
+
+[^1]: Um $R^2$ elevado não garante que o modelo seja o melhor para prever ou explicar os dados. A análise dos resíduos e outros critérios de ajuste devem ser considerados.
 
 ## Correlação e regressão linear simples
 
