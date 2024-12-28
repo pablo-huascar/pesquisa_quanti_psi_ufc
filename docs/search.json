@@ -5710,5 +5710,16 @@
     "title": "Introdução ao R",
     "section": "Exercício 20",
     "text": "Exercício 20\nCrie um objeto nomes com os nomes de 5 pessoas: João, Maria, Pedro, Ana e Carlos. Em seguida, ordene os nomes em ordem alfabética.\n\n\n\n\n\n\nDica\n\n\n\n\nsort()"
+  },
+  {
+    "objectID": "intro-r.html#visualização-de-dados",
+    "href": "intro-r.html#visualização-de-dados",
+    "title": "Introdução ao R",
+    "section": "Visualização de dados",
+    "text": "Visualização de dados\nLeitura\n Slides: linhas\n Exercícios\n Soluções",
+    "crumbs": [
+      "Conteúdos",
+      "Introdução ao R"
+    ]
   }
 ]
