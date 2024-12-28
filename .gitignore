@@ -30,3 +30,5 @@ materiais_do_curso/
 pesquisa-quanti-psi-ufc.Rproj
 process.R
 teste_jasp.csv
+/.quarto/
+/_site/
