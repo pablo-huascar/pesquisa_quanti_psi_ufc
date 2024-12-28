@@ -53,8 +53,6 @@ TitanicSurvival <- TitanicSurvival |>
 
 # Bancos de dados utilizados
 
-##  {background-image="img/pinguins.png" background-size="contain"}
-
 ## [`penguins`](https://allisonhorst.github.io/palmerpenguins/) {.smaller}
 
 Medidas de tamanho para pinguins forrageadores adultos perto da Estação Palmer, Antártida. Inclui medidas para espécies de pinguins, ilha no Arquipélago Palmer, tamanho (comprimento da nadadeira, massa corporal, dimensões do bico) e sexo.
@@ -88,8 +86,6 @@ penguins |>
     style = 1, color = "gray"
   )
 ```
-
-##  {background-image="img/titanic.png" background-size="contain"}
 
 ## `TitanicSurvival` {.smaller}
 
