@@ -1024,28 +1024,28 @@
     "href": "slide-iteracao.html#criação-de-um-banco-dummy",
     "title": "Introdução ao R",
     "section": "Criação de um banco dummy",
-    "text": "Criação de um banco dummy\n\ndf &lt;- tibble(\n  a = rnorm(10),\n  b = rnorm(10),\n  c = rnorm(10),\n  d = rnorm(10)\n)\n\n\ndf\n\n# A tibble: 10 × 4\n         a      b       c       d\n     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n 1 -1.25   -1.34   1.07    0.226 \n 2 -0.660   0.417 -0.189   0.278 \n 3 -2.06   -0.750  1.50    0.217 \n 4  0.0260  0.801 -1.15    0.145 \n 5 -0.461  -1.10   0.161  -1.48  \n 6 -1.05   -2.02   0.610  -0.452 \n 7 -0.272   0.413  3.03    0.0582\n 8  0.548   0.640 -0.0417  0.191 \n 9  1.53   -0.979 -0.781  -1.94  \n10  1.52    0.750  0.727   0.637"
+    "text": "Criação de um banco dummy\n\ndf &lt;- tibble(\n  a = rnorm(10),\n  b = rnorm(10),\n  c = rnorm(10),\n  d = rnorm(10)\n)\n\n\ndf\n\n# A tibble: 10 × 4\n        a      b       c       d\n    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n 1  0.539 -0.205  0.0598 -0.440 \n 2  0.150 -0.620 -0.203  -0.218 \n 3  0.551 -0.140  0.927  -0.0740\n 4 -0.128  1.21   0.205  -1.16  \n 5  0.614  0.377  1.08    1.72  \n 6 -1.34   0.129 -1.58    0.258 \n 7 -1.34  -0.570  0.101  -1.88  \n 8  0.258 -0.142  0.841   0.536 \n 9 -1.46   0.138 -1.78   -0.424 \n10  0.235 -0.744 -0.117   0.574"
   },
   {
     "objectID": "slide-iteracao.html#exemplos-de-repetição-de-código",
     "href": "slide-iteracao.html#exemplos-de-repetição-de-código",
     "title": "Introdução ao R",
     "section": "Exemplos de repetição de código",
-    "text": "Exemplos de repetição de código\n\ndf |&gt; summarize(\n  n = n(),\n  a = median(a),\n  b = median(b),\n  c = median(c),\n  d = median(d),\n)\n\n# A tibble: 1 × 5\n      n      a      b     c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.366 -0.168 0.385 0.168\n\n\n\nRepetir a digitação de median() várias vezes ou copiar e colar"
+    "text": "Exemplos de repetição de código\n\ndf |&gt; summarize(\n  n = n(),\n  a = median(a),\n  b = median(b),\n  c = median(c),\n  d = median(d),\n)\n\n# A tibble: 1 × 5\n      n     a      b      c      d\n  &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1    10 0.193 -0.141 0.0805 -0.146\n\n\n\nRepetir a digitação de median() várias vezes ou copiar e colar"
   },
   {
     "objectID": "slide-iteracao.html#across",
     "href": "slide-iteracao.html#across",
     "title": "Introdução ao R",
     "section": "across()",
-    "text": "across()\n\n\n.cols =: especifica quais colunas vão estar na iteração\n\n.fns =: diz o que fazer com as colunas\n\nQual função aplicar\n\n\n\n\ndf |&gt; \n  summarise(\n    across(.cols = a:d,.fns = median)\n  )\n\n# A tibble: 1 × 4\n       a      b     c     d\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 -0.366 -0.168 0.385 0.168\n\n\n\n\nO nome da função solicitada nunca deve ser seguido por ()"
+    "text": "across()\n\n\n.cols =: especifica quais colunas vão estar na iteração\n\n.fns =: diz o que fazer com as colunas\n\nQual função aplicar\n\n\n\n\ndf |&gt; \n  summarise(\n    across(.cols = a:d,.fns = median)\n  )\n\n# A tibble: 1 × 4\n      a      b      c      d\n  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 0.193 -0.141 0.0805 -0.146\n\n\n\n\nO nome da função solicitada nunca deve ser seguido por ()"
   },
   {
     "objectID": "slide-iteracao.html#across-1",
     "href": "slide-iteracao.html#across-1",
     "title": "Introdução ao R",
     "section": "across()",
-    "text": "across()\n\nÉ possível omitir os argumentos .cols e .fns\n\n\n\ndf |&gt; \n  summarise(\n    across(a:d, mean)\n  )\n\n# A tibble: 1 × 4\n       a      b     c      d\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 -0.212 -0.316 0.494 -0.212"
+    "text": "across()\n\nÉ possível omitir os argumentos .cols e .fns\n\n\n\ndf |&gt; \n  summarise(\n    across(a:d, mean)\n  )\n\n# A tibble: 1 × 4\n       a       b       c      d\n   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 -0.191 -0.0569 -0.0474 -0.110"
   },
   {
     "objectID": "slide-iteracao.html#exercício",
@@ -1143,7 +1143,7 @@
     "href": "slide-iteracao.html#everything",
     "title": "Introdução ao R",
     "section": "everything()",
-    "text": "everything()\n\ndf |&gt; \n  slice_head(n = 5)\n\n# A tibble: 5 × 4\n        a      b      c      d\n    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 -1.25   -1.34   1.07   0.226\n2 -0.660   0.417 -0.189  0.278\n3 -2.06   -0.750  1.50   0.217\n4  0.0260  0.801 -1.15   0.145\n5 -0.461  -1.10   0.161 -1.48 \n\n\n\ndf |&gt; \n  summarise(\n    across(everything(),mean)\n  )\n\n# A tibble: 1 × 4\n       a      b     c      d\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 -0.212 -0.316 0.494 -0.212"
+    "text": "everything()\n\ndf |&gt; \n  slice_head(n = 5)\n\n# A tibble: 5 × 4\n       a      b       c       d\n   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1  0.539 -0.205  0.0598 -0.440 \n2  0.150 -0.620 -0.203  -0.218 \n3  0.551 -0.140  0.927  -0.0740\n4 -0.128  1.21   0.205  -1.16  \n5  0.614  0.377  1.08    1.72  \n\n\n\ndf |&gt; \n  summarise(\n    across(everything(),mean)\n  )\n\n# A tibble: 1 × 4\n       a       b       c      d\n   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 -0.191 -0.0569 -0.0474 -0.110"
   },
   {
     "objectID": "slide-iteracao.html#where",
@@ -3905,6 +3905,17 @@
     ]
   },
   {
+    "objectID": "intro-r.html#visualização-de-dados",
+    "href": "intro-r.html#visualização-de-dados",
+    "title": "Introdução ao R",
+    "section": "Visualização de dados",
+    "text": "Visualização de dados\nLeitura\n Slides: linhas\n Exercícios\n Soluções",
+    "crumbs": [
+      "Conteúdos",
+      "Introdução ao R"
+    ]
+  },
+  {
     "objectID": "intro-r.html#iteração",
     "href": "intro-r.html#iteração",
     "title": "Introdução ao R",
@@ -5710,16 +5721,5 @@
     "title": "Introdução ao R",
     "section": "Exercício 20",
     "text": "Exercício 20\nCrie um objeto nomes com os nomes de 5 pessoas: João, Maria, Pedro, Ana e Carlos. Em seguida, ordene os nomes em ordem alfabética.\n\n\n\n\n\n\nDica\n\n\n\n\nsort()"
-  },
-  {
-    "objectID": "intro-r.html#visualização-de-dados",
-    "href": "intro-r.html#visualização-de-dados",
-    "title": "Introdução ao R",
-    "section": "Visualização de dados",
-    "text": "Visualização de dados\nLeitura\n Slides: linhas\n Exercícios\n Soluções",
-    "crumbs": [
-      "Conteúdos",
-      "Introdução ao R"
-    ]
   }
 ]
