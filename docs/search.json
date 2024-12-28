@@ -1024,28 +1024,28 @@
     "href": "slide-iteracao.html#criação-de-um-banco-dummy",
     "title": "Introdução ao R",
     "section": "Criação de um banco dummy",
-    "text": "Criação de um banco dummy\n\ndf &lt;- tibble(\n  a = rnorm(10),\n  b = rnorm(10),\n  c = rnorm(10),\n  d = rnorm(10)\n)\n\n\ndf\n\n# A tibble: 10 × 4\n         a       b       c         d\n     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;\n 1 -0.636   1.57   -3.03   -0.206   \n 2  2.42   -0.709  -1.17   -0.0161  \n 3 -1.98    1.14   -0.903   1.21    \n 4  0.610  -1.22   -0.311   0.000798\n 5 -0.0604  0.722  -0.210   0.791   \n 6 -0.342   0.944  -0.0823  0.151   \n 7 -0.952   1.57    1.11   -1.02    \n 8  1.57   -1.22   -0.0390 -0.566   \n 9 -1.15    0.412  -0.900   0.573   \n10 -0.224   0.0932 -1.41   -2.15"
+    "text": "Criação de um banco dummy\n\ndf &lt;- tibble(\n  a = rnorm(10),\n  b = rnorm(10),\n  c = rnorm(10),\n  d = rnorm(10)\n)\n\n\ndf\n\n# A tibble: 10 × 4\n         a      b       c       d\n     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n 1 -1.25   -1.34   1.07    0.226 \n 2 -0.660   0.417 -0.189   0.278 \n 3 -2.06   -0.750  1.50    0.217 \n 4  0.0260  0.801 -1.15    0.145 \n 5 -0.461  -1.10   0.161  -1.48  \n 6 -1.05   -2.02   0.610  -0.452 \n 7 -0.272   0.413  3.03    0.0582\n 8  0.548   0.640 -0.0417  0.191 \n 9  1.53   -0.979 -0.781  -1.94  \n10  1.52    0.750  0.727   0.637"
   },
   {
     "objectID": "slide-iteracao.html#exemplos-de-repetição-de-código",
     "href": "slide-iteracao.html#exemplos-de-repetição-de-código",
     "title": "Introdução ao R",
     "section": "Exemplos de repetição de código",
-    "text": "Exemplos de repetição de código\n\ndf |&gt; summarize(\n  n = n(),\n  a = median(a),\n  b = median(b),\n  c = median(c),\n  d = median(d),\n)\n\n# A tibble: 1 × 5\n      n      a     b      c        d\n  &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;\n1    10 -0.283 0.567 -0.606 -0.00763\n\n\n\nRepetir a digitação de median() várias vezes ou copiar e colar"
+    "text": "Exemplos de repetição de código\n\ndf |&gt; summarize(\n  n = n(),\n  a = median(a),\n  b = median(b),\n  c = median(c),\n  d = median(d),\n)\n\n# A tibble: 1 × 5\n      n      a      b     c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.366 -0.168 0.385 0.168\n\n\n\nRepetir a digitação de median() várias vezes ou copiar e colar"
   },
   {
     "objectID": "slide-iteracao.html#across",
     "href": "slide-iteracao.html#across",
     "title": "Introdução ao R",
     "section": "across()",
-    "text": "across()\n\n\n.cols =: especifica quais colunas vão estar na iteração\n\n.fns =: diz o que fazer com as colunas\n\nQual função aplicar\n\n\n\n\ndf |&gt; \n  summarise(\n    across(.cols = a:d,.fns = median)\n  )\n\n# A tibble: 1 × 4\n       a     b      c        d\n   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;\n1 -0.283 0.567 -0.606 -0.00763\n\n\n\n\nO nome da função solicitada nunca deve ser seguido por ()"
+    "text": "across()\n\n\n.cols =: especifica quais colunas vão estar na iteração\n\n.fns =: diz o que fazer com as colunas\n\nQual função aplicar\n\n\n\n\ndf |&gt; \n  summarise(\n    across(.cols = a:d,.fns = median)\n  )\n\n# A tibble: 1 × 4\n       a      b     c     d\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 -0.366 -0.168 0.385 0.168\n\n\n\n\nO nome da função solicitada nunca deve ser seguido por ()"
   },
   {
     "objectID": "slide-iteracao.html#across-1",
     "href": "slide-iteracao.html#across-1",
     "title": "Introdução ao R",
     "section": "across()",
-    "text": "across()\n\nÉ possível omitir os argumentos .cols e .fns\n\n\n\ndf |&gt; \n  summarise(\n    across(a:d, mean)\n  )\n\n# A tibble: 1 × 4\n        a     b      c      d\n    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 -0.0745 0.330 -0.695 -0.123"
+    "text": "across()\n\nÉ possível omitir os argumentos .cols e .fns\n\n\n\ndf |&gt; \n  summarise(\n    across(a:d, mean)\n  )\n\n# A tibble: 1 × 4\n       a      b     c      d\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 -0.212 -0.316 0.494 -0.212"
   },
   {
     "objectID": "slide-iteracao.html#exercício",
@@ -1143,7 +1143,7 @@
     "href": "slide-iteracao.html#everything",
     "title": "Introdução ao R",
     "section": "everything()",
-    "text": "everything()\n\ndf |&gt; \n  slice_head(n = 5)\n\n# A tibble: 5 × 4\n        a      b      c         d\n    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;\n1 -0.636   1.57  -3.03  -0.206   \n2  2.42   -0.709 -1.17  -0.0161  \n3 -1.98    1.14  -0.903  1.21    \n4  0.610  -1.22  -0.311  0.000798\n5 -0.0604  0.722 -0.210  0.791   \n\n\n\ndf |&gt; \n  summarise(\n    across(everything(),mean)\n  )\n\n# A tibble: 1 × 4\n        a     b      c      d\n    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 -0.0745 0.330 -0.695 -0.123"
+    "text": "everything()\n\ndf |&gt; \n  slice_head(n = 5)\n\n# A tibble: 5 × 4\n        a      b      c      d\n    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 -1.25   -1.34   1.07   0.226\n2 -0.660   0.417 -0.189  0.278\n3 -2.06   -0.750  1.50   0.217\n4  0.0260  0.801 -1.15   0.145\n5 -0.461  -1.10   0.161 -1.48 \n\n\n\ndf |&gt; \n  summarise(\n    across(everything(),mean)\n  )\n\n# A tibble: 1 × 4\n       a      b     c      d\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 -0.212 -0.316 0.494 -0.212"
   },
   {
     "objectID": "slide-iteracao.html#where",
