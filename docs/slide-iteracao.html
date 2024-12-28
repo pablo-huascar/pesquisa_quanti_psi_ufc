@@ -422,18 +422,18 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 4
-         a      b      c       d
-     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
- 1  1.29   -1.09  -0.363 -0.463 
- 2 -0.786   0.316  1.35  -1.02  
- 3 -0.414  -0.160 -0.765 -0.545 
- 4 -0.0826  0.186 -1.84   0.469 
- 5  0.786  -1.53  -0.217 -0.344 
- 6  1.18   -1.12   0.568 -1.16  
- 7 -0.302   0.571  2.44   0.0323
- 8  0.953   0.543  2.39  -0.179 
- 9 -2.06    1.18   1.10  -0.0432
-10 -0.881  -1.31  -1.02  -1.01  </code></pre>
+         a       b       c         d
+     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+ 1 -0.636   1.57   -3.03   -0.206   
+ 2  2.42   -0.709  -1.17   -0.0161  
+ 3 -1.98    1.14   -0.903   1.21    
+ 4  0.610  -1.22   -0.311   0.000798
+ 5 -0.0604  0.722  -0.210   0.791   
+ 6 -0.342   0.944  -0.0823  0.151   
+ 7 -0.952   1.57    1.11   -1.02    
+ 8  1.57   -1.22   -0.0390 -0.566   
+ 9 -1.15    0.412  -0.900   0.573   
+10 -0.224   0.0932 -1.41   -2.15    </code></pre>
 </div>
 </div>
 </section><section id="exemplos-de-repetição-de-código" class="slide level2"><h2>Exemplos de repetição de código</h2>
@@ -447,9 +447,9 @@
 <span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
-      n      a      b     c      d
-  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-1    10 -0.192 0.0132 0.175 -0.404</code></pre>
+      n      a     b      c        d
+  &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+1    10 -0.283 0.567 -0.606 -0.00763</code></pre>
 </div>
 </div>
 <ul>
@@ -472,9 +472,9 @@
 <span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
-       a      b     c      d
-   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-1 -0.192 0.0132 0.175 -0.404</code></pre>
+       a     b      c        d
+   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+1 -0.283 0.567 -0.606 -0.00763</code></pre>
 </div>
 </div>
 
@@ -492,9 +492,9 @@
 <span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
-        a      b     c      d
-    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-1 -0.0320 -0.242 0.364 -0.427</code></pre>
+        a     b      c      d
+    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 -0.0745 0.330 -0.695 -0.123</code></pre>
 </div>
 </div>
 </section><section id="exercício" class="slide level2"><h2>Exercício</h2>
@@ -639,13 +639,13 @@ $ bom_colesterol     &lt;dbl&gt; 100, 100, 100, 100, 100</code></pre>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
-        a      b      c      d
-    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1  1.29   -1.09  -0.363 -0.463
-2 -0.786   0.316  1.35  -1.02 
-3 -0.414  -0.160 -0.765 -0.545
-4 -0.0826  0.186 -1.84   0.469
-5  0.786  -1.53  -0.217 -0.344</code></pre>
+        a      b      c         d
+    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+1 -0.636   1.57  -3.03  -0.206   
+2  2.42   -0.709 -1.17  -0.0161  
+3 -1.98    1.14  -0.903  1.21    
+4  0.610  -1.22  -0.311  0.000798
+5 -0.0604  0.722 -0.210  0.791   </code></pre>
 </div>
 </div>
 <div class="cell">
@@ -655,9 +655,9 @@ $ bom_colesterol     &lt;dbl&gt; 100, 100, 100, 100, 100</code></pre>
 <span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
-        a      b     c      d
-    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-1 -0.0320 -0.242 0.364 -0.427</code></pre>
+        a     b      c      d
+    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 -0.0745 0.330 -0.695 -0.123</code></pre>
 </div>
 </div>
 </section><section id="where" class="slide level2"><h2><code>where()</code></h2>
