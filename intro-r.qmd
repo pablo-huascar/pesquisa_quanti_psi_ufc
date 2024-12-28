@@ -30,17 +30,15 @@ title: "Introdução ao R"
 
 ![](img/respostas.png){width="18"} [Soluções](respostas-transformacao-dados.qmd){target="_blank"}
 
-
-## Visualização de dados 
+## Visualização de dados
 
 ![](img/book.png){width="18"}[Leitura](https://pt.r4ds.hadley.nz/data-visualize.html)
 
-![](img/slide.png){width="18"} [Slides: linhas](slide-visualizacao-de-dados.qmd){target="_blank"}
+![](img/slide.png){width="18"} [Slides](slide-visualizacao-de-dados.qmd){target="_blank"}
 
 ![](img/exercicios.png){width="18"} [Exercícios](exercicios-visualizacao-de-dados.qmd){target="_blank"}
 
 ![](img/respostas.png){width="18"} [Soluções](respostas-visualizacao-de-dados.qmd){target="_blank"}
-
 
 ## Iteração
 
