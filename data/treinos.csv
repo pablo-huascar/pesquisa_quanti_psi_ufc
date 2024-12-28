@@ -1,6 +1,0 @@
-idade,altura,genero,fumante,risco_cardiaco,peso_1,peso_2,peso_3,refeicao_preferida,treinos_por_semana,treinador,total_colesterol,ruim_colesterol,bom_colesterol
-20,1.6,masculino,sim,sim,60,61,62,arroz e feijão,3,Julia,200,100,100
-30,1.7,masculino,não,não,70,71,72,pizza,4,Hadley,220,120,100
-40,1.8,feminino,não,sim,80,81,82,macarrão,5,Jesse,240,140,100
-50,1.9,feminino,sim,não,90,91,92,sushi,6,Julia,260,160,100
-60,2,feminino,sim,sim,100,101,102,sopa,7,Hadley,280,180,100
