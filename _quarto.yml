@@ -1,6 +1,7 @@
 lang: pt-br
 project:
   type: website
+  output-dir: docs
    
 
 website:
