@@ -4600,14 +4600,14 @@
     "href": "slide-exploracao-dados-numericos.html#section-5",
     "title": "Exploração de dados numéricos",
     "section": "",
-    "text": "Vamos calcular o valor da assimetria a partir de uma nova amostra de dados da altura:\n\n\n\nTabela 21: Altura dos alunos: nova amostra\n\n\n\n\n\n\nAluno\nAltura\n\n\n\nLeonardo\n152\n\n\nMariana\n153\n\n\nCarlos\n151\n\n\nAna\n154\n\n\nBruno\n156\n\n\nJuliana\n160\n\n\nRenato\n159\n\n\nFernanda\n163\n\n\nLucas\n164\n\n\nPaula\n151\n\n\nGabriel\n168\n\n\nCamila\n170\n\n\nEduardo\n175\n\n\nSofia\n180\n\n\nRicardo\n182"
+    "text": "Tabela para os cálculos\nFórmulas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{SS} = \\sum_{i=1}^n (x_i - \\bar{x})^2 =  \\sum(x_i - \\bar{x})(x_i - \\bar{x})\n\\]\n\\[\ns^2 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1} = \\frac{\\text{SS}}{n-1}  \n\\]\n\\[\ns = \\sqrt{\\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1}} = \\sqrt{s^2}\n\\]"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#section-6",
     "href": "slide-exploracao-dados-numericos.html#section-6",
     "title": "Exploração de dados numéricos",
     "section": "",
-    "text": "Tabela para os cálculos\nResultados\nFormulas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\gamma_1 = \\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})^3}{n \\cdot s^3}\n\\] \\[\n{SS} = \\sum_{i=1}^n (x_i - \\bar{x})^2 =  \\sum(x_i - \\bar{x})(x_i - \\bar{x})\n\\]\n\\[\ns^2 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1} = \\frac{\\text{SS}}{n-1}\n\\]\n\\[\ns = \\sqrt{\\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1}} = \\sqrt{s^2}\n\\]"
+    "text": "Os dois professores tem a mesma médias nas avaliações dos alunos, mas as pontuações da professora Irene são mais dispersas, por isso o desvio padrão maior."
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#resultados-6",
@@ -5735,5 +5735,33 @@
     "title": "Exploração de dados categóricos",
     "section": "",
     "text": "Como você avalia agora que a relação entre as dimesões pode ser vizualizada por espécie?"
+  },
+  {
+    "objectID": "slide-exploracao-dados-numericos.html#section-4",
+    "href": "slide-exploracao-dados-numericos.html#section-4",
+    "title": "Exploração de dados numéricos",
+    "section": "",
+    "text": "Tabela para os cálculos\nFórmulas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{SS} = \\sum_{i=1}^n (x_i - \\bar{x})^2 =  \\sum(x_i - \\bar{x})(x_i - \\bar{x})\n\\]\n\\[\ns^2 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1} = \\frac{\\text{SS}}{n-1}  \n\\]\n\\[\ns = \\sqrt{\\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1}} = \\sqrt{s^2}\n\\]"
+  },
+  {
+    "objectID": "slide-exploracao-dados-numericos.html#section-8",
+    "href": "slide-exploracao-dados-numericos.html#section-8",
+    "title": "Exploração de dados numéricos",
+    "section": "",
+    "text": "Vamos calcular o valor da assimetria a partir de uma nova amostra de dados da altura:\n\n\n\nTabela 21: Altura dos alunos: nova amostra\n\n\n\n\n\n\nAluno\nAltura\n\n\n\nLeonardo\n152\n\n\nMariana\n153\n\n\nCarlos\n151\n\n\nAna\n154\n\n\nBruno\n156\n\n\nJuliana\n160\n\n\nRenato\n159\n\n\nFernanda\n163\n\n\nLucas\n164\n\n\nPaula\n151\n\n\nGabriel\n168\n\n\nCamila\n170\n\n\nEduardo\n175\n\n\nSofia\n180\n\n\nRicardo\n182"
+  },
+  {
+    "objectID": "slide-exploracao-dados-numericos.html#section-9",
+    "href": "slide-exploracao-dados-numericos.html#section-9",
+    "title": "Exploração de dados numéricos",
+    "section": "",
+    "text": "Tabela para os cálculos\nResultados\nFormulas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\gamma_1 = \\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})^3}{n \\cdot s^3}\n\\] \\[\n{SS} = \\sum_{i=1}^n (x_i - \\bar{x})^2 =  \\sum(x_i - \\bar{x})(x_i - \\bar{x})\n\\]\n\\[\ns^2 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1} = \\frac{\\text{SS}}{n-1}\n\\]\n\\[\ns = \\sqrt{\\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1}} = \\sqrt{s^2}\n\\]"
+  },
+  {
+    "objectID": "slide-exploracao-dados-numericos.html#section-10",
+    "href": "slide-exploracao-dados-numericos.html#section-10",
+    "title": "Exploração de dados numéricos",
+    "section": "",
+    "text": "Existe apenas um pico proeminente no histograma da altura dos filhos (sheight)"
   }
 ]
