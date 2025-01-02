@@ -3405,7 +3405,7 @@
     "href": "slide-exploracao-dados-categoricos.html#section-2",
     "title": "Exploração de dados categóricos",
     "section": "",
-    "text": "Como você avalia agora que a relação entre as dimesões pode ser vizualizada por espécie?"
+    "text": "Use os gráficos para comprar massa corporal dos pinguins pelos dois grupos. O que você nota sobre o centro aproximado de cada grupo? O que você nota sobre a variabilidade entre os grupos? A forma é relativamente consistente entre os grupos? Quantas modas proeminentes existem para cada grupo?"
   },
   {
     "objectID": "slide-exploracao-dados-categoricos.html#gráfico-de-densidade-sobreposto",
@@ -5721,5 +5721,19 @@
     "title": "Introdução ao R",
     "section": "Exercício 20",
     "text": "Exercício 20\nCrie um objeto nomes com os nomes de 5 pessoas: João, Maria, Pedro, Ana e Carlos. Em seguida, ordene os nomes em ordem alfabética.\n\n\n\n\n\n\nDica\n\n\n\n\nsort()"
+  },
+  {
+    "objectID": "slide-exploracao-dados-categoricos.html#section-3",
+    "href": "slide-exploracao-dados-categoricos.html#section-3",
+    "title": "Exploração de dados categóricos",
+    "section": "",
+    "text": "Como você avalia a relação entre o comprimento e profundidade da nadadeira dos pinguins?"
+  },
+  {
+    "objectID": "slide-exploracao-dados-categoricos.html#section-4",
+    "href": "slide-exploracao-dados-categoricos.html#section-4",
+    "title": "Exploração de dados categóricos",
+    "section": "",
+    "text": "Como você avalia agora que a relação entre as dimesões pode ser vizualizada por espécie?"
   }
 ]
