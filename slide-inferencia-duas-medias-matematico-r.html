@@ -7,16 +7,16 @@
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
-<title>Pesquisa Quantitativa – Inferência</title>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-<link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
-<link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
-<style>
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <title>Pesquisa Quantitativa – Inferência</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -94,13 +94,13 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-<link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
-<link rel="stylesheet" href="logo.css">
-<link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-<link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-<link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-<link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-<style type="text/css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="logo.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -298,7 +298,7 @@
   }
 
   </style>
-<style type="text/css">
+  <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -390,52 +390,50 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center"><h1 class="title">Inferência</h1>
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Inferência</h1>
   <p class="subtitle">Comparar duas médias independentes: aplicação do modelo matemático no R</p>
 
 <div class="quarto-title-authors">
 </div>
 
-</section><section><section id="bancos-de-dados-utilizados" class="title-slide slide level1 center"><h1>Bancos de dados utilizados</h1>
+</section>
+<section>
+<section id="bancos-de-dados-utilizados" class="title-slide slide level1 center">
+<h1>Bancos de dados utilizados</h1>
 
-</section><section id="section" class="slide level2" data-background-image="img/mtcars.png" data-background-size="contain"><h2></h2>
-</section><section id="mtcars" class="slide level2 smaller"><h2><code>mtcars</code></h2>
+</section>
+<section id="section" class="slide level2" data-background-image="img/mtcars.png" data-background-size="contain">
+<h2></h2>
+</section>
+<section id="mtcars" class="slide level2 smaller">
+<h2><code>mtcars</code></h2>
 <div style="font-size: 18pt;">
 <p>Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo de combustível e 10 aspectos do design e desempenho de automóveis para 32 carros (modelos de 1973-74)</p>
 <ul>
 <li>Formato: Um banco de dados com 32 observações e 11 variáveis.
 <ul>
-<li>
-<code>mpg</code>: milhas/galão (km/l)</li>
-<li>
-<code>cyl</code>: número de cilindros</li>
-<li>
-<code>disp</code>: cilindrada (polegadas cúbicas)</li>
-<li>
-<code>hp</code>: potência bruta (cavalos de potência)</li>
-<li>
-<code>drat</code>: relação de transmissão do eixo traseiro</li>
-<li>
-<code>wt</code>: peso (1000 lbs)</li>
-<li>
-<code>qsec</code>: tempo para 1/4 de milha</li>
-<li>
-<code>vs</code>: motor (0 = em forma de V, 1 = reto)</li>
-<li>
-<code>am</code>: transmissão (0 = automática, 1 = manual)</li>
-<li>
-<code>gear</code>: número de marchas para frente</li>
-<li>
-<code>carb</code>: número de carburadores</li>
-</ul>
-</li>
+<li><code>mpg</code>: milhas/galão (km/l)</li>
+<li><code>cyl</code>: número de cilindros</li>
+<li><code>disp</code>: cilindrada (polegadas cúbicas)</li>
+<li><code>hp</code>: potência bruta (cavalos de potência)</li>
+<li><code>drat</code>: relação de transmissão do eixo traseiro</li>
+<li><code>wt</code>: peso (1000 lbs)</li>
+<li><code>qsec</code>: tempo para 1/4 de milha</li>
+<li><code>vs</code>: motor (0 = em forma de V, 1 = reto)</li>
+<li><code>am</code>: transmissão (0 = automática, 1 = manual)</li>
+<li><code>gear</code>: número de marchas para frente</li>
+<li><code>carb</code>: número de carburadores</li>
+</ul></li>
 </ul>
 </div>
-</section><section id="uma-olhada-em-mtcars" class="slide level2"><h2>Uma olhada em <code>mtcars</code>
-</h2>
+</section>
+<section id="uma-olhada-em-mtcars" class="slide level2">
+<h2>Uma olhada em <code>mtcars</code></h2>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
-<div id="tbl-mtcars" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-mtcars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="tbl-mtcars" class="cell quarto-float quarto-figure quarto-figure-center" data-tbl-cap-location="bottom" data-layout-align="center">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-mtcars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="tnvyzesyyi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#tnvyzesyyi table {
@@ -886,13 +884,16 @@
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Modelo" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Modelo</th>
 <th id="wt" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">wt</th>
 <th id="mpg" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">mpg</th>
 <th id="cyl" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">cyl</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Modelo">Maserati Bora</td>
@@ -956,129 +957,132 @@
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-mtcars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcars</code>
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="pacotes" class="slide level2"><h2>Pacotes</h2>
+</section>
+<section id="pacotes" class="slide level2">
+<h2>Pacotes</h2>
 <p>Carregue os pacotes abaixo:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a></span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(rstatix)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section><section id="teste-t-para-amostras-independentes" class="title-slide slide level1 center" style="font-size: 22pt;"><h1>Teste t para amostras independentes</h1>
+</section></section>
+<section>
+<section id="teste-t-para-amostras-independentes" class="title-slide slide level1 center" style="font-size: 22pt;">
+<h1>Teste t para amostras independentes</h1>
 
-</section><section id="exemplo" class="slide level2 smaller"><h2>Exemplo</h2>
+</section>
+<section id="exemplo" class="slide level2 smaller">
+<h2>Exemplo</h2>
 <ul>
 <li>Há diferença no consumo de combustível (<code>mpg</code>) entre carros com motores em V e retos (<code>vs</code>)?</li>
-</ul></section><section id="manipulação-dos-dados" class="slide level2 smaller"><h2>Manipulação dos dados</h2>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-1-1">Ações</a></li>
-<li><a href="#tabset-1-2">Código</a></li>
-<li><a href="#tabset-1-3">Resultado</a></li>
 </ul>
+</section>
+<section id="manipulação-dos-dados" class="slide level2 smaller">
+<h2>Manipulação dos dados</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Ações</a></li><li><a href="#tabset-1-2">Código</a></li><li><a href="#tabset-1-3">Resultado</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <ul>
-<li>Carregar o conjunto de dados mtcars: <code>data("mtcars")</code>
-</li>
-<li>Converter os rótulos das linhas para uma coluna: <code><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column()</a></code>
-</li>
-<li>Transformar em tibble para melhorar a visualização: <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code>
-</li>
+<li>Carregar o conjunto de dados mtcars: <code>data("mtcars")</code></li>
+<li>Converter os rótulos das linhas para uma coluna: <code>rownames_to_column()</code></li>
+<li>Transformar em tibble para melhorar a visualização: <code>as_tibble()</code></li>
 <li>Recodficar a variável independente (<code>vs</code>) para facilitar a interpretação dos resultados</li>
-<li>Transformar a variável independente em fator: <code><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor()</a></code>
-</li>
-<li>Selecionar e salvar as variáveis que serão utilizadas em um novo objeto para facilitar a visualização: <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>
-</li>
+<li>Transformar a variável independente em fator: <code>as_factor()</code></li>
+<li>Selecionar e salvar as variáveis que serão utilizadas em um novo objeto para facilitar a visualização: <code>select()</code></li>
 </ul>
 </div>
 <div id="tabset-1-2">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Carregar os dados</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="va">dados_teste_t</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># Converter os rótulos das linhas</span></span>
-<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span>var <span class="op">=</span> <span class="st">"modelo"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="co"># Transformar em tibble</span></span>
-<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    <span class="co"># Recodficar a variável independente</span></span>
-<span>    vs <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">~</span> <span class="st">"V"</span>, </span>
-<span>                   .default <span class="op">=</span> <span class="st">"reto"</span><span class="op">)</span>,</span>
-<span>    <span class="co"># Transformar em fator</span></span>
-<span>    vs <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">vs</span><span class="op">)</span>, </span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="co"># Selecionar as variáveis</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">modelo</span>, <span class="va">mpg</span>, <span class="va">vs</span><span class="op">)</span> </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># Carregar os dados</span></span>
+<span id="cb2-2"><a></a><span class="fu">data</span>(<span class="st">"mtcars"</span>) </span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a>dados_teste_t <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a></a>  <span class="co"># Converter os rótulos das linhas</span></span>
+<span id="cb2-6"><a></a>  <span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"modelo"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a></a>  <span class="co"># Transformar em tibble</span></span>
+<span id="cb2-8"><a></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-10"><a></a>    <span class="co"># Recodficar a variável independente</span></span>
+<span id="cb2-11"><a></a>    <span class="at">vs =</span> <span class="fu">case_when</span>(vs <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"V"</span>, </span>
+<span id="cb2-12"><a></a>                   <span class="at">.default =</span> <span class="st">"reto"</span>),</span>
+<span id="cb2-13"><a></a>    <span class="co"># Transformar em fator</span></span>
+<span id="cb2-14"><a></a>    <span class="at">vs =</span> <span class="fu">as_factor</span>(vs), </span>
+<span id="cb2-15"><a></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb2-16"><a></a>  <span class="co"># Selecionar as variáveis</span></span>
+<span id="cb2-17"><a></a>  <span class="fu">select</span>(modelo, mpg, vs) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-3">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_teste_t</span></span>
-<span><span class="co">#&gt; # A tibble: 32 × 3</span></span>
-<span><span class="co">#&gt;   modelo              mpg vs   </span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;fct&gt;</span></span>
-<span><span class="co">#&gt; 1 Mazda RX4          21   V    </span></span>
-<span><span class="co">#&gt; 2 Mazda RX4 Wag      21   V    </span></span>
-<span><span class="co">#&gt; 3 Datsun 710         22.8 reto </span></span>
-<span><span class="co">#&gt; 4 Hornet 4 Drive     21.4 reto </span></span>
-<span><span class="co">#&gt; 5 Hornet Sportabout  18.7 V    </span></span>
-<span><span class="co">#&gt; 6 Valiant            18.1 reto </span></span>
-<span><span class="co">#&gt; # ℹ 26 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>dados_teste_t</span>
+<span id="cb3-2"><a></a><span class="co">#&gt; # A tibble: 32 × 3</span></span>
+<span id="cb3-3"><a></a><span class="co">#&gt;   modelo              mpg vs   </span></span>
+<span id="cb3-4"><a></a><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;fct&gt;</span></span>
+<span id="cb3-5"><a></a><span class="co">#&gt; 1 Mazda RX4          21   V    </span></span>
+<span id="cb3-6"><a></a><span class="co">#&gt; 2 Mazda RX4 Wag      21   V    </span></span>
+<span id="cb3-7"><a></a><span class="co">#&gt; 3 Datsun 710         22.8 reto </span></span>
+<span id="cb3-8"><a></a><span class="co">#&gt; 4 Hornet 4 Drive     21.4 reto </span></span>
+<span id="cb3-9"><a></a><span class="co">#&gt; 5 Hornet Sportabout  18.7 V    </span></span>
+<span id="cb3-10"><a></a><span class="co">#&gt; 6 Valiant            18.1 reto </span></span>
+<span id="cb3-11"><a></a><span class="co">#&gt; # ℹ 26 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="exploração-dos-dados" class="slide level2 smaller"><h2>Exploração dos dados</h2>
+</section>
+<section id="exploração-dos-dados" class="slide level2 smaller">
+<h2>Exploração dos dados</h2>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-2-1">Tabela</a></li>
-<li><a href="#tabset-2-2">Gráfico</a></li>
-</ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Tabela</a></li><li><a href="#tabset-2-2">Gráfico</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">descritivos_grupos</span> <span class="op">&lt;-</span> <span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
-<span>    n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>    m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span>, </span>
-<span>    sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span>,</span>
-<span>    .by <span class="op">=</span> <span class="va">vs</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    diferenca <span class="op">=</span> <span class="va">m</span> <span class="op">-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
-<span></span>
-<span><span class="va">descritivos_grupos</span></span>
-<span><span class="co">#&gt; # A tibble: 2 × 5</span></span>
-<span><span class="co">#&gt;   vs        n     m    sd diferenca</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 V        18  16.6  3.86     NA   </span></span>
-<span><span class="co">#&gt; 2 reto     14  24.6  5.38      7.94</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>descritivos_grupos <span class="ot">&lt;-</span> dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb4-3"><a></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb4-4"><a></a>    <span class="at">m =</span> <span class="fu">mean</span>(mpg), </span>
+<span id="cb4-5"><a></a>    <span class="at">sd =</span> <span class="fu">sd</span>(mpg),</span>
+<span id="cb4-6"><a></a>    <span class="at">.by =</span> vs</span>
+<span id="cb4-7"><a></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb4-8"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-9"><a></a>    <span class="at">diferenca =</span> m <span class="sc">-</span> <span class="fu">lag</span>(m)</span>
+<span id="cb4-10"><a></a>    )</span>
+<span id="cb4-11"><a></a></span>
+<span id="cb4-12"><a></a>descritivos_grupos</span>
+<span id="cb4-13"><a></a><span class="co">#&gt; # A tibble: 2 × 5</span></span>
+<span id="cb4-14"><a></a><span class="co">#&gt;   vs        n     m    sd diferenca</span></span>
+<span id="cb4-15"><a></a><span class="co">#&gt;   &lt;fct&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb4-16"><a></a><span class="co">#&gt; 1 V        18  16.6  3.86     NA   </span></span>
+<span id="cb4-17"><a></a><span class="co">#&gt; 2 reto     14  24.6  5.38      7.94</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">vs</span>, <span class="va">mpg</span><span class="op">)</span></span>
-<span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span></span>
-<span>    color <span class="op">=</span> <span class="st">"#569BBD"</span></span>
-<span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">stat_boxplot</a></span><span class="op">(</span></span>
-<span>    geom <span class="op">=</span> <span class="st">'errorbar'</span>, color <span class="op">=</span> <span class="st">"#569BBD"</span></span>
-<span>    <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb5-3"><a></a>    <span class="fu">aes</span>(vs, mpg)</span>
+<span id="cb5-4"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb5-5"><a></a>  <span class="fu">geom_boxplot</span>(</span>
+<span id="cb5-6"><a></a>    <span class="at">color =</span> <span class="st">"#569BBD"</span></span>
+<span id="cb5-7"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb5-8"><a></a>  <span class="fu">stat_boxplot</span>(</span>
+<span id="cb5-9"><a></a>    <span class="at">geom =</span> <span class="st">'errorbar'</span>, <span class="at">color =</span> <span class="st">"#569BBD"</span></span>
+<span id="cb5-10"><a></a>    )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-inferencia-duas-medias-matematico-r_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-inferencia-duas-medias-matematico-r_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -1086,401 +1090,393 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
 </div>
 </div>
 </div>
-</section><section id="avaliação-de-pressupostos" class="slide level2"><h2>Avaliação de pressupostos</h2>
+</section>
+<section id="avaliação-de-pressupostos" class="slide level2">
+<h2>Avaliação de pressupostos</h2>
 <ul>
 <li>Independência entre os grupos</li>
 <li>Normalidade</li>
 <li>Homogeneidade das variâncias</li>
-</ul></section><section id="independência-entre-os-grupos" class="slide level2 smaller"><h2>Independência entre os grupos</h2>
+</ul>
+</section>
+<section id="independência-entre-os-grupos" class="slide level2 smaller">
+<h2>Independência entre os grupos</h2>
 <ul>
 <li>As observações em cada grupo devem ser independentes entre si</li>
 <li>Não deve haver relação ou influência entre as observações dos grupos “V” e “reto”</li>
-</ul></section><section id="independência-entre-os-grupos-1" class="slide level2 smaller"><h2>Independência entre os grupos</h2>
+</ul>
+</section>
+<section id="independência-entre-os-grupos-1" class="slide level2 smaller">
+<h2>Independência entre os grupos</h2>
 <ul>
 <li>Cada linha representa um veículo distinto; não há veículos repetidos (32 modelos, 32 linhas)</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">dados_teste_t</span><span class="op">$</span><span class="va">modelo</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 32</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dados_teste_t</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 32</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">n_distinct</span>(dados_teste_t<span class="sc">$</span>modelo)</span>
+<span id="cb6-2"><a></a><span class="co">#&gt; [1] 32</span></span>
+<span id="cb6-3"><a></a><span class="fu">nrow</span>(dados_teste_t)</span>
+<span id="cb6-4"><a></a><span class="co">#&gt; [1] 32</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Cada modelo participa somente de um grupo</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">vs</span>, <span class="va">modelo</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">vs</span>, <span class="va">n</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
-<span><span class="co">#&gt;   vs        n</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt; &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 V         1</span></span>
-<span><span class="co">#&gt; 2 reto      1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a></a>  <span class="fu">count</span>(vs, modelo) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a></a>  <span class="fu">distinct</span>(vs, n)</span>
+<span id="cb7-4"><a></a><span class="co">#&gt; # A tibble: 2 × 2</span></span>
+<span id="cb7-5"><a></a><span class="co">#&gt;   vs        n</span></span>
+<span id="cb7-6"><a></a><span class="co">#&gt;   &lt;fct&gt; &lt;int&gt;</span></span>
+<span id="cb7-7"><a></a><span class="co">#&gt; 1 V         1</span></span>
+<span id="cb7-8"><a></a><span class="co">#&gt; 2 reto      1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="normalidade-teste-de-shapiro-wilk" class="slide level2"><h2>Normalidade: teste de Shapiro-Wilk</h2>
+</section>
+<section id="normalidade-teste-de-shapiro-wilk" class="slide level2">
+<h2>Normalidade: teste de Shapiro-Wilk</h2>
 <ul>
 <li>Hipóteses:
 <ul>
-<li>
-<span class="math inline">\(H_0\)</span>: a variável de interesse é oriunda de uma população com distribuição normal</li>
-<li>
-<span class="math inline">\(H_a\)</span>: a variável de interesse não é oriunda de uma população com distribuição normal</li>
-</ul>
-</li>
+<li><span class="math inline">\(H_0\)</span>: a variável de interesse é oriunda de uma população com distribuição normal</li>
+<li><span class="math inline">\(H_a\)</span>: a variável de interesse não é oriunda de uma população com distribuição normal</li>
+</ul></li>
 <li>Avaliar a normalidade da VD (<code>mgp</code>) para cada grupo da VI (<code>vs</code>):
 <ul>
 <li>“V” e “reto”</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="normalidade-rstatixshapiro_test" class="slide level2"><h2>Normalidade: <code>rstatix::shapiro_test()</code>
-</h2>
+</section>
+<section id="normalidade-rstatixshapiro_test" class="slide level2">
+<h2>Normalidade: <code>rstatix::shapiro_test()</code></h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-3-1">Uso</a></li>
-<li><a href="#tabset-3-2">Argumentos</a></li>
-</ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Uso</a></li><li><a href="#tabset-3-2">Argumentos</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/shapiro_test.html">shapiro_test</a></span><span class="op">(</span></span>
-<span>  <span class="va">data</span>, </span>
-<span>  <span class="va">...</span>, </span>
-<span>  vars <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">shapiro_test</span>(</span>
+<span id="cb8-2"><a></a>  data, </span>
+<span id="cb8-3"><a></a>  ..., </span>
+<span id="cb8-4"><a></a>  <span class="at">vars =</span> <span class="cn">NULL</span></span>
+<span id="cb8-5"><a></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-3-2">
 <ul>
-<li>
-<strong>data</strong>: um banco de dados. Colunas são variáveis.</li>
-<li>
-<strong>vars</strong>: vetor de caracteres opcional contendo nomes de variáveis. Ignorado quando dot vars são especificados.</li>
+<li><strong>data</strong>: um banco de dados. Colunas são variáveis.</li>
+<li><strong>vars</strong>: vetor de caracteres opcional contendo nomes de variáveis. Ignorado quando dot vars são especificados.</li>
 </ul>
 </div>
 </div>
 </div>
-</section><section id="normalidade-rstatixshapiro_test-1" class="slide level2"><h2>Normalidade: <code>rstatix::shapiro_test()</code>
-</h2>
+</section>
+<section id="normalidade-rstatixshapiro_test-1" class="slide level2">
+<h2>Normalidade: <code>rstatix::shapiro_test()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado_shapiro</span> <span class="op">&lt;-</span> <span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/shapiro_test.html">shapiro_test</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">resultado_shapiro</span></span>
-<span><span class="co">#&gt; # A tibble: 2 × 4</span></span>
-<span><span class="co">#&gt;   vs    variable statistic     p</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 V     mpg          0.952 0.449</span></span>
-<span><span class="co">#&gt; 2 reto  mpg          0.912 0.167</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>resultado_shapiro <span class="ot">&lt;-</span> dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a></a>  <span class="fu">group_by</span>(vs) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a></a>  <span class="fu">shapiro_test</span>(mpg)</span>
+<span id="cb9-4"><a></a></span>
+<span id="cb9-5"><a></a>resultado_shapiro</span>
+<span id="cb9-6"><a></a><span class="co">#&gt; # A tibble: 2 × 4</span></span>
+<span id="cb9-7"><a></a><span class="co">#&gt;   vs    variable statistic     p</span></span>
+<span id="cb9-8"><a></a><span class="co">#&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb9-9"><a></a><span class="co">#&gt; 1 V     mpg          0.952 0.449</span></span>
+<span id="cb9-10"><a></a><span class="co">#&gt; 2 reto  mpg          0.912 0.167</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="passo-a-passo-do-código" class="slide level2"><h2>Passo-a-passo do código</h2>
+</section>
+<section id="passo-a-passo-do-código" class="slide level2">
+<h2>Passo-a-passo do código</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="co"># Agrupar pela VI</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="co"># Indicar a VD a ser analisada</span></span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/shapiro_test.html">shapiro_test</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a></a>  <span class="co"># Agrupar pela VI</span></span>
+<span id="cb10-3"><a></a>  <span class="fu">group_by</span>(vs) <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a></a>  <span class="co"># Indicar a VD a ser analisada</span></span>
+<span id="cb10-5"><a></a>  <span class="fu">shapiro_test</span>(mpg)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="homogeneidade-de-variâncias-teste-de-levene" class="slide level2"><h2>Homogeneidade de Variâncias: teste de Levene</h2>
+</section>
+<section id="homogeneidade-de-variâncias-teste-de-levene" class="slide level2">
+<h2>Homogeneidade de Variâncias: teste de Levene</h2>
 <ul>
 <li>Hipóteses:
 <ul>
-<li>
-<span class="math inline">\(H_0\)</span>: As variâncias populacionais são iguais entre os grupos</li>
-<li>
-<span class="math inline">\(H_a\)</span>: As variâncias populacionais não são iguais entre os grupos</li>
-</ul>
-</li>
+<li><span class="math inline">\(H_0\)</span>: As variâncias populacionais são iguais entre os grupos</li>
+<li><span class="math inline">\(H_a\)</span>: As variâncias populacionais não são iguais entre os grupos</li>
+</ul></li>
 <li>Avaliar a homogeneidade de variâncias da VD (<code>mpg</code>) entre os grupos da VI (<code>vs</code>):
 <ul>
 <li>“V” e “reto”</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="homogeneidade-de-variâncias-rstatixlevene_test" class="slide level2"><h2>Homogeneidade de Variâncias: <code>rstatix::levene_test()</code>
-</h2>
+</section>
+<section id="homogeneidade-de-variâncias-rstatixlevene_test" class="slide level2">
+<h2>Homogeneidade de Variâncias: <code>rstatix::levene_test()</code></h2>
 <div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-4-1">Uso</a></li>
-<li><a href="#tabset-4-2">Argumentos</a></li>
-</ul>
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Uso</a></li><li><a href="#tabset-4-2">Argumentos</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/levene_test.html">levene_test</a></span><span class="op">(</span></span>
-<span>  <span class="va">data</span>, </span>
-<span>  <span class="va">formula</span>, </span>
-<span>  center <span class="op">=</span> <span class="va">median</span></span>
-<span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">levene_test</span>(</span>
+<span id="cb11-2"><a></a>  data, </span>
+<span id="cb11-3"><a></a>  formula, </span>
+<span id="cb11-4"><a></a>  <span class="at">center =</span> median</span>
+<span id="cb11-5"><a></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-4-2">
 <div style="font-size: 16pt;">
 <ul>
-<li>
-<strong>data</strong>: um banco de dados para avaliar a fórmula ou um modelo.</li>
-<li>
-<strong>formula</strong>: uma fórmula.</li>
-<li>
-<strong>center</strong>: o nome de uma função para calcular o centro de cada grupo; “mean” (média) fornece o teste de Levene original; o padrão, “median” (mediana), fornece um teste mais robusto.</li>
+<li><strong>data</strong>: um banco de dados para avaliar a fórmula ou um modelo.</li>
+<li><strong>formula</strong>: uma fórmula.</li>
+<li><strong>center</strong>: o nome de uma função para calcular o centro de cada grupo; “mean” (média) fornece o teste de Levene original; o padrão, “median” (mediana), fornece um teste mais robusto.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-</section><section id="homogeneidade-de-variâncias-rstatixlevene_test-1" class="slide level2"><h2>Homogeneidade de Variâncias: <code>rstatix::levene_test()</code>
-</h2>
+</section>
+<section id="homogeneidade-de-variâncias-rstatixlevene_test-1" class="slide level2">
+<h2>Homogeneidade de Variâncias: <code>rstatix::levene_test()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado_levene</span> <span class="op">&lt;-</span> <span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/levene_test.html">levene_test</a></span><span class="op">(</span>formula <span class="op">=</span>  <span class="va">mpg</span> <span class="op">~</span> <span class="va">vs</span>, center <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">resultado_levene</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 4</span></span>
-<span><span class="co">#&gt;     df1   df2 statistic      p</span></span>
-<span><span class="co">#&gt;   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     1    30      3.09 0.0892</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>resultado_levene <span class="ot">&lt;-</span> dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a></a>  <span class="fu">levene_test</span>(<span class="at">formula =</span>  mpg <span class="sc">~</span> vs, <span class="at">center =</span> <span class="st">"mean"</span>)</span>
+<span id="cb12-3"><a></a></span>
+<span id="cb12-4"><a></a>resultado_levene</span>
+<span id="cb12-5"><a></a><span class="co">#&gt; # A tibble: 1 × 4</span></span>
+<span id="cb12-6"><a></a><span class="co">#&gt;     df1   df2 statistic      p</span></span>
+<span id="cb12-7"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb12-8"><a></a><span class="co">#&gt; 1     1    30      3.09 0.0892</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="teste-t-para-amostras-independentes-1" class="slide level2"><h2>Teste t para amostras independentes</h2>
+</section>
+<section id="teste-t-para-amostras-independentes-1" class="slide level2">
+<h2>Teste t para amostras independentes</h2>
 <ul>
 <li>Hipóteses (Bilateral):
 <ul>
-<li>Hipótese nula: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos <span class="math display">\[H_0: \mu_{\text{V}} = \mu_{\text{reto}}\]</span>
-</li>
-<li>Hipótese alternativa: a média do consumo de combustível dos carros com motores em V é diferente da média dos carros com motores retos <span class="math display">\[H_a: \mu_{\text{V}} \ne \mu_{\text{reto}}\]</span>
-</li>
+<li>Hipótese nula: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos <span class="math display">\[H_0: \mu_{\text{V}} = \mu_{\text{reto}}\]</span></li>
+<li>Hipótese alternativa: a média do consumo de combustível dos carros com motores em V é diferente da média dos carros com motores retos <span class="math display">\[H_a: \mu_{\text{V}} \ne \mu_{\text{reto}}\]</span></li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="teste-t-para-amostras-independentes-rstatixt_test" class="slide level2"><h2>Teste t para amostras independentes: <code>rstatix::t_test()</code>
-</h2>
+</section>
+<section id="teste-t-para-amostras-independentes-rstatixt_test" class="slide level2">
+<h2>Teste t para amostras independentes: <code>rstatix::t_test()</code></h2>
 <div class="panel-tabset">
-<ul id="tabset-5" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-5-1">Uso</a></li>
-<li><a href="#tabset-5-2">Argumentos</a></li>
-</ul>
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Uso</a></li><li><a href="#tabset-5-2">Argumentos</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/t_test.html">t_test</a></span><span class="op">(</span></span>
-<span>  <span class="va">data</span>,</span>
-<span>  <span class="va">formula</span>,</span>
-<span>  ref.group <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  var.equal <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  alternative <span class="op">=</span> <span class="st">"two.sided"</span>,</span>
-<span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
-<span>  detailed <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">t_test</span>(</span>
+<span id="cb13-2"><a></a>  data,</span>
+<span id="cb13-3"><a></a>  formula,</span>
+<span id="cb13-4"><a></a>  <span class="at">ref.group =</span> <span class="cn">NULL</span>,</span>
+<span id="cb13-5"><a></a>  <span class="at">var.equal =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb13-6"><a></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb13-7"><a></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
+<span id="cb13-8"><a></a>  <span class="at">detailed =</span> <span class="cn">FALSE</span></span>
+<span id="cb13-9"><a></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-5-2">
 <div style="font-size: 14pt;">
 <ul>
-<li>
-<strong>data</strong>: um banco de dados contendo as variáveis na fórmula.</li>
-<li>
-<strong>formula</strong>: uma fórmula com a variável de resposta à esquerda e a explicativa à direita.</li>
-<li>
-<strong>ref.group</strong>: uma sequência de caracteres especificando o grupo de referência.</li>
-<li>
-<strong>var.equal</strong>: uma variável lógica indicando se deve tratar as duas variâncias como sendo iguais. Se TRUE, então a variância combinada é usada para estimar a variância, caso contrário, a aproximação de Welch (ou Satterthwaite) para os graus de liberdade é usada.</li>
-<li>
-<strong>alternative</strong>: sequência de caracteres que fornece a direção da hipótese alternativa. As opções são “two-sided” (padrão), “greater” ou “less”. Você pode especificar a letra inicial.</li>
-<li>
-<strong>conf_level</strong>: um valor numérico entre 0 e 1. O valor padrão é 0.95.</li>
-<li>
-<strong>detailed</strong>: valor lógico. O padrão é FALSE. Se TRUE, um resultado detalhado é mostrado.</li>
+<li><strong>data</strong>: um banco de dados contendo as variáveis na fórmula.</li>
+<li><strong>formula</strong>: uma fórmula com a variável de resposta à esquerda e a explicativa à direita.</li>
+<li><strong>ref.group</strong>: uma sequência de caracteres especificando o grupo de referência.</li>
+<li><strong>var.equal</strong>: uma variável lógica indicando se deve tratar as duas variâncias como sendo iguais. Se TRUE, então a variância combinada é usada para estimar a variância, caso contrário, a aproximação de Welch (ou Satterthwaite) para os graus de liberdade é usada.</li>
+<li><strong>alternative</strong>: sequência de caracteres que fornece a direção da hipótese alternativa. As opções são “two-sided” (padrão), “greater” ou “less”. Você pode especificar a letra inicial.</li>
+<li><strong>conf_level</strong>: um valor numérico entre 0 e 1. O valor padrão é 0.95.</li>
+<li><strong>detailed</strong>: valor lógico. O padrão é FALSE. Se TRUE, um resultado detalhado é mostrado.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-</section><section id="teste-t-para-amostras-independentes-rstatixt_test-1" class="slide level2"><h2>Teste t para amostras independentes: <code>rstatix::t_test()</code>
-</h2>
+</section>
+<section id="teste-t-para-amostras-independentes-rstatixt_test-1" class="slide level2">
+<h2>Teste t para amostras independentes: <code>rstatix::t_test()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado_teste_t</span> <span class="op">&lt;-</span> <span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/t_test.html">t_test</a></span><span class="op">(</span></span>
-<span>    formula <span class="op">=</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">vs</span>, ref.group <span class="op">=</span> <span class="st">"reto"</span>,</span>
-<span>    var.equal <span class="op">=</span> <span class="cn">T</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, </span>
-<span>    detailed <span class="op">=</span> <span class="cn">T</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">resultado_teste_t</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 15</span></span>
-<span><span class="co">#&gt;   estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic</span></span>
-<span><span class="co">#&gt; *    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     7.94      24.6      16.6 mpg   reto   V         14    18      4.86</span></span>
-<span><span class="co">#&gt; # ℹ 6 more variables: p &lt;dbl&gt;, df &lt;dbl&gt;, conf.low &lt;dbl&gt;, conf.high &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   method &lt;chr&gt;, alternative &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>resultado_teste_t <span class="ot">&lt;-</span> dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a></a>  <span class="fu">t_test</span>(</span>
+<span id="cb14-3"><a></a>    <span class="at">formula =</span> mpg <span class="sc">~</span> vs, <span class="at">ref.group =</span> <span class="st">"reto"</span>,</span>
+<span id="cb14-4"><a></a>    <span class="at">var.equal =</span> T, <span class="at">alternative =</span> <span class="st">"two.sided"</span>, </span>
+<span id="cb14-5"><a></a>    <span class="at">detailed =</span> T</span>
+<span id="cb14-6"><a></a>  )</span>
+<span id="cb14-7"><a></a></span>
+<span id="cb14-8"><a></a>resultado_teste_t</span>
+<span id="cb14-9"><a></a><span class="co">#&gt; # A tibble: 1 × 15</span></span>
+<span id="cb14-10"><a></a><span class="co">#&gt;   estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic</span></span>
+<span id="cb14-11"><a></a><span class="co">#&gt; *    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;</span></span>
+<span id="cb14-12"><a></a><span class="co">#&gt; 1     7.94      24.6      16.6 mpg   reto   V         14    18      4.86</span></span>
+<span id="cb14-13"><a></a><span class="co">#&gt; # ℹ 6 more variables: p &lt;dbl&gt;, df &lt;dbl&gt;, conf.low &lt;dbl&gt;, conf.high &lt;dbl&gt;,</span></span>
+<span id="cb14-14"><a></a><span class="co">#&gt; #   method &lt;chr&gt;, alternative &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="tamanho-de-efeito-rstatixcohens_d" class="slide level2"><h2>Tamanho de efeito: <code>rstatix::cohens_d()</code>
-</h2>
+</section>
+<section id="tamanho-de-efeito-rstatixcohens_d" class="slide level2">
+<h2>Tamanho de efeito: <code>rstatix::cohens_d()</code></h2>
 <div class="panel-tabset">
-<ul id="tabset-6" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-6-1">Uso</a></li>
-<li><a href="#tabset-6-2">Argumentos</a></li>
-</ul>
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Uso</a></li><li><a href="#tabset-6-2">Argumentos</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cohens_d.html">cohens_d</a></span><span class="op">(</span></span>
-<span>  <span class="va">data</span>,</span>
-<span>  <span class="va">formula</span>,</span>
-<span>  ref.group <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  var.equal <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">cohens_d</span>(</span>
+<span id="cb15-2"><a></a>  data,</span>
+<span id="cb15-3"><a></a>  formula,</span>
+<span id="cb15-4"><a></a>  <span class="at">ref.group =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-5"><a></a>  <span class="at">var.equal =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb15-6"><a></a>  <span class="at">ci =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb15-7"><a></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-6-2">
 <div style="font-size: 16pt;">
 <ul>
-<li>
-<strong>data</strong>: um banco de dados contendo as variáveis na fórmula.</li>
-<li>
-<strong>formula</strong>: uma fórmula com a variável de resposta à esquerda e a explicativa à direita.</li>
-<li>
-<strong>ref.group</strong>: uma sequência de caracteres especificando o grupo de referência.</li>
-<li>
-<strong>var.equal</strong>: uma variável lógica indicando se deve tratar as duas variâncias como sendo iguais. Se TRUE, então a variância combinada é usada para estimar a variância, caso contrário, a aproximação de Welch (ou Satterthwaite) para os graus de liberdade é usada.</li>
-<li>
-<strong>ci</strong>: se TRUE, retorna os intervalos de confiança por bootstrap.</li>
+<li><strong>data</strong>: um banco de dados contendo as variáveis na fórmula.</li>
+<li><strong>formula</strong>: uma fórmula com a variável de resposta à esquerda e a explicativa à direita.</li>
+<li><strong>ref.group</strong>: uma sequência de caracteres especificando o grupo de referência.</li>
+<li><strong>var.equal</strong>: uma variável lógica indicando se deve tratar as duas variâncias como sendo iguais. Se TRUE, então a variância combinada é usada para estimar a variância, caso contrário, a aproximação de Welch (ou Satterthwaite) para os graus de liberdade é usada.</li>
+<li><strong>ci</strong>: se TRUE, retorna os intervalos de confiança por bootstrap.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-</section><section id="tamanho-de-efeito-rstatixcohens_d-1" class="slide level2"><h2>Tamanho de efeito: <code>rstatix::cohens_d()</code>
-</h2>
+</section>
+<section id="tamanho-de-efeito-rstatixcohens_d-1" class="slide level2">
+<h2>Tamanho de efeito: <code>rstatix::cohens_d()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span><span class="va">resultado_cohens_d</span> <span class="op">&lt;-</span> <span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cohens_d.html">cohens_d</a></span><span class="op">(</span></span>
-<span>  <span class="va">mpg</span> <span class="op">~</span> <span class="va">vs</span>, ref.group <span class="op">=</span> <span class="st">"reto"</span>,</span>
-<span>  var.equal <span class="op">=</span> <span class="cn">T</span>, ci <span class="op">=</span> <span class="cn">T</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">resultado_cohens_d</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 9</span></span>
-<span><span class="co">#&gt;   .y.   group1 group2 effsize    n1    n2 conf.low conf.high magnitude</span></span>
-<span><span class="co">#&gt; * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;ord&gt;    </span></span>
-<span><span class="co">#&gt; 1 mpg   reto   V         1.73    14    18     1.05      2.73 large</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb16-2"><a></a>resultado_cohens_d <span class="ot">&lt;-</span> dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb16-3"><a></a>  <span class="fu">cohens_d</span>(</span>
+<span id="cb16-4"><a></a>  mpg <span class="sc">~</span> vs, <span class="at">ref.group =</span> <span class="st">"reto"</span>,</span>
+<span id="cb16-5"><a></a>  <span class="at">var.equal =</span> T, <span class="at">ci =</span> T</span>
+<span id="cb16-6"><a></a>)</span>
+<span id="cb16-7"><a></a></span>
+<span id="cb16-8"><a></a>resultado_cohens_d</span>
+<span id="cb16-9"><a></a><span class="co">#&gt; # A tibble: 1 × 9</span></span>
+<span id="cb16-10"><a></a><span class="co">#&gt;   .y.   group1 group2 effsize    n1    n2 conf.low conf.high magnitude</span></span>
+<span id="cb16-11"><a></a><span class="co">#&gt; * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;ord&gt;    </span></span>
+<span id="cb16-12"><a></a><span class="co">#&gt; 1 mpg   reto   V         1.73    14    18     1.05      2.73 large</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section><section id="redação-do-método-e-dos-resultados" class="title-slide slide level1 center"><h1>Redação do método e dos resultados</h1>
+</section></section>
+<section>
+<section id="redação-do-método-e-dos-resultados" class="title-slide slide level1 center">
+<h1>Redação do método e dos resultados</h1>
 
-</section><section id="método" class="slide level2 smaller"><h2>Método</h2>
+</section>
+<section id="método" class="slide level2 smaller">
+<h2>Método</h2>
 <p><strong>Procedimentos</strong></p>
 <p><strong><em>Análise de Dados</em></strong></p>
 <p>Um teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores retos e motores em V. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e homogeneidade das variâncias (teste de Levene).</p>
-</section><section id="resultados" class="slide level2 smaller"><h2>Resultados</h2>
+</section>
+<section id="resultados" class="slide level2 smaller">
+<h2>Resultados</h2>
 <p>O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo com motores em V (<em>W</em> = 0.95, <em>p</em> = 0.45), nem para o grupo com motores retos (<em>W</em> = 0.91, <em>p</em> = 0.17). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (<em>F</em>(1, 30) = 3.09, <em>p</em> = 0.09). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, <em>t</em>(30) = 4.86, <em>p</em> &lt; .001. Carros com motores retos (n = 14, M = 24.56, DP = 5.38) apresentaram um desempenho melhor do que aqueles com motores em V (n = 18, M = 16.62, DP = 3.86). A diferença média foi de 7.94 milhas por galão (IC 95% [4.61, 11.27]). O tamanho de efeito foi grande (d = 1.73, IC 95% [1.05, 2.73] ). Esses resultados sugerem que o formato do motor influencia o consumo de combustível.</p>
-</section></section><section><section id="violação-de-pressupostos-homogeneidade-de-variâncias" class="title-slide slide level1 center" style="font-size: 22pt;"><h1>Violação de pressupostos: homogeneidade de variâncias</h1>
+</section></section>
+<section>
+<section id="violação-de-pressupostos-homogeneidade-de-variâncias" class="title-slide slide level1 center" style="font-size: 22pt;">
+<h1>Violação de pressupostos: homogeneidade de variâncias</h1>
 
-</section><section id="exemplo-1" class="slide level2 smaller"><h2>Exemplo</h2>
+</section>
+<section id="exemplo-1" class="slide level2 smaller">
+<h2>Exemplo</h2>
 <ul>
 <li>Há diferença no consumo de combustível (<code>mpg</code>) entre carros com motores de 4 e 6 cilindros (<code>cyl</code>)?</li>
-</ul></section><section id="manipulação-dos-dados-1" class="slide level2 smaller"><h2>Manipulação dos dados</h2>
-<div class="panel-tabset">
-<ul id="tabset-7" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-7-1">Ações</a></li>
-<li><a href="#tabset-7-2">Código</a></li>
-<li><a href="#tabset-7-3">Resultado</a></li>
 </ul>
+</section>
+<section id="manipulação-dos-dados-1" class="slide level2 smaller">
+<h2>Manipulação dos dados</h2>
+<div class="panel-tabset">
+<ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1">Ações</a></li><li><a href="#tabset-7-2">Código</a></li><li><a href="#tabset-7-3">Resultado</a></li></ul>
 <div class="tab-content">
 <div id="tabset-7-1">
 <ul>
-<li>Carregar o conjunto de dados mtcars: <code>data("mtcars")</code>
-</li>
-<li>Converter os rótulos das linhas para uma coluna: <code><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column()</a></code>
-</li>
-<li>Transformar em tibble para melhorar a visualização: <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code>
-</li>
-<li>Filtrar a variável independente (<code>cyl</code>) para que o banco contenha somente as categorias que serão utilizadas (4 e 6): <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>
-</li>
-<li>Transformar a variável independente em fator: <code><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor()</a></code>
-</li>
-<li>Selecionar e salvar as variáveis que serão utilizadas em um novo objeto para facilitar a visualização: <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>
-</li>
+<li>Carregar o conjunto de dados mtcars: <code>data("mtcars")</code></li>
+<li>Converter os rótulos das linhas para uma coluna: <code>rownames_to_column()</code></li>
+<li>Transformar em tibble para melhorar a visualização: <code>as_tibble()</code></li>
+<li>Filtrar a variável independente (<code>cyl</code>) para que o banco contenha somente as categorias que serão utilizadas (4 e 6): <code>filter()</code></li>
+<li>Transformar a variável independente em fator: <code>as_factor()</code></li>
+<li>Selecionar e salvar as variáveis que serão utilizadas em um novo objeto para facilitar a visualização: <code>select()</code></li>
 </ul>
 </div>
 <div id="tabset-7-2">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Carregar os dados</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="va">dados_teste_t</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># Converter os rótulos das linhas</span></span>
-<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span>var <span class="op">=</span> <span class="st">"modelo"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="co"># Transformar em tibble</span></span>
-<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># Filtrar as categorias utilizads</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    <span class="co"># Transformar em fator</span></span>
-<span>    cyl <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> </span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="co"># Selecionar as variáveis</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">modelo</span>, <span class="va">mpg</span>, <span class="va">cyl</span><span class="op">)</span> </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># Carregar os dados</span></span>
+<span id="cb17-2"><a></a><span class="fu">data</span>(<span class="st">"mtcars"</span>) </span>
+<span id="cb17-3"><a></a></span>
+<span id="cb17-4"><a></a>dados_teste_t <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a></a>  <span class="co"># Converter os rótulos das linhas</span></span>
+<span id="cb17-6"><a></a>  <span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"modelo"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb17-7"><a></a>  <span class="co"># Transformar em tibble</span></span>
+<span id="cb17-8"><a></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-9"><a></a>  <span class="co"># Filtrar as categorias utilizads</span></span>
+<span id="cb17-10"><a></a>  <span class="fu">filter</span>(cyl <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb17-11"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-12"><a></a>    <span class="co"># Transformar em fator</span></span>
+<span id="cb17-13"><a></a>    <span class="at">cyl =</span> <span class="fu">as_factor</span>(cyl) </span>
+<span id="cb17-14"><a></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb17-15"><a></a>  <span class="co"># Selecionar as variáveis</span></span>
+<span id="cb17-16"><a></a>  <span class="fu">select</span>(modelo, mpg, cyl) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-7-3">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_teste_t</span></span>
-<span><span class="co">#&gt; # A tibble: 18 × 3</span></span>
-<span><span class="co">#&gt;   modelo           mpg cyl  </span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;fct&gt;</span></span>
-<span><span class="co">#&gt; 1 Mazda RX4       21   6    </span></span>
-<span><span class="co">#&gt; 2 Mazda RX4 Wag   21   6    </span></span>
-<span><span class="co">#&gt; 3 Datsun 710      22.8 4    </span></span>
-<span><span class="co">#&gt; 4 Hornet 4 Drive  21.4 6    </span></span>
-<span><span class="co">#&gt; 5 Valiant         18.1 6    </span></span>
-<span><span class="co">#&gt; 6 Merc 240D       24.4 4    </span></span>
-<span><span class="co">#&gt; # ℹ 12 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>dados_teste_t</span>
+<span id="cb18-2"><a></a><span class="co">#&gt; # A tibble: 18 × 3</span></span>
+<span id="cb18-3"><a></a><span class="co">#&gt;   modelo           mpg cyl  </span></span>
+<span id="cb18-4"><a></a><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;fct&gt;</span></span>
+<span id="cb18-5"><a></a><span class="co">#&gt; 1 Mazda RX4       21   6    </span></span>
+<span id="cb18-6"><a></a><span class="co">#&gt; 2 Mazda RX4 Wag   21   6    </span></span>
+<span id="cb18-7"><a></a><span class="co">#&gt; 3 Datsun 710      22.8 4    </span></span>
+<span id="cb18-8"><a></a><span class="co">#&gt; 4 Hornet 4 Drive  21.4 6    </span></span>
+<span id="cb18-9"><a></a><span class="co">#&gt; 5 Valiant         18.1 6    </span></span>
+<span id="cb18-10"><a></a><span class="co">#&gt; 6 Merc 240D       24.4 4    </span></span>
+<span id="cb18-11"><a></a><span class="co">#&gt; # ℹ 12 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="exploração-dos-dados-1" class="slide level2 smaller"><h2>Exploração dos dados</h2>
+</section>
+<section id="exploração-dos-dados-1" class="slide level2 smaller">
+<h2>Exploração dos dados</h2>
 <div class="panel-tabset">
-<ul id="tabset-8" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-8-1">Tabela</a></li>
-<li><a href="#tabset-8-2">Gráfico</a></li>
-</ul>
+<ul id="tabset-8" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-8-1">Tabela</a></li><li><a href="#tabset-8-2">Gráfico</a></li></ul>
 <div class="tab-content">
 <div id="tabset-8-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">descritivos_grupos</span> <span class="op">&lt;-</span> <span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
-<span>    n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>    m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span>, </span>
-<span>    sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span>,</span>
-<span>    .by <span class="op">=</span> <span class="va">cyl</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    diferenca <span class="op">=</span> <span class="va">m</span> <span class="op">-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
-<span></span>
-<span><span class="va">descritivos_grupos</span></span>
-<span><span class="co">#&gt; # A tibble: 2 × 5</span></span>
-<span><span class="co">#&gt;   cyl       n     m    sd diferenca</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 6         7  19.7  1.45     NA   </span></span>
-<span><span class="co">#&gt; 2 4        11  26.7  4.51      6.92</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>descritivos_grupos <span class="ot">&lt;-</span> dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb19-3"><a></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb19-4"><a></a>    <span class="at">m =</span> <span class="fu">mean</span>(mpg), </span>
+<span id="cb19-5"><a></a>    <span class="at">sd =</span> <span class="fu">sd</span>(mpg),</span>
+<span id="cb19-6"><a></a>    <span class="at">.by =</span> cyl</span>
+<span id="cb19-7"><a></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb19-8"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-9"><a></a>    <span class="at">diferenca =</span> m <span class="sc">-</span> <span class="fu">lag</span>(m)</span>
+<span id="cb19-10"><a></a>    )</span>
+<span id="cb19-11"><a></a></span>
+<span id="cb19-12"><a></a>descritivos_grupos</span>
+<span id="cb19-13"><a></a><span class="co">#&gt; # A tibble: 2 × 5</span></span>
+<span id="cb19-14"><a></a><span class="co">#&gt;   cyl       n     m    sd diferenca</span></span>
+<span id="cb19-15"><a></a><span class="co">#&gt;   &lt;fct&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb19-16"><a></a><span class="co">#&gt; 1 6         7  19.7  1.45     NA   </span></span>
+<span id="cb19-17"><a></a><span class="co">#&gt; 2 4        11  26.7  4.51      6.92</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-8-2">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span></span>
-<span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span></span>
-<span>    color <span class="op">=</span> <span class="st">"#569BBD"</span></span>
-<span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">stat_boxplot</a></span><span class="op">(</span></span>
-<span>    geom <span class="op">=</span> <span class="st">'errorbar'</span>, color <span class="op">=</span> <span class="st">"#569BBD"</span></span>
-<span>    <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb20-3"><a></a>    <span class="fu">aes</span>(cyl, mpg)</span>
+<span id="cb20-4"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb20-5"><a></a>  <span class="fu">geom_boxplot</span>(</span>
+<span id="cb20-6"><a></a>    <span class="at">color =</span> <span class="st">"#569BBD"</span></span>
+<span id="cb20-7"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb20-8"><a></a>  <span class="fu">stat_boxplot</span>(</span>
+<span id="cb20-9"><a></a>    <span class="at">geom =</span> <span class="st">'errorbar'</span>, <span class="at">color =</span> <span class="st">"#569BBD"</span></span>
+<span id="cb20-10"><a></a>    )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-inferencia-duas-medias-matematico-r_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-inferencia-duas-medias-matematico-r_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -1488,77 +1484,91 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
 </div>
 </div>
 </div>
-</section><section id="avaliação-de-pressupostos-1" class="slide level2"><h2>Avaliação de pressupostos</h2>
+</section>
+<section id="avaliação-de-pressupostos-1" class="slide level2">
+<h2>Avaliação de pressupostos</h2>
 <ul>
 <li>Normalidade</li>
 <li>Homogeneidade das variâncias</li>
-</ul></section><section id="normalidade-rstatixshapiro_test-2" class="slide level2"><h2>Normalidade: <code>rstatix::shapiro_test()</code>
-</h2>
+</ul>
+</section>
+<section id="normalidade-rstatixshapiro_test-2" class="slide level2">
+<h2>Normalidade: <code>rstatix::shapiro_test()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado_shapiro</span> <span class="op">&lt;-</span> <span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/shapiro_test.html">shapiro_test</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">resultado_shapiro</span></span>
-<span><span class="co">#&gt; # A tibble: 2 × 4</span></span>
-<span><span class="co">#&gt;   cyl   variable statistic     p</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 4     mpg          0.912 0.261</span></span>
-<span><span class="co">#&gt; 2 6     mpg          0.899 0.325</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>resultado_shapiro <span class="ot">&lt;-</span> dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a></a>  <span class="fu">group_by</span>(cyl) <span class="sc">|&gt;</span> </span>
+<span id="cb21-3"><a></a>  <span class="fu">shapiro_test</span>(mpg)</span>
+<span id="cb21-4"><a></a></span>
+<span id="cb21-5"><a></a>resultado_shapiro</span>
+<span id="cb21-6"><a></a><span class="co">#&gt; # A tibble: 2 × 4</span></span>
+<span id="cb21-7"><a></a><span class="co">#&gt;   cyl   variable statistic     p</span></span>
+<span id="cb21-8"><a></a><span class="co">#&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb21-9"><a></a><span class="co">#&gt; 1 4     mpg          0.912 0.261</span></span>
+<span id="cb21-10"><a></a><span class="co">#&gt; 2 6     mpg          0.899 0.325</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="homogeneidade-de-variâncias-rstatixlevene_test-2" class="slide level2"><h2>Homogeneidade de Variâncias: <code>rstatix::levene_test()</code>
-</h2>
+</section>
+<section id="homogeneidade-de-variâncias-rstatixlevene_test-2" class="slide level2">
+<h2>Homogeneidade de Variâncias: <code>rstatix::levene_test()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado_levene</span> <span class="op">&lt;-</span> <span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/levene_test.html">levene_test</a></span><span class="op">(</span>formula <span class="op">=</span>  <span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span>, center <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">resultado_levene</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 4</span></span>
-<span><span class="co">#&gt;     df1   df2 statistic       p</span></span>
-<span><span class="co">#&gt;   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     1    16      10.7 0.00476</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>resultado_levene <span class="ot">&lt;-</span> dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a></a>  <span class="fu">levene_test</span>(<span class="at">formula =</span>  mpg <span class="sc">~</span> cyl, <span class="at">center =</span> <span class="st">"mean"</span>)</span>
+<span id="cb22-3"><a></a></span>
+<span id="cb22-4"><a></a>resultado_levene</span>
+<span id="cb22-5"><a></a><span class="co">#&gt; # A tibble: 1 × 4</span></span>
+<span id="cb22-6"><a></a><span class="co">#&gt;     df1   df2 statistic       p</span></span>
+<span id="cb22-7"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb22-8"><a></a><span class="co">#&gt; 1     1    16      10.7 0.00476</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="teste-t-para-amostras-independentes-variâncias-diferentes-rstatixt_test" class="slide level2 smaller"><h2>Teste t para amostras independentes (variâncias diferentes): <code>rstatix::t_test()</code>
-</h2>
+</section>
+<section id="teste-t-para-amostras-independentes-variâncias-diferentes-rstatixt_test" class="slide level2 smaller">
+<h2>Teste t para amostras independentes (variâncias diferentes): <code>rstatix::t_test()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado_teste_t</span> <span class="op">&lt;-</span> <span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/t_test.html">t_test</a></span><span class="op">(</span></span>
-<span>    formula <span class="op">=</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span>, ref.group <span class="op">=</span> <span class="st">"4"</span>,</span>
-<span>    var.equal <span class="op">=</span> <span class="cn">F</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, </span>
-<span>    detailed <span class="op">=</span> <span class="cn">T</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">resultado_teste_t</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 15</span></span>
-<span><span class="co">#&gt;   estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic</span></span>
-<span><span class="co">#&gt; *    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     6.92      26.7      19.7 mpg   4      6         11     7      4.72</span></span>
-<span><span class="co">#&gt; # ℹ 6 more variables: p &lt;dbl&gt;, df &lt;dbl&gt;, conf.low &lt;dbl&gt;, conf.high &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   method &lt;chr&gt;, alternative &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>resultado_teste_t <span class="ot">&lt;-</span> dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a></a>  <span class="fu">t_test</span>(</span>
+<span id="cb23-3"><a></a>    <span class="at">formula =</span> mpg <span class="sc">~</span> cyl, <span class="at">ref.group =</span> <span class="st">"4"</span>,</span>
+<span id="cb23-4"><a></a>    <span class="at">var.equal =</span> F, <span class="at">alternative =</span> <span class="st">"two.sided"</span>, </span>
+<span id="cb23-5"><a></a>    <span class="at">detailed =</span> T</span>
+<span id="cb23-6"><a></a>  )</span>
+<span id="cb23-7"><a></a></span>
+<span id="cb23-8"><a></a>resultado_teste_t</span>
+<span id="cb23-9"><a></a><span class="co">#&gt; # A tibble: 1 × 15</span></span>
+<span id="cb23-10"><a></a><span class="co">#&gt;   estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic</span></span>
+<span id="cb23-11"><a></a><span class="co">#&gt; *    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;</span></span>
+<span id="cb23-12"><a></a><span class="co">#&gt; 1     6.92      26.7      19.7 mpg   4      6         11     7      4.72</span></span>
+<span id="cb23-13"><a></a><span class="co">#&gt; # ℹ 6 more variables: p &lt;dbl&gt;, df &lt;dbl&gt;, conf.low &lt;dbl&gt;, conf.high &lt;dbl&gt;,</span></span>
+<span id="cb23-14"><a></a><span class="co">#&gt; #   method &lt;chr&gt;, alternative &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="tamanho-de-efeito-rstatixcohens_d-2" class="slide level2"><h2>Tamanho de efeito: <code>rstatix::cohens_d()</code>
-</h2>
+</section>
+<section id="tamanho-de-efeito-rstatixcohens_d-2" class="slide level2">
+<h2>Tamanho de efeito: <code>rstatix::cohens_d()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span><span class="va">resultado_cohens_d</span> <span class="op">&lt;-</span> <span class="va">dados_teste_t</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cohens_d.html">cohens_d</a></span><span class="op">(</span></span>
-<span>  <span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span>, ref.group <span class="op">=</span> <span class="st">"4"</span>,</span>
-<span>  var.equal <span class="op">=</span> <span class="cn">F</span>, ci <span class="op">=</span> <span class="cn">T</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">resultado_cohens_d</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 9</span></span>
-<span><span class="co">#&gt;   .y.   group1 group2 effsize    n1    n2 conf.low conf.high magnitude</span></span>
-<span><span class="co">#&gt; * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;ord&gt;    </span></span>
-<span><span class="co">#&gt; 1 mpg   4      6         2.07    11     7     1.44       3.3 large</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb24-2"><a></a>resultado_cohens_d <span class="ot">&lt;-</span> dados_teste_t <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a></a>  <span class="fu">cohens_d</span>(</span>
+<span id="cb24-4"><a></a>  mpg <span class="sc">~</span> cyl, <span class="at">ref.group =</span> <span class="st">"4"</span>,</span>
+<span id="cb24-5"><a></a>  <span class="at">var.equal =</span> F, <span class="at">ci =</span> T</span>
+<span id="cb24-6"><a></a>)</span>
+<span id="cb24-7"><a></a></span>
+<span id="cb24-8"><a></a>resultado_cohens_d</span>
+<span id="cb24-9"><a></a><span class="co">#&gt; # A tibble: 1 × 9</span></span>
+<span id="cb24-10"><a></a><span class="co">#&gt;   .y.   group1 group2 effsize    n1    n2 conf.low conf.high magnitude</span></span>
+<span id="cb24-11"><a></a><span class="co">#&gt; * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;ord&gt;    </span></span>
+<span id="cb24-12"><a></a><span class="co">#&gt; 1 mpg   4      6         2.07    11     7     1.44       3.3 large</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section><section id="redação-do-método-e-dos-resultados-1" class="title-slide slide level1 center"><h1>Redação do método e dos resultados</h1>
+</section></section>
+<section>
+<section id="redação-do-método-e-dos-resultados-1" class="title-slide slide level1 center">
+<h1>Redação do método e dos resultados</h1>
 
-</section><section id="método-1" class="slide level2 smaller"><h2>Método</h2>
+</section>
+<section id="método-1" class="slide level2 smaller">
+<h2>Método</h2>
 <p><strong>Procedimentos</strong></p>
 <p><strong><em>Análise de Dados</em></strong></p>
 <p>Um teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores de 4 e 6 cilindros. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e homogeneidade das variâncias (teste de Levene).</p>
-</section><section id="resultados-1" class="slide level2 smaller"><h2>Resultados</h2>
+</section>
+<section id="resultados-1" class="slide level2 smaller">
+<h2>Resultados</h2>
 <p>O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo com motores de 4 cilindros (<em>W</em> = 0.91, <em>p</em> = 0.26), nem para o grupo com motores de 6 cilindros (<em>W</em> = 0.9, <em>p</em> = 0.33). O teste de Levene mostrou que não havia homogeneidade na variância entre os grupos, (<em>F</em>(1, 16) = 10.73, <em>p</em> = 0.005). Diante da violação deste pressuposto, foi realizado o teste t de Welch (ou teste t de variâncias desiguais). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, <em>t</em>(13) = 4.72, <em>p</em> &lt; .001. Carros com motores de 4 cilindros (n = 11, M = 26.66, DP = 4.51) apresentaram um desempenho melhor do que aqueles com motores de 6 cilindros (n = 7, M = 19.74, DP = 1.45). A diferença média foi de 6.92 milhas por galão (IC 95% [3.75, 10.09]). O tamanho de efeito foi grande (d = 2.07, IC 95% [1.44, 3.3] ). Esses resultados sugerem que o número de cilindros do motor influencia o consumo de combustível.</p>
 
 <div class="quarto-auto-generated-content">
@@ -1568,10 +1578,26 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
 </div>
 </div>
 </section></section>
-</div>
+    </div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="site_libs/revealjs/plugin/notes/notes.js"></script><script src="site_libs/revealjs/plugin/search/search.js"></script><script src="site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -1761,7 +1787,9 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
           RevealZoom
         ]
       });
-    </script><script>
+    </script>
+    
+    <script>
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
@@ -1796,7 +1824,9 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
         }
 
       })();
-    </script><script id="quarto-html-after-body" type="application/javascript">
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -1983,6 +2013,6 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
       }
     });
     </script>
-
+    
 
 </body></html>

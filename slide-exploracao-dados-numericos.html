@@ -7,16 +7,16 @@
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
-<title>Pesquisa Quantitativa – Exploração de dados numéricos</title>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-<link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
-<link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
-<style>
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <title>Pesquisa Quantitativa – Exploração de dados numéricos</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -29,13 +29,13 @@
       vertical-align: middle;
     }
   </style>
-<link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
-<link rel="stylesheet" href="logo.css">
-<link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-<link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-<link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-<link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-<style type="text/css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="logo.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -233,7 +233,7 @@
   }
 
   </style>
-<style type="text/css">
+  <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -320,48 +320,62 @@
       margin-right: 0; 
     }
   </style>
-<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="site_libs/datatables-binding-0.33/datatables.js"></script><script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script><link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
-<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+  <link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+  <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+  <script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+  <script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+  <link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+  <script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center"><h1 class="title">Exploração de dados numéricos</h1>
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Exploração de dados numéricos</h1>
 
 <div class="quarto-title-authors">
 </div>
 
-</section><section id="o-que-vamos-aprender" class="slide level2"><h2>O que vamos aprender?</h2>
+</section>
+<section id="o-que-vamos-aprender" class="slide level2">
+<h2>O que vamos aprender?</h2>
 <ul>
 <li>Explorar dados numéricos usando:
 <ul>
 <li>Estatisticas descritivas e gráficos</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section><section id="bancos-de-dados-utilizados" class="title-slide slide level1 center"><h1>Bancos de dados utilizados</h1>
+</section>
+<section>
+<section id="bancos-de-dados-utilizados" class="title-slide slide level1 center">
+<h1>Bancos de dados utilizados</h1>
 
-</section><section id="section" class="slide level2" data-background-image="img/pai-e-filho.png" data-background-size="contain"><h2></h2>
-</section><section id="father.son" class="slide level2"><h2><code>father.son</code></h2>
+</section>
+<section id="section" class="slide level2" data-background-image="img/pai-e-filho.png" data-background-size="contain">
+<h2></h2>
+</section>
+<section id="father.son" class="slide level2">
+<h2><code>father.son</code></h2>
 <p>Conjunto de dados de Pearson sobre alturas de pais e filhos</p>
 <ul>
 <li>Formato: Um banco de dados com 1078 observações e duas variáveis
 <ul>
-<li>
-<code>fheight</code>: altura do pai em polegadas</li>
-<li>
-<code>sheight</code>: altura do filho em polegadas</li>
+<li><code>fheight</code>: altura do pai em polegadas</li>
+<li><code>sheight</code>: altura do filho em polegadas</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="uma-olhada-em-father.son" class="slide level2"><h2>Uma olhada em <code>father.son</code>
-</h2>
+</section>
+<section id="uma-olhada-em-father.son" class="slide level2">
+<h2>Uma olhada em <code>father.son</code></h2>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-pai-e-filho" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-pai-e-filho-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-pai-e-filho-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="wkkeulbfdp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#wkkeulbfdp table {
@@ -812,11 +826,14 @@
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="fheight" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">fheight</th>
 <th id="sheight" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">sheight</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="fheight">66.0</td>
@@ -860,52 +877,48 @@
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-pai-e-filho-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>father.son</code>
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="section-1" class="slide level2" data-background-image="img/mtcars.png" data-background-size="contain"><h2></h2>
-</section><section id="mtcars" class="slide level2 smaller"><h2><code>mtcars</code></h2>
+</section>
+<section id="section-1" class="slide level2" data-background-image="img/mtcars.png" data-background-size="contain">
+<h2></h2>
+</section>
+<section id="mtcars" class="slide level2 smaller">
+<h2><code>mtcars</code></h2>
 <div style="font-size: 18pt;">
 <p>Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo de combustível e 10 aspectos do design e desempenho de automóveis para 32 carros (modelos de 1973-74)</p>
 <ul>
 <li>Formato: Um banco de dados com 32 observações e 11 variáveis.
 <ul>
-<li>
-<code>mpg</code>: milhas/galão (km/l)</li>
-<li>
-<code>cyl</code>: número de cilindros</li>
-<li>
-<code>disp</code>: cilindrada (polegadas cúbicas)</li>
-<li>
-<code>hp</code>: potência bruta (cavalos de potência)</li>
-<li>
-<code>drat</code>: relação de transmissão do eixo traseiro</li>
-<li>
-<code>wt</code>: peso (1000 lbs)</li>
-<li>
-<code>qsec</code>: tempo para 1/4 de milha</li>
-<li>
-<code>vs</code>: motor (0 = em forma de V, 1 = reto)</li>
-<li>
-<code>am</code>: transmissão (0 = automática, 1 = manual)</li>
-<li>
-<code>gear</code>: número de marchas para frente</li>
-<li>
-<code>carb</code>: número de carburadores</li>
-</ul>
-</li>
+<li><code>mpg</code>: milhas/galão (km/l)</li>
+<li><code>cyl</code>: número de cilindros</li>
+<li><code>disp</code>: cilindrada (polegadas cúbicas)</li>
+<li><code>hp</code>: potência bruta (cavalos de potência)</li>
+<li><code>drat</code>: relação de transmissão do eixo traseiro</li>
+<li><code>wt</code>: peso (1000 lbs)</li>
+<li><code>qsec</code>: tempo para 1/4 de milha</li>
+<li><code>vs</code>: motor (0 = em forma de V, 1 = reto)</li>
+<li><code>am</code>: transmissão (0 = automática, 1 = manual)</li>
+<li><code>gear</code>: número de marchas para frente</li>
+<li><code>carb</code>: número de carburadores</li>
+</ul></li>
 </ul>
 </div>
-</section><section id="uma-olhada-em-mtcars" class="slide level2"><h2>Uma olhada em <code>mtcars</code>
-</h2>
+</section>
+<section id="uma-olhada-em-mtcars" class="slide level2">
+<h2>Uma olhada em <code>mtcars</code></h2>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-mtcars" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-mtcars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-mtcars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="tnvyzesyyi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#tnvyzesyyi table {
@@ -1356,13 +1369,16 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>fathe
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Modelo" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Modelo</th>
 <th id="wt" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">wt</th>
 <th id="mpg" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">mpg</th>
 <th id="cyl" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">cyl</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Modelo">Maserati Bora</td>
@@ -1426,30 +1442,34 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>fathe
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-mtcars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2: Uma amostra aleatória de dez casos do banco de dados <code>mtcars</code>
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="diamonds" class="slide level2"><h2><code>diamonds</code></h2>
+</section>
+<section id="diamonds" class="slide level2">
+<h2><code>diamonds</code></h2>
 <p>Um conjunto de dados contendo os preços e outros atributos de quase 54.000 diamantes.</p>
 <ul>
 <li>Formato: Um banco de dados com 53940 observações e algumas variáveis. Vamos usar:
 <ul>
-<li>
-<code>price</code>: preço em dólares americanos</li>
-<li>
-<code>carat</code>: peso do diamante (quilates)</li>
+<li><code>price</code>: preço em dólares americanos</li>
+<li><code>carat</code>: peso do diamante (quilates)</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="uma-olhada-em-diamonds" class="slide level2"><h2>Uma olhada em <code>diamonds</code>
-</h2>
+</section>
+<section id="uma-olhada-em-diamonds" class="slide level2">
+<h2>Uma olhada em <code>diamonds</code></h2>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-diamonds" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-diamonds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-diamonds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="ijwugufybe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ijwugufybe table {
@@ -1900,11 +1920,14 @@ Tabela&nbsp;2: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="carat" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">carat</th>
 <th id="price" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">price</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="carat">0.7</td>
@@ -1948,39 +1971,41 @@ Tabela&nbsp;2: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-diamonds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;3: Uma amostra aleatória de dez casos do banco de dados <code>diamonds</code>
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="section-2" class="slide level2" data-background-image="img/nova-york.png" data-background-size="contain"><h2></h2>
-</section><section id="airquality" class="slide level2 smaller"><h2><code>airquality</code></h2>
+</section>
+<section id="section-2" class="slide level2" data-background-image="img/nova-york.png" data-background-size="contain">
+<h2></h2>
+</section>
+<section id="airquality" class="slide level2 smaller">
+<h2><code>airquality</code></h2>
 <p>Medições diárias da qualidade do ar em Nova York, de maio a setembro de 1973</p>
 <ul>
 <li>Formato: Um banco de dados com 153 observações e seis variáveis
 <ul>
-<li>
-<code>Ozone</code>: quantidade de ozônio (ppb - partes por bilhão)</li>
-<li>
-<code>Solar.R</code>: irradiaçao solar (lang - 1 lang é igual a um caloria por centímetro quadrado)</li>
-<li>
-<code>Wind</code>: velocidade do vento (mph - milhas por hora)</li>
-<li>
-<code>Temp</code>: temperatura (F - graus Fahrenheit)</li>
-<li>
-<code>Month</code>: mês da medição</li>
-<li>
-<code>Day</code>: dia da medição</li>
+<li><code>Ozone</code>: quantidade de ozônio (ppb - partes por bilhão)</li>
+<li><code>Solar.R</code>: irradiaçao solar (lang - 1 lang é igual a um caloria por centímetro quadrado)</li>
+<li><code>Wind</code>: velocidade do vento (mph - milhas por hora)</li>
+<li><code>Temp</code>: temperatura (F - graus Fahrenheit)</li>
+<li><code>Month</code>: mês da medição</li>
+<li><code>Day</code>: dia da medição</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="uma-olhada-em-airquality" class="slide level2"><h2>Uma olhada em <code>airquality</code>
-</h2>
+</section>
+<section id="uma-olhada-em-airquality" class="slide level2">
+<h2>Uma olhada em <code>airquality</code></h2>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-airquality" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="hlmrayyfuo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#hlmrayyfuo table {
@@ -2431,15 +2456,18 @@ Tabela&nbsp;3: Uma amostra aleatória de dez casos do banco de dados <code>diamo
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Ozone" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Ozone</th>
 <th id="Solar.R" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Solar.R</th>
 <th id="Wind" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Wind</th>
 <th id="Temp" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Temp</th>
 <th id="Month" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Month</th>
 <th id="Day" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Day</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Ozone">41</td>
@@ -2523,28 +2551,33 @@ Tabela&nbsp;3: Uma amostra aleatória de dez casos do banco de dados <code>diamo
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;4: Uma amostra dos dez primeiros casos do banco de dados <code>airquality</code>
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="age-dataset" class="slide level2"><h2><code>Age dataset</code></h2>
+</section>
+<section id="age-dataset" class="slide level2">
+<h2><code>Age dataset</code></h2>
 <p>O conjunto de dados contém informações estruturadas sobre a vida, obra e morte de mais de 1 milhão de pessoas famosas falecidas.</p>
 <ul>
 <li>Formato: Um banco de dados com 1.223.009 observações e algumas variáveis, por hora vamos usar:
 <ul>
-<li>
-<code>Age of death</code>: idade com que a pessoa morrreu</li>
+<li><code>Age of death</code>: idade com que a pessoa morrreu</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="uma-olhada-em-age-dataset" class="slide level2"><h2>Uma olhada em <code>Age dataset</code>
-</h2>
+</section>
+<section id="uma-olhada-em-age-dataset" class="slide level2">
+<h2>Uma olhada em <code>Age dataset</code></h2>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-agedata" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-agedata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-agedata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="dmevsytvyn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#dmevsytvyn table {
@@ -2995,11 +3028,14 @@ Tabela&nbsp;4: Uma amostra dos dez primeiros casos do banco de dados <code>airqu
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Name" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Name</th>
 <th id="Age-of-death" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Age of death</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Name">Getúlio Vargas</td>
@@ -3043,27 +3079,30 @@ Tabela&nbsp;4: Uma amostra dos dez primeiros casos do banco de dados <code>airqu
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-agedata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;5: Uma amostra de dez casos do banco de dados <code>Age dataset</code>
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section></section><section><section id="gráficos-de-dispersão-para-dados-pareados" class="title-slide slide level1 center"><h1>Gráficos de dispersão para dados pareados</h1>
+</section></section>
+<section>
+<section id="gráficos-de-dispersão-para-dados-pareados" class="title-slide slide level1 center">
+<h1>Gráficos de dispersão para dados pareados</h1>
 
-</section><section id="gráficos-de-dispersão" class="slide level2 smaller"><h2>Gráficos de dispersão</h2>
+</section>
+<section id="gráficos-de-dispersão" class="slide level2 smaller">
+<h2>Gráficos de dispersão</h2>
 <ul>
-<li>Eixo x: variável independente<sup>1</sup>
-</li>
+<li>Eixo x: variável independente<sup>1</sup></li>
 <li>Eixo y: variável dependente</li>
 </ul>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-1-1">Dados</a></li>
-<li><a href="#tabset-1-2">Gráfico</a></li>
-</ul>
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Dados</a></li><li><a href="#tabset-1-2">Gráfico</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell" data-layout-align="center">
@@ -3517,12 +3556,15 @@ Tabela&nbsp;5: Uma amostra de dez casos do banco de dados <code>Age dataset</cod
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="id" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">id</th>
 <th id="x" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">x</th>
 <th id="y" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">y</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="id">a</td>
@@ -3551,6 +3593,7 @@ Tabela&nbsp;5: Uma amostra de dez casos do banco de dados <code>Age dataset</cod
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -3559,7 +3602,8 @@ Tabela&nbsp;5: Uma amostra de dez casos do banco de dados <code>Age dataset</cod
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -3567,40 +3611,54 @@ Tabela&nbsp;5: Uma amostra de dez casos do banco de dados <code>Age dataset</cod
 </div>
 </div>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Use os termos dependente e independente com ressalvas, pois estão sendo aplicados fora do contexto de um experimento.</p></li></ol></aside></section><section id="alturas-dos-pais-x-altura-dos-filhos" class="slide level2"><h2>Alturas dos pais X altura dos Filhos</h2>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Use os termos dependente e independente com ressalvas, pois estão sendo aplicados fora do contexto de um experimento.</p></li></ol></aside></section>
+<section id="alturas-dos-pais-x-altura-dos-filhos" class="slide level2">
+<h2>Alturas dos pais X altura dos Filhos</h2>
 <ul>
 <li>Como você imagina que será a realação entre as auturas dos pais e dos filhos?
 <ul>
 <li>Pais mais altos terão filhos mais altos ou mais baixos?</li>
 <li>E os pais mais baixos?</li>
-</ul>
-</li>
+</ul></li>
 <li>Tente fazer um desenho que represente essa relação</li>
-</ul></section><section id="slide6-id" class="slide level2" data-menu-title="Gráfico de dispersão da relação entre as alturas dos pais e dos filhos"><h2></h2>
+</ul>
+</section>
+<section id="slide6-id" class="slide level2" data-menu-title="Gráfico de dispersão da relação entre as alturas dos pais e dos filhos">
+<h2></h2>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/scatter-plot-fheight-sheight-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="peso-dos-carros-x-milhasgalão-kml" class="slide level2"><h2>Peso dos carros X milhas/galão (Km/l)</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/scatter-plot-fheight-sheight-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="peso-dos-carros-x-milhasgalão-kml" class="slide level2">
+<h2>Peso dos carros X milhas/galão (Km/l)</h2>
 <ul>
 <li>Como você imagina que será a realação entre o peso dos carros e o consumo de combustível, observando a razão milhas/galão (Km/l)?
 <ul>
 <li>Carro mais pesados farão mais ou menos milhas/galão (Km/l)?</li>
 <li>E os carros mais leves?</li>
-</ul>
-</li>
+</ul></li>
 <li>Tente fazer um desenho que represente essa relação</li>
-</ul></section><section id="slide9-id" class="slide level2" data-menu-title="Gráfico de diserpesão da relação entre peso e consumo de combustível"><h2></h2>
+</ul>
+</section>
+<section id="slide9-id" class="slide level2" data-menu-title="Gráfico de diserpesão da relação entre peso e consumo de combustível">
+<h2></h2>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/scatter-plot-wt-mpg-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="quilate-x-preço-dos-diamantes" class="slide level2"><h2>Quilate X Preço dos diamantes</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/scatter-plot-wt-mpg-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="quilate-x-preço-dos-diamantes" class="slide level2">
+<h2>Quilate X Preço dos diamantes</h2>
 <ul>
 <li>Como você imagina que será a realação entre o quilate e o preço dos diamantes?
 <ul>
 <li>Diamantes com mais quilates serão mais ou menos caros?</li>
 <li>E os diamantes com menos quilates?</li>
-</ul>
-</li>
+</ul></li>
 <li>Tente fazer um desenho que represente essa relação</li>
-</ul></section><section id="slide12-id" class="slide level2" data-menu-title="Gráfico de diserpesão da relação entre o quilate e o preço de diamantes"><h2></h2>
+</ul>
+</section>
+<section id="slide12-id" class="slide level2" data-menu-title="Gráfico de diserpesão da relação entre o quilate e o preço de diamantes">
+<h2></h2>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/scatter-plot-carat-price-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="relação-entre-o-quilate-e-o-preço-de-diamantes" class="slide level2 smaller"><h2>Relação entre o quilate e o preço de diamantes</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/scatter-plot-carat-price-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="relação-entre-o-quilate-e-o-preço-de-diamantes" class="slide level2 smaller">
+<h2>Relação entre o quilate e o preço de diamantes</h2>
 <ul>
 <li>Relação exponencial
 <ul>
@@ -3608,25 +3666,37 @@ Tabela&nbsp;5: Uma amostra de dez casos do banco de dados <code>Age dataset</cod
 <li>Crescimento ou decaimento rápido: a variável dependente aumenta ou diminui muito rapidamente à medida que a variável independente aumenta</li>
 <li>Gráfico em forma de curva: o gráfico de uma relação exponencial é uma curva suave que se aproxima de zero em um dos extremos e cresce ou decresce rapidamente no outro extremo.</li>
 <li>Não linearidade: a relação entre as variáveis não é linear, ou seja, não pode ser representada por uma linha reta.</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="relação-entre-o-quilate-e-o-preço-de-diamantes-1" class="slide level2"><h2>Relação entre o quilate e o preço de diamantes</h2>
+</section>
+<section id="relação-entre-o-quilate-e-o-preço-de-diamantes-1" class="slide level2">
+<h2>Relação entre o quilate e o preço de diamantes</h2>
 <ul>
 <li>Relação exponencial entre o peso e o preço de diamantes:
 <ul>
 <li>Diamantes maiores são muito mais raros do que diamantes pequenos, o que aumenta seu preço drasticamente</li>
 <li>Diamantes maiores geralmente possuem maior qualidade e pureza, o que também contribui para seu preço elevado</li>
+</ul></li>
 </ul>
-</li>
-</ul></section></section><section><section id="gráficos-de-pontos-e-a-média" class="title-slide slide level1 center"><h1>Gráficos de pontos e a média</h1>
+</section></section>
+<section>
+<section id="gráficos-de-pontos-e-a-média" class="title-slide slide level1 center">
+<h1>Gráficos de pontos e a média</h1>
 
-</section><section id="o-centro-dos-dados" class="slide level2"><h2>O centro dos dados</h2>
+</section>
+<section id="o-centro-dos-dados" class="slide level2">
+<h2>O centro dos dados</h2>
 <ul>
 <li>A média é uma maneira de medir o centro de uma distribuição de dados</li>
 <li>Os gráficos de pontos mostram o valor exato para cada observação</li>
-</ul></section><section id="slide19-id" class="slide level2" data-menu-title="Gráfico de pontos para temperatura de Nova York"><h2></h2>
+</ul>
+</section>
+<section id="slide19-id" class="slide level2" data-menu-title="Gráfico de pontos para temperatura de Nova York">
+<h2></h2>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/dot-plot-Temp-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="como-a-média-é-calculada" class="slide level2"><h2>Como a média é calculada?</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/dot-plot-Temp-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="como-a-média-é-calculada" class="slide level2">
+<h2>Como a média é calculada?</h2>
 <div class="fragment">
 <p>A fórmula da média:</p>
 <p><span class="math display">\[
@@ -3638,26 +3708,26 @@ Tabela&nbsp;5: Uma amostra de dez casos do banco de dados <code>Age dataset</cod
     \bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}
 \]</span></p>
 </div>
-</section><section id="um-pouco-de-nomenclaura" class="slide level2"><h2>Um pouco de nomenclaura</h2>
+</section>
+<section id="um-pouco-de-nomenclaura" class="slide level2">
+<h2>Um pouco de nomenclaura</h2>
 <div>
 <ul>
-<li class="fragment">
-<span class="math inline">\(\mu\)</span>: média da popualação</li>
-<li class="fragment">
-<span class="math inline">\(\bar{x}\)</span>: média da amostra</li>
-<li class="fragment">
-<span class="math inline">\(x\)</span>: qualquer caso da amostra</li>
-<li class="fragment">
-<span class="math inline">\(x_i\)</span>: representa os valores individuais de forma genérica, onde <span class="math inline">\(i\)</span> é um índice que varia de <span class="math inline">\(1\)</span> (primeiro caso) até <span class="math inline">\(n\)</span> (último caso)</li>
-<li class="fragment">
-<span class="math inline">\(n\)</span>: total de casos</li>
+<li class="fragment"><span class="math inline">\(\mu\)</span>: média da popualação</li>
+<li class="fragment"><span class="math inline">\(\bar{x}\)</span>: média da amostra</li>
+<li class="fragment"><span class="math inline">\(x\)</span>: qualquer caso da amostra</li>
+<li class="fragment"><span class="math inline">\(x_i\)</span>: representa os valores individuais de forma genérica, onde <span class="math inline">\(i\)</span> é um índice que varia de <span class="math inline">\(1\)</span> (primeiro caso) até <span class="math inline">\(n\)</span> (último caso)</li>
+<li class="fragment"><span class="math inline">\(n\)</span>: total de casos</li>
 </ul>
 </div>
-</section><section id="o-cáculo-da-média" class="slide level2"><h2>O cáculo da média</h2>
+</section>
+<section id="o-cáculo-da-média" class="slide level2">
+<h2>O cáculo da média</h2>
 <p>Qual foi a média de temperatura dos cinco primeiros dias do mês de maio de 1973 em Nova York?</p>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-cinco-dias-airquality" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-cinco-dias-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-cinco-dias-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="zouehsjrjl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#zouehsjrjl table {
@@ -4108,12 +4178,15 @@ Tabela&nbsp;5: Uma amostra de dez casos do banco de dados <code>Age dataset</cod
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Month" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Month</th>
 <th id="Day" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Day</th>
 <th id="Temp" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Temp</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Month">5</td>
@@ -4142,15 +4215,19 @@ Tabela&nbsp;5: Uma amostra de dez casos do banco de dados <code>Age dataset</cod
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-cinco-dias-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;6: Temperatura dos cinco primeiros dias do mês de maio de 1973 em Nova York
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="o-cáculo-da-média-1" class="slide level2"><h2>O cáculo da média</h2>
+</section>
+<section id="o-cáculo-da-média-1" class="slide level2">
+<h2>O cáculo da média</h2>
 <p><span class="math display">\[
 \text{Temp} = \{67, 72, 74, 62, 56\}
 \]</span></p>
@@ -4169,7 +4246,9 @@ Tabela&nbsp;6: Temperatura dos cinco primeiros dias do mês de maio de 1973 em N
 \bar{X} = 66.2
 \]</span></p>
 </div>
-</section><section id="consumo-de-combustível-e-peso-de-automóveis" class="slide level2 smaller"><h2>Consumo de combustível e peso de automóveis</h2>
+</section>
+<section id="consumo-de-combustível-e-peso-de-automóveis" class="slide level2 smaller">
+<h2>Consumo de combustível e peso de automóveis</h2>
 <p>Vamos calcular a média do consumo e do peso dos automóveis abaixo:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -4177,10 +4256,13 @@ Tabela&nbsp;6: Temperatura dos cinco primeiros dias do mês de maio de 1973 em N
 <script type="application/json" data-for="htmlwidget-a931752ae4f30d759859">{"x":{"filter":"none","vertical":false,"editable":{"target":"cell","disable":{"columns":null},"numeric":[1,2],"date":[]},"data":[["Maserati Bora","Cadillac Fleetwood","Honda Civic","Merc 450SLC","Datsun 710","Média"],[15,10.4,30.4,15.2,22.8,null],[3.57,5.25,1.615,3.78,2.32,null]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Modelo<\/th>\n      <th>mpg<\/th>\n      <th>wt<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"lengthChange":false,"dom":"t","ordering":false,"columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"name":"Modelo","targets":0},{"name":"mpg","targets":1},{"name":"wt","targets":2}],"headerCallback":"function(thead) {\n  $(thead).css('font-size', '0.75em');\n}","order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'text-align':value == \"Média\" ? \"right\" : null});\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'text-align':value == \"Maserati Bora\" ? \"left\" : value == \"Cadillac Fleetwood\" ? \"left\" : value == \"Honda Civic\" ? \"left\" : value == \"Merc 450SLC\" ? \"left\" : value == \"Datsun 710\" ? \"left\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.headerCallback","options.rowCallback"],"jsHooks":[]}</script>
 </div>
 </div>
-</section><section id="resultados" class="slide level2"><h2>Resultados</h2>
+</section>
+<section id="resultados" class="slide level2">
+<h2>Resultados</h2>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-resultados-media-mtcars" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-resultados-media-mtcars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-resultados-media-mtcars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="jrvketnvyz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#jrvketnvyz table {
@@ -4631,11 +4713,14 @@ Tabela&nbsp;6: Temperatura dos cinco primeiros dias do mês de maio de 1973 em N
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Variável" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Variável</th>
 <th id="Média" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Média</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="Variável">mpg</td>
@@ -4647,31 +4732,41 @@ Tabela&nbsp;6: Temperatura dos cinco primeiros dias do mês de maio de 1973 em N
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-resultados-media-mtcars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;7: Médias de <code>mpg</code> e <code>wt</code> para uma amostra de automóveis
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="a-média-e-a-padronização-de-medidas" class="slide level2"><h2>A média e a padronização de medidas</h2>
+</section>
+<section id="a-média-e-a-padronização-de-medidas" class="slide level2">
+<h2>A média e a padronização de medidas</h2>
 <ul>
 <li>A média é útil porque nos permite redimensionar ou padronizar uma métrica em algo mais facilmente interpretável e comparável</li>
-</ul></section><section id="a-média-e-a-padronização-de-medidas-1" class="slide level2"><h2>A média e a padronização de medidas</h2>
+</ul>
+</section>
+<section id="a-média-e-a-padronização-de-medidas-1" class="slide level2">
+<h2>A média e a padronização de medidas</h2>
 <ul>
 <li>Um novo medicamento é mais eficaz no tratamento de crises de asma do que o medicamento padrão?</li>
 <li>Um teste com 1.500 adultos foi delineado:
 <ul>
 <li>500 receberam o novo medicamento</li>
 <li>1.000 receberam um medicamento padrão no grupo de controle</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="resultados-1" class="slide level2"><h2>Resultados</h2>
+</section>
+<section id="resultados-1" class="slide level2">
+<h2>Resultados</h2>
 <p>Qual medicamento é mais eficiente?</p>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-asma" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-asma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-asma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="esyyichzgj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#esyyichzgj table {
@@ -5122,12 +5217,15 @@ Tabela&nbsp;7: Médias de <code>mpg</code> e <code>wt</code> para uma amostra de
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Droga" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Droga</th>
 <th id="Pacientes" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Pacientes</th>
 <th id="Ataques" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Ataques</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Droga">Nova</td>
@@ -5141,35 +5239,36 @@ Tabela&nbsp;7: Médias de <code>mpg</code> e <code>wt</code> para uma amostra de
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-asma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;8: Resultados do experimento sobre o novo remédio pra asma
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="resultados-2" class="slide level2"><h2>Resultados</h2>
+</section>
+<section id="resultados-2" class="slide level2">
+<h2>Resultados</h2>
 <div>
 <ul>
 <li class="fragment">Qual medicamento é mais eficiente?
 <ul>
 <li class="fragment">Ataques/paciente:
 <ul>
-<li class="fragment">Droga nova: <span class="math inline">\(200/500 = 0.4\)</span>
-</li>
-<li class="fragment">Medicamento padrão: <span class="math inline">\(300/1000 = 0.3\)</span>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="fragment">Droga nova: <span class="math inline">\(200/500 = 0.4\)</span></li>
+<li class="fragment">Medicamento padrão: <span class="math inline">\(300/1000 = 0.3\)</span></li>
+</ul></li>
+</ul></li>
 </ul>
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-asma-medias" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-asma-medias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-asma-medias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="isdnqkgulo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#isdnqkgulo table {
@@ -5620,13 +5719,16 @@ Tabela&nbsp;8: Resultados do experimento sobre o novo remédio pra asma
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Droga" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Droga</th>
 <th id="Pacientes" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Pacientes</th>
 <th id="Ataques" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Ataques</th>
 <th id="Ataques/paciente" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Ataques/paciente</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Droga">Nova</td>
@@ -5642,20 +5744,25 @@ Tabela&nbsp;8: Resultados do experimento sobre o novo remédio pra asma
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-asma-medias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;9: Resultados do experimento sobre o novo remédio pra asma: médias padronizadas
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-</section><section id="a-média-e-a-padronização-de-medidas-2" class="slide level2"><h2>A média e a padronização de medidas</h2>
+</section>
+<section id="a-média-e-a-padronização-de-medidas-2" class="slide level2">
+<h2>A média e a padronização de medidas</h2>
 <p>Avalie qual time de basquete tem melhor desempenho em um campeonato:</p>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-basquete" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-basquete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-basquete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="jmgiijwugu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#jmgiijwugu table {
@@ -6106,12 +6213,15 @@ Tabela&nbsp;9: Resultados do experimento sobre o novo remédio pra asma: médias
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Time" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Time</th>
 <th id="Jogos" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Jogos</th>
 <th id="Pontuação-Total" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Pontuação Total</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="Time">Mogi</td>
@@ -6135,25 +6245,32 @@ Tabela&nbsp;9: Resultados do experimento sobre o novo remédio pra asma: médias
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-basquete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;10: Pontuações dos times de basquete
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="tabela-para-os-cálculos" class="slide level2"><h2>Tabela para os cálculos</h2>
+</section>
+<section id="tabela-para-os-cálculos" class="slide level2">
+<h2>Tabela para os cálculos</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="datatables html-widget html-fill-item" id="htmlwidget-5affc4f25ab85bf888dc" style="width:100%;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-5affc4f25ab85bf888dc">{"x":{"filter":"none","vertical":false,"editable":{"target":"cell","disable":{"columns":null},"numeric":[1,2],"date":[]},"data":[["Mogi","Fortaleza B. C. / CFO","Pato Basquete","Cerrado"],[20,18,22,21],[1500,1400,1600,1550],[null,null,null,null]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Time<\/th>\n      <th>Jogos<\/th>\n      <th>Pontuação Total<\/th>\n      <th>Pontos/jogo<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"lengthChange":false,"dom":"t","ordering":false,"columnDefs":[{"className":"dt-center","targets":"_all"},{"name":"Time","targets":0},{"name":"Jogos","targets":1},{"name":"Pontuação Total","targets":2},{"name":"Pontos/jogo","targets":3}],"headerCallback":"function(thead) {\n  $(thead).css('font-size', '0.75em');\n}","order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'text-align':value == \"Mogi\" ? \"left\" : value == \"Fortaleza B. C. / CFO\" ? \"left\" : value == \"Pato Basquete\" ? \"left\" : value == \"Cerrado\" ? \"left\" : null});\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-size':'70%'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'70%'});\n}"}},"evals":["options.headerCallback","options.rowCallback"],"jsHooks":[]}</script>
 </div>
 </div>
-</section><section id="resultados-3" class="slide level2"><h2>Resultados</h2>
+</section>
+<section id="resultados-3" class="slide level2">
+<h2>Resultados</h2>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-basquete-medias" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-basquete-medias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-basquete-medias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="fybehlmray" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#fybehlmray table {
@@ -6604,13 +6721,16 @@ Tabela&nbsp;10: Pontuações dos times de basquete
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Time" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Time</th>
 <th id="Jogos" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Jogos</th>
 <th id="Pontuação-Total" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Pontuação Total</th>
 <th id="Pontos/jogo" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Pontos/jogo</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="Time">Mogi</td>
@@ -6638,35 +6758,47 @@ Tabela&nbsp;10: Pontuações dos times de basquete
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-basquete-medias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;11: Pontuações dos times de basquete: médias padronizadas
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section></section><section><section id="variância-e-desvio-padrão" class="title-slide slide level1 center"><h1>Variância e desvio padrão</h1>
+</section></section>
+<section>
+<section id="variância-e-desvio-padrão" class="title-slide slide level1 center">
+<h1>Variância e desvio padrão</h1>
 
-</section><section id="variância-e-desvio-padrão-1" class="slide level2"><h2>Variância e desvio padrão</h2>
+</section>
+<section id="variância-e-desvio-padrão-1" class="slide level2">
+<h2>Variância e desvio padrão</h2>
 <ul>
 <li>A média foi introduzida como um método para descrever o centro de uma variável</li>
 <li>A variabilidade nos dados também é importante:
 <ul>
 <li>Variância</li>
 <li>Desvio padrão</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="variância" class="slide level2"><h2>Variância</h2>
+</section>
+<section id="variância" class="slide level2">
+<h2>Variância</h2>
 <p>A princípio, a fórmula da variância parece complicada, mas vamos analisá-la parte por parte e você verá como ela pode ser simples de entender.</p>
 <p><span class="math display">\[
 s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}
 \]</span></p>
-</section><section id="avaliações-do-professor-zé" class="slide level2 smaller"><h2>Avaliações do professor Zé</h2>
+</section>
+<section id="avaliações-do-professor-zé" class="slide level2 smaller">
+<h2>Avaliações do professor Zé</h2>
 <p>Na tabela a seguir, estão as avaliações que o professor Zé recebeu de uma turma de cinco aluno em relação a uma disciplina ministrada. As notas atribuídas pelos alunos à avaliação do professor variavam de 1 a 5, onde 1 significa péssimo e 5 ótimo:</p>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-av_prof" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-av_prof-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-av_prof-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="yfuoiozptf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#yfuoiozptf table {
@@ -7117,17 +7249,20 @@ s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
 <col style="width: 33%">
 </colgroup>
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
 <th id="Aluno" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Aluno</th>
 <th id="Avaliação-do-professor" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Avaliação do professor</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="background-color: #FFFFFF"></td>
@@ -7156,33 +7291,39 @@ s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}
 </tr>
 <tr class="even">
 <td id="grand_summary_stub_1" class="gt_row gt_left gt_stub gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" data-quarto-table-cell-role="th" scope="row" style="text-align: right; background-color: #F4F4F4;">Média</td>
-<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Aluno" style="background-color: #F4F4F4"><br></td>
+<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Aluno" style="background-color: #F4F4F4"><br>
+</td>
 <td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Avaliação do professor" style="background-color: #F4F4F4">2.6</td>
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-av_prof-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;12: Avaliações do professor Zé
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 <p><span class="math inline">\(\bar{x} =\)</span> 2.6</p>
-</section><section id="desvios-da-média-x_i---barx" class="slide level2 smaller"><h2>Desvios da média: <span class="math inline">\(x_i - \bar{x}\)</span>
-</h2>
+</section>
+<section id="desvios-da-média-x_i---barx" class="slide level2 smaller">
+<h2>Desvios da média: <span class="math inline">\(x_i - \bar{x}\)</span></h2>
 <p><span class="math display">\[
 s^2 = \frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})}^2}{n-1}
 \]</span></p>
-</section><section id="desvios-da-média-x_i---barx-1" class="slide level2 smaller"><h2>Desvios da média: <span class="math inline">\(x_i - \bar{x}\)</span>
-</h2>
+</section>
+<section id="desvios-da-média-x_i---barx-1" class="slide level2 smaller">
+<h2>Desvios da média: <span class="math inline">\(x_i - \bar{x}\)</span></h2>
 <p>Note que a média em algums momentos subestima a avaliação dada por cada aluno e, em outros, superestima.</p>
 <p>Chamamos de desvio a distância de uma observação da média da variável.</p>
 <p><span class="math inline">\(\bar{x} =\)</span> 2.6</p>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-desviso-prof-ze" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-desviso-prof-ze-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-desviso-prof-ze-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="khvvgpqvrq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#khvvgpqvrq table {
@@ -7633,13 +7774,16 @@ s^2 = \frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})}^2}{n-1}
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Aluno" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Aluno</th>
 <th id="Avaliação-do-professor" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Avaliação do professor</th>
 <th id="Observaçao---média" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Observaçao - média</th>
 <th id="Desvio-da-média" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Desvio da média</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Aluno">Joana</td>
@@ -7673,21 +7817,28 @@ s^2 = \frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})}^2}{n-1}
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-desviso-prof-ze-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;13: Desvios da média das avaliações do professor Zé
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="section-3" class="slide level2"><h2></h2>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="soma-dos-desvios" class="slide level2 smaller"><h2>Soma dos desvios</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="soma-dos-desvios" class="slide level2 smaller">
+<h2>Soma dos desvios</h2>
 <p>Agora que já temos os desvios, para saber a variabilidade total dos dados podemos somá-los, certo?</p>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-soma-desvios-ze" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-soma-desvios-ze-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-soma-desvios-ze-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="bdmevsytvy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#bdmevsytvy table {
@@ -8138,6 +8289,7 @@ Tabela&nbsp;13: Desvios da média das avaliações do professor Zé
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 20%">
@@ -8146,13 +8298,15 @@ Tabela&nbsp;13: Desvios da média das avaliações do professor Zé
 <col style="width: 20%">
 <col style="width: 20%">
 </colgroup>
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
 <th id="Aluno" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Aluno</th>
 <th id="Avaliação-do-professor" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Avaliação do professor</th>
 <th id="Observaçao---média" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Observaçao - média</th>
 <th id="Desvio-da-média" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Desvio da média</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="background-color: #FFFFFF"></td>
@@ -8191,35 +8345,47 @@ Tabela&nbsp;13: Desvios da média das avaliações do professor Zé
 </tr>
 <tr class="even">
 <td id="grand_summary_stub_1" class="gt_row gt_left gt_stub gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" data-quarto-table-cell-role="th" scope="row" style="text-align: right; background-color: #F4F4F4;">Soma</td>
-<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Aluno" style="background-color: #F4F4F4"><br></td>
-<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Avaliação do professor" style="background-color: #F4F4F4"><br></td>
-<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Observaçao - média" style="background-color: #F4F4F4"><br></td>
+<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Aluno" style="background-color: #F4F4F4"><br>
+</td>
+<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Avaliação do professor" style="background-color: #F4F4F4"><br>
+</td>
+<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Observaçao - média" style="background-color: #F4F4F4"><br>
+</td>
 <td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Desvio da média" style="background-color: #F4F4F4">0</td>
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-soma-desvios-ze-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;14: Soma dos desvios da média das avaliações do professor Zé
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>Zero? Esse resultado não faz sentido, porque claramente há variabilidade, como visto no gráfico anterior.</p>
-</section><section id="soma-dos-desvios-ao-quadrado" class="slide level2"><h2>Soma dos desvios ao quadrado</h2>
+</section>
+<section id="soma-dos-desvios-ao-quadrado" class="slide level2">
+<h2>Soma dos desvios ao quadrado</h2>
 <p><span class="math display">\[
 s^2 = \frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})^2}}{n-1}
 \]</span></p>
-</section><section id="soma-dos-desvios-ao-quadrado-1" class="slide level2"><h2>Soma dos desvios ao quadrado</h2>
+</section>
+<section id="soma-dos-desvios-ao-quadrado-1" class="slide level2">
+<h2>Soma dos desvios ao quadrado</h2>
 <p>Para evitar que os valores positivos e negativos se cancelem na soma e dar mais peso aos desvios maiores, elevamos os desvios ao quadrado:</p>
 <p><span class="math display">\[
 {SS} = \sum_{i=1}^n (x_i - \bar{x})^2 =  \sum(x_i - \bar{x})(x_i - \bar{x})
 \]</span></p>
-</section><section id="soma-dos-desvios-ao-quadrado-2" class="slide level2"><h2>Soma dos desvios ao quadrado</h2>
+</section>
+<section id="soma-dos-desvios-ao-quadrado-2" class="slide level2">
+<h2>Soma dos desvios ao quadrado</h2>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-soma-desivos-quadrado-ze" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-soma-desivos-quadrado-ze-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-soma-desivos-quadrado-ze-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="nywchplync" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#nywchplync table {
@@ -8670,6 +8836,7 @@ s^2 = \frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})^2}}{n-1}
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" style="width:100%;" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 16%">
@@ -8679,14 +8846,16 @@ s^2 = \frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})^2}}{n-1}
 <col style="width: 16%">
 <col style="width: 16%">
 </colgroup>
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
 <th id="Aluno" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Aluno</th>
 <th id="Avaliação-do-professor" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Avaliação do professor</th>
 <th id="Observaçao---média" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Observaçao - média</th>
 <th id="Desvio-da-média" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Desvio da média</th>
 <th id="Desvio-ao-quadrado" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Desvio ao quadrado</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="background-color: #FFFFFF"></td>
@@ -8730,24 +8899,32 @@ s^2 = \frac{\sum_{i=1}^n \color{red}{(x_i - \bar{x})^2}}{n-1}
 </tr>
 <tr class="even">
 <td id="grand_summary_stub_1" class="gt_row gt_left gt_stub gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" data-quarto-table-cell-role="th" scope="row" style="text-align: right; background-color: #F4F4F4;">Soma</td>
-<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Aluno" style="background-color: #F4F4F4"><br></td>
-<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Avaliação do professor" style="background-color: #F4F4F4"><br></td>
-<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Observaçao - média" style="background-color: #F4F4F4"><br></td>
-<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Desvio da média" style="background-color: #F4F4F4"><br></td>
+<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Aluno" style="background-color: #F4F4F4"><br>
+</td>
+<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Avaliação do professor" style="background-color: #F4F4F4"><br>
+</td>
+<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Observaçao - média" style="background-color: #F4F4F4"><br>
+</td>
+<td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Desvio da média" style="background-color: #F4F4F4"><br>
+</td>
 <td class="gt_row gt_center gt_grand_summary_row gt_first_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_1 Desvio ao quadrado" style="background-color: #F4F4F4">5.2</td>
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-soma-desivos-quadrado-ze-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;15: Soma dos desvios ao quadrado das avaliações do professor Zé
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 <p><span class="math inline">\(SS =\)</span> 5.2</p>
-</section><section id="variância-1" class="slide level2 smaller"><h2>Variância</h2>
+</section>
+<section id="variância-1" class="slide level2 smaller">
+<h2>Variância</h2>
 <p>Com a soma dos erros dos desvios ao quadrao (<span class="math inline">\(SS = 5.2\)</span>), já resolvemos a parte de cima da equção! Sabenos o número de observações, então também já temos o valor de <span class="math inline">\(n\)</span> (<span class="math inline">\(n =\)</span> 5).</p>
 <p><span class="math display">\[
 s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} = \frac{\color{red}{\text{SS}}}{n-1} = \frac{5.2}{n-1}
@@ -8758,7 +8935,9 @@ s^2 = \frac{5.2}{5-1} = \frac{5.2}{4} = 1.3
 <p><span class="math display">\[
 s^2 = 1.3
 \]</span></p>
-</section><section id="desvio-padrão" class="slide level2 smaller"><h2>Desvio padrão</h2>
+</section>
+<section id="desvio-padrão" class="slide level2 smaller">
+<h2>Desvio padrão</h2>
 <ul>
 <li>A variância não permite uma interpretação intuitiva da variabilidade, pois os valores são apresentados elevados ao quadrado</li>
 <li>O desvio padrão é, portanto, a raiz quadrada da variância</li>
@@ -8769,12 +8948,16 @@ s = \sqrt{s^2}
 <p><span class="math display">\[
 s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}}
 \]</span></p>
-</section><section id="desvio-padrão-1" class="slide level2"><h2>Desvio padrão</h2>
+</section>
+<section id="desvio-padrão-1" class="slide level2">
+<h2>Desvio padrão</h2>
 <p>Se já sabemos a variância das notas do professor Zé (<span class="math inline">\(s^2\)</span> = 1.3), para calcular o desvio padrão (<span class="math inline">\(s\)</span>), basta tirar a raiz quadrada desse valor:</p>
 <p><span class="math display">\[
 s = \sqrt{1.3} = 1.14
 \]</span></p>
-</section><section id="desvio-padrão-2" class="slide level2"><h2>Desvio padrão</h2>
+</section>
+<section id="desvio-padrão-2" class="slide level2">
+<h2>Desvio padrão</h2>
 <p>É um tipo de distância típica de uma observação em relação à média (raiz quadrada da variância).</p>
 <ul>
 <li>Propriedades:
@@ -8782,16 +8965,17 @@ s = \sqrt{1.3} = 1.14
 <li>É maior do zero</li>
 <li>Só é igual a zero se todas as observações forem iguais</li>
 <li>Quanto maior a variabilidade, maior o desvio padrão</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="avaliações-da-professora-irene-e-professor-reinaldo" class="slide level2"><h2>Avaliações da professora Irene e professor Reinaldo</h2>
+</section>
+<section id="avaliações-da-professora-irene-e-professor-reinaldo" class="slide level2">
+<h2>Avaliações da professora Irene e professor Reinaldo</h2>
 <p>Vamos calcular a média e o desvio padrão para as avaliações da professora Irente e do professor Reinaldo.</p>
-</section><section id="section-4" class="slide level2 smaller"><h2></h2>
+</section>
+<section id="section-4" class="slide level2 smaller">
+<h2></h2>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-2-1">Tabela para os cálculos</a></li>
-<li><a href="#tabset-2-2">Fórmulas</a></li>
-</ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Tabela para os cálculos</a></li><li><a href="#tabset-2-2">Fórmulas</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell" data-layout-align="center">
@@ -8820,12 +9004,11 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
 </div>
 </div>
 </div>
-</section><section id="section-5" class="slide level2 smaller"><h2></h2>
+</section>
+<section id="section-5" class="slide level2 smaller">
+<h2></h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-3-1">Tabela para os cálculos</a></li>
-<li><a href="#tabset-3-2">Fórmulas</a></li>
-</ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Tabela para os cálculos</a></li><li><a href="#tabset-3-2">Fórmulas</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
 <div class="cell" data-layout-align="center">
@@ -8854,11 +9037,14 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
 </div>
 </div>
 </div>
-</section><section id="resultados-4" class="slide level2"><h2>Resultados</h2>
+</section>
+<section id="resultados-4" class="slide level2">
+<h2>Resultados</h2>
 <p>Os dois professores têm a mesma média, mas a desvio padrão no caso da professora Irene é bem mais alto. O que isso nos diz sobre os dados?</p>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-m-dp-irene-reinaldo" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-m-dp-irene-reinaldo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-m-dp-irene-reinaldo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="ngcwvzoueh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ngcwvzoueh table {
@@ -9309,12 +9495,15 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Professor" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Professor</th>
 <th id="Média" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Média</th>
 <th id="Desvio-padrão" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Desvio padrão</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="Professor">Irene</td>
@@ -9328,65 +9517,85 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-m-dp-irene-reinaldo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;16: Média e desvio padrão dos professores Reinaldo e Irene
-</figcaption></figure>
-</div>
-</div>
-</section><section id="section-6" class="slide level2 smaller"><h2></h2>
-<p>Os dois professores tem a mesma médias nas avaliações dos alunos, mas as pontuações da professora Irene são mais dispersas, por isso o desvio padrão maior.</p>
-
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-35-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="section-7" class="slide level2"><h2></h2>
-
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-36-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="aplicativo-para-ver-a-influência-do-desvio-padrão-na-distribuição-dos-dados" class="slide level2 smaller"><h2>Aplicativo para ver a influência do desvio padrão na distribuição dos dados</h2>
-<p>Use o qr-code ou o link abaixo para acessar o aplicativo:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure><div class="quarto-figure quarto-figure-center">
-<figure><p><a href="https://c35bp0-pablo-pinheiro.shinyapps.io/estatistica_apps/"><img data-src="img/qrcode_c35bp0-pablo-pinheiro.shinyapps.io.png" class="quarto-figure quarto-figure-center" alt="Qr-code para acessar aplicativo online para ver a influência do desvio padrão na distribuição dos dados." width="308"></a></p>
+</figcaption>
 </figure>
 </div>
-<figcaption>https://c35bp0-pablo-pinheiro.shinyapps.io/estatistica_apps/</figcaption></figure>
 </div>
-</section></section><section><section id="histogramas-e-a-forma-dos-dados" class="title-slide slide level1 center"><h1>Histogramas e a forma dos dados</h1>
+</section>
+<section id="section-6" class="slide level2 smaller">
+<h2></h2>
+<p>Os dois professores tem a mesma médias nas avaliações dos alunos, mas as pontuações da professora Irene são mais dispersas, por isso o desvio padrão maior.</p>
 
-</section><section id="histogramas-e-a-forma-dos-dados-1" class="slide level2 smaller"><h2>Histogramas e a forma dos dados</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-35-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-36-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="aplicativo-para-ver-a-influência-do-desvio-padrão-na-distribuição-dos-dados" class="slide level2 smaller">
+<h2>Aplicativo para ver a influência do desvio padrão na distribuição dos dados</h2>
+<p>Use o qr-code ou o link abaixo para acessar o aplicativo:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="https://c35bp0-pablo-pinheiro.shinyapps.io/estatistica_apps/"><img data-src="img/qrcode_c35bp0-pablo-pinheiro.shinyapps.io.png" class="quarto-figure quarto-figure-center" alt="Qr-code para acessar aplicativo online para ver a influência do desvio padrão na distribuição dos dados." width="308"></a></p>
+</figure>
+</div>
+<figcaption>https://c35bp0-pablo-pinheiro.shinyapps.io/estatistica_apps/</figcaption>
+</figure>
+</div>
+</section></section>
+<section>
+<section id="histogramas-e-a-forma-dos-dados" class="title-slide slide level1 center">
+<h1>Histogramas e a forma dos dados</h1>
+
+</section>
+<section id="histogramas-e-a-forma-dos-dados-1" class="slide level2 smaller">
+<h2>Histogramas e a forma dos dados</h2>
 <ul>
 <li>Os gráficos de pontos mostram o valor exato para cada observação
 <ul>
 <li>Úteis para pequenos conjuntos de dados</li>
 <li>Difíceis de ler com amostras maiores</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="histogramas-e-a-forma-dos-dados-2" class="slide level2"><h2>Histogramas e a forma dos dados</h2>
+</section>
+<section id="histogramas-e-a-forma-dos-dados-2" class="slide level2">
+<h2>Histogramas e a forma dos dados</h2>
 <ul>
 <li>Em vez de mostrar o valor de cada observação, vamos colocá-los em caixas ou grupos (bins) formados por intervalos</li>
 <li>Variável <code>Temp</code> do banco de dados <code>airquality</code>:
 <ul>
 <li>0-60, 60-65, 65-70…</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="histogramas-e-a-forma-dos-dados-3" class="slide level2"><h2>Histogramas e a forma dos dados</h2>
+</section>
+<section id="histogramas-e-a-forma-dos-dados-3" class="slide level2">
+<h2>Histogramas e a forma dos dados</h2>
 <ul>
 <li>No slide a seguir, estão:
 <ul>
 <li>A contagem de observações que estão em cada intervalo</li>
 <li>As contagens agrupadas são plotadas como barras no que é chamado de histograma</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="histogramas-e-a-forma-dos-dados-4" class="slide level2"><h2>Histogramas e a forma dos dados</h2>
+</section>
+<section id="histogramas-e-a-forma-dos-dados-4" class="slide level2">
+<h2>Histogramas e a forma dos dados</h2>
 <div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-4-1">Tabela</a></li>
-<li><a href="#tabset-4-2">Histograma</a></li>
-</ul>
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Tabela</a></li><li><a href="#tabset-4-2">Histograma</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-bins-temp" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-bins-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-bins-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="ywwlwguyxy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ywwlwguyxy table {
@@ -9837,11 +10046,14 @@ Tabela&nbsp;16: Média e desvio padrão dos professores Reinaldo e Irene
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="bins" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">bins</th>
 <th id="Contagem" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Contagem</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="bins">(0,60]</td>
@@ -9881,12 +10093,14 @@ Tabela&nbsp;16: Média e desvio padrão dos professores Reinaldo e Irene
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-bins-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;17: Contagens para os dados de temperatura agrupados
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
@@ -9894,7 +10108,8 @@ Tabela&nbsp;17: Contagens para os dados de temperatura agrupados
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/histogram-Temp-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/histogram-Temp-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -9902,17 +10117,23 @@ Tabela&nbsp;17: Contagens para os dados de temperatura agrupados
 </div>
 </div>
 </div>
-</section><section id="histogramas-e-a-forma-dos-dados-5" class="slide level2"><h2>Histogramas e a forma dos dados</h2>
+</section>
+<section id="histogramas-e-a-forma-dos-dados-5" class="slide level2">
+<h2>Histogramas e a forma dos dados</h2>
 <ul>
 <li>Os histogramas fornecem uma visão da densidade dos dados
 <ul>
 <li>Barras mais altas representam onde os dados são relativamente mais comuns</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="histogramas-e-a-forma-dos-dados-6" class="slide level2"><h2>Histogramas e a forma dos dados</h2>
+</section>
+<section id="histogramas-e-a-forma-dos-dados-6" class="slide level2">
+<h2>Histogramas e a forma dos dados</h2>
 <p>Houve mais dias com temperaturas entre 80°F e 85°F do que com temperaturas entre 0°F e 60°F</p>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/histogram-Temp-color-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="como-construir-um-histograma" class="slide level2"><h2>Como construir um histograma?</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/histogram-Temp-color-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="como-construir-um-histograma" class="slide level2">
+<h2>Como construir um histograma?</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div style="font-size: 70%">
@@ -9921,21 +10142,23 @@ Tabela&nbsp;17: Contagens para os dados de temperatura agrupados
 <ul>
 <li>Poucos intervalos: o verdadeiro padrão subjacente nos dados pode ficar oculto</li>
 <li>Muitos intervalos: podemos estar apenas visualizando o ruído em um conjunto de dados</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 </div>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-40-1.png" class="quarto-figure quarto-figure-center" data-fig-pos="h" width="1800"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-40-1.png" class="quarto-figure quarto-figure-center" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
 </div>
 </div></div>
-</section><section id="como-construir-um-histograma-1" class="slide level2 smaller"><h2>Como construir um histograma?</h2>
+</section>
+<section id="como-construir-um-histograma-1" class="slide level2 smaller">
+<h2>Como construir um histograma?</h2>
 <p><strong>Considere o seguinte conjunto de dados:</strong></p>
 <p>{52, 57, 53, 59, 62, 65, 67, 68, 69, 70, 72, 75, 78, 78, 79, 80, 82, 83, 85, 88, 90, 92, 93, 95, 96, 97, 98, 100, 102, 105}</p>
 <div class="fragment">
@@ -9956,7 +10179,9 @@ Tabela&nbsp;17: Contagens para os dados de temperatura agrupados
 <div class="fragment">
 <p><span class="math inline">\(Amplitude =\)</span> 105 <span class="math inline">\(-\)</span> 52 <span class="math inline">\(=\)</span> 53</p>
 </div>
-</section><section id="como-construir-um-histograma-2" class="slide level2"><h2>Como construir um histograma?</h2>
+</section>
+<section id="como-construir-um-histograma-2" class="slide level2">
+<h2>Como construir um histograma?</h2>
 <p><span style="font-size: 60%"><strong>4. Determine o número de intervalos (bins)</strong></span></p>
 <p><span style="font-size: 60%"><em>Regra de Sturges:</em></span></p>
 <p><span class="math display">\[
@@ -9965,7 +10190,10 @@ Tabela&nbsp;17: Contagens para os dados de temperatura agrupados
 <ul>
 <li><span style="font-size: 60%">n: o número total de observações no conjunto de dados</span></li>
 <li><span style="font-size: 60%"><span class="math inline">\(\lceil \rceil\)</span>: símbolos que significam “teto” – ou seja, arredondar a resposta para o número inteiro mais próximo.</span></li>
-</ul></section><section id="como-construir-um-histograma-3" class="slide level2"><h2>Como construir um histograma?</h2>
+</ul>
+</section>
+<section id="como-construir-um-histograma-3" class="slide level2">
+<h2>Como construir um histograma?</h2>
 <p><span style="font-size: 60%"><strong>4. Determine o número de intervalos (bins)</strong></span></p>
 <p><span class="math display">\[
 \text{Bins Ótimos} = \lceil \log_2(30) + 1 \rceil = 6
@@ -9978,7 +10206,9 @@ Tabela&nbsp;17: Contagens para os dados de temperatura agrupados
 53/6 = 8.83 \approx 9
 \]</span></p>
 </div>
-</section><section id="como-construir-um-histograma-4" class="slide level2 smaller"><h2>Como construir um histograma?</h2>
+</section>
+<section id="como-construir-um-histograma-4" class="slide level2 smaller">
+<h2>Como construir um histograma?</h2>
 <p><strong>6. Calcule o limites dos intervalos: comece com o menor valor e adicione largura dos intervalos para determinar o limite superior da primeira classe</strong></p>
 <div class="fragment">
 <p><span class="math inline">\(52 + 9 = 61\)</span></p>
@@ -9986,7 +10216,8 @@ Tabela&nbsp;17: Contagens para os dados de temperatura agrupados
 <div class="fragment">
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-limites-intervalos-histograma" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-limites-intervalos-histograma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-limites-intervalos-histograma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="osfsrrnfuz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#osfsrrnfuz table {
@@ -10437,11 +10668,14 @@ Tabela&nbsp;17: Contagens para os dados de temperatura agrupados
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Intervalo" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Intervalo</th>
 <th id="Limite" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Limite</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Intervalo">1</td>
@@ -10469,21 +10703,26 @@ Tabela&nbsp;17: Contagens para os dados de temperatura agrupados
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-limites-intervalos-histograma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;18: Limites dos intervalos do histograma
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-</section><section id="como-construir-um-histograma-5" class="slide level2"><h2>Como construir um histograma</h2>
+</section>
+<section id="como-construir-um-histograma-5" class="slide level2">
+<h2>Como construir um histograma</h2>
 <p><strong>7. Conte os casos em cada intervalo:</strong></p>
 <div class="fragment">
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-casos-intervalos" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-casos-intervalos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-casos-intervalos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="fpkqhwygdl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#fpkqhwygdl table {
@@ -10934,13 +11173,16 @@ Tabela&nbsp;18: Limites dos intervalos do histograma
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Intervalo" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Intervalo</th>
 <th id="Limite" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Limite</th>
 <th id="n" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">n</th>
 <th id="Casos" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Casos</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Intervalo">1</td>
@@ -10980,22 +11222,29 @@ Tabela&nbsp;18: Limites dos intervalos do histograma
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-casos-intervalos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;19: Intervalos e casos do histograma
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-</section><section id="resultado" class="slide level2"><h2>Resultado</h2>
+</section>
+<section id="resultado" class="slide level2">
+<h2>Resultado</h2>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-44-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="histograma-da-altura-dos-alunos" class="slide level2" style="font-size: 75%"><h2><a href="#/histograma-da-altura-dos-alunos-1">Histograma da altura dos alunos</a></h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-44-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="histograma-da-altura-dos-alunos" class="slide level2" style="font-size: 75%">
+<h2><a href="#/histograma-da-altura-dos-alunos-1">Histograma da altura dos alunos</a></h2>
 <p><span style="font-size: 60%">Gere um histograma a partir da amostra abaixo que representa a altura dos alunos de uma turma em centímetros:</span></p>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-altura-dos-alunos" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-altura-dos-alunos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-altura-dos-alunos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="mrzqafbjzr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mrzqafbjzr table {
@@ -11446,11 +11695,14 @@ Tabela&nbsp;19: Intervalos e casos do histograma
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Aluno" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Aluno</th>
 <th id="Altura" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Altura</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Aluno">Pedro</td>
@@ -11514,15 +11766,19 @@ Tabela&nbsp;19: Intervalos e casos do histograma
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-altura-dos-alunos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;20: Altura dos alunos
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="histograma-da-altura-dos-alunos-1" class="slide level2"><h2>Histograma da altura dos alunos</h2>
+</section>
+<section id="histograma-da-altura-dos-alunos-1" class="slide level2">
+<h2>Histograma da altura dos alunos</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="datatables html-widget html-fill-item" id="htmlwidget-d160f85a982514ce28ae" style="width:100%;height:auto;"></div>
@@ -11535,40 +11791,45 @@ Tabela&nbsp;20: Altura dos alunos
 <script type="application/json" data-for="htmlwidget-593bde0f735d05eac755">{"x":{"filter":"none","vertical":false,"editable":{"target":"cell","disable":{"columns":null},"numeric":[],"date":[]},"data":[[null,null,null,null,null],[null,null,null,null,null]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Limite dos intervalos<\/th>\n      <th>Contagem<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"lengthChange":false,"dom":"t","ordering":false,"columnDefs":[{"width":"300px","targets":0},{"width":"50px","targets":1},{"className":"dt-center","targets":[0,1]},{"name":"Limite dos intervalos","targets":0},{"name":"Contagem","targets":1}],"headerCallback":"function(thead) {\n  $(thead).css('font-size', '0.5em');\n}","order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-size':'30%'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'30%'});\n}"}},"evals":["options.headerCallback","options.rowCallback"],"jsHooks":[]}</script>
 </div>
 </div>
-</section><section id="resultado-1" class="slide level2"><h2>Resultado</h2>
+</section>
+<section id="resultado-1" class="slide level2">
+<h2>Resultado</h2>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-48-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="histogramas-gráficos-de-densidade-e-a-forma-dos-dados-assimetria" class="slide level2 smaller"><h2>Histogramas, gráficos de densidade e a forma dos dados: assimetria</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-48-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="histogramas-gráficos-de-densidade-e-a-forma-dos-dados-assimetria" class="slide level2 smaller">
+<h2>Histogramas, gráficos de densidade e a forma dos dados: assimetria</h2>
 <ul>
 <li>Histogramas e gráficos de densidade (um histograma suavizado) são convenientes para entender a forma da distribuição de dados:
 <ul>
 <li>Quando a distribuição de uma variável segue para a direita e tem uma cauda direita mais longa: assimetria positiva</li>
 <li>Variáveis com a característica inversa – uma cauda longa e mais fina para a esquerda: assimetria negativa</li>
 <li>Variáveis que apresentam um declive aproximadamente igual em ambas as direções são chamadas simétricas</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="formas-das-distribuições" class="slide level2 smaller"><h2>Formas das distribuições</h2>
+</section>
+<section id="formas-das-distribuições" class="slide level2 smaller">
+<h2>Formas das distribuições</h2>
 <ul>
 <li>No slide a seguir, vamos ter as distribuições das seguintes variáveis
 <ul>
 <li>Preço de diamantes (<code>price</code>, do banco de dados <code>diamonds</code>)</li>
 <li>Altura dos filhos (<code>sheight</code>, do banco de dados <code>father.son</code>)</li>
 <li>Idade da morte de pessoas famosas (<code>Age of death</code>, do banco de dados <code>Age dataset</code><sup>1</sup>)</li>
-</ul>
-</li>
+</ul></li>
 <li>Como você imagina a forma dessas distribuições? Tente desenhá-las antes de ver os gráficos</li>
-</ul><aside><ol class="aside-footnotes"><li id="fn2"><p>Mantivemos somente as mortes por causas naturais e de pessoas que faleceram com menos de 80 anos</p></li></ol></aside></section><section id="formas-das-distribuições-1" class="slide level2 smaller"><h2>Formas das distribuições</h2>
-<div class="panel-tabset">
-<ul id="tabset-5" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-5-1">Assimetria positiva</a></li>
-<li><a href="#tabset-5-2">Distribuição simétrica</a></li>
-<li><a href="#tabset-5-3">Assimetria negativa</a></li>
 </ul>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Mantivemos somente as mortes por causas naturais e de pessoas que faleceram com menos de 80 anos</p></li></ol></aside></section>
+<section id="formas-das-distribuições-1" class="slide level2 smaller">
+<h2>Formas das distribuições</h2>
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Assimetria positiva</a></li><li><a href="#tabset-5-2">Distribuição simétrica</a></li><li><a href="#tabset-5-3">Assimetria negativa</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-49-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-49-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -11578,7 +11839,8 @@ Tabela&nbsp;20: Altura dos alunos
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-50-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-50-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -11588,7 +11850,8 @@ Tabela&nbsp;20: Altura dos alunos
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-51-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-51-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -11596,7 +11859,9 @@ Tabela&nbsp;20: Altura dos alunos
 </div>
 </div>
 </div>
-</section><section id="como-a-assimetria-é-calculada" class="slide level2"><h2>Como a assimetria é calculada</h2>
+</section>
+<section id="como-a-assimetria-é-calculada" class="slide level2">
+<h2>Como a assimetria é calculada</h2>
 <p>Coeficiente de Assimetria de Fisher-Pearson:</p>
 <p><span class="math display">\[
 \gamma_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^3}{n \cdot s^3}
@@ -11604,13 +11869,17 @@ Tabela&nbsp;20: Altura dos alunos
 <p><span class="math inline">\(x_i - \bar{x}\)</span>: desvios da média</p>
 <p><span class="math inline">\(n\)</span>: total de casos</p>
 <p><span class="math inline">\(s\)</span>: desvio padrão</p>
-</section><section id="section-8" class="slide level2"><h2></h2>
+</section>
+<section id="section-8" class="slide level2">
+<h2></h2>
 <p><span style="font-size: 60%;">Vamos calcular o valor da assimetria a partir de uma nova amostra de dados da altura:</span></p>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="top">
 <div id="tbl-altura-dos-alunos-2" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="top">
-<figure class="quarto-float quarto-float-tbl"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-altura-dos-alunos-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-altura-dos-alunos-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;21: Altura dos alunos: nova amostra
-</figcaption><div aria-describedby="tbl-altura-dos-alunos-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</figcaption>
+<div aria-describedby="tbl-altura-dos-alunos-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="arxxvbujkh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#arxxvbujkh table {
@@ -12061,11 +12330,14 @@ Tabela&nbsp;21: Altura dos alunos: nova amostra
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Aluno" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Aluno</th>
 <th id="Altura" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Altura</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Aluno">Leonardo</td>
@@ -12129,19 +12401,18 @@ Tabela&nbsp;21: Altura dos alunos: nova amostra
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 </figure>
 </div>
 </div>
-</section><section id="section-9" class="slide level2"><h2></h2>
+</section>
+<section id="section-9" class="slide level2">
+<h2></h2>
 <div class="panel-tabset">
-<ul id="tabset-6" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-6-1">Tabela para os cálculos</a></li>
-<li><a href="#tabset-6-2">Resultados</a></li>
-<li><a href="#tabset-6-3">Formulas</a></li>
-</ul>
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Tabela para os cálculos</a></li><li><a href="#tabset-6-2">Resultados</a></li><li><a href="#tabset-6-3">Formulas</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1">
 <div class="cell" data-layout-align="center">
@@ -12174,7 +12445,9 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
 </div>
 </div>
 </div>
-</section><section id="resultados-6" class="slide level2"><h2>Resultados</h2>
+</section>
+<section id="resultados-6" class="slide level2">
+<h2>Resultados</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="bwundyzrld" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -12626,11 +12899,14 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Estatística" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Estatística</th>
 <th id="Valor" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Valor</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="Estatística">n</td>
@@ -12658,10 +12934,13 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
-</section><section id="histograma-da-altura-dos-alunos-2" class="slide level2"><h2>Histograma da altura dos alunos</h2>
+</section>
+<section id="histograma-da-altura-dos-alunos-2" class="slide level2">
+<h2>Histograma da altura dos alunos</h2>
 <p>Agora gere um histograma com a nova amostra da altura dos alunos. A distribuição dos dados condiz com o valor da assimetria?</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -12675,16 +12954,25 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
 <script type="application/json" data-for="htmlwidget-6d9d3fe28ddcdfc64296">{"x":{"filter":"none","vertical":false,"editable":{"target":"cell","disable":{"columns":null},"numeric":[],"date":[]},"data":[[null,null,null,null,null],[null,null,null,null,null]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Limite dos intervalos<\/th>\n      <th>Contagem<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"lengthChange":false,"dom":"t","ordering":false,"columnDefs":[{"width":"300px","targets":0},{"width":"50px","targets":1},{"className":"dt-center","targets":[0,1]},{"name":"Limite dos intervalos","targets":0},{"name":"Contagem","targets":1}],"headerCallback":"function(thead) {\n  $(thead).css('font-size', '0.5em');\n}","order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-size':'30%'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'30%'});\n}"}},"evals":["options.headerCallback","options.rowCallback"],"jsHooks":[]}</script>
 </div>
 </div>
-</section><section id="resultado-2" class="slide level2"><h2>Resultado</h2>
+</section>
+<section id="resultado-2" class="slide level2">
+<h2>Resultado</h2>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-58-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="histogramas-e-a-moda" class="slide level2"><h2>Histogramas e a moda</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-58-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="histogramas-e-a-moda" class="slide level2">
+<h2>Histogramas e a moda</h2>
 <ul>
 <li>Além de verificar se uma distribuição é assimétrica ou simétrica, os histogramas podem ser usados para identificar a moda da distribuição</li>
 <li>Uma moda é representada por um pico proeminente na distribuição</li>
-</ul></section><section id="section-10" class="slide level2"><h2></h2>
+</ul>
+</section>
+<section id="section-10" class="slide level2">
+<h2></h2>
 <p>Existe apenas um pico proeminente no histograma da altura dos filhos (<code>sheight</code>)</p>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-59-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="a-moda" class="slide level2"><h2>A moda</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-59-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="a-moda" class="slide level2">
+<h2>A moda</h2>
 <ul>
 <li>Definição matemática: valor com mais ocorrências no conjunto de dados</li>
 <li>Para muitos conjuntos de dados do mundo real, é comum não haver observações com o mesmo valor, tornando esta definição impraticável na análise</li>
@@ -12693,20 +12981,20 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
 <li>unimodais</li>
 <li>bimodais</li>
 <li>multimodais</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="a-moda-das-distribuições" class="slide level2 smaller"><h2>A moda das distribuições</h2>
+</section>
+<section id="a-moda-das-distribuições" class="slide level2 smaller">
+<h2>A moda das distribuições</h2>
 <div class="panel-tabset">
-<ul id="tabset-7" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-7-1">Unimodal</a></li>
-<li><a href="#tabset-7-2">Bimodal</a></li>
-</ul>
+<ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1">Unimodal</a></li><li><a href="#tabset-7-2">Bimodal</a></li></ul>
 <div class="tab-content">
 <div id="tabset-7-1">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-60-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-60-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -12716,7 +13004,8 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-61-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-61-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -12724,17 +13013,17 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
 </div>
 </div>
 </div>
-</section><section id="a-moda-em-sua-definição-matemática" class="slide level2 smaller"><h2>A moda em sua definição matemática</h2>
+</section>
+<section id="a-moda-em-sua-definição-matemática" class="slide level2 smaller">
+<h2>A moda em sua definição matemática</h2>
 <div class="panel-tabset">
-<ul id="tabset-8" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-8-1">Tabela</a></li>
-<li><a href="#tabset-8-2">Gráfico de barras</a></li>
-</ul>
+<ul id="tabset-8" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-8-1">Tabela</a></li><li><a href="#tabset-8-2">Gráfico de barras</a></li></ul>
 <div class="tab-content">
 <div id="tabset-8-1">
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-moda-cyl" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-moda-cyl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-moda-cyl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="qjszzanemo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#qjszzanemo table {
@@ -13185,11 +13474,14 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="cyl" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">cyl</th>
 <th id="n" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">n</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="cyl">4</td>
@@ -13203,17 +13495,21 @@ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} = \sqrt{s^2}
 <td class="gt_row gt_center" headers="cyl">8</td>
 <td class="gt_row gt_center" headers="n">14</td>
 </tr>
-</tbody>
-<tfoot class="gt_footnotes"><tr class="even">
+</tbody><tfoot class="gt_footnotes">
+<tr class="even">
 <td colspan="2" class="gt_footnote">Carros com 8 cilindros são mais frequentes</td>
-</tr></tfoot>
+</tr>
+</tfoot>
+
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-moda-cyl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
@@ -13221,7 +13517,8 @@ Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-63-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-63-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -13229,11 +13526,18 @@ Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
 </div>
 </div>
 </div>
-</section></section><section><section id="diagrama-de-caixa-quartis-e-mediana" class="title-slide slide level1 center"><h1>Diagrama de caixa, quartis e mediana</h1>
+</section></section>
+<section>
+<section id="diagrama-de-caixa-quartis-e-mediana" class="title-slide slide level1 center">
+<h1>Diagrama de caixa, quartis e mediana</h1>
 
-</section><section id="o-diagrama-de-caixa" class="slide level2"><h2>O diagrama de caixa</h2>
+</section>
+<section id="o-diagrama-de-caixa" class="slide level2">
+<h2>O diagrama de caixa</h2>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/boxplot-explicado-1-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="o-diagrama-de-caixa-1" class="slide level2"><h2>O diagrama de caixa</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/boxplot-explicado-1-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="o-diagrama-de-caixa-1" class="slide level2">
+<h2>O diagrama de caixa</h2>
 <ul>
 <li>Um gráfico de caixa resume um conjunto de dados usando algumas estatísticas e também identifica observações incomuns:
 <ul>
@@ -13242,41 +13546,42 @@ Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
 <li>Terceiro quartil (75º percentil)</li>
 <li>Intervalo interquartil</li>
 <li>Bigodes</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="mediana" class="slide level2 smaller"><h2>Mediana</h2>
+</section>
+<section id="mediana" class="slide level2 smaller">
+<h2>Mediana</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <ul>
 <li><span style="font-size: 75%">É a linha escura dentro da caixa</span></li>
 <li><span style="font-size: 75%">Divide os dados pela metade, 50% ficam abaixo desse valor e 50% ficam acima</span></li>
-<li>
-<span style="font-size: 75%">Quando a amostra é impar:</span>
+<li><span style="font-size: 75%">Quando a amostra é impar:</span>
 <ul>
 <li><span style="font-size: 75%">É observação que está no centro da amostra ordenada</span></li>
 <li><span style="font-size: 75%"><span class="math inline">\(\{2, 5, \color{red}{7}, 11, 15\}\)</span></span></li>
-</ul>
-</li>
-<li>
-<span style="font-size: 75%">Quando a amostra é par:</span>
+</ul></li>
+<li><span style="font-size: 75%">Quando a amostra é par:</span>
 <ul>
 <li><span style="font-size: 75%">É a média das duas observações que estão no centro da amostra ordenada</span></li>
 <li><span style="font-size: 75%"><span class="math inline">\(\{2, 5, \color{red}{7, 9}, 11, 15\}\)</span></span></li>
 <li><span style="font-size: 75%"><span class="math inline">\(Mediana = \frac{7+9}{2} = 8\)</span></span></li>
-</ul>
-</li>
+</ul></li>
 </ul>
 </div><div class="column" style="width:40%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-65-1.png" class="quarto-figure quarto-figure-center" data-fig-pos="h" width="1800"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-65-1.png" class="quarto-figure quarto-figure-center" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
 </div>
 </div></div>
-</section><section id="primeiro-quartil-terceiro-quartil-e-intervalo-interquartil" class="slide level2 smaller"><h2>Primeiro quartil, terceiro quartil e intervalo interquartil</h2>
+</section>
+<section id="primeiro-quartil-terceiro-quartil-e-intervalo-interquartil" class="slide level2 smaller">
+<h2>Primeiro quartil, terceiro quartil e intervalo interquartil</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div style="font-size: 70%">
@@ -13284,15 +13589,13 @@ Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
 <li>O comprimento da caixa: intervalo interquartil (IQR, na abreviatura em inglês),
 <ul>
 <li>É uma medida da variabilidade dos dados: quanto mais variação nos dados, maior o desvio padrão e o intervalo interquartil tendem a ser</li>
-</ul>
-</li>
+</ul></li>
 <li>Os dois limites da caixa são chamados de:
 <ul>
 <li>Primeiro quartil - o 25º percentil: 25% dos dados estão abaixo deste valor</li>
 <li>Terceiro quartil - o 75º percentil: 75% dos dados estão abaixo deste valor</li>
 <li>São frequentemente rotulados como Q1 e Q3, respectivamente</li>
-</ul>
-</li>
+</ul></li>
 <li><span class="math inline">\(IQR = Q1 - Q3\)</span></li>
 <li>Um percentil é um número com <span class="math inline">\(\alpha\%\)</span> das observações abaixo e 100 - <span class="math inline">\(\alpha\%\)</span> das observações acima. Por exemplo, o 90º percentil na média do ENEM tem 90% dos alunos abaixo desse valor e 10% dos alunos acima dele.</li>
 </ul>
@@ -13301,13 +13604,16 @@ Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-66-1.png" class="quarto-figure quarto-figure-center" data-fig-pos="h" width="1800"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-66-1.png" class="quarto-figure quarto-figure-center" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
 </div>
 </div></div>
-</section><section id="o-intervalo-interquartil-como-medida-de-variabilidade" class="slide level2 smaller"><h2>O intervalo interquartil como medida de variabilidade</h2>
+</section>
+<section id="o-intervalo-interquartil-como-medida-de-variabilidade" class="slide level2 smaller">
+<h2>O intervalo interquartil como medida de variabilidade</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
@@ -13316,44 +13622,41 @@ Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
 <ul>
 <li>Desvio padrão: 4.83</li>
 <li>IQR: 6.28</li>
-</ul>
-</li>
+</ul></li>
 <li>A distribuição em azul tem:
 <ul>
 <li>Desvio padrão: 1.97</li>
 <li>IQR: 2.67</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-68-1.png" class="quarto-figure quarto-figure-center" data-fig-pos="h" width="1800"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-68-1.png" class="quarto-figure quarto-figure-center" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
 </div>
 </div></div>
-</section><section id="whiskers-bigodes-e-outliers-valores-discrepantes" class="slide level2 smaller"><h2>Whiskers (bigodes) e outliers (valores discrepantes)</h2>
+</section>
+<section id="whiskers-bigodes-e-outliers-valores-discrepantes" class="slide level2 smaller">
+<h2>Whiskers (bigodes) e outliers (valores discrepantes)</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
 <li><div style="font-size: 75%">
 <ul>
-<li>
-<p>Whiskers: capturaram a maior parte dos dados, excluindo os outliers</p>
+<li><p>Whiskers: capturaram a maior parte dos dados, excluindo os outliers</p>
 <ul>
 <li>Se estendem até os valores máximo e mínimo, exceto quando há outliers</li>
-</ul>
-</li>
-<li>
-<p>Outliers: pontos excepcionalmente altos ou baixos, marcados separadamente no gráfico</p>
+</ul></li>
+<li><p>Outliers: pontos excepcionalmente altos ou baixos, marcados separadamente no gráfico</p>
 <ul>
 <li>Indicam observações distantes do restante dos dados</li>
 <li>Observações além de 1,5 x IQR dos quartis são outliers</li>
-</ul>
-</li>
+</ul></li>
 <li><p>Caixa como corpo, whiskers como braços tentando alcançar os dados até os outliers</p></li>
 </ul>
 </div></li>
@@ -13362,13 +13665,16 @@ Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-69-1.png" class="quarto-figure quarto-figure-center" data-fig-pos="h" width="1800"></p>
+<figure>
+<p><img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-69-1.png" class="quarto-figure quarto-figure-center" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
 </div>
 </div></div>
-</section><section id="outliers-são-extremos" class="slide level2 smaller"><h2>Outliers são extremos</h2>
+</section>
+<section id="outliers-são-extremos" class="slide level2 smaller">
+<h2>Outliers são extremos</h2>
 <p>Um outlier é uma observação que parece extrema em relação ao restante dos dados. Examinar os dados para identificar outliers tem vários propósitos úteis, incluindo:</p>
 <ul>
 <li>Identificar uma forte assimetria na distribuição,</li>
@@ -13376,9 +13682,13 @@ Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
 <li>Fornecer insights sobre propriedades interessantes dos dados.</li>
 </ul>
 <p>No entanto, tenha em mente que alguns conjuntos de dados têm uma assimetria naturalmente longa, e pontos fora do padrão (outliers) não representam necessariamente qualquer tipo de problema no conjunto de dados.</p>
-</section><section id="section-11" class="slide level2"><h2></h2>
+</section>
+<section id="section-11" class="slide level2">
+<h2></h2>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/boxplot-explicado-2-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="2913"></section><section id="estatísticas-robustas" class="slide level2 smaller"><h2>Estatísticas Robustas</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/boxplot-explicado-2-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="2913"></section>
+<section id="estatísticas-robustas" class="slide level2 smaller">
+<h2>Estatísticas Robustas</h2>
 <p><span style="font-size: 75%">Considere os cinco modelos de carro abaixo. Eles são os automóveis mais leves do banco de dados <code>mtcars</code>. O que aconteceria com as estatísticas dessa amostra se trocássemos o veículo mais leve (Lotus Europa) pelo quinto mais pesado de todo o banco de dados (Pontiac Firebird)? E o que aconteceria se o trocássemos pelo caro mais pesado de todos (Lincoln Continental)?</span></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -13831,11 +14141,14 @@ Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Modelo" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Modelo</th>
 <th id="wt" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">wt</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="Modelo">Lotus Europa</td>
@@ -13859,13 +14172,17 @@ Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
-</section><section id="estatísticas-robustas-1" class="slide level2"><h2>Estatísticas Robustas</h2>
+</section>
+<section id="estatísticas-robustas-1" class="slide level2">
+<h2>Estatísticas Robustas</h2>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
 <div id="tbl-estatisticas-robustas" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-estatisticas-robustas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-estatisticas-robustas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="jkainpnsxo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#jkainpnsxo table {
@@ -14316,14 +14633,17 @@ Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Cenário" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Cenário</th>
 <th id="Mediana" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Mediana</th>
 <th id="IQR" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">IQR</th>
 <th id="Média" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Média</th>
 <th id="Desvio-padrão" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Desvio padrão</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="Cenário">Dados originais</td>
@@ -14348,47 +14668,66 @@ Tabela&nbsp;22: Tabela de frequência do número de cilindros dos carros
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-estatisticas-robustas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;23: Uma comparação de como a mediana, o IQR, a média e o desvio padrão mudam à medida que o valor de uma observação extrema dos dados de interesse originais muda
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="estatísticas-robustas-2" class="slide level2"><h2>Estatísticas Robustas</h2>
+</section>
+<section id="estatísticas-robustas-2" class="slide level2">
+<h2>Estatísticas Robustas</h2>
 <ul>
 <li>Estatísticas robustas: mediana e IQR são menos sensíveis a valores extremos
 <ul>
 <li>Mover valores extremos tem pouco impacto</li>
-</ul>
-</li>
+</ul></li>
 <li>Estatísticas não robustas: média e desvio padrão são mais afetados por outliers</li>
 <li>A escolha entre estatísticas robustas e não robustas depende do contexto e da sensibilidade desejada a valores extremos</li>
-</ul></section><section id="qual-é-melhor-a-média-ou-a-mediana-depende" class="slide level2 smaller"><h2>Qual é melhor, a média ou a mediana? Depende!</h2>
+</ul>
+</section>
+<section id="qual-é-melhor-a-média-ou-a-mediana-depende" class="slide level2 smaller">
+<h2>Qual é melhor, a média ou a mediana? Depende!</h2>
 <p>Considere os seguintes cenários: é melhor medir o lucro médio por cliente ou o lucro mediano por cliente?</p>
 <ul>
 <li>Se a preocupação for sobre a margem de lucro geral da empresa, a média é uma medida melhor para avaliar o que está acontecendo na empresa. A empresa pode ter um lucro mediano positivo por cliente e ainda assim não ser lucrativa.</li>
 <li>Se a preocupação for sobre entender o lucro por cliente típico, possivelmente para entender o espaço de crescimento para o lucro da empresa, o lucro mediano por cliente lhe diria mais sobre os lucros individuais dos clientes.</li>
-</ul></section><section id="preço-dos-diamantes" class="slide level2 smaller"><h2>Preço dos diamantes</h2>
+</ul>
+</section>
+<section id="preço-dos-diamantes" class="slide level2 smaller">
+<h2>Preço dos diamantes</h2>
 <p>A distribuição de valores do preço dos diamantes no banco de dados <code>diamonds</code> é assimétrico para a direita, com alguns diamantes caros na cauda direita. Se quiséssemos entender o preço típico de um diamante, você deveria estar mais interessado na média ou mediana?</p>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-73-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section><section id="section-12" class="slide level2"><h2></h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-73-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="section-12" class="slide level2">
+<h2></h2>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-74-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section></section><section><section id="transformação-dos-dados" class="title-slide slide level1 center"><h1>Transformação dos dados</h1>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-74-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section></section>
+<section>
+<section id="transformação-dos-dados" class="title-slide slide level1 center">
+<h1>Transformação dos dados</h1>
 
-</section><section id="transformação-de-dados-assimétricos" class="slide level2 smaller"><h2>Transformação de dados assimétricos</h2>
+</section>
+<section id="transformação-de-dados-assimétricos" class="slide level2 smaller">
+<h2>Transformação de dados assimétricos</h2>
 <p><span style="font-size: 75%;">Quando os dados são muito assimétricos, as vezes é preciso transformá-los para que seja mais fácil construir modelos. Abaixo estão a distribuição do preço dos diamantes e sua transformação logarítmica. Uma transformação é um redimensionamento dos dados usando uma função.</span></p>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-75-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section><section id="transformação-de-dados-assimétricos-1" class="slide level2 smaller"><h2>Transformação de dados assimétricos</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-75-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section>
+<section id="transformação-de-dados-assimétricos-1" class="slide level2 smaller">
+<h2>Transformação de dados assimétricos</h2>
 <p><span style="font-size: 75%;">Os dados transformados são simétricos, e quaisquer outliers potenciais parecem muito menos extremos do que no conjunto de dados original. Ao controlar os outliers e a distorção extrema, as transformações geralmente facilitam a construção de modelos estatísticos para os dados.</span></p>
 
-<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-76-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section><section id="transformação-de-dados-assimétricos-2" class="slide level2"><h2>Transformação de dados assimétricos</h2>
+<img data-src="slide-exploracao-dados-numericos_files/figure-revealjs/unnamed-chunk-76-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section>
+<section id="transformação-de-dados-assimétricos-2" class="slide level2">
+<h2>Transformação de dados assimétricos</h2>
 <ul>
 <li>Outras transformações possíveis: <span class="math display">\[
 \sqrt{\text{variável original}}
-\]</span>
-</li>
+\]</span></li>
 </ul>
 <p><span class="math display">\[
 \frac{1}{\text{variável original}}
@@ -14401,10 +14740,27 @@ Tabela&nbsp;23: Uma comparação de como a mediana, o IQR, a média e o desvio p
 </div>
 </div>
 </section></section>
-</div>
+
+    </div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="site_libs/revealjs/plugin/notes/notes.js"></script><script src="site_libs/revealjs/plugin/search/search.js"></script><script src="site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -14594,7 +14950,9 @@ Tabela&nbsp;23: Uma comparação de como a mediana, o IQR, a média e o desvio p
           RevealZoom
         ]
       });
-    </script><script>
+    </script>
+    
+    <script>
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
@@ -14629,7 +14987,9 @@ Tabela&nbsp;23: Uma comparação de como a mediana, o IQR, a média e o desvio p
         }
 
       })();
-    </script><script id="quarto-html-after-body" type="application/javascript">
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -14718,7 +15078,7 @@ Tabela&nbsp;23: Uma comparação de como a mediana, o IQR, a média e o desvio p
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
+          var filterRegex = new RegExp("https:\/\/pablo-huascar\.github\.io\/pesquisa_quanti_psi_ufc\/");
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
@@ -14816,6 +15176,6 @@ Tabela&nbsp;23: Uma comparação de como a mediana, o IQR, a média e o desvio p
       }
     });
     </script>
-
+    
 
 </body></html>
