@@ -3,9 +3,6 @@ title: "Inferência"
 subtitle: "Comparar duas médias independentes: aplicação do modelo matemático no R"
 format: 
   revealjs:
-      code-link: true
-      code-tools: true
-      code-line-numbers: false
       logo: img/brasao1_horizontal_cor_300dpi.png
       theme: simple
       css: logo.css
@@ -99,7 +96,6 @@ library(rstatix)
 ## Exemplo {.smaller}
 
 -   Há diferença no consumo de combustível (`mpg`) entre carros com motores em V e retos (`vs`)?
-
 
 ## Manipulação dos dados {.smaller}
 
@@ -594,7 +590,6 @@ resultado_teste_t <- dados_teste_t |>
 
 resultado_teste_t
 ```
-
 
 ## Tamanho de efeito: `rstatix::cohens_d()`
 

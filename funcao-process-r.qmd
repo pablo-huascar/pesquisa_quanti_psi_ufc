@@ -12,7 +12,7 @@ library(tidyverse)
 source("./_common.R")
 ```
 
-A função `process()` para R foi desenvolvida por Andrew F. Hayes e está descrita detalhadamente no livro [*Introduction to Mediation, Moderation, and Conditional Process Analysis*](https://www.afhayes.com/introduction-to-mediation-moderation-and-conditional-process-analysis.html){target="_blank"}. 
+A função `process()` para R foi desenvolvida por Andrew F. Hayes e está descrita detalhadamente no livro [*Introduction to Mediation, Moderation, and Conditional Process Analysis*](https://www.afhayes.com/introduction-to-mediation-moderation-and-conditional-process-analysis.html){target="_blank"}.
 
 É recomendável ler o livro ou seus materiais complementares para compreender a motivação teórica e estatística por trás dos cálculos implementados. O código do *PROCESS* para R pode ser obtido em: <https://haskayne.ucalgary.ca/CCRAM/resource-hub>.
 
@@ -88,11 +88,11 @@ process(
 
 ## Argumentos
 
-### `data` 
+### `data`
 
 *Data frame* contendo as variáveis necessárias para a análise.
 
-### `y` 
+### `y`
 
 String com o nome da variável dependente (*outcome*).
 
@@ -104,99 +104,99 @@ String com o nome da variável independente principal (*predictor*).
 
 Vetor de strings com uma ou mais variáveis mediadoras.
 
-### `w` 
+### `w`
 
 String com o nome do primeiro moderador (opcional).
 
-### `z` 
+### `z`
 
 String com o nome do segundo moderador (opcional).
 
-### `cov` 
+### `cov`
 
 Vetor de strings com as covariáveis a serem incluídas no modelo.
 
-### `model` 
+### `model`
 
 Número inteiro que especifica um modelo predefinido no *PROCESS* (p.ex., 4 = mediação simples, 1 = moderação simples, etc.). Se ausente ou 999, pode-se usar matrizes personalizadas (*bmatrix* etc.).
 
-### `converge` 
+### `converge`
 
 Critério de convergência para regressão logística (padrão: .0001). O critério de convergência é atendido quando mudanças nos coeficientes de regressão logística resultam em uma mudança na probabilidade de menos do que o critério especificado. Nesse ponto, a iteração para e a solução é fornecida. Uma falha na convergência pode às vezes ser retificada aumentando o número de iterações ou aumentando o critério de convergência. No entanto, isso aumentará o tempo computacional. Isso pode ser feito com as opções `iterate` e `converge`.
 
-### `iterate` 
+### `iterate`
 
 Número máximo de iterações para regressão logística (padrão: 100).
 
-### `hc` 
+### `hc`
 
 Método de correção para heterocedasticidade (0 a 4). Especifica o tipo de matriz de variância Huber-White (HC0, HC1, HC2, HC3, HC4) a ser usado no lugar do “modelo de homocedasticidade” usado por padrão (por exemplo, para o estimador HC3, especifique `hc = 3`). Qualquer computação que use o erro padrão de um coeficiente de regressão empregará automaticamente o estimador HC quando esta opção for solicitada, incluindo o teste de Sobel, intervalos de confiança de Monte Carlo para efeitos indiretos, o método Johnson-Neyman, testes de efeitos condicionais em análise de moderação e o teste de significância de $Rˆ2$ para modelos de `Y`, bem como para testes de interações com base na diferença em $Rˆ2$ quando a interação é incluída versus excluída do modelo.
 
-### `jn` 
+### `jn`
 
 Executa análise de Johnson-Neyman para encontrar “regiões de significância” em análises de moderação (0 = não, 1 = sim).
 
-### `effsize` 
+### `effsize`
 
 Retorna efeitos indiretos parcial ou completamente padronizados (0 = não, 1 = sim).
 
-### `stand` 
+### `stand`
 
-Gera coeficientes padronizados do modelo, de efeitos diretos, indiretos e totais  (0 = não, 1 = sim). Não estão disponíveis para modelos com moderadores.
+Gera coeficientes padronizados do modelo, de efeitos diretos, indiretos e totais (0 = não, 1 = sim). Não estão disponíveis para modelos com moderadores.
 
-### `xmtest` 
+### `xmtest`
 
 Testa se há interação entre X e o(s) mediador(es) (0 = não, 1 = sim).
 
-### `normal` 
+### `normal`
 
 Realiza o teste de Sobel para o(s) efeito(s) indireto(s) (0 = não, 1 = sim).
 
-### `mdichok` 
+### `mdichok`
 
 Controla a permissão de mediadores dicotômicos (0/1). `mdichok = 0` (padrão): o PROCESS interrompe a execução e exibe o erro 43 (“PROCESS does not allow dichotomous mediators”) se detectar um mediador 0/1.`mdichok = 1`: desabilita essa verificação, permitindo a inclusão de um mediador dicotômico.
 
-### `contrast` 
+### `contrast`
 
 Inteiro (1 ou 2) ou vetor de pesos. Habilita a comparação de efeitos indiretos específicos em modelos de mediação múltipla (contínua ou dicotômica em X). Existem duas formas de uso: `contrast = 1`: constrói diferenças entre os efeitos indiretos específicos. `contrast = 2`: constrói diferenças entre os valores absolutos dos efeitos indiretos específicos. Em ambos os casos, as comparações surgem no output com rótulos como (C1), (C2) etc., acompanhadas de intervalos de confiança via bootstrap ou Monte Carlo (quando ativados). O `contrast` não está disponível se X for multicategórico (definido por `mcx`). **Modelos com moderação**: se há moderação, o `contrast` exibe as comparações entre os efeitos indiretos condicionais em diferentes valores do(s) moderador(es), mas **apenas** entre efeitos dentro de um mesmo mediador. Comparações entre mediadores distintos não são fornecidas. **Modelos sem moderação, mas com múltiplos mediadores**: pode-se passar um **vetor de pesos** para criar combinações lineares dos efeitos indiretos específicos e gerar intervalos de confiança para essas combinações. Os pesos devem ser informados na **mesma ordem** em que os mediadores aparecem no output. É possível usar pesos negativos para testar, por exemplo, a diferença entre somas de efeitos indiretos de grupos de mediadores. Exemplos de uso: `contrast=1,1,0,0,0.`: soma os dois primeiros efeitos indiretos (e ignora os demais) para gerar um único contraste bootstrap. `contrast=1,1,-1,-1,0.`: diferença entre a soma dos dois primeiros efeitos indiretos e a soma dos dois subsequentes.
 
-### `modelbt` 
+### `modelbt`
 
 Gera intervalos de confiança com bootstrap para coeficientes de regressão não padronizados em cada equação de regressão que define o modelo (0 = não, 1 = sim). Esses intervalos de confiança bootstrap estarão sob as colunas “BootLLCI” e “BootULCI”. A média e o desvio padrão das estimativas bootstrap são exibidos sob as colunas intituladas “Boot-Mean” e “BootSE”. Os coeficientes de regressão originais são encontrados sob a coluna rotulada “Coeﬀ”. Como o número padrão de amostras de bootstrap para os modelos 1, 2 e 3 é zero, a opção `modelbt` não terá efeito para esses modelos, a menos que o número de amostras de bootstrap seja explicitamente declarado usando a opção `boot`.
 
-### `matrices` 
+### `matrices`
 
 Exibe a representação matricial do modelo (0 = não, 1 = sim).
 
-### `covmy` 
+### `covmy`
 
 Controla em quais equações os covariáveis (cov) serão incluídos nos modelos com mediadores (0, 1 ou 2); covmy=0 (padrão) inclui as covariáveis tanto em todas as equações de mediação (para cada variável em m) quanto na equação de y; covmy=1 inclui as covariáveis somente nas equações de mediação (variáveis em m), excluindo da equação de y; covmy=2 inclui as covariáveis apenas na equação de y, não nas equações de mediação.
 
-### `covcoeff` 
+### `covcoeff`
 
 Exibe as matrizes de variância-covariância para os coeficientes de regressão em cada parte do modelo (0 = não, 1 = sim)
 
-### `boot` 
+### `boot`
 
 Número de amostras para bootstrap (padrão: 5000).
 
-### `mc` 
+### `mc`
 
 Especifica o número de amostras para o cálculo de intervalos de confiança via Monte Carlo em modelos de mediação simples ou paralela (Modelos 4 e 5). Por exemplo, `mc = 5000` solicita 5.000 amostras. Se o valor definido for menor que 1.000, serão usadas 5.000 amostras por padrão. O argumento `mc` tem precedência sobre `boot` (caso sejam utilizados simultaneamente), porém é ignorado em modelos de mediação serial ou que envolvam moderação, situações em que os intervalos de confiança são gerados por bootstrap.
 
-### `intprobe` 
+### `intprobe`
 
 Controla o nível de significância (α) para “sondar” (probe) a interação em um modelo com componente de moderação (padrão = 0.10).`intprobe = .05`, por exemplo, faz com que a interação seja investigada apenas se o p-valor for menor ou igual a 0.05. `intprobe = 1` força a inspeção de toda e qualquer interação no modelo, independentemente de sua significância estatística. Quando a interação cumpre o critério definido em intprobe (p-valor ≤ α escolhido), o PROCESS exibe os efeitos condicionais do antecedente focal em diferentes valores do(s) moderador(es) — porém, apenas para a interação de ordem mais alta que não seja condicionada por outro moderador.
 
-### `plot` 
+### `plot`
 
 Produz uma tabela de dados para visualizar uma interação (0 = não, 1 = sim).
 
-### `total` 
+### `total`
 
 Inclui efeitos totais na saída nos modelos de mediação sem efeitos moderadores (0 = não, 1 = sim). Para modelos personalizados, o efeito total não será produzido para nenhum modelo de mediação que fixe qualquer caminho entre `X` e `Y`, entre `X` e um mediador, ou entre um mediador e `Y` para zero. O efeito total também não será fornecido se algumas das covariáveis listadas em `cov =` forem excluídas dos modelos de `Y` ou de um dos mediadores em `m =`.
 
-### `save` 
+### `save`
 
 0, 1 ou 2; `save = 0` não salva os resultados; `save = 1` produzirá um banco de dados contendo todas as estimativas bootstrap dos coeficientes de regressão que definem o modelo; `save = 2` irá gerar uma matriz contendo as estatísticas da saída do PROCESS para o modelo estimado. Todas as opções exigem o envio de informações do PROCESS para um objeto R usando o operador `<-` ao chamar a função `process()`.
 
@@ -214,19 +214,19 @@ coef_boot <- process(
 
 Define X, W ou Z como multicategóricos e especifica o método de codificação (1, 2, ou 3); 1 = codificação dummy (dummy coding); 2 = codificação sequencial (sequential coding); 3 = codificação Helmert (Helmert coding); 4 = codificação de efeitos (eﬀect coding)
 
-### `moments` 
+### `moments`
 
 Configura a forma de explorar a interação em modelos com moderadores quantitativos, produzindo os efeitos condicionais no valor médio do moderador, assim como em um desvio-padrão acima e um abaixo da média. (0 = não, 1 = sim).
 
-### `progress` 
+### `progress`
 
 Exibe um contador gráfico indicando o progresso em direção à conclusão da amostragem por bootstrap (0 = não, 1 = sim).
 
-### `exclude` 
+### `exclude`
 
 Vetor (ou array unidimensional) com os números das linhas que devem ser removidas antes do processamento. Caso não seja especificado (ou seja igual a 0), nenhuma exclusão manual é feita além da remoção usual de casos com dados faltantes. `exclude = c(2, 5, 10)`, por exemplo, removeria as linhas 2, 5 e 10 do dataset antes do cálculo.
 
-### `cmatrix` 
+### `cmatrix`
 
 Fornece um meio mais flexível de especificar em quais equações cada covariável será incluída, organizando-as em uma matriz com as variáveis consequentes (mediadores na ordem definida em *mvlist* e, por último, a variável dependente) nas linhas, e as covariáveis (na ordem em *covlist*) nas colunas. Cada célula recebe 1 caso se deseje incluir aquela covariável na equação do mediador ou da variável de *desfecho* correspondentes, ou 0 caso contrário, sendo lidas da esquerda para a direita, de cima para baixo. Por exemplo, se houver dois mediadores `med1` e `med2` e três covariáveis `cov1`, `cov2`, `cov3`, a linha `med1` receberá 1 ou 0 indicando se cada uma das covariáveis entra na equação de `med1`, e assim por diante para `med2` e para a variável de desfecho Y. Uma exigência importante é que cada covariável (coluna) possua ao menos um “1” em toda a matriz, pois o PROCESS rejeita colunas inteiramente zeradas. Se desejar excluir alguma covariável completamente de todas as equações, basta removê-la de *covlist*, em vez de incluí-la com zeros. Para conferir se seu *cmatrix* foi especificado corretamente, ative a opção `matrices=1` e examine a “CMATRIX” nos resultados, onde será exibido exatamente em quais equações cada covariável foi alocada. No exemplo abaixo somente `cov1` será incluída no modelo da variável mediadora `M` enquanto as 3 covariáveis serão incluídos no modelo da variável de desfecho `Y`
 
@@ -299,15 +299,15 @@ cov3        0.4861    0.1816    2.6768    0.0088    0.1255    0.8466
 *********************************************************************** 
 ```
 
-### `bmatrix` 
+### `bmatrix`
 
 Especifica (por uma sequência de zeros e uns) quais caminhos de um modelo de mediação e/ou análise de processo condicional serão **livremente estimados** e quais permanecerão **fixos em zero**. Internamente, o PROCESS organiza as mediadoras (em ordem) mais a variável dependente Y em linhas, e X (mais as mediadoras, em ordem) em colunas, formando uma matriz $(k+1) \times (k+1)$ para $k$ mediadores. Para cada célula (linha i, coluna j), um “1” indica que a variável da coluna j afeta a variável da linha i; um “0” representa um caminho fixado a zero. Assim, o **bmatrix** permite construir modelos de mediação customizados – seja editando um modelo numerado (por exemplo, removendo um caminho “indesejado” ou adicionando um) ou partindo do zero, desde que o modelo seja **recursivo** (sem loops de feedback) e tenha **no máximo seis mediadores**. Além disso, cada coluna deve ter pelo menos um “1” (isto é, cada variável “envia” algum efeito) e cada linha deve ter ao menos um “1” (isto é, cada variável “recebe” algum efeito). Se uma variável for declarada mediadora, obrigatoriamente ela “envia” e “recebe” efeitos, sob pena de o PROCESS gerar erro de “dangling mediator.”
 
-### `wmatrix` 
+### `wmatrix`
 
 Define se **W** modera (por zeros e uns) os caminhos especificados no **bmatrix**. Em outras palavras, para cada caminho que no bmatrix esteja ativo (igual a 1), a wmatrix indica (com “1”) se aquele mesmo caminho terá interação com W (ex.: $\beta_1 + \beta_2 W$). Se o bmatrix for 0 num caminho (fixado a zero), não se pode atribuir “1” à wmatrix naquele caminho — o PROCESS acusará erro (“A path fixed to zero cannot be moderated”). Lembre que **W** é o “primeiro” moderador permitido em PROCESS, e só é relevante se esse moderador estiver efetivamente declarado (ex.: `w="algumaVariavel"`). Caso a wmatrix não seja fornecida (ou seja toda zero), significa que W não modera caminho algum.
 
-### `zmatrix` 
+### `zmatrix`
 
 Análogo à wmatrix, mas para o segundo moderador, **Z**. Em cada linha e coluna que correspondam a um caminho ativo no **bmatrix**, “1” indica que esse caminho é moderado por Z (resultando em algo como $\beta_1 + \beta_3 Z$). A existência de zmatrix só faz sentido se houver um `z="algumaVariavel"`. Também se aplica a restrição de que não se pode moderar caminhos que estejam fixos a zero no bmatrix. Além disso, se há somente um moderador no modelo, obrigatoriamente deve ser W, então a zmatrix (se fornecida) deverá conter apenas zeros, ou o PROCESS gera erro.
 
@@ -315,63 +315,63 @@ Análogo à wmatrix, mas para o segundo moderador, **Z**. Em cada linha e coluna
 
 Permite especificar **moderação de alta ordem** (“moderated moderation” ou interação tripla). Se uma célula no wzmatrix for 1, isso indica que o mesmo caminho, além de já ter “1” em wmatrix e em zmatrix, será também moderado simultaneamente por W e Z, produzindo algo como $\beta_1 + \beta_2 W + \beta_3 Z + \beta_4 (W \times Z)$. Se você atribuir “1” no wzmatrix, o PROCESS forçará automaticamente “1” nos mesmos caminhos de wmatrix e zmatrix, pois não se pode ter uma interação tripla sem as interações de segunda ordem. Esse comportamento não pode ser anulado. Assim, o wzmatrix serve para criar **interações de três vias** ou “moderated moderation.”
 
-### `xcatcode`, `wcatcode`, `zcatcode` 
+### `xcatcode`, `wcatcode`, `zcatcode`
 
 Instruem o PROCESS sobre **como codificar** variáveis X, W ou Z caso elas sejam **multicategóricas** (com três ou mais níveis). Normalmente, o PROCESS gera automaticamente dummies e interações para uma variável categórica; entretanto, se o pesquisador quiser um tipo de codificação específico (por exemplo, contrastes customizados, Helmert, efeitos, etc.), pode fornecer essas matrizes de codificação em xcatcode, wcatcode ou zcatcode. Cada coluna ou elemento representa a forma como cada categoria adicional será transformada em variáveis dummy (ou outro esquema). Se o vetor (ou matriz) for incompatível em tamanho ou não fizer sentido, o PROCESS gera erro e ignora a codificação. Esse recurso é útil em modelos de moderadores multicategóricos ou X multicategórico.
 
-### `zmodval` 
+### `zmodval`
 
 Tem a mesma função do wmodval, porém para o segundo moderador **Z**. O usuário pode informar pontos específicos (por exemplo, `zmodval=c(-1,0,1)`) em que deseja extrair efeitos condicionais ou sondar interações. Se `zmodval` não for fornecido, o PROCESS usará níveis padrão da distribuição de Z (média ± desvio etc.). Assim como em W, se Z for multicategórica com codificações especiais (zcatcode), o zmodval perde o sentido ou pode causar inconsistência. Dessa forma, zmodval é o parâmetro que permite **customizar os níveis** em que se examina a moderação de Z.
 
-### `center` 
+### `center`
 
 Controla a centralização (em torno da média) das variáveis envolvidas na criação de produtos de moderação antes da estimação do modelo (0, 1, 2); `center = 0` (padrão): não realiza a centralização das médias; `center = 1`: centraliza todas as variáveis (contínuas ou dicotômicas) usadas na formação de produtos. Os efeitos condicionais apresentados serão calculados com base nas variáveis já centradas em seus valores médios; `center = 2`: centraliza apenas as variáveis contínuas envolvidas em produtos, mantendo variáveis dicotômicas inalteradas. Variáveis multicategóricas não são centralizadas em nenhuma das opções, pois não há significado em centrá-las. Caso sejam especificados valores de moderadores (por exemplo, `wmodval`) ao mesmo tempo em que se utiliza o mean-centering, esses valores devem ser informados levando em conta a nova métrica centrada.
 
-### `conf` 
+### `conf`
 
 Nível de confiança para intervalos de confiança gerados com bootstrap: de 50 a 99.9999 (padrão = 95).
 
-### `seed` 
+### `seed`
 
 Um número inteiro para reprodutibilidade no bootstrap.
 
-### `decimals` 
+### `decimals`
 
 Valor especificando precisão decimal (padrão = 10.4 - quatro casas decimais).
 
-### `maxboot` 
+### `maxboot`
 
 Máximo de tentativas para substituir amostras bootstrap inválidas.
 
-### `modelres` 
+### `modelres`
 
 Solicita a matriz de correlações de Pearson entre os resíduos das equações do modelo (0 = não, 1 = sim). Em alguns modelos ou para certas combinações de variáveis, os resíduos podem ser linearmente não correlacionados, resultando em correlações iguais a zero.
 
-### `bc` 
+### `bc`
 
 Usa intervalos de confiança de bootstrap com correção de viés (0 = não, 1 = sim).
 
-### `outscreen` 
+### `outscreen`
 
 Direciona saída para o console (0 = não, 1 = sim).
 
-### `activate` 
+### `activate`
 
 Não controla nenhuma funcionalidade de análise ou estatística. Serve essencialmente para “ativar” o script, imprimindo na tela (quando `activate = 1`) a mensagem de que o PROCESS está pronto para uso, além de avisos de copyright, links etc. O argumento activate funciona como um “gatilho” para exibir essas mensagens de inicialização (ou “ativação”) e não interfere nos procedimentos de modelagem, bootstrapping ou quaisquer outras opções do PROCESS.
 
-### `describe` 
+### `describe`
 
 Exibe estatísticas descritivas das variáveis do modelo (0 = não, 1 = sim).
 
-### `listmiss` 
+### `listmiss`
 
 Controla a exibição na saída dos casos que foram removidos devido a dados ausentes - listwise deletion (0 = não, 1 = sim).
 
-### `linsum` 
+### `linsum`
 
 Vetor (ou matriz) de pesos que **permite testar hipóteses específicas sobre combinações lineares** dos coeficientes estimados no modelo. Em termos práticos, o PROCESS calcula $\sum \beta_i \times \text{peso}_i$ e realiza um teste *t* (acompanhado de intervalo de confiança) para verificar se essa soma difere de zero. **Exemplo**: Para investigar a hipótese $\beta_1 + 0.5 \times \beta_2 - 2 \times \beta_3 = 0$, forneça `linsum = c(0, 1, 0.5, -2)`, **desde que** o primeiro elemento (0) corresponda ao intercepto e os demais (1, 0.5, -2) coincidam com $\beta_1$, $\beta_2$ e $\beta_3$ na **ordem** em que o PROCESS estima os parâmetros. **Restrições**: **Somente** para regressão linear; **somente** em modelos com número **menor que 4** (isto é, `model < 4`); o tamanho do vetor de pesos **exatamente** coincide com a contagem de parâmetros na equação de Y (respeitando intercepto, variáveis independentes e possíveis covariáveis), bem como **a ordem** em que surgem no output do PROCESS. O resultado aparece no final do output como “Linear Combination Estimate and Hypothesis Test”.
 
-### `xmint` 
+### `xmint`
 
 Ativa um **procedimento contrafactual** para o modelo 4, transformando-o internamente em “model 74” quando configurado para 1. Em outras palavras, `xmint = 0` (padrão) não faz nenhuma mudança no modelo; `xmint = 1` redireciona a análise para um modo em que X também atua como “moderador” de si mesmo, de modo que o PROCESS calcula efeitos contrafactuais de X (por exemplo, comparando um estado de X com outro). Nesse modo, especifica-se em `xrefval` quais valores de X atuarão como referência e contrafactual para o cálculo dos efeitos. Se o usuário tentar usar `xmint = 1` em modelos que não sejam 4, o PROCESS sinaliza um erro.
 
@@ -379,11 +379,11 @@ Ativa um **procedimento contrafactual** para o modelo 4, transformando-o interna
 
 Permite especificar os valores de referência e contrafactual de X ao ativar a **análise contrafactual** (quando `xmint = 1`). Por exemplo, em um modelo 4 convertido internamente em “model 74”, caso queira comparar `X = a` (referência) e `X = b` (contrafactual), atribui-se `xrefval = c(a, b)`; assim, o PROCESS calculará efeitos diretos, indiretos e/ou controlados levando em conta essa diferença de X entre `a` e `b`. Se X for dicotômico, `xrefval` deve corresponder aos valores de 0 e 1 (ou quaisquer dois níveis relevantes). Se o usuário não especificar `xrefval`, o PROCESS pode se recusar a realizar a estimação contrafactual, dependendo do tipo de X (contínuo versus dicotômico).
 
-### `coval` 
+### `coval`
 
 Define valores específicos para as covariáveis (caso existam) na hora de calcular efeitos condicionais, contrafactuais ou controlados. Por padrão (`coval = -999`), o PROCESS usa os valores médios amostrais das covariáveis como ponto de referência no cálculo dos efeitos. Entretanto, se o usuário desejar estimar esses efeitos em níveis particulares de uma ou mais covariáveis, basta fornecer um vetor (ou matriz) em `coval` com o mesmo comprimento (ou dimensões) correspondente ao número de covariáveis e, então, o PROCESS as fixará naqueles valores informados em vez de usar as médias. Esse argumento é especialmente útil quando se quer avaliar o modelo em cenários hipotéticos, mantendo as covariáveis em métricas distintas das médias do conjunto de dados.
 
-### `cdeval` 
+### `cdeval`
 
 Define valores específicos para os mediadores (caso existam múltiplos, deve corresponder à quantidade de mediadores) utilizados no cálculo de efeitos controlados (controlled direct effects) ou contrafactuais. Por padrão, o PROCESS usa as médias dos mediadores ao estimar efeitos diretos controlados, mas ao fornecer valores em `cdeval`, o usuário instrui o PROCESS a fixar cada mediador em um valor escolhido — por exemplo, para explorar cenários “controlados” em que o mediador assume determinado nível. Se `cdeval` contiver apenas um conjunto de valores, todos os mediadores são fixados nesses mesmos valores; caso se deseje especificar valores diferentes para cada mediador, é necessário fornecer múltiplos valores na mesma ordem em que os mediadores foram declarados. Se a quantidade ou a ordem dos valores não corresponder aos mediadores do modelo, o PROCESS gera um erro.
 

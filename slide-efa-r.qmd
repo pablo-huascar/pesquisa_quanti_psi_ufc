@@ -1,0 +1,144 @@
+---
+title: "Análise Fatorial Exploratória"
+subtitle: "Aplicação no R"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("./_common.R")
+```
+
+```{r}
+#| label: setup
+library(tidyverse)
+library(lavaan)
+library(gt)
+```
+
+```{r}
+livro_de_codigos <- read_csv("https://figshare.com/ndownloader/files/51051455")
+df <- read_csv("https://figshare.com/ndownloader/files/51051452")
+```
+
+# Bancos de dados utilizados
+
+## Escala de Hetero Avaliação do Estilo de Liderança do Diretor Escolar: foco em pessoas {.smaller}
+
+```{r}
+livro_de_codigos |>
+  filter(str_detect(Variável, str_c(
+    "^ehelde3$", "^ehelde6$", "^ehelde7$",
+    "^ehelde10$", "^ehelde14$", "^ehelde20$",
+    "^ehelde23$", "^ehelde24$", "^ehelde27$",
+    "^ehelde28$", "^ehelde32$", "^ehelde33$",
+    "^ehelde35$", "^ehelde41$", "^ehelde46$",
+    "^ehelde52$", sep = "|"
+  ))) |> 
+  select(Descrição, Variável, Direção) |> 
+  mutate(
+    Direção = case_when(Direção == "-" ~ "Positiva")
+  ) |> 
+  gt() |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = Descrição)
+  ) |>
+  tab_options(
+    table.font.size = "12px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Escala de Hetero Avaliação do Estilo de Liderança do Diretor Escolar: foco em resultados
+
+```{r}
+
+livro_de_codigos |>
+  filter(str_detect(Variável, str_c(
+    "^ehelde43$", "^ehelde30$", "^ehelde39$", 
+    "^ehelde34$", "^ehelde37$", sep = "|"
+  ))) |> 
+  select(Descrição, Variável, Direção) |> 
+  mutate(
+    Direção = case_when(Direção == "-" ~ "Positiva")
+  ) |> 
+  gt() |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = Descrição)
+  ) |>
+  tab_options(
+    table.font.size = "12px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Uma olhada nos dados
+
+```{r}
+set.seed(123)
+
+df |> 
+  select(ehelde3,  ehelde6, ehelde7, 
+         ehelde10, ehelde14, ehelde20, 
+         ehelde23, ehelde24, ehelde27,
+         ehelde28, ehelde32, ehelde33, 
+         ehelde35, ehelde41, ehelde46,
+         ehelde52, ehelde43, ehelde30, 
+         ehelde39, ehelde34, ehelde37) |> 
+  slice_sample(n = 10) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 1
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## AFE
+
+```{r}
+#| eval: false
+ehelde <- df |> 
+  select(ehelde3,  ehelde6, ehelde7, 
+         ehelde10, ehelde14, ehelde20, 
+         ehelde23, ehelde24, ehelde27,
+         ehelde28, ehelde32, ehelde33, 
+         ehelde35, ehelde41, ehelde46,
+         ehelde52, ehelde43, ehelde30, 
+         ehelde39, ehelde34, ehelde37)
+```
+
+```{r}
+#| eval: false
+
+afe_ehelde <- efa(
+  data = ehelde, nfactors = 2, 
+  estimator = "ML",
+  rotation = "oblimin"
+  )
+```
+
+```{r}
+#| eval: false
+summary(afe_ehelde, cutoff = 0.3, lambda = T)
+```
+

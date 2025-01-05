@@ -3,9 +3,6 @@ title: "Exploração de dados numéricos"
 format: 
   revealjs:
       logo: img/brasao1_horizontal_cor_300dpi.png
-      code-link: true
-      code-tools: true
-      code-line-numbers: false
       theme: simple
       css: logo.css
 progress: true
@@ -63,6 +60,8 @@ gols_brasileiro <- read_csv("data/gols_por_partida_2014_2023.csv")
 
 # Bancos de dados utilizados
 
+##  {background-image="img/pai-e-filho.png" background-size="contain"}
+
 ## `father.son`
 
 Conjunto de dados de Pearson sobre alturas de pais e filhos
@@ -95,6 +94,8 @@ father.son |>
     style = 1, color = "gray"
     )
 ```
+
+##  {background-image="img/mtcars.png" background-size="contain"}
 
 ## `mtcars` {.smaller}
 
@@ -179,6 +180,8 @@ diamonds |>
     style = 1, color = "gray"
     )
 ```
+
+##  {background-image="img/nova-york.png" background-size="contain"}
 
 ## `airquality` {.smaller}
 
