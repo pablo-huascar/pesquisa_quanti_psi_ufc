@@ -21,8 +21,9 @@ source("./_common.R")
 ```{r}
 #| label: setup
 library(tidyverse)
-library(lavaan)
+library(careless)
 library(gt)
+library(lavaan)
 ```
 
 ```{r}
@@ -44,7 +45,7 @@ livro_de_codigos |>
     "^ehelde35$", "^ehelde41$", "^ehelde46$",
     "^ehelde52$", sep = "|"
   ))) |> 
-  select(Descrição, Variável, Direção) |> 
+  select(Variável, Descrição, Direção) |> 
   mutate(
     Direção = case_when(Direção == "-" ~ "Positiva")
   ) |> 
@@ -70,7 +71,7 @@ livro_de_codigos |>
     "^ehelde43$", "^ehelde30$", "^ehelde39$", 
     "^ehelde34$", "^ehelde37$", sep = "|"
   ))) |> 
-  select(Descrição, Variável, Direção) |> 
+  select(Variável, Descrição, Direção) |>  
   mutate(
     Direção = case_when(Direção == "-" ~ "Positiva")
   ) |> 
@@ -113,11 +114,40 @@ df |>
   )
 ```
 
+# Avaliação de pressupostos
+
+## 
+
+```{r}
+ehelde <- df |> 
+  select(starts_with("ehelde")) |> 
+  mutate(
+    id = 1:n(), .before = 1
+  )
+
+descuidadas <- longstring(ehelde, avg = T) |> 
+  as_tibble() |> 
+  mutate(
+    id = 1:n(), .before = 1
+  ) |> 
+  arrange(desc(longstr))  
+  
+casos_remover <- descuidadas |> 
+  filter(longstr >= length(ehelde) - 1) |> 
+  select(id) |> 
+  pull()
+
+ehelde <- ehelde |> 
+  filter(!id %in% casos_remover) |> 
+  select(-id)
+```
+
+
 ## AFE
 
 ```{r}
 #| eval: false
-ehelde <- df |> 
+ehelde_afe <- ehelde |> 
   select(ehelde3,  ehelde6, ehelde7, 
          ehelde10, ehelde14, ehelde20, 
          ehelde23, ehelde24, ehelde27,
@@ -129,13 +159,17 @@ ehelde <- df |>
 
 ```{r}
 #| eval: false
-
-afe_ehelde <- efa(
-  data = ehelde, nfactors = 2, 
-  estimator = "ML",
+afe_resultado <- efa(
+  data = ehelde_afe, nfactors = 2, 
+  ordered = F, estimator = "MLR",
   rotation = "oblimin"
   )
 ```
+
+```{r}
+psych::fa(r = ehelde_afe, nfactors = 2, rotate = "oblimin", fm = "pa")
+```
+
 
 ```{r}
 #| eval: false
