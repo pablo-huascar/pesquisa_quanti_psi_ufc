@@ -7,16 +7,16 @@
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
-<title>Pesquisa Quantitativa – Inferência</title>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-<link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
-<link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
-<style>
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <title>Pesquisa Quantitativa – Inferência</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -94,13 +94,13 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-<link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
-<link rel="stylesheet" href="logo.css">
-<link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-<link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-<link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-<link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-<style type="text/css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="logo.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -298,7 +298,7 @@
   }
 
   </style>
-<style type="text/css">
+  <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -390,52 +390,50 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center"><h1 class="title">Inferência</h1>
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Inferência</h1>
   <p class="subtitle">Associação entre duas variáveis contínuas: aplicação do modelo matemático no R</p>
 
 <div class="quarto-title-authors">
 </div>
 
-</section><section><section id="bancos-de-dados-utilizados" class="title-slide slide level1 center"><h1>Bancos de dados utilizados</h1>
+</section>
+<section>
+<section id="bancos-de-dados-utilizados" class="title-slide slide level1 center">
+<h1>Bancos de dados utilizados</h1>
 
-</section><section id="section" class="slide level2" data-background-image="img/mtcars.png" data-background-size="contain"><h2></h2>
-</section><section id="mtcars" class="slide level2 smaller"><h2><code>mtcars</code></h2>
+</section>
+<section id="section" class="slide level2" data-background-image="img/mtcars.png" data-background-size="contain">
+<h2></h2>
+</section>
+<section id="mtcars" class="slide level2 smaller">
+<h2><code>mtcars</code></h2>
 <div style="font-size: 18pt;">
 <p>Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo de combustível e 10 aspectos do design e desempenho de automóveis para 32 carros (modelos de 1973-74)</p>
 <ul>
 <li>Formato: Um banco de dados com 32 observações e 11 variáveis.
 <ul>
-<li>
-<code>mpg</code>: milhas/galão (km/l)</li>
-<li>
-<code>cyl</code>: número de cilindros</li>
-<li>
-<code>disp</code>: cilindrada (polegadas cúbicas)</li>
-<li>
-<code>hp</code>: potência bruta (cavalos de potência)</li>
-<li>
-<code>drat</code>: relação de transmissão do eixo traseiro</li>
-<li>
-<code>wt</code>: peso (1000 lbs)</li>
-<li>
-<code>qsec</code>: tempo para 1/4 de milha</li>
-<li>
-<code>vs</code>: motor (0 = em forma de V, 1 = reto)</li>
-<li>
-<code>am</code>: transmissão (0 = automática, 1 = manual)</li>
-<li>
-<code>gear</code>: número de marchas para frente</li>
-<li>
-<code>carb</code>: número de carburadores</li>
-</ul>
-</li>
+<li><code>mpg</code>: milhas/galão (km/l)</li>
+<li><code>cyl</code>: número de cilindros</li>
+<li><code>disp</code>: cilindrada (polegadas cúbicas)</li>
+<li><code>hp</code>: potência bruta (cavalos de potência)</li>
+<li><code>drat</code>: relação de transmissão do eixo traseiro</li>
+<li><code>wt</code>: peso (1000 lbs)</li>
+<li><code>qsec</code>: tempo para 1/4 de milha</li>
+<li><code>vs</code>: motor (0 = em forma de V, 1 = reto)</li>
+<li><code>am</code>: transmissão (0 = automática, 1 = manual)</li>
+<li><code>gear</code>: número de marchas para frente</li>
+<li><code>carb</code>: número de carburadores</li>
+</ul></li>
 </ul>
 </div>
-</section><section id="uma-olhada-em-mtcars" class="slide level2"><h2>Uma olhada em <code>mtcars</code>
-</h2>
+</section>
+<section id="uma-olhada-em-mtcars" class="slide level2">
+<h2>Uma olhada em <code>mtcars</code></h2>
 <div class="cell" data-layout-align="center" data-tbl-cap-location="bottom">
-<div id="tbl-mtcars" class="cell quarto-float quarto-figure quarto-figure-center" data-layout-align="center" data-tbl-cap-location="bottom">
-<figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-mtcars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="tbl-mtcars" class="cell quarto-float quarto-figure quarto-figure-center" data-tbl-cap-location="bottom" data-layout-align="center">
+<figure class="quarto-float quarto-float-tbl">
+<div aria-describedby="tbl-mtcars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="tnvyzesyyi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#tnvyzesyyi table {
@@ -886,14 +884,17 @@
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="Modelo" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Modelo</th>
 <th id="wt" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">wt</th>
 <th id="mpg" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">mpg</th>
 <th id="cyl" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">cyl</th>
 <th id="drat" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">drat</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_center" headers="Modelo">Maserati Bora</td>
@@ -967,138 +968,153 @@
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-mtcars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcars</code>
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="pacotes" class="slide level2"><h2>Pacotes</h2>
+</section>
+<section id="pacotes" class="slide level2">
+<h2>Pacotes</h2>
 <p>Carregue os pacotes abaixo:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a></span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section><section id="correlação-de-pearson" class="title-slide slide level1 center" style="font-size: 22pt;"><h1>Correlação de pearson</h1>
+</section></section>
+<section>
+<section id="correlação-de-pearson" class="title-slide slide level1 center" style="font-size: 22pt;">
+<h1>Correlação de pearson</h1>
 
-</section><section id="exemplo" class="slide level2 smaller"><h2>Exemplo</h2>
+</section>
+<section id="exemplo" class="slide level2 smaller">
+<h2>Exemplo</h2>
 <ul>
 <li>Há uma associação entre o consumo de combustível (<code>mpg</code>) com o peso dos carros (<code>wt</code>) e com a relação do eixo traseiro<sup>1</sup> (<code>drat</code>)?</li>
-</ul><aside><ol class="aside-footnotes"><li id="fn1"><p>Refere-se à relação do eixo traseiro (“Rear axle ratio”). Essa métrica é o quociente entre o número de rotações do eixo de transmissão para cada rotação completa do eixo traseiro do veículo</p></li></ol></aside></section><section id="manipulação-dos-dados" class="slide level2 smaller"><h2>Manipulação dos dados</h2>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-1-1">Ações</a></li>
-<li><a href="#tabset-1-2">Código</a></li>
-<li><a href="#tabset-1-3">Resultado</a></li>
 </ul>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Refere-se à relação do eixo traseiro (“Rear axle ratio”). Essa métrica é o quociente entre o número de rotações do eixo de transmissão para cada rotação completa do eixo traseiro do veículo</p></li></ol></aside></section>
+<section id="manipulação-dos-dados" class="slide level2 smaller">
+<h2>Manipulação dos dados</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Ações</a></li><li><a href="#tabset-1-2">Código</a></li><li><a href="#tabset-1-3">Resultado</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <ul>
-<li>Carregar o conjunto de dados mtcars: <code>data("mtcars")</code>
-</li>
-<li>Converter os rótulos das lihas para uma coluna: <code><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column()</a></code>
-</li>
-<li>Transformar em tibble para melhorar a visualização: <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code>
-</li>
-<li>Selecionar e salvar as variáveis que serão utilizadas em um novo objeto para facilitar a visualização: <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>
-</li>
+<li>Carregar o conjunto de dados mtcars: <code>data("mtcars")</code></li>
+<li>Converter os rótulos das lihas para uma coluna: <code>rownames_to_column()</code></li>
+<li>Transformar em tibble para melhorar a visualização: <code>as_tibble()</code></li>
+<li>Selecionar e salvar as variáveis que serão utilizadas em um novo objeto para facilitar a visualização: <code>select()</code></li>
 </ul>
 </div>
 <div id="tabset-1-2">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Carregar os dados</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="va">dados_correlacao</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># Converter os rótulos das lihas</span></span>
-<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span>var <span class="op">=</span> <span class="st">"modelo"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="co"># Transformar em tibble</span></span>
-<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># Selecionar as variáveis</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">modelo</span>, <span class="va">mpg</span>, <span class="va">wt</span>, <span class="va">drat</span><span class="op">)</span> </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar os dados</span></span>
+<span id="annotated-cell-8-2"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"mtcars"</span>) </span>
+<span id="annotated-cell-8-3"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-8-4"><a href="#annotated-cell-8-4" aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span> </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-8-5" class="code-annotation-target"><a href="#annotated-cell-8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"modelo"</span>) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-8-6" class="code-annotation-target"><a href="#annotated-cell-8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-8-7" class="code-annotation-target"><a href="#annotated-cell-8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(modelo, mpg, wt, drat)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="5" data-code-annotation="1">Converter os rótulos das linhas</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="6" data-code-annotation="2">Transformar em tibble</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="7" data-code-annotation="3">Selecionar as variáveis</span>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 <div id="tabset-1-3">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_correlacao</span></span>
-<span><span class="co">#&gt; # A tibble: 32 × 4</span></span>
-<span><span class="co">#&gt;   modelo              mpg    wt  drat</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Mazda RX4          21    2.62  3.9 </span></span>
-<span><span class="co">#&gt; 2 Mazda RX4 Wag      21    2.88  3.9 </span></span>
-<span><span class="co">#&gt; 3 Datsun 710         22.8  2.32  3.85</span></span>
-<span><span class="co">#&gt; 4 Hornet 4 Drive     21.4  3.22  3.08</span></span>
-<span><span class="co">#&gt; 5 Hornet Sportabout  18.7  3.44  3.15</span></span>
-<span><span class="co">#&gt; 6 Valiant            18.1  3.46  2.76</span></span>
-<span><span class="co">#&gt; # ℹ 26 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao</span>
+<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 32 × 4</span></span>
+<span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   modelo              mpg    wt  drat</span></span>
+<span id="cb2-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb2-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Mazda RX4          21    2.62  3.9 </span></span>
+<span id="cb2-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Mazda RX4 Wag      21    2.88  3.9 </span></span>
+<span id="cb2-7"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Datsun 710         22.8  2.32  3.85</span></span>
+<span id="cb2-8"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Hornet 4 Drive     21.4  3.22  3.08</span></span>
+<span id="cb2-9"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Hornet Sportabout  18.7  3.44  3.15</span></span>
+<span id="cb2-10"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Valiant            18.1  3.46  2.76</span></span>
+<span id="cb2-11"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 26 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="exploração-dos-dados" class="slide level2 smaller"><h2>Exploração dos dados</h2>
+</section>
+<section id="exploração-dos-dados" class="slide level2 smaller">
+<h2>Exploração dos dados</h2>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-2-1">Tabela</a></li>
-<li><a href="#tabset-2-2">Tabela alternativa</a></li>
-<li><a href="#tabset-2-3">Gráfico: <code>wt</code> x <code>mpg</code></a></li>
-<li><a href="#tabset-2-4">Gráfico: <code>drat</code> x <code>mpg</code></a></li>
-</ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Tabela</a></li><li><a href="#tabset-2-2">Tabela alternativa</a></li><li><a href="#tabset-2-3">Gráfico: <code>wt</code> x <code>mpg</code></a></li><li><a href="#tabset-2-4">Gráfico: <code>drat</code> x <code>mpg</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">descritivos</span> <span class="op">&lt;-</span> <span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
-<span>    n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>    m_mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span>, </span>
-<span>    sd_mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span>,</span>
-<span>    m_wt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span>,</span>
-<span>    sd_wt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span>,</span>
-<span>    m_drat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">drat</span><span class="op">)</span>,</span>
-<span>    sd_drat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">drat</span><span class="op">)</span></span>
-<span>  <span class="op">)</span>  </span>
-<span></span>
-<span><span class="va">descritivos</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 7</span></span>
-<span><span class="co">#&gt;       n m_mpg sd_mpg  m_wt sd_wt m_drat sd_drat</span></span>
-<span><span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1    32  20.1   6.03  3.22 0.978   3.60   0.535</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>descritivos <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">m_mpg =</span> <span class="fu">mean</span>(mpg), </span>
+<span id="cb3-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_mpg =</span> <span class="fu">sd</span>(mpg),</span>
+<span id="cb3-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">m_wt =</span> <span class="fu">mean</span>(wt),</span>
+<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_wt =</span> <span class="fu">sd</span>(wt),</span>
+<span id="cb3-8"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">m_drat =</span> <span class="fu">mean</span>(drat),</span>
+<span id="cb3-9"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_drat =</span> <span class="fu">sd</span>(drat)</span>
+<span id="cb3-10"><a aria-hidden="true" tabindex="-1"></a>  )  </span>
+<span id="cb3-11"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a aria-hidden="true" tabindex="-1"></a>descritivos</span>
+<span id="cb3-13"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 7</span></span>
+<span id="cb3-14"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       n m_mpg sd_mpg  m_wt sd_wt m_drat sd_drat</span></span>
+<span id="cb3-15"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb3-16"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    32  20.1   6.03  3.22 0.978   3.60   0.535</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">descritivos</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span></span>
-<span>    cols <span class="op">=</span> <span class="va">m_mpg</span><span class="op">:</span><span class="va">sd_drat</span>,</span>
-<span>    names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">".value"</span>, <span class="st">"Variável"</span><span class="op">)</span>,</span>
-<span>    names_sep <span class="op">=</span> <span class="st">"_"</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">n</span>, .after <span class="op">=</span> <span class="va">sd</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 3 × 4</span></span>
-<span><span class="co">#&gt;   Variável     m    sd     n</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 mpg      20.1  6.03     32</span></span>
-<span><span class="co">#&gt; 2 wt        3.22 0.978    32</span></span>
-<span><span class="co">#&gt; 3 drat      3.60 0.535    32</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>descritivos <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> m_mpg<span class="sc">:</span>sd_drat,</span>
+<span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">".value"</span>, <span class="st">"Variável"</span>),</span>
+<span id="cb4-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span></span>
+<span id="cb4-6"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb4-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(n, <span class="at">.after =</span> sd)</span>
+<span id="cb4-8"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb4-9"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Variável     m    sd     n</span></span>
+<span id="cb4-10"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb4-11"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 mpg      20.1  6.03     32</span></span>
+<span id="cb4-12"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 wt        3.22 0.978    32</span></span>
+<span id="cb4-13"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 drat      3.60 0.535    32</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-3">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">mpg</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
-<span>    color <span class="op">=</span> <span class="st">"#569BBD"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span></span>
-<span>    method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>    color <span class="op">=</span> <span class="st">"#F05133"</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(wt, mpg)</span>
+<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb5-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#569BBD"</span></span>
+<span id="cb5-7"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb5-9"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F,</span>
+<span id="cb5-10"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#F05133"</span></span>
+<span id="cb5-11"><a aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-inferencia-correlacao_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-inferencia-correlacao_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -1106,20 +1122,21 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
 </div>
 <div id="tabset-2-4">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">drat</span>, <span class="va">mpg</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
-<span>    color <span class="op">=</span> <span class="st">"#569BBD"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span></span>
-<span>    method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>    color <span class="op">=</span> <span class="st">"#F05133"</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(drat, mpg)</span>
+<span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb6-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#569BBD"</span></span>
+<span id="cb6-7"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb6-9"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F,</span>
+<span id="cb6-10"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#F05133"</span></span>
+<span id="cb6-11"><a aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-inferencia-correlacao_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-inferencia-correlacao_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -1127,220 +1144,226 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
 </div>
 </div>
 </div>
-</section><section id="avaliação-de-pressupostos" class="slide level2"><h2>Avaliação de pressupostos</h2>
+</section>
+<section id="avaliação-de-pressupostos" class="slide level2">
+<h2>Avaliação de pressupostos</h2>
 <ul>
 <li>Nível de medição: as duas variáveis devem ser medidas no nível intervalar ou razão</li>
 <li>Pares relacionados: cada observação deve incluir pares de valores para as duas variáveis</li>
 <li>Ausência de outliers: os dados não devem conter valores discrepantes em nenhuma das variáveis</li>
 <li>Normalidade: as duas variáveis devem ter uma distribuição aproximadamente normal</li>
 <li>Relação linear: deve existir uma relação linear entre as duas variáveis</li>
-</ul></section><section id="nível-de-medição" class="slide level2"><h2>Nível de medição</h2>
+</ul>
+</section>
+<section id="nível-de-medição" class="slide level2">
+<h2>Nível de medição</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 32</span></span>
-<span><span class="co">#&gt; Columns: 4</span></span>
-<span><span class="co">#&gt; $ modelo &lt;chr&gt; "Mazda RX4", "Mazda RX4 Wag", "Datsun 710", "Hornet 4 Drive"…</span></span>
-<span><span class="co">#&gt; $ mpg    &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, …</span></span>
-<span><span class="co">#&gt; $ wt     &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.15…</span></span>
-<span><span class="co">#&gt; $ drat   &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span>
+<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 32</span></span>
+<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Columns: 4</span></span>
+<span id="cb7-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ modelo &lt;chr&gt; "Mazda RX4", "Mazda RX4 Wag", "Datsun 710", "Hornet 4 Drive"…</span></span>
+<span id="cb7-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ mpg    &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, …</span></span>
+<span id="cb7-7"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ wt     &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.15…</span></span>
+<span id="cb7-8"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ drat   &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="pares-relacionados" class="slide level2"><h2>Pares relacionados</h2>
+</section>
+<section id="pares-relacionados" class="slide level2">
+<h2>Pares relacionados</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 0 × 4</span></span>
-<span><span class="co">#&gt; # ℹ 4 variables: modelo &lt;chr&gt;, mpg &lt;dbl&gt;, wt &lt;dbl&gt;, drat &lt;dbl&gt;</span></span>
-<span></span>
-<span><span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 0 × 4</span></span>
-<span><span class="co">#&gt; # ℹ 4 variables: modelo &lt;chr&gt;, mpg &lt;dbl&gt;, wt &lt;dbl&gt;, drat &lt;dbl&gt;</span></span>
-<span></span>
-<span><span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">drat</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 0 × 4</span></span>
-<span><span class="co">#&gt; # ℹ 4 variables: modelo &lt;chr&gt;, mpg &lt;dbl&gt;, wt &lt;dbl&gt;, drat &lt;dbl&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(mpg))</span>
+<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 0 × 4</span></span>
+<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 variables: modelo &lt;chr&gt;, mpg &lt;dbl&gt;, wt &lt;dbl&gt;, drat &lt;dbl&gt;</span></span>
+<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb8-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(wt))</span>
+<span id="cb8-8"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 0 × 4</span></span>
+<span id="cb8-9"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 variables: modelo &lt;chr&gt;, mpg &lt;dbl&gt;, wt &lt;dbl&gt;, drat &lt;dbl&gt;</span></span>
+<span id="cb8-10"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb8-12"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(drat))</span>
+<span id="cb8-13"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 0 × 4</span></span>
+<span id="cb8-14"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 variables: modelo &lt;chr&gt;, mpg &lt;dbl&gt;, wt &lt;dbl&gt;, drat &lt;dbl&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="ausência-de-outliers-gráfico-de-caixa" class="slide level2 smaller"><h2>Ausência de outliers: gráfico de caixa</h2>
+</section>
+<section id="ausência-de-outliers-gráfico-de-caixa" class="slide level2 smaller">
+<h2>Ausência de outliers: gráfico de caixa</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">box_mpg</span> <span class="op">&lt;-</span> <span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span></span>
-<span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">box_wt</span> <span class="op">&lt;-</span> <span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span></span>
-<span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">box_drat</span> <span class="op">&lt;-</span> <span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">drat</span><span class="op">)</span></span>
-<span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">box_mpg</span> <span class="op">+</span> <span class="va">box_wt</span> <span class="op">+</span> <span class="va">box_drat</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>box_mpg <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(mpg)</span>
+<span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a aria-hidden="true" tabindex="-1"></a>box_wt <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb9-9"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb9-10"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(wt)</span>
+<span id="cb9-11"><a aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-12"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb9-13"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb9-14"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a aria-hidden="true" tabindex="-1"></a>box_drat <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb9-16"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb9-17"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(drat)</span>
+<span id="cb9-18"><a aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-19"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb9-20"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb9-21"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a aria-hidden="true" tabindex="-1"></a>box_mpg <span class="sc">+</span> box_wt <span class="sc">+</span> box_drat</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-</section><section id="ausência-de-outliers-gráfico-de-caixa-output" class="slide level2 smaller output-location-slide"><h2>Ausência de outliers: gráfico de caixa</h2><div class="cell output-location-slide" data-layout-align="center">
+</section>
+<section id="ausência-de-outliers-gráfico-de-caixa-output" class="slide level2 smaller output-location-slide"><h2>Ausência de outliers: gráfico de caixa</h2><div class="cell output-location-slide" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-inferencia-correlacao_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-inferencia-correlacao_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
-</div></section><section id="ausência-de-outliers-gráfico-de-caixa-1" class="slide level2"><h2>Ausência de outliers: gráfico de caixa</h2>
+</div></section><section id="ausência-de-outliers-gráfico-de-caixa-1" class="slide level2">
+<h2>Ausência de outliers: gráfico de caixa</h2>
 
-<img data-src="slide-inferencia-correlacao_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%" data-fig-pos="h"></section><section id="ausência-de-outliers-escores-z" class="slide level2"><h2>Ausência de outliers: escores z</h2>
+<img data-src="slide-inferencia-correlacao_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%" data-fig-pos="h"></section>
+<section id="ausência-de-outliers-escores-z" class="slide level2">
+<h2>Ausência de outliers: escores z</h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-3-1">Transformação dos dados</a></li>
-<li><a href="#tabset-3-2"><code>mpg</code></a></li>
-<li><a href="#tabset-3-3"><code>wt</code></a></li>
-<li><a href="#tabset-3-4"><code>drat</code></a></li>
-</ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Transformação dos dados</a></li><li><a href="#tabset-3-2"><code>mpg</code></a></li><li><a href="#tabset-3-3"><code>wt</code></a></li><li><a href="#tabset-3-4"><code>drat</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_correlacao</span> <span class="op">&lt;-</span> <span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    z_mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>    z_wt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>    z_drat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">drat</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">dados_correlacao</span></span>
-<span><span class="co">#&gt; # A tibble: 32 × 7</span></span>
-<span><span class="co">#&gt;   modelo              mpg    wt  drat  z_mpg     z_wt z_drat</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Mazda RX4          21    2.62  3.9   0.151 -0.610    0.568</span></span>
-<span><span class="co">#&gt; 2 Mazda RX4 Wag      21    2.88  3.9   0.151 -0.350    0.568</span></span>
-<span><span class="co">#&gt; 3 Datsun 710         22.8  2.32  3.85  0.450 -0.917    0.474</span></span>
-<span><span class="co">#&gt; 4 Hornet 4 Drive     21.4  3.22  3.08  0.217 -0.00230 -0.966</span></span>
-<span><span class="co">#&gt; 5 Hornet Sportabout  18.7  3.44  3.15 -0.231  0.228   -0.835</span></span>
-<span><span class="co">#&gt; 6 Valiant            18.1  3.46  2.76 -0.330  0.248   -1.56 </span></span>
-<span><span class="co">#&gt; # ℹ 26 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">z_mpg =</span> <span class="fu">scale</span>(mpg) <span class="sc">|&gt;</span> <span class="fu">as.double</span>(),</span>
+<span id="cb10-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">z_wt =</span> <span class="fu">scale</span>(wt) <span class="sc">|&gt;</span> <span class="fu">as.double</span>(),</span>
+<span id="cb10-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">z_drat =</span> <span class="fu">scale</span>(drat) <span class="sc">|&gt;</span> <span class="fu">as.double</span>()</span>
+<span id="cb10-6"><a aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-7"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao</span>
+<span id="cb10-9"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 32 × 7</span></span>
+<span id="cb10-10"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   modelo              mpg    wt  drat  z_mpg     z_wt z_drat</span></span>
+<span id="cb10-11"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb10-12"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Mazda RX4          21    2.62  3.9   0.151 -0.610    0.568</span></span>
+<span id="cb10-13"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Mazda RX4 Wag      21    2.88  3.9   0.151 -0.350    0.568</span></span>
+<span id="cb10-14"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Datsun 710         22.8  2.32  3.85  0.450 -0.917    0.474</span></span>
+<span id="cb10-15"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Hornet 4 Drive     21.4  3.22  3.08  0.217 -0.00230 -0.966</span></span>
+<span id="cb10-16"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Hornet Sportabout  18.7  3.44  3.15 -0.231  0.228   -0.835</span></span>
+<span id="cb10-17"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Valiant            18.1  3.46  2.76 -0.330  0.248   -1.56 </span></span>
+<span id="cb10-18"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 26 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-3-2">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">z_mpg</span> <span class="op">&gt;</span> <span class="fl">2</span> <span class="op">|</span> <span class="va">z_mpg</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 2 × 7</span></span>
-<span><span class="co">#&gt;   modelo           mpg    wt  drat z_mpg  z_wt z_drat</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Toyota Corolla  33.9  1.84  4.22  2.29 -1.41  1.17 </span></span>
-<span><span class="co">#&gt; 2 Fiat 128        32.4  2.2   4.08  2.04 -1.04  0.904</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(z_mpg <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">|</span> z_mpg <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mpg))</span>
+<span id="cb11-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 7</span></span>
+<span id="cb11-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   modelo           mpg    wt  drat z_mpg  z_wt z_drat</span></span>
+<span id="cb11-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb11-7"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Toyota Corolla  33.9  1.84  4.22  2.29 -1.41  1.17 </span></span>
+<span id="cb11-8"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Fiat 128        32.4  2.2   4.08  2.04 -1.04  0.904</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-3-3">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">z_wt</span> <span class="op">&gt;</span> <span class="fl">2</span> <span class="op">|</span> <span class="va">z_wt</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 3 × 7</span></span>
-<span><span class="co">#&gt;   modelo                mpg    wt  drat  z_mpg  z_wt z_drat</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Lincoln Continental  10.4  5.42  3    -1.61   2.26 -1.12 </span></span>
-<span><span class="co">#&gt; 2 Chrysler Imperial    14.7  5.34  3.23 -0.894  2.17 -0.686</span></span>
-<span><span class="co">#&gt; 3 Cadillac Fleetwood   10.4  5.25  2.93 -1.61   2.08 -1.25</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(z_wt <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">|</span> z_wt <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(wt))</span>
+<span id="cb12-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 7</span></span>
+<span id="cb12-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   modelo                mpg    wt  drat  z_mpg  z_wt z_drat</span></span>
+<span id="cb12-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb12-7"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Lincoln Continental  10.4  5.42  3    -1.61   2.26 -1.12 </span></span>
+<span id="cb12-8"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Chrysler Imperial    14.7  5.34  3.23 -0.894  2.17 -0.686</span></span>
+<span id="cb12-9"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Cadillac Fleetwood   10.4  5.25  2.93 -1.61   2.08 -1.25</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-3-4">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">z_drat</span> <span class="op">&gt;</span> <span class="fl">2</span> <span class="op">|</span> <span class="va">z_drat</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">drat</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 7</span></span>
-<span><span class="co">#&gt;   modelo        mpg    wt  drat z_mpg  z_wt z_drat</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Honda Civic  30.4  1.62  4.93  1.71 -1.64   2.49</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(z_drat <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">|</span> z_drat <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(drat))</span>
+<span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 7</span></span>
+<span id="cb13-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   modelo        mpg    wt  drat z_mpg  z_wt z_drat</span></span>
+<span id="cb13-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb13-7"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Honda Civic  30.4  1.62  4.93  1.71 -1.64   2.49</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="normalidade-teste-de-shapiro-wilk" class="slide level2"><h2>Normalidade: teste de Shapiro-Wilk</h2>
+</section>
+<section id="normalidade-teste-de-shapiro-wilk" class="slide level2">
+<h2>Normalidade: teste de Shapiro-Wilk</h2>
 <ul>
 <li>Hipóteses:
 <ul>
-<li>
-<span class="math inline">\(H_0\)</span>: a variável de interesse é oriunda de uma população com distribuição normal</li>
-<li>
-<span class="math inline">\(H_a\)</span>: a variável de interesse não é oriunda de uma população com distribuição normal</li>
-</ul>
-</li>
+<li><span class="math inline">\(H_0\)</span>: a variável de interesse é oriunda de uma população com distribuição normal</li>
+<li><span class="math inline">\(H_a\)</span>: a variável de interesse não é oriunda de uma população com distribuição normal</li>
+</ul></li>
 <li>Avaliar a normalidade da VD (<code>mgp</code>) e das VIs (<code>wt</code> e <code>drat</code>):</li>
-</ul></section><section id="normalidade-rstatixshapiro_test" class="slide level2"><h2>Normalidade: <code>rstatix::shapiro_test()</code>
-</h2>
-<div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-4-1">Uso</a></li>
-<li><a href="#tabset-4-2">Argumentos</a></li>
 </ul>
+</section>
+<section id="normalidade-rstatixshapiro_test" class="slide level2">
+<h2>Normalidade: <code>rstatix::shapiro_test()</code></h2>
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Uso</a></li><li><a href="#tabset-4-2">Argumentos</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/shapiro_test.html">shapiro_test</a></span><span class="op">(</span></span>
-<span>  <span class="va">data</span>, </span>
-<span>  <span class="va">...</span>, </span>
-<span>  vars <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro_test</span>(</span>
+<span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a>  data, </span>
+<span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a>  ..., </span>
+<span id="cb14-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">vars =</span> <span class="cn">NULL</span></span>
+<span id="cb14-5"><a aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-4-2">
 <ul>
-<li>
-<strong>data</strong>: um banco de dados. Colunas são variáveis.</li>
-<li>
-<strong>vars</strong>: vetor de caracteres opcional contendo nomes de variáveis. Ignorado quando dot vars são especificados.</li>
+<li><strong>data</strong>: um banco de dados. Colunas são variáveis.</li>
+<li><strong>vars</strong>: vetor de caracteres opcional contendo nomes de variáveis. Ignorado quando dot vars são especificados.</li>
 </ul>
 </div>
 </div>
 </div>
-</section><section id="normalidade-rstatixshapiro_test-1" class="slide level2"><h2>Normalidade: <code>rstatix::shapiro_test()</code>
-</h2>
+</section>
+<section id="normalidade-rstatixshapiro_test-1" class="slide level2">
+<h2>Normalidade: <code>rstatix::shapiro_test()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado_shapiro</span> <span class="op">&lt;-</span> <span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/shapiro_test.html">shapiro_test</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">wt</span>, <span class="va">drat</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">resultado_shapiro</span></span>
-<span><span class="co">#&gt; # A tibble: 3 × 3</span></span>
-<span><span class="co">#&gt;   variable statistic      p</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 drat         0.946 0.110 </span></span>
-<span><span class="co">#&gt; 2 mpg          0.948 0.123 </span></span>
-<span><span class="co">#&gt; 3 wt           0.943 0.0927</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>resultado_shapiro <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(mpg, wt, drat)</span>
+<span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a aria-hidden="true" tabindex="-1"></a>resultado_shapiro</span>
+<span id="cb15-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span id="cb15-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   variable statistic      p</span></span>
+<span id="cb15-7"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb15-8"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 drat         0.946 0.110 </span></span>
+<span id="cb15-9"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 mpg          0.948 0.123 </span></span>
+<span id="cb15-10"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 wt           0.943 0.0927</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="relação-linear" class="slide level2 smaller"><h2>Relação linear</h2>
+</section>
+<section id="relação-linear" class="slide level2 smaller">
+<h2>Relação linear</h2>
 <div class="panel-tabset">
-<ul id="tabset-5" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-5-1"><code>wt</code> X <code>mpg</code></a></li>
-<li><a href="#tabset-5-2"><code>drat</code> X <code>mpg</code></a></li>
-</ul>
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1"><code>wt</code> X <code>mpg</code></a></li><li><a href="#tabset-5-2"><code>drat</code> X <code>mpg</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">mpg</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
-<span>    color <span class="op">=</span> <span class="st">"#569BBD"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span></span>
-<span>    method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>    color <span class="op">=</span> <span class="st">"#F05133"</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(wt, mpg)</span>
+<span id="cb16-4"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb16-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#569BBD"</span></span>
+<span id="cb16-7"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb16-9"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F,</span>
+<span id="cb16-10"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#F05133"</span></span>
+<span id="cb16-11"><a aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-inferencia-correlacao_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-inferencia-correlacao_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -1348,20 +1371,21 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
 </div>
 <div id="tabset-5-2">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">drat</span>, <span class="va">mpg</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
-<span>    color <span class="op">=</span> <span class="st">"#569BBD"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span></span>
-<span>    method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>    color <span class="op">=</span> <span class="st">"#F05133"</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(drat, mpg)</span>
+<span id="cb17-4"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb17-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#569BBD"</span></span>
+<span id="cb17-7"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb17-9"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F,</span>
+<span id="cb17-10"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#F05133"</span></span>
+<span id="cb17-11"><a aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slide-inferencia-correlacao_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
+<figure>
+<p><img data-src="slide-inferencia-correlacao_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%" data-fig-pos="h"></p>
 </figure>
 </div>
 </div>
@@ -1369,142 +1393,144 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
 </div>
 </div>
 </div>
-</section><section id="correlação-de-pearson-1" class="slide level2 smaller"><h2>Correlação de pearson</h2>
+</section>
+<section id="correlação-de-pearson-1" class="slide level2 smaller">
+<h2>Correlação de pearson</h2>
 <ul>
 <li>Hipóteses (correlação negativa):
 <ul>
-<li>Hipótese nula: não há correlação negativa entre o consumo de combustível (<code>mpg</code>) e o peso do veículo (<code>wt</code>) <span class="math display">\[H_0: \rho \geq 0\]</span>
-</li>
-<li>Hipótese alternativa: existe uma correlação negativa entre o consumo de combustível (<code>mpg</code>) e o peso do veículo (<code>wt</code>) <span class="math display">\[H_a: \rho &lt; 0\]</span>
-</li>
-</ul>
-</li>
+<li>Hipótese nula: não há correlação negativa entre o consumo de combustível (<code>mpg</code>) e o peso do veículo (<code>wt</code>) <span class="math display">\[H_0: \rho \geq 0\]</span></li>
+<li>Hipótese alternativa: existe uma correlação negativa entre o consumo de combustível (<code>mpg</code>) e o peso do veículo (<code>wt</code>) <span class="math display">\[H_a: \rho &lt; 0\]</span></li>
+</ul></li>
 </ul>
 <p>Onde:</p>
 <p><span class="math inline">\(\rho\)</span> representa o coeficiente de correlação de Pearson entre as variáveis <code>mpg</code> e <code>wt</code></p>
-</section><section id="correlação-de-pearson-duas-variáveis-rstatixcor_test" class="slide level2 smaller"><h2>Correlação de pearson (duas variáveis): <code>rstatix::cor_test()</code>
-</h2>
+</section>
+<section id="correlação-de-pearson-duas-variáveis-rstatixcor_test" class="slide level2 smaller">
+<h2>Correlação de pearson (duas variáveis): <code>rstatix::cor_test()</code></h2>
 <div class="panel-tabset">
-<ul id="tabset-6" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-6-1">Uso</a></li>
-<li><a href="#tabset-6-2">Argumentos</a></li>
-</ul>
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Uso</a></li><li><a href="#tabset-6-2">Argumentos</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html">cor_test</a></span><span class="op">(</span></span>
-<span>  <span class="va">data</span>,</span>
-<span>  alternative <span class="op">=</span> <span class="st">"two.sided"</span>,</span>
-<span>  method <span class="op">=</span> <span class="st">"pearson"</span>,</span>
-<span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
-<span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(</span>
+<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>  data,</span>
+<span id="cb18-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb18-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"pearson"</span>,</span>
+<span id="cb18-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
+<span id="cb18-6"><a aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-6-2">
 <ul>
-<li>
-<strong>data</strong>: um banco de dados contendo as variáveis</li>
-<li>
-<strong>alternative</strong>: indica a hipótese alternativa e deve ser uma de “two.sided”, “greater” ou “less”. Você pode especificar apenas a letra inicial. “greater” corresponde à associação positiva, “less” à associação negativa.</li>
-<li>
-<strong>method</strong>: uma sequência de caracteres indicando qual coeficiente de correlação deve ser usado para o teste: “pearson”, “kendall” ou “spearman”, pode ser abreviado.</li>
-<li>
-<strong>conf.level</strong>: nível de confiança para o intervalo de confiança retornado. Atualmente usado somente para o coeficiente de correlação de momento do produto de Pearson se houver pelo menos 4 pares completos de observações.</li>
+<li><strong>data</strong>: um banco de dados contendo as variáveis</li>
+<li><strong>alternative</strong>: indica a hipótese alternativa e deve ser uma de “two.sided”, “greater” ou “less”. Você pode especificar apenas a letra inicial. “greater” corresponde à associação positiva, “less” à associação negativa.</li>
+<li><strong>method</strong>: uma sequência de caracteres indicando qual coeficiente de correlação deve ser usado para o teste: “pearson”, “kendall” ou “spearman”, pode ser abreviado.</li>
+<li><strong>conf.level</strong>: nível de confiança para o intervalo de confiança retornado. Atualmente usado somente para o coeficiente de correlação de momento do produto de Pearson se houver pelo menos 4 pares completos de observações.</li>
 </ul>
 </div>
 </div>
 </div>
-</section><section id="correlação-de-pearson-duas-variáveis-rstatixcor_test-1" class="slide level2"><h2>Correlação de pearson (duas variáveis): <code>rstatix::cor_test()</code>
-</h2>
+</section>
+<section id="correlação-de-pearson-duas-variáveis-rstatixcor_test-1" class="slide level2">
+<h2>Correlação de pearson (duas variáveis): <code>rstatix::cor_test()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado_correlacao</span> <span class="op">&lt;-</span> <span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">wt</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html">cor_test</a></span><span class="op">(</span></span>
-<span>    alternative <span class="op">=</span> <span class="st">"less"</span>, method <span class="op">=</span> <span class="st">"pearson"</span> </span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">resultado_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.double</span><span class="op">)</span>,</span>
-<span>                 \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 8</span></span>
-<span><span class="co">#&gt;   var1  var2    cor statistic     p conf.low conf.high method </span></span>
-<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  </span></span>
-<span><span class="co">#&gt; 1 mpg   wt    -0.87     -9.56     0       -1     -0.77 Pearson</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>resultado_correlacao <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, wt) <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor_test</span>(</span>
+<span id="cb19-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">"less"</span>, <span class="at">method =</span> <span class="st">"pearson"</span> </span>
+<span id="cb19-5"><a aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-6"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a aria-hidden="true" tabindex="-1"></a>resultado_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb19-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-9"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.double),</span>
+<span id="cb19-10"><a aria-hidden="true" tabindex="-1"></a>                 \(x) <span class="fu">round</span>(x, <span class="dv">2</span>))</span>
+<span id="cb19-11"><a aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-12"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 8</span></span>
+<span id="cb19-13"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   var1  var2    cor statistic     p conf.low conf.high method </span></span>
+<span id="cb19-14"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb19-15"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 mpg   wt    -0.87     -9.56     0       -1     -0.77 Pearson</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="coeficiente-de-determinação-r²" class="slide level2"><h2>Coeficiente de determinação (<em>R²</em>)</h2>
+</section>
+<section id="coeficiente-de-determinação-r²" class="slide level2">
+<h2>Coeficiente de determinação (<em>R²</em>)</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    r_sq <span class="op">=</span> <span class="va">cor</span><span class="op">^</span><span class="fl">2</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 9</span></span>
-<span><span class="co">#&gt;   var1  var2    cor statistic        p conf.low conf.high method   r_sq</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 mpg   wt    -0.87     -9.56 6.47e-11       -1    -0.769 Pearson  0.76</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>resultado_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb20-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">r_sq =</span> cor<span class="sc">^</span><span class="dv">2</span> <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb20-4"><a aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 9</span></span>
+<span id="cb20-6"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   var1  var2    cor statistic        p conf.low conf.high method   r_sq</span></span>
+<span id="cb20-7"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;</span></span>
+<span id="cb20-8"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 mpg   wt    -0.87     -9.56 6.47e-11       -1    -0.769 Pearson  0.76</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section><section id="redação-do-método-e-dos-resultados" class="title-slide slide level1 center"><h1>Redação do método e dos resultados</h1>
+</section></section>
+<section>
+<section id="redação-do-método-e-dos-resultados" class="title-slide slide level1 center">
+<h1>Redação do método e dos resultados</h1>
 
-</section><section id="método" class="slide level2 smaller"><h2>Método</h2>
+</section>
+<section id="método" class="slide level2 smaller">
+<h2>Método</h2>
 <p><strong>Procedimentos</strong></p>
 <p><strong><em>Análise de Dados</em></strong></p>
 <p>Um teste de correlação de Pearson foi realizado para avaliar a associação entre o consumo de combustível e o peso dos automóveis. O pressuposto de normalidade foi avaliado com o teste de Shapiro-Wilk.</p>
-</section><section id="resultados" class="slide level2 smaller"><h2>Resultados</h2>
+</section>
+<section id="resultados" class="slide level2 smaller">
+<h2>Resultados</h2>
 <p>O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o consumo de combustível (<em>W</em> = 0.95, <em>p</em> = 0.11), nem para o peso dos carros (<em>W</em> = 0.95, <em>p</em> = 0.12). Os resultados indicaram uma associação estatisticamente significativa entre as duas variáveis, <em>r</em>(30) = -0.87, <em>p</em> &lt; .001. O coeficiente de determinação (<em>R</em>²) foi de 0.76, indicando que aproximadamente 76% da variação no consumo de combustível pode ser explicada pelo peso dos automóveis Esses resultados sugerem que existe uma forte associação negativa entre as variáveis, onde veículos mais pesados tendem a apresentar menor eficiência em milhas por galão.</p>
-</section><section id="matriz-de-correlação" class="slide level2 smaller"><h2>Matriz de correlação</h2>
+</section>
+<section id="matriz-de-correlação" class="slide level2 smaller">
+<h2>Matriz de correlação</h2>
 <div class="panel-tabset">
-<ul id="tabset-7" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-7-1"><code>rstatix::cor_mat()</code></a></li>
-<li><a href="#tabset-7-2"><code>rstatix::cor_pmat()</code></a></li>
-</ul>
+<ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1"><code>rstatix::cor_mat()</code></a></li><li><a href="#tabset-7-2"><code>rstatix::cor_pmat()</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-7-1">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">matriz_de_correlacao_r</span> <span class="op">&lt;-</span> <span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">drat</span>, <span class="va">mpg</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_mat.html">cor_mat</a></span><span class="op">(</span></span>
-<span>    method <span class="op">=</span> <span class="st">"pearson"</span>,</span>
-<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">matriz_de_correlacao_r</span></span>
-<span><span class="co">#&gt; # A tibble: 3 × 4</span></span>
-<span><span class="co">#&gt;   rowname    wt  drat   mpg</span></span>
-<span><span class="co">#&gt; * &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 wt       1    -0.71 -0.87</span></span>
-<span><span class="co">#&gt; 2 drat    -0.71  1     0.68</span></span>
-<span><span class="co">#&gt; 3 mpg     -0.87  0.68  1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>matriz_de_correlacao_r <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wt, drat, mpg) <span class="sc">|&gt;</span> </span>
+<span id="cb21-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor_mat</span>(</span>
+<span id="cb21-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"pearson"</span>,</span>
+<span id="cb21-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">"two.sided"</span></span>
+<span id="cb21-6"><a aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-7"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a aria-hidden="true" tabindex="-1"></a>matriz_de_correlacao_r</span>
+<span id="cb21-9"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb21-10"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   rowname    wt  drat   mpg</span></span>
+<span id="cb21-11"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; * &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb21-12"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 wt       1    -0.71 -0.87</span></span>
+<span id="cb21-13"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 drat    -0.71  1     0.68</span></span>
+<span id="cb21-14"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 mpg     -0.87  0.68  1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-7-2">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">matriz_de_correlacao_p</span> <span class="op">&lt;-</span> <span class="va">dados_correlacao</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">drat</span>, <span class="va">mpg</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_mat.html">cor_pmat</a></span><span class="op">(</span></span>
-<span>    method <span class="op">=</span> <span class="st">"pearson"</span>,</span>
-<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">matriz_de_correlacao_p</span></span>
-<span><span class="co">#&gt; # A tibble: 3 × 4</span></span>
-<span><span class="co">#&gt;   rowname       wt      drat      mpg</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 wt      0        4.78e-  6 1.29e-10</span></span>
-<span><span class="co">#&gt; 2 drat    4.78e- 6 7.44e-232 1.78e- 5</span></span>
-<span><span class="co">#&gt; 3 mpg     1.29e-10 1.78e-  5 0</span></span>
-<span></span>
-<span><span class="va">matriz_de_correlacao_p</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.double</span><span class="op">)</span>,</span>
-<span>           \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 3 × 4</span></span>
-<span><span class="co">#&gt;   rowname    wt  drat   mpg</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 wt          0     0     0</span></span>
-<span><span class="co">#&gt; 2 drat        0     0     0</span></span>
-<span><span class="co">#&gt; 3 mpg         0     0     0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>matriz_de_correlacao_p <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wt, drat, mpg) <span class="sc">|&gt;</span> </span>
+<span id="cb22-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor_pmat</span>(</span>
+<span id="cb22-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"pearson"</span>,</span>
+<span id="cb22-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">"two.sided"</span></span>
+<span id="cb22-6"><a aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-7"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a aria-hidden="true" tabindex="-1"></a>matriz_de_correlacao_p</span>
+<span id="cb22-9"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb22-10"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   rowname       wt      drat      mpg</span></span>
+<span id="cb22-11"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb22-12"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 wt      0        4.78e-  6 1.29e-10</span></span>
+<span id="cb22-13"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 drat    4.78e- 6 7.44e-232 1.78e- 5</span></span>
+<span id="cb22-14"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 mpg     1.29e-10 1.78e-  5 0</span></span>
+<span id="cb22-15"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a aria-hidden="true" tabindex="-1"></a>matriz_de_correlacao_p <span class="sc">|&gt;</span> </span>
+<span id="cb22-17"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-18"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.double),</span>
+<span id="cb22-19"><a aria-hidden="true" tabindex="-1"></a>           \(x) <span class="fu">round</span>(x, <span class="dv">3</span>))</span>
+<span id="cb22-20"><a aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-21"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb22-22"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   rowname    wt  drat   mpg</span></span>
+<span id="cb22-23"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb22-24"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 wt          0     0     0</span></span>
+<span id="cb22-25"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 drat        0     0     0</span></span>
+<span id="cb22-26"><a aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 mpg         0     0     0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1517,10 +1543,27 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
 </div>
 </div>
 </section></section>
-</div>
+
+    </div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="site_libs/revealjs/plugin/notes/notes.js"></script><script src="site_libs/revealjs/plugin/search/search.js"></script><script src="site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -1710,7 +1753,9 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
           RevealZoom
         ]
       });
-    </script><script>
+    </script>
+    
+    <script>
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
@@ -1745,7 +1790,9 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
         }
 
       })();
-    </script><script id="quarto-html-after-body" type="application/javascript">
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -1834,7 +1881,7 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/pablo-huascar\.github\.io\/pesquisa_quanti_psi_ufc\/");
+          var filterRegex = new RegExp('/' + window.location.host + '/');
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
@@ -1932,6 +1979,6 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
       }
     });
     </script>
-
+    
 
 </body></html>

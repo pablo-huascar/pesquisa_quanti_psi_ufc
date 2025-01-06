@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Função PROCESS para R – Pesquisa Quantitativa</title>
 <style>
 code{white-space: pre-wrap;}
@@ -53,6 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -70,7 +74,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -96,7 +101,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Enviar",
     "search-label": "Procurar"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -122,11 +132,15 @@ window.Quarto = {
   typesetMath
 };
 </script>
+
 </head>
+
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Pesquisa Quantitativa</span>
@@ -138,7 +152,7 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Proposta</span></a>
   </li>  
@@ -147,8 +161,8 @@ window.Quarto = {
 <span class="menu-text">Conteúdos</span></a>
   </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/pablo-huascar/pesquisa_quanti_psi_ufc"> <i class="bi bi-{{< fa brands github >}}" role="img">
 </i> 
 <span class="menu-text"></span></a>
@@ -158,22 +172,25 @@ window.Quarto = {
 <span class="menu-text"><i class="fa-brands fa-github fa-2x" aria-label="github"></i></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Nesta página</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
    
   <ul>
-<li><a href="#uso" id="toc-uso" class="nav-link active" data-scroll-target="#uso">Uso</a></li>
-  <li>
-<a href="#argumentos" id="toc-argumentos" class="nav-link" data-scroll-target="#argumentos">Argumentos</a>
+  <li><a href="#uso" id="toc-uso" class="nav-link active" data-scroll-target="#uso">Uso</a></li>
+  <li><a href="#argumentos" id="toc-argumentos" class="nav-link" data-scroll-target="#argumentos">Argumentos</a>
   <ul class="collapse">
-<li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><code>data</code></a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><code>data</code></a></li>
   <li><a href="#y" id="toc-y" class="nav-link" data-scroll-target="#y"><code>y</code></a></li>
   <li><a href="#x" id="toc-x" class="nav-link" data-scroll-target="#x"><code>x</code></a></li>
   <li><a href="#m" id="toc-m" class="nav-link" data-scroll-target="#m"><code>m</code></a></li>
@@ -228,13 +245,16 @@ window.Quarto = {
   <li><a href="#xrefval" id="toc-xrefval" class="nav-link" data-scroll-target="#xrefval"><code>xrefval</code></a></li>
   <li><a href="#coval" id="toc-coval" class="nav-link" data-scroll-target="#coval"><code>coval</code></a></li>
   <li><a href="#cdeval" id="toc-cdeval" class="nav-link" data-scroll-target="#cdeval"><code>cdeval</code></a></li>
+  </ul></li>
+  <li><a href="#instruções-gerais" id="toc-instruções-gerais" class="nav-link" data-scroll-target="#instruções-gerais">Instruções gerais</a></li>
   </ul>
-</li>
-  <li><a href="#instru%C3%A7%C3%B5es-gerais" id="toc-instruções-gerais" class="nav-link" data-scroll-target="#instru%C3%A7%C3%B5es-gerais">Instruções gerais</a></li>
-  </ul></nav>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Função PROCESS para R</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
 </div>
 
@@ -249,157 +269,226 @@ window.Quarto = {
   
 
 
-</header><p>A função <code>process()</code> para R foi desenvolvida por Andrew F. Hayes e está descrita detalhadamente no livro <a href="https://www.afhayes.com/introduction-to-mediation-moderation-and-conditional-process-analysis.html" target="_blank"><em>Introduction to Mediation, Moderation, and Conditional Process Analysis</em></a>.</p>
+</header>
+
+
+<p>A função <code>process()</code> para R foi desenvolvida por Andrew F. Hayes e está descrita detalhadamente no livro <a href="https://www.afhayes.com/introduction-to-mediation-moderation-and-conditional-process-analysis.html" target="_blank"><em>Introduction to Mediation, Moderation, and Conditional Process Analysis</em></a>.</p>
 <p>É recomendável ler o livro ou seus materiais complementares para compreender a motivação teórica e estatística por trás dos cálculos implementados. O código do <em>PROCESS</em> para R pode ser obtido em: <a href="https://haskayne.ucalgary.ca/CCRAM/resource-hub" class="uri">https://haskayne.ucalgary.ca/CCRAM/resource-hub</a>.</p>
-<section id="uso" class="level2"><h2 class="anchored" data-anchor-id="uso">Uso</h2>
+<section id="uso" class="level2">
+<h2 class="anchored" data-anchor-id="uso">Uso</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">process</span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">data</span>,</span>
-<span>  y <span class="op">=</span> <span class="st">"xxxxx"</span>, </span>
-<span>  x <span class="op">=</span> <span class="st">"xxxxx"</span>,</span>
-<span>  m <span class="op">=</span> <span class="st">"xxxxx"</span>,</span>
-<span>  w <span class="op">=</span> <span class="st">"xxxxx"</span>,</span>
-<span>  z <span class="op">=</span> <span class="st">"xxxxx"</span>,</span>
-<span>  cov <span class="op">=</span> <span class="st">"xxxxx"</span>,</span>
-<span>  model <span class="op">=</span> <span class="fl">999</span>, </span>
-<span>  converge <span class="op">=</span> <span class="fl">0.00001</span>,</span>
-<span>  iterate <span class="op">=</span> <span class="fl">100</span>,</span>
-<span>  hc <span class="op">=</span> <span class="fl">5</span>,</span>
-<span>  jn <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  effsize <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  stand <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  xmtest <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  normal <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  mdichok <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  contrast <span class="op">=</span> <span class="fl">999</span>, </span>
-<span>  modelbt <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  matrices <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  covmy <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  covcoeff <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  boot <span class="op">=</span> <span class="fl">5000</span>,</span>
-<span>  mc <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  intprobe <span class="op">=</span> <span class="fl">0.1</span>,</span>
-<span>  plot <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  total <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  save <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  mcx <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  mcw <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  mcz <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  moments <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  progress <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  exclude <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  bmatrix <span class="op">=</span> <span class="op">-</span><span class="fl">999</span>, </span>
-<span>  wmatrix <span class="op">=</span> <span class="op">-</span><span class="fl">999</span>, </span>
-<span>  zmatrix <span class="op">=</span> <span class="op">-</span><span class="fl">999</span>, </span>
-<span>  wzmatrix <span class="op">=</span> <span class="op">-</span><span class="fl">999</span>, </span>
-<span>  cmatrix <span class="op">=</span> <span class="op">-</span><span class="fl">999</span>, </span>
-<span>  xcatcode <span class="op">=</span> <span class="fl">999</span>, </span>
-<span>  wcatcode <span class="op">=</span> <span class="fl">999</span>, </span>
-<span>  zcatcode <span class="op">=</span> <span class="fl">999</span>,</span>
-<span>  wmodval <span class="op">=</span> <span class="fl">999</span>, </span>
-<span>  zmodval <span class="op">=</span> <span class="fl">999</span>, </span>
-<span>  center <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  conf <span class="op">=</span> <span class="fl">95</span>,</span>
-<span>  seed <span class="op">=</span> <span class="op">-</span><span class="fl">999</span>, </span>
-<span>  decimals <span class="op">=</span> <span class="fl">9.4</span>,</span>
-<span>  maxboot <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  modelres <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  bc <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  outscreen <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  activate <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  describe <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  listmiss <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  linsum <span class="op">=</span> <span class="op">-</span><span class="fl">999</span>, </span>
-<span>  xmint <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  xrefval <span class="op">=</span> <span class="fl">999</span>, </span>
-<span>  coval <span class="op">=</span> <span class="op">-</span><span class="fl">999</span>, </span>
-<span>  cdeval <span class="op">=</span> <span class="op">-</span><span class="fl">999</span> </span>
-<span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">process</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">"xxxxx"</span>, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"xxxxx"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="st">"xxxxx"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">w =</span> <span class="st">"xxxxx"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">z =</span> <span class="st">"xxxxx"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">cov =</span> <span class="st">"xxxxx"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="dv">999</span>, </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">converge =</span> <span class="fl">0.00001</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">iterate =</span> <span class="dv">100</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">hc =</span> <span class="dv">5</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">jn =</span> <span class="dv">0</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">effsize =</span> <span class="dv">0</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">stand =</span> <span class="dv">0</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmtest =</span> <span class="dv">0</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal =</span> <span class="dv">0</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">mdichok =</span> <span class="dv">0</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">contrast =</span> <span class="dv">999</span>, </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelbt =</span> <span class="dv">0</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">matrices =</span> <span class="dv">0</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">covmy =</span> <span class="dv">0</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">covcoeff =</span> <span class="dv">0</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">boot =</span> <span class="dv">5000</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">mc =</span> <span class="dv">0</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">intprobe =</span> <span class="fl">0.1</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> <span class="dv">0</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">total =</span> <span class="dv">0</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">save =</span> <span class="dv">0</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">mcx =</span> <span class="dv">0</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">mcw =</span> <span class="dv">0</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">mcz =</span> <span class="dv">0</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">moments =</span> <span class="dv">0</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="dv">1</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">exclude =</span> <span class="dv">0</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">bmatrix =</span> <span class="sc">-</span><span class="dv">999</span>, </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">wmatrix =</span> <span class="sc">-</span><span class="dv">999</span>, </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">zmatrix =</span> <span class="sc">-</span><span class="dv">999</span>, </span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">wzmatrix =</span> <span class="sc">-</span><span class="dv">999</span>, </span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">cmatrix =</span> <span class="sc">-</span><span class="dv">999</span>, </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">xcatcode =</span> <span class="dv">999</span>, </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">wcatcode =</span> <span class="dv">999</span>, </span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">zcatcode =</span> <span class="dv">999</span>,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">wmodval =</span> <span class="dv">999</span>, </span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">zmodval =</span> <span class="dv">999</span>, </span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">center =</span> <span class="dv">0</span>,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf =</span> <span class="dv">95</span>,</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> <span class="sc">-</span><span class="dv">999</span>, </span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">decimals =</span> <span class="fl">9.4</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">maxboot =</span> <span class="dv">0</span>,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelres =</span> <span class="dv">0</span>,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">bc =</span> <span class="dv">0</span>,</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">outscreen =</span> <span class="dv">1</span>,</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">activate =</span> <span class="dv">0</span>,</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">describe =</span> <span class="dv">0</span>,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">listmiss =</span> <span class="dv">0</span>,</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">linsum =</span> <span class="sc">-</span><span class="dv">999</span>, </span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmint =</span> <span class="dv">0</span>,</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="at">xrefval =</span> <span class="dv">999</span>, </span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  <span class="at">coval =</span> <span class="sc">-</span><span class="dv">999</span>, </span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">cdeval =</span> <span class="sc">-</span><span class="dv">999</span> </span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="argumentos" class="level2"><h2 class="anchored" data-anchor-id="argumentos">Argumentos</h2>
-<section id="data" class="level3"><h3 class="anchored" data-anchor-id="data"><code>data</code></h3>
+</section>
+<section id="argumentos" class="level2">
+<h2 class="anchored" data-anchor-id="argumentos">Argumentos</h2>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data"><code>data</code></h3>
 <p><em>Data frame</em> contendo as variáveis necessárias para a análise.</p>
-</section><section id="y" class="level3"><h3 class="anchored" data-anchor-id="y"><code>y</code></h3>
+</section>
+<section id="y" class="level3">
+<h3 class="anchored" data-anchor-id="y"><code>y</code></h3>
 <p>String com o nome da variável dependente (<em>outcome</em>).</p>
-</section><section id="x" class="level3"><h3 class="anchored" data-anchor-id="x"><code>x</code></h3>
+</section>
+<section id="x" class="level3">
+<h3 class="anchored" data-anchor-id="x"><code>x</code></h3>
 <p>String com o nome da variável independente principal (<em>predictor</em>).</p>
-</section><section id="m" class="level3"><h3 class="anchored" data-anchor-id="m"><code>m</code></h3>
+</section>
+<section id="m" class="level3">
+<h3 class="anchored" data-anchor-id="m"><code>m</code></h3>
 <p>Vetor de strings com uma ou mais variáveis mediadoras.</p>
-</section><section id="w" class="level3"><h3 class="anchored" data-anchor-id="w"><code>w</code></h3>
+</section>
+<section id="w" class="level3">
+<h3 class="anchored" data-anchor-id="w"><code>w</code></h3>
 <p>String com o nome do primeiro moderador (opcional).</p>
-</section><section id="z" class="level3"><h3 class="anchored" data-anchor-id="z"><code>z</code></h3>
+</section>
+<section id="z" class="level3">
+<h3 class="anchored" data-anchor-id="z"><code>z</code></h3>
 <p>String com o nome do segundo moderador (opcional).</p>
-</section><section id="cov" class="level3"><h3 class="anchored" data-anchor-id="cov"><code>cov</code></h3>
+</section>
+<section id="cov" class="level3">
+<h3 class="anchored" data-anchor-id="cov"><code>cov</code></h3>
 <p>Vetor de strings com as covariáveis a serem incluídas no modelo.</p>
-</section><section id="model" class="level3"><h3 class="anchored" data-anchor-id="model"><code>model</code></h3>
+</section>
+<section id="model" class="level3">
+<h3 class="anchored" data-anchor-id="model"><code>model</code></h3>
 <p>Número inteiro que especifica um modelo predefinido no <em>PROCESS</em> (p.ex., 4 = mediação simples, 1 = moderação simples, etc.). Se ausente ou 999, pode-se usar matrizes personalizadas (<em>bmatrix</em> etc.).</p>
-</section><section id="converge" class="level3"><h3 class="anchored" data-anchor-id="converge"><code>converge</code></h3>
+</section>
+<section id="converge" class="level3">
+<h3 class="anchored" data-anchor-id="converge"><code>converge</code></h3>
 <p>Critério de convergência para regressão logística (padrão: .0001). O critério de convergência é atendido quando mudanças nos coeficientes de regressão logística resultam em uma mudança na probabilidade de menos do que o critério especificado. Nesse ponto, a iteração para e a solução é fornecida. Uma falha na convergência pode às vezes ser retificada aumentando o número de iterações ou aumentando o critério de convergência. No entanto, isso aumentará o tempo computacional. Isso pode ser feito com as opções <code>iterate</code> e <code>converge</code>.</p>
-</section><section id="iterate" class="level3"><h3 class="anchored" data-anchor-id="iterate"><code>iterate</code></h3>
+</section>
+<section id="iterate" class="level3">
+<h3 class="anchored" data-anchor-id="iterate"><code>iterate</code></h3>
 <p>Número máximo de iterações para regressão logística (padrão: 100).</p>
-</section><section id="hc" class="level3"><h3 class="anchored" data-anchor-id="hc"><code>hc</code></h3>
+</section>
+<section id="hc" class="level3">
+<h3 class="anchored" data-anchor-id="hc"><code>hc</code></h3>
 <p>Método de correção para heterocedasticidade (0 a 4). Especifica o tipo de matriz de variância Huber-White (HC0, HC1, HC2, HC3, HC4) a ser usado no lugar do “modelo de homocedasticidade” usado por padrão (por exemplo, para o estimador HC3, especifique <code>hc = 3</code>). Qualquer computação que use o erro padrão de um coeficiente de regressão empregará automaticamente o estimador HC quando esta opção for solicitada, incluindo o teste de Sobel, intervalos de confiança de Monte Carlo para efeitos indiretos, o método Johnson-Neyman, testes de efeitos condicionais em análise de moderação e o teste de significância de <span class="math inline">\(Rˆ2\)</span> para modelos de <code>Y</code>, bem como para testes de interações com base na diferença em <span class="math inline">\(Rˆ2\)</span> quando a interação é incluída versus excluída do modelo.</p>
-</section><section id="jn" class="level3"><h3 class="anchored" data-anchor-id="jn"><code>jn</code></h3>
+</section>
+<section id="jn" class="level3">
+<h3 class="anchored" data-anchor-id="jn"><code>jn</code></h3>
 <p>Executa análise de Johnson-Neyman para encontrar “regiões de significância” em análises de moderação (0 = não, 1 = sim).</p>
-</section><section id="effsize" class="level3"><h3 class="anchored" data-anchor-id="effsize"><code>effsize</code></h3>
+</section>
+<section id="effsize" class="level3">
+<h3 class="anchored" data-anchor-id="effsize"><code>effsize</code></h3>
 <p>Retorna efeitos indiretos parcial ou completamente padronizados (0 = não, 1 = sim).</p>
-</section><section id="stand" class="level3"><h3 class="anchored" data-anchor-id="stand"><code>stand</code></h3>
+</section>
+<section id="stand" class="level3">
+<h3 class="anchored" data-anchor-id="stand"><code>stand</code></h3>
 <p>Gera coeficientes padronizados do modelo, de efeitos diretos, indiretos e totais (0 = não, 1 = sim). Não estão disponíveis para modelos com moderadores.</p>
-</section><section id="xmtest" class="level3"><h3 class="anchored" data-anchor-id="xmtest"><code>xmtest</code></h3>
+</section>
+<section id="xmtest" class="level3">
+<h3 class="anchored" data-anchor-id="xmtest"><code>xmtest</code></h3>
 <p>Testa se há interação entre X e o(s) mediador(es) (0 = não, 1 = sim).</p>
-</section><section id="normal" class="level3"><h3 class="anchored" data-anchor-id="normal"><code>normal</code></h3>
+</section>
+<section id="normal" class="level3">
+<h3 class="anchored" data-anchor-id="normal"><code>normal</code></h3>
 <p>Realiza o teste de Sobel para o(s) efeito(s) indireto(s) (0 = não, 1 = sim).</p>
-</section><section id="mdichok" class="level3"><h3 class="anchored" data-anchor-id="mdichok"><code>mdichok</code></h3>
+</section>
+<section id="mdichok" class="level3">
+<h3 class="anchored" data-anchor-id="mdichok"><code>mdichok</code></h3>
 <p>Controla a permissão de mediadores dicotômicos (0/1). <code>mdichok = 0</code> (padrão): o PROCESS interrompe a execução e exibe o erro 43 (“PROCESS does not allow dichotomous mediators”) se detectar um mediador 0/1.<code>mdichok = 1</code>: desabilita essa verificação, permitindo a inclusão de um mediador dicotômico.</p>
-</section><section id="contrast" class="level3"><h3 class="anchored" data-anchor-id="contrast"><code>contrast</code></h3>
+</section>
+<section id="contrast" class="level3">
+<h3 class="anchored" data-anchor-id="contrast"><code>contrast</code></h3>
 <p>Inteiro (1 ou 2) ou vetor de pesos. Habilita a comparação de efeitos indiretos específicos em modelos de mediação múltipla (contínua ou dicotômica em X). Existem duas formas de uso: <code>contrast = 1</code>: constrói diferenças entre os efeitos indiretos específicos. <code>contrast = 2</code>: constrói diferenças entre os valores absolutos dos efeitos indiretos específicos. Em ambos os casos, as comparações surgem no output com rótulos como (C1), (C2) etc., acompanhadas de intervalos de confiança via bootstrap ou Monte Carlo (quando ativados). O <code>contrast</code> não está disponível se X for multicategórico (definido por <code>mcx</code>). <strong>Modelos com moderação</strong>: se há moderação, o <code>contrast</code> exibe as comparações entre os efeitos indiretos condicionais em diferentes valores do(s) moderador(es), mas <strong>apenas</strong> entre efeitos dentro de um mesmo mediador. Comparações entre mediadores distintos não são fornecidas. <strong>Modelos sem moderação, mas com múltiplos mediadores</strong>: pode-se passar um <strong>vetor de pesos</strong> para criar combinações lineares dos efeitos indiretos específicos e gerar intervalos de confiança para essas combinações. Os pesos devem ser informados na <strong>mesma ordem</strong> em que os mediadores aparecem no output. É possível usar pesos negativos para testar, por exemplo, a diferença entre somas de efeitos indiretos de grupos de mediadores. Exemplos de uso: <code>contrast=1,1,0,0,0.</code>: soma os dois primeiros efeitos indiretos (e ignora os demais) para gerar um único contraste bootstrap. <code>contrast=1,1,-1,-1,0.</code>: diferença entre a soma dos dois primeiros efeitos indiretos e a soma dos dois subsequentes.</p>
-</section><section id="modelbt" class="level3"><h3 class="anchored" data-anchor-id="modelbt"><code>modelbt</code></h3>
+</section>
+<section id="modelbt" class="level3">
+<h3 class="anchored" data-anchor-id="modelbt"><code>modelbt</code></h3>
 <p>Gera intervalos de confiança com bootstrap para coeficientes de regressão não padronizados em cada equação de regressão que define o modelo (0 = não, 1 = sim). Esses intervalos de confiança bootstrap estarão sob as colunas “BootLLCI” e “BootULCI”. A média e o desvio padrão das estimativas bootstrap são exibidos sob as colunas intituladas “Boot-Mean” e “BootSE”. Os coeficientes de regressão originais são encontrados sob a coluna rotulada “Coeﬀ”. Como o número padrão de amostras de bootstrap para os modelos 1, 2 e 3 é zero, a opção <code>modelbt</code> não terá efeito para esses modelos, a menos que o número de amostras de bootstrap seja explicitamente declarado usando a opção <code>boot</code>.</p>
-</section><section id="matrices" class="level3"><h3 class="anchored" data-anchor-id="matrices"><code>matrices</code></h3>
+</section>
+<section id="matrices" class="level3">
+<h3 class="anchored" data-anchor-id="matrices"><code>matrices</code></h3>
 <p>Exibe a representação matricial do modelo (0 = não, 1 = sim).</p>
-</section><section id="covmy" class="level3"><h3 class="anchored" data-anchor-id="covmy"><code>covmy</code></h3>
+</section>
+<section id="covmy" class="level3">
+<h3 class="anchored" data-anchor-id="covmy"><code>covmy</code></h3>
 <p>Controla em quais equações os covariáveis (cov) serão incluídos nos modelos com mediadores (0, 1 ou 2); covmy=0 (padrão) inclui as covariáveis tanto em todas as equações de mediação (para cada variável em m) quanto na equação de y; covmy=1 inclui as covariáveis somente nas equações de mediação (variáveis em m), excluindo da equação de y; covmy=2 inclui as covariáveis apenas na equação de y, não nas equações de mediação.</p>
-</section><section id="covcoeff" class="level3"><h3 class="anchored" data-anchor-id="covcoeff"><code>covcoeff</code></h3>
+</section>
+<section id="covcoeff" class="level3">
+<h3 class="anchored" data-anchor-id="covcoeff"><code>covcoeff</code></h3>
 <p>Exibe as matrizes de variância-covariância para os coeficientes de regressão em cada parte do modelo (0 = não, 1 = sim)</p>
-</section><section id="boot" class="level3"><h3 class="anchored" data-anchor-id="boot"><code>boot</code></h3>
+</section>
+<section id="boot" class="level3">
+<h3 class="anchored" data-anchor-id="boot"><code>boot</code></h3>
 <p>Número de amostras para bootstrap (padrão: 5000).</p>
-</section><section id="mc" class="level3"><h3 class="anchored" data-anchor-id="mc"><code>mc</code></h3>
+</section>
+<section id="mc" class="level3">
+<h3 class="anchored" data-anchor-id="mc"><code>mc</code></h3>
 <p>Especifica o número de amostras para o cálculo de intervalos de confiança via Monte Carlo em modelos de mediação simples ou paralela (Modelos 4 e 5). Por exemplo, <code>mc = 5000</code> solicita 5.000 amostras. Se o valor definido for menor que 1.000, serão usadas 5.000 amostras por padrão. O argumento <code>mc</code> tem precedência sobre <code>boot</code> (caso sejam utilizados simultaneamente), porém é ignorado em modelos de mediação serial ou que envolvam moderação, situações em que os intervalos de confiança são gerados por bootstrap.</p>
-</section><section id="intprobe" class="level3"><h3 class="anchored" data-anchor-id="intprobe"><code>intprobe</code></h3>
+</section>
+<section id="intprobe" class="level3">
+<h3 class="anchored" data-anchor-id="intprobe"><code>intprobe</code></h3>
 <p>Controla o nível de significância (α) para “sondar” (probe) a interação em um modelo com componente de moderação (padrão = 0.10).<code>intprobe = .05</code>, por exemplo, faz com que a interação seja investigada apenas se o p-valor for menor ou igual a 0.05. <code>intprobe = 1</code> força a inspeção de toda e qualquer interação no modelo, independentemente de sua significância estatística. Quando a interação cumpre o critério definido em intprobe (p-valor ≤ α escolhido), o PROCESS exibe os efeitos condicionais do antecedente focal em diferentes valores do(s) moderador(es) — porém, apenas para a interação de ordem mais alta que não seja condicionada por outro moderador.</p>
-</section><section id="plot" class="level3"><h3 class="anchored" data-anchor-id="plot"><code>plot</code></h3>
+</section>
+<section id="plot" class="level3">
+<h3 class="anchored" data-anchor-id="plot"><code>plot</code></h3>
 <p>Produz uma tabela de dados para visualizar uma interação (0 = não, 1 = sim).</p>
-</section><section id="total" class="level3"><h3 class="anchored" data-anchor-id="total"><code>total</code></h3>
+</section>
+<section id="total" class="level3">
+<h3 class="anchored" data-anchor-id="total"><code>total</code></h3>
 <p>Inclui efeitos totais na saída nos modelos de mediação sem efeitos moderadores (0 = não, 1 = sim). Para modelos personalizados, o efeito total não será produzido para nenhum modelo de mediação que fixe qualquer caminho entre <code>X</code> e <code>Y</code>, entre <code>X</code> e um mediador, ou entre um mediador e <code>Y</code> para zero. O efeito total também não será fornecido se algumas das covariáveis listadas em <code>cov =</code> forem excluídas dos modelos de <code>Y</code> ou de um dos mediadores em <code>m =</code>.</p>
-</section><section id="save" class="level3"><h3 class="anchored" data-anchor-id="save"><code>save</code></h3>
+</section>
+<section id="save" class="level3">
+<h3 class="anchored" data-anchor-id="save"><code>save</code></h3>
 <p>0, 1 ou 2; <code>save = 0</code> não salva os resultados; <code>save = 1</code> produzirá um banco de dados contendo todas as estimativas bootstrap dos coeficientes de regressão que definem o modelo; <code>save = 2</code> irá gerar uma matriz contendo as estatísticas da saída do PROCESS para o modelo estimado. Todas as opções exigem o envio de informações do PROCESS para um objeto R usando o operador <code>&lt;-</code> ao chamar a função <code>process()</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coef_boot</span> <span class="op">&lt;-</span> <span class="fu">process</span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">data</span>, y <span class="op">=</span> <span class="va">Y</span>, x <span class="op">=</span> <span class="va">X</span>, </span>
-<span>  m <span class="op">=</span> <span class="va">M</span>, model <span class="op">=</span> <span class="fl">4</span>, modelbt <span class="op">=</span> <span class="fl">1</span>, </span>
-<span>  boot <span class="op">=</span> <span class="fl">5000</span>, save <span class="op">=</span> <span class="fl">1</span></span>
-<span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>coef_boot <span class="ot">&lt;-</span> <span class="fu">process</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data, <span class="at">y =</span> Y, <span class="at">x =</span> X, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> M, <span class="at">model =</span> <span class="dv">4</span>, <span class="at">modelbt =</span> <span class="dv">1</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">boot =</span> <span class="dv">5000</span>, <span class="at">save =</span> <span class="dv">1</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="mcx-mcw-mcz" class="level3"><h3 class="anchored" data-anchor-id="mcx-mcw-mcz">
-<code>mcx</code>, <code>mcw</code>, <code>mcz</code>
-</h3>
+</section>
+<section id="mcx-mcw-mcz" class="level3">
+<h3 class="anchored" data-anchor-id="mcx-mcw-mcz"><code>mcx</code>, <code>mcw</code>, <code>mcz</code></h3>
 <p>Define X, W ou Z como multicategóricos e especifica o método de codificação (1, 2, ou 3); 1 = codificação dummy (dummy coding); 2 = codificação sequencial (sequential coding); 3 = codificação Helmert (Helmert coding); 4 = codificação de efeitos (eﬀect coding)</p>
-</section><section id="moments" class="level3"><h3 class="anchored" data-anchor-id="moments"><code>moments</code></h3>
+</section>
+<section id="moments" class="level3">
+<h3 class="anchored" data-anchor-id="moments"><code>moments</code></h3>
 <p>Configura a forma de explorar a interação em modelos com moderadores quantitativos, produzindo os efeitos condicionais no valor médio do moderador, assim como em um desvio-padrão acima e um abaixo da média. (0 = não, 1 = sim).</p>
-</section><section id="progress" class="level3"><h3 class="anchored" data-anchor-id="progress"><code>progress</code></h3>
+</section>
+<section id="progress" class="level3">
+<h3 class="anchored" data-anchor-id="progress"><code>progress</code></h3>
 <p>Exibe um contador gráfico indicando o progresso em direção à conclusão da amostragem por bootstrap (0 = não, 1 = sim).</p>
-</section><section id="exclude" class="level3"><h3 class="anchored" data-anchor-id="exclude"><code>exclude</code></h3>
+</section>
+<section id="exclude" class="level3">
+<h3 class="anchored" data-anchor-id="exclude"><code>exclude</code></h3>
 <p>Vetor (ou array unidimensional) com os números das linhas que devem ser removidas antes do processamento. Caso não seja especificado (ou seja igual a 0), nenhuma exclusão manual é feita além da remoção usual de casos com dados faltantes. <code>exclude = c(2, 5, 10)</code>, por exemplo, removeria as linhas 2, 5 e 10 do dataset antes do cálculo.</p>
-</section><section id="cmatrix" class="level3"><h3 class="anchored" data-anchor-id="cmatrix"><code>cmatrix</code></h3>
+</section>
+<section id="cmatrix" class="level3">
+<h3 class="anchored" data-anchor-id="cmatrix"><code>cmatrix</code></h3>
 <p>Fornece um meio mais flexível de especificar em quais equações cada covariável será incluída, organizando-as em uma matriz com as variáveis consequentes (mediadores na ordem definida em <em>mvlist</em> e, por último, a variável dependente) nas linhas, e as covariáveis (na ordem em <em>covlist</em>) nas colunas. Cada célula recebe 1 caso se deseje incluir aquela covariável na equação do mediador ou da variável de <em>desfecho</em> correspondentes, ou 0 caso contrário, sendo lidas da esquerda para a direita, de cima para baixo. Por exemplo, se houver dois mediadores <code>med1</code> e <code>med2</code> e três covariáveis <code>cov1</code>, <code>cov2</code>, <code>cov3</code>, a linha <code>med1</code> receberá 1 ou 0 indicando se cada uma das covariáveis entra na equação de <code>med1</code>, e assim por diante para <code>med2</code> e para a variável de desfecho Y. Uma exigência importante é que cada covariável (coluna) possua ao menos um “1” em toda a matriz, pois o PROCESS rejeita colunas inteiramente zeradas. Se desejar excluir alguma covariável completamente de todas as equações, basta removê-la de <em>covlist</em>, em vez de incluí-la com zeros. Para conferir se seu <em>cmatrix</em> foi especificado corretamente, ative a opção <code>matrices=1</code> e examine a “CMATRIX” nos resultados, onde será exibido exatamente em quais equações cada covariável foi alocada. No exemplo abaixo somente <code>cov1</code> será incluída no modelo da variável mediadora <code>M</code> enquanto as 3 covariáveis serão incluídos no modelo da variável de desfecho <code>Y</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">process</span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">data</span>, y <span class="op">=</span> <span class="st">"Y"</span>, x <span class="op">=</span> <span class="st">"X"</span>, </span>
-<span>  m <span class="op">=</span> <span class="st">"M"</span>, model <span class="op">=</span> <span class="fl">4</span>, </span>
-<span>  cov <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cov1"</span>, <span class="st">"cov2"</span>, <span class="st">"cov3"</span><span class="op">)</span>, </span>
-<span>  cmatrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>, </span>
-<span>              <span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">process</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data, <span class="at">y =</span> <span class="st">"Y"</span>, <span class="at">x =</span> <span class="st">"X"</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">m =</span> <span class="st">"M"</span>, <span class="at">model =</span> <span class="dv">4</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cov =</span> <span class="fu">c</span>(<span class="st">"cov1"</span>, <span class="st">"cov2"</span>, <span class="st">"cov3"</span>), </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">cmatrix =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>              <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span><span class="er">*********************************************************************</span> </span>
@@ -433,142 +522,187 @@ window.Quarto = {
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span><span class="er">*********************************************************************</span> </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="bmatrix" class="level3"><h3 class="anchored" data-anchor-id="bmatrix"><code>bmatrix</code></h3>
+</section>
+<section id="bmatrix" class="level3">
+<h3 class="anchored" data-anchor-id="bmatrix"><code>bmatrix</code></h3>
 <p>Especifica (por uma sequência de zeros e uns) quais caminhos de um modelo de mediação e/ou análise de processo condicional serão <strong>livremente estimados</strong> e quais permanecerão <strong>fixos em zero</strong>. Internamente, o PROCESS organiza as mediadoras (em ordem) mais a variável dependente Y em linhas, e X (mais as mediadoras, em ordem) em colunas, formando uma matriz <span class="math inline">\((k+1) \times (k+1)\)</span> para <span class="math inline">\(k\)</span> mediadores. Para cada célula (linha i, coluna j), um “1” indica que a variável da coluna j afeta a variável da linha i; um “0” representa um caminho fixado a zero. Assim, o <strong>bmatrix</strong> permite construir modelos de mediação customizados – seja editando um modelo numerado (por exemplo, removendo um caminho “indesejado” ou adicionando um) ou partindo do zero, desde que o modelo seja <strong>recursivo</strong> (sem loops de feedback) e tenha <strong>no máximo seis mediadores</strong>. Além disso, cada coluna deve ter pelo menos um “1” (isto é, cada variável “envia” algum efeito) e cada linha deve ter ao menos um “1” (isto é, cada variável “recebe” algum efeito). Se uma variável for declarada mediadora, obrigatoriamente ela “envia” e “recebe” efeitos, sob pena de o PROCESS gerar erro de “dangling mediator.”</p>
-</section><section id="wmatrix" class="level3"><h3 class="anchored" data-anchor-id="wmatrix"><code>wmatrix</code></h3>
+</section>
+<section id="wmatrix" class="level3">
+<h3 class="anchored" data-anchor-id="wmatrix"><code>wmatrix</code></h3>
 <p>Define se <strong>W</strong> modera (por zeros e uns) os caminhos especificados no <strong>bmatrix</strong>. Em outras palavras, para cada caminho que no bmatrix esteja ativo (igual a 1), a wmatrix indica (com “1”) se aquele mesmo caminho terá interação com W (ex.: <span class="math inline">\(\beta_1 + \beta_2 W\)</span>). Se o bmatrix for 0 num caminho (fixado a zero), não se pode atribuir “1” à wmatrix naquele caminho — o PROCESS acusará erro (“A path fixed to zero cannot be moderated”). Lembre que <strong>W</strong> é o “primeiro” moderador permitido em PROCESS, e só é relevante se esse moderador estiver efetivamente declarado (ex.: <code>w="algumaVariavel"</code>). Caso a wmatrix não seja fornecida (ou seja toda zero), significa que W não modera caminho algum.</p>
-</section><section id="zmatrix" class="level3"><h3 class="anchored" data-anchor-id="zmatrix"><code>zmatrix</code></h3>
+</section>
+<section id="zmatrix" class="level3">
+<h3 class="anchored" data-anchor-id="zmatrix"><code>zmatrix</code></h3>
 <p>Análogo à wmatrix, mas para o segundo moderador, <strong>Z</strong>. Em cada linha e coluna que correspondam a um caminho ativo no <strong>bmatrix</strong>, “1” indica que esse caminho é moderado por Z (resultando em algo como <span class="math inline">\(\beta_1 + \beta_3 Z\)</span>). A existência de zmatrix só faz sentido se houver um <code>z="algumaVariavel"</code>. Também se aplica a restrição de que não se pode moderar caminhos que estejam fixos a zero no bmatrix. Além disso, se há somente um moderador no modelo, obrigatoriamente deve ser W, então a zmatrix (se fornecida) deverá conter apenas zeros, ou o PROCESS gera erro.</p>
-</section><section id="wzmatrix" class="level3"><h3 class="anchored" data-anchor-id="wzmatrix"><code>wzmatrix</code></h3>
+</section>
+<section id="wzmatrix" class="level3">
+<h3 class="anchored" data-anchor-id="wzmatrix"><code>wzmatrix</code></h3>
 <p>Permite especificar <strong>moderação de alta ordem</strong> (“moderated moderation” ou interação tripla). Se uma célula no wzmatrix for 1, isso indica que o mesmo caminho, além de já ter “1” em wmatrix e em zmatrix, será também moderado simultaneamente por W e Z, produzindo algo como <span class="math inline">\(\beta_1 + \beta_2 W + \beta_3 Z + \beta_4 (W \times Z)\)</span>. Se você atribuir “1” no wzmatrix, o PROCESS forçará automaticamente “1” nos mesmos caminhos de wmatrix e zmatrix, pois não se pode ter uma interação tripla sem as interações de segunda ordem. Esse comportamento não pode ser anulado. Assim, o wzmatrix serve para criar <strong>interações de três vias</strong> ou “moderated moderation.”</p>
-</section><section id="xcatcode-wcatcode-zcatcode" class="level3"><h3 class="anchored" data-anchor-id="xcatcode-wcatcode-zcatcode">
-<code>xcatcode</code>, <code>wcatcode</code>, <code>zcatcode</code>
-</h3>
+</section>
+<section id="xcatcode-wcatcode-zcatcode" class="level3">
+<h3 class="anchored" data-anchor-id="xcatcode-wcatcode-zcatcode"><code>xcatcode</code>, <code>wcatcode</code>, <code>zcatcode</code></h3>
 <p>Instruem o PROCESS sobre <strong>como codificar</strong> variáveis X, W ou Z caso elas sejam <strong>multicategóricas</strong> (com três ou mais níveis). Normalmente, o PROCESS gera automaticamente dummies e interações para uma variável categórica; entretanto, se o pesquisador quiser um tipo de codificação específico (por exemplo, contrastes customizados, Helmert, efeitos, etc.), pode fornecer essas matrizes de codificação em xcatcode, wcatcode ou zcatcode. Cada coluna ou elemento representa a forma como cada categoria adicional será transformada em variáveis dummy (ou outro esquema). Se o vetor (ou matriz) for incompatível em tamanho ou não fizer sentido, o PROCESS gera erro e ignora a codificação. Esse recurso é útil em modelos de moderadores multicategóricos ou X multicategórico.</p>
-</section><section id="zmodval" class="level3"><h3 class="anchored" data-anchor-id="zmodval"><code>zmodval</code></h3>
+</section>
+<section id="zmodval" class="level3">
+<h3 class="anchored" data-anchor-id="zmodval"><code>zmodval</code></h3>
 <p>Tem a mesma função do wmodval, porém para o segundo moderador <strong>Z</strong>. O usuário pode informar pontos específicos (por exemplo, <code>zmodval=c(-1,0,1)</code>) em que deseja extrair efeitos condicionais ou sondar interações. Se <code>zmodval</code> não for fornecido, o PROCESS usará níveis padrão da distribuição de Z (média ± desvio etc.). Assim como em W, se Z for multicategórica com codificações especiais (zcatcode), o zmodval perde o sentido ou pode causar inconsistência. Dessa forma, zmodval é o parâmetro que permite <strong>customizar os níveis</strong> em que se examina a moderação de Z.</p>
-</section><section id="center" class="level3"><h3 class="anchored" data-anchor-id="center"><code>center</code></h3>
+</section>
+<section id="center" class="level3">
+<h3 class="anchored" data-anchor-id="center"><code>center</code></h3>
 <p>Controla a centralização (em torno da média) das variáveis envolvidas na criação de produtos de moderação antes da estimação do modelo (0, 1, 2); <code>center = 0</code> (padrão): não realiza a centralização das médias; <code>center = 1</code>: centraliza todas as variáveis (contínuas ou dicotômicas) usadas na formação de produtos. Os efeitos condicionais apresentados serão calculados com base nas variáveis já centradas em seus valores médios; <code>center = 2</code>: centraliza apenas as variáveis contínuas envolvidas em produtos, mantendo variáveis dicotômicas inalteradas. Variáveis multicategóricas não são centralizadas em nenhuma das opções, pois não há significado em centrá-las. Caso sejam especificados valores de moderadores (por exemplo, <code>wmodval</code>) ao mesmo tempo em que se utiliza o mean-centering, esses valores devem ser informados levando em conta a nova métrica centrada.</p>
-</section><section id="conf" class="level3"><h3 class="anchored" data-anchor-id="conf"><code>conf</code></h3>
+</section>
+<section id="conf" class="level3">
+<h3 class="anchored" data-anchor-id="conf"><code>conf</code></h3>
 <p>Nível de confiança para intervalos de confiança gerados com bootstrap: de 50 a 99.9999 (padrão = 95).</p>
-</section><section id="seed" class="level3"><h3 class="anchored" data-anchor-id="seed"><code>seed</code></h3>
+</section>
+<section id="seed" class="level3">
+<h3 class="anchored" data-anchor-id="seed"><code>seed</code></h3>
 <p>Um número inteiro para reprodutibilidade no bootstrap.</p>
-</section><section id="decimals" class="level3"><h3 class="anchored" data-anchor-id="decimals"><code>decimals</code></h3>
+</section>
+<section id="decimals" class="level3">
+<h3 class="anchored" data-anchor-id="decimals"><code>decimals</code></h3>
 <p>Valor especificando precisão decimal (padrão = 10.4 - quatro casas decimais).</p>
-</section><section id="maxboot" class="level3"><h3 class="anchored" data-anchor-id="maxboot"><code>maxboot</code></h3>
+</section>
+<section id="maxboot" class="level3">
+<h3 class="anchored" data-anchor-id="maxboot"><code>maxboot</code></h3>
 <p>Máximo de tentativas para substituir amostras bootstrap inválidas.</p>
-</section><section id="modelres" class="level3"><h3 class="anchored" data-anchor-id="modelres"><code>modelres</code></h3>
+</section>
+<section id="modelres" class="level3">
+<h3 class="anchored" data-anchor-id="modelres"><code>modelres</code></h3>
 <p>Solicita a matriz de correlações de Pearson entre os resíduos das equações do modelo (0 = não, 1 = sim). Em alguns modelos ou para certas combinações de variáveis, os resíduos podem ser linearmente não correlacionados, resultando em correlações iguais a zero.</p>
-</section><section id="bc" class="level3"><h3 class="anchored" data-anchor-id="bc"><code>bc</code></h3>
+</section>
+<section id="bc" class="level3">
+<h3 class="anchored" data-anchor-id="bc"><code>bc</code></h3>
 <p>Usa intervalos de confiança de bootstrap com correção de viés (0 = não, 1 = sim).</p>
-</section><section id="outscreen" class="level3"><h3 class="anchored" data-anchor-id="outscreen"><code>outscreen</code></h3>
+</section>
+<section id="outscreen" class="level3">
+<h3 class="anchored" data-anchor-id="outscreen"><code>outscreen</code></h3>
 <p>Direciona saída para o console (0 = não, 1 = sim).</p>
-</section><section id="activate" class="level3"><h3 class="anchored" data-anchor-id="activate"><code>activate</code></h3>
+</section>
+<section id="activate" class="level3">
+<h3 class="anchored" data-anchor-id="activate"><code>activate</code></h3>
 <p>Não controla nenhuma funcionalidade de análise ou estatística. Serve essencialmente para “ativar” o script, imprimindo na tela (quando <code>activate = 1</code>) a mensagem de que o PROCESS está pronto para uso, além de avisos de copyright, links etc. O argumento activate funciona como um “gatilho” para exibir essas mensagens de inicialização (ou “ativação”) e não interfere nos procedimentos de modelagem, bootstrapping ou quaisquer outras opções do PROCESS.</p>
-</section><section id="describe" class="level3"><h3 class="anchored" data-anchor-id="describe"><code>describe</code></h3>
+</section>
+<section id="describe" class="level3">
+<h3 class="anchored" data-anchor-id="describe"><code>describe</code></h3>
 <p>Exibe estatísticas descritivas das variáveis do modelo (0 = não, 1 = sim).</p>
-</section><section id="listmiss" class="level3"><h3 class="anchored" data-anchor-id="listmiss"><code>listmiss</code></h3>
+</section>
+<section id="listmiss" class="level3">
+<h3 class="anchored" data-anchor-id="listmiss"><code>listmiss</code></h3>
 <p>Controla a exibição na saída dos casos que foram removidos devido a dados ausentes - listwise deletion (0 = não, 1 = sim).</p>
-</section><section id="linsum" class="level3"><h3 class="anchored" data-anchor-id="linsum"><code>linsum</code></h3>
+</section>
+<section id="linsum" class="level3">
+<h3 class="anchored" data-anchor-id="linsum"><code>linsum</code></h3>
 <p>Vetor (ou matriz) de pesos que <strong>permite testar hipóteses específicas sobre combinações lineares</strong> dos coeficientes estimados no modelo. Em termos práticos, o PROCESS calcula <span class="math inline">\(\sum \beta_i \times \text{peso}_i\)</span> e realiza um teste <em>t</em> (acompanhado de intervalo de confiança) para verificar se essa soma difere de zero. <strong>Exemplo</strong>: Para investigar a hipótese <span class="math inline">\(\beta_1 + 0.5 \times \beta_2 - 2 \times \beta_3 = 0\)</span>, forneça <code>linsum = c(0, 1, 0.5, -2)</code>, <strong>desde que</strong> o primeiro elemento (0) corresponda ao intercepto e os demais (1, 0.5, -2) coincidam com <span class="math inline">\(\beta_1\)</span>, <span class="math inline">\(\beta_2\)</span> e <span class="math inline">\(\beta_3\)</span> na <strong>ordem</strong> em que o PROCESS estima os parâmetros. <strong>Restrições</strong>: <strong>Somente</strong> para regressão linear; <strong>somente</strong> em modelos com número <strong>menor que 4</strong> (isto é, <code>model &lt; 4</code>); o tamanho do vetor de pesos <strong>exatamente</strong> coincide com a contagem de parâmetros na equação de Y (respeitando intercepto, variáveis independentes e possíveis covariáveis), bem como <strong>a ordem</strong> em que surgem no output do PROCESS. O resultado aparece no final do output como “Linear Combination Estimate and Hypothesis Test”.</p>
-</section><section id="xmint" class="level3"><h3 class="anchored" data-anchor-id="xmint"><code>xmint</code></h3>
+</section>
+<section id="xmint" class="level3">
+<h3 class="anchored" data-anchor-id="xmint"><code>xmint</code></h3>
 <p>Ativa um <strong>procedimento contrafactual</strong> para o modelo 4, transformando-o internamente em “model 74” quando configurado para 1. Em outras palavras, <code>xmint = 0</code> (padrão) não faz nenhuma mudança no modelo; <code>xmint = 1</code> redireciona a análise para um modo em que X também atua como “moderador” de si mesmo, de modo que o PROCESS calcula efeitos contrafactuais de X (por exemplo, comparando um estado de X com outro). Nesse modo, especifica-se em <code>xrefval</code> quais valores de X atuarão como referência e contrafactual para o cálculo dos efeitos. Se o usuário tentar usar <code>xmint = 1</code> em modelos que não sejam 4, o PROCESS sinaliza um erro.</p>
-</section><section id="xrefval" class="level3"><h3 class="anchored" data-anchor-id="xrefval"><code>xrefval</code></h3>
+</section>
+<section id="xrefval" class="level3">
+<h3 class="anchored" data-anchor-id="xrefval"><code>xrefval</code></h3>
 <p>Permite especificar os valores de referência e contrafactual de X ao ativar a <strong>análise contrafactual</strong> (quando <code>xmint = 1</code>). Por exemplo, em um modelo 4 convertido internamente em “model 74”, caso queira comparar <code>X = a</code> (referência) e <code>X = b</code> (contrafactual), atribui-se <code>xrefval = c(a, b)</code>; assim, o PROCESS calculará efeitos diretos, indiretos e/ou controlados levando em conta essa diferença de X entre <code>a</code> e <code>b</code>. Se X for dicotômico, <code>xrefval</code> deve corresponder aos valores de 0 e 1 (ou quaisquer dois níveis relevantes). Se o usuário não especificar <code>xrefval</code>, o PROCESS pode se recusar a realizar a estimação contrafactual, dependendo do tipo de X (contínuo versus dicotômico).</p>
-</section><section id="coval" class="level3"><h3 class="anchored" data-anchor-id="coval"><code>coval</code></h3>
+</section>
+<section id="coval" class="level3">
+<h3 class="anchored" data-anchor-id="coval"><code>coval</code></h3>
 <p>Define valores específicos para as covariáveis (caso existam) na hora de calcular efeitos condicionais, contrafactuais ou controlados. Por padrão (<code>coval = -999</code>), o PROCESS usa os valores médios amostrais das covariáveis como ponto de referência no cálculo dos efeitos. Entretanto, se o usuário desejar estimar esses efeitos em níveis particulares de uma ou mais covariáveis, basta fornecer um vetor (ou matriz) em <code>coval</code> com o mesmo comprimento (ou dimensões) correspondente ao número de covariáveis e, então, o PROCESS as fixará naqueles valores informados em vez de usar as médias. Esse argumento é especialmente útil quando se quer avaliar o modelo em cenários hipotéticos, mantendo as covariáveis em métricas distintas das médias do conjunto de dados.</p>
-</section><section id="cdeval" class="level3"><h3 class="anchored" data-anchor-id="cdeval"><code>cdeval</code></h3>
+</section>
+<section id="cdeval" class="level3">
+<h3 class="anchored" data-anchor-id="cdeval"><code>cdeval</code></h3>
 <p>Define valores específicos para os mediadores (caso existam múltiplos, deve corresponder à quantidade de mediadores) utilizados no cálculo de efeitos controlados (controlled direct effects) ou contrafactuais. Por padrão, o PROCESS usa as médias dos mediadores ao estimar efeitos diretos controlados, mas ao fornecer valores em <code>cdeval</code>, o usuário instrui o PROCESS a fixar cada mediador em um valor escolhido — por exemplo, para explorar cenários “controlados” em que o mediador assume determinado nível. Se <code>cdeval</code> contiver apenas um conjunto de valores, todos os mediadores são fixados nesses mesmos valores; caso se deseje especificar valores diferentes para cada mediador, é necessário fornecer múltiplos valores na mesma ordem em que os mediadores foram declarados. Se a quantidade ou a ordem dos valores não corresponder aos mediadores do modelo, o PROCESS gera um erro.</p>
-</section></section><section id="instruções-gerais" class="level2"><h2 class="anchored" data-anchor-id="instruções-gerais">Instruções gerais</h2>
+</section>
+</section>
+<section id="instruções-gerais" class="level2">
+<h2 class="anchored" data-anchor-id="instruções-gerais">Instruções gerais</h2>
 <p>PROCESS para R somente aceita dados em formato numérico. Assim, por exemplo, se uma variável chamada <code>sex</code> for codificada como “M” e “F” nos dados, esses códigos alfabéticos devem ser convertidos para o formato numérico (por exemplo, 0 e 1) antes de seu uso na função.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span></span>
-<span><span class="co">#&gt; # A tibble: 5 × 4</span></span>
-<span><span class="co">#&gt;   sex       X     M     Y</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 M         5     3     2</span></span>
-<span><span class="co">#&gt; 2 F         1     4     3</span></span>
-<span><span class="co">#&gt; 3 F         2     5     1</span></span>
-<span><span class="co">#&gt; 4 M         5     3     5</span></span>
-<span><span class="co">#&gt; 5 F         1     4     1</span></span>
-<span></span>
-<span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="va">dados</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">mutate</span><span class="op">(</span></span>
-<span>    sex_process <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"M"</span> <span class="op">~</span> <span class="fl">0</span>, </span>
-<span>                            .default <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
-<span>    .after <span class="op">=</span> <span class="va">sex</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">dados</span></span>
-<span><span class="co">#&gt; # A tibble: 5 × 5</span></span>
-<span><span class="co">#&gt;   sex   sex_process     X     M     Y</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 M               0     5     3     2</span></span>
-<span><span class="co">#&gt; 2 F               1     1     4     3</span></span>
-<span><span class="co">#&gt; 3 F               1     2     5     1</span></span>
-<span><span class="co">#&gt; 4 M               0     5     3     5</span></span>
-<span><span class="co">#&gt; 5 F               1     1     4     1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dados</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex       X     M     Y</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 M         5     3     2</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 F         1     4     3</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 F         2     5     1</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 M         5     3     5</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 F         1     4     1</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> dados <span class="sc">|&gt;</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">sex_process =</span> <span class="fu">case_when</span>(sex <span class="sc">==</span> <span class="st">"M"</span> <span class="sc">~</span> <span class="dv">0</span>, </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.default =</span> <span class="dv">1</span>),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">.after =</span> sex</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>dados</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 5</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex   sex_process     X     M     Y</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 M               0     5     3     2</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 F               1     1     4     3</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 F               1     2     5     1</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 M               0     5     3     5</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 F               1     1     4     1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>PROCESS não aceitará variáveis que são designadas como fatores. A designação de fator deve ser removida de uma variável antes que ela possa ser usada.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span></span>
-<span><span class="co">#&gt; # A tibble: 5 × 4</span></span>
-<span><span class="co">#&gt;   sex       X     M     Y</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 0         5     3     2</span></span>
-<span><span class="co">#&gt; 2 1         1     4     3</span></span>
-<span><span class="co">#&gt; 3 1         2     5     1</span></span>
-<span><span class="co">#&gt; 4 0         5     3     5</span></span>
-<span><span class="co">#&gt; 5 1         1     4     1</span></span>
-<span></span>
-<span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="va">dados</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">mutate</span><span class="op">(</span></span>
-<span>    sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">dados</span></span>
-<span><span class="co">#&gt; # A tibble: 5 × 4</span></span>
-<span><span class="co">#&gt;     sex     X     M     Y</span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     1     5     3     2</span></span>
-<span><span class="co">#&gt; 2     2     1     4     3</span></span>
-<span><span class="co">#&gt; 3     2     2     5     1</span></span>
-<span><span class="co">#&gt; 4     1     5     3     5</span></span>
-<span><span class="co">#&gt; 5     2     1     4     1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dados</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex       X     M     Y</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 0         5     3     2</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 1         1     4     3</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 1         2     5     1</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 0         5     3     5</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 1         1     4     1</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> dados <span class="sc">|&gt;</span> </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">sex =</span> <span class="fu">as.double</span>(sex)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>dados</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     sex     X     M     Y</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     1     5     3     2</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     2     1     4     3</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     2     2     5     1</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     1     5     3     5</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     2     1     4     1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Dados ausentes devem ser representados no banco de dados como <code>NA</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span></span>
-<span><span class="co">#&gt; # A tibble: 5 × 4</span></span>
-<span><span class="co">#&gt;   sex       X     M     Y</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 M         5     3     2</span></span>
-<span><span class="co">#&gt; 2 999       1     4     3</span></span>
-<span><span class="co">#&gt; 3 F         2     5   999</span></span>
-<span><span class="co">#&gt; 4 M         5     3     5</span></span>
-<span><span class="co">#&gt; 5 F         1   999     1</span></span>
-<span></span>
-<span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="va">dados</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">mutate</span><span class="op">(</span></span>
-<span>    <span class="fu">across</span><span class="op">(</span><span class="fu">everything</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>           \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">999</span> <span class="op">~</span> <span class="cn">NA</span>, .default <span class="op">=</span> <span class="va">x</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    sex <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"M"</span> <span class="op">~</span> <span class="fl">0</span>, <span class="va">sex</span> <span class="op">==</span> <span class="st">"F"</span> <span class="op">~</span> <span class="fl">1</span>,</span>
-<span>                    .default <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">dados</span></span>
-<span><span class="co">#&gt; # A tibble: 5 × 4</span></span>
-<span><span class="co">#&gt;     sex     X     M     Y</span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     0     5     3     2</span></span>
-<span><span class="co">#&gt; 2    NA     1     4     3</span></span>
-<span><span class="co">#&gt; 3     1     2     5    NA</span></span>
-<span><span class="co">#&gt; 4     0     5     3     5</span></span>
-<span><span class="co">#&gt; 5     1     1    NA     1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dados</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex       X     M     Y</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 M         5     3     2</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 999       1     4     3</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 F         2     5   999</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 M         5     3     5</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 F         1   999     1</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> dados <span class="sc">|&gt;</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">everything</span>(),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>           \(x) <span class="fu">case_when</span>(x <span class="sc">==</span> <span class="dv">999</span> <span class="sc">~</span> <span class="cn">NA</span>, <span class="at">.default =</span> x)),</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">sex =</span> <span class="fu">case_when</span>(sex <span class="sc">==</span> <span class="st">"M"</span> <span class="sc">~</span> <span class="dv">0</span>, sex <span class="sc">==</span> <span class="st">"F"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                    <span class="at">.default =</span> <span class="cn">NA</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>dados</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     sex     X     M     Y</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0     5     3     2</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    NA     1     4     3</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     1     2     5    NA</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     0     5     3     5</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     1     1    NA     1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>PROCESS para R requer que nomes de variáveis sejam colocados entre aspas duplas (por exemplo, y = “hello”).</p>
-<p>Quando mais de uma variável é listada como mediadora ou covariável, os nomes das variáveis devem ser separados por uma vírgula e colocados na função <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>, como em <code>m = c("med1", "med2", "med3")</code> e <code>cov = c("cov1", "cov2")</code>.</p>
-<p>A opção <code>plot</code> no PROCESS para R produz uma tabela de dados para visualizar uma interação, mas não escreve nenhum código R para produzir o gráfico, nem o PROCESS produzirá um gráfico na janela R. Salve a tabela num objeto usando a função <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble()</a></code> e utilize ggplot2 para gerar o gráfico.</p>
+<p>Quando mais de uma variável é listada como mediadora ou covariável, os nomes das variáveis devem ser separados por uma vírgula e colocados na função <code>c()</code>, como em <code>m = c("med1", "med2", "med3")</code> e <code>cov = c("cov1", "cov2")</code>.</p>
+<p>A opção <code>plot</code> no PROCESS para R produz uma tabela de dados para visualizar uma interação, mas não escreve nenhum código R para produzir o gráfico, nem o PROCESS produzirá um gráfico na janela R. Salve a tabela num objeto usando a função <code>tribble()</code> e utilize ggplot2 para gerar o gráfico.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Focal predictor<span class="sc">:</span> <span class="fu">X</span> (X)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Moderator<span class="sc">:</span> <span class="fu">W</span> (W)</span>
@@ -583,42 +717,43 @@ window.Quarto = {
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fl">3.703</span>                 <span class="fl">1.000</span>                <span class="fl">5.000</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">X</span>,     <span class="op">~</span><span class="va">W</span>,     <span class="op">~</span><span class="va">Y</span>,</span>
-<span>  <span class="fl">2.286</span>,  <span class="fl">0.000</span>,  <span class="fl">3.471</span>,</span>
-<span>  <span class="fl">3.000</span>,  <span class="fl">0.000</span>,  <span class="fl">4.471</span>,</span>
-<span>  <span class="fl">3.703</span>,  <span class="fl">0.000</span>,  <span class="fl">5.456</span>,</span>
-<span>  <span class="fl">2.286</span>,  <span class="fl">1.000</span>,  <span class="fl">2.000</span>,</span>
-<span>  <span class="fl">3.000</span>,  <span class="fl">1.000</span>,  <span class="fl">3.500</span>,</span>
-<span>  <span class="fl">3.703</span>,  <span class="fl">1.000</span>,  <span class="fl">5.000</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">dados</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 3</span></span>
-<span><span class="co">#&gt;       X     W     Y</span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1  2.29     0  3.47</span></span>
-<span><span class="co">#&gt; 2  3        0  4.47</span></span>
-<span><span class="co">#&gt; 3  3.70     0  5.46</span></span>
-<span><span class="co">#&gt; 4  2.29     1  2   </span></span>
-<span><span class="co">#&gt; 5  3        1  3.5 </span></span>
-<span><span class="co">#&gt; 6  3.70     1  5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>X,     <span class="sc">~</span>W,     <span class="sc">~</span>Y,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fl">2.286</span>,  <span class="fl">0.000</span>,  <span class="fl">3.471</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fl">3.000</span>,  <span class="fl">0.000</span>,  <span class="fl">4.471</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fl">3.703</span>,  <span class="fl">0.000</span>,  <span class="fl">5.456</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fl">2.286</span>,  <span class="fl">1.000</span>,  <span class="fl">2.000</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fl">3.000</span>,  <span class="fl">1.000</span>,  <span class="fl">3.500</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fl">3.703</span>,  <span class="fl">1.000</span>,  <span class="fl">5.000</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>dados</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       X     W     Y</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  2.29     0  3.47</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  3        0  4.47</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  3.70     0  5.46</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  2.29     1  2   </span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  3        1  3.5 </span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  3.70     1  5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X</span>, y <span class="op">=</span> <span class="va">Y</span>, </span>
-<span>        color <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">W</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span></span>
-<span>    method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">F</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="fu">as_factor</span>(W))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="funcao-process-r_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="funcao-process-r_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
@@ -628,7 +763,10 @@ window.Quarto = {
 
 <!-- -->
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -771,7 +909,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/pablo-huascar\.github\.io\/pesquisa_quanti_psi_ufc\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1634,7 +1772,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Esta página foi construída com <a href="https://quarto.org/">Quarto</a>.</p>
 </div>   
@@ -1646,6 +1785,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+
+
 
 
 </body></html>
