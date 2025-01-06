@@ -56,6 +56,8 @@ iris_filter <- iris |>
 
 # Bancos de dados utilizados
 
+##  {background-image="img/pinguins.png" background-size="contain"}
+
 ## `penguins` {.smaller}
 
 Medidas de tamanho para pinguins forrageadores adultos perto da Estação Palmer, Antártida. Inclui medidas para espécies de pinguins, ilha no Arquipélago Palmer, tamanho (comprimento da nadadeira, massa corporal, dimensões do bico) e sexo.
@@ -90,6 +92,8 @@ penguins |>
     style = 1, color = "gray"
   )
 ```
+
+##  {background-image="img/iris.png" background-size="contain"}
 
 ## `iris` {.smaller}
 
