@@ -59,7 +59,6 @@ epi.2by2(dat = comida_de_gato, method = "cross.sectional",
          interpret = F, outcome = "as.columns")
 ```
 
-
 ## 
 
 Cada linha deste conjunto de dados representa as informações de uma única mãe. Estamos interessados na associação entre smoke (o status tabagista da mãe durante a gravidez) e low (parto de um bebê com menos de 2,5 kg de peso corporal).
@@ -90,4 +89,3 @@ df |>
     outcome = "as.columns"
   )
 ```
-

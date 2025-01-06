@@ -16,7 +16,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-
 ```{r}
 #| label: setup
 library(tidyverse)
@@ -268,6 +267,7 @@ economics |>
 Calcule a média de todas as variáveis numéricas do banco de dados `treinos`
 
 ## Resposta
+
 ```{r}
 #| echo: true
 treinos |> 
@@ -362,4 +362,3 @@ flights |>
     n = n()
   )
 ```
-

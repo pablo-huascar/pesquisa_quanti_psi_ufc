@@ -142,7 +142,6 @@ ehelde <- ehelde |>
   select(-id)
 ```
 
-
 ## AFE
 
 ```{r}
@@ -170,9 +169,7 @@ afe_resultado <- efa(
 psych::fa(r = ehelde_afe, nfactors = 2, rotate = "oblimin", fm = "pa")
 ```
 
-
 ```{r}
 #| eval: false
 summary(afe_ehelde, cutoff = 0.3, lambda = T)
 ```
-
