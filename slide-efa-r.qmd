@@ -21,6 +21,7 @@ source("./_common.R")
 ```{r}
 #| label: setup
 library(tidyverse)
+library(janitor)
 library(haven)
 library(readxl)
 library(careless)
@@ -29,10 +30,16 @@ library(lavaan)
 ```
 
 ```{r}
-df <- read_spss("data/empatia.sav")
+#
+df <- read_spss("data/empatia.sav") |> 
+  clean_names()
 itens <- read_excel("data/formulario_empatia.xlsx")
 ```
 
+```{r}
+df <- df |> 
+  select(r1:r14)
+```
 
 ```{r}
 itens |> 
@@ -40,10 +47,9 @@ itens |>
   colnames()
 ```
 
-
 ```{r}
 #| eval: false
-df <- read_csv("data/racismo_afetos_empatia.csv")
+
 fantasia_nomes <- str_c(rep("f", 7), 1:7)
 consideracao_empatica_nomes <- str_c(rep("ce", 7), 1:7)
 angustia_pessoal_nomes <- str_c(rep("ap", 6), 1:6)
