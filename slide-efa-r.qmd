@@ -21,14 +21,25 @@ source("./_common.R")
 ```{r}
 #| label: setup
 library(tidyverse)
+library(haven)
+library(readxl)
 library(careless)
 library(gt)
 library(lavaan)
 ```
 
 ```{r}
-df <- read_csv("data/escala_de_racismo_moderno.csv")
+df <- read_spss("data/empatia.sav")
+itens <- read_excel("data/formulario_empatia.xlsx")
 ```
+
+
+```{r}
+itens |> 
+  select(`Eles têm conseguido mais do que merecem`:`Possuem uma beleza diferente`) |> 
+  colnames()
+```
+
 
 ```{r}
 #| eval: false
@@ -121,7 +132,7 @@ df |>
   )
 ```
 
-##
+## Preparação dos dados para a análise
 
 ```{r}
 #| echo: true
@@ -129,26 +140,26 @@ escala_de_racismo <- df |>
   select(np1:ad5) # <1>
 ```
 
-1. Criar um objeto somente com os itens da escala
+1.  Criar um objeto somente com os itens da escala
 
 ## 
--   `ordered = T` implica em "WLSMV": 
+
+-   `ordered = T` implica em "WLSMV":
+
     -   `estimator = "DWLS"`
     -   `se = "robust.sem"`
     -   `test = "scaled.shifted"`
-```{r}
-#| echo: true
-resultado_afe <- efa(
-  data = escala_de_racismo, nfactors = 2, 
-  ordered = T
-  )
-```
 
-##
+    ```{r}
+    #| echo: true
+    resultado_afe <- efa(
+      data = escala_de_racismo, nfactors = 2, 
+      ordered = T
+      )
+    ```
+
+## 
 
 ```{r}
 summary(resultado_afe)
 ```
-
-
-
