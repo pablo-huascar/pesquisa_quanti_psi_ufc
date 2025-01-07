@@ -1,0 +1,80 @@
+---
+title: "org_banco_empatia"
+format: html
+editor_options: 
+  chunk_output_type: console
+eval: false
+---
+
+```{r}
+#| eval: false
+#| label: setup
+ 
+library(tidyverse)
+library(janitor)
+library(haven)
+library(readxl)
+library(careless)
+library(gt)
+library(lavaan)
+```
+
+```{r}
+#| eval: false
+df <- read_spss("data/empatia.sav") |> 
+  clean_names()
+
+itens <- read_excel("data/formulario_empatia.xlsx")
+```
+
+```{r}
+#| eval: false
+racismo <- df |> 
+  select(r1:r14, sexo:area_de_formacao)
+```
+
+```{r}
+#| eval: false
+itens_racismo <- itens |> 
+  select(`Eles têm conseguido mais do que merecem`:`Possuem uma beleza diferente`) |> 
+  names() |> 
+  tibble(Itens = _) 
+```
+
+```{r}
+#| eval: false
+variaveis_racismo <- racismo |> 
+  select(r1:r14) |> 
+  names() |> 
+  tibble(Variáveis = _)
+```
+
+```{r}
+fator_racismo <- tibble(
+  Fator = c(rep("Negação do preconceito", 7),
+            rep("Afirmação das diferenças", 3),
+            rep("Negação do preconceito", 2),
+            rep("Afirmação das diferenças", 2))
+)
+```
+
+
+```{r}
+variaveis_racismo |> 
+  bind_cols(itens_racismo) |> 
+  bind_cols(fator_racismo)
+```
+
+
+```{r}
+racismo_efa <- racismo |> 
+  select(r1:r14)
+```
+
+```{r}
+efa(data = racismo_efa, nfactors = 2, ordered = T)
+```
+
+
+
+
