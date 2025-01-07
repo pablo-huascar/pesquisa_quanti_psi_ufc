@@ -27,149 +27,128 @@ library(lavaan)
 ```
 
 ```{r}
-livro_de_codigos <- read_csv("https://figshare.com/ndownloader/files/51051455")
-df <- read_csv("https://figshare.com/ndownloader/files/51051452")
+df <- read_csv("data/escala_de_racismo_moderno.csv")
 ```
 
-# Bancos de dados utilizados
+```{r}
+#| eval: false
+df <- read_csv("data/racismo_afetos_empatia.csv")
+fantasia_nomes <- str_c(rep("f", 7), 1:7)
+consideracao_empatica_nomes <- str_c(rep("ce", 7), 1:7)
+angustia_pessoal_nomes <- str_c(rep("ap", 6), 1:6)
+tomada_de_perspectiva_nomes <- str_c(rep("tp", 6), 1:6)
+negacao_do_preconceito_nomes <- str_c(rep("np", 9), 1:9)
+afirmacao_das_diferencas_nomes <- str_c(rep("ad", 5), 1:5)
+afetos_negativos_nomes <- str_c(rep("afn", 10), 1:10)
+afetos_positivos_nomes <- str_c(rep("afp", 10), 1:10)
+demo_nomes <- c("sexo", "idade", "raca", "estado_civil",
+                "renda_familiar", "dependentes_da_renda", 
+                "area_de_estudos")
 
-## Escala de Hetero Avaliação do Estilo de Liderança do Diretor Escolar: foco em pessoas {.smaller}
+nomes <- fantasia_nomes |> 
+  union_all(consideracao_empatica_nomes) |> 
+  union_all(angustia_pessoal_nomes) |> 
+  union_all(tomada_de_perspectiva_nomes) |> 
+  union_all(negacao_do_preconceito_nomes) |> 
+  union_all(afirmacao_das_diferencas_nomes) |> 
+  union_all(afetos_negativos_nomes) |> 
+  union_all(afetos_positivos_nomes) |> 
+  union_all(demo_nomes)
+```
 
 ```{r}
-livro_de_codigos |>
-  filter(str_detect(Variável, str_c(
-    "^ehelde3$", "^ehelde6$", "^ehelde7$",
-    "^ehelde10$", "^ehelde14$", "^ehelde20$",
-    "^ehelde23$", "^ehelde24$", "^ehelde27$",
-    "^ehelde28$", "^ehelde32$", "^ehelde33$",
-    "^ehelde35$", "^ehelde41$", "^ehelde46$",
-    "^ehelde52$", sep = "|"
-  ))) |> 
-  select(Variável, Descrição, Direção) |> 
+#| eval: false
+df <- df |> 
+  rename_with(.fn = ~nomes, .cols = fantasy1:academic_background)
+```
+
+```{r}
+#| eval: false
+df <- df |> 
   mutate(
-    Direção = case_when(Direção == "-" ~ "Positiva")
-  ) |> 
-  gt() |> 
-  tab_style(
-    style = cell_text(align = "center"),
-    locations = cells_column_labels(columns = Descrição)
-  ) |>
-  tab_options(
-    table.font.size = "12px"
-  ) |> 
-  opt_stylize(
-    style = 1, color = "gray"
+    sexo = fct_recode(sexo, 
+                      Masculino = "Male", 
+                      Feminino = "Female"),
+    raca = fct_recode(raca, 
+                      Pardo = "brown",
+                      Branco = "white",
+                      Amarelo = "asian",
+                      Preto = "black",
+                      "Indígena" = "indigenous"),
+    estado_civil = fct_recode(estado_civil, 
+                              Solteiro = "single",
+                              "Casado ou União estável" = "married_partnered"),
+    area_de_estudos = fct_recode(area_de_estudos,
+                                 "Ciências sociais, artes e educação" = 
+                                   "social_sciences_arts_education",
+                                 "Ciências exatas e biológicas"  = 
+                                   "exact_ biological_sciences",
+                                 "Saúde" = "healthcare")
   )
 ```
 
-## Escala de Hetero Avaliação do Estilo de Liderança do Diretor Escolar: foco em resultados
-
 ```{r}
+#| eval: false
+df |> 
+  write_csv("data/racismo_afetos_empatia_pt")
 
-livro_de_codigos |>
-  filter(str_detect(Variável, str_c(
-    "^ehelde43$", "^ehelde30$", "^ehelde39$", 
-    "^ehelde34$", "^ehelde37$", sep = "|"
-  ))) |> 
-  select(Variável, Descrição, Direção) |>  
-  mutate(
-    Direção = case_when(Direção == "-" ~ "Positiva")
-  ) |> 
-  gt() |> 
-  tab_style(
-    style = cell_text(align = "center"),
-    locations = cells_column_labels(columns = Descrição)
-  ) |>
-  tab_options(
-    table.font.size = "12px"
-  ) |> 
-  opt_stylize(
-    style = 1, color = "gray"
-  )
+df |> 
+  select(np1:ad5, sexo:area_de_estudos) |> 
+  write_csv("data/escala_de_racismo_moderno.csv")
 ```
+
+## Escala de Racismo Moderno
 
 ## Uma olhada nos dados
 
 ```{r}
+#| tbl-cap: Uma amostra aleatória de dez casos do banco de dados 
+#| tbl-cap-location: bottom
 set.seed(123)
-
 df |> 
-  select(ehelde3,  ehelde6, ehelde7, 
-         ehelde10, ehelde14, ehelde20, 
-         ehelde23, ehelde24, ehelde27,
-         ehelde28, ehelde32, ehelde33, 
-         ehelde35, ehelde41, ehelde46,
-         ehelde52, ehelde43, ehelde30, 
-         ehelde39, ehelde34, ehelde37) |> 
+  select(starts_with("np"), starts_with("ad")) |> 
   slice_sample(n = 10) |> 
   gt() |> 
-  fmt_number(
-    decimals = 1
-  ) |> 
   cols_align(
     align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
   ) |> 
   opt_stylize(
     style = 1, color = "gray"
   )
 ```
 
-# Avaliação de pressupostos
+##
+
+```{r}
+#| echo: true
+escala_de_racismo <- df |> 
+  select(np1:ad5) # <1>
+```
+
+1. Criar um objeto somente com os itens da escala
 
 ## 
-
+-   `ordered = T` implica em "WLSMV": 
+    -   `estimator = "DWLS"`
+    -   `se = "robust.sem"`
+    -   `test = "scaled.shifted"`
 ```{r}
-ehelde <- df |> 
-  select(starts_with("ehelde")) |> 
-  mutate(
-    id = 1:n(), .before = 1
-  )
-
-descuidadas <- longstring(ehelde, avg = T) |> 
-  as_tibble() |> 
-  mutate(
-    id = 1:n(), .before = 1
-  ) |> 
-  arrange(desc(longstr))  
-  
-casos_remover <- descuidadas |> 
-  filter(longstr >= length(ehelde) - 1) |> 
-  select(id) |> 
-  pull()
-
-ehelde <- ehelde |> 
-  filter(!id %in% casos_remover) |> 
-  select(-id)
-```
-
-## AFE
-
-```{r}
-#| eval: false
-ehelde_afe <- ehelde |> 
-  select(ehelde3,  ehelde6, ehelde7, 
-         ehelde10, ehelde14, ehelde20, 
-         ehelde23, ehelde24, ehelde27,
-         ehelde28, ehelde32, ehelde33, 
-         ehelde35, ehelde41, ehelde46,
-         ehelde52, ehelde43, ehelde30, 
-         ehelde39, ehelde34, ehelde37)
-```
-
-```{r}
-#| eval: false
-afe_resultado <- efa(
-  data = ehelde_afe, nfactors = 2, 
-  ordered = F, estimator = "MLR",
-  rotation = "oblimin"
+#| echo: true
+resultado_afe <- efa(
+  data = escala_de_racismo, nfactors = 2, 
+  ordered = T
   )
 ```
 
-```{r}
-psych::fa(r = ehelde_afe, nfactors = 2, rotate = "oblimin", fm = "pa")
-```
+##
 
 ```{r}
-#| eval: false
-summary(afe_ehelde, cutoff = 0.3, lambda = T)
+summary(resultado_afe)
 ```
+
+
+

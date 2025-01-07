@@ -1,0 +1,311 @@
+np1,np2,np3,np4,np5,np6,np7,np8,np9,ad1,ad2,ad3,ad4,ad5,sexo,idade,raca,estado_civil,renda_familiar,dependentes_da_renda,area_de_estudos
+1,1,1,1,1,1,2,1,2,2,2,2,2,2,Female,21,brown,single,3600,2,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,24,brown,single,3000,4,exact_ biological_sciences
+1,1,4,5,1,1,1,1,1,1,1,2,2,1,Male,20,brown,single,1200,5,social_sciences_arts_education
+1,1,4,1,1,1,2,1,2,4,2,7,4,4,Female,21,white,single,2000,5,social_sciences_arts_education
+1,1,3,2,1,1,3,1,2,4,3,7,3,1,Male,18,brown,single,500,2,exact_ biological_sciences
+1,2,1,3,1,1,3,1,2,1,1,7,1,1,Male,21,white,single,5000,5,healthcare
+1,1,3,2,1,1,2,1,2,4,2,4,4,4,Female,18,brown,single,4000,5,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,19,white,single,2862,2,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,2,1,1,1,2,Female,18,brown,single,2745,5,healthcare
+3,4,3,5,3,3,2,1,3,1,6,7,1,1,Female,19,white,single,1650,3,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,22,white,single,1500,3,social_sciences_arts_education
+1,1,1,1,1,1,2,1,3,1,1,1,1,1,Male,28,brown,single,3500,4,social_sciences_arts_education
+4,1,2,2,4,1,2,1,1,1,1,1,1,1,Male,20,brown,single,2700,3,social_sciences_arts_education
+1,1,3,3,1,1,7,1,3,1,1,1,5,1,Female,20,brown,single,2000,4,social_sciences_arts_education
+1,1,2,1,1,1,1,1,1,4,6,4,4,4,Female,24,brown,single,2500,5,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,3,1,Female,18,white,single,3000,5,social_sciences_arts_education
+1,1,4,1,1,1,2,1,1,4,5,7,1,4,Male,27,white,single,6500,8,social_sciences_arts_education
+1,1,1,1,1,1,2,1,1,1,2,2,1,1,Male,26,brown,single,5000,6,social_sciences_arts_education
+1,1,1,2,1,2,1,1,1,1,1,1,1,1,Female,25,brown,single,1000,5,social_sciences_arts_education
+1,1,1,1,1,1,3,1,2,1,1,1,1,1,Female,25,white,single,1000,4,social_sciences_arts_education
+2,1,1,1,1,1,3,2,2,2,1,1,1,1,Female,22,brown,single,3500,4,social_sciences_arts_education
+1,1,3,2,1,1,2,1,2,3,3,3,3,3,Female,21,brown,single,1000,2,social_sciences_arts_education
+1,1,1,1,1,2,1,1,1,2,2,3,3,1,Male,18,brown,single,980,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,4,1,Female,21,white,single,2000,2,social_sciences_arts_education
+1,1,2,1,1,1,3,1,2,1,1,2,2,1,Male,19,white,single,2500,2,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,18,brown,single,1200,4,healthcare
+1,1,3,4,1,1,7,1,1,1,1,1,1,1,Female,19,brown,single,2600,2,social_sciences_arts_education
+1,1,1,2,1,1,1,1,1,2,1,1,1,1,Male,21,brown,single,900,4,social_sciences_arts_education
+1,2,1,3,1,1,7,1,2,1,1,1,1,1,Female,20,white,single,900,1,social_sciences_arts_education
+1,1,1,1,1,1,3,1,1,1,1,1,2,1,Female,20,brown,single,1250,4,social_sciences_arts_education
+3,1,3,1,1,1,7,1,1,4,4,4,4,4,Female,19,brown,single,2000,4,social_sciences_arts_education
+1,1,1,2,1,1,2,1,1,1,1,1,1,1,Male,18,asian,single,7000,5,social_sciences_arts_education
+1,1,1,1,1,1,3,1,2,1,1,1,3,1,Female,19,brown,single,3000,3,social_sciences_arts_education
+1,1,4,1,1,2,2,1,5,1,1,2,5,1,Male,24,black,single,1600,4,social_sciences_arts_education
+2,2,1,1,1,1,2,1,1,1,1,1,4,1,Male,24,white,single,4000,4,social_sciences_arts_education
+1,1,3,1,1,1,1,1,1,1,2,5,5,1,Female,18,brown,single,500,5,social_sciences_arts_education
+1,1,1,1,1,1,2,1,2,1,3,1,1,1,Male,18,brown,single,1200,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,2,1,Female,22,black,single,800,8,exact_ biological_sciences
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,22,white,single,4000,4,exact_ biological_sciences
+5,1,2,3,3,2,3,4,3,1,6,4,4,1,Male,24,brown,single,10000,5,exact_ biological_sciences
+1,1,1,1,1,1,2,1,2,2,1,2,4,3,Male,21,brown,single,1800,4,social_sciences_arts_education
+1,1,3,3,1,1,3,1,2,1,1,4,2,1,Male,19,white,single,5000,5,social_sciences_arts_education
+1,1,1,1,1,1,2,1,1,1,1,1,1,1,Female,20,black,single,3000,3,social_sciences_arts_education
+1,1,1,3,1,1,2,1,1,1,2,4,1,1,Male,21,black,single,4000,5,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,21,white,single,800,3,social_sciences_arts_education
+1,3,3,1,2,1,4,1,4,2,4,2,5,2,Male,24,white,single,2000,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,4,4,4,4,4,Female,23,white,single,3500,5,social_sciences_arts_education
+1,1,3,1,1,1,1,1,5,1,1,1,1,1,Female,21,black,single,998,2,social_sciences_arts_education
+1,1,7,1,1,1,2,1,1,1,1,3,1,1,Male,21,white,single,5000,5,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,4,1,1,4,4,Female,21,white,single,3000,4,social_sciences_arts_education
+2,1,1,1,1,1,2,1,1,2,1,2,1,4,Male,23,white,single,4000,2,healthcare
+1,1,1,1,1,1,7,1,4,4,1,1,5,4,Female,20,black,single,1220,1,healthcare
+1,1,1,1,1,1,1,1,5,1,1,1,1,1,Female,20,white,single,500,4,social_sciences_arts_education
+1,1,2,4,1,1,2,1,3,1,2,3,2,1,Female,25,black,single,4000,6,social_sciences_arts_education
+1,2,5,1,1,1,3,1,1,3,3,1,1,1,Male,20,black,single,1500,4,exact_ biological_sciences
+1,4,5,2,1,1,3,1,1,1,1,7,4,1,Female,20,brown,single,1014,3,exact_ biological_sciences
+1,1,3,1,1,1,2,1,6,1,1,5,2,1,Female,19,brown,single,2500,4,exact_ biological_sciences
+6,5,2,6,1,2,2,1,3,4,5,7,5,2,Female,22,brown,single,2500,5,exact_ biological_sciences
+1,1,1,2,1,2,1,1,1,1,1,6,1,1,Female,23,white,single,1000,4,exact_ biological_sciences
+1,2,1,2,1,1,2,1,2,2,3,1,1,2,Female,32,white,married_partnered,2500,2,exact_ biological_sciences
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,20,white,single,4000,5,exact_ biological_sciences
+1,1,1,1,1,1,7,1,1,1,1,1,1,1,Female,22,brown,single,4000,5,exact_ biological_sciences
+1,1,4,1,1,1,1,1,2,3,4,4,5,2,Female,20,white,single,1500,5,exact_ biological_sciences
+4,4,4,1,1,3,4,1,1,1,1,4,4,1,Female,26,black,single,1800,5,exact_ biological_sciences
+7,5,7,4,2,5,2,5,3,4,4,1,4,1,Male,25,white,single,1996,4,exact_ biological_sciences
+1,1,1,1,1,7,4,1,1,1,7,7,1,1,Male,20,black,single,2500,2,exact_ biological_sciences
+2,2,4,4,4,4,4,1,2,4,4,2,4,4,Female,20,white,single,1800,3,social_sciences_arts_education
+1,1,2,1,1,2,1,1,3,3,4,4,5,3,Male,19,brown,single,400,1,exact_ biological_sciences
+1,1,3,1,1,1,3,1,1,1,1,1,1,1,Male,23,brown,single,1500,3,social_sciences_arts_education
+1,1,2,2,1,6,1,1,1,2,4,1,7,1,Female,21,black,single,3000,6,exact_ biological_sciences
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,32,white,single,7380,3,social_sciences_arts_education
+1,1,1,1,1,1,2,1,1,4,1,1,4,4,Female,19,brown,single,998,2,social_sciences_arts_education
+1,1,1,1,1,1,2,1,1,1,1,4,1,1,Female,23,asian,married_partnered,1300,2,social_sciences_arts_education
+1,1,4,1,1,1,3,4,3,2,2,4,3,2,Female,25,brown,single,212,6,social_sciences_arts_education
+1,1,2,1,1,1,3,1,3,4,4,6,6,3,Male,20,indigenous,single,4000,5,exact_ biological_sciences
+3,3,4,3,2,2,4,2,3,5,6,7,7,5,Male,19,white,single,2000,3,exact_ biological_sciences
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,20,brown,single,3500,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,2,2,4,3,2,Male,21,white,single,2700,4,social_sciences_arts_education
+1,1,1,3,2,1,1,1,2,4,4,6,4,4,Female,21,white,single,3000,5,healthcare
+1,1,1,1,1,1,1,1,1,3,3,5,3,3,Female,25,brown,married_partnered,1800,2,healthcare
+1,6,7,7,4,4,7,1,7,7,7,1,1,1,Male,24,white,single,3000,4,healthcare
+1,1,1,1,1,1,3,1,1,4,4,4,4,4,Male,20,white,single,900,3,social_sciences_arts_education
+1,1,2,1,1,1,2,1,1,1,1,1,1,1,Female,18,white,single,8000,3,social_sciences_arts_education
+1,1,1,2,1,1,2,1,5,3,1,1,1,1,Female,23,white,single,1300,5,healthcare
+1,1,5,1,1,1,2,1,1,4,4,3,4,4,Female,20,white,single,2000,4,social_sciences_arts_education
+1,2,2,3,1,4,1,1,1,4,1,7,7,3,Female,18,brown,single,5000,4,healthcare
+1,2,2,3,1,4,1,1,1,4,1,7,7,3,Female,18,brown,single,5000,4,healthcare
+1,3,1,1,1,1,1,1,1,5,5,4,5,3,Male,25,brown,single,1500,4,exact_ biological_sciences
+1,1,3,4,1,1,2,1,3,1,1,1,1,1,Female,24,brown,single,3000,5,exact_ biological_sciences
+6,5,6,2,1,2,4,1,2,1,1,1,1,1,Male,20,brown,single,700,3,exact_ biological_sciences
+1,1,2,1,1,1,1,1,1,1,1,1,1,1,Female,22,brown,single,4000,4,social_sciences_arts_education
+5,2,3,2,3,1,5,6,2,1,2,2,1,1,Male,22,white,single,2000,4,exact_ biological_sciences
+2,1,1,1,1,1,1,1,1,1,1,4,2,1,Female,21,white,single,600,3,social_sciences_arts_education
+1,1,1,1,4,3,1,4,4,1,1,1,1,1,Female,22,brown,married_partnered,1000,2,social_sciences_arts_education
+1,1,2,1,1,1,1,1,1,2,2,7,4,1,Male,21,brown,single,800,4,social_sciences_arts_education
+1,1,3,1,1,1,2,1,1,5,3,5,4,4,Female,19,white,single,1500,6,healthcare
+1,1,3,1,1,1,1,1,1,1,2,4,1,1,Female,23,white,single,4000,4,social_sciences_arts_education
+4,3,3,4,4,7,3,1,7,1,4,7,7,1,Male,19,white,single,5000,3,exact_ biological_sciences
+1,1,3,1,1,1,7,1,1,1,1,1,3,1,Male,21,brown,single,17000,5,social_sciences_arts_education
+2,3,4,4,2,1,4,1,2,3,5,6,3,3,Male,21,brown,single,950,4,exact_ biological_sciences
+2,5,4,5,2,4,4,1,4,2,3,3,3,3,Male,21,brown,single,2300,4,exact_ biological_sciences
+1,1,2,7,1,1,4,1,2,4,4,7,7,4,Male,24,white,single,1996,5,exact_ biological_sciences
+4,1,1,4,1,1,1,1,1,1,1,4,6,1,Male,23,white,single,3000,5,exact_ biological_sciences
+4,4,5,4,4,1,6,3,7,1,3,1,6,1,Male,22,white,single,10000,5,exact_ biological_sciences
+4,4,5,4,4,1,6,3,7,1,3,1,6,1,Male,22,white,single,10000,5,exact_ biological_sciences
+4,4,5,4,4,1,6,3,7,1,3,1,6,1,Male,22,white,single,10000,5,exact_ biological_sciences
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,18,brown,single,1700,2,exact_ biological_sciences
+1,1,2,1,1,1,1,1,1,4,4,4,4,4,Male,25,white,single,4000,5,social_sciences_arts_education
+1,1,1,1,1,1,7,1,3,1,1,3,2,1,Male,19,white,single,1800,4,healthcare
+1,1,2,2,1,1,1,1,2,1,1,3,1,1,Female,18,asian,single,3000,3,healthcare
+1,4,2,2,1,1,3,1,1,1,1,7,1,1,Male,21,black,single,2000,4,exact_ biological_sciences
+1,1,3,1,1,1,1,1,1,2,3,2,4,2,Male,21,white,single,954,6,social_sciences_arts_education
+2,2,1,6,1,1,2,1,2,3,2,2,3,2,Male,23,brown,single,400,1,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,24,brown,single,980,5,social_sciences_arts_education
+1,1,2,1,1,1,1,1,3,1,1,1,2,1,Female,18,white,single,434,3,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,4,1,1,Female,22,brown,single,900,2,social_sciences_arts_education
+5,2,4,4,3,4,2,2,2,2,2,2,2,2,Female,18,black,single,3000,4,social_sciences_arts_education
+1,1,1,1,1,1,3,1,1,1,1,7,1,1,Female,23,black,single,500,1,social_sciences_arts_education
+1,1,2,1,1,1,2,1,1,1,1,1,1,1,Female,22,black,single,998,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,21,white,single,650,4,social_sciences_arts_education
+6,5,2,7,3,2,3,5,3,4,2,4,3,3,Male,19,brown,single,2000,1,exact_ biological_sciences
+4,1,2,3,4,6,6,1,3,7,5,6,4,4,Male,19,brown,single,3500,5,exact_ biological_sciences
+5,4,4,6,4,2,5,7,7,4,4,2,5,1,Male,18,brown,single,1800,5,exact_ biological_sciences
+1,1,2,2,1,1,3,1,1,3,1,4,3,3,Female,18,white,single,1000,4,exact_ biological_sciences
+1,1,6,1,4,7,1,1,1,1,1,7,7,1,Male,18,white,single,1900,4,exact_ biological_sciences
+1,1,1,1,1,1,2,1,1,3,2,4,4,3,Female,21,white,single,350,1,exact_ biological_sciences
+1,1,3,2,2,2,2,1,1,2,3,2,3,2,Female,19,brown,single,2600,3,exact_ biological_sciences
+1,1,2,1,1,1,1,1,1,4,1,1,7,4,Female,18,brown,single,800,2,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,27,brown,single,2500,4,healthcare
+1,1,1,1,1,1,3,1,1,1,1,1,1,1,Female,23,brown,single,2900,4,healthcare
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,18,white,single,6000,3,social_sciences_arts_education
+1,1,1,1,1,1,4,1,1,1,1,1,1,1,Female,21,black,single,4000,3,social_sciences_arts_education
+2,1,1,2,1,1,5,1,2,1,1,4,1,1,Male,21,brown,single,3000,3,healthcare
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,21,white,single,4000,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,57,brown,single,4500,3,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,20,white,single,1800,4,social_sciences_arts_education
+1,2,2,2,1,2,2,1,1,2,3,2,3,2,Female,32,black,single,3000,6,healthcare
+1,1,1,1,1,1,1,1,1,1,2,4,2,1,Female,20,brown,single,9000,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,22,white,single,2000,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,20,black,single,10000,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,2,1,1,1,4,1,Female,27,black,married_partnered,4000,1,social_sciences_arts_education
+2,2,2,2,1,1,2,1,4,1,1,7,1,1,Male,27,brown,single,2600,1,social_sciences_arts_education
+1,5,6,1,1,1,2,1,5,1,4,1,1,1,Female,20,brown,single,4000,5,social_sciences_arts_education
+2,1,1,1,2,1,1,1,1,1,1,2,1,1,Male,27,white,single,10000,5,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,2,1,3,1,Female,19,brown,single,5000,4,social_sciences_arts_education
+1,3,1,4,1,1,4,1,3,1,1,1,3,1,Female,29,brown,single,3000,4,social_sciences_arts_education
+1,1,2,1,1,1,1,1,1,1,1,1,1,1,Female,20,brown,single,4000,5,social_sciences_arts_education
+1,1,2,1,1,1,1,1,2,1,4,1,1,1,Female,18,white,single,4317,2,social_sciences_arts_education
+1,1,1,5,1,1,1,1,2,1,1,5,5,1,Female,19,asian,single,1500,5,healthcare
+1,1,1,1,1,1,1,1,1,1,5,1,1,1,Female,21,asian,single,2000,5,social_sciences_arts_education
+5,1,4,5,1,2,3,1,3,2,2,5,4,2,Male,19,white,single,4000,5,healthcare
+1,1,1,1,1,1,1,1,1,1,1,7,5,1,Female,24,brown,single,1800,2,healthcare
+1,1,2,2,1,1,3,1,1,1,3,4,4,1,Female,31,brown,single,2000,3,healthcare
+1,1,1,2,1,1,1,1,1,1,4,2,4,1,Female,23,black,single,3500,5,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,23,black,single,6000,7,social_sciences_arts_education
+1,3,1,1,1,1,3,1,1,1,1,1,1,1,Female,18,brown,single,1000,3,social_sciences_arts_education
+2,1,1,1,1,1,1,1,2,1,1,1,1,1,Male,23,brown,single,1500,4,exact_ biological_sciences
+1,1,1,3,1,1,3,1,3,1,1,1,1,1,Female,20,white,single,3500,4,exact_ biological_sciences
+1,2,1,1,1,1,1,2,1,1,1,4,2,1,Female,27,white,single,1500,3,exact_ biological_sciences
+1,1,2,1,1,1,3,1,3,1,3,4,3,1,Female,25,brown,single,2000,4,exact_ biological_sciences
+2,1,3,1,3,3,2,1,1,3,1,5,5,3,Male,24,brown,single,600,3,exact_ biological_sciences
+1,1,2,1,1,1,1,1,2,1,2,2,1,1,Female,21,brown,single,1500,4,social_sciences_arts_education
+4,3,2,2,2,2,2,2,1,2,3,6,6,2,Male,19,brown,single,4000,4,exact_ biological_sciences
+1,1,1,1,1,1,1,7,1,2,2,5,2,2,Female,18,brown,single,5000,5,exact_ biological_sciences
+1,1,2,3,1,1,2,1,2,1,1,4,4,1,Male,19,white,single,8000,4,exact_ biological_sciences
+1,1,1,1,1,1,1,7,2,3,1,7,7,2,Male,18,brown,single,2000,3,social_sciences_arts_education
+1,3,2,3,1,1,2,1,2,1,4,4,6,1,Male,19,brown,single,7000,5,exact_ biological_sciences
+3,2,4,4,3,1,3,1,5,4,4,4,4,4,Female,18,white,single,5000,5,exact_ biological_sciences
+1,1,1,1,1,1,2,1,1,1,1,4,1,1,Female,19,white,single,3500,4,healthcare
+3,6,6,5,3,5,7,3,4,4,4,4,4,6,Male,20,black,single,998,2,exact_ biological_sciences
+2,1,1,1,1,1,2,1,1,4,2,1,4,4,Male,19,brown,single,1200,4,social_sciences_arts_education
+1,1,2,5,1,1,2,1,4,1,1,1,1,1,Female,19,brown,single,2500,3,exact_ biological_sciences
+1,1,1,2,1,1,4,2,2,1,1,2,1,1,Female,19,white,single,11000,4,exact_ biological_sciences
+1,1,3,1,1,2,2,1,3,1,1,2,1,1,Female,18,white,single,1489,2,exact_ biological_sciences
+1,1,1,4,1,1,3,1,2,4,2,6,4,4,Male,19,brown,single,980,3,social_sciences_arts_education
+1,1,1,1,1,1,7,1,2,1,1,1,1,1,Male,26,brown,single,1700,3,social_sciences_arts_education
+1,1,2,1,1,1,1,1,1,1,1,1,2,1,Female,18,white,single,6000,4,social_sciences_arts_education
+2,3,5,7,1,1,4,7,4,7,7,7,1,7,Male,18,black,single,900,2,social_sciences_arts_education
+4,2,3,3,4,1,5,3,4,4,4,4,4,4,Female,20,brown,single,990,3,social_sciences_arts_education
+2,2,3,3,1,1,2,1,4,2,3,2,2,2,Female,20,brown,single,400,3,social_sciences_arts_education
+1,1,1,1,1,1,2,1,1,1,1,2,1,1,Female,19,white,single,5000,2,social_sciences_arts_education
+3,4,4,5,3,4,3,2,7,4,4,4,5,4,Male,19,brown,single,1600,4,exact_ biological_sciences
+1,1,1,1,1,1,1,1,1,1,1,4,3,1,Male,20,brown,single,800,4,exact_ biological_sciences
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,32,white,single,6300,3,social_sciences_arts_education
+1,1,3,1,1,1,2,1,2,1,2,2,1,1,Female,18,brown,single,2000,4,social_sciences_arts_education
+1,1,1,1,1,1,3,1,1,1,4,6,5,1,Male,18,white,single,6000,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,20,white,single,3000,6,social_sciences_arts_education
+1,1,1,1,1,1,2,1,3,4,2,5,4,4,Male,20,black,single,6000,2,exact_ biological_sciences
+2,1,1,2,2,1,1,2,2,1,1,3,5,2,Male,19,brown,single,9000,4,exact_ biological_sciences
+1,1,1,1,1,1,3,1,2,2,1,7,2,2,Female,19,white,single,10000,6,exact_ biological_sciences
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,58,white,single,5600,2,social_sciences_arts_education
+1,1,1,1,1,1,1,1,4,1,1,5,1,1,Male,24,indigenous,single,6000,3,exact_ biological_sciences
+1,4,3,4,1,1,4,1,3,1,1,1,1,1,Female,23,white,single,2000,4,social_sciences_arts_education
+4,4,7,5,6,3,5,4,4,3,1,6,6,3,Male,25,brown,single,5000,3,exact_ biological_sciences
+1,1,3,1,1,1,2,1,2,1,1,7,1,1,Male,20,white,single,1500,4,exact_ biological_sciences
+1,2,1,1,1,1,2,1,1,1,1,1,1,1,Female,20,brown,single,3000,4,exact_ biological_sciences
+3,2,4,3,2,3,3,2,1,4,1,4,5,4,Female,20,brown,single,3400,6,exact_ biological_sciences
+1,1,2,1,1,1,1,1,1,1,1,1,1,1,Male,21,brown,single,3000,3,social_sciences_arts_education
+1,1,1,1,1,1,3,1,2,1,1,2,1,1,Female,20,brown,single,4000,4,social_sciences_arts_education
+2,5,5,6,2,2,5,2,4,5,5,7,6,4,Female,20,brown,single,2500,6,social_sciences_arts_education
+1,1,3,1,1,1,3,1,3,1,3,7,3,1,Female,18,brown,single,600,3,exact_ biological_sciences
+1,1,1,1,1,1,1,1,1,1,1,2,1,1,Female,18,brown,single,1500,3,social_sciences_arts_education
+1,1,1,1,2,1,1,1,1,7,5,5,4,1,Male,18,brown,single,998,3,social_sciences_arts_education
+1,1,3,1,1,1,2,1,1,2,2,2,3,1,Female,18,white,single,4000,4,social_sciences_arts_education
+2,1,2,2,1,2,3,1,4,1,2,4,2,1,Male,18,brown,single,7000,5,social_sciences_arts_education
+2,1,2,1,1,1,7,1,6,2,2,7,3,3,Female,18,brown,single,2500,4,social_sciences_arts_education
+2,2,2,5,2,2,2,1,2,4,3,4,4,1,Male,23,brown,single,1000,5,exact_ biological_sciences
+2,5,5,7,2,2,4,2,6,2,1,4,3,2,Male,24,brown,single,998,3,exact_ biological_sciences
+1,2,3,4,2,1,3,1,3,1,2,2,3,1,Male,19,white,single,8000,4,exact_ biological_sciences
+4,1,4,3,2,3,3,7,3,1,1,1,1,1,Male,23,brown,single,5000,4,exact_ biological_sciences
+1,1,1,1,1,1,3,1,3,1,4,7,1,1,Female,19,brown,single,3000,3,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,2,1,1,Female,19,white,single,4000,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,21,white,single,2000,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,19,white,single,2500,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,2,1,1,1,1,1,Male,21,brown,single,2000,4,social_sciences_arts_education
+1,1,4,1,1,1,2,1,2,1,2,5,4,2,Female,19,brown,single,20000,5,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,20,black,single,1300,1,social_sciences_arts_education
+1,1,2,1,1,1,1,1,1,1,1,2,1,1,Female,21,brown,single,8000,3,social_sciences_arts_education
+1,1,1,1,1,1,2,1,1,1,1,1,1,1,Female,18,white,single,10000,5,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,19,white,single,17000,2,social_sciences_arts_education
+1,1,1,1,1,1,1,1,5,1,5,1,2,1,Female,19,white,single,5000,3,social_sciences_arts_education
+1,1,1,1,1,1,1,1,3,1,1,1,1,1,Male,22,white,single,5000,4,social_sciences_arts_education
+1,1,2,1,1,1,1,1,1,1,1,6,3,1,Female,29,brown,single,1500,4,social_sciences_arts_education
+1,2,2,4,5,2,2,1,5,5,1,7,4,4,Female,43,brown,married_partnered,2994,3,social_sciences_arts_education
+1,1,3,6,1,1,1,1,2,4,4,1,4,4,Female,23,brown,single,400,2,healthcare
+1,3,2,5,1,2,2,1,5,2,2,2,3,1,Female,21,brown,single,8000,4,social_sciences_arts_education
+1,1,1,4,1,1,2,1,1,2,2,4,2,1,Male,26,white,single,6000,6,social_sciences_arts_education
+1,1,3,2,1,1,1,1,2,4,5,5,2,2,Female,22,brown,single,1700,4,social_sciences_arts_education
+2,2,4,2,1,1,2,1,6,7,7,7,7,7,Male,24,white,single,1500,4,social_sciences_arts_education
+1,1,4,7,1,1,1,1,5,4,4,4,4,1,Male,24,brown,single,7000,4,social_sciences_arts_education
+1,1,3,1,1,1,2,1,5,5,1,3,5,3,Male,27,brown,single,980,2,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,22,white,single,2500,4,social_sciences_arts_education
+1,1,3,1,1,1,2,1,2,1,2,1,2,1,Female,20,brown,married_partnered,1000,2,social_sciences_arts_education
+1,1,1,3,1,1,3,1,3,1,1,2,1,1,Male,42,brown,single,998,2,social_sciences_arts_education
+1,1,1,1,1,1,2,1,1,1,1,1,2,1,Female,20,brown,single,5900,5,social_sciences_arts_education
+1,1,1,1,1,1,7,1,1,3,1,1,3,1,Male,23,white,single,2000,3,social_sciences_arts_education
+1,5,1,2,2,3,2,1,2,2,3,4,2,1,Female,44,brown,married_partnered,1800,2,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,21,brown,single,998,2,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,19,white,single,11000,5,social_sciences_arts_education
+1,2,4,5,1,1,2,1,1,1,1,1,1,1,Male,20,white,single,1500,2,social_sciences_arts_education
+2,1,1,3,1,1,1,1,3,3,2,1,3,3,Female,19,white,single,5500,3,social_sciences_arts_education
+1,1,1,7,1,1,2,1,1,1,1,1,1,1,Female,18,brown,single,1200,2,social_sciences_arts_education
+1,1,1,2,1,1,1,1,6,1,1,1,1,1,Male,19,black,single,500,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,6,1,1,1,Female,20,black,single,300,1,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,3,1,Male,26,white,single,4000,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,26,brown,single,3000,3,social_sciences_arts_education
+1,2,2,3,2,2,1,7,1,2,2,3,5,2,Male,22,brown,single,998,4,social_sciences_arts_education
+2,1,1,2,2,1,2,1,2,1,3,2,1,1,Male,18,white,single,4500,3,social_sciences_arts_education
+1,1,3,4,1,1,4,1,6,1,1,4,1,1,Female,19,brown,single,1000,3,social_sciences_arts_education
+1,1,1,1,1,1,3,1,4,1,1,1,1,1,Female,28,white,single,4000,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,19,brown,single,8000,4,social_sciences_arts_education
+1,1,2,1,1,1,3,1,1,4,1,1,3,1,Female,19,brown,single,10000,4,social_sciences_arts_education
+1,1,2,1,1,1,1,1,1,1,1,2,1,1,Male,21,brown,single,1000,6,social_sciences_arts_education
+1,1,2,1,1,1,2,1,1,1,2,1,2,1,Male,21,black,single,2500,4,social_sciences_arts_education
+1,1,3,1,1,1,1,1,4,1,5,1,1,1,Male,28,brown,single,2438,3,social_sciences_arts_education
+1,1,1,1,1,1,2,1,1,1,1,1,1,1,Female,19,brown,single,2994,3,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,3,4,3,1,Male,22,brown,single,1200,3,healthcare
+1,1,1,1,1,1,2,1,2,3,3,1,4,3,Female,18,brown,single,1000,3,social_sciences_arts_education
+1,1,2,3,1,1,2,1,2,1,1,2,3,1,Male,21,brown,single,998,3,social_sciences_arts_education
+1,1,2,3,1,1,2,1,4,1,1,1,1,1,Male,25,black,single,400,3,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,38,brown,married_partnered,4000,4,social_sciences_arts_education
+1,1,1,2,1,1,2,1,2,1,1,1,2,1,Female,20,white,single,7000,5,social_sciences_arts_education
+1,1,2,1,1,1,1,1,1,1,1,1,1,1,Female,19,brown,single,10000,4,social_sciences_arts_education
+1,1,1,4,1,1,1,1,1,1,2,1,2,1,Male,20,black,single,1500,2,social_sciences_arts_education
+1,2,2,2,1,1,2,1,2,2,2,2,2,1,Male,20,white,single,9000,3,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,23,white,single,10000,5,social_sciences_arts_education
+1,1,2,1,1,1,1,1,1,1,1,7,3,1,Female,21,brown,single,6000,5,social_sciences_arts_education
+1,1,2,1,1,1,1,1,1,1,1,1,1,1,Male,20,white,single,10000,3,social_sciences_arts_education
+1,1,2,1,1,1,1,1,1,1,4,4,6,1,Male,20,brown,single,2000,3,social_sciences_arts_education
+1,1,1,1,1,1,2,1,1,4,4,5,4,4,Male,40,brown,married_partnered,7000,3,social_sciences_arts_education
+1,1,1,5,1,1,1,1,3,1,4,1,2,1,Male,25,brown,single,1720,2,social_sciences_arts_education
+1,4,3,1,1,1,4,1,6,1,1,1,1,1,Male,19,brown,single,3000,4,social_sciences_arts_education
+1,1,2,1,1,1,2,1,1,4,2,4,3,3,Female,21,white,single,3500,5,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,24,black,single,2000,1,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,23,white,single,2500,5,social_sciences_arts_education
+1,1,2,2,2,2,2,1,1,4,2,1,4,4,Male,21,black,single,900,3,social_sciences_arts_education
+1,1,2,1,1,1,1,1,1,3,4,2,5,1,Male,22,white,single,4000,5,social_sciences_arts_education
+2,1,2,1,1,1,3,1,4,1,1,2,2,1,Male,23,white,single,2000,4,social_sciences_arts_education
+1,1,1,1,1,1,2,1,1,1,1,4,2,1,Male,22,white,single,19960,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,4,4,1,1,2,1,Female,20,white,single,2000,4,social_sciences_arts_education
+1,1,3,1,1,1,1,1,1,1,4,3,1,1,Male,19,brown,single,7000,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,19,brown,single,600,2,social_sciences_arts_education
+1,1,3,1,1,1,1,1,1,1,1,1,1,1,Female,19,white,single,12000,4,social_sciences_arts_education
+1,1,1,1,1,1,3,1,2,1,1,1,2,1,Female,23,white,single,2994,3,social_sciences_arts_education
+1,1,2,3,1,1,2,1,2,4,4,1,4,4,Female,24,brown,single,2994,6,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,3,1,Female,22,white,single,1800,2,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,18,brown,single,998,3,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,18,brown,single,998,4,social_sciences_arts_education
+2,1,2,3,1,2,1,1,3,1,4,2,2,1,Female,18,brown,single,8000,3,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,20,white,single,15000,4,social_sciences_arts_education
+1,1,1,1,1,1,7,1,1,1,2,4,3,1,Male,19,white,single,8000,4,social_sciences_arts_education
+1,1,2,1,1,1,2,1,1,1,2,2,2,1,Female,22,brown,single,3500,4,social_sciences_arts_education
+1,1,4,2,3,1,2,1,3,1,1,4,1,1,Male,19,asian,single,5000,4,exact_ biological_sciences
+3,1,3,3,1,1,4,1,2,4,4,4,4,2,Male,21,white,single,6000,4,exact_ biological_sciences
+1,2,2,1,1,1,3,1,1,1,2,3,2,1,Male,21,white,single,980,4,exact_ biological_sciences
+1,1,3,1,1,1,4,1,3,3,2,3,2,2,Female,20,brown,single,1000,5,healthcare
+1,1,1,1,1,1,2,1,1,4,1,1,4,4,Male,21,brown,single,1000,3,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Male,21,brown,single,8000,4,healthcare
+1,1,1,1,1,1,1,1,2,1,1,1,1,1,Male,18,white,single,4000,5,social_sciences_arts_education
+1,1,1,1,1,1,2,1,1,1,1,1,1,1,Male,18,brown,single,3500,5,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Female,20,brown,single,4600,3,social_sciences_arts_education
+1,1,1,1,1,1,3,1,2,1,3,5,3,1,Female,25,brown,single,3000,4,exact_ biological_sciences
+1,1,1,1,1,1,2,1,1,1,1,1,1,1,Female,22,white,single,8000,5,healthcare
+1,1,1,1,1,1,1,1,1,1,1,5,1,1,Male,21,brown,single,7000,4,social_sciences_arts_education
+1,1,1,1,1,1,1,1,1,2,2,7,2,2,Female,19,white,single,10000,6,exact_ biological_sciences
+1,1,2,1,1,1,2,1,1,1,1,1,1,1,Female,20,brown,single,1000,3,exact_ biological_sciences
+1,1,2,2,1,1,2,1,1,1,2,2,2,2,Female,19,brown,single,2800,3,exact_ biological_sciences
+1,1,4,4,1,1,3,1,3,1,1,5,3,1,Male,19,white,single,10000,4,social_sciences_arts_education
+1,4,1,4,1,1,4,1,4,4,4,7,5,4,Male,36,brown,married_partnered,2700,5,healthcare
+1,1,4,2,1,1,4,7,1,4,1,2,5,1,Male,27,brown,single,3000,4,social_sciences_arts_education

@@ -123,14 +123,15 @@ library(rstatix)
 # Carregar os dados
 data("mtcars") 
 
-dados_correlacao <- mtcars |>
-  # Converter os rótulos das lihas
-  rownames_to_column(var = "modelo") |> 
-  # Transformar em tibble
-  as_tibble() |>
-  # Selecionar as variáveis
-  select(modelo, mpg, wt, drat) 
+dados_correlacao <- mtcars |> 
+  rownames_to_column(var = "modelo") |> # <1>
+  as_tibble() |> # <2>
+  select(modelo, mpg, wt, drat) # <3> 
 ```
+
+1. Converter os rótulos das linhas
+2. Transformar em tibble
+3. Selecionar as variáveis
 
 ### Resultado
 
