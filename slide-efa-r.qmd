@@ -108,7 +108,8 @@ resultado_afe <- efa(
   data = escala_de_racismo,
   ordered = T,
   nfactors = 2,
-  rotation = "oblimin"
+  rotation = "oblimin",
+  #estimator = "MLR"
 )
 ```
 
