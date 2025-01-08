@@ -28,6 +28,7 @@ library(readxl)
 library(careless)
 library(gt)
 library(lavaan)
+library(MVN)
 ```
 
 ```{r}
@@ -35,7 +36,6 @@ cb_racismo_moderno <- read_csv("data/code_book_escala_racismo_moderno.csv")
 
 df <- read_csv("data/dados_racismo_moderno.csv")
 ```
-
 
 ## Escala de Racismo Moderno {.smaller}
 
@@ -84,6 +84,19 @@ df |>
   )
 ```
 
+## Pacotes
+
+Carregue os pacotes abaixo:
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyverse)
+library(MVN)
+library(lavaan)
+```
+
+
 ## Preparação dos dados para a análise
 
 ```{r}
@@ -94,7 +107,46 @@ escala_de_racismo <- df |>
 
 1.  Criar um objeto somente com os itens da escala
 
-## 
+## Avaliação da normalidade dos dados {.smaller}
+
+::: panel-tabset
+### Teste
+
+```{r}
+#| echo: true
+resultado_normalidade <- mvn(
+  escala_de_racismo, 
+  mvnTest = "mardia",
+  univariateTest = "SW"
+)
+```
+
+### Descritivos
+
+```{r}
+#| echo: true
+resultado_normalidade$Descriptives |> 
+  as_tibble() |> 
+  print(n = Inf)
+```
+
+### Normalidade univariada
+
+```{r}
+#| echo: true
+resultado_normalidade$univariateNormality
+```
+
+### Normalidade multivariada
+
+```{r}
+#| echo: true
+resultado_normalidade$multivariateNormality
+```
+:::
+
+
+## teste
 
 -   `ordered = T` implica em "WLSMV":
 
@@ -109,7 +161,6 @@ resultado_afe <- efa(
   ordered = T,
   nfactors = 2,
   rotation = "oblimin",
-  #estimator = "MLR"
 )
 ```
 
