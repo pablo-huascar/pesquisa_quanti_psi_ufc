@@ -6,6 +6,7 @@ format:
       logo: img/brasao1_horizontal_cor_300dpi.png
       theme: simple
       css: logo.css
+      scrollable: true
 progress: true
 slide-number: true
 editor: visual
@@ -30,100 +31,34 @@ library(lavaan)
 ```
 
 ```{r}
-#
-df <- read_spss("data/empatia.sav") |> 
-  clean_names()
-itens <- read_excel("data/formulario_empatia.xlsx")
+cb_racismo_moderno <- read_csv("data/code_book_escala_racismo_moderno.csv")
+
+df <- read_csv("data/dados_racismo_moderno.csv")
 ```
 
-```{r}
-df <- df |> 
-  select(r1:r14)
-```
+
+## Escala de Racismo Moderno {.smaller}
 
 ```{r}
-itens |> 
-  select(`Eles têm conseguido mais do que merecem`:`Possuem uma beleza diferente`) |> 
-  colnames()
-```
-
-```{r}
-#| eval: false
-
-fantasia_nomes <- str_c(rep("f", 7), 1:7)
-consideracao_empatica_nomes <- str_c(rep("ce", 7), 1:7)
-angustia_pessoal_nomes <- str_c(rep("ap", 6), 1:6)
-tomada_de_perspectiva_nomes <- str_c(rep("tp", 6), 1:6)
-negacao_do_preconceito_nomes <- str_c(rep("np", 9), 1:9)
-afirmacao_das_diferencas_nomes <- str_c(rep("ad", 5), 1:5)
-afetos_negativos_nomes <- str_c(rep("afn", 10), 1:10)
-afetos_positivos_nomes <- str_c(rep("afp", 10), 1:10)
-demo_nomes <- c("sexo", "idade", "raca", "estado_civil",
-                "renda_familiar", "dependentes_da_renda", 
-                "area_de_estudos")
-
-nomes <- fantasia_nomes |> 
-  union_all(consideracao_empatica_nomes) |> 
-  union_all(angustia_pessoal_nomes) |> 
-  union_all(tomada_de_perspectiva_nomes) |> 
-  union_all(negacao_do_preconceito_nomes) |> 
-  union_all(afirmacao_das_diferencas_nomes) |> 
-  union_all(afetos_negativos_nomes) |> 
-  union_all(afetos_positivos_nomes) |> 
-  union_all(demo_nomes)
-```
-
-```{r}
-#| eval: false
-df <- df |> 
-  rename_with(.fn = ~nomes, .cols = fantasy1:academic_background)
-```
-
-```{r}
-#| eval: false
-df <- df |> 
-  mutate(
-    sexo = fct_recode(sexo, 
-                      Masculino = "Male", 
-                      Feminino = "Female"),
-    raca = fct_recode(raca, 
-                      Pardo = "brown",
-                      Branco = "white",
-                      Amarelo = "asian",
-                      Preto = "black",
-                      "Indígena" = "indigenous"),
-    estado_civil = fct_recode(estado_civil, 
-                              Solteiro = "single",
-                              "Casado ou União estável" = "married_partnered"),
-    area_de_estudos = fct_recode(area_de_estudos,
-                                 "Ciências sociais, artes e educação" = 
-                                   "social_sciences_arts_education",
-                                 "Ciências exatas e biológicas"  = 
-                                   "exact_ biological_sciences",
-                                 "Saúde" = "healthcare")
+cb_racismo_moderno |> 
+  gt() |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
   )
 ```
 
-```{r}
-#| eval: false
-df |> 
-  write_csv("data/racismo_afetos_empatia_pt")
 
-df |> 
-  select(np1:ad5, sexo:area_de_estudos) |> 
-  write_csv("data/escala_de_racismo_moderno.csv")
-```
-
-## Escala de Racismo Moderno
-
-## Uma olhada nos dados
+## Uma olhada nos dados {.smaller}
 
 ```{r}
 #| tbl-cap: Uma amostra aleatória de dez casos do banco de dados 
 #| tbl-cap-location: bottom
 set.seed(123)
 df |> 
-  select(starts_with("np"), starts_with("ad")) |> 
   slice_sample(n = 10) |> 
   gt() |> 
   cols_align(
@@ -143,7 +78,7 @@ df |>
 ```{r}
 #| echo: true
 escala_de_racismo <- df |> 
-  select(np1:ad5) # <1>
+  select(r1:r14) # <1>
 ```
 
 1.  Criar um objeto somente com os itens da escala
@@ -156,16 +91,20 @@ escala_de_racismo <- df |>
     -   `se = "robust.sem"`
     -   `test = "scaled.shifted"`
 
-    ```{r}
-    #| echo: true
-    resultado_afe <- efa(
-      data = escala_de_racismo, nfactors = 2, 
-      ordered = T
-      )
-    ```
+```{r}
+#| echo: true
 
-## 
+resultado_afe <- efa(
+  data = escala_de_racismo,
+  ordered = T,
+  nfactors = 2,
+  rotation = "oblimin"
+)
+```
+
+## Resultados
 
 ```{r}
+#|
 summary(resultado_afe)
 ```
