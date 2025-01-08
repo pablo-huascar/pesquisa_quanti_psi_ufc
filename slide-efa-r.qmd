@@ -104,7 +104,6 @@ escala_de_racismo <- df |>
 
 ```{r}
 #| echo: true
-
 resultado_afe <- efa(
   data = escala_de_racismo,
   ordered = T,
@@ -116,6 +115,5 @@ resultado_afe <- efa(
 ## Resultados
 
 ```{r}
-#|
 summary(resultado_afe)
 ```
