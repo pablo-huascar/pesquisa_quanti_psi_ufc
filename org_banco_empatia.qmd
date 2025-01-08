@@ -30,15 +30,17 @@ itens <- read_excel("data/formulario_empatia.xlsx")
 ```{r}
 #| eval: false
 racismo <- df |> 
-  select(r1:r14, sexo:area_de_formacao) |> 
+  select(r1:r14, sexo:estado_civil) |> 
   mutate(
     across(where(is.labelled), as_factor)
-  ) |> 
-  glimpse()
+  )
+```
 
+```{r}
 racismo |> 
   write_csv("data/dados_racismo_moderno.csv")
 ```
+
 
 ```{r}
 #| eval: false
@@ -96,8 +98,7 @@ variaveis_demo |>
   bind_cols(descricao_demo)
 ```
 
-
-###
+### 
 
 ```{r}
 racismo_efa <- racismo |> 

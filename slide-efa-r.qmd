@@ -46,11 +46,22 @@ cb_racismo_moderno |>
     table.width = pct(100),
     table.font.size = "26px"
   ) |> 
+  cols_align(
+    columns = Variáveis,
+    align = "center" 
+  ) |> 
   opt_stylize(
     style = 1, color = "gray"
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = c(Variáveis, Itens,
+                                                Fator))
+    ) |> 
+  tab_options(
+    table.font.size = "18px"
   )
 ```
-
 
 ## Uma olhada nos dados {.smaller}
 
@@ -66,7 +77,7 @@ df |>
   ) |> 
   tab_options(
     table.width = pct(100),
-    table.font.size = "26px"
+    table.font.size = "18px"
   ) |> 
   opt_stylize(
     style = 1, color = "gray"

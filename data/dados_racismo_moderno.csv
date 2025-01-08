@@ -1,323 +1,323 @@
-r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,sexo,idade,renda_per_capta,cor_raca,estado_civil,area_de_formacao
-1,2,1,1,2,1,1,2,2,2,1,1,2,2,Feminino,21,1800,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,24,750,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,5,1,1,1,1,1,1,1,4,1,2,2,Masculino,20,240,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,2,1,1,2,1,1,4,4,2,4,1,4,7,Feminino,21,400,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,2,1,2,1,1,1,4,3,3,1,3,7,Masculino,18,250,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-2,3,3,1,2,1,1,1,1,1,1,1,1,7,Masculino,21,1000,Branca,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,2,2,1,2,1,1,4,4,2,3,1,4,4,Feminino,18,800,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,1431,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,2,2,1,1,1,1,1,Feminino,18,549,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-4,2,5,1,3,3,3,1,1,6,3,3,1,7,Feminino,19,550,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,22,500,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,3,1,1,1,1,1,1,1,1,1,Masculino,28,875,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,2,1,1,4,4,1,1,1,2,1,1,1,Masculino,20,900,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,7,3,1,3,1,1,1,1,1,3,1,5,1,Feminino,20,500,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,4,4,6,2,1,4,4,Feminino,24,500,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,3,1,Feminino,18,600,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,4,4,5,4,1,1,7,Masculino,27,812.5,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,1,1,2,1,1,1,2,Masculino,26,833.3333333333334,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,2,1,1,1,1,1,1,1,1,2,1,1,Feminino,25,200,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,2,1,1,1,1,1,1,1,1,1,Feminino,25,250,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,2,2,2,1,1,2,1,1,1,1,1,Feminino,22,875,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,2,1,2,1,1,3,3,3,3,1,3,3,Feminino,21,500,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,2,2,1,2,3,3,Masculino,18,245,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,4,1,Feminino,21,1000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,2,1,1,1,1,1,2,1,2,2,Masculino,19,1250,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,300,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,7,4,1,1,1,1,1,1,1,3,1,1,1,Feminino,19,1300,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,2,1,1,1,1,1,2,1,1,1,1,1,Masculino,21,225,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-2,7,3,1,2,1,1,1,1,1,1,1,1,1,Feminino,20,900,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,1,1,1,1,1,1,1,1,2,1,Feminino,20,312.5,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,7,1,1,1,3,1,4,4,4,3,1,4,4,Feminino,19,500,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,2,1,1,1,1,1,1,1,1,1,1,1,Masculino,18,1400,Amarela,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,3,1,1,2,1,1,1,1,1,1,1,3,1,Feminino,19,1000,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,5,1,1,1,1,1,4,2,5,2,Masculino,24,400,Preta,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-2,2,1,1,1,2,1,1,1,1,1,1,4,1,Masculino,24,1000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,2,1,1,2,2,1,3,1,4,1,Feminino,17,200,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,2,3,1,5,5,Feminino,18,100,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,2,1,1,1,1,3,1,1,1,1,Masculino,18,300,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,2,1,Feminino,22,100,Preta,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,22,1000,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,3,3,4,3,5,3,1,1,6,2,2,4,4,Masculino,24,2000,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,2,1,1,2,1,1,3,2,1,1,1,4,2,Masculino,21,450,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,3,1,2,1,1,1,1,1,3,1,2,4,Masculino,19,1000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,1000,Preta,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,3,1,1,1,1,1,1,2,1,1,1,4,Masculino,21,800,Preta,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,21,266.6666666666667,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-3,4,1,1,4,1,2,2,2,4,3,1,5,2,Masculino,24,500,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,4,4,4,1,1,4,4,Feminino,23,700,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,5,1,1,1,1,1,3,1,1,1,Feminino,21,499,Preta,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,1,1,1,7,1,1,3,Masculino,21,1000,Branca,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,1,1,1,4,4,1,1,1,4,1,Feminino,21,750,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,2,1,4,2,1,1,1,1,2,Masculino,23,2000,Branca,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-2,3,2,2,5,5,2,1,1,6,2,2,1,2,Masculino,25,NA,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,7,1,1,4,1,1,4,4,1,1,1,5,1,Feminino,20,1220,Preta,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,1,1,1,5,1,1,1,1,1,1,1,1,1,Feminino,20,125,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,4,1,3,1,1,1,1,2,2,1,2,3,Feminino,25,666.6666666666666,Preta,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-2,3,1,1,1,1,1,1,3,3,5,1,1,1,Masculino,20,375,Preta,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-4,3,2,1,1,1,1,1,1,1,5,1,4,7,Feminino,20,338,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,2,1,1,6,1,1,1,1,1,3,1,2,5,Feminino,19,625,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-5,2,6,1,3,6,1,2,4,5,2,2,5,7,Feminino,22,500,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,2,1,1,1,1,1,1,1,1,2,1,6,Feminino,23,250,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-2,2,2,1,2,1,1,2,2,3,1,1,1,1,Feminino,32,1250,Branca,Casado(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,20,800,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,7,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,22,800,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,2,1,1,2,3,4,4,1,5,4,Feminino,20,300,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-4,4,1,1,1,4,1,1,1,1,4,3,4,4,Feminino,26,360,Preta,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-5,2,4,5,3,7,2,1,4,4,7,5,4,1,Masculino,25,499,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,4,1,1,1,1,1,1,1,7,1,7,1,7,Masculino,20,1250,Preta,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-2,4,4,1,2,2,4,4,4,4,4,4,4,2,Feminino,20,600,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,3,1,1,3,3,4,2,2,5,4,Masculino,19,400,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,3,1,1,1,1,1,1,1,1,3,1,1,1,Masculino,23,500,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,2,1,1,1,1,1,2,4,2,6,7,1,Feminino,21,500,Preta,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,32,2460,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,4,4,1,1,1,4,1,Feminino,19,499,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,1,1,1,1,1,1,4,Feminino,23,650,Amarela,Casado(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,4,3,1,1,2,2,2,4,1,3,4,Feminino,25,35.333333333333336,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,3,1,1,3,4,4,2,1,6,6,Masculino,20,800,Indígena,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-3,4,3,2,3,3,2,5,5,6,4,2,7,7,Masculino,19,666.6666666666666,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,875,Parda,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,1,1,1,2,2,2,1,1,3,4,Masculino,21,675,Branca,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,3,1,2,1,2,4,4,4,1,1,4,6,Feminino,21,600,Branca,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,1,1,1,1,1,1,3,3,3,1,1,3,5,Feminino,25,900,Parda,Casado(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-6,7,7,1,7,1,4,1,7,7,7,4,1,1,Masculino,24,750,Branca,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,2,1,1,1,2,1,1,1,2,1,1,1,1,Feminino,20,NA,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,1,1,1,4,4,4,1,1,4,4,Masculino,20,300,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,1,1,1,2,1,1,1,Feminino,18,2666.6666666666665,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,2,1,5,1,1,1,3,1,1,1,1,1,Feminino,23,260,Branca,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,2,1,1,1,1,1,4,4,4,5,1,4,3,Feminino,20,500,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-2,1,3,1,1,1,1,3,4,1,2,4,7,7,Feminino,18,1250,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-2,1,3,1,1,1,1,3,4,1,2,4,7,7,Feminino,18,1250,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-3,1,1,1,1,1,1,3,5,5,1,1,5,4,Masculino,25,375,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,3,1,3,4,3,1,4,4,4,4,4,4,4,Masculino,17,466.6666666666667,Preta,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,2,4,1,3,1,1,1,1,1,3,1,1,1,Feminino,24,600,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-5,4,2,1,2,6,1,1,1,1,6,2,1,1,Masculino,20,233.33333333333334,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,1,1,1,1,1,1,1,1,1,2,1,1,1,Feminino,22,1000,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-2,5,2,6,2,5,3,1,1,2,3,1,1,2,Masculino,22,500,Branca,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,1,1,1,1,2,1,1,1,1,1,1,2,4,Feminino,21,200,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,4,4,1,4,1,1,1,1,3,1,1,Feminino,22,500,Parda,Casado(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,1,1,1,1,2,2,2,1,4,7,Masculino,21,200,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,2,1,1,1,1,1,4,5,3,3,1,4,5,Feminino,19,250,Branca,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,1,1,1,1,1,1,1,1,2,3,1,1,4,Feminino,23,1000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,7,2,2,1,3,3,7,2,2,4,6,Masculino,18,NA,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-3,3,4,1,7,4,4,1,1,4,3,7,7,7,Masculino,19,1666.6666666666667,Branca,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,7,1,1,1,1,1,1,1,1,3,1,3,1,Masculino,21,3400,Parda,Solteiro(a),"Negócios, Administração e Direito. Ex.: Ciências contábeis, Finanças, Gestão de pessoas etc.;"
-3,4,4,1,2,2,2,3,3,5,4,1,3,6,Masculino,21,237.5,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-5,4,5,1,4,2,2,3,2,3,4,4,3,3,Masculino,21,575,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,4,7,1,2,1,1,4,4,4,2,1,7,7,Masculino,24,399.2,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,4,1,1,4,1,1,1,1,1,1,6,4,Masculino,23,600,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-4,6,4,3,7,4,4,1,1,3,5,1,6,1,Masculino,22,2000,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-4,6,4,3,7,4,4,1,1,3,5,1,6,1,Masculino,22,2000,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-4,6,4,3,7,4,4,1,1,3,5,1,6,1,Masculino,22,2000,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,18,850,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,1,1,1,1,1,1,4,4,4,2,1,4,4,Masculino,25,800,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,7,1,1,3,1,1,1,1,1,1,1,2,3,Masculino,19,450,Branca,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,1,2,1,2,1,1,1,1,1,2,1,1,3,Feminino,18,1000,Amarela,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-4,3,2,1,1,1,1,1,1,1,2,1,1,7,Masculino,21,500,Preta,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,1,1,1,2,2,3,3,1,4,2,Masculino,21,159,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-2,2,6,1,2,2,1,2,3,2,1,1,3,2,Masculino,23,NA,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,24,196,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,3,1,1,1,1,1,2,1,2,1,Feminino,18,144.66666666666666,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-7,3,1,1,2,1,1,3,3,3,6,3,3,5,Masculino,22,NA,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,4,Feminino,22,450,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-2,2,4,2,2,5,3,2,2,2,4,4,2,2,Feminino,18,750,Preta,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,3,1,1,1,1,1,1,1,1,1,1,1,7,Feminino,23,500,Preta,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,2,1,1,1,1,1,1,1,1,2,1,1,1,Feminino,22,249.5,Preta,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,21,162.5,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-5,3,7,5,3,6,3,3,4,2,2,2,3,4,Masculino,19,NA,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,6,3,1,3,4,4,4,7,5,2,6,4,6,Masculino,19,700,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-4,5,6,7,7,5,4,1,4,4,4,2,5,2,Masculino,18,360,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,3,2,1,1,1,1,3,3,1,2,1,3,4,Feminino,18,250,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,1,1,4,1,1,1,6,7,7,7,Masculino,18,475,Branca,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,2,1,1,1,1,1,3,3,2,1,1,4,4,Feminino,21,350,Branca,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,2,2,1,1,1,2,2,2,3,3,2,3,2,Feminino,19,866.6666666666666,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,1,1,1,4,4,1,2,1,7,1,Feminino,18,400,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,27,625,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,3,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,23,725,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,2000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,4,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,21,1333.3333333333333,Preta,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,5,2,1,2,2,1,1,1,1,1,1,1,4,Masculino,21,1000,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,21,1000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,57,1500,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,20,450,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-2,2,2,1,1,1,1,2,2,3,2,2,3,2,Feminino,32,500,Preta,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,1,1,1,1,1,1,1,1,2,1,1,2,4,Feminino,20,2250,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,22,500,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,2500,Preta,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,2,1,1,1,1,1,1,1,4,1,Feminino,27,NA,Preta,Casado(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-2,2,2,1,4,2,1,1,1,1,2,1,1,7,Masculino,27,NA,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-5,2,1,1,5,1,1,1,1,4,6,1,1,1,Feminino,20,800,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,2,2,1,1,1,1,1,1,2,Masculino,27,2000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,2,1,1,3,1,Feminino,19,1250,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-3,4,4,1,3,1,1,1,1,1,1,1,3,1,Feminino,29,750,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,2,1,1,1,Feminino,20,800,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,2,1,1,1,1,4,2,1,1,1,Feminino,18,2158.5,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,5,1,2,1,1,1,1,1,1,1,5,5,Feminino,19,300,Amarela,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,1,1,1,1,1,1,1,1,5,1,1,1,1,Feminino,21,400,Amarela,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,5,1,3,5,1,2,2,2,4,2,4,5,Masculino,19,800,Branca,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,5,7,Feminino,24,900,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,3,2,1,1,1,1,1,1,3,2,1,4,4,Feminino,31,666.6666666666666,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,1,2,1,1,1,1,1,1,4,1,1,4,2,Feminino,23,700,Preta,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,23,857.1428571428571,Preta,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-3,3,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,333.3333333333333,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,1,1,2,2,1,1,1,1,1,1,1,1,Masculino,23,375,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,3,3,1,3,1,1,1,1,1,1,1,1,1,Feminino,20,875,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-2,1,1,2,1,1,1,1,1,1,1,1,2,4,Feminino,27,500,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,3,1,1,3,1,1,1,1,3,2,1,3,4,Feminino,25,500,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,2,1,1,1,2,3,3,3,1,3,3,5,5,Masculino,24,200,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,2,1,1,1,1,2,2,1,1,2,Feminino,21,375,Parda,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-3,2,2,2,1,4,2,2,2,3,2,2,6,6,Masculino,19,1000,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,1,1,7,1,1,1,2,2,2,1,1,2,5,Feminino,18,1000,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,2,3,1,2,1,1,1,1,1,2,1,4,4,Masculino,19,2000,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,7,2,1,1,2,3,1,1,1,7,7,Masculino,18,666.6666666666666,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-3,2,3,1,2,1,1,1,1,4,2,1,6,4,Masculino,19,1400,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-2,3,4,1,5,3,3,4,4,4,4,1,4,4,Feminino,18,1000,Branca,Solteiro(a),"Ciências Naturais, Matemática e Estatística. Ex.: Biologia, Física, Química, etc.;"
-1,2,1,1,1,1,1,1,1,1,1,1,1,4,Feminino,19,875,Branca,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-6,7,5,3,4,3,3,6,4,4,6,5,4,4,Masculino,20,499,Preta,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,2,1,1,1,2,1,4,4,2,1,1,4,1,Masculino,19,300,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,5,1,4,1,1,1,1,1,2,1,1,1,Feminino,19,833.3333333333334,Parda,Solteiro(a),"Agricultura, Silvicultura, Pesca e Veterinária. Ex.: Medicina Veterinária, Zootecnia, etc.;"
-1,4,2,2,2,1,1,1,1,1,1,1,1,2,Feminino,19,2750,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,2,1,1,3,1,1,1,1,1,3,2,1,2,Feminino,18,744.5,Branca,Solteiro(a),"Agricultura, Silvicultura, Pesca e Veterinária. Ex.: Medicina Veterinária, Zootecnia, etc.;"
-1,3,4,1,2,1,1,4,4,2,1,1,4,6,Masculino,19,326.6666666666667,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,7,1,1,2,1,1,1,1,1,1,1,1,1,Masculino,26,566.6666666666666,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,2,1,2,1,Feminino,18,1500,Branca,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-3,4,7,7,4,2,1,7,7,7,5,1,1,7,Masculino,18,450,Preta,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-2,5,3,3,4,4,4,4,4,4,3,1,4,4,Feminino,20,330,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-2,2,3,1,4,2,1,2,2,3,3,1,2,2,Feminino,20,133.33333333333334,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,1,1,1,1,1,1,2,Feminino,19,2500,Branca,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-4,3,5,2,7,3,3,4,4,4,4,4,5,4,Masculino,19,400,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,3,4,Masculino,20,200,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,32,2100,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,2,1,1,1,1,2,3,1,1,2,Feminino,18,500,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,1,1,1,1,1,4,1,1,5,6,Masculino,18,1500,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,20,500,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,2,1,1,3,1,1,4,4,2,1,1,4,5,Masculino,20,3000,Preta,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,2,2,2,2,2,2,1,1,1,1,5,3,Masculino,19,2250,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,3,1,1,2,1,1,2,2,1,1,1,2,7,Feminino,19,1666.6666666666667,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,58,2800,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,1,1,4,1,1,1,1,1,1,1,1,5,Masculino,24,2000,Indígena,Solteiro(a),"Agricultura, Silvicultura, Pesca e Veterinária. Ex.: Medicina Veterinária, Zootecnia, etc.;"
-4,4,4,1,3,1,1,1,1,1,3,1,1,1,Feminino,23,500,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-4,5,5,4,4,4,6,3,3,1,7,3,6,6,Masculino,25,1666.6666666666667,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,2,1,1,2,1,1,1,1,1,3,1,1,7,Masculino,20,375,Branca,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-2,2,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,750,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-2,3,3,2,1,3,2,4,4,1,4,3,5,4,Feminino,20,566.6666666666666,Parda,Solteiro(a),"Ciências Naturais, Matemática e Estatística. Ex.: Biologia, Física, Química, etc.;"
-1,1,1,1,1,1,1,1,1,1,2,1,1,1,Masculino,21,1000,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,2,1,1,1,1,1,1,1,1,2,Feminino,20,1000,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-5,5,6,2,4,2,2,4,5,5,5,2,6,7,Feminino,20,416.6666666666667,Parda,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,3,1,1,3,1,1,1,1,3,3,1,3,7,Feminino,18,200,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,2,Feminino,18,500,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,2,1,7,5,1,1,4,5,Masculino,18,332.6666666666667,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,1,2,2,3,1,3,2,Feminino,18,1000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,2,1,4,2,1,1,1,2,2,2,2,4,Masculino,18,1400,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,7,1,1,6,2,1,3,2,2,2,1,3,7,Feminino,18,625,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-2,2,5,1,2,2,2,1,4,3,2,2,4,4,Masculino,23,200,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-5,4,7,2,6,2,2,2,2,1,5,2,3,4,Masculino,24,332.6666666666667,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-2,3,4,1,3,1,2,1,1,2,3,1,3,2,Masculino,19,2000,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,3,3,7,3,4,2,1,1,1,4,3,1,1,Masculino,23,1250,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,3,1,1,3,1,1,1,1,4,1,1,1,7,Feminino,19,1000,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,2,Feminino,19,1000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,21,500,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,625,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,1,1,2,1,1,1,1,1,1,1,1,1,Masculino,21,500,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,2,1,1,2,1,2,4,1,4,5,Feminino,19,4000,Parda,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,1300,Preta,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,2,1,1,2,Feminino,21,2666.6666666666665,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,2000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,8500,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,5,1,1,1,1,5,1,1,2,1,Feminino,19,1666.6666666666667,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,3,1,1,1,1,1,1,1,1,1,Masculino,22,1250,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,2,1,3,6,Feminino,29,375,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-2,2,4,1,5,1,5,4,5,1,2,2,4,7,Feminino,43,998,Parda,Casado(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,6,1,2,1,1,4,4,4,3,1,4,1,Feminino,23,200,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-3,2,5,1,5,1,1,1,2,2,2,2,3,2,Feminino,21,2000,Parda,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,2,4,1,1,1,1,1,2,2,1,1,2,4,Masculino,26,1000,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,2,1,2,1,1,2,4,5,3,1,2,5,Feminino,22,425,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-2,2,2,1,6,2,1,7,7,7,4,1,7,7,Masculino,24,375,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,7,1,5,1,1,1,4,4,4,1,4,4,Masculino,24,1750,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,2,1,1,5,1,1,3,5,1,3,1,5,3,Masculino,27,490,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,22,625,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,2,1,1,2,1,1,1,1,2,3,1,2,1,Feminino,20,500,Parda,Casado(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,3,3,1,3,1,1,1,1,1,1,1,1,2,Masculino,42,499,Parda,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,2,1,1,1,1,1,1,1,1,1,1,2,1,Feminino,20,1180,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,7,1,1,1,1,1,1,3,1,1,1,3,1,Masculino,23,666.6666666666666,Branca,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,1,1,1,1,1,2,1,1,3,1,Feminino,20,NA,Branca,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-5,2,2,1,2,1,2,1,2,3,1,3,2,4,Feminino,44,900,Parda,Casado(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,21,499,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,2200,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-2,2,5,1,1,1,1,1,1,1,4,1,1,1,Masculino,20,750,Branca,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,3,1,3,2,1,3,3,2,1,1,3,1,Feminino,19,1833.3333333333333,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-2,1,1,1,2,1,1,2,3,1,1,1,4,2,Masculino,23,NA,Branca,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,2,7,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,600,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,2,1,6,1,1,1,1,1,1,1,1,1,Masculino,19,125,Preta,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,1,1,1,1,1,1,1,6,1,1,1,1,Feminino,20,300,Preta,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,3,1,Masculino,26,1000,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,26,1000,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-2,1,3,7,1,1,2,2,2,2,2,2,5,3,Masculino,22,249.5,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,2,2,1,2,2,2,1,1,3,1,1,1,2,Masculino,18,1500,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,4,4,1,6,1,1,1,1,1,3,1,1,4,Feminino,19,333.3333333333333,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,4,1,1,1,1,1,1,1,1,1,Feminino,28,1000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,2000,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,1,1,1,1,4,1,2,1,3,1,Feminino,19,2500,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,2,1,1,2,Masculino,21,166.66666666666666,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,1,1,2,2,1,2,1,Masculino,21,625,Preta,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,4,1,1,1,1,5,3,1,1,1,Masculino,28,812.6666666666666,Parda,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,2,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,998,Parda,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,1,1,1,1,1,3,1,1,3,4,Masculino,22,400,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,2,1,1,2,1,1,3,3,3,1,1,4,1,Feminino,18,333.3333333333333,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,3,1,2,1,1,1,1,1,2,1,3,2,Masculino,21,332.6666666666667,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,3,1,4,1,1,1,1,1,2,1,1,1,Masculino,25,133.33333333333334,Preta,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,38,1000,Parda,Casado(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,2,2,1,2,1,1,1,1,1,1,1,2,1,Feminino,20,1400,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,1,1,1,1,1,1,1,1,2,1,1,1,Feminino,19,2500,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,4,1,1,1,1,1,1,2,1,1,2,1,Masculino,20,750,Preta,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-2,2,2,1,2,1,1,1,2,2,2,1,2,2,Masculino,20,3000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,23,2000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,2,1,3,7,Feminino,21,1200,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,2,1,1,1,Masculino,20,3333.3333333333335,Branca,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,1,1,1,1,1,1,1,1,4,2,1,6,4,Masculino,20,666.6666666666666,Parda,Solteiro(a),"Educação. Ex.: Pedagogia, cursos de licenciatura, etc.;"
-1,2,1,1,1,1,1,4,4,4,1,1,4,5,Masculino,40,2333.3333333333335,Parda,Casado(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,5,1,3,1,1,1,1,4,1,1,2,1,Masculino,25,860,Parda,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-4,4,1,1,6,1,1,1,1,1,3,1,1,1,Masculino,19,750,Parda,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,2,1,1,1,1,1,3,4,2,2,1,3,4,Feminino,21,700,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,24,NA,Preta,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,23,500,Branca,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,NA,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,2,1,1,1,2,4,4,2,2,2,4,1,Masculino,21,300,Preta,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,1,1,1,1,3,4,2,1,5,2,Masculino,22,800,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,4,2,1,1,1,1,2,1,2,2,Masculino,23,500,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,1,1,1,1,1,2,4,Masculino,22,4990,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,4,1,1,1,4,1,1,1,2,1,Feminino,20,500,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,1,1,1,2,1,2,1,Masculino,22,NA,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,4,3,1,1,3,Masculino,19,1750,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,300,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,3,1,1,1,Feminino,19,3000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,2,1,1,1,1,1,1,1,2,1,Feminino,23,998,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,3,1,2,1,1,4,4,4,2,1,4,1,Feminino,24,499,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,3,1,Feminino,22,900,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,332.6666666666667,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,249.5,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,3,1,3,2,1,1,1,4,2,2,2,2,Feminino,18,2666.6666666666665,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,3750,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,7,1,1,1,1,1,1,1,2,1,1,3,4,Masculino,19,2000,Branca,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,2,1,1,1,1,1,1,1,2,2,1,2,2,Feminino,22,875,Parda,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,2,2,1,3,1,3,1,1,1,4,1,1,4,Masculino,19,1250,Amarela,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,4,3,1,2,3,1,2,4,4,3,1,4,4,Masculino,21,1500,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-2,3,1,1,1,1,1,1,1,2,2,1,2,3,Masculino,21,245,Branca,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,4,1,1,3,1,1,2,3,2,3,1,2,3,Feminino,20,200,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,2,1,1,1,1,1,4,4,1,1,1,4,1,Masculino,21,333.3333333333333,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,21,2000,Parda,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,1,1,1,2,1,1,1,1,1,1,1,1,1,Masculino,18,800,Branca,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,2,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,18,700,Parda,Solteiro(a),"Artes e Humanidades. Ex.: Cinema e Audiovisual, Música (Bacharelado), Teologia, História, Letras etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,1533.3333333333333,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-1,3,1,1,2,1,1,1,1,3,1,1,3,5,Feminino,25,750,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,1,1,1,1,2,3,3,1,2,6,Feminino,18,NA,Parda,Solteiro(a),"Tecnologia da informação e Comunicação. Ex.: Engenharia da computação, Ciências da computação etc.;"
-1,2,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,22,1600,Branca,Solteiro(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,1,1,1,1,1,1,1,1,1,1,1,1,5,Masculino,21,1750,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
-2,6,2,1,2,1,2,2,2,2,2,2,2,2,Masculino,24,NA,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,1,1,1,1,1,1,2,2,2,1,1,2,7,Feminino,19,1666.6666666666667,Branca,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,2,1,1,1,1,1,1,1,1,2,1,1,1,Feminino,20,333.3333333333333,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,2,2,1,1,1,1,2,1,2,2,1,2,2,Feminino,19,933.3333333333334,Parda,Solteiro(a),"Engenharia, Produção e Construção. Ex.: Engenharia Elétrica, Tecnologia em construção de edifícios, etc.;"
-1,3,4,1,3,1,1,1,1,1,4,1,3,5,Masculino,19,2500,Branca,Solteiro(a),"Negócios, Administração e Direito. Ex.: Ciências contábeis, Finanças, Gestão de pessoas etc.;"
-4,4,4,1,4,1,1,4,4,4,1,1,5,7,Masculino,36,540,Parda,Casado(a),"Saúde e Bem-estar. Ex.: Medicina, Educação física, Odontologia, Serviço social, etc.;"
-1,4,2,7,1,1,1,1,4,1,4,1,5,2,Masculino,27,750,Parda,Solteiro(a),"Ciências Sociais, Jornalismo e Informação. Ex.: Ciências econômicas, Geografia, Psicologia, etc.;"
+r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,sexo,idade,renda_per_capta,cor_raca,estado_civil
+1,2,1,1,2,1,1,2,2,2,1,1,2,2,Feminino,21,1800,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,24,750,Parda,Solteiro(a)
+1,1,5,1,1,1,1,1,1,1,4,1,2,2,Masculino,20,240,Parda,Solteiro(a)
+1,2,1,1,2,1,1,4,4,2,4,1,4,7,Feminino,21,400,Branca,Solteiro(a)
+1,3,2,1,2,1,1,1,4,3,3,1,3,7,Masculino,18,250,Parda,Solteiro(a)
+2,3,3,1,2,1,1,1,1,1,1,1,1,7,Masculino,21,1000,Branca,Solteiro(a)
+1,2,2,1,2,1,1,4,4,2,3,1,4,4,Feminino,18,800,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,1431,Branca,Solteiro(a)
+1,1,1,1,1,1,1,2,2,1,1,1,1,1,Feminino,18,549,Parda,Solteiro(a)
+4,2,5,1,3,3,3,1,1,6,3,3,1,7,Feminino,19,550,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,22,500,Branca,Solteiro(a)
+1,2,1,1,3,1,1,1,1,1,1,1,1,1,Masculino,28,875,Parda,Solteiro(a)
+1,2,2,1,1,4,4,1,1,1,2,1,1,1,Masculino,20,900,Parda,Solteiro(a)
+1,7,3,1,3,1,1,1,1,1,3,1,5,1,Feminino,20,500,Parda,Solteiro(a)
+1,1,1,1,1,1,1,4,4,6,2,1,4,4,Feminino,24,500,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,3,1,Feminino,18,600,Branca,Solteiro(a)
+1,2,1,1,1,1,1,4,4,5,4,1,1,7,Masculino,27,812.5,Branca,Solteiro(a)
+1,2,1,1,1,1,1,1,1,2,1,1,1,2,Masculino,26,833.3333333333334,Parda,Solteiro(a)
+1,1,2,1,1,1,1,1,1,1,1,2,1,1,Feminino,25,200,Parda,Solteiro(a)
+1,3,1,1,2,1,1,1,1,1,1,1,1,1,Feminino,25,250,Branca,Solteiro(a)
+1,3,1,2,2,2,1,1,2,1,1,1,1,1,Feminino,22,875,Parda,Solteiro(a)
+1,2,2,1,2,1,1,3,3,3,3,1,3,3,Feminino,21,500,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,2,2,1,2,3,3,Masculino,18,245,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,4,1,Feminino,21,1000,Branca,Solteiro(a)
+1,3,1,1,2,1,1,1,1,1,2,1,2,2,Masculino,19,1250,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,300,Parda,Solteiro(a)
+1,7,4,1,1,1,1,1,1,1,3,1,1,1,Feminino,19,1300,Parda,Solteiro(a)
+1,1,2,1,1,1,1,1,2,1,1,1,1,1,Masculino,21,225,Parda,Solteiro(a)
+2,7,3,1,2,1,1,1,1,1,1,1,1,1,Feminino,20,900,Branca,Solteiro(a)
+1,3,1,1,1,1,1,1,1,1,1,1,2,1,Feminino,20,312.5,Parda,Solteiro(a)
+1,7,1,1,1,3,1,4,4,4,3,1,4,4,Feminino,19,500,Parda,Solteiro(a)
+1,2,2,1,1,1,1,1,1,1,1,1,1,1,Masculino,18,1400,Amarela,Solteiro(a)
+1,3,1,1,2,1,1,1,1,1,1,1,3,1,Feminino,19,1000,Parda,Solteiro(a)
+1,2,1,1,5,1,1,1,1,1,4,2,5,2,Masculino,24,400,Preta,Solteiro(a)
+2,2,1,1,1,2,1,1,1,1,1,1,4,1,Masculino,24,1000,Branca,Solteiro(a)
+1,3,1,1,2,1,1,2,2,1,3,1,4,1,Feminino,17,200,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,2,3,1,5,5,Feminino,18,100,Parda,Solteiro(a)
+1,2,1,1,2,1,1,1,1,3,1,1,1,1,Masculino,18,300,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,2,1,Feminino,22,100,Preta,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,22,1000,Branca,Solteiro(a)
+1,3,3,4,3,5,3,1,1,6,2,2,4,4,Masculino,24,2000,Parda,Solteiro(a)
+1,2,1,1,2,1,1,3,2,1,1,1,4,2,Masculino,21,450,Parda,Solteiro(a)
+1,3,3,1,2,1,1,1,1,1,3,1,2,4,Masculino,19,1000,Branca,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,1000,Preta,Solteiro(a)
+1,2,3,1,1,1,1,1,1,2,1,1,1,4,Masculino,21,800,Preta,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,21,266.6666666666667,Branca,Solteiro(a)
+3,4,1,1,4,1,2,2,2,4,3,1,5,2,Masculino,24,500,Branca,Solteiro(a)
+1,1,1,1,1,1,1,4,4,4,1,1,4,4,Feminino,23,700,Branca,Solteiro(a)
+1,1,1,1,5,1,1,1,1,1,3,1,1,1,Feminino,21,499,Preta,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,7,1,1,3,Masculino,21,1000,Branca,Solteiro(a)
+1,1,1,1,1,1,1,4,4,1,1,1,4,1,Feminino,21,750,Branca,Solteiro(a)
+1,2,1,1,1,2,1,4,2,1,1,1,1,2,Masculino,23,2000,Branca,Solteiro(a)
+2,3,2,2,5,5,2,1,1,6,2,2,1,2,Masculino,25,NA,Parda,Solteiro(a)
+1,7,1,1,4,1,1,4,4,1,1,1,5,1,Feminino,20,1220,Preta,Solteiro(a)
+1,1,1,1,5,1,1,1,1,1,1,1,1,1,Feminino,20,125,Branca,Solteiro(a)
+1,2,4,1,3,1,1,1,1,2,2,1,2,3,Feminino,25,666.6666666666666,Preta,Solteiro(a)
+2,3,1,1,1,1,1,1,3,3,5,1,1,1,Masculino,20,375,Preta,Solteiro(a)
+4,3,2,1,1,1,1,1,1,1,5,1,4,7,Feminino,20,338,Parda,Solteiro(a)
+1,2,1,1,6,1,1,1,1,1,3,1,2,5,Feminino,19,625,Parda,Solteiro(a)
+5,2,6,1,3,6,1,2,4,5,2,2,5,7,Feminino,22,500,Parda,Solteiro(a)
+1,1,2,1,1,1,1,1,1,1,1,2,1,6,Feminino,23,250,Branca,Solteiro(a)
+2,2,2,1,2,1,1,2,2,3,1,1,1,1,Feminino,32,1250,Branca,Casado(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,20,800,Branca,Solteiro(a)
+1,7,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,22,800,Parda,Solteiro(a)
+1,1,1,1,2,1,1,2,3,4,4,1,5,4,Feminino,20,300,Branca,Solteiro(a)
+4,4,1,1,1,4,1,1,1,1,4,3,4,4,Feminino,26,360,Preta,Solteiro(a)
+5,2,4,5,3,7,2,1,4,4,7,5,4,1,Masculino,25,499,Branca,Solteiro(a)
+1,4,1,1,1,1,1,1,1,7,1,7,1,7,Masculino,20,1250,Preta,Solteiro(a)
+2,4,4,1,2,2,4,4,4,4,4,4,4,2,Feminino,20,600,Branca,Solteiro(a)
+1,1,1,1,3,1,1,3,3,4,2,2,5,4,Masculino,19,400,Parda,Solteiro(a)
+1,3,1,1,1,1,1,1,1,1,3,1,1,1,Masculino,23,500,Parda,Solteiro(a)
+1,1,2,1,1,1,1,1,2,4,2,6,7,1,Feminino,21,500,Preta,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,32,2460,Branca,Solteiro(a)
+1,2,1,1,1,1,1,4,4,1,1,1,4,1,Feminino,19,499,Parda,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,1,1,1,4,Feminino,23,650,Amarela,Casado(a)
+1,3,1,4,3,1,1,2,2,2,4,1,3,4,Feminino,25,35.333333333333336,Parda,Solteiro(a)
+1,3,1,1,3,1,1,3,4,4,2,1,6,6,Masculino,20,800,Indígena,Solteiro(a)
+3,4,3,2,3,3,2,5,5,6,4,2,7,7,Masculino,19,666.6666666666666,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,875,Parda,Solteiro(a)
+1,1,1,1,1,1,1,2,2,2,1,1,3,4,Masculino,21,675,Branca,Solteiro(a)
+1,1,3,1,2,1,2,4,4,4,1,1,4,6,Feminino,21,600,Branca,Solteiro(a)
+1,1,1,1,1,1,1,3,3,3,1,1,3,5,Feminino,25,900,Parda,Casado(a)
+6,7,7,1,7,1,4,1,7,7,7,4,1,1,Masculino,24,750,Branca,Solteiro(a)
+1,2,1,1,1,2,1,1,1,2,1,1,1,1,Feminino,20,NA,Branca,Solteiro(a)
+1,3,1,1,1,1,1,4,4,4,1,1,4,4,Masculino,20,300,Branca,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,2,1,1,1,Feminino,18,2666.6666666666665,Branca,Solteiro(a)
+1,2,2,1,5,1,1,1,3,1,1,1,1,1,Feminino,23,260,Branca,Solteiro(a)
+1,2,1,1,1,1,1,4,4,4,5,1,4,3,Feminino,20,500,Branca,Solteiro(a)
+2,1,3,1,1,1,1,3,4,1,2,4,7,7,Feminino,18,1250,Parda,Solteiro(a)
+2,1,3,1,1,1,1,3,4,1,2,4,7,7,Feminino,18,1250,Parda,Solteiro(a)
+3,1,1,1,1,1,1,3,5,5,1,1,5,4,Masculino,25,375,Parda,Solteiro(a)
+1,3,1,3,4,3,1,4,4,4,4,4,4,4,Masculino,17,466.6666666666667,Preta,Solteiro(a)
+1,2,4,1,3,1,1,1,1,1,3,1,1,1,Feminino,24,600,Parda,Solteiro(a)
+5,4,2,1,2,6,1,1,1,1,6,2,1,1,Masculino,20,233.33333333333334,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,2,1,1,1,Feminino,22,1000,Parda,Solteiro(a)
+2,5,2,6,2,5,3,1,1,2,3,1,1,2,Masculino,22,500,Branca,Solteiro(a)
+1,1,1,1,1,2,1,1,1,1,1,1,2,4,Feminino,21,200,Branca,Solteiro(a)
+1,1,1,4,4,1,4,1,1,1,1,3,1,1,Feminino,22,500,Parda,Casado(a)
+1,1,1,1,1,1,1,1,2,2,2,1,4,7,Masculino,21,200,Parda,Solteiro(a)
+1,2,1,1,1,1,1,4,5,3,3,1,4,5,Feminino,19,250,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,2,3,1,1,4,Feminino,23,1000,Branca,Solteiro(a)
+1,2,1,7,2,2,1,3,3,7,2,2,4,6,Masculino,18,NA,Parda,Solteiro(a)
+3,3,4,1,7,4,4,1,1,4,3,7,7,7,Masculino,19,1666.6666666666667,Branca,Solteiro(a)
+1,7,1,1,1,1,1,1,1,1,3,1,3,1,Masculino,21,3400,Parda,Solteiro(a)
+3,4,4,1,2,2,2,3,3,5,4,1,3,6,Masculino,21,237.5,Parda,Solteiro(a)
+5,4,5,1,4,2,2,3,2,3,4,4,3,3,Masculino,21,575,Parda,Solteiro(a)
+1,4,7,1,2,1,1,4,4,4,2,1,7,7,Masculino,24,399.2,Branca,Solteiro(a)
+1,1,4,1,1,4,1,1,1,1,1,1,6,4,Masculino,23,600,Branca,Solteiro(a)
+4,6,4,3,7,4,4,1,1,3,5,1,6,1,Masculino,22,2000,Branca,Solteiro(a)
+4,6,4,3,7,4,4,1,1,3,5,1,6,1,Masculino,22,2000,Branca,Solteiro(a)
+4,6,4,3,7,4,4,1,1,3,5,1,6,1,Masculino,22,2000,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,18,850,Parda,Solteiro(a)
+1,1,1,1,1,1,1,4,4,4,2,1,4,4,Masculino,25,800,Branca,Solteiro(a)
+1,7,1,1,3,1,1,1,1,1,1,1,2,3,Masculino,19,450,Branca,Solteiro(a)
+1,1,2,1,2,1,1,1,1,1,2,1,1,3,Feminino,18,1000,Amarela,Solteiro(a)
+4,3,2,1,1,1,1,1,1,1,2,1,1,7,Masculino,21,500,Preta,Solteiro(a)
+1,1,1,1,1,1,1,2,2,3,3,1,4,2,Masculino,21,159,Branca,Solteiro(a)
+2,2,6,1,2,2,1,2,3,2,1,1,3,2,Masculino,23,NA,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,24,196,Parda,Solteiro(a)
+1,1,1,1,3,1,1,1,1,1,2,1,2,1,Feminino,18,144.66666666666666,Branca,Solteiro(a)
+7,3,1,1,2,1,1,3,3,3,6,3,3,5,Masculino,22,NA,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,4,Feminino,22,450,Parda,Solteiro(a)
+2,2,4,2,2,5,3,2,2,2,4,4,2,2,Feminino,18,750,Preta,Solteiro(a)
+1,3,1,1,1,1,1,1,1,1,1,1,1,7,Feminino,23,500,Preta,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,2,1,1,1,Feminino,22,249.5,Preta,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,21,162.5,Branca,Solteiro(a)
+5,3,7,5,3,6,3,3,4,2,2,2,3,4,Masculino,19,NA,Parda,Solteiro(a)
+1,6,3,1,3,4,4,4,7,5,2,6,4,6,Masculino,19,700,Parda,Solteiro(a)
+4,5,6,7,7,5,4,1,4,4,4,2,5,2,Masculino,18,360,Parda,Solteiro(a)
+1,3,2,1,1,1,1,3,3,1,2,1,3,4,Feminino,18,250,Branca,Solteiro(a)
+1,1,1,1,1,1,4,1,1,1,6,7,7,7,Masculino,18,475,Branca,Solteiro(a)
+1,2,1,1,1,1,1,3,3,2,1,1,4,4,Feminino,21,350,Branca,Solteiro(a)
+1,2,2,1,1,1,2,2,2,3,3,2,3,2,Feminino,19,866.6666666666666,Parda,Solteiro(a)
+1,1,1,1,1,1,1,4,4,1,2,1,7,1,Feminino,18,400,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,27,625,Parda,Solteiro(a)
+1,3,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,23,725,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,2000,Branca,Solteiro(a)
+1,4,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,21,1333.3333333333333,Preta,Solteiro(a)
+1,5,2,1,2,2,1,1,1,1,1,1,1,4,Masculino,21,1000,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,21,1000,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,57,1500,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,20,450,Branca,Solteiro(a)
+2,2,2,1,1,1,1,2,2,3,2,2,3,2,Feminino,32,500,Preta,Solteiro(a)
+1,1,1,1,1,1,1,1,1,2,1,1,2,4,Feminino,20,2250,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,22,500,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,2500,Preta,Solteiro(a)
+1,1,1,1,2,1,1,1,1,1,1,1,4,1,Feminino,27,NA,Preta,Casado(a)
+2,2,2,1,4,2,1,1,1,1,2,1,1,7,Masculino,27,NA,Parda,Solteiro(a)
+5,2,1,1,5,1,1,1,1,4,6,1,1,1,Feminino,20,800,Parda,Solteiro(a)
+1,1,1,1,1,2,2,1,1,1,1,1,1,2,Masculino,27,2000,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,2,1,1,3,1,Feminino,19,1250,Parda,Solteiro(a)
+3,4,4,1,3,1,1,1,1,1,1,1,3,1,Feminino,29,750,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,2,1,1,1,Feminino,20,800,Parda,Solteiro(a)
+1,1,1,1,2,1,1,1,1,4,2,1,1,1,Feminino,18,2158.5,Branca,Solteiro(a)
+1,1,5,1,2,1,1,1,1,1,1,1,5,5,Feminino,19,300,Amarela,Solteiro(a)
+1,1,1,1,1,1,1,1,1,5,1,1,1,1,Feminino,21,400,Amarela,Solteiro(a)
+1,3,5,1,3,5,1,2,2,2,4,2,4,5,Masculino,19,800,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,5,7,Feminino,24,900,Parda,Solteiro(a)
+1,3,2,1,1,1,1,1,1,3,2,1,4,4,Feminino,31,666.6666666666666,Parda,Solteiro(a)
+1,1,2,1,1,1,1,1,1,4,1,1,4,2,Feminino,23,700,Preta,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,23,857.1428571428571,Preta,Solteiro(a)
+3,3,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,333.3333333333333,Parda,Solteiro(a)
+1,1,1,1,2,2,1,1,1,1,1,1,1,1,Masculino,23,375,Parda,Solteiro(a)
+1,3,3,1,3,1,1,1,1,1,1,1,1,1,Feminino,20,875,Branca,Solteiro(a)
+2,1,1,2,1,1,1,1,1,1,1,1,2,4,Feminino,27,500,Branca,Solteiro(a)
+1,3,1,1,3,1,1,1,1,3,2,1,3,4,Feminino,25,500,Parda,Solteiro(a)
+1,2,1,1,1,2,3,3,3,1,3,3,5,5,Masculino,24,200,Parda,Solteiro(a)
+1,1,1,1,2,1,1,1,1,2,2,1,1,2,Feminino,21,375,Parda,Solteiro(a)
+3,2,2,2,1,4,2,2,2,3,2,2,6,6,Masculino,19,1000,Parda,Solteiro(a)
+1,1,1,7,1,1,1,2,2,2,1,1,2,5,Feminino,18,1000,Parda,Solteiro(a)
+1,2,3,1,2,1,1,1,1,1,2,1,4,4,Masculino,19,2000,Branca,Solteiro(a)
+1,1,1,7,2,1,1,2,3,1,1,1,7,7,Masculino,18,666.6666666666666,Parda,Solteiro(a)
+3,2,3,1,2,1,1,1,1,4,2,1,6,4,Masculino,19,1400,Parda,Solteiro(a)
+2,3,4,1,5,3,3,4,4,4,4,1,4,4,Feminino,18,1000,Branca,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,1,1,1,4,Feminino,19,875,Branca,Solteiro(a)
+6,7,5,3,4,3,3,6,4,4,6,5,4,4,Masculino,20,499,Preta,Solteiro(a)
+1,2,1,1,1,2,1,4,4,2,1,1,4,1,Masculino,19,300,Parda,Solteiro(a)
+1,2,5,1,4,1,1,1,1,1,2,1,1,1,Feminino,19,833.3333333333334,Parda,Solteiro(a)
+1,4,2,2,2,1,1,1,1,1,1,1,1,2,Feminino,19,2750,Branca,Solteiro(a)
+1,2,1,1,3,1,1,1,1,1,3,2,1,2,Feminino,18,744.5,Branca,Solteiro(a)
+1,3,4,1,2,1,1,4,4,2,1,1,4,6,Masculino,19,326.6666666666667,Parda,Solteiro(a)
+1,7,1,1,2,1,1,1,1,1,1,1,1,1,Masculino,26,566.6666666666666,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,2,1,2,1,Feminino,18,1500,Branca,Solteiro(a)
+3,4,7,7,4,2,1,7,7,7,5,1,1,7,Masculino,18,450,Preta,Solteiro(a)
+2,5,3,3,4,4,4,4,4,4,3,1,4,4,Feminino,20,330,Parda,Solteiro(a)
+2,2,3,1,4,2,1,2,2,3,3,1,2,2,Feminino,20,133.33333333333334,Parda,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,1,1,1,2,Feminino,19,2500,Branca,Solteiro(a)
+4,3,5,2,7,3,3,4,4,4,4,4,5,4,Masculino,19,400,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,3,4,Masculino,20,200,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,32,2100,Branca,Solteiro(a)
+1,2,1,1,2,1,1,1,1,2,3,1,1,2,Feminino,18,500,Parda,Solteiro(a)
+1,3,1,1,1,1,1,1,1,4,1,1,5,6,Masculino,18,1500,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,20,500,Branca,Solteiro(a)
+1,2,1,1,3,1,1,4,4,2,1,1,4,5,Masculino,20,3000,Preta,Solteiro(a)
+1,1,2,2,2,2,2,2,1,1,1,1,5,3,Masculino,19,2250,Parda,Solteiro(a)
+1,3,1,1,2,1,1,2,2,1,1,1,2,7,Feminino,19,1666.6666666666667,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,58,2800,Branca,Solteiro(a)
+1,1,1,1,4,1,1,1,1,1,1,1,1,5,Masculino,24,2000,Indígena,Solteiro(a)
+4,4,4,1,3,1,1,1,1,1,3,1,1,1,Feminino,23,500,Branca,Solteiro(a)
+4,5,5,4,4,4,6,3,3,1,7,3,6,6,Masculino,25,1666.6666666666667,Parda,Solteiro(a)
+1,2,1,1,2,1,1,1,1,1,3,1,1,7,Masculino,20,375,Branca,Solteiro(a)
+2,2,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,750,Parda,Solteiro(a)
+2,3,3,2,1,3,2,4,4,1,4,3,5,4,Feminino,20,566.6666666666666,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,2,1,1,1,Masculino,21,1000,Parda,Solteiro(a)
+1,3,1,1,2,1,1,1,1,1,1,1,1,2,Feminino,20,1000,Parda,Solteiro(a)
+5,5,6,2,4,2,2,4,5,5,5,2,6,7,Feminino,20,416.6666666666667,Parda,Solteiro(a)
+1,3,1,1,3,1,1,1,1,3,3,1,3,7,Feminino,18,200,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,2,Feminino,18,500,Parda,Solteiro(a)
+1,1,1,1,1,1,2,1,7,5,1,1,4,5,Masculino,18,332.6666666666667,Parda,Solteiro(a)
+1,2,1,1,1,1,1,1,2,2,3,1,3,2,Feminino,18,1000,Branca,Solteiro(a)
+1,3,2,1,4,2,1,1,1,2,2,2,2,4,Masculino,18,1400,Parda,Solteiro(a)
+1,7,1,1,6,2,1,3,2,2,2,1,3,7,Feminino,18,625,Parda,Solteiro(a)
+2,2,5,1,2,2,2,1,4,3,2,2,4,4,Masculino,23,200,Parda,Solteiro(a)
+5,4,7,2,6,2,2,2,2,1,5,2,3,4,Masculino,24,332.6666666666667,Parda,Solteiro(a)
+2,3,4,1,3,1,2,1,1,2,3,1,3,2,Masculino,19,2000,Branca,Solteiro(a)
+1,3,3,7,3,4,2,1,1,1,4,3,1,1,Masculino,23,1250,Parda,Solteiro(a)
+1,3,1,1,3,1,1,1,1,4,1,1,1,7,Feminino,19,1000,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,2,Feminino,19,1000,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,21,500,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,625,Branca,Solteiro(a)
+1,1,1,1,2,1,1,1,1,1,1,1,1,1,Masculino,21,500,Parda,Solteiro(a)
+1,2,1,1,2,1,1,2,1,2,4,1,4,5,Feminino,19,4000,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,1300,Preta,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,2,1,1,2,Feminino,21,2666.6666666666665,Parda,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,2000,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,8500,Branca,Solteiro(a)
+1,1,1,1,5,1,1,1,1,5,1,1,2,1,Feminino,19,1666.6666666666667,Branca,Solteiro(a)
+1,1,1,1,3,1,1,1,1,1,1,1,1,1,Masculino,22,1250,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,2,1,3,6,Feminino,29,375,Parda,Solteiro(a)
+2,2,4,1,5,1,5,4,5,1,2,2,4,7,Feminino,43,998,Parda,Casado(a)
+1,1,6,1,2,1,1,4,4,4,3,1,4,1,Feminino,23,200,Parda,Solteiro(a)
+3,2,5,1,5,1,1,1,2,2,2,2,3,2,Feminino,21,2000,Parda,Solteiro(a)
+1,2,4,1,1,1,1,1,2,2,1,1,2,4,Masculino,26,1000,Branca,Solteiro(a)
+1,1,2,1,2,1,1,2,4,5,3,1,2,5,Feminino,22,425,Parda,Solteiro(a)
+2,2,2,1,6,2,1,7,7,7,4,1,7,7,Masculino,24,375,Branca,Solteiro(a)
+1,1,7,1,5,1,1,1,4,4,4,1,4,4,Masculino,24,1750,Parda,Solteiro(a)
+1,2,1,1,5,1,1,3,5,1,3,1,5,3,Masculino,27,490,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,22,625,Branca,Solteiro(a)
+1,2,1,1,2,1,1,1,1,2,3,1,2,1,Feminino,20,500,Parda,Casado(a)
+1,3,3,1,3,1,1,1,1,1,1,1,1,2,Masculino,42,499,Parda,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,1,1,2,1,Feminino,20,1180,Parda,Solteiro(a)
+1,7,1,1,1,1,1,1,3,1,1,1,3,1,Masculino,23,666.6666666666666,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,2,1,1,3,1,Feminino,20,NA,Branca,Solteiro(a)
+5,2,2,1,2,1,2,1,2,3,1,3,2,4,Feminino,44,900,Parda,Casado(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,21,499,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,2200,Branca,Solteiro(a)
+2,2,5,1,1,1,1,1,1,1,4,1,1,1,Masculino,20,750,Branca,Solteiro(a)
+1,1,3,1,3,2,1,3,3,2,1,1,3,1,Feminino,19,1833.3333333333333,Branca,Solteiro(a)
+2,1,1,1,2,1,1,2,3,1,1,1,4,2,Masculino,23,NA,Branca,Solteiro(a)
+1,2,7,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,600,Parda,Solteiro(a)
+1,1,2,1,6,1,1,1,1,1,1,1,1,1,Masculino,19,125,Preta,Solteiro(a)
+1,1,1,1,1,1,1,1,1,6,1,1,1,1,Feminino,20,300,Preta,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,3,1,Masculino,26,1000,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,26,1000,Parda,Solteiro(a)
+2,1,3,7,1,1,2,2,2,2,2,2,5,3,Masculino,22,249.5,Parda,Solteiro(a)
+1,2,2,1,2,2,2,1,1,3,1,1,1,2,Masculino,18,1500,Branca,Solteiro(a)
+1,4,4,1,6,1,1,1,1,1,3,1,1,4,Feminino,19,333.3333333333333,Parda,Solteiro(a)
+1,3,1,1,4,1,1,1,1,1,1,1,1,1,Feminino,28,1000,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,2000,Parda,Solteiro(a)
+1,3,1,1,1,1,1,1,4,1,2,1,3,1,Feminino,19,2500,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,2,1,1,2,Masculino,21,166.66666666666666,Parda,Solteiro(a)
+1,2,1,1,1,1,1,1,1,2,2,1,2,1,Masculino,21,625,Preta,Solteiro(a)
+1,1,1,1,4,1,1,1,1,5,3,1,1,1,Masculino,28,812.6666666666666,Parda,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,998,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,3,1,1,3,4,Masculino,22,400,Parda,Solteiro(a)
+1,2,1,1,2,1,1,3,3,3,1,1,4,1,Feminino,18,333.3333333333333,Parda,Solteiro(a)
+1,2,3,1,2,1,1,1,1,1,2,1,3,2,Masculino,21,332.6666666666667,Parda,Solteiro(a)
+1,2,3,1,4,1,1,1,1,1,2,1,1,1,Masculino,25,133.33333333333334,Preta,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,38,1000,Parda,Casado(a)
+1,2,2,1,2,1,1,1,1,1,1,1,2,1,Feminino,20,1400,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,2,1,1,1,Feminino,19,2500,Parda,Solteiro(a)
+1,1,4,1,1,1,1,1,1,2,1,1,2,1,Masculino,20,750,Preta,Solteiro(a)
+2,2,2,1,2,1,1,1,2,2,2,1,2,2,Masculino,20,3000,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,23,2000,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,2,1,3,7,Feminino,21,1200,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,2,1,1,1,Masculino,20,3333.3333333333335,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,4,2,1,6,4,Masculino,20,666.6666666666666,Parda,Solteiro(a)
+1,2,1,1,1,1,1,4,4,4,1,1,4,5,Masculino,40,2333.3333333333335,Parda,Casado(a)
+1,1,5,1,3,1,1,1,1,4,1,1,2,1,Masculino,25,860,Parda,Solteiro(a)
+4,4,1,1,6,1,1,1,1,1,3,1,1,1,Masculino,19,750,Parda,Solteiro(a)
+1,2,1,1,1,1,1,3,4,2,2,1,3,4,Feminino,21,700,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,24,NA,Preta,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,23,500,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,NA,Parda,Solteiro(a)
+1,2,2,1,1,1,2,4,4,2,2,2,4,1,Masculino,21,300,Preta,Solteiro(a)
+1,1,1,1,1,1,1,1,3,4,2,1,5,2,Masculino,22,800,Branca,Solteiro(a)
+1,3,1,1,4,2,1,1,1,1,2,1,2,2,Masculino,23,500,Branca,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,1,1,2,4,Masculino,22,4990,Branca,Solteiro(a)
+1,1,1,1,4,1,1,1,4,1,1,1,2,1,Feminino,20,500,Branca,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,2,1,2,1,Masculino,22,NA,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,4,3,1,1,3,Masculino,19,1750,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,19,300,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,3,1,1,1,Feminino,19,3000,Branca,Solteiro(a)
+1,3,1,1,2,1,1,1,1,1,1,1,2,1,Feminino,23,998,Branca,Solteiro(a)
+1,2,3,1,2,1,1,4,4,4,2,1,4,1,Feminino,24,499,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,3,1,Feminino,22,900,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,332.6666666666667,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,18,249.5,Parda,Solteiro(a)
+1,1,3,1,3,2,1,1,1,4,2,2,2,2,Feminino,18,2666.6666666666665,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,3750,Branca,Solteiro(a)
+1,7,1,1,1,1,1,1,1,2,1,1,3,4,Masculino,19,2000,Branca,Solteiro(a)
+1,2,1,1,1,1,1,1,1,2,2,1,2,2,Feminino,22,875,Parda,Solteiro(a)
+1,2,2,1,3,1,3,1,1,1,4,1,1,4,Masculino,19,1250,Amarela,Solteiro(a)
+1,4,3,1,2,3,1,2,4,4,3,1,4,4,Masculino,21,1500,Branca,Solteiro(a)
+2,3,1,1,1,1,1,1,1,2,2,1,2,3,Masculino,21,245,Branca,Solteiro(a)
+1,4,1,1,3,1,1,2,3,2,3,1,2,3,Feminino,20,200,Parda,Solteiro(a)
+1,2,1,1,1,1,1,4,4,1,1,1,4,1,Masculino,21,333.3333333333333,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,21,2000,Parda,Solteiro(a)
+1,1,1,1,2,1,1,1,1,1,1,1,1,1,Masculino,18,800,Branca,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,1,1,1,1,Masculino,18,700,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,20,1533.3333333333333,Parda,Solteiro(a)
+1,3,1,1,2,1,1,1,1,3,1,1,3,5,Feminino,25,750,Parda,Solteiro(a)
+1,1,1,1,1,1,1,1,2,3,3,1,2,6,Feminino,18,NA,Parda,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,1,1,1,1,Feminino,22,1600,Branca,Solteiro(a)
+1,1,1,1,1,1,1,1,1,1,1,1,1,5,Masculino,21,1750,Parda,Solteiro(a)
+2,6,2,1,2,1,2,2,2,2,2,2,2,2,Masculino,24,NA,Branca,Solteiro(a)
+1,1,1,1,1,1,1,2,2,2,1,1,2,7,Feminino,19,1666.6666666666667,Branca,Solteiro(a)
+1,2,1,1,1,1,1,1,1,1,2,1,1,1,Feminino,20,333.3333333333333,Parda,Solteiro(a)
+1,2,2,1,1,1,1,2,1,2,2,1,2,2,Feminino,19,933.3333333333334,Parda,Solteiro(a)
+1,3,4,1,3,1,1,1,1,1,4,1,3,5,Masculino,19,2500,Branca,Solteiro(a)
+4,4,4,1,4,1,1,4,4,4,1,1,5,7,Masculino,36,540,Parda,Casado(a)
+1,4,2,7,1,1,1,1,4,1,4,1,5,2,Masculino,27,750,Parda,Solteiro(a)
