@@ -30,7 +30,14 @@ itens <- read_excel("data/formulario_empatia.xlsx")
 ```{r}
 #| eval: false
 racismo <- df |> 
-  select(r1:r14, sexo:area_de_formacao)
+  select(r1:r14, sexo:area_de_formacao) |> 
+  mutate(
+    across(where(is.labelled), as_factor)
+  ) |> 
+  glimpse()
+
+racismo |> 
+  write_csv("data/dados_racismo_moderno.csv")
 ```
 
 ```{r}
@@ -58,13 +65,39 @@ fator_racismo <- tibble(
 )
 ```
 
-
 ```{r}
 variaveis_racismo |> 
   bind_cols(itens_racismo) |> 
-  bind_cols(fator_racismo)
+  bind_cols(fator_racismo) |> 
+  write_csv("data/code_book_escala_racismo_moderno.csv")
 ```
 
+```{r}
+variaveis_demo <- racismo |> 
+  select(sexo:area_de_formacao) |> 
+  names() |> 
+  tibble(Variáveis = _)
+```
+
+```{r}
+descricao_demo <- tribble(
+  ~Descrição,
+  "Sexo",
+  "Idade",
+  "Renda per capita",
+  "Cor/Raça",
+  "Estado civil",
+  "Área de formação"
+)
+```
+
+```{r}
+variaveis_demo |> 
+  bind_cols(descricao_demo)
+```
+
+
+###
 
 ```{r}
 racismo_efa <- racismo |> 
@@ -74,7 +107,3 @@ racismo_efa <- racismo |>
 ```{r}
 efa(data = racismo_efa, nfactors = 2, ordered = T)
 ```
-
-
-
-
