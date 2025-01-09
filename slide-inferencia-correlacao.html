@@ -1194,24 +1194,30 @@ Tabela&nbsp;1: Uma amostra aleatória de dez casos do banco de dados <code>mtcar
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(mpg)</span>
 <span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
-<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a aria-hidden="true" tabindex="-1"></a>box_wt <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
-<span id="cb9-9"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb9-10"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(wt)</span>
-<span id="cb9-11"><a aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb9-12"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb9-13"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
-<span id="cb9-14"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a aria-hidden="true" tabindex="-1"></a>box_drat <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
-<span id="cb9-16"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb9-17"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(drat)</span>
-<span id="cb9-18"><a aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb9-19"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb9-20"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
-<span id="cb9-21"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-22"><a aria-hidden="true" tabindex="-1"></a>box_mpg <span class="sc">+</span> box_wt <span class="sc">+</span> box_drat</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(</span>
+<span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#569BBD"</span></span>
+<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb9-9"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a aria-hidden="true" tabindex="-1"></a>box_wt <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb9-11"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb9-12"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(wt)</span>
+<span id="cb9-13"><a aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-14"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(</span>
+<span id="cb9-15"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#569BBD"</span></span>
+<span id="cb9-16"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-17"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb9-18"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a aria-hidden="true" tabindex="-1"></a>box_drat <span class="ot">&lt;-</span> dados_correlacao <span class="sc">|&gt;</span> </span>
+<span id="cb9-20"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb9-21"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(drat)</span>
+<span id="cb9-22"><a aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-23"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(</span>
+<span id="cb9-24"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#569BBD"</span></span>
+<span id="cb9-25"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-26"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb9-27"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a aria-hidden="true" tabindex="-1"></a>box_mpg <span class="sc">+</span> box_wt <span class="sc">+</span> box_drat</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </section>
