@@ -27,6 +27,7 @@ library(haven)
 library(readxl)
 library(careless)
 library(gt)
+library(EGAnet)
 library(lavaan)
 library(MVN)
 library(psych)
@@ -87,11 +88,6 @@ df |>
 
 ## Pacotes
 
-```{r}
-
-```
-
-
 Carregue os pacotes abaixo:
 
 ```{r}
@@ -103,7 +99,6 @@ library(EGAnet)
 library(psych)
 library(lavaan)
 ```
-
 
 ## Preparação dos dados para a análise
 
@@ -162,11 +157,6 @@ resultado_normalidade$multivariateNormality
 escala_de_racismo |> 
   polychoric.matrix() |> 
   KMO()
-
-escala_de_racismo |> 
-  KMO()
-
-EGA(escala_de_racismo)
 ```
 :::
 
