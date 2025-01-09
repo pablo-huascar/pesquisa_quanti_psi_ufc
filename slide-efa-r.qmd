@@ -29,6 +29,7 @@ library(careless)
 library(gt)
 library(lavaan)
 library(MVN)
+library(psych)
 ```
 
 ```{r}
@@ -86,6 +87,11 @@ df |>
 
 ## Pacotes
 
+```{r}
+
+```
+
+
 Carregue os pacotes abaixo:
 
 ```{r}
@@ -93,6 +99,8 @@ Carregue os pacotes abaixo:
 #| eval: false
 library(tidyverse)
 library(MVN)
+library(EGAnet)
+library(psych)
 library(lavaan)
 ```
 
@@ -145,6 +153,22 @@ resultado_normalidade$multivariateNormality
 ```
 :::
 
+## Fatorabilidade da Matriz de Dados
+
+::: panel-tabset
+### KMO
+
+```{r}
+escala_de_racismo |> 
+  polychoric.matrix() |> 
+  KMO()
+
+escala_de_racismo |> 
+  KMO()
+
+EGA(escala_de_racismo)
+```
+:::
 
 ## teste
 
