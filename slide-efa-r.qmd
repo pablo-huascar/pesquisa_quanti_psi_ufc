@@ -23,8 +23,6 @@ source("./_common.R")
 #| label: setup
 library(tidyverse)
 library(janitor)
-library(haven)
-library(readxl)
 library(careless)
 library(gt)
 library(EGAnet)
@@ -65,6 +63,16 @@ cb_racismo_moderno |>
   )
 ```
 
+## Obtenção dos dados
+
+Utilize o código abaixo para baixar o banco de dados e salvá-lo no objeto `df`
+
+```{r}
+#| echo: true
+#| eval: false
+df <- read_csv("https://raw.githubusercontent.com/pablo-huascar/pesquisa_quanti_psi_ufc/refs/heads/main/data/dados_racismo_moderno.csv")
+```
+
 ## Uma olhada nos dados {.smaller}
 
 ```{r}
@@ -86,6 +94,10 @@ df |>
   )
 ```
 
+## Participantes
+
+
+
 ## Pacotes
 
 Carregue os pacotes abaixo:
@@ -94,21 +106,65 @@ Carregue os pacotes abaixo:
 #| echo: true
 #| eval: false
 library(tidyverse)
+library(careless)
 library(MVN)
 library(EGAnet)
 library(psych)
 library(lavaan)
 ```
 
-## Preparação dos dados para a análise
+# Inspeção de dados (Data screening) 
+
+## Manipulação dos dados
 
 ```{r}
 #| echo: true
-escala_de_racismo <- df |> 
-  select(r1:r14) # <1>
+df <- df |> 
+  mutate(
+    id = 1:n(), .before = 1 # <1>
+  )
 ```
 
-1.  Criar um objeto somente com os itens da escala
+1.  Criar uma coluna para identificação dos casos
+
+## 
+
+## Respostas descuidadas
+
+::: panel-tabset
+### `longstring()`
+
+```{r}
+respostas_descuidadas <- longstring(escala_de_racismo, avg = T) |> 
+  as_tibble() |> 
+  mutate(
+    id = 1:n(), .before = 1
+  ) |> 
+  arrange(desc(longstr)) 
+
+respostas_descuidadas
+```
+
+### Avaliação dos casos
+
+```{r}
+escala_de_racismo |> 
+  filter(id %in% c(2, 8, 11, 26))
+```
+
+### Retirada dos casos
+
+```{r}
+remover_itens <- respostas_descuidadas |> 
+  filter(longstr == 14) |> 
+  select(id) |> 
+  pull()
+
+escala_de_racismo <- escala_de_racismo |> 
+  filter(!id %in% remover_itens) |> 
+  select(-id)
+```
+:::
 
 ## Avaliação da normalidade dos dados {.smaller}
 
@@ -148,6 +204,7 @@ resultado_normalidade$multivariateNormality
 ```
 :::
 
+
 ## Fatorabilidade da Matriz de Dados
 
 ::: panel-tabset
@@ -158,7 +215,16 @@ escala_de_racismo |>
   polychoric.matrix() |> 
   KMO()
 ```
+
+### Teste de esfericidade de Bartlett
+
+```{r}
+escala_de_racismo |> 
+  polychoric.matrix() |> 
+  cortest.bartlett(n = 322)
+```
 :::
+
 
 ## teste
 
