@@ -23,6 +23,7 @@ source("./_common.R")
 #| label: setup
 library(tidyverse)
 library(janitor)
+library(scales)
 library(careless)
 library(gt)
 library(EGAnet)
@@ -33,9 +34,12 @@ library(psych)
 
 ```{r}
 cb_racismo_moderno <- read_csv("data/code_book_escala_racismo_moderno.csv")
-
 df <- read_csv("data/dados_racismo_moderno.csv")
 ```
+
+## Escala de Racismo Moderno
+
+
 
 ## Escala de Racismo Moderno {.smaller}
 
@@ -55,8 +59,7 @@ cb_racismo_moderno |>
   ) |> 
   tab_style(
     style = cell_text(align = "center"),
-    locations = cells_column_labels(columns = c(Variáveis, Itens,
-                                                Fator))
+    locations = cells_column_labels(columns = c(Variáveis, Itens, Fator))
     ) |> 
   tab_options(
     table.font.size = "18px"
@@ -96,7 +99,32 @@ df |>
 
 ## Participantes
 
+```{r}
+#| label: descritivos
+descritivos <- df |> 
+  select(sexo, cor_raca, estado_civil) |> 
+  pivot_longer(cols = everything()) |> 
+  count(name, value) |> 
+  mutate(
+    prop = n/sum(n) |> round(1), 
+    prop = percent_format(big.mark = ".", decimal.mark = ",")(prop),
+    .by = name
+  ) |> 
+  arrange(factor(name, levels = c("sexo", "estado_civil", "cor_raca")), n)
 
+feminino_prop <- descritivos$prop[descritivos$value == "Feminino"]
+pardo_prop <- descritivos$prop[descritivos$value == "Parda"]
+idade_range <- range(df$idade)
+idade_media <- mean(df$idade) |> round(2) |> format(decimal.mark = ",")
+idade_dp <- sd(df$idade) |> round(2) |> format(decimal.mark = ",")
+estado_civil_prop <- descritivos$prop[descritivos$value == "Solteiro(a)"]
+renda_media <- mean(df$renda_per_capta, na.rm = T) |> round(2) |> 
+  format(decimal.mark = ",")
+renda_dp <- sd(df$renda_per_capta, na.rm = T) |> round(2) |> 
+  format(decimal.mark = ",")
+```
+
+Participaram do estudo `r nrow(df)` estudantes universitários. A maior parte era do sexo feminino (`r feminino_prop`) e se declarou como pardo (`r pardo_prop`). A idade variou entre `r idade_range[1]` e `r idade_range[2]` anos (M = `r idade_media`, DP = `r idade_dp`). Em relação ao estado civil, `r estado_civil_prop` afirmaram ser solteiros. A renda familiar per capita média foi de `r renda_media` (DP = `r renda_dp`)
 
 ## Pacotes
 
@@ -119,22 +147,61 @@ library(lavaan)
 
 ```{r}
 #| echo: true
-df <- df |> 
-  mutate(
-    id = 1:n(), .before = 1 # <1>
-  )
+escala_de_racismo <- df |>
+  select(r1:r14)  # <1>
+ 
 ```
 
-1.  Criar uma coluna para identificação dos casos
+1.  Selecionar as variáveis da escala
 
-## 
+## Escala de resposta e valores ausentes
+::: panel-tabset
+### Código
 
-## Respostas descuidadas
+```{r}
+#| echo: true
+resposta_e_ausentes <- escala_de_racismo |> 
+  summarise(
+    n = n(),
+    across(starts_with("r"), list(
+      Minimo = min,
+      Máximo = max,
+      Ausentes = \(x) sum(is.na(x))
+    )), 
+  ) |> 
+  pivot_longer(
+    cols = starts_with("r"),
+    names_to = c("Variável", ".value"),
+    names_sep = "_"
+  ) |> 
+  relocate(n, .after = Ausentes) 
+
+
+```
+
+### Resultado
+
+```{r}
+resposta_e_ausentes |> 
+  print(n = Inf)
+```
+:::
+
+## Escala de resposta e valores ausentes (`describe()`) 
+
+```{r}
+escala_de_racismo |> 
+  describe()
+```
+
+
+## Respostas descuidadas {.smaller}
 
 ::: panel-tabset
 ### `longstring()`
 
 ```{r}
+#| echo: true
 respostas_descuidadas <- longstring(escala_de_racismo, avg = T) |> 
   as_tibble() |> 
   mutate(
@@ -145,26 +212,32 @@ respostas_descuidadas <- longstring(escala_de_racismo, avg = T) |>
 respostas_descuidadas
 ```
 
-### Avaliação dos casos
+### Filtragem dos casos
 
 ```{r}
-escala_de_racismo |> 
-  filter(id %in% c(2, 8, 11, 26))
-```
-
-### Retirada dos casos
-
-```{r}
-remover_itens <- respostas_descuidadas |> 
+#| echo: true
+ids <- respostas_descuidadas |> 
   filter(longstr == 14) |> 
   select(id) |> 
   pull()
 
-escala_de_racismo <- escala_de_racismo |> 
-  filter(!id %in% remover_itens) |> 
-  select(-id)
+
+casos <- escala_de_racismo |>
+  mutate(
+    id = 1:n(), .before = 1
+  ) |> 
+  filter(id %in% ids) 
+```
+
+### Avaliação dos casos 
+
+```{r}
+#| echo: true
+casos |> 
+  print(n = Inf)
 ```
 :::
+
 
 ## Avaliação da normalidade dos dados {.smaller}
 
@@ -204,13 +277,13 @@ resultado_normalidade$multivariateNormality
 ```
 :::
 
-
 ## Fatorabilidade da Matriz de Dados
 
 ::: panel-tabset
 ### KMO
 
 ```{r}
+#| echo: true
 escala_de_racismo |> 
   polychoric.matrix() |> 
   KMO()
@@ -219,6 +292,7 @@ escala_de_racismo |>
 ### Teste de esfericidade de Bartlett
 
 ```{r}
+#| echo: true
 escala_de_racismo |> 
   polychoric.matrix() |> 
   cortest.bartlett(n = 322)
@@ -249,3 +323,18 @@ resultado_afe <- efa(
 ```{r}
 summary(resultado_afe)
 ```
+
+
+```{r}
+modelo_escala_de_racismo <- '
+f1 =~ r1 + r2 + r3 + r4 + r5 + r6 + r7 + r11 + r12
+f2 =~ r8 + r9 + r10 + r13 + r14
+'
+cfa(model = cfa_escala_de_racismo, data = escala_de_racismo, ordered = T) |> 
+  summary(standardized = T, fit.measures = T,
+  rsquare= T)
+  
+```
+
+
+
