@@ -41,13 +41,12 @@ racismo |>
   write_csv("data/dados_racismo_moderno.csv")
 ```
 
-
 ```{r}
 #| eval: false
 itens_racismo <- itens |> 
   select(`Eles têm conseguido mais do que merecem`:`Possuem uma beleza diferente`) |> 
   names() |> 
-  tibble(Itens = _) 
+  tibble(Item = _) 
 ```
 
 ```{r}
@@ -55,7 +54,7 @@ itens_racismo <- itens |>
 variaveis_racismo <- racismo |> 
   select(r1:r14) |> 
   names() |> 
-  tibble(Variáveis = _)
+  tibble(Variável = _)
 ```
 
 ```{r}

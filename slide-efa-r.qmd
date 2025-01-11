@@ -37,9 +37,9 @@ cb_racismo_moderno <- read_csv("data/code_book_escala_racismo_moderno.csv")
 df <- read_csv("data/dados_racismo_moderno.csv")
 ```
 
-## Escala de Racismo Moderno
+## Escala de Racismo Moderno {.smaller}
 
-
+A Escala de Racismo Moderno foi desenvolvida por McConahay (1983) e adaptada para a Espanha por Navas (1998). Essa versão foi utilizada por Santos et al. (2006) para adaptar o instrumento ao Brasil, incorporando itens mais alinhados à cultura brasileira. A versão brasileira da escala é composta por 14 itens agrupados em dois fatores: negação do preconceito (ex.: “Eles têm conseguido mais do que merecem”) e afirmação de diferenças (ex.: “Eles são mais habilidosos em trabalhos manuais”). As pontuações variam de 1 (discordo totalmente) a 7 (concordo totalmente), onde pontuações mais altas indicam um nível mais elevado de racismo.
 
 ## Escala de Racismo Moderno {.smaller}
 
@@ -51,7 +51,7 @@ cb_racismo_moderno |>
     table.font.size = "26px"
   ) |> 
   cols_align(
-    columns = Variáveis,
+    columns = Variável,
     align = "center" 
   ) |> 
   opt_stylize(
@@ -59,7 +59,7 @@ cb_racismo_moderno |>
   ) |> 
   tab_style(
     style = cell_text(align = "center"),
-    locations = cells_column_labels(columns = c(Variáveis, Itens, Fator))
+    locations = cells_column_labels(columns = c(Variável, Item, Fator))
     ) |> 
   tab_options(
     table.font.size = "18px"
@@ -141,7 +141,7 @@ library(psych)
 library(lavaan)
 ```
 
-# Inspeção de dados (Data screening) 
+# Inspeção de dados (Data screening)
 
 ## Manipulação dos dados
 
@@ -155,6 +155,7 @@ escala_de_racismo <- df |>
 1.  Selecionar as variáveis da escala
 
 ## Escala de resposta e valores ausentes
+
 ::: panel-tabset
 ### Código
 
@@ -174,9 +175,7 @@ resposta_e_ausentes <- escala_de_racismo |>
     names_to = c("Variável", ".value"),
     names_sep = "_"
   ) |> 
-  relocate(n, .after = Ausentes) 
-
-
+  relocate(n, .after = Máximo)
 ```
 
 ### Resultado
@@ -187,13 +186,13 @@ resposta_e_ausentes |>
 ```
 :::
 
-## Escala de resposta e valores ausentes (`describe()`) 
+## Escala de resposta e valores ausentes (`describe()`)
 
 ```{r}
+#| echo: true
 escala_de_racismo |> 
   describe()
 ```
-
 
 ## Respostas descuidadas {.smaller}
 
@@ -229,7 +228,7 @@ casos <- escala_de_racismo |>
   filter(id %in% ids) 
 ```
 
-### Avaliação dos casos 
+### Avaliação dos casos
 
 ```{r}
 #| echo: true
@@ -237,7 +236,6 @@ casos |>
   print(n = Inf)
 ```
 :::
-
 
 ## Avaliação da normalidade dos dados {.smaller}
 
@@ -253,7 +251,7 @@ resultado_normalidade <- mvn(
 )
 ```
 
-### Descritivos
+### Assimetria e curtose
 
 ```{r}
 #| echo: true
@@ -299,7 +297,6 @@ escala_de_racismo |>
 ```
 :::
 
-
 ## teste
 
 -   `ordered = T` implica em "WLSMV":
@@ -318,23 +315,31 @@ resultado_afe <- efa(
 )
 ```
 
-## Resultados
+## Resultados {.smaller}
 
 ```{r}
-summary(resultado_afe)
+#| echo: true
+summary(resultado_afe, cutoff = 0.4)
 ```
 
+##  {.smaller}
 
 ```{r}
 modelo_escala_de_racismo <- '
 f1 =~ r1 + r2 + r3 + r4 + r5 + r6 + r7 + r11 + r12
 f2 =~ r8 + r9 + r10 + r13 + r14
 '
-cfa(model = cfa_escala_de_racismo, data = escala_de_racismo, ordered = T) |> 
+cfa(model = modelo_escala_de_racismo, data = escala_de_racismo, ordered = T) |> 
   summary(standardized = T, fit.measures = T,
   rsquare= T)
   
 ```
 
+## Referências {.smaller}
 
+McConahay, J. B. (1983). Modern racism and modern discrimination: The effects of race, racial attitudes, and context on simulated hiring decisions. *Personality and Social Psychology Bulletin, 9*(4), 551-558. https://doi.org/10.1177/0146167283094004
+
+Navas MS. (1998). New measurement instruments for the new racism. *International Journal of Social Psychology, 13*(2), 233-239. https://doi.org/10.1174/021347498760350731
+
+Santos, W. S. dos ., Gouveia, V. V., Navas, M. S., Pimentel, C. E., & Gusmão, E. É. da S. (2006). Escala de racismo moderno: adaptação ao contexto brasileiro. *Psicologia Em Estudo, 11*(3), 637–645. https://doi.org/10.1590/S1413-73722006000300020
 
