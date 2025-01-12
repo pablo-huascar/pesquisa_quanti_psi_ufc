@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Introdução ao R – Pesquisa Quantitativa</title>
 <style>
 code{white-space: pre-wrap;}
@@ -53,6 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -70,7 +74,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -97,11 +102,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Procurar"
   }
 }</script>
+
+
 </head>
+
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Pesquisa Quantitativa</span>
@@ -113,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Proposta</span></a>
   </li>  
@@ -122,8 +132,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Conteúdos</span></a>
   </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/pablo-huascar/pesquisa_quanti_psi_ufc"> <i class="bi bi-{{< fa brands github >}}" role="img">
 </i> 
 <span class="menu-text"></span></a>
@@ -133,48 +143,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text"><i class="fa-brands fa-github fa-2x" aria-label="github"></i></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Nesta página</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
    
   <ul>
-<li>
-<a href="#introdu%C3%A7%C3%A3o" id="toc-introdução" class="nav-link active" data-scroll-target="#introdu%C3%A7%C3%A3o">Introdução</a>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a>
   <ul class="collapse">
-<li><a href="#pacotes-necess%C3%A1rios" id="toc-pacotes-necessários" class="nav-link" data-scroll-target="#pacotes-necess%C3%A1rios">Pacotes necessários</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#primeiro-bloco-de-exerc%C3%ADcios" id="toc-primeiro-bloco-de-exercícios" class="nav-link" data-scroll-target="#primeiro-bloco-de-exerc%C3%ADcios">Primeiro bloco de exercícios</a>
+  <li><a href="#pacotes-necessários" id="toc-pacotes-necessários" class="nav-link" data-scroll-target="#pacotes-necessários">Pacotes necessários</a></li>
+  </ul></li>
+  <li><a href="#primeiro-bloco-de-exercícios" id="toc-primeiro-bloco-de-exercícios" class="nav-link" data-scroll-target="#primeiro-bloco-de-exercícios">Primeiro bloco de exercícios</a>
   <ul class="collapse">
-<li><a href="#banco-de-dados" id="toc-banco-de-dados" class="nav-link" data-scroll-target="#banco-de-dados">Banco de dados</a></li>
-  <li><a href="#exerc%C3%ADcio-1" id="toc-exercício-1" class="nav-link" data-scroll-target="#exerc%C3%ADcio-1">Exercício 1</a></li>
-  <li><a href="#exerc%C3%ADcio-2" id="toc-exercício-2" class="nav-link" data-scroll-target="#exerc%C3%ADcio-2">Exercício 2</a></li>
-  <li><a href="#exerc%C3%ADcio-3" id="toc-exercício-3" class="nav-link" data-scroll-target="#exerc%C3%ADcio-3">Exercício 3</a></li>
-  <li><a href="#exerc%C3%ADcio-4" id="toc-exercício-4" class="nav-link" data-scroll-target="#exerc%C3%ADcio-4">Exercício 4</a></li>
-  <li><a href="#exerc%C3%ADcio-5" id="toc-exercício-5" class="nav-link" data-scroll-target="#exerc%C3%ADcio-5">Exercício 5</a></li>
-  <li><a href="#exerc%C3%ADcio-6" id="toc-exercício-6" class="nav-link" data-scroll-target="#exerc%C3%ADcio-6">Exercício 6</a></li>
-  <li><a href="#exerc%C3%ADcio-7" id="toc-exercício-7" class="nav-link" data-scroll-target="#exerc%C3%ADcio-7">Exercício 7</a></li>
-  <li><a href="#exerc%C3%ADcio-8" id="toc-exercício-8" class="nav-link" data-scroll-target="#exerc%C3%ADcio-8">Exercício 8</a></li>
-  <li><a href="#segundo-bloco-de-exerc%C3%ADcios" id="toc-segundo-bloco-de-exercícios" class="nav-link" data-scroll-target="#segundo-bloco-de-exerc%C3%ADcios">Segundo bloco de exercícios</a></li>
-  <li><a href="#exerc%C3%ADcio-9" id="toc-exercício-9" class="nav-link" data-scroll-target="#exerc%C3%ADcio-9">Exercício 9</a></li>
-  <li><a href="#exerc%C3%ADcio-10" id="toc-exercício-10" class="nav-link" data-scroll-target="#exerc%C3%ADcio-10">Exercício 10</a></li>
-  <li><a href="#exerc%C3%ADcio-11" id="toc-exercício-11" class="nav-link" data-scroll-target="#exerc%C3%ADcio-11">Exercício 11</a></li>
-  <li><a href="#exerc%C3%ADcio-12" id="toc-exercício-12" class="nav-link" data-scroll-target="#exerc%C3%ADcio-12">Exercício 12</a></li>
-  <li><a href="#exerc%C3%ADcio-13" id="toc-exercício-13" class="nav-link" data-scroll-target="#exerc%C3%ADcio-13">Exercício 13</a></li>
-  <li><a href="#exerc%C3%ADcio-14" id="toc-exercício-14" class="nav-link" data-scroll-target="#exerc%C3%ADcio-14">Exercício 14</a></li>
+  <li><a href="#banco-de-dados" id="toc-banco-de-dados" class="nav-link" data-scroll-target="#banco-de-dados">Banco de dados</a></li>
+  <li><a href="#exercício-1" id="toc-exercício-1" class="nav-link" data-scroll-target="#exercício-1">Exercício 1</a></li>
+  <li><a href="#exercício-2" id="toc-exercício-2" class="nav-link" data-scroll-target="#exercício-2">Exercício 2</a></li>
+  <li><a href="#exercício-3" id="toc-exercício-3" class="nav-link" data-scroll-target="#exercício-3">Exercício 3</a></li>
+  <li><a href="#exercício-4" id="toc-exercício-4" class="nav-link" data-scroll-target="#exercício-4">Exercício 4</a></li>
+  <li><a href="#exercício-5" id="toc-exercício-5" class="nav-link" data-scroll-target="#exercício-5">Exercício 5</a></li>
+  <li><a href="#exercício-6" id="toc-exercício-6" class="nav-link" data-scroll-target="#exercício-6">Exercício 6</a></li>
+  <li><a href="#exercício-7" id="toc-exercício-7" class="nav-link" data-scroll-target="#exercício-7">Exercício 7</a></li>
+  <li><a href="#exercício-8" id="toc-exercício-8" class="nav-link" data-scroll-target="#exercício-8">Exercício 8</a></li>
+  <li><a href="#segundo-bloco-de-exercícios" id="toc-segundo-bloco-de-exercícios" class="nav-link" data-scroll-target="#segundo-bloco-de-exercícios">Segundo bloco de exercícios</a></li>
+  <li><a href="#exercício-9" id="toc-exercício-9" class="nav-link" data-scroll-target="#exercício-9">Exercício 9</a></li>
+  <li><a href="#exercício-10" id="toc-exercício-10" class="nav-link" data-scroll-target="#exercício-10">Exercício 10</a></li>
+  <li><a href="#exercício-11" id="toc-exercício-11" class="nav-link" data-scroll-target="#exercício-11">Exercício 11</a></li>
+  <li><a href="#exercício-12" id="toc-exercício-12" class="nav-link" data-scroll-target="#exercício-12">Exercício 12</a></li>
+  <li><a href="#exercício-13" id="toc-exercício-13" class="nav-link" data-scroll-target="#exercício-13">Exercício 13</a></li>
+  <li><a href="#exercício-14" id="toc-exercício-14" class="nav-link" data-scroll-target="#exercício-14">Exercício 14</a></li>
+  </ul></li>
   </ul>
-</li>
-  </ul></nav>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Introdução ao R</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
 <p class="subtitle lead">Visualização de dados - Exercícios</p>
 </div>
@@ -190,7 +204,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><section id="introdução" class="level2"><h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+</header>
+
+
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
 <p><img src="img/ggplot_logo.png" class="img-fluid" width="102"></p>
 <p>Neste blocos de exercícios você vai utilizar o pacote <code>ggplot2</code> para construir os seguintes gráficos:</p>
 <ul>
@@ -200,27 +218,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Gráficos de dispersão (scatter plot)</li>
 <li>Séries temporais (time series)</li>
 </ul>
-<section id="pacotes-necessários" class="level3"><h3 class="anchored" data-anchor-id="pacotes-necessários">Pacotes necessários</h3>
+<section id="pacotes-necessários" class="level3">
+<h3 class="anchored" data-anchor-id="pacotes-necessários">Pacotes necessários</h3>
 <p>Para fazer estes exercícios, acione os pacotes a seguir:</p>
 <p>Caso ainda não tenha instalado os pacotes, use:</p>
-</section></section><section id="primeiro-bloco-de-exercícios" class="level2"><h2 class="anchored" data-anchor-id="primeiro-bloco-de-exercícios">Primeiro bloco de exercícios</h2>
-<section id="banco-de-dados" class="level3"><h3 class="anchored" data-anchor-id="banco-de-dados">Banco de dados</h3>
+</section>
+</section>
+<section id="primeiro-bloco-de-exercícios" class="level2">
+<h2 class="anchored" data-anchor-id="primeiro-bloco-de-exercícios">Primeiro bloco de exercícios</h2>
+<section id="banco-de-dados" class="level3">
+<h3 class="anchored" data-anchor-id="banco-de-dados">Banco de dados</h3>
 <p>Entre os exercícios 1 e 8, o banco de dados <code>starwars</code> vai ser empregado. <code>starwars</code> contém características de 87 personagens da franquia criada por George Lucas.</p>
 <p>Para saber mais sobre esses dados, utilize:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">starwars</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>?starwars</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para dar uma olhada nas variávies dos bancos de dados, você pode utilizar o comando a seguir:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Tente executar a função <code>glimpse()</code> no banco de dados <code>starwars</code>.</p>
-</section><section id="exercício-1" class="level3"><h3 class="anchored" data-anchor-id="exercício-1">Exercício 1</h3>
+</section>
+<section id="exercício-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-1">Exercício 1</h3>
 <p>Reproduza o seguinte gráfico:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
@@ -236,16 +262,19 @@ Dica
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop_na</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-</section><section id="exercício-2" class="level3"><h3 class="anchored" data-anchor-id="exercício-2">Exercício 2</h3>
+</section>
+<section id="exercício-2" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-2">Exercício 2</h3>
 <p>Modifique o gráfico do exercício anterior, de modo que ele fique como na imagem a seguir:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
@@ -261,20 +290,23 @@ Dica
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">fct_infreq</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">fill</span> <span class="op">=</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">theme</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_infreq</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fill <span class="ot">=</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-</section><section id="exercício-3" class="level3"><h3 class="anchored" data-anchor-id="exercício-3">Exercício 3</h3>
+</section>
+<section id="exercício-3" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-3">Exercício 3</h3>
 <p>Refaça o gráfico a seguir:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
@@ -284,12 +316,15 @@ Dica
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fill <span class="ot">=</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>position <span class="ot">=</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="exercício-4" class="level3"><h3 class="anchored" data-anchor-id="exercício-4">Exercício 4</h3>
+</section>
+<section id="exercício-4" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-4">Exercício 4</h3>
 <p>Modifique o gráfico do exercício anterior, de modo que ele fique como na imagem a seguir:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
@@ -305,17 +340,20 @@ Dica
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">labs</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">theme_</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>theme_</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-</section><section id="exercício-5" class="level3"><h3 class="anchored" data-anchor-id="exercício-5">Exercício 5</h3>
+</section>
+<section id="exercício-5" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-5">Exercício 5</h3>
 <p>Recrie o gráfico abaixo:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
@@ -331,16 +369,19 @@ Dica
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bins</span> <span class="op">=</span> <span class="fl">18</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bins <span class="ot">=</span> <span class="dv">18</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-</section><section id="exercício-6" class="level3"><h3 class="anchored" data-anchor-id="exercício-6">Exercício 6</h3>
+</section>
+<section id="exercício-6" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-6">Exercício 6</h3>
 <p>Transforme o gráfico anterior para que ele se pareça com a imagem abaixo:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
@@ -356,19 +397,22 @@ Dica
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">color</span> <span class="op">=</span></span>
-<span><span class="va">fill</span> <span class="op">=</span> </span>
-<span><span class="fu">labs</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">theme_light</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>color <span class="ot">=</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fill <span class="ot">=</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_light</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-</section><section id="exercício-7" class="level3"><h3 class="anchored" data-anchor-id="exercício-7">Exercício 7</h3>
+</section>
+<section id="exercício-7" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-7">Exercício 7</h3>
 <p>Construa o gráfico abaixo:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
@@ -384,17 +428,20 @@ Dica
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">fct_lump_n</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop_na</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_lump_n</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-</section><section id="exercício-8" class="level3"><h3 class="anchored" data-anchor-id="exercício-8">Exercício 8</h3>
+</section>
+<section id="exercício-8" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-8">Exercício 8</h3>
 <p>Modifique o código do gráfico anterior para que ele fique com essa aparência:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
@@ -412,33 +459,43 @@ Dica
 
 </div>
 </div>
-</section><section id="segundo-bloco-de-exercícios" class="level3"><h3 class="anchored" data-anchor-id="segundo-bloco-de-exercícios">Segundo bloco de exercícios</h3>
-<section id="banco-de-dados-1" class="level4"><h4 class="anchored" data-anchor-id="banco-de-dados-1">Banco de dados</h4>
+</section>
+<section id="segundo-bloco-de-exercícios" class="level3">
+<h3 class="anchored" data-anchor-id="segundo-bloco-de-exercícios">Segundo bloco de exercícios</h3>
+<section id="banco-de-dados-1" class="level4">
+<h4 class="anchored" data-anchor-id="banco-de-dados-1">Banco de dados</h4>
 <p>A partir do exercício 9, o banco de dados <code>gapminder</code> vai ser utilizado. <code>gapminder</code> contém informações sobre expectativa de vida, população e PIB per capita de 142 países entre os anos de 1952 e 2007.</p>
 <p>Para saber mais sobre esses dados, utilize:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">gapminder</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>?gapminder</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para dar uma olhada nas variávies dos bancos de dados, você pode utilizar o comando a seguir:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="exercício-9" class="level3"><h3 class="anchored" data-anchor-id="exercício-9">Exercício 9</h3>
+</section>
+</section>
+<section id="exercício-9" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-9">Exercício 9</h3>
 <p>Reproduza o gráfico a seguir, que só contém dados do ano de 2007:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="exercício-10" class="level3"><h3 class="anchored" data-anchor-id="exercício-10">Exercício 10</h3>
+</section>
+<section id="exercício-10" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-10">Exercício 10</h3>
 <p>Modifique o código do exercício anterior para que o gráfico ganhe as características abaixo:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
@@ -454,29 +511,35 @@ Dica
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">labs</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">scale_color_colorblind</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_color_colorblind</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-</section><section id="exercício-11" class="level3"><h3 class="anchored" data-anchor-id="exercício-11">Exercício 11</h3>
+</section>
+<section id="exercício-11" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-11">Exercício 11</h3>
 <p>Construa um gráfico como este (os dados referem-se somente ao ano de 1952):</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="exercício-12" class="level3"><h3 class="anchored" data-anchor-id="exercício-12">Exercício 12</h3>
+</section>
+<section id="exercício-12" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-12">Exercício 12</h3>
 <p>Modifique o gráfico do exercício acima para que ele se pareça com a imagem a seguir:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
@@ -492,28 +555,34 @@ Dica
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">labs</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">theme_clean</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">theme</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_clean</span>()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-</section><section id="exercício-13" class="level3"><h3 class="anchored" data-anchor-id="exercício-13">Exercício 13</h3>
+</section>
+<section id="exercício-13" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-13">Exercício 13</h3>
 <p>Crie um gráfico como o seguinte:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="exercício-14" class="level3"><h3 class="anchored" data-anchor-id="exercício-14">Exercício 14</h3>
+</section>
+<section id="exercício-14" class="level3">
+<h3 class="anchored" data-anchor-id="exercício-14">Exercício 14</h3>
 <p>Modifique o código anterior para o gráfico gerado se assemelhe a figura abaixo:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
+<figure class="figure">
+<p><img src="exercicios-visualizacao-de-dados_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="h" width="1800"></p>
 </figure>
 </div>
 </div>
@@ -535,7 +604,11 @@ Dica
 
 <!-- -->
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -678,7 +751,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/pablo-huascar\.github\.io\/pesquisa_quanti_psi_ufc\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1483,7 +1556,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Esta página foi construída com <a href="https://quarto.org/">Quarto</a>.</p>
 </div>   
@@ -1495,6 +1569,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+
+
 
 
 </body></html>
