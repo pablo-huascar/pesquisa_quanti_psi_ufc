@@ -88,6 +88,9 @@ df |>
   cols_align(
     align = "center"  
   ) |> 
+  fmt_number(
+    columns = renda_per_capta, decimals = 2
+    ) |> 
   tab_options(
     table.width = pct(100),
     table.font.size = "18px"
@@ -164,7 +167,7 @@ escala_de_racismo <- df |>
 resposta_e_ausentes <- escala_de_racismo |> 
   summarise(
     n = n(),
-    across(starts_with("r"), list(
+    across(r1:r14, list(
       Minimo = min,
       Máximo = max,
       Ausentes = \(x) sum(is.na(x))
@@ -220,7 +223,6 @@ ids <- respostas_descuidadas |>
   select(id) |> 
   pull()
 
-
 casos <- escala_de_racismo |>
   mutate(
     id = 1:n(), .before = 1
@@ -237,7 +239,9 @@ casos |>
 ```
 :::
 
-## Avaliação da normalidade dos dados {.smaller}
+# Avaliação de pressupostos
+
+## Normalidade dos dados {.smaller}
 
 ::: panel-tabset
 ### Teste
@@ -274,6 +278,18 @@ resultado_normalidade$univariateNormality
 resultado_normalidade$multivariateNormality
 ```
 :::
+
+## Correlação entre os itens
+
+```{r}
+#| echo: true
+#| output-location: slide
+escala_de_racismo |> 
+  polychoric.matrix() |> 
+  cor.plot(upper = F, MAR = 0.1)
+  
+```
+
 
 ## Fatorabilidade da Matriz de Dados
 
