@@ -30,6 +30,7 @@ library(EGAnet)
 library(lavaan)
 library(MVN)
 library(psych)
+library(ggcorrplot)
 ```
 
 ```{r}
@@ -152,7 +153,6 @@ library(lavaan)
 #| echo: true
 escala_de_racismo <- df |>
   select(r1:r14)  # <1>
- 
 ```
 
 1.  Selecionar as variáveis da escala
@@ -239,7 +239,7 @@ casos |>
 ```
 :::
 
-# Avaliação de pressupostos
+# Avaliação preliminar
 
 ## Normalidade dos dados {.smaller}
 
@@ -281,7 +281,18 @@ resultado_normalidade$multivariateNormality
 
 ## Correlação entre os itens
 
-
+```{r}
+#| echo: true
+#| output-location: slide
+escala_de_racismo |> 
+  polychoric.matrix() |> 
+  ggcorrplot(
+    hc.order = F,
+    type = "lower",
+    lab = TRUE,
+    lab_size = 2.5
+  )
+```
 
 
 ## Fatorabilidade da Matriz de Dados
@@ -305,6 +316,42 @@ escala_de_racismo |>
   cortest.bartlett(n = 322)
 ```
 :::
+
+# Retenção de fatores
+
+## Análise paralela {.smaller}
+
+```{r}
+#| echo: true
+analise_paralela <- escala_de_racismo |> 
+  polychoric.matrix() |> 
+  fa.parallel(
+    n.obs = 322, fm = "pa", 
+    plot = F
+  )
+
+analise_paralela
+```
+
+## Análise paralela {.smaller}
+
+```{r}
+tibble(
+  "Autovalores para os daos reais" = analise_paralela$fa.values,
+  "Autovalores para os dados simulados" = analise_paralela$fa.sim
+) |> 
+  print(n = Inf)
+```
+
+## MAP {.smaller}
+
+```{r}
+#| echo: true
+escala_de_racismo |> 
+  polychoric.matrix() |> 
+  vss(n.obs = 322, plot = F) 
+```
+
 
 ## teste
 
@@ -344,6 +391,10 @@ cfa(model = modelo_escala_de_racismo, data = escala_de_racismo, ordered = T) |>
   
 ```
 
+```{r}
+
+```
+
 ## Referências {.smaller}
 
 McConahay, J. B. (1983). Modern racism and modern discrimination: The effects of race, racial attitudes, and context on simulated hiring decisions. *Personality and Social Psychology Bulletin, 9*(4), 551-558. https://doi.org/10.1177/0146167283094004
@@ -351,4 +402,5 @@ McConahay, J. B. (1983). Modern racism and modern discrimination: The effects of
 Navas MS. (1998). New measurement instruments for the new racism. *International Journal of Social Psychology, 13*(2), 233-239. https://doi.org/10.1174/021347498760350731
 
 Santos, W. S. dos ., Gouveia, V. V., Navas, M. S., Pimentel, C. E., & Gusmão, E. É. da S. (2006). Escala de racismo moderno: adaptação ao contexto brasileiro. *Psicologia Em Estudo, 11*(3), 637–645. https://doi.org/10.1590/S1413-73722006000300020
+
 
