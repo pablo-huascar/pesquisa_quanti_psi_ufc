@@ -241,7 +241,7 @@ cov1 <- rnorm(N, 0, 1)
 cov2 <- rnorm(N, 0, 1)
 cov3 <- rnorm(N, 0, 1)
 
-# Mediador influenciado por X e cov1)
+# Mediador influenciado por X e cov1
 M <- 5 + 0.2*X + 0.4*cov1 + rnorm(N, sd=1)
 
 # Desfecho influenciado por X, M e as três covariáveis
@@ -461,7 +461,7 @@ dados <- tribble(
 #| echo: true
 dados
 
-dados |> 
+dados <- dados |> 
   mutate(
     across(where(is.double),
            \(x) na_if(x, 999)),

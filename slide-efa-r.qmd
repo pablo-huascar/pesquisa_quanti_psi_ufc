@@ -144,7 +144,7 @@ library(psych)
 library(lavaan)
 ```
 
-# Inspeção de dados (Data screening)
+# Inspeção de dados <br> (Data screening)
 
 ## Manipulação dos dados
 
@@ -281,14 +281,7 @@ resultado_normalidade$multivariateNormality
 
 ## Correlação entre os itens
 
-```{r}
-#| echo: true
-#| output-location: slide
-escala_de_racismo |> 
-  polychoric.matrix() |> 
-  cor.plot(upper = F, MAR = 0.1)
-  
-```
+
 
 
 ## Fatorabilidade da Matriz de Dados
