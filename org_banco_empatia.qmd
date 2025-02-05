@@ -17,6 +17,7 @@ library(readxl)
 library(careless)
 library(gt)
 library(lavaan)
+library(EGAnet)
 ```
 
 ```{r}
@@ -26,6 +27,8 @@ df <- read_spss("data/empatia.sav") |>
 
 itens <- read_excel("data/formulario_empatia.xlsx")
 ```
+
+## Escala de Racismo Moderno
 
 ```{r}
 #| eval: false
@@ -40,6 +43,7 @@ racismo <- df |>
 racismo |> 
   write_csv("data/dados_racismo_moderno.csv")
 ```
+
 
 ```{r}
 #| eval: false
@@ -97,13 +101,37 @@ variaveis_demo |>
   bind_cols(descricao_demo)
 ```
 
-### 
+## Escala de Afetos
 
 ```{r}
-racismo_efa <- racismo |> 
-  select(r1:r14)
+afetos <- 
+  
+df |> 
+  select(a1:a20, sexo:estado_civil) |> 
+  mutate(
+    across(where(is.labelled), as_factor)
+  ) |> 
+  write_csv("data/dados_afetos_positivos_negativos.csv")
 ```
 
+
 ```{r}
-efa(data = racismo_efa, nfactors = 2, ordered = T)
+EGAnet::EGA(afetos)
+
+efa(afetos, nfactors = 2) |> 
+  summary(cutoff = 0.4)
 ```
+
+
+
+
+```{r}
+itens |> 
+  select(`Muitas vezes, eu fico nervoso.`:`Tenho me sentido triste ultimamente.`)
+```
+
+
+
+
+
+

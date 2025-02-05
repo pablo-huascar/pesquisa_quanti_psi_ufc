@@ -294,7 +294,6 @@ escala_de_racismo |>
   )
 ```
 
-
 ## Fatorabilidade da Matriz de Dados
 
 ::: panel-tabset
@@ -352,7 +351,6 @@ escala_de_racismo |>
   vss(n.obs = 322, plot = F) 
 ```
 
-
 ## teste
 
 -   `ordered = T` implica em "WLSMV":
@@ -402,5 +400,3 @@ McConahay, J. B. (1983). Modern racism and modern discrimination: The effects of
 Navas MS. (1998). New measurement instruments for the new racism. *International Journal of Social Psychology, 13*(2), 233-239. https://doi.org/10.1174/021347498760350731
 
 Santos, W. S. dos ., Gouveia, V. V., Navas, M. S., Pimentel, C. E., & Gusmão, E. É. da S. (2006). Escala de racismo moderno: adaptação ao contexto brasileiro. *Psicologia Em Estudo, 11*(3), 637–645. https://doi.org/10.1590/S1413-73722006000300020
-
-
