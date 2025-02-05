@@ -97,13 +97,4 @@ variaveis_demo |>
   bind_cols(descricao_demo)
 ```
 
-### 
 
-```{r}
-racismo_efa <- racismo |> 
-  select(r1:r14)
-```
-
-```{r}
-efa(data = racismo_efa, nfactors = 2, ordered = T)
-```
