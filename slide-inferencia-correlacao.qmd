@@ -129,9 +129,9 @@ dados_correlacao <- mtcars |>
   select(modelo, mpg, wt, drat) # <3> 
 ```
 
-1. Converter os rótulos das linhas
-2. Transformar em tibble
-3. Selecionar as variáveis
+1.  Converter os rótulos das linhas
+2.  Transformar em tibble
+3.  Selecionar as variáveis
 
 ### Resultado
 
@@ -252,21 +252,27 @@ box_mpg <- dados_correlacao |>
   ggplot(
     aes(mpg)
     ) +
-  geom_boxplot() +
+  geom_boxplot(
+    color = "#569BBD"
+  ) +
   coord_flip()
 
 box_wt <- dados_correlacao |> 
   ggplot(
     aes(wt)
     ) +
-  geom_boxplot() +
+  geom_boxplot(
+    color = "#569BBD"
+  ) +
   coord_flip()
 
 box_drat <- dados_correlacao |> 
   ggplot(
     aes(drat)
     ) +
-  geom_boxplot() +
+  geom_boxplot(
+    color = "#569BBD"
+  ) +
   coord_flip()
 
 box_mpg + box_wt + box_drat

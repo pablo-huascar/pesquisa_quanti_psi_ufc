@@ -231,10 +231,9 @@ Vetor (ou array unidimensional) com os números das linhas que devem ser removid
 Fornece um meio mais flexível de especificar em quais equações cada covariável será incluída, organizando-as em uma matriz com as variáveis consequentes (mediadores na ordem definida em *mvlist* e, por último, a variável dependente) nas linhas, e as covariáveis (na ordem em *covlist*) nas colunas. Cada célula recebe 1 caso se deseje incluir aquela covariável na equação do mediador ou da variável de *desfecho* correspondentes, ou 0 caso contrário, sendo lidas da esquerda para a direita, de cima para baixo. Por exemplo, se houver dois mediadores `med1` e `med2` e três covariáveis `cov1`, `cov2`, `cov3`, a linha `med1` receberá 1 ou 0 indicando se cada uma das covariáveis entra na equação de `med1`, e assim por diante para `med2` e para a variável de desfecho Y. Uma exigência importante é que cada covariável (coluna) possua ao menos um “1” em toda a matriz, pois o PROCESS rejeita colunas inteiramente zeradas. Se desejar excluir alguma covariável completamente de todas as equações, basta removê-la de *covlist*, em vez de incluí-la com zeros. Para conferir se seu *cmatrix* foi especificado corretamente, ative a opção `matrices=1` e examine a “CMATRIX” nos resultados, onde será exibido exatamente em quais equações cada covariável foi alocada. No exemplo abaixo somente `cov1` será incluída no modelo da variável mediadora `M` enquanto as 3 covariáveis serão incluídos no modelo da variável de desfecho `Y`
 
 ```{r}
-set.seed(1234)           # Para reprodutibilidade
-N <- 100                 # Tamanho da amostra
-
-# Variável independente
+#| echo: true
+set.seed(1234)           
+N <- 100                 
 X <- rnorm(N, mean = 50, sd = 10)
 
 # Covariáveis
@@ -242,13 +241,12 @@ cov1 <- rnorm(N, 0, 1)
 cov2 <- rnorm(N, 0, 1)
 cov3 <- rnorm(N, 0, 1)
 
-# Mediador influenciado por X (e, se quiser, cov1)
+# Mediador influenciado por X e cov1
 M <- 5 + 0.2*X + 0.4*cov1 + rnorm(N, sd=1)
 
 # Desfecho influenciado por X, M e as três covariáveis
 Y <- 10 + 0.1*X + 0.3*M + 0.2*cov1 - 0.1*cov2 + 0.4*cov3 + rnorm(N, sd=2)
 
-# Constrói o data frame final
 data <- tibble(X, M, Y, cov1, cov2, cov3)
 ```
 
@@ -392,6 +390,7 @@ Define valores específicos para os mediadores (caso existam múltiplos, deve co
 PROCESS para R somente aceita dados em formato numérico. Assim, por exemplo, se uma variável chamada `sex` for codificada como "M" e "F" nos dados, esses códigos alfabéticos devem ser convertidos para o formato numérico (por exemplo, 0 e 1) antes de seu uso na função.
 
 ```{r}
+#| echo: false
 dados <- tribble(
   ~sex, ~X, ~M, ~Y,
   "M", 5, 3, 2,
@@ -436,7 +435,7 @@ dados
 
 dados <- dados |> 
   mutate(
-    sex = as.double(sex)
+    sex = as.numeric(sex)
   )
 
 dados
@@ -452,7 +451,10 @@ dados <- tribble(
   "F", 2, 5, 999,
   "M", 5, 3, 5,
   "F", 1, 999, 1
-)
+) |> 
+  mutate(
+    sex = as_factor(sex)
+  )
 ```
 
 ```{r}
@@ -461,10 +463,14 @@ dados
 
 dados <- dados |> 
   mutate(
-    across(everything(),
-           \(x) case_when(x == 999 ~ NA, .default = x)),
-    sex = case_when(sex == "M" ~ 0, sex == "F" ~ 1,
-                    .default = NA)
+    across(where(is.double),
+           \(x) na_if(x, 999)),
+    across(where(is.factor), 
+           \(x) na_if(x, "999")) 
+  ) |> 
+  mutate(
+    sex = case_when(sex == "M" ~ 0,
+                    sex == "F" ~ 1)
   )
 
 dados
