@@ -308,7 +308,6 @@ df |>
   )
 ```
 
-
 ### Interação no modelo
 
 ```{r}
