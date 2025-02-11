@@ -308,16 +308,6 @@ df |>
   )
 ```
 
-```{r}
-library(palmerpenguins)
-
-penguins |> 
-  ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-```
-
-
 ### Interação no modelo
 
 ```{r}
@@ -401,6 +391,7 @@ emmeans(modelo_ancova, "smoke")
 ```
 
 ## Tamanho de efeito
+
 ```{r}
 eta_squared(modelo_ancova)
 eta_squared(modelo_ancova, partial = F)
@@ -412,15 +403,13 @@ omega_squared(modelo_ancova, partial = F)
 
 **Pergunta de pesquisa:**
 
-
 **Hipótese:**\
-
 
 ## Quem é quem na pergunta
 
--   VD: 
--   VI: 
--   Covariável: 
+-   VD:
+-   VI:
+-   Covariável:
 
 ## Obtenção do banco de dados
 
@@ -806,6 +795,7 @@ emmeans(modelo_ancova_pair, "group")
 ```
 
 ## Tamanho de efeito
+
 ```{r}
 eta_squared(modelo_ancova)
 eta_squared(modelo_ancova, partial = F)
@@ -835,6 +825,3 @@ contrast(emm_pair, "pairwise")
 ```{r}
 contrast(emm_pair, "tukey")
 ```
-
-
-

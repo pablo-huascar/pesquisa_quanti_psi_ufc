@@ -101,6 +101,7 @@ variaveis_demo |>
   bind_cols(descricao_demo)
 ```
 
+
 ## Escala de Afetos
 
 ```{r}
@@ -172,13 +173,4 @@ variaveis_afetos |>
   bind_cols(fator_afetos) |> 
   write_csv("data/code_book_escala_afetos_positivos_negativos.csv")
 ```
-```
-
-
-
-
-
-
-
-
 
