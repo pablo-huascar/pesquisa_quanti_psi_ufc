@@ -448,7 +448,7 @@ escala_de_racismo |>
 
 # Estimadores lavaan: básicos {.smaller}
 
-## **a) ML (Maximum Likelihood)**
+## **a) ML (Maximum Likelihood)** {.smaller}
 - **Funcionamento:** Baseia-se na maximização da função de verossimilhança para estimar parâmetros. Assume normalidade multivariada.
 - **Vantagens:**
   - Eficiente para grandes amostras e dados normais.
@@ -551,22 +551,6 @@ resultado_afe <- efa(
 summary(resultado_afe, cutoff = 0.4)
 ```
 
-##  {.smaller}
-
-```{r}
-modelo_escala_de_racismo <- '
-f1 =~ r1 + r2 + r3 + r4 + r5 + r6 + r7 + r11 + r12
-f2 =~ r8 + r9 + r10 + r13 + r14
-'
-cfa(model = modelo_escala_de_racismo, data = escala_de_racismo, ordered = T) |> 
-  summary(standardized = T, fit.measures = T,
-  rsquare= T)
-  
-```
-
-```{r}
-
-```
 
 ## Referências {.smaller}
 
