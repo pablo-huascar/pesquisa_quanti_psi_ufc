@@ -1,3 +1,4 @@
+
 ---
 title: "Análise Fatorial Exploratória"
 subtitle: "Aplicação no R"
@@ -35,7 +36,7 @@ library(ggcorrplot)
 
 ```{r}
 cb_racismo_moderno <- read_csv("data/code_book_escala_racismo_moderno.csv")
-df <- read_csv("data/dados_racismo_moderno.csv") 
+df <- read_csv("data/dados_racismo_moderno.csv")
 ```
 
 ## Escala de Racismo Moderno {.smaller}
@@ -128,7 +129,7 @@ renda_dp <- sd(df$renda_per_capta, na.rm = T) |> round(2) |>
   format(decimal.mark = ",")
 ```
 
-Participaram do estudo `r nrow(df)` estudantes universitários. A maior parte era do sexo feminino (`r feminino_prop`) e se declarou como pardo (`r pardo_prop`). A idade variou entre `r idade_range[1]` e `r idade_range[2]` anos (M = `r idade_media`, DP = `r idade_dp`). Em relação ao estado civil, `r estado_civil_prop` afirmaram ser solteiros. A renda familiar per capita média foi de R$ `r renda_media` (DP = `r renda_dp`)
+Participaram do estudo `r nrow(df)` estudantes universitários. A maior parte era do sexo feminino (`r feminino_prop`) e se declarou como pardo (`r pardo_prop`). A idade variou entre `r idade_range[1]` e `r idade_range[2]` anos (M = `r idade_media`, DP = `r idade_dp`). Em relação ao estado civil, `r estado_civil_prop` afirmaram ser solteiros. A renda familiar per capita média foi de `r renda_media` (DP = `r renda_dp`)
 
 ## Pacotes
 
@@ -351,6 +352,181 @@ escala_de_racismo |>
   vss(n.obs = 322, plot = F) 
 ```
 
+# Estimadores JASP
+
+## **Minimum Residual (Mínimos Resíduos)** {.smaller}
+
+-   **O que faz**: Também conhecido como **ULS (Unweighted Least Squares)**, minimiza a soma dos quadrados dos resíduos entre a matriz observada e a matriz modelada, **sem ponderar** os elementos.
+-   **Quando usar**:
+    -   Dados contínuos ou ordinais com violação de normalidade.
+    -   Amostras pequenas (é menos exigente que ML).
+-   **Suposições**: Não assume normalidade, mas requer homocedasticidade.
+-   **Comparação com lavaan**: Equivalente ao `estimator = "ULS"` no lavaan.
+
+
+## **Maximum Likelihood (Máxima Verossimilhança)** {.smaller}
+
+-   **O que faz**: Estima parâmetros que maximizam a probabilidade dos dados observados, assumindo normalidade multivariada.
+-   **Quando usar**:
+    -   Dados contínuos e normais.
+    -   Quando se deseja testes de ajuste (ex.: χ²) e intervalos de confiança.
+-   **Suposições**: Normalidade multivariada e tamanho amostral adequado (n \> 200).
+-   **Comparação com lavaan**: Equivalente ao `estimator = "ML"`. No JASP, não há variantes robustas por padrão.
+
+
+## **Principal Axis Factoring (PAF - Fatoração por Eixos Principais)** {.smaller}
+
+-   **O que faz**: Método de extração que estima **comunalidades** (variância compartilhada entre variáveis) iterativamente, usando correlações parciais.
+-   **Quando usar**:
+    -   Dados não normais.
+    -   Quando o objetivo é identificar a estrutura latente sem assumir normalidade.
+-   **Suposições**: Não assume normalidade, mas requer que as comunalidades sejam razoavelmente altas.
+-   **Diferença do PCA**: O PAF é um método de **análise fatorial** (modela variância comum), enquanto o PCA é uma técnica de redução de dados (modela variância total).
+
+## **Ordinary Least Squares (Mínimos Quadrados Ordinários - OLS)** {.smaller}
+
+-   **O que faz**: Similar ao *Minimum Residual*, mas focado em minimizar resíduos sem ajustes. Não confundir com regressão OLS.
+-   **Quando usar**: Casos simples onde a prioridade é simplicidade computacional.
+-   **Suposições**: Mesmas do *Minimum Residual*.
+-   **Comparação com lavaan**: Praticamente idêntico ao `estimator = "ULS"`.
+
+
+## **Weighted Least Squares (WLS - Mínimos Quadrados Ponderados)** {.smaller}
+
+-   **O que faz**: Pondera os resíduos pela inversa da matriz de covariância assintótica. Adequado para dados ordinais.
+-   **Quando usar**:
+    -   Dados ordinais (ex.: escalas Likert).
+    -   Quando há não normalidade extrema.
+-   **Suposições**: Requer amostras grandes (n \> 1.000) para estabilidade.
+-   **Comparação com lavaan**: Equivalente ao `estimator = "WLSMV"` se combinado com correções robustas.
+
+
+## **Generalized Least Squares (GLS - Mínimos Quadrados Generalizados)** {.smaller}
+
+-   **O que faz**: Versão generalizada do OLS que pondera os resíduos pela matriz de covariância residual.
+-   **Quando usar**: Dados contínuos com heterocedasticidade conhecida.
+-   **Suposições**: Normalidade e matriz de covariância bem especificada.
+-   **Comparação com lavaan**: Similar ao `estimator = "GLS"`.
+
+
+## **Minimum Chi-Square (Mínimo Qui-Quadrado)** {.smaller}
+
+-   **O que faz**: Minimiza a discrepância do qui-quadrado entre a matriz observada e a modelada.
+-   **Quando usar**:
+    -   Dados categóricos (ex.: tabelas de contingência).
+    -   Quando se busca compatibilidade com métodos de triagem de modelos.
+-   **Suposições**: Tabelas de contingência bem preenchidas (frequências \> 5).
+
+
+## **Minimum Rank (Mínimo Posto)** {.smaller}
+
+-   **O que faz**: Método que minimiza o posto (rank) da matriz de covariância residual, buscando a estrutura mais parcimoniosa.
+-   **Quando usar**:
+    -   Para explorar o número mínimo de fatores necessários.
+    -   Em dados com alta colinearidade.
+-   **Suposições**: Adequado para dados de alta dimensionalidade.
+
+## **Tabela Comparativa: Quando Usar Cada Estimador no JASP** {.smaller}
+
+| **Estimador** | **Dados Contínuos** | **Dados Ordinais** | **Normalidade** | **Amostra Pequena** | **Uso Típico** |
+|------------|------------|------------|------------|------------|-------------|
+| **Minimum Residual** | Sim | Sim | Não requer | Sim | Dados não normais ou pequenas amostras |
+| **Maximum Likelihood** | Sim | Não | Requer | Não (n \> 200) | Dados normais com teste de ajuste |
+| **Principal Axis Factoring** | Sim | Sim | Não requer | Sim | Exploração de estrutura latente |
+| **Weighted Least Squares** | Não | Sim | Não requer | Não (n \> 1.000) | Dados ordinais ou não normais |
+| **Generalized LS** | Sim | Não | Requer | Não | Dados contínuos com heterocedasticidade |
+| **Minimum Chi-Square** | Não | Sim (categóricos) | Não requer | Não | Tabelas de contingência |
+| **Minimum Rank** | Sim | Sim | Não requer | Sim | Redução de dimensionalidade |
+
+## **Exemplo Prático no JASP** {.smaller}
+
+1.  **Dados normais e contínuos**:
+    -   Escolha *Maximum Likelihood* para obter testes de ajuste e cargas fatoriais precisas.
+2.  **Dados ordinais (Likert)**:
+    -   Use *Weighted Least Squares* (WLS) ou *Principal Axis Factoring* (PAF).
+3.  **Amostra pequena e não normal**:
+    -   Prefira *Minimum Residual* ou *Minimum Rank*.
+
+# Estimadores lavaan: básicos {.smaller}
+
+## **a) ML (Maximum Likelihood)** {.smaller}
+- **Funcionamento:** Baseia-se na maximização da função de verossimilhança para estimar parâmetros. Assume normalidade multivariada.
+- **Vantagens:**
+  - Eficiente para grandes amostras e dados normais.
+  - Suporta dados incompletos via *Full Information Maximum Likelihood* (FIML).
+- **Limitações:**
+  - Sensível a violações de normalidade (viés nos erros padrão e teste de ajuste χ²).
+  - Requer grandes amostras para estabilidade.
+
+## **b) GLS (Generalized Least Squares)** {.smaller}
+- **Funcionamento:** Minimiza a diferença entre a matriz de covariância observada e a modelada, ponderando pelos resíduos.
+- **Uso Ideal:** Dados contínuos e normais, mas com heterocedasticidade conhecida.
+- **Limitação:** Não funciona com dados ordinais ou incompletos.
+
+## **c) WLS/DWLS/ULS** {.smaller}
+- **WLS (Weighted Least Squares):** Usa toda a matriz de peso (inversa da matriz de covariância assintótica). Adequado para dados ordinais, mas exige amostras grandes (n > 1.000) para estabilidade.
+- **DWLS (Diagonally Weighted LS):** Usa apenas a diagonal da matriz de peso. Mais estável que WLS para amostras menores (n > 200).
+- **ULS (Unweighted LS):** Não usa ponderação. Rápido, mas menos preciso.
+- **Recomendação:** 
+  - Para dados ordinais (ex.: escalas Likert), **DWLS** ou **WLSMV** (variante robusta) são preferidos ([Li, 2016](https://link.springer.com/article/10.3758/s13428-015-0619-7)).
+
+# Estimadores lavaan: robustos 
+
+## **a) MLM, MLR, MLMV (Robust ML)** {.smaller}
+- **MLM (Satorra-Bentler):**
+  - **Correção:** Ajusta o teste χ² e os erros padrão usando a correção de escala de Satorra-Bentler.
+  - **Uso:** Dados contínuos não normais e completos.
+  - **Exemplo:** Se a curtose for moderada, o MLM reduz falsos positivos no teste de ajuste.
+
+- **MLR (Yuan-Bentler):**
+  - **Correção:** Combina erros padrão robustos (Huber-White) e teste χ² escalonado (Yuan-Bentler).
+  - **Vantagem:** Funciona com dados **incompletos** (FIML robusto).
+  - **Recomendação:** Padrão para dados contínuos não normais com *missing values* ([Enders, 2010](https://psycnet.apa.org/record/2010-03935-007)).
+
+- **MLMV e MLMVS:** Ajustam média e variância do teste χ². Úteis para amostras pequenas (< 200), onde MLM pode ser conservativo.
+
+## **b) WLSMV (Robust DWLS)** {.smaller}
+- **Funcionamento:** 
+  1. Usa a diagonal da matriz de peso para estimação (DWLS).
+  2. Usa a matriz completa para corrigir erros padrão e estatísticas de teste.
+- **Vantagens:**
+  - Adequado para dados ordinais e pequenas amostras (n > 100).
+  - Menos sensível a violações de normalidade.
+- **Exemplo Prático:** Modelagem de questionários com escalas Likert ([Finney & DiStefano, 2013](https://psycnet.apa.org/record/2012-28125-008)).
+
+## **3. Comparação Detalhada dos Estimadores** {.smaller}
+
+| **Estimador** | **Dados Suportados**       | **Robustez**                     | **Uso Típico**                          | **Exemplo lavaan**              |
+|---------------|----------------------------|-----------------------------------|------------------------------------------|----------------------------------|
+| **ML**        | Contínuos normais          | Não                               | Dados completos ou FIML                  | `estimator = "ML"`              |
+| **MLR**       | Contínuos não normais      | Sim (Yuan-Bentler)                | Dados com *missing* e não normalidade    | `estimator = "MLR"`             |
+| **WLSMV**     | Ordinais/categóricos       | Sim (correção completa)           | Escalas Likert (ex.: CFA)                | `estimator = "WLSMV"`           |
+| **MLM**       | Contínuos não normais      | Sim (Satorra-Bentler)             | Dados completos e não normais            | `estimator = "MLM"`             |
+| **PML**       | Dados incompletos          | Parcial (estimação pareada)       | *Missing* não monotônico                 | `estimator = "PML"`             |
+
+## **Recomendações Para Dados Contínuos** {.smaller}
+- **Normalidade e dados completos:** Use **ML**.
+- **Não normalidade ou *missing values*:** Prefira **MLR** (mais flexível e robusto).
+- **Amostras pequenas (< 200):** Use **MLMVS** ou **MLMV** para correção dupla (média e variância).
+
+## **Recomendações Para Dados Ordinais (Likert)** {.smaller}
+- **Padrão do lavaan:** **WLSMV**, pois combina eficiência e robustez.
+- **Amostras muito pequenas (n < 100):** Evite WLS/DWLS; use **Bayesian SEM** ou simplifique o modelo.
+
+## **c) Recomendações Para Dados com *Missing Values*** {.smaller}
+- **Contínuos:** **MLR** com FIML.
+- **Ordinais:** **PML** (Pairwise ML) ou **WLSMV** com imputação múltipla.
+
+
+## **7. Resumo Visual: Fluxograma de Escolha do Estimador**
+```
+Dados Contínuos? 
+  ├─ Sim → Normais? 
+  │   ├─ Sim → ML (ou MLR para missing) 
+  │   └─ Não → MLR ou MLM 
+  └─ Não (Ordinais/Categóricos) → WLSMV ou ULSMV
+```
+
 ## `efa()`
 
 -   `ordered = T` implica em "WLSMV":
@@ -376,22 +552,6 @@ resultado_afe <- efa(
 summary(resultado_afe, cutoff = 0.4)
 ```
 
-##  {.smaller}
-
-```{r}
-modelo_escala_de_racismo <- '
-f1 =~ r1 + r2 + r3 + r4 + r5 + r6 + r7 + r11 + r12
-f2 =~ r8 + r9 + r10 + r13 + r14
-'
-cfa(model = modelo_escala_de_racismo, data = escala_de_racismo, ordered = T) |> 
-  summary(standardized = T, fit.measures = T,
-  rsquare= T)
-  
-```
-
-```{r}
-
-```
 
 ## Referências {.smaller}
 
