@@ -108,6 +108,7 @@ df <- df |>
   )
 
 df
+glimpse(df$smoke)
 ```
 
 ## Exploração dos dados {.smaller}
