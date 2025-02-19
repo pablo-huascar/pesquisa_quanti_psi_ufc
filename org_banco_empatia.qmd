@@ -44,7 +44,6 @@ racismo |>
   write_csv("data/dados_racismo_moderno.csv")
 ```
 
-
 ```{r}
 #| eval: false
 itens_racismo <- itens |> 
@@ -101,7 +100,6 @@ variaveis_demo |>
   bind_cols(descricao_demo)
 ```
 
-
 ## Escala de Afetos
 
 ```{r}
@@ -113,7 +111,6 @@ df |>
   write_csv("data/dados_afetos_positivos_negativos.csv")
 ```
 
-
 ```{r}
 afetos <- df |> 
   select(a1:a20)
@@ -123,7 +120,6 @@ EGAnet::EGA(afetos)
 efa(afetos, nfactors = 2) |> 
   summary(cutoff = 0.4)
 ```
-
 
 ```{r}
 #| eval: false
@@ -173,4 +169,3 @@ variaveis_afetos |>
   bind_cols(fator_afetos) |> 
   write_csv("data/code_book_escala_afetos_positivos_negativos.csv")
 ```
-
