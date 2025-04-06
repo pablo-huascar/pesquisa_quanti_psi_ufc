@@ -1006,228 +1006,124 @@
     "text": "Resposta\n\nlibrary(tidyverse)\nlibrary(car)\nlibrary(psych)"
   },
   {
-    "objectID": "slide-iteracao.html#introdução",
-    "href": "slide-iteracao.html#introdução",
-    "title": "Introdução ao R",
-    "section": "Introdução",
-    "text": "Introdução\n\nIteração: executar repetidamente a mesma ação em diferentes objetos\nEvitar copiar e colar código mais de 2 vezes\n\nErros que se propagam no código"
+    "objectID": "conceitos-estatisticos.html",
+    "href": "conceitos-estatisticos.html",
+    "title": "Intuições sobre conceitos estatísticos",
+    "section": "",
+    "text": "Slides",
+    "crumbs": [
+      "Conteúdos",
+      "Intuições sobre conceitos estatísticos"
+    ]
   },
   {
-    "objectID": "slide-iteracao.html#pacotes",
-    "href": "slide-iteracao.html#pacotes",
-    "title": "Introdução ao R",
-    "section": "Pacotes",
-    "text": "Pacotes\n\nlibrary(tidyverse)\nlibrary(nycflights13)"
+    "objectID": "conceitos-estatisticos.html#teorema-de-bayes",
+    "href": "conceitos-estatisticos.html#teorema-de-bayes",
+    "title": "Intuições sobre conceitos estatísticos",
+    "section": "",
+    "text": "Slides",
+    "crumbs": [
+      "Conteúdos",
+      "Intuições sobre conceitos estatísticos"
+    ]
   },
   {
-    "objectID": "slide-iteracao.html#criação-de-um-banco-dummy",
-    "href": "slide-iteracao.html#criação-de-um-banco-dummy",
-    "title": "Introdução ao R",
-    "section": "Criação de um banco dummy",
-    "text": "Criação de um banco dummy\n\ndf &lt;- tibble(\n  a = rnorm(10),\n  b = rnorm(10),\n  c = rnorm(10),\n  d = rnorm(10)\n)\n\n\ndf\n\n# A tibble: 10 × 4\n        a       b      c       d\n    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n 1  0.839 -1.97   -1.90   0.0683\n 2  1.85  -1.11   -0.245 -1.69  \n 3 -0.671  0.0865  0.969  0.398 \n 4  0.581 -0.598  -0.449  0.365 \n 5 -1.88   2.72   -0.394 -0.284 \n 6 -2.00  -0.805   0.539  0.744 \n 7 -0.342 -0.338  -1.58  -0.614 \n 8 -1.09   1.01    0.190 -1.01  \n 9 -0.708 -0.389   0.686  1.19  \n10 -0.984 -0.721   0.226  0.328"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#estação-palmer",
+    "href": "slide-intuicoes-teorema-de-bayes.html#estação-palmer",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Estação Palmer",
+    "text": "Estação Palmer"
   },
   {
-    "objectID": "slide-iteracao.html#exemplos-de-repetição-de-código",
-    "href": "slide-iteracao.html#exemplos-de-repetição-de-código",
-    "title": "Introdução ao R",
-    "section": "Exemplos de repetição de código",
-    "text": "Exemplos de repetição de código\n\ndf |&gt; summarize(\n  n = n(),\n  a = median(a),\n  b = median(b),\n  c = median(c),\n  d = median(d),\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.690 -0.493 -0.0276 0.198\n\n\n\nRepetir a digitação de median() várias vezes ou copiar e colar"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#os-novos-estagiários",
+    "href": "slide-intuicoes-teorema-de-bayes.html#os-novos-estagiários",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Os novos estagiários",
+    "text": "Os novos estagiários\n\n\n\n\nVocês são os novos estagiários na estação de pesquisa Palmer, localizada na Ilha Anvers, no Arquipélago Palmer, na costa oeste da Península Antártica, e foram designados para a pesquisa sobre pinguins. A faixa de temperatura média durante o verão austral (outubro a março) varia entre 2°C e -10°C. A média tende a pairar em torno de 2°C. Sua primeira missão foi dada: capture uma pinguim fêmea da espécie Gentoo. Só tem um problema: vocês não têm ideia de como são e onde encontrar as fêmeas dessa espécie. O que fazer?"
   },
   {
-    "objectID": "slide-iteracao.html#across",
-    "href": "slide-iteracao.html#across",
-    "title": "Introdução ao R",
-    "section": "across()",
-    "text": "across()\n\n\n.cols =: especifica quais colunas vão estar na iteração\n\n.fns =: diz o que fazer com as colunas\n\nQual função aplicar\n\n\n\n\ndf |&gt; \n  summarise(\n    across(.cols = a:d,.fns = median)\n  )\n\n# A tibble: 1 × 4\n       a      b       c     d\n   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 -0.690 -0.493 -0.0276 0.198\n\n\n\n\nO nome da função solicitada nunca deve ser seguido por ()"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#o-desafio",
+    "href": "slide-intuicoes-teorema-de-bayes.html#o-desafio",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "O desafio",
+    "text": "O desafio\nCom os dados disponíveis sobre os pinguins da espécie Gentoo, qual a melhor escolha que você pode fazer para ter mais chances de capturar o animal certo?"
   },
   {
-    "objectID": "slide-iteracao.html#across-1",
-    "href": "slide-iteracao.html#across-1",
-    "title": "Introdução ao R",
-    "section": "across()",
-    "text": "across()\n\nÉ possível omitir os argumentos .cols e .fns\n\n\n\ndf |&gt; \n  summarise(\n    across(a:d, mean)\n  )\n\n# A tibble: 1 × 4\n       a      b      c       d\n   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1 -0.440 -0.211 -0.195 -0.0504"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#onde-estão-os-pinguins",
+    "href": "slide-intuicoes-teorema-de-bayes.html#onde-estão-os-pinguins",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Onde estão os pinguins?",
+    "text": "Onde estão os pinguins?"
   },
   {
-    "objectID": "slide-iteracao.html#exercício",
-    "href": "slide-iteracao.html#exercício",
-    "title": "Introdução ao R",
-    "section": "Exercício",
-    "text": "Exercício\nNo banco de dados economics calcule a média das variávels pce, pop e psavert usando a função across"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#quais-as-proporções-de-machos-e-fêmeas",
+    "href": "slide-intuicoes-teorema-de-bayes.html#quais-as-proporções-de-machos-e-fêmeas",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Quais as proporções de machos e fêmeas?",
+    "text": "Quais as proporções de machos e fêmeas?"
   },
   {
-    "objectID": "slide-iteracao.html#resposta---parte-1",
-    "href": "slide-iteracao.html#resposta---parte-1",
-    "title": "Introdução ao R",
-    "section": "Resposta - parte 1",
-    "text": "Resposta - parte 1\n\nglimpse(economics)\n\nRows: 574\nColumns: 6\n$ date     &lt;date&gt; 1967-07-01, 1967-08-01, 1967-09-01, 1967-10-01, 1967-11-01, …\n$ pce      &lt;dbl&gt; 506.7, 509.8, 515.6, 512.2, 517.4, 525.1, 530.9, 533.6, 544.3…\n$ pop      &lt;dbl&gt; 198712, 198911, 199113, 199311, 199498, 199657, 199808, 19992…\n$ psavert  &lt;dbl&gt; 12.6, 12.6, 11.9, 12.9, 12.8, 11.8, 11.7, 12.3, 11.7, 12.3, 1…\n$ uempmed  &lt;dbl&gt; 4.5, 4.7, 4.6, 4.9, 4.7, 4.8, 5.1, 4.5, 4.1, 4.6, 4.4, 4.4, 4…\n$ unemploy &lt;dbl&gt; 2944, 2945, 2958, 3143, 3066, 3018, 2878, 3001, 2877, 2709, 2…"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#como-posso-diferenciar-machos-e-fêmeas",
+    "href": "slide-intuicoes-teorema-de-bayes.html#como-posso-diferenciar-machos-e-fêmeas",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Como posso diferenciar machos e fêmeas?",
+    "text": "Como posso diferenciar machos e fêmeas?"
   },
   {
-    "objectID": "slide-iteracao.html#reposta---parte-2",
-    "href": "slide-iteracao.html#reposta---parte-2",
-    "title": "Introdução ao R",
-    "section": "Reposta - parte 2",
-    "text": "Reposta - parte 2\n\neconomics |&gt; \n  summarise(\n    across(pce:psavert, mean)\n  )\n\n# A tibble: 1 × 3\n    pce     pop psavert\n  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 4820. 257160.    8.57"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#diferença-média-da-massa-corporal-entre-os-sexos",
+    "href": "slide-intuicoes-teorema-de-bayes.html#diferença-média-da-massa-corporal-entre-os-sexos",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Diferença média da massa corporal entre os sexos",
+    "text": "Diferença média da massa corporal entre os sexos\n\n\n\n\n\n\n\n\nSexo\nMédia\nDiferença\n\n\n\n\nFêmea\n4,679.74\n-\n\n\nMacho\n5,484.84\n805.09"
   },
   {
-    "objectID": "slide-iteracao.html#selecionando-columas-com-.cols",
-    "href": "slide-iteracao.html#selecionando-columas-com-.cols",
-    "title": "Introdução ao R",
-    "section": "Selecionando columas com .cols\n",
-    "text": "Selecionando columas com .cols\n\n\nUsa as mesmas especificações que select()\n\nstarts_with()\nends_with()\ncontains()"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#qual-é-a-proporção-do-tamanho-dos-pinguins-por-sexo",
+    "href": "slide-intuicoes-teorema-de-bayes.html#qual-é-a-proporção-do-tamanho-dos-pinguins-por-sexo",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Qual é a proporção do tamanho dos pinguins por sexo?",
+    "text": "Qual é a proporção do tamanho dos pinguins por sexo?"
   },
   {
-    "objectID": "slide-iteracao.html#selecionando-columas-com-.cols-1",
-    "href": "slide-iteracao.html#selecionando-columas-com-.cols-1",
-    "title": "Introdução ao R",
-    "section": "Selecionando columas com .cols\n",
-    "text": "Selecionando columas com .cols\n\n\nglimpse(economics)\n\nRows: 574\nColumns: 6\n$ date     &lt;date&gt; 1967-07-01, 1967-08-01, 1967-09-01, 1967-10-01, 1967-11-01, …\n$ pce      &lt;dbl&gt; 506.7, 509.8, 515.6, 512.2, 517.4, 525.1, 530.9, 533.6, 544.3…\n$ pop      &lt;dbl&gt; 198712, 198911, 199113, 199311, 199498, 199657, 199808, 19992…\n$ psavert  &lt;dbl&gt; 12.6, 12.6, 11.9, 12.9, 12.8, 11.8, 11.7, 12.3, 11.7, 12.3, 1…\n$ uempmed  &lt;dbl&gt; 4.5, 4.7, 4.6, 4.9, 4.7, 4.8, 5.1, 4.5, 4.1, 4.6, 4.4, 4.4, 4…\n$ unemploy &lt;dbl&gt; 2944, 2945, 2958, 3143, 3066, 3018, 2878, 3001, 2877, 2709, 2…"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#proporção-da-espécie-gentoo-por-sexo-e-tamanho",
+    "href": "slide-intuicoes-teorema-de-bayes.html#proporção-da-espécie-gentoo-por-sexo-e-tamanho",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Proporção da espécie Gentoo por sexo e tamanho",
+    "text": "Proporção da espécie Gentoo por sexo e tamanho\n\n\n\n\n\n\n\n\nSexo\nGrande\nPequeno\n\n\n\n\nFêmea\n6.9%\n93.1%\n\n\nMacho\n88.5%\n11.5%\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTamanho\nn\n%\n\n\n\n\nGrande\n58\n48.7%\n\n\nPequeno\n61\n51.3%"
   },
   {
-    "objectID": "slide-iteracao.html#selecionando-columas-com-.cols-2",
-    "href": "slide-iteracao.html#selecionando-columas-com-.cols-2",
-    "title": "Introdução ao R",
-    "section": "Selecionando columas com .cols\n",
-    "text": "Selecionando columas com .cols\n\n\neconomics |&gt; \n  summarise(\n    across(starts_with(\"p\"),  mean)\n  ) \n\n# A tibble: 1 × 3\n    pce     pop psavert\n  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 4820. 257160.    8.57"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#síntese-os-dados",
+    "href": "slide-intuicoes-teorema-de-bayes.html#síntese-os-dados",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Síntese os dados",
+    "text": "Síntese os dados\nDos pinguins Gentoo com sexo conhecido:\n\n100% dos pinguins da espécie Gentoo estão na ilha Biscoe\n48,7% são fêmeas\n93,1% das fêmeas são pequenas\n11,5% dos machos são pequenos\n51,3% de todos os Gentoo são pequenos"
   },
   {
-    "objectID": "slide-iteracao.html#exercício-1",
-    "href": "slide-iteracao.html#exercício-1",
-    "title": "Introdução ao R",
-    "section": "Exercício",
-    "text": "Exercício\nSalve o banco de dados a seguir no objeto treinos e, em seguida, dê uma olhada no arquivo\n\ntreinos &lt;- read_csv(\"https://tinyurl.com/treinndf\")"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#atualizando-sua-estratégia-com-o-teorema-de-bayes",
+    "href": "slide-intuicoes-teorema-de-bayes.html#atualizando-sua-estratégia-com-o-teorema-de-bayes",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Atualizando sua estratégia com o Teorema de Bayes",
+    "text": "Atualizando sua estratégia com o Teorema de Bayes\n\nSabendo que você encontrou um pinguim pequeno, qual a chance de ele ser fêmea?\nUsamos o Teorema de Bayes: \\[\nP(Fêmea \\mid Pequeno) = \\frac{P(Pequeno \\mid Fêmea) \\times P(Fêmea)}{P(Pequeno)}\n\\]\nSubstituindo os valores:\n\\[\nP(Fêmea \\mid Pequeno) = \\frac{0.931 \\times 0.487}{0.513} \\approx 0.885\n\\]\nOu seja, 88,5% de chance de o pequeno ser fêmea!"
   },
   {
-    "objectID": "slide-iteracao.html#resposta",
-    "href": "slide-iteracao.html#resposta",
-    "title": "Introdução ao R",
-    "section": "Resposta",
-    "text": "Resposta\n\nglimpse(treinos)\n\nRows: 5\nColumns: 14\n$ idade              &lt;dbl&gt; 20, 30, 40, 50, 60\n$ altura             &lt;dbl&gt; 1.6, 1.7, 1.8, 1.9, 2.0\n$ genero             &lt;chr&gt; \"masculino\", \"masculino\", \"feminino\", \"feminino\", \"…\n$ fumante            &lt;chr&gt; \"sim\", \"não\", \"não\", \"sim\", \"sim\"\n$ risco_cardiaco     &lt;chr&gt; \"sim\", \"não\", \"sim\", \"não\", \"sim\"\n$ peso_1             &lt;dbl&gt; 60, 70, 80, 90, 100\n$ peso_2             &lt;dbl&gt; 61, 71, 81, 91, 101\n$ peso_3             &lt;dbl&gt; 62, 72, 82, 92, 102\n$ refeicao_preferida &lt;chr&gt; \"arroz e feijão\", \"pizza\", \"macarrão\", \"sushi\", \"so…\n$ treinos_por_semana &lt;dbl&gt; 3, 4, 5, 6, 7\n$ treinador          &lt;chr&gt; \"Julia\", \"Hadley\", \"Jesse\", \"Julia\", \"Hadley\"\n$ total_colesterol   &lt;dbl&gt; 200, 220, 240, 260, 280\n$ ruim_colesterol    &lt;dbl&gt; 100, 120, 140, 160, 180\n$ bom_colesterol     &lt;dbl&gt; 100, 100, 100, 100, 100"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#intuição-por-trás-do-teorema-de-bayes",
+    "href": "slide-intuicoes-teorema-de-bayes.html#intuição-por-trás-do-teorema-de-bayes",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Intuição por Trás do Teorema de Bayes",
+    "text": "Intuição por Trás do Teorema de Bayes\n\nPense nas proporções que descobrimos:\n\nQuase todas as fêmeas Gentoo são pequenas (93,1%). Isso significa que se você encontrar uma fêmea, é muito provável que ela seja pequena.\nApenas uma pequena parte dos machos Gentoo é pequena (11,5%). Isso indica que a maioria dos machos é grande.\nQuando você encontra um pinguim pequeno, essa característica é muito mais comum entre as fêmeas do que entre os machos. É como se “ser pequeno” fosse um forte indicador de que o pinguim é fêmea nessa população.\nEmbora inicialmente a chance de pegar uma fêmea fosse de cerca de 48,7%, ao sabermos que o pinguim é pequeno, estamos focando em um grupo onde as fêmeas são esmagadoramente maioria. O Teorema de Bayes apenas formaliza essa intuição, mostrando numericamente o quanto essa evidência (ser pequeno) aumenta a probabilidade de ser fêmea.\nEm resumo, a probabilidade aumenta tanto porque a característica “ser pequeno” está fortemente ligada ao sexo feminino na espécie Gentoo, de acordo com os dados que analisamos."
   },
   {
-    "objectID": "slide-iteracao.html#exercício-2",
-    "href": "slide-iteracao.html#exercício-2",
-    "title": "Introdução ao R",
-    "section": "Exercício",
-    "text": "Exercício\nCalcule a média das variáveis que iniciam com peso usando uma das especificações de seleção que foi apresentada anteriormente"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#conclusão-da-estratégia",
+    "href": "slide-intuicoes-teorema-de-bayes.html#conclusão-da-estratégia",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Conclusão da estratégia",
+    "text": "Conclusão da estratégia\n\nSe você precisa encontrar uma fêmea Gentoo, e tudo o que sabe é o tamanho…\nA melhor escolha é: mirar nos pequenos!\nA chance de acertar uma fêmea entre eles é quase o dobro da chance geral."
   },
   {
-    "objectID": "slide-iteracao.html#resposta-1",
-    "href": "slide-iteracao.html#resposta-1",
-    "title": "Introdução ao R",
-    "section": "Resposta",
-    "text": "Resposta\n\ntreinos |&gt; \n  summarise(\n    across(starts_with(\"peso\"), mean)\n  )\n\n# A tibble: 1 × 3\n  peso_1 peso_2 peso_3\n   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     80     81     82"
-  },
-  {
-    "objectID": "slide-iteracao.html#exercício-3",
-    "href": "slide-iteracao.html#exercício-3",
-    "title": "Introdução ao R",
-    "section": "Exercício",
-    "text": "Exercício\nCalcule a média das variáveis que terminam com colesterol usando uma das especificações de seleção que foi apresentada anteriormente"
-  },
-  {
-    "objectID": "slide-iteracao.html#resposta-2",
-    "href": "slide-iteracao.html#resposta-2",
-    "title": "Introdução ao R",
-    "section": "Resposta",
-    "text": "Resposta\n\ntreinos |&gt; \n  summarise(\n    across(ends_with(\"colesterol\"), mean)\n  )\n\n# A tibble: 1 × 3\n  total_colesterol ruim_colesterol bom_colesterol\n             &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;\n1              240             140            100"
-  },
-  {
-    "objectID": "slide-iteracao.html#selecionando-columas-com-.cols-3",
-    "href": "slide-iteracao.html#selecionando-columas-com-.cols-3",
-    "title": "Introdução ao R",
-    "section": "Selecionando columas com .cols\n",
-    "text": "Selecionando columas com .cols\n\n\nOpções espefícidas de across()\n\n\neverything(): seleciona toda coluna que não seja de agrupamento\n\nwhere(): seleciona colunas baseado seus tipos"
-  },
-  {
-    "objectID": "slide-iteracao.html#everything",
-    "href": "slide-iteracao.html#everything",
-    "title": "Introdução ao R",
-    "section": "everything()",
-    "text": "everything()\n\ndf |&gt; \n  slice_head(n = 5)\n\n# A tibble: 5 × 4\n       a       b      c       d\n   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1  0.839 -1.97   -1.90   0.0683\n2  1.85  -1.11   -0.245 -1.69  \n3 -0.671  0.0865  0.969  0.398 \n4  0.581 -0.598  -0.449  0.365 \n5 -1.88   2.72   -0.394 -0.284 \n\n\n\ndf |&gt; \n  summarise(\n    across(everything(),mean)\n  )\n\n# A tibble: 1 × 4\n       a      b      c       d\n   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1 -0.440 -0.211 -0.195 -0.0504"
-  },
-  {
-    "objectID": "slide-iteracao.html#where",
-    "href": "slide-iteracao.html#where",
-    "title": "Introdução ao R",
-    "section": "where()",
-    "text": "where()\n\nwhere(is.numeric) seleciona todas as colunas numéricas.\nwhere(is.character) seleciona todas as colunas de string.\nwhere(is.Date) seleciona todas as colunas de data.\nwhere(is.POSIXct) seleciona todas as colunas de data e hora.\nwhere(is.logical) seleciona todas as colunas lógicas."
-  },
-  {
-    "objectID": "slide-iteracao.html#where-1",
-    "href": "slide-iteracao.html#where-1",
-    "title": "Introdução ao R",
-    "section": "where()",
-    "text": "where()\n\nglimpse(economics)\n\nRows: 574\nColumns: 6\n$ date     &lt;date&gt; 1967-07-01, 1967-08-01, 1967-09-01, 1967-10-01, 1967-11-01, …\n$ pce      &lt;dbl&gt; 506.7, 509.8, 515.6, 512.2, 517.4, 525.1, 530.9, 533.6, 544.3…\n$ pop      &lt;dbl&gt; 198712, 198911, 199113, 199311, 199498, 199657, 199808, 19992…\n$ psavert  &lt;dbl&gt; 12.6, 12.6, 11.9, 12.9, 12.8, 11.8, 11.7, 12.3, 11.7, 12.3, 1…\n$ uempmed  &lt;dbl&gt; 4.5, 4.7, 4.6, 4.9, 4.7, 4.8, 5.1, 4.5, 4.1, 4.6, 4.4, 4.4, 4…\n$ unemploy &lt;dbl&gt; 2944, 2945, 2958, 3143, 3066, 3018, 2878, 3001, 2877, 2709, 2…"
-  },
-  {
-    "objectID": "slide-iteracao.html#where-2",
-    "href": "slide-iteracao.html#where-2",
-    "title": "Introdução ao R",
-    "section": "where()",
-    "text": "where()\n\neconomics |&gt; \n  summarise(\n    across(where(is.numeric), mean)\n  )\n\n# A tibble: 1 × 5\n    pce     pop psavert uempmed unemploy\n  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;\n1 4820. 257160.    8.57    8.61    7771."
-  },
-  {
-    "objectID": "slide-iteracao.html#exercício-4",
-    "href": "slide-iteracao.html#exercício-4",
-    "title": "Introdução ao R",
-    "section": "Exercício",
-    "text": "Exercício\nCalcule a média de todas as variáveis numéricas do banco de dados treinos"
-  },
-  {
-    "objectID": "slide-iteracao.html#resposta-3",
-    "href": "slide-iteracao.html#resposta-3",
-    "title": "Introdução ao R",
-    "section": "Resposta",
-    "text": "Resposta\n\ntreinos |&gt; \n  summarise(\n    across(where(is.numeric), mean)\n  )\n\n# A tibble: 1 × 9\n  idade altura peso_1 peso_2 peso_3 treinos_por_semana total_colesterol\n  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;              &lt;dbl&gt;            &lt;dbl&gt;\n1    40    1.8     80     81     82                  5              240\n# ℹ 2 more variables: ruim_colesterol &lt;dbl&gt;, bom_colesterol &lt;dbl&gt;"
-  },
-  {
-    "objectID": "slide-iteracao.html#chamando-mais-de-um-função-dentro-de-.fns",
-    "href": "slide-iteracao.html#chamando-mais-de-um-função-dentro-de-.fns",
-    "title": "Introdução ao R",
-    "section": "Chamando mais de um função dentro de .fns\n",
-    "text": "Chamando mais de um função dentro de .fns\n\n\nUse a função list() para chamar mais de um função\nÉ importante nomear as funções: nome = funcão\n\n\neconomics |&gt; \n  summarise(\n    across(pce:pop, \n           list(\n             M = mean, \n             DP = sd,\n             MIN = min, \n             MAX = max)\n    )\n  ) \n\n# A tibble: 1 × 8\n  pce_M pce_DP pce_MIN pce_MAX   pop_M pop_DP pop_MIN pop_MAX\n  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 4820.  3557.    507.  12194. 257160. 36682.  198712 320402."
-  },
-  {
-    "objectID": "slide-iteracao.html#exercício-5",
-    "href": "slide-iteracao.html#exercício-5",
-    "title": "Introdução ao R",
-    "section": "Exercício",
-    "text": "Exercício\nCalcule a média e o desvio padrão das variáveis idade e altura do banco de dados treinos"
-  },
-  {
-    "objectID": "slide-iteracao.html#resposta-4",
-    "href": "slide-iteracao.html#resposta-4",
-    "title": "Introdução ao R",
-    "section": "Resposta",
-    "text": "Resposta\n\ntreinos |&gt; \n  summarise(\n    across(idade:altura, list(\n      M = mean, \n      DP = sd\n    ))\n  )\n\n# A tibble: 1 × 4\n  idade_M idade_DP altura_M altura_DP\n    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;\n1      40     15.8      1.8     0.158"
-  },
-  {
-    "objectID": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns",
-    "href": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns",
-    "title": "Introdução ao R",
-    "section": "Usando argumentos dentro das funções chamadas em .fns\n",
-    "text": "Usando argumentos dentro das funções chamadas em .fns\n\n\nglimpse(flights)\n\nRows: 336,776\nColumns: 19\n$ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…\n$ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …\n$ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …\n$ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…\n$ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…\n$ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…\n$ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…\n$ carrier        &lt;chr&gt; \"UA\", \"UA\", \"AA\", \"B6\", \"DL\", \"UA\", \"B6\", \"EV\", \"B6\", \"…\n$ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…\n$ tailnum        &lt;chr&gt; \"N14228\", \"N24211\", \"N619AA\", \"N804JB\", \"N668DN\", \"N394…\n$ origin         &lt;chr&gt; \"EWR\", \"LGA\", \"JFK\", \"JFK\", \"LGA\", \"EWR\", \"EWR\", \"LGA\",…\n$ dest           &lt;chr&gt; \"IAH\", \"IAH\", \"MIA\", \"BQN\", \"ATL\", \"ORD\", \"FLL\", \"IAD\",…\n$ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…\n$ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …\n$ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…\n$ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…\n$ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…"
-  },
-  {
-    "objectID": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns-1",
-    "href": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns-1",
-    "title": "Introdução ao R",
-    "section": "Usando argumentos dentro das funções chamadas em .fns\n",
-    "text": "Usando argumentos dentro das funções chamadas em .fns\n\n\nSe há um caso com valores ausentes (NA) a função retorna NA\n\nÉ necessário usar o argumento na.rm = T para resolver esse problema\n\n\nflights |&gt; \n  summarise(\n    across(ends_with(\"delay\"), mean)\n  )\n\n# A tibble: 1 × 2\n  dep_delay arr_delay\n      &lt;dbl&gt;     &lt;dbl&gt;\n1        NA        NA"
-  },
-  {
-    "objectID": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns-2",
-    "href": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns-2",
-    "title": "Introdução ao R",
-    "section": "Usando argumentos dentro das funções chamadas em .fns\n",
-    "text": "Usando argumentos dentro das funções chamadas em .fns\n\n\nÉ possível chamar criar uma função anônima usando \\(x)\n\n\nx vai representar todas as variáveis para s quais queremos obter a média\n\n\nflights |&gt; \n  summarise(\n    across(ends_with(\"delay\"),\n           \\(x) mean(x, na.rm = T))\n  )\n\n# A tibble: 1 × 2\n  dep_delay arr_delay\n      &lt;dbl&gt;     &lt;dbl&gt;\n1      12.6      6.90"
-  },
-  {
-    "objectID": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns-3",
-    "href": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns-3",
-    "title": "Introdução ao R",
-    "section": "Usando argumentos dentro das funções chamadas em .fns\n",
-    "text": "Usando argumentos dentro das funções chamadas em .fns\n\n\nTambém possível fazer o mesmo chando várias funções dentro de .fns com list()\n\n\n\nflights |&gt; \n  summarise(\n    across(ends_with(\"delay\"),\n           list(\n             M = \\(x) mean(x, na.rm = T),\n             SD = \\(x) sd(x, na.rm = T)\n           )),\n    n = n()\n  )\n\n# A tibble: 1 × 5\n  dep_delay_M dep_delay_SD arr_delay_M arr_delay_SD      n\n        &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;  &lt;int&gt;\n1        12.6         40.2        6.90         44.6 336776"
+    "objectID": "slide-intuicoes-teorema-de-bayes.html#moral-da-história",
+    "href": "slide-intuicoes-teorema-de-bayes.html#moral-da-história",
+    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "section": "Moral da história",
+    "text": "Moral da história\nEsse é o poder do raciocínio probabilístico:\nVocê pode tomar decisões melhores mesmo com informação incompleta, desde que saiba usar os dados certos.\nBem-vindos à pesquisa científica!"
   },
   {
     "objectID": "respostas-fluxo-trabalho-fundamentos.html",
@@ -4972,6 +4868,230 @@
     "title": "Transformação de dados com dplyr",
     "section": "Notas de rodapé",
     "text": "Notas de rodapé\n\nEsta é a data de estreia da série Arquivo X.↩︎"
+  },
+  {
+    "objectID": "slide-iteracao.html#introdução",
+    "href": "slide-iteracao.html#introdução",
+    "title": "Introdução ao R",
+    "section": "Introdução",
+    "text": "Introdução\n\nIteração: executar repetidamente a mesma ação em diferentes objetos\nEvitar copiar e colar código mais de 2 vezes\n\nErros que se propagam no código"
+  },
+  {
+    "objectID": "slide-iteracao.html#pacotes",
+    "href": "slide-iteracao.html#pacotes",
+    "title": "Introdução ao R",
+    "section": "Pacotes",
+    "text": "Pacotes\n\nlibrary(tidyverse)\nlibrary(nycflights13)"
+  },
+  {
+    "objectID": "slide-iteracao.html#criação-de-um-banco-dummy",
+    "href": "slide-iteracao.html#criação-de-um-banco-dummy",
+    "title": "Introdução ao R",
+    "section": "Criação de um banco dummy",
+    "text": "Criação de um banco dummy\n\ndf &lt;- tibble(\n  a = rnorm(10),\n  b = rnorm(10),\n  c = rnorm(10),\n  d = rnorm(10)\n)\n\n\ndf\n\n# A tibble: 10 × 4\n         a      b       c      d\n     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n 1 -0.226  -0.314 -0.709  2.35  \n 2  0.549  -0.106 -0.106  0.907 \n 3 -0.416   0.218  0.0292 0.152 \n 4 -0.803   0.970  0.406  0.240 \n 5 -0.674   0.899  0.581  1.56  \n 6  0.310   0.682  1.10   0.0153\n 7  0.0386 -1.21   0.202  0.420 \n 8  0.802  -1.22  -0.243  1.40  \n 9 -0.106  -0.864 -1.72   0.348 \n10 -0.202  -0.778  0.0450 0.0321"
+  },
+  {
+    "objectID": "slide-iteracao.html#exemplos-de-repetição-de-código",
+    "href": "slide-iteracao.html#exemplos-de-repetição-de-código",
+    "title": "Introdução ao R",
+    "section": "Exemplos de repetição de código",
+    "text": "Exemplos de repetição de código\n\ndf |&gt; summarize(\n  n = n(),\n  a = median(a),\n  b = median(b),\n  c = median(c),\n  d = median(d),\n)\n\n# A tibble: 1 × 5\n      n      a      b      c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.154 -0.210 0.0371 0.384\n\n\n\nRepetir a digitação de median() várias vezes ou copiar e colar"
+  },
+  {
+    "objectID": "slide-iteracao.html#across",
+    "href": "slide-iteracao.html#across",
+    "title": "Introdução ao R",
+    "section": "across()",
+    "text": "across()\n\n\n.cols =: especifica quais colunas vão estar na iteração\n\n.fns =: diz o que fazer com as colunas\n\nQual função aplicar\n\n\n\n\ndf |&gt; \n  summarise(\n    across(.cols = a:d,.fns = median)\n  )\n\n# A tibble: 1 × 4\n       a      b      c     d\n   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 -0.154 -0.210 0.0371 0.384\n\n\n\n\nO nome da função solicitada nunca deve ser seguido por ()"
+  },
+  {
+    "objectID": "slide-iteracao.html#across-1",
+    "href": "slide-iteracao.html#across-1",
+    "title": "Introdução ao R",
+    "section": "across()",
+    "text": "across()\n\nÉ possível omitir os argumentos .cols e .fns\n\n\n\ndf |&gt; \n  summarise(\n    across(a:d, mean)\n  )\n\n# A tibble: 1 × 4\n        a      b       c     d\n    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 -0.0728 -0.172 -0.0418 0.743"
+  },
+  {
+    "objectID": "slide-iteracao.html#exercício",
+    "href": "slide-iteracao.html#exercício",
+    "title": "Introdução ao R",
+    "section": "Exercício",
+    "text": "Exercício\nNo banco de dados economics calcule a média das variávels pce, pop e psavert usando a função across"
+  },
+  {
+    "objectID": "slide-iteracao.html#resposta---parte-1",
+    "href": "slide-iteracao.html#resposta---parte-1",
+    "title": "Introdução ao R",
+    "section": "Resposta - parte 1",
+    "text": "Resposta - parte 1\n\nglimpse(economics)\n\nRows: 574\nColumns: 6\n$ date     &lt;date&gt; 1967-07-01, 1967-08-01, 1967-09-01, 1967-10-01, 1967-11-01, …\n$ pce      &lt;dbl&gt; 506.7, 509.8, 515.6, 512.2, 517.4, 525.1, 530.9, 533.6, 544.3…\n$ pop      &lt;dbl&gt; 198712, 198911, 199113, 199311, 199498, 199657, 199808, 19992…\n$ psavert  &lt;dbl&gt; 12.6, 12.6, 11.9, 12.9, 12.8, 11.8, 11.7, 12.3, 11.7, 12.3, 1…\n$ uempmed  &lt;dbl&gt; 4.5, 4.7, 4.6, 4.9, 4.7, 4.8, 5.1, 4.5, 4.1, 4.6, 4.4, 4.4, 4…\n$ unemploy &lt;dbl&gt; 2944, 2945, 2958, 3143, 3066, 3018, 2878, 3001, 2877, 2709, 2…"
+  },
+  {
+    "objectID": "slide-iteracao.html#reposta---parte-2",
+    "href": "slide-iteracao.html#reposta---parte-2",
+    "title": "Introdução ao R",
+    "section": "Reposta - parte 2",
+    "text": "Reposta - parte 2\n\neconomics |&gt; \n  summarise(\n    across(pce:psavert, mean)\n  )\n\n# A tibble: 1 × 3\n    pce     pop psavert\n  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 4820. 257160.    8.57"
+  },
+  {
+    "objectID": "slide-iteracao.html#selecionando-columas-com-.cols",
+    "href": "slide-iteracao.html#selecionando-columas-com-.cols",
+    "title": "Introdução ao R",
+    "section": "Selecionando columas com .cols\n",
+    "text": "Selecionando columas com .cols\n\n\nUsa as mesmas especificações que select()\n\nstarts_with()\nends_with()\ncontains()"
+  },
+  {
+    "objectID": "slide-iteracao.html#selecionando-columas-com-.cols-1",
+    "href": "slide-iteracao.html#selecionando-columas-com-.cols-1",
+    "title": "Introdução ao R",
+    "section": "Selecionando columas com .cols\n",
+    "text": "Selecionando columas com .cols\n\n\nglimpse(economics)\n\nRows: 574\nColumns: 6\n$ date     &lt;date&gt; 1967-07-01, 1967-08-01, 1967-09-01, 1967-10-01, 1967-11-01, …\n$ pce      &lt;dbl&gt; 506.7, 509.8, 515.6, 512.2, 517.4, 525.1, 530.9, 533.6, 544.3…\n$ pop      &lt;dbl&gt; 198712, 198911, 199113, 199311, 199498, 199657, 199808, 19992…\n$ psavert  &lt;dbl&gt; 12.6, 12.6, 11.9, 12.9, 12.8, 11.8, 11.7, 12.3, 11.7, 12.3, 1…\n$ uempmed  &lt;dbl&gt; 4.5, 4.7, 4.6, 4.9, 4.7, 4.8, 5.1, 4.5, 4.1, 4.6, 4.4, 4.4, 4…\n$ unemploy &lt;dbl&gt; 2944, 2945, 2958, 3143, 3066, 3018, 2878, 3001, 2877, 2709, 2…"
+  },
+  {
+    "objectID": "slide-iteracao.html#selecionando-columas-com-.cols-2",
+    "href": "slide-iteracao.html#selecionando-columas-com-.cols-2",
+    "title": "Introdução ao R",
+    "section": "Selecionando columas com .cols\n",
+    "text": "Selecionando columas com .cols\n\n\neconomics |&gt; \n  summarise(\n    across(starts_with(\"p\"),  mean)\n  ) \n\n# A tibble: 1 × 3\n    pce     pop psavert\n  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 4820. 257160.    8.57"
+  },
+  {
+    "objectID": "slide-iteracao.html#exercício-1",
+    "href": "slide-iteracao.html#exercício-1",
+    "title": "Introdução ao R",
+    "section": "Exercício",
+    "text": "Exercício\nSalve o banco de dados a seguir no objeto treinos e, em seguida, dê uma olhada no arquivo\n\ntreinos &lt;- read_csv(\"https://tinyurl.com/treinndf\")"
+  },
+  {
+    "objectID": "slide-iteracao.html#resposta",
+    "href": "slide-iteracao.html#resposta",
+    "title": "Introdução ao R",
+    "section": "Resposta",
+    "text": "Resposta\n\nglimpse(treinos)\n\nRows: 5\nColumns: 14\n$ idade              &lt;dbl&gt; 20, 30, 40, 50, 60\n$ altura             &lt;dbl&gt; 1.6, 1.7, 1.8, 1.9, 2.0\n$ genero             &lt;chr&gt; \"masculino\", \"masculino\", \"feminino\", \"feminino\", \"…\n$ fumante            &lt;chr&gt; \"sim\", \"não\", \"não\", \"sim\", \"sim\"\n$ risco_cardiaco     &lt;chr&gt; \"sim\", \"não\", \"sim\", \"não\", \"sim\"\n$ peso_1             &lt;dbl&gt; 60, 70, 80, 90, 100\n$ peso_2             &lt;dbl&gt; 61, 71, 81, 91, 101\n$ peso_3             &lt;dbl&gt; 62, 72, 82, 92, 102\n$ refeicao_preferida &lt;chr&gt; \"arroz e feijão\", \"pizza\", \"macarrão\", \"sushi\", \"so…\n$ treinos_por_semana &lt;dbl&gt; 3, 4, 5, 6, 7\n$ treinador          &lt;chr&gt; \"Julia\", \"Hadley\", \"Jesse\", \"Julia\", \"Hadley\"\n$ total_colesterol   &lt;dbl&gt; 200, 220, 240, 260, 280\n$ ruim_colesterol    &lt;dbl&gt; 100, 120, 140, 160, 180\n$ bom_colesterol     &lt;dbl&gt; 100, 100, 100, 100, 100"
+  },
+  {
+    "objectID": "slide-iteracao.html#exercício-2",
+    "href": "slide-iteracao.html#exercício-2",
+    "title": "Introdução ao R",
+    "section": "Exercício",
+    "text": "Exercício\nCalcule a média das variáveis que iniciam com peso usando uma das especificações de seleção que foi apresentada anteriormente"
+  },
+  {
+    "objectID": "slide-iteracao.html#resposta-1",
+    "href": "slide-iteracao.html#resposta-1",
+    "title": "Introdução ao R",
+    "section": "Resposta",
+    "text": "Resposta\n\ntreinos |&gt; \n  summarise(\n    across(starts_with(\"peso\"), mean)\n  )\n\n# A tibble: 1 × 3\n  peso_1 peso_2 peso_3\n   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     80     81     82"
+  },
+  {
+    "objectID": "slide-iteracao.html#exercício-3",
+    "href": "slide-iteracao.html#exercício-3",
+    "title": "Introdução ao R",
+    "section": "Exercício",
+    "text": "Exercício\nCalcule a média das variáveis que terminam com colesterol usando uma das especificações de seleção que foi apresentada anteriormente"
+  },
+  {
+    "objectID": "slide-iteracao.html#resposta-2",
+    "href": "slide-iteracao.html#resposta-2",
+    "title": "Introdução ao R",
+    "section": "Resposta",
+    "text": "Resposta\n\ntreinos |&gt; \n  summarise(\n    across(ends_with(\"colesterol\"), mean)\n  )\n\n# A tibble: 1 × 3\n  total_colesterol ruim_colesterol bom_colesterol\n             &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;\n1              240             140            100"
+  },
+  {
+    "objectID": "slide-iteracao.html#selecionando-columas-com-.cols-3",
+    "href": "slide-iteracao.html#selecionando-columas-com-.cols-3",
+    "title": "Introdução ao R",
+    "section": "Selecionando columas com .cols\n",
+    "text": "Selecionando columas com .cols\n\n\nOpções espefícidas de across()\n\n\neverything(): seleciona toda coluna que não seja de agrupamento\n\nwhere(): seleciona colunas baseado seus tipos"
+  },
+  {
+    "objectID": "slide-iteracao.html#everything",
+    "href": "slide-iteracao.html#everything",
+    "title": "Introdução ao R",
+    "section": "everything()",
+    "text": "everything()\n\ndf |&gt; \n  slice_head(n = 5)\n\n# A tibble: 5 × 4\n       a      b       c     d\n   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 -0.226 -0.314 -0.709  2.35 \n2  0.549 -0.106 -0.106  0.907\n3 -0.416  0.218  0.0292 0.152\n4 -0.803  0.970  0.406  0.240\n5 -0.674  0.899  0.581  1.56 \n\n\n\ndf |&gt; \n  summarise(\n    across(everything(),mean)\n  )\n\n# A tibble: 1 × 4\n        a      b       c     d\n    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 -0.0728 -0.172 -0.0418 0.743"
+  },
+  {
+    "objectID": "slide-iteracao.html#where",
+    "href": "slide-iteracao.html#where",
+    "title": "Introdução ao R",
+    "section": "where()",
+    "text": "where()\n\nwhere(is.numeric) seleciona todas as colunas numéricas.\nwhere(is.character) seleciona todas as colunas de string.\nwhere(is.Date) seleciona todas as colunas de data.\nwhere(is.POSIXct) seleciona todas as colunas de data e hora.\nwhere(is.logical) seleciona todas as colunas lógicas."
+  },
+  {
+    "objectID": "slide-iteracao.html#where-1",
+    "href": "slide-iteracao.html#where-1",
+    "title": "Introdução ao R",
+    "section": "where()",
+    "text": "where()\n\nglimpse(economics)\n\nRows: 574\nColumns: 6\n$ date     &lt;date&gt; 1967-07-01, 1967-08-01, 1967-09-01, 1967-10-01, 1967-11-01, …\n$ pce      &lt;dbl&gt; 506.7, 509.8, 515.6, 512.2, 517.4, 525.1, 530.9, 533.6, 544.3…\n$ pop      &lt;dbl&gt; 198712, 198911, 199113, 199311, 199498, 199657, 199808, 19992…\n$ psavert  &lt;dbl&gt; 12.6, 12.6, 11.9, 12.9, 12.8, 11.8, 11.7, 12.3, 11.7, 12.3, 1…\n$ uempmed  &lt;dbl&gt; 4.5, 4.7, 4.6, 4.9, 4.7, 4.8, 5.1, 4.5, 4.1, 4.6, 4.4, 4.4, 4…\n$ unemploy &lt;dbl&gt; 2944, 2945, 2958, 3143, 3066, 3018, 2878, 3001, 2877, 2709, 2…"
+  },
+  {
+    "objectID": "slide-iteracao.html#where-2",
+    "href": "slide-iteracao.html#where-2",
+    "title": "Introdução ao R",
+    "section": "where()",
+    "text": "where()\n\neconomics |&gt; \n  summarise(\n    across(where(is.numeric), mean)\n  )\n\n# A tibble: 1 × 5\n    pce     pop psavert uempmed unemploy\n  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;\n1 4820. 257160.    8.57    8.61    7771."
+  },
+  {
+    "objectID": "slide-iteracao.html#exercício-4",
+    "href": "slide-iteracao.html#exercício-4",
+    "title": "Introdução ao R",
+    "section": "Exercício",
+    "text": "Exercício\nCalcule a média de todas as variáveis numéricas do banco de dados treinos"
+  },
+  {
+    "objectID": "slide-iteracao.html#resposta-3",
+    "href": "slide-iteracao.html#resposta-3",
+    "title": "Introdução ao R",
+    "section": "Resposta",
+    "text": "Resposta\n\ntreinos |&gt; \n  summarise(\n    across(where(is.numeric), mean)\n  )\n\n# A tibble: 1 × 9\n  idade altura peso_1 peso_2 peso_3 treinos_por_semana total_colesterol\n  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;              &lt;dbl&gt;            &lt;dbl&gt;\n1    40    1.8     80     81     82                  5              240\n# ℹ 2 more variables: ruim_colesterol &lt;dbl&gt;, bom_colesterol &lt;dbl&gt;"
+  },
+  {
+    "objectID": "slide-iteracao.html#chamando-mais-de-um-função-dentro-de-.fns",
+    "href": "slide-iteracao.html#chamando-mais-de-um-função-dentro-de-.fns",
+    "title": "Introdução ao R",
+    "section": "Chamando mais de um função dentro de .fns\n",
+    "text": "Chamando mais de um função dentro de .fns\n\n\nUse a função list() para chamar mais de um função\nÉ importante nomear as funções: nome = funcão\n\n\neconomics |&gt; \n  summarise(\n    across(pce:pop, \n           list(\n             M = mean, \n             DP = sd,\n             MIN = min, \n             MAX = max)\n    )\n  ) \n\n# A tibble: 1 × 8\n  pce_M pce_DP pce_MIN pce_MAX   pop_M pop_DP pop_MIN pop_MAX\n  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 4820.  3557.    507.  12194. 257160. 36682.  198712 320402."
+  },
+  {
+    "objectID": "slide-iteracao.html#exercício-5",
+    "href": "slide-iteracao.html#exercício-5",
+    "title": "Introdução ao R",
+    "section": "Exercício",
+    "text": "Exercício\nCalcule a média e o desvio padrão das variáveis idade e altura do banco de dados treinos"
+  },
+  {
+    "objectID": "slide-iteracao.html#resposta-4",
+    "href": "slide-iteracao.html#resposta-4",
+    "title": "Introdução ao R",
+    "section": "Resposta",
+    "text": "Resposta\n\ntreinos |&gt; \n  summarise(\n    across(idade:altura, list(\n      M = mean, \n      DP = sd\n    ))\n  )\n\n# A tibble: 1 × 4\n  idade_M idade_DP altura_M altura_DP\n    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;\n1      40     15.8      1.8     0.158"
+  },
+  {
+    "objectID": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns",
+    "href": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns",
+    "title": "Introdução ao R",
+    "section": "Usando argumentos dentro das funções chamadas em .fns\n",
+    "text": "Usando argumentos dentro das funções chamadas em .fns\n\n\nglimpse(flights)\n\nRows: 336,776\nColumns: 19\n$ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…\n$ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …\n$ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …\n$ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…\n$ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…\n$ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…\n$ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…\n$ carrier        &lt;chr&gt; \"UA\", \"UA\", \"AA\", \"B6\", \"DL\", \"UA\", \"B6\", \"EV\", \"B6\", \"…\n$ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…\n$ tailnum        &lt;chr&gt; \"N14228\", \"N24211\", \"N619AA\", \"N804JB\", \"N668DN\", \"N394…\n$ origin         &lt;chr&gt; \"EWR\", \"LGA\", \"JFK\", \"JFK\", \"LGA\", \"EWR\", \"EWR\", \"LGA\",…\n$ dest           &lt;chr&gt; \"IAH\", \"IAH\", \"MIA\", \"BQN\", \"ATL\", \"ORD\", \"FLL\", \"IAD\",…\n$ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…\n$ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …\n$ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…\n$ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…\n$ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…"
+  },
+  {
+    "objectID": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns-1",
+    "href": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns-1",
+    "title": "Introdução ao R",
+    "section": "Usando argumentos dentro das funções chamadas em .fns\n",
+    "text": "Usando argumentos dentro das funções chamadas em .fns\n\n\nSe há um caso com valores ausentes (NA) a função retorna NA\n\nÉ necessário usar o argumento na.rm = T para resolver esse problema\n\n\nflights |&gt; \n  summarise(\n    across(ends_with(\"delay\"), mean)\n  )\n\n# A tibble: 1 × 2\n  dep_delay arr_delay\n      &lt;dbl&gt;     &lt;dbl&gt;\n1        NA        NA"
+  },
+  {
+    "objectID": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns-2",
+    "href": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns-2",
+    "title": "Introdução ao R",
+    "section": "Usando argumentos dentro das funções chamadas em .fns\n",
+    "text": "Usando argumentos dentro das funções chamadas em .fns\n\n\nÉ possível chamar criar uma função anônima usando \\(x)\n\n\nx vai representar todas as variáveis para s quais queremos obter a média\n\n\nflights |&gt; \n  summarise(\n    across(ends_with(\"delay\"),\n           \\(x) mean(x, na.rm = T))\n  )\n\n# A tibble: 1 × 2\n  dep_delay arr_delay\n      &lt;dbl&gt;     &lt;dbl&gt;\n1      12.6      6.90"
+  },
+  {
+    "objectID": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns-3",
+    "href": "slide-iteracao.html#usando-argumentos-dentro-das-funções-chamadas-em-.fns-3",
+    "title": "Introdução ao R",
+    "section": "Usando argumentos dentro das funções chamadas em .fns\n",
+    "text": "Usando argumentos dentro das funções chamadas em .fns\n\n\nTambém possível fazer o mesmo chando várias funções dentro de .fns com list()\n\n\n\nflights |&gt; \n  summarise(\n    across(ends_with(\"delay\"),\n           list(\n             M = \\(x) mean(x, na.rm = T),\n             SD = \\(x) sd(x, na.rm = T)\n           )),\n    n = n()\n  )\n\n# A tibble: 1 × 5\n  dep_delay_M dep_delay_SD arr_delay_M arr_delay_SD      n\n        &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;  &lt;int&gt;\n1        12.6         40.2        6.90         44.6 336776"
   },
   {
     "objectID": "slide-transformacao-dados-linhas.html#transformações",
