@@ -1030,98 +1030,98 @@
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#estação-palmer",
     "href": "slide-intuicoes-teorema-de-bayes.html#estação-palmer",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Estação Palmer",
     "text": "Estação Palmer"
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#os-novos-estagiários",
     "href": "slide-intuicoes-teorema-de-bayes.html#os-novos-estagiários",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Os novos estagiários",
     "text": "Os novos estagiários\n\n\n\n\nVocês são os novos estagiários na estação de pesquisa Palmer, localizada na Ilha Anvers, no Arquipélago Palmer, na costa oeste da Península Antártica, e foram designados para a pesquisa sobre pinguins. A faixa de temperatura média durante o verão austral (outubro a março) varia entre 2°C e -10°C. A média tende a pairar em torno de 2°C. Sua primeira missão foi dada: capture uma pinguim fêmea da espécie Gentoo. Só tem um problema: vocês não têm ideia de como são e onde encontrar as fêmeas dessa espécie. O que fazer?"
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#o-desafio",
     "href": "slide-intuicoes-teorema-de-bayes.html#o-desafio",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "O desafio",
     "text": "O desafio\nCom os dados disponíveis sobre os pinguins da espécie Gentoo, qual a melhor escolha que você pode fazer para ter mais chances de capturar o animal certo?"
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#onde-estão-os-pinguins",
     "href": "slide-intuicoes-teorema-de-bayes.html#onde-estão-os-pinguins",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Onde estão os pinguins?",
     "text": "Onde estão os pinguins?"
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#quais-as-proporções-de-machos-e-fêmeas",
     "href": "slide-intuicoes-teorema-de-bayes.html#quais-as-proporções-de-machos-e-fêmeas",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Quais as proporções de machos e fêmeas?",
     "text": "Quais as proporções de machos e fêmeas?"
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#como-posso-diferenciar-machos-e-fêmeas",
     "href": "slide-intuicoes-teorema-de-bayes.html#como-posso-diferenciar-machos-e-fêmeas",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Como posso diferenciar machos e fêmeas?",
     "text": "Como posso diferenciar machos e fêmeas?"
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#diferença-média-da-massa-corporal-entre-os-sexos",
     "href": "slide-intuicoes-teorema-de-bayes.html#diferença-média-da-massa-corporal-entre-os-sexos",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Diferença média da massa corporal entre os sexos",
     "text": "Diferença média da massa corporal entre os sexos\n\n\n\n\n\n\n\n\nSexo\nMédia\nDiferença\n\n\n\n\nFêmea\n4,679.74\n-\n\n\nMacho\n5,484.84\n805.09"
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#qual-é-a-proporção-do-tamanho-dos-pinguins-por-sexo",
     "href": "slide-intuicoes-teorema-de-bayes.html#qual-é-a-proporção-do-tamanho-dos-pinguins-por-sexo",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Qual é a proporção do tamanho dos pinguins por sexo?",
     "text": "Qual é a proporção do tamanho dos pinguins por sexo?"
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#proporção-da-espécie-gentoo-por-sexo-e-tamanho",
     "href": "slide-intuicoes-teorema-de-bayes.html#proporção-da-espécie-gentoo-por-sexo-e-tamanho",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Proporção da espécie Gentoo por sexo e tamanho",
     "text": "Proporção da espécie Gentoo por sexo e tamanho\n\n\n\n\n\n\n\n\nSexo\nGrande\nPequeno\n\n\n\n\nFêmea\n6.9%\n93.1%\n\n\nMacho\n88.5%\n11.5%\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTamanho\nn\n%\n\n\n\n\nGrande\n58\n48.7%\n\n\nPequeno\n61\n51.3%"
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#síntese-os-dados",
     "href": "slide-intuicoes-teorema-de-bayes.html#síntese-os-dados",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Síntese os dados",
     "text": "Síntese os dados\nDos pinguins Gentoo com sexo conhecido:\n\n100% dos pinguins da espécie Gentoo estão na ilha Biscoe\n48,7% são fêmeas\n93,1% das fêmeas são pequenas\n11,5% dos machos são pequenos\n51,3% de todos os Gentoo são pequenos"
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#atualizando-sua-estratégia-com-o-teorema-de-bayes",
     "href": "slide-intuicoes-teorema-de-bayes.html#atualizando-sua-estratégia-com-o-teorema-de-bayes",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Atualizando sua estratégia com o Teorema de Bayes",
     "text": "Atualizando sua estratégia com o Teorema de Bayes\n\nSabendo que você encontrou um pinguim pequeno, qual a chance de ele ser fêmea?\nUsamos o Teorema de Bayes: \\[\nP(Fêmea \\mid Pequeno) = \\frac{P(Pequeno \\mid Fêmea) \\times P(Fêmea)}{P(Pequeno)}\n\\]\nSubstituindo os valores:\n\\[\nP(Fêmea \\mid Pequeno) = \\frac{0.931 \\times 0.487}{0.513} \\approx 0.885\n\\]\nOu seja, 88,5% de chance de o pequeno ser fêmea!"
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#intuição-por-trás-do-teorema-de-bayes",
     "href": "slide-intuicoes-teorema-de-bayes.html#intuição-por-trás-do-teorema-de-bayes",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Intuição por Trás do Teorema de Bayes",
     "text": "Intuição por Trás do Teorema de Bayes\n\nPense nas proporções que descobrimos:\n\nQuase todas as fêmeas Gentoo são pequenas (93,1%). Isso significa que se você encontrar uma fêmea, é muito provável que ela seja pequena.\nApenas uma pequena parte dos machos Gentoo é pequena (11,5%). Isso indica que a maioria dos machos é grande.\nQuando você encontra um pinguim pequeno, essa característica é muito mais comum entre as fêmeas do que entre os machos. É como se “ser pequeno” fosse um forte indicador de que o pinguim é fêmea nessa população.\nEmbora inicialmente a chance de pegar uma fêmea fosse de cerca de 48,7%, ao sabermos que o pinguim é pequeno, estamos focando em um grupo onde as fêmeas são esmagadoramente maioria. O Teorema de Bayes apenas formaliza essa intuição, mostrando numericamente o quanto essa evidência (ser pequeno) aumenta a probabilidade de ser fêmea.\nEm resumo, a probabilidade aumenta tanto porque a característica “ser pequeno” está fortemente ligada ao sexo feminino na espécie Gentoo, de acordo com os dados que analisamos."
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#conclusão-da-estratégia",
     "href": "slide-intuicoes-teorema-de-bayes.html#conclusão-da-estratégia",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Conclusão da estratégia",
     "text": "Conclusão da estratégia\n\nSe você precisa encontrar uma fêmea Gentoo, e tudo o que sabe é o tamanho…\nA melhor escolha é: mirar nos pequenos!\nA chance de acertar uma fêmea entre eles é quase o dobro da chance geral."
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#moral-da-história",
     "href": "slide-intuicoes-teorema-de-bayes.html#moral-da-história",
-    "title": "Construindo intuições sobre conceitos básicos: Teorema de Bayes",
+    "title": "Construindo intuições sobre conceitos estatísticos: Teorema de Bayes",
     "section": "Moral da história",
     "text": "Moral da história\nEsse é o poder do raciocínio probabilístico:\nVocê pode tomar decisões melhores mesmo com informação incompleta, desde que saiba usar os dados certos.\nBem-vindos à pesquisa científica!"
   },
