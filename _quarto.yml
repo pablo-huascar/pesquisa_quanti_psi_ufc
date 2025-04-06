@@ -44,6 +44,7 @@ website:
         - href: exploracao-dados.qmd
         - href: inferencia-estatistica.qmd
         - href: regressao.qmd
+        - href: conceitos-estatisticos.qmd
    
 format:
   html:

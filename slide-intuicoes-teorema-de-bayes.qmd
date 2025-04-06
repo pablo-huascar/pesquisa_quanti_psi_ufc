@@ -1,0 +1,312 @@
+---
+title: "Construindo intuições sobre conceitos básicos: Teorema de Bayes"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("./_common.R")
+```
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+library(janitor)
+library(UsingR)
+library(carData)
+library(palmerpenguins)
+library(gt)
+library(scales)
+library(ggthemes)
+library(patchwork)
+library(DT)
+library(psych)
+conflicted::conflicts_prefer(dplyr::filter())
+conflicted::conflicts_prefer(dplyr::select())
+conflicted::conflicts_prefer(dplyr::lag())
+conflicted::conflicts_prefer(dplyr::summarize)
+conflicted::conflicts_prefer(dplyr::summarise)
+conflicted::conflicts_prefer(scales::alpha)
+conflicted::conflicts_prefer(scales::rescale)
+```
+
+# Capturando um pinguim na estação Palmer
+
+## Estação Palmer {background-image="img/palmer-cartoon.png" background-size="contain"}
+
+## Os novos estagiários
+
+::::: columns
+::: {.column width="40%"}
+![](img/estagiarios.png)
+:::
+
+::: {.column width="60%" style="font-size: 22pt"}
+Vocês são os novos estagiários na estação de pesquisa Palmer, localizada na Ilha Anvers, no Arquipélago Palmer, na costa oeste da Península Antártica, e foram designados para a pesquisa sobre pinguins. A faixa de temperatura média durante o verão austral (outubro a março) varia entre 2°C e -10°C. A média tende a pairar em torno de 2°C. **Sua primeira missão foi dada: capture uma pinguim fêmea da espécie Gentoo**. Só tem um problema: vocês não têm ideia de como são e onde encontrar as fêmeas dessa espécie. O que fazer?
+:::
+:::::
+
+##  {background-image="img/penguins-desenho.png" background-size="contain"}
+
+## O desafio
+
+Com os dados disponíveis sobre os pinguins da espécie Gentoo, qual a melhor escolha que você pode fazer para ter mais chances de capturar o animal certo?
+
+# O que sabemos sobre a espécie Gentoo?
+
+```{r}
+df <- penguins |> 
+  drop_na(sex, body_mass_g) |> 
+  filter(species == "Gentoo")  |> 
+  mutate(
+    sex = fct_recode(sex, Macho = "male", Fêmea = "female"),
+    tamanho = if_else(body_mass_g > median(body_mass_g), "Grande", "Pequeno")
+  )
+
+```
+
+## Onde estão os pinguins?
+
+```{r}
+#| out-width: "70%"
+#| fig-align: center
+penguins |> 
+  drop_na(species, island) |> 
+  ggplot(aes(island, fill = species)) + 
+  geom_bar() + 
+  labs(
+    x = "Ilha",
+    y = "Quantidade", 
+    fill = "Espécie",
+    title = "Distribuição das espécies por ilha"
+  ) +
+  scale_fill_colorblind()
+```
+
+## Quais as proporções de machos e fêmeas?
+
+```{r}
+#| out-width: "70%"
+#| fig-align: center
+df |> 
+  ggplot(
+    aes(fct_infreq(sex),
+        y = after_stat(count/sum(count)),
+        fill = sex)
+  ) +
+  geom_bar() +
+  geom_text(
+    aes(label = percent(after_stat(count/sum(count)))),
+    stat = "count",
+    nudge_y = 0.03
+  ) +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_y_continuous(
+    labels = percent
+  ) +
+  scale_fill_colorblind() +
+  labs(
+    x = "Sexo", y = NULL,
+    title = "Proporção de machos e fêmeas da espécie Gentoo"
+  )
+```
+
+## Como posso diferenciar machos e fêmeas?
+
+```{r}
+#| out-width: "70%"
+#| fig-align: center
+df |> 
+  ggplot(
+    aes(sex, body_mass_g)
+  ) + 
+  geom_boxplot(
+    color = "#569BBD"
+  ) +
+  stat_boxplot(
+    geom= 'errorbar' , width = 0.3, 
+    color = "#569BBD"
+  ) +
+  labs(
+    x = "Sexo",
+    y = "Massa corporal (g)", 
+    title = "Comparação da massa corporal entre \nsexos da espécie Gentoo"
+  )
+```
+
+## Diferença média da massa corporal entre os sexos
+
+```{r}
+df |> 
+  summarise(
+    "Média" = mean(body_mass_g),
+    .by = sex
+  ) |> 
+  rename("Sexo" = sex) |> 
+  mutate(
+    Diferença = Média - lag(Média)
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  fmt_number(
+    columns = c("Média", "Diferença"),
+    decimals = 2
+  ) |> 
+  sub_missing(
+    missing_text = "-"
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Qual é a proporção do tamanho dos pinguins por sexo?
+
+```{r}
+#| out-width: "70%"
+df |> 
+  ggplot(aes(sex, fill = tamanho)) + 
+  geom_bar(
+    position = "fill"
+  ) + 
+  labs(
+    x = "Tamanho",
+    y = "Proporção",
+    fill = "Sexo",
+    title =  "Distribuição do tamanho dos pinguins por sexo"
+  )
+```
+
+## Proporção da espécie Gentoo por sexo e tamanho
+
+```{r}
+df |> 
+  count(sex, tamanho) |> 
+  mutate(
+    prop = n/sum(n),
+    prop = percent_format(accuracy = 0.1)(prop),
+    .by = sex
+  ) |> 
+  pivot_wider(id_cols = sex, names_from = tamanho, values_from = prop) |> 
+  rename("Sexo" = sex) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+```{r}
+df |> 
+  count(tamanho) |> 
+  mutate(
+    prop = n/sum(n),
+    prop = percent_format(accuracy = 0.1)(prop),
+   ) |> 
+  rename("Tamanho" = tamanho, "%" = prop) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+# Com essas informações, como você tentaria encontrar uma pinguim fêmea da espécie Gentoo? {style="font-size: 22pt"}
+
+## Síntese os dados
+
+Dos pinguins Gentoo com sexo conhecido:
+
+-   100% dos pinguins da espécie Gentoo estão na ilha Biscoe
+
+-   48,7% são fêmeas
+
+-   93,1% das fêmeas são pequenas
+
+-   11,5% dos machos são pequenos
+
+-   51,3% de todos os Gentoo são pequenos
+
+# Com esses dados, intuitivamente, o que devemos fazer para ter a maior chance de encontrar uma pinguim fêmea da espécie Gentoo? {style="font-size: 22pt"}
+
+## Atualizando sua estratégia com o Teorema de Bayes
+
+::: {style="font-size: 16pt"}
+Sabendo que você encontrou um pinguim pequeno, qual a chance de ele ser fêmea?
+
+Usamos o Teorema de Bayes: $$
+P(Fêmea \mid Pequeno) = \frac{P(Pequeno \mid Fêmea) \times P(Fêmea)}{P(Pequeno)}
+$$
+
+Substituindo os valores:
+
+$$
+P(Fêmea \mid Pequeno) = \frac{0.931 \times 0.487}{0.513} \approx 0.885
+$$
+
+Ou seja, 88,5% de chance de o pequeno ser fêmea!
+:::
+
+## Intuição por Trás do Teorema de Bayes
+
+::: {style="font-size: 16pt"}
+Pense nas proporções que descobrimos:
+
+-   Quase todas as fêmeas Gentoo são pequenas (93,1%). Isso significa que se você encontrar uma fêmea, é muito provável que ela seja pequena.
+
+-   Apenas uma pequena parte dos machos Gentoo é pequena (11,5%). Isso indica que a maioria dos machos é grande.
+
+-   Quando você encontra um pinguim pequeno, essa característica é muito mais comum entre as fêmeas do que entre os machos. É como se "ser pequeno" fosse um forte indicador de que o pinguim é fêmea nessa população.
+
+-   Embora inicialmente a chance de pegar uma fêmea fosse de cerca de 48,7%, ao sabermos que o pinguim é pequeno, estamos focando em um grupo onde as fêmeas são esmagadoramente maioria. O Teorema de Bayes apenas formaliza essa intuição, mostrando numericamente o quanto essa evidência (ser pequeno) aumenta a probabilidade de ser fêmea.
+
+-   Em resumo, a probabilidade aumenta tanto porque a característica "ser pequeno" está fortemente ligada ao sexo feminino na espécie Gentoo, de acordo com os dados que analisamos.
+:::
+
+## Conclusão da estratégia
+
+-   Se você precisa encontrar uma fêmea Gentoo, e tudo o que sabe é o tamanho...
+
+-   A melhor escolha é: mirar nos pequenos!
+
+-   A chance de acertar uma fêmea entre eles é quase o dobro da chance geral.
+
+## Moral da história
+
+Esse é o poder do raciocínio probabilístico:
+
+Você pode tomar decisões melhores mesmo com informação incompleta, desde que saiba usar os dados certos.
+
+Bem-vindos à pesquisa científica!
+
+

@@ -1,0 +1,7 @@
+---
+title: "Intuições sobre conceitos estatísticos"
+---
+
+## Teorema de Bayes
+
+![](img/slide.png){width="18"} [Slides](slide-intuicoes-teorema-de-bayes.qmd){target="_blank"}
