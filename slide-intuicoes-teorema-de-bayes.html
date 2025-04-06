@@ -10,7 +10,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <title>Pesquisa Quantitativa – Construindo intuições sobre conceitos estatísticos: Teorema de Bayes</title>
+  <title>Pesquisa Quantitativa – Construindo intuições sobre conceitos estatísticos</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -326,7 +326,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Construindo intuições sobre conceitos estatísticos: Teorema de Bayes</h1>
+  <h1 class="title">Construindo intuições sobre conceitos estatísticos</h1>
+  <p class="subtitle">Teorema de Bayes</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -356,25 +357,53 @@
 <h2>O desafio</h2>
 <p>Com os dados disponíveis sobre os pinguins da espécie Gentoo, qual a melhor escolha que você pode fazer para ter mais chances de capturar o animal certo?</p>
 </section></section>
-<section>
 <section id="o-que-sabemos-sobre-a-espécie-gentoo" class="title-slide slide level1 center">
 <h1>O que sabemos sobre a espécie Gentoo?</h1>
 
 </section>
-<section id="onde-estão-os-pinguins" class="slide level2">
-<h2>Onde estão os pinguins?</h2>
 
-<img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section>
-<section id="quais-as-proporções-de-machos-e-fêmeas" class="slide level2">
-<h2>Quais as proporções de machos e fêmeas?</h2>
+<section>
+<section id="quais-as-proporções-das-espécies-de-pinguins" class="title-slide slide level1 center">
+<h1>Quais as proporções das espécies de pinguins?</h1>
+
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+
+<img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section></section>
+<section>
+<section id="onde-estão-os-pinguins" class="title-slide slide level1 center">
+<h1>Onde estão os pinguins?</h1>
+
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
 
 <img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section>
-<section id="como-posso-diferenciar-machos-e-fêmeas" class="slide level2">
-<h2>Como posso diferenciar machos e fêmeas?</h2>
+<section id="e-agora" class="slide level2">
+<h2>E agora?</h2>
+<p>Sabendo que devemos ir a ilha Biscoe e com a foto que temos, já conseguiremos identificar a espécie Gentoo. Vamos focar na análise dos dados somente dessa espécie.</p>
+</section></section>
+<section>
+<section id="quais-as-proporções-de-machos-e-fêmeas-da-espécie-gentoo" class="title-slide slide level1 center">
+<h1>Quais as proporções de machos e fêmeas da espécie Gentoo?</h1>
 
-<img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section>
-<section id="diferença-média-da-massa-corporal-entre-os-sexos" class="slide level2">
-<h2>Diferença média da massa corporal entre os sexos</h2>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+
+<img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section></section>
+<section>
+<section id="como-posso-diferenciar-machos-e-fêmeas" class="title-slide slide level1 center">
+<h1>Como posso diferenciar machos e fêmeas?</h1>
+
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+
+<img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section>
+<section id="diferença-média-da-massa-corporal-entre-os-sexos-da-espécie-gentoo" class="slide level2">
+<h2>Diferença média da massa corporal entre os sexos da espécie Gentoo</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -852,13 +881,18 @@
 </div>
 </div>
 </div>
-</section>
-<section id="qual-é-a-proporção-do-tamanho-dos-pinguins-por-sexo" class="slide level2">
-<h2>Qual é a proporção do tamanho dos pinguins por sexo?</h2>
+</section></section>
+<section>
+<section id="qual-é-a-proporção-do-tamanho-dos-pinguins-por-sexo-na-espécie-gentoo" class="title-slide slide level1 center">
+<h1>Qual é a proporção do tamanho dos pinguins por sexo na espécie Gentoo?</h1>
 
-<img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section>
-<section id="proporção-da-espécie-gentoo-por-sexo-e-tamanho" class="slide level2">
-<h2>Proporção da espécie Gentoo por sexo e tamanho</h2>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+
+<img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section>
+<section id="proporções-da-espécie-gentoo-por-sexo-e-tamanho" class="slide level2">
+<h2>Proporções da espécie Gentoo por sexo e tamanho</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -1813,21 +1847,12 @@
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="com-essas-informações-como-você-tentaria-encontrar-uma-pinguim-fêmea-da-espécie-gentoo" class="title-slide slide level1 center" style="font-size: 22pt">
-<h1>Com essas informações, como você tentaria encontrar uma pinguim fêmea da espécie Gentoo?</h1>
-
 </section>
 <section id="síntese-os-dados" class="slide level2">
 <h2>Síntese os dados</h2>
-<p>Dos pinguins Gentoo com sexo conhecido:</p>
 <ul>
-<li><p>100% dos pinguins da espécie Gentoo estão na ilha Biscoe</p></li>
-<li><p>48,7% são fêmeas</p></li>
-<li><p>93,1% das fêmeas são pequenas</p></li>
-<li><p>11,5% dos machos são pequenos</p></li>
-<li><p>51,3% de todos os Gentoo são pequenos</p></li>
+<li>Na ilha Biscoe, 73.8% dos pinguins são da espécie Gentoo (o que nos fez ir para essa ilha)</li>
+<li>93.1% das fêmeas são pequenas</li>
 </ul>
 </section></section>
 <section>
@@ -1835,19 +1860,59 @@
 <h1>Com esses dados, intuitivamente, o que devemos fazer para ter a maior chance de encontrar uma pinguim fêmea da espécie Gentoo?</h1>
 
 </section>
-<section id="atualizando-sua-estratégia-com-o-teorema-de-bayes" class="slide level2">
-<h2>Atualizando sua estratégia com o Teorema de Bayes</h2>
-<div style="font-size: 16pt">
-<p>Sabendo que você encontrou um pinguim pequeno, qual a chance de ele ser fêmea?</p>
-<p>Usamos o Teorema de Bayes: <span class="math display">\[
+<section id="o-teorema-de-bayes" class="slide level2">
+<h2>O Teorema de Bayes</h2>
+<p><span class="math display">\[
+P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+\]</span></p>
+</section>
+<section id="o-que-cada-termo-significa" class="slide level2">
+<h2>O que cada termo significa?</h2>
+<ul>
+<li>P(A∣B): Probabilidade Posterior
+<ul>
+<li>“Chance de A ser verdade, depois de observar B”</li>
+</ul></li>
+<li>P(B∣A): Verossimilhança (Likelihood)
+<ul>
+<li>“Chance de observar B se A for verdade”<br>
+</li>
+</ul></li>
+<li>P(A): Probabilidade Prior (Inicial)
+<ul>
+<li>“Crença inicial sobre A antes de ver os dados”</li>
+</ul></li>
+<li>P(B): Evidência (Probabilidade Total)
+<ul>
+<li>“Chance total de observar B em todos os cenários possíveis”</li>
+</ul></li>
+</ul>
+</section>
+<section id="atualizando-sua-estratégia-com-o-teorema-de-bayes-considerando-somente-o-tamanho" class="slide level2">
+<h2>Atualizando sua estratégia com o Teorema de Bayes: considerando somente o tamanho</h2>
+<p>Dos pinguins Gentoo com sexo conhecido:</p>
+<ul>
+<li>11,5% dos machos são pequenos</li>
+<li>P(B∣A): 93,1% das fêmeas são pequenas</li>
+<li>P(A): 48,7% são fêmeas</li>
+<li>P(B): 51,3% de todos os Gentoo são pequenos</li>
+</ul>
+</section>
+<section id="sabendo-que-você-encontrou-um-pinguim-pequeno-qual-a-chance-de-ele-ser-fêmea" class="slide level2" style="font-size: 16pt">
+<h2>Sabendo que você encontrou um pinguim pequeno, qual a chance de ele ser fêmea?</h2>
+<ul>
+<li>Usamos o Teorema de Bayes:</li>
+</ul>
+<p><span class="math display">\[
 P(Fêmea \mid Pequeno) = \frac{P(Pequeno \mid Fêmea) \times P(Fêmea)}{P(Pequeno)}
 \]</span></p>
-<p>Substituindo os valores:</p>
+<ul>
+<li>Substituindo os valores:</li>
+</ul>
 <p><span class="math display">\[
 P(Fêmea \mid Pequeno) = \frac{0.931 \times 0.487}{0.513} \approx 0.885
 \]</span></p>
 <p>Ou seja, 88,5% de chance de o pequeno ser fêmea!</p>
-</div>
 </section>
 <section id="intuição-por-trás-do-teorema-de-bayes" class="slide level2">
 <h2>Intuição por Trás do Teorema de Bayes</h2>
@@ -1872,8 +1937,12 @@ P(Fêmea \mid Pequeno) = \frac{0.931 \times 0.487}{0.513} \approx 0.885
 </section>
 <section id="moral-da-história" class="slide level2">
 <h2>Moral da história</h2>
-<p>Esse é o poder do raciocínio probabilístico:</p>
-<p>Você pode tomar decisões melhores mesmo com informação incompleta, desde que saiba usar os dados certos.</p>
+<ul>
+<li>Esse é o poder do raciocínio probabilístico:
+<ul>
+<li>Você pode tomar decisões melhores mesmo com informação incompleta, desde que saiba usar os dados certos.</li>
+</ul></li>
+</ul>
 <p>Bem-vindos à pesquisa científica!</p>
 
 <div class="quarto-auto-generated-content">
