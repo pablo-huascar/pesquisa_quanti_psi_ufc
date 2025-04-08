@@ -1,5 +1,6 @@
 ---
-title: "Construindo intuições sobre conceitos básicos: Teorema de Bayes"
+title: "Construindo intuições sobre conceitos estatísticos"
+subtitle: "Teorema de Bayes"
 format: 
   revealjs:
       logo: img/brasao1_horizontal_cor_300dpi.png
@@ -75,25 +76,78 @@ df <- penguins |>
 
 ```
 
-## Onde estão os pinguins?
+# Quais as proporções das espécies de pinguins?
+
+##
+
+```{r}
+penguins |> 
+  ggplot(
+    aes(x = fct_infreq(species) |> fct_rev(), 
+        y = after_stat(count/sum(count)), fill = species)
+    ) + 
+  geom_bar() + 
+  geom_text(
+    aes(label = percent(after_stat(count/sum(count)))),
+    stat = "count",
+    nudge_y = 0.02
+  ) +
+  labs(
+   x = "Espécie",
+   y = NULL,
+   title = "Proporções das espécies de pinguins"
+  ) +
+   scale_y_continuous(
+    labels = percent
+  ) +
+  scale_fill_colorblind() +
+  theme(
+    legend.position = "none"
+  )
+```
+
+# Onde estão os pinguins?
+
+## 
 
 ```{r}
 #| out-width: "70%"
 #| fig-align: center
-penguins |> 
-  drop_na(species, island) |> 
-  ggplot(aes(island, fill = species)) + 
-  geom_bar() + 
-  labs(
-    x = "Ilha",
-    y = "Quantidade", 
-    fill = "Espécie",
-    title = "Distribuição das espécies por ilha"
+penguins |>
+  drop_na(species, island) |>
+  count(island, species) |>
+  mutate(
+    prop = n/sum(n),
+    prop_format = scales::percent(prop, accuracy = 0.1),
+    .by = island
+  ) |>
+  ggplot(
+    aes(x = island, y = prop, fill = species)
   ) +
-  scale_fill_colorblind()
+  geom_col(
+    position = "dodge"
+  ) +
+  geom_text(
+    aes(label = prop_format), 
+    position = position_dodge(width = 0.9), 
+    vjust = -0.25, size = 3
+    ) +
+  labs(
+    y = NULL,
+    x = "Ilha",
+    fill = "Espécies",
+    title = "Proproções das espécies por ilha"
+  ) +
+  scale_y_continuous(labels = percent)
 ```
 
-## Quais as proporções de machos e fêmeas?
+## E agora?
+
+Sabendo que devemos ir a ilha Biscoe e com a foto que temos, já conseguiremos identificar a espécie Gentoo. Vamos focar na análise dos dados somente dessa espécie.
+
+# Quais as proporções de machos e fêmeas da espécie Gentoo?
+
+## 
 
 ```{r}
 #| out-width: "70%"
@@ -123,7 +177,9 @@ df |>
   )
 ```
 
-## Como posso diferenciar machos e fêmeas?
+# Como posso diferenciar machos e fêmeas?
+
+## 
 
 ```{r}
 #| out-width: "70%"
@@ -146,7 +202,7 @@ df |>
   )
 ```
 
-## Diferença média da massa corporal entre os sexos
+## Diferença média da massa corporal entre os sexos da espécie Gentoo
 
 ```{r}
 df |> 
@@ -178,24 +234,45 @@ df |>
   )
 ```
 
-## Qual é a proporção do tamanho dos pinguins por sexo?
+# Qual é a proporção do tamanho dos pinguins por sexo na espécie Gentoo?
+
+## 
 
 ```{r}
 #| out-width: "70%"
 df |> 
-  ggplot(aes(sex, fill = tamanho)) + 
-  geom_bar(
-    position = "fill"
-  ) + 
+  count(sex, tamanho) |>
+  mutate(
+    prop = n/sum(n),
+    prop_format = scales::percent(prop, accuracy = 0.1),
+    .by = sex
+  ) |>
+  ggplot(
+    aes(x = sex, y = prop, fill = tamanho)
+  ) +
+  geom_col(
+    #position = "dodge"
+  ) +
+  geom_text(
+    aes(label = prop_format), 
+    position = position_fill(vjust = 0.5), 
+    #vjust = -0.25
+    ) +
   labs(
-    x = "Tamanho",
-    y = "Proporção",
-    fill = "Sexo",
-    title =  "Distribuição do tamanho dos pinguins por sexo"
+    y = NULL,
+    x = "Sexo",
+    fill = "Tamanho",
+    title = "Proporções do tamanho dos pinguins por \nsexo na espécie Gentoo",
+    caption = "Os pinguins foram classificados como grandes ou pequenos \na partir da mediana da massa corporal"
+  ) +
+  scale_y_continuous(labels = percent) + 
+  theme(
+    plot.caption = element_text(hjust = 0.5)
   )
+ 
 ```
 
-## Proporção da espécie Gentoo por sexo e tamanho
+## Proporções da espécie Gentoo por sexo e tamanho
 
 ```{r}
 df |> 
@@ -241,34 +318,50 @@ df |>
   )
 ```
 
-# Com essas informações, como você tentaria encontrar uma pinguim fêmea da espécie Gentoo? {style="font-size: 22pt"}
-
 ## Síntese os dados
 
-Dos pinguins Gentoo com sexo conhecido:
-
--   100% dos pinguins da espécie Gentoo estão na ilha Biscoe
-
--   48,7% são fêmeas
-
--   93,1% das fêmeas são pequenas
-
--   11,5% dos machos são pequenos
-
--   51,3% de todos os Gentoo são pequenos
+-   Na ilha Biscoe, 73.8% dos pinguins são da espécie Gentoo (o que nos fez ir para essa ilha)
+-   93.1% das fêmeas são pequenas
 
 # Com esses dados, intuitivamente, o que devemos fazer para ter a maior chance de encontrar uma pinguim fêmea da espécie Gentoo? {style="font-size: 22pt"}
 
-## Atualizando sua estratégia com o Teorema de Bayes
+## O Teorema de Bayes
+
+$$
+P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+$$
+
+
+## O que cada termo significa?
+
+-   P(A∣B): Probabilidade Posterior
+    -   "Chance de A ser verdade, depois de observar B"
+-   P(B∣A): Verossimilhança (Likelihood)
+    -   "Chance de observar B se A for verdade"  
+-   P(A): Probabilidade Prior (Inicial)
+    -   "Crença inicial sobre A antes de ver os dados"
+-   P(B): Evidência (Probabilidade Total)
+    - "Chance total de observar B em todos os cenários possíveis"
+
+## Atualizando sua estratégia com o Teorema de Bayes: considerando somente o tamanho
+
+Dos pinguins Gentoo com sexo conhecido:
+
+-   11,5% dos machos são pequenos
+-   P(B∣A): 93,1% das fêmeas são pequenas
+-   P(A): 48,7% são fêmeas
+-   P(B): 51,3% de todos os Gentoo são pequenos
 
 ::: {style="font-size: 16pt"}
-Sabendo que você encontrou um pinguim pequeno, qual a chance de ele ser fêmea?
+## Sabendo que você encontrou um pinguim pequeno, qual a chance de ele ser fêmea?
 
-Usamos o Teorema de Bayes: $$
+-   Usamos o Teorema de Bayes: 
+
+$$
 P(Fêmea \mid Pequeno) = \frac{P(Pequeno \mid Fêmea) \times P(Fêmea)}{P(Pequeno)}
 $$
 
-Substituindo os valores:
+-   Substituindo os valores:
 
 $$
 P(Fêmea \mid Pequeno) = \frac{0.931 \times 0.487}{0.513} \approx 0.885
@@ -303,10 +396,15 @@ Pense nas proporções que descobrimos:
 
 ## Moral da história
 
-Esse é o poder do raciocínio probabilístico:
-
-Você pode tomar decisões melhores mesmo com informação incompleta, desde que saiba usar os dados certos.
+-   Esse é o poder do raciocínio probabilístico:
+    -   Você pode tomar decisões melhores mesmo com informação incompleta, desde que saiba usar os dados certos.
 
 Bem-vindos à pesquisa científica!
+
+
+
+
+
+
 
 
