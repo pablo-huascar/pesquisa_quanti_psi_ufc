@@ -1,5 +1,201 @@
 ---
-title: "slide-intuicoes-probabilidade"
-format: html
+title: "Construindo intuições sobre conceitos estatísticos"
+subtitle: "Probabilidade"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
 ---
+
+```{r}
+#| include: false
+source("./_common.R")
+```
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+library(janitor)
+library(UsingR)
+library(carData)
+library(palmerpenguins)
+library(gt)
+library(scales)
+library(ggthemes)
+library(patchwork)
+library(DT)
+library(psych)
+conflicted::conflicts_prefer(dplyr::filter())
+conflicted::conflicts_prefer(dplyr::select())
+conflicted::conflicts_prefer(dplyr::lag())
+conflicted::conflicts_prefer(dplyr::summarize)
+conflicted::conflicts_prefer(dplyr::summarise)
+conflicted::conflicts_prefer(scales::alpha)
+conflicted::conflicts_prefer(scales::rescale)
+```
+
+```{r}
+df <- TitanicSurvival |> 
+  as_tibble() |> 
+  clean_names() |> 
+  mutate(
+    sex = fct_recode(sex, Masculino = "male", Feminino = "female"),
+    passenger_class = fct_recode(passenger_class, Primeira = "1st",
+                                 Segunda = "2nd", Terceira = "3rd"),
+    survived = fct_recode(survived, Sim = "yes", Não = "no")
+  )
+```
+
+
+
+# Testemunhando a viagem do Titanic
+
+## {background-image="img/titanic.png" background-size="contain"}
+
+## Os novos estagiários
+
+::::: columns
+::: {.column width="40%"}
+![](img/maquina-do-tempo.png)
+:::
+
+::: {.column width="60%" style="font-size: 20pt"}
+Ao terminar a disciplina de pesquisa quantitativa, vocês se tornaram cientistas muito bons e conseguiram criar uma máquina do tempo. Para a primeira expedição temporal, por serem fãs do James Cameron, decidiram testemunhar como foi a viagem no Titanic. O aparelho que vocês construíram, contudo, só permite que uma pessoa faça o salto temporal. Antes de se aventurar, vocês precisam avaliar quem vai ter maiores chances de sobreviver e em qual classe do navio devem viajar. Com base nos dados disponíveis sobre a viagem, vocês vão escolher quem vai testemunhar esse evento histórico e voltar para contar como ele ocorreu.
+:::
+:::::
+
+## O que sabemos sobre os passageiros
+
+```{r}
+sexo <- df |> 
+  count(sex) |> 
+  mutate(
+    "%" = n/sum(n)
+  ) |> 
+  rename(Variável = sex)
+
+classe <- df |> 
+  count(passenger_class) |> 
+  mutate(
+    "%" = n/sum(n)
+  ) |> 
+  rename(Variável = passenger_class)
+
+sobreviventes <- df |> 
+  count(survived) |> 
+  mutate(
+    "%" = n/sum(n)
+  ) |> 
+  rename(Variável = survived)
+
+tabela_1 <- sexo |> 
+  bind_rows(classe) |> 
+  bind_rows(sobreviventes)
+
+```
+
+```{r}
+tabela_1 |>   
+  gt() |> 
+  tab_row_group(
+    label = "Sobrevientes",
+    rows = 6:7
+  ) |> 
+  tab_row_group(
+    label = "Classe",
+    rows = 3:5
+  ) |> 
+  tab_row_group(
+    label = "Gênero",
+    rows = 1:2
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  cols_align(
+    align = "center", columns = 2  
+  ) |> 
+  cols_align(
+    align = "left", columns = 1  
+  ) |> 
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(columns = Variável)
+  ) |> 
+  fmt_percent(
+    columns = "%",
+    decimals = 1
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Qual a chance de sobrevier por classe do navio?
+
+```{r}
+prop_classe <- df |> 
+  count(passenger_class, survived) |> 
+  mutate(
+    Proporção = n/sum(n),
+    Proporção = percent_format(accuracy = 0.1)(Proporção),
+    .by = passenger_class
+  ) |> 
+  rename(Classe = passenger_class, Sobrevivência = survived)
+```
+
+```{r}
+prop_classe |> 
+  gt() |> 
+  cols_align(
+    align = "center",  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Em qual classe devemos viajar?
+
+Parece haver uma questão de classe na sobrevivência... Classe social! Os passageiros ricos que viajavam na primeira classe tiveram mais chances de sair com vida.
+
+## Qual a chance de sobrevier por gênero?
+
+```{r}
+prop_genero <- df |> 
+  count(sex, survived) |> 
+  mutate(
+    Proporção = n/sum(n),
+    Proporção = percent_format(accuracy = 0.1)(Proporção),
+    .by = sex
+  ) |> 
+  rename(Gênero = sex, Sobrevivência = survived)
+```
+
+```{r}
+prop_genero |> 
+  gt() |> 
+  cols_align(
+    align = "center",  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
 
