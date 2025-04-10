@@ -2,6 +2,10 @@
 title: "Intuições sobre conceitos estatísticos"
 ---
 
+## Probabilidade
+
+![](img/slide.png){width="18"} [Slides](slide-intuicoes-probabilidade.qmd){target="_blank"}
+
 ## Teorema de Bayes
 
 ![](img/slide.png){width="18"} [Slides](slide-intuicoes-teorema-de-bayes.qmd){target="_blank"}

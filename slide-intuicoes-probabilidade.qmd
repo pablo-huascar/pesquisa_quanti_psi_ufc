@@ -49,17 +49,17 @@ df <- TitanicSurvival |>
     sex = fct_recode(sex, Masculino = "male", Feminino = "female"),
     passenger_class = fct_recode(passenger_class, Primeira = "1st",
                                  Segunda = "2nd", Terceira = "3rd"),
-    survived = fct_recode(survived, Sim = "yes", Não = "no")
+    survived = fct_recode(survived, Sim = "yes", Não = "no"), 
+    crianca = case_when(age <= 11 ~ "Criança",
+                        .default = "Demais passagerios")
   )
 ```
 
-
-
 # Testemunhando a viagem do Titanic
 
-## {background-image="img/titanic.png" background-size="contain"}
+##  {background-image="img/titanic.png" background-size="contain"}
 
-## Os novos estagiários
+## Os viajantes do tempo
 
 ::::: columns
 ::: {.column width="40%"}
@@ -67,7 +67,7 @@ df <- TitanicSurvival |>
 :::
 
 ::: {.column width="60%" style="font-size: 20pt"}
-Ao terminar a disciplina de pesquisa quantitativa, vocês se tornaram cientistas muito bons e conseguiram criar uma máquina do tempo. Para a primeira expedição temporal, por serem fãs do James Cameron, decidiram testemunhar como foi a viagem no Titanic. O aparelho que vocês construíram, contudo, só permite que uma pessoa faça o salto temporal. Antes de se aventurar, vocês precisam avaliar quem vai ter maiores chances de sobreviver e em qual classe do navio devem viajar. Com base nos dados disponíveis sobre a viagem, vocês vão escolher quem vai testemunhar esse evento histórico e voltar para contar como ele ocorreu.
+Ao terminar a disciplina de pesquisa quantitativa, vocês se tornaram cientistas muito bons e conseguiram criar uma máquina do tempo. Para a primeira expedição temporal, por serem fãs do James Cameron, decidiram testemunhar como foi a viagem no Titanic. O aparelho que vocês construíram, contudo, só permite que uma pessoa faça o salto temporal. Antes de se aventurar, vocês precisam avaliar quem vai ter maiores chances de sobreviver e em qual classe do navio deve viajar. Com base nos dados disponíveis sobre a viagem, vocês vão escolher aquele que vai testemunhar esse evento histórico e voltar para contar como ele ocorreu.
 :::
 :::::
 
@@ -121,7 +121,7 @@ tabela_1 |>
     table.font.size = "26px"
   ) |> 
   cols_align(
-    align = "center", columns = 2  
+    align = "center", columns = c(2,3)  
   ) |> 
   cols_align(
     align = "left", columns = 1  
@@ -133,6 +133,29 @@ tabela_1 |>
   fmt_percent(
     columns = "%",
     decimals = 1
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Qual a chance de sobrevier por classe do navio?
+
+```{r}
+abs_classe <- df |> 
+  count(passenger_class, survived) |> 
+  rename(Classe = passenger_class, Sobrevivência = survived)
+```
+
+```{r}
+abs_classe |> 
+  gt() |> 
+  cols_align(
+    align = "center",  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
   ) |> 
   opt_stylize(
     style = 1, color = "gray"
@@ -167,9 +190,57 @@ prop_classe |>
   )
 ```
 
+## Qual a chance de sobrevier por classe do navio?
+
+```{r}
+df |> 
+  count(passenger_class, survived) |> 
+  mutate(
+    prop = n/sum(n),
+    .by = passenger_class
+  ) |> 
+  ggplot(
+    aes(passenger_class, prop, fill = survived)
+    ) + 
+  geom_col() +
+  geom_text(
+    aes(label =  percent_format(accuracy = 0.1)(prop)),
+    position = position_fill(vjust = 0.5)
+      ) +
+  labs(
+    x = "Classe",
+    y = NULL,
+    fill = "Sobreviveu"
+  ) +
+  scale_y_continuous(labels = percent)
+```
+
 ## Em qual classe devemos viajar?
 
 Parece haver uma questão de classe na sobrevivência... Classe social! Os passageiros ricos que viajavam na primeira classe tiveram mais chances de sair com vida.
+
+## Qual a chance de sobrevier por gênero?
+
+```{r}
+abs_genero <- df |> 
+  count(sex, survived) |> 
+  rename(Gênero = sex, Sobrevivência = survived)
+```
+
+```{r}
+abs_genero |>   
+  gt() |> 
+  cols_align(
+    align = "center",  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  ) 
+```
 
 ## Qual a chance de sobrevier por gênero?
 
@@ -199,3 +270,175 @@ prop_genero |>
   )
 ```
 
+## Qual a chance de sobrevier por gênero?
+
+```{r}
+df |> 
+  count(sex, survived) |> 
+  mutate(
+    prop = n/sum(n),
+    .by = sex
+  ) |> 
+  ggplot(
+    aes(sex, prop, fill = survived)
+         ) + 
+  geom_col() +
+  geom_text(
+    aes(label =  percent_format(accuracy = 0.1)(prop)),
+    position = position_fill(vjust = 0.5)
+  ) + 
+  labs(
+    x = "Gênero",
+    y = NULL,
+    fill = "Sobreviveu"
+  ) +
+  scale_y_continuous(labels = percent)
+```
+
+## "Mulheres e crianças primeiro?"
+
+Parece que aquela frase que dizem nos filmes antigos de naufrágio, “Mulheres e crianças primeiro”, era verdade! Vamos ver como isso fica em relação as crianças?
+
+## Qual foi a chance de as crianças sobreviverem em relação aos demais passageiros?
+
+```{r}
+abs_crianca <- df |> 
+  count(crianca, survived) |> 
+  rename(Idade = crianca, Sobrevivência = survived)
+```
+
+```{r}
+abs_crianca |> 
+  gt() |> 
+  cols_align(
+    align = "center",  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+::: aside
+Foram consideradas crianças passageiros com menos de 12 anos de idade.
+:::
+
+## Qual foi a chance de as crianças sobreviverem em relação aos demais passageiros?
+
+```{r}
+crianca_prop <- df |> 
+  count(crianca, survived) |>
+  mutate(
+    Proporção = n/sum(n),
+    Proporção = percent_format(accuracy = 0.1)(Proporção),
+    .by = crianca
+  ) |> 
+  rename(Idade = crianca, Sobrevivência = survived)
+```
+
+```{r}
+crianca_prop |> 
+  gt() |> 
+  cols_align(
+    align = "center",  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## [Qual foi a chance de as crianças sobreviverem em relação aos demais passageiros?]{style="font-size: 24pt;"}
+
+```{r}
+#| out-width: 75%
+df |> 
+  count(crianca, survived) |> 
+  mutate(
+    prop = n/sum(n),
+    .by = crianca
+  ) |> 
+  ggplot(
+    aes(crianca, prop, fill = survived)
+         ) + 
+  geom_col() +
+  geom_text(
+    aes(label =  percent_format(accuracy = 0.1)(prop)),
+    position = position_fill(vjust = 0.5)
+  ) + 
+  labs(
+    x = "Idade",
+    y = NULL,
+    fill = "Sobreviveu"
+  ) +
+  scale_y_continuous(labels = percent)
+```
+
+## Com base nos dados, qual dos ex-alunos de pesquisa quanti deve fazer a viagem no tempo e em qual classe deve embarcar no Titanic? {style="font-size: 16pt;"}
+
+![](img/maquina-do-tempo.png){fig-align="center" width="355"}
+
+# Probabilidade
+
+## O que é probabilidade?
+
+Probabilidade é uma maneira de medir o quão provável é que um evento aconteça. Ela vai de 0 (impossível) a 1 (certeza) ou pode ser representada em porcentagem de 0% a 100%.
+
+## Alguns conceitos básicos
+
+-   Experimento aleatório: um experimento cujo resultado não pode ser previsto com certeza. Exemplo: lançar uma moeda
+
+-   Espaço Amostral (S): O conjunto de todos os resultados possíveis de um experimento. Exemplo: ao lançar uma moeda, o espaço amostral é cara ou coroa
+
+-   Evento (E): Um subconjunto do espaço amostral. Exemplo: "sair cara" ao lançar uma moeda.
+
+## Fórmula da Probabilidade
+
+A probabilidade de um evento 𝐸 acontecer é calculada como:
+
+$$
+P(E) = \frac{\text{Número de resultados favoráveis a } E}
+       {\text{Número total de resultados possíveis}}
+$$
+
+## Aplicações Simples
+
+-   Moeda: qual a probabilidade de sair cara?
+-   Dado: qual a probabilidade de sair um número par?
+-   Baralho: qual probabilidade de se tirar um ás de um deck com 52 cartas?
+
+## Moeda: Qual a probabilidade de sair cara?
+
+-   E = cara
+-   Número de resultados favoráveis a E = 1
+-   Número total de resultados possíveis = 2
+
+$$
+P(E) = \frac{1}{2} = 0.5 = 50\%
+$$
+
+## Dado: Qual a probabilidade de sair um número par?
+
+-   E = número par (2, 4 e 6)
+-   Número de resultados favoráveis a E = 3
+-   Número total de resultados possíveis = 6
+
+$$
+P(E) = \frac{3}{6} = \frac{1}{2} = 0.5 = 50\%
+$$
+
+## Baralho: qual probabilidade de se tirar um ás de um deck com 52 cartas?
+
+-   E = ás (espadas ♠, paus ♣, copas ♥ e ouros ♦)
+-   Número de resultados favoráveis a E = 4
+-   Número total de resultados possíveis = 52
+
+$$
+P(E) = \frac{4}{52} = 0.0769 = 7.7\%
+$$

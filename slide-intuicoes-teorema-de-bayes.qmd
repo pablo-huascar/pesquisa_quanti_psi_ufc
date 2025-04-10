@@ -192,7 +192,7 @@ df |>
     color = "#569BBD"
   ) +
   stat_boxplot(
-    geom= 'errorbar' , width = 0.3, 
+    geom = 'errorbar' , width = 0.3, 
     color = "#569BBD"
   ) +
   labs(
@@ -388,7 +388,7 @@ Pense nas proporções que descobrimos:
 
 ## Conclusão da estratégia
 
--   Se você precisa encontrar uma fêmea Gentoo, e tudo o que sabe é o tamanho...
+-   Se você precisa encontrar uma fêmea Gentoo e tudo o que sabe é o tamanho...
 
 -   A melhor escolha é: mirar nos pequenos!
 
