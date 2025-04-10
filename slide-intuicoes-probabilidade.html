@@ -327,83 +327,31 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Construindo intuições sobre conceitos estatísticos</h1>
-  <p class="subtitle">Teorema de Bayes</p>
+  <p class="subtitle">Probabilidade</p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
 <section>
-<section id="capturando-um-pinguim-na-estação-palmer" class="title-slide slide level1 center">
-<h1>Capturando um pinguim na estação Palmer</h1>
+<section id="testemunhando-a-viagem-do-titanic" class="title-slide slide level1 center">
+<h1>Testemunhando a viagem do Titanic</h1>
 
 </section>
-<section id="estação-palmer" class="slide level2" data-background-image="img/palmer-cartoon.png" data-background-size="contain">
-<h2>Estação Palmer</h2>
+<section id="section" class="slide level2" data-background-image="img/titanic.png" data-background-size="contain">
+<h2></h2>
 </section>
-<section id="os-novos-estagiários" class="slide level2">
-<h2>Os novos estagiários</h2>
+<section id="os-viajantes-do-tempo" class="slide level2">
+<h2>Os viajantes do tempo</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
-<p><img data-src="img/estagiarios.png"></p>
-</div><div class="column" style="font-size: 22pt">
-<p>Vocês são os novos estagiários na estação de pesquisa Palmer, localizada na Ilha Anvers, no Arquipélago Palmer, na costa oeste da Península Antártica, e foram designados para a pesquisa sobre pinguins. A faixa de temperatura média durante o verão austral (outubro a março) varia entre 2°C e -10°C. A média tende a pairar em torno de 2°C. <strong>Sua primeira missão foi dada: capture uma pinguim fêmea da espécie Gentoo</strong>. Só tem um problema: vocês não têm ideia de como são e onde encontrar as fêmeas dessa espécie. O que fazer?</p>
+<p><img data-src="img/maquina-do-tempo.png"></p>
+</div><div class="column" style="font-size: 20pt">
+<p>Ao terminar a disciplina de pesquisa quantitativa, vocês se tornaram cientistas muito bons e conseguiram criar uma máquina do tempo. Para a primeira expedição temporal, por serem fãs do James Cameron, decidiram testemunhar como foi a viagem no Titanic. O aparelho que vocês construíram, contudo, só permite que uma pessoa faça o salto temporal. Antes de se aventurar, vocês precisam avaliar quem vai ter maiores chances de sobreviver e em qual classe do navio deve viajar. Com base nos dados disponíveis sobre a viagem, vocês vão escolher aquele que vai testemunhar esse evento histórico e voltar para contar como ele ocorreu.</p>
 </div></div>
 </section>
-<section id="section" class="slide level2" data-background-image="img/penguins-desenho.png" data-background-size="contain">
-<h2></h2>
-</section>
-<section id="o-desafio" class="slide level2">
-<h2>O desafio</h2>
-<p>Com os dados disponíveis sobre os pinguins da espécie Gentoo, qual a melhor escolha que você pode fazer para ter mais chances de capturar o animal certo?</p>
-</section></section>
-<section id="o-que-sabemos-sobre-a-espécie-gentoo" class="title-slide slide level1 center">
-<h1>O que sabemos sobre a espécie Gentoo?</h1>
-
-</section>
-
-<section>
-<section id="quais-as-proporções-das-espécies-de-pinguins" class="title-slide slide level1 center">
-<h1>Quais as proporções das espécies de pinguins?</h1>
-
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-
-<img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section></section>
-<section>
-<section id="onde-estão-os-pinguins" class="title-slide slide level1 center">
-<h1>Onde estão os pinguins?</h1>
-
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-
-<img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section>
-<section id="e-agora" class="slide level2">
-<h2>E agora?</h2>
-<p>Sabendo que devemos ir a ilha Biscoe e com a foto que temos, já conseguiremos identificar a espécie Gentoo. Vamos focar na análise dos dados somente dessa espécie.</p>
-</section></section>
-<section>
-<section id="quais-as-proporções-de-machos-e-fêmeas-da-espécie-gentoo" class="title-slide slide level1 center">
-<h1>Quais as proporções de machos e fêmeas da espécie Gentoo?</h1>
-
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-
-<img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section></section>
-<section>
-<section id="como-posso-diferenciar-machos-e-fêmeas" class="title-slide slide level1 center">
-<h1>Como posso diferenciar machos e fêmeas?</h1>
-
-</section>
-<section id="section-4" class="slide level2">
-<h2></h2>
-
-<img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section>
-<section id="diferença-média-da-massa-corporal-entre-os-sexos-da-espécie-gentoo" class="slide level2">
-<h2>Diferença média da massa corporal entre os sexos da espécie Gentoo</h2>
+<section id="o-que-sabemos-sobre-os-passageiros" class="slide level2">
+<h2>O que sabemos sobre os passageiros</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -859,21 +807,55 @@
 <table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_col_headings">
-<th id="Sexo" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Sexo</th>
-<th id="Média" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Média</th>
-<th id="Diferença" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Diferença</th>
+<th id="Variável" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Variável</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">n</th>
+<th id="a%" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">%</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
+<tr class="odd gt_group_heading_row">
+<td colspan="3" id="Gênero" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Gênero</td>
+</tr>
+<tr class="even gt_row_group_first">
+<td class="gt_row gt_left" headers="Gênero  Variável">Feminino</td>
+<td class="gt_row gt_center" headers="Gênero  n">466</td>
+<td class="gt_row gt_center" headers="Gênero  %">35.6%</td>
+</tr>
 <tr class="odd">
-<td class="gt_row gt_center" headers="Sexo">Fêmea</td>
-<td class="gt_row gt_center" headers="Média">4,679.74</td>
-<td class="gt_row gt_center" headers="Diferença">-</td>
+<td class="gt_row gt_left gt_striped" headers="Gênero  Variável">Masculino</td>
+<td class="gt_row gt_center gt_striped" headers="Gênero  n">843</td>
+<td class="gt_row gt_center gt_striped" headers="Gênero  %">64.4%</td>
+</tr>
+<tr class="even gt_group_heading_row">
+<td colspan="3" id="Classe" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Classe</td>
+</tr>
+<tr class="odd gt_row_group_first">
+<td class="gt_row gt_left" headers="Classe  Variável">Primeira</td>
+<td class="gt_row gt_center" headers="Classe  n">323</td>
+<td class="gt_row gt_center" headers="Classe  %">24.7%</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_center gt_striped" headers="Sexo">Macho</td>
-<td class="gt_row gt_center gt_striped" headers="Média">5,484.84</td>
-<td class="gt_row gt_center gt_striped" headers="Diferença">805.09</td>
+<td class="gt_row gt_left gt_striped" headers="Classe  Variável">Segunda</td>
+<td class="gt_row gt_center gt_striped" headers="Classe  n">277</td>
+<td class="gt_row gt_center gt_striped" headers="Classe  %">21.2%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Classe  Variável">Terceira</td>
+<td class="gt_row gt_center" headers="Classe  n">709</td>
+<td class="gt_row gt_center" headers="Classe  %">54.2%</td>
+</tr>
+<tr class="even gt_group_heading_row">
+<td colspan="3" id="Sobrevientes" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Sobrevientes</td>
+</tr>
+<tr class="odd gt_row_group_first">
+<td class="gt_row gt_left gt_striped" headers="Sobrevientes  Variável">Não</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevientes  n">809</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevientes  %">61.8%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sobrevientes  Variável">Sim</td>
+<td class="gt_row gt_center" headers="Sobrevientes  n">500</td>
+<td class="gt_row gt_center" headers="Sobrevientes  %">38.2%</td>
 </tr>
 </tbody>
 </table>
@@ -881,18 +863,9 @@
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="qual-é-a-proporção-do-tamanho-dos-pinguins-por-sexo-na-espécie-gentoo" class="title-slide slide level1 center">
-<h1>Qual é a proporção do tamanho dos pinguins por sexo na espécie Gentoo?</h1>
-
 </section>
-<section id="section-5" class="slide level2">
-<h2></h2>
-
-<img data-src="slide-intuicoes-teorema-de-bayes_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="h"></section>
-<section id="proporções-da-espécie-gentoo-por-sexo-e-tamanho" class="slide level2">
-<h2>Proporções da espécie Gentoo por sexo e tamanho</h2>
+<section id="qual-a-chance-de-sobrevier-por-classe-do-navio" class="slide level2">
+<h2>Qual a chance de sobrevier por classe do navio?</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -1348,21 +1321,41 @@
 <table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_col_headings">
-<th id="Sexo" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Sexo</th>
-<th id="Grande" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Grande</th>
-<th id="Pequeno" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Pequeno</th>
+<th id="Classe" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Classe</th>
+<th id="Sobrevivência" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Sobrevivência</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">n</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_center" headers="Sexo">Fêmea</td>
-<td class="gt_row gt_center" headers="Grande">6.9%</td>
-<td class="gt_row gt_center" headers="Pequeno">93.1%</td>
+<td class="gt_row gt_center" headers="Classe">Primeira</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">123</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_center gt_striped" headers="Sexo">Macho</td>
-<td class="gt_row gt_center gt_striped" headers="Grande">88.5%</td>
-<td class="gt_row gt_center gt_striped" headers="Pequeno">11.5%</td>
+<td class="gt_row gt_center gt_striped" headers="Classe">Primeira</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">200</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Classe">Segunda</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">158</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Classe">Segunda</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">119</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Classe">Terceira</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">528</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Classe">Terceira</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">181</td>
 </tr>
 </tbody>
 </table>
@@ -1370,6 +1363,9 @@
 </div>
 </div>
 </div>
+</section>
+<section id="qual-a-chance-de-sobrevier-por-classe-do-navio-1" class="slide level2">
+<h2>Qual a chance de sobrevier por classe do navio?</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -1825,21 +1821,48 @@
 <table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_col_headings">
-<th id="Tamanho" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Tamanho</th>
+<th id="Classe" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Classe</th>
+<th id="Sobrevivência" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Sobrevivência</th>
 <th id="n" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">n</th>
-<th id="a%" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">%</th>
+<th id="Proporção" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Proporção</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_center" headers="Tamanho">Grande</td>
-<td class="gt_row gt_center" headers="n">58</td>
-<td class="gt_row gt_center" headers="%">48.7%</td>
+<td class="gt_row gt_center" headers="Classe">Primeira</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">123</td>
+<td class="gt_row gt_center" headers="Proporção">38.1%</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_center gt_striped" headers="Tamanho">Pequeno</td>
-<td class="gt_row gt_center gt_striped" headers="n">61</td>
-<td class="gt_row gt_center gt_striped" headers="%">51.3%</td>
+<td class="gt_row gt_center gt_striped" headers="Classe">Primeira</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">200</td>
+<td class="gt_row gt_center gt_striped" headers="Proporção">61.9%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Classe">Segunda</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">158</td>
+<td class="gt_row gt_center" headers="Proporção">57.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Classe">Segunda</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">119</td>
+<td class="gt_row gt_center gt_striped" headers="Proporção">43.0%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Classe">Terceira</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">528</td>
+<td class="gt_row gt_center" headers="Proporção">74.5%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Classe">Terceira</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">181</td>
+<td class="gt_row gt_center gt_striped" headers="Proporção">25.5%</td>
 </tr>
 </tbody>
 </table>
@@ -1848,102 +1871,2068 @@
 </div>
 </div>
 </section>
-<section id="síntese-os-dados" class="slide level2">
-<h2>Síntese os dados</h2>
-<ul>
-<li>Na ilha Biscoe, 73.8% dos pinguins são da espécie Gentoo (o que nos fez ir para essa ilha)</li>
-<li>93.1% das fêmeas são pequenas</li>
-</ul>
-</section></section>
-<section>
-<section id="com-esses-dados-intuitivamente-o-que-devemos-fazer-para-ter-a-maior-chance-de-encontrar-uma-pinguim-fêmea-da-espécie-gentoo" class="title-slide slide level1 center" style="font-size: 22pt">
-<h1>Com esses dados, intuitivamente, o que devemos fazer para ter a maior chance de encontrar uma pinguim fêmea da espécie Gentoo?</h1>
+<section id="qual-a-chance-de-sobrevier-por-classe-do-navio-2" class="slide level2">
+<h2>Qual a chance de sobrevier por classe do navio?</h2>
 
+<img data-src="slide-intuicoes-probabilidade_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="em-qual-classe-devemos-viajar" class="slide level2">
+<h2>Em qual classe devemos viajar?</h2>
+<p>Parece haver uma questão de classe na sobrevivência… Classe social! Os passageiros ricos que viajavam na primeira classe tiveram mais chances de sair com vida.</p>
 </section>
-<section id="o-teorema-de-bayes" class="slide level2">
-<h2>O Teorema de Bayes</h2>
-<p><span class="math display">\[
-P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
-\]</span></p>
-</section>
-<section id="o-que-cada-termo-significa" class="slide level2">
-<h2>O que cada termo significa?</h2>
-<ul>
-<li>P(A∣B): Probabilidade Posterior
-<ul>
-<li>“Chance de A ser verdade, depois de observar B”</li>
-</ul></li>
-<li>P(B∣A): Verossimilhança (Likelihood)
-<ul>
-<li>“Chance de observar B se A for verdade”<br>
-</li>
-</ul></li>
-<li>P(A): Probabilidade Prior (Inicial)
-<ul>
-<li>“Crença inicial sobre A antes de ver os dados”</li>
-</ul></li>
-<li>P(B): Evidência (Probabilidade Total)
-<ul>
-<li>“Chance total de observar B em todos os cenários possíveis”</li>
-</ul></li>
-</ul>
-</section>
-<section id="atualizando-sua-estratégia-com-o-teorema-de-bayes-considerando-somente-o-tamanho" class="slide level2">
-<h2>Atualizando sua estratégia com o Teorema de Bayes: considerando somente o tamanho</h2>
-<p>Dos pinguins Gentoo com sexo conhecido:</p>
-<ul>
-<li>11,5% dos machos são pequenos</li>
-<li>P(B∣A): 93,1% das fêmeas são pequenas</li>
-<li>P(A): 48,7% são fêmeas</li>
-<li>P(B): 51,3% de todos os Gentoo são pequenos</li>
-</ul>
-</section>
-<section id="sabendo-que-você-encontrou-um-pinguim-pequeno-qual-a-chance-de-ele-ser-fêmea" class="slide level2" style="font-size: 16pt">
-<h2>Sabendo que você encontrou um pinguim pequeno, qual a chance de ele ser fêmea?</h2>
-<ul>
-<li>Usamos o Teorema de Bayes:</li>
-</ul>
-<p><span class="math display">\[
-P(Fêmea \mid Pequeno) = \frac{P(Pequeno \mid Fêmea) \times P(Fêmea)}{P(Pequeno)}
-\]</span></p>
-<ul>
-<li>Substituindo os valores:</li>
-</ul>
-<p><span class="math display">\[
-P(Fêmea \mid Pequeno) = \frac{0.931 \times 0.487}{0.513} \approx 0.885
-\]</span></p>
-<p>Ou seja, 88,5% de chance de o pequeno ser fêmea!</p>
-</section>
-<section id="intuição-por-trás-do-teorema-de-bayes" class="slide level2">
-<h2>Intuição por Trás do Teorema de Bayes</h2>
-<div style="font-size: 16pt">
-<p>Pense nas proporções que descobrimos:</p>
-<ul>
-<li><p>Quase todas as fêmeas Gentoo são pequenas (93,1%). Isso significa que se você encontrar uma fêmea, é muito provável que ela seja pequena.</p></li>
-<li><p>Apenas uma pequena parte dos machos Gentoo é pequena (11,5%). Isso indica que a maioria dos machos é grande.</p></li>
-<li><p>Quando você encontra um pinguim pequeno, essa característica é muito mais comum entre as fêmeas do que entre os machos. É como se “ser pequeno” fosse um forte indicador de que o pinguim é fêmea nessa população.</p></li>
-<li><p>Embora inicialmente a chance de pegar uma fêmea fosse de cerca de 48,7%, ao sabermos que o pinguim é pequeno, estamos focando em um grupo onde as fêmeas são esmagadoramente maioria. O Teorema de Bayes apenas formaliza essa intuição, mostrando numericamente o quanto essa evidência (ser pequeno) aumenta a probabilidade de ser fêmea.</p></li>
-<li><p>Em resumo, a probabilidade aumenta tanto porque a característica “ser pequeno” está fortemente ligada ao sexo feminino na espécie Gentoo, de acordo com os dados que analisamos.</p></li>
-</ul>
+<section id="qual-a-chance-de-sobrevier-por-gênero" class="slide level2">
+<h2>Qual a chance de sobrevier por gênero?</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="kgufivjubq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kgufivjubq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#kgufivjubq thead, #kgufivjubq tbody, #kgufivjubq tfoot, #kgufivjubq tr, #kgufivjubq td, #kgufivjubq th {
+  border-style: none;
+}
+
+#kgufivjubq p {
+  margin: 0;
+  padding: 0;
+}
+
+#kgufivjubq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 26px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #000000;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#kgufivjubq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#kgufivjubq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#kgufivjubq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#kgufivjubq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#kgufivjubq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#kgufivjubq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#kgufivjubq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#kgufivjubq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#kgufivjubq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#kgufivjubq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#kgufivjubq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: middle;
+}
+
+#kgufivjubq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#kgufivjubq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#kgufivjubq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D5D5D5;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D5D5D5;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D5D5D5;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#kgufivjubq .gt_stub {
+  color: #FFFFFF;
+  background-color: #5F5F5F;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #5F5F5F;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kgufivjubq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kgufivjubq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#kgufivjubq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#kgufivjubq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kgufivjubq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #5F5F5F;
+}
+
+#kgufivjubq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kgufivjubq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#kgufivjubq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #D5D5D5;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kgufivjubq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #5F5F5F;
+}
+
+#kgufivjubq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #5F5F5F;
+}
+
+#kgufivjubq .gt_striped {
+  background-color: #F4F4F4;
+}
+
+#kgufivjubq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#kgufivjubq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kgufivjubq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kgufivjubq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kgufivjubq .gt_left {
+  text-align: left;
+}
+
+#kgufivjubq .gt_center {
+  text-align: center;
+}
+
+#kgufivjubq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#kgufivjubq .gt_font_normal {
+  font-weight: normal;
+}
+
+#kgufivjubq .gt_font_bold {
+  font-weight: bold;
+}
+
+#kgufivjubq .gt_font_italic {
+  font-style: italic;
+}
+
+#kgufivjubq .gt_super {
+  font-size: 65%;
+}
+
+#kgufivjubq .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#kgufivjubq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kgufivjubq .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kgufivjubq .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kgufivjubq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kgufivjubq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kgufivjubq .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#kgufivjubq .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#kgufivjubq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Gênero" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Gênero</th>
+<th id="Sobrevivência" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Sobrevivência</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">n</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="Gênero">Feminino</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">127</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Gênero">Feminino</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">339</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Gênero">Masculino</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">682</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Gênero">Masculino</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">161</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 </section>
-<section id="conclusão-da-estratégia" class="slide level2">
-<h2>Conclusão da estratégia</h2>
+<section id="qual-a-chance-de-sobrevier-por-gênero-1" class="slide level2">
+<h2>Qual a chance de sobrevier por gênero?</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="txvafbsnay" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#txvafbsnay table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#txvafbsnay thead, #txvafbsnay tbody, #txvafbsnay tfoot, #txvafbsnay tr, #txvafbsnay td, #txvafbsnay th {
+  border-style: none;
+}
+
+#txvafbsnay p {
+  margin: 0;
+  padding: 0;
+}
+
+#txvafbsnay .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 26px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #000000;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#txvafbsnay .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#txvafbsnay .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#txvafbsnay .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#txvafbsnay .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#txvafbsnay .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#txvafbsnay .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#txvafbsnay .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#txvafbsnay .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#txvafbsnay .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#txvafbsnay .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#txvafbsnay .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#txvafbsnay .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#txvafbsnay .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#txvafbsnay .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: middle;
+}
+
+#txvafbsnay .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#txvafbsnay .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#txvafbsnay .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D5D5D5;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D5D5D5;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D5D5D5;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#txvafbsnay .gt_stub {
+  color: #FFFFFF;
+  background-color: #5F5F5F;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #5F5F5F;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#txvafbsnay .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#txvafbsnay .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#txvafbsnay .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#txvafbsnay .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#txvafbsnay .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #5F5F5F;
+}
+
+#txvafbsnay .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#txvafbsnay .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#txvafbsnay .gt_grand_summary_row {
+  color: #333333;
+  background-color: #D5D5D5;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#txvafbsnay .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #5F5F5F;
+}
+
+#txvafbsnay .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #5F5F5F;
+}
+
+#txvafbsnay .gt_striped {
+  background-color: #F4F4F4;
+}
+
+#txvafbsnay .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#txvafbsnay .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#txvafbsnay .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#txvafbsnay .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#txvafbsnay .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#txvafbsnay .gt_left {
+  text-align: left;
+}
+
+#txvafbsnay .gt_center {
+  text-align: center;
+}
+
+#txvafbsnay .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#txvafbsnay .gt_font_normal {
+  font-weight: normal;
+}
+
+#txvafbsnay .gt_font_bold {
+  font-weight: bold;
+}
+
+#txvafbsnay .gt_font_italic {
+  font-style: italic;
+}
+
+#txvafbsnay .gt_super {
+  font-size: 65%;
+}
+
+#txvafbsnay .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#txvafbsnay .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#txvafbsnay .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#txvafbsnay .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#txvafbsnay .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#txvafbsnay .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#txvafbsnay .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#txvafbsnay .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#txvafbsnay div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Gênero" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Gênero</th>
+<th id="Sobrevivência" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Sobrevivência</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">n</th>
+<th id="Proporção" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Proporção</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="Gênero">Feminino</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">127</td>
+<td class="gt_row gt_center" headers="Proporção">27.3%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Gênero">Feminino</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">339</td>
+<td class="gt_row gt_center gt_striped" headers="Proporção">72.7%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Gênero">Masculino</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">682</td>
+<td class="gt_row gt_center" headers="Proporção">80.9%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Gênero">Masculino</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">161</td>
+<td class="gt_row gt_center gt_striped" headers="Proporção">19.1%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="qual-a-chance-de-sobrevier-por-gênero-2" class="slide level2">
+<h2>Qual a chance de sobrevier por gênero?</h2>
+
+<img data-src="slide-intuicoes-probabilidade_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-pos="h" width="1800"></section>
+<section id="mulheres-e-crianças-primeiro" class="slide level2">
+<h2>“Mulheres e crianças primeiro?”</h2>
+<p>Parece que aquela frase que dizem nos filmes antigos de naufrágio, “Mulheres e crianças primeiro”, era verdade! Vamos ver como isso fica em relação as crianças?</p>
+</section>
+<section id="qual-foi-a-chance-de-as-crianças-sobreviverem-em-relação-aos-demais-passageiros" class="slide level2">
+<h2>Qual foi a chance de as crianças sobreviverem em relação aos demais passageiros?</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="orehalspkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#orehalspkz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#orehalspkz thead, #orehalspkz tbody, #orehalspkz tfoot, #orehalspkz tr, #orehalspkz td, #orehalspkz th {
+  border-style: none;
+}
+
+#orehalspkz p {
+  margin: 0;
+  padding: 0;
+}
+
+#orehalspkz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 26px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #000000;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#orehalspkz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#orehalspkz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#orehalspkz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#orehalspkz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#orehalspkz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#orehalspkz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#orehalspkz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#orehalspkz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#orehalspkz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#orehalspkz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#orehalspkz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#orehalspkz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#orehalspkz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#orehalspkz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: middle;
+}
+
+#orehalspkz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#orehalspkz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#orehalspkz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D5D5D5;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D5D5D5;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D5D5D5;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#orehalspkz .gt_stub {
+  color: #FFFFFF;
+  background-color: #5F5F5F;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #5F5F5F;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#orehalspkz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#orehalspkz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#orehalspkz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#orehalspkz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#orehalspkz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #5F5F5F;
+}
+
+#orehalspkz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#orehalspkz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#orehalspkz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #D5D5D5;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#orehalspkz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #5F5F5F;
+}
+
+#orehalspkz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #5F5F5F;
+}
+
+#orehalspkz .gt_striped {
+  background-color: #F4F4F4;
+}
+
+#orehalspkz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#orehalspkz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#orehalspkz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#orehalspkz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#orehalspkz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#orehalspkz .gt_left {
+  text-align: left;
+}
+
+#orehalspkz .gt_center {
+  text-align: center;
+}
+
+#orehalspkz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#orehalspkz .gt_font_normal {
+  font-weight: normal;
+}
+
+#orehalspkz .gt_font_bold {
+  font-weight: bold;
+}
+
+#orehalspkz .gt_font_italic {
+  font-style: italic;
+}
+
+#orehalspkz .gt_super {
+  font-size: 65%;
+}
+
+#orehalspkz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#orehalspkz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#orehalspkz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#orehalspkz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#orehalspkz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#orehalspkz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#orehalspkz .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#orehalspkz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#orehalspkz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Idade" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Idade</th>
+<th id="Sobrevivência" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Sobrevivência</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">n</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="Idade">Criança</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">39</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Idade">Criança</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">51</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Idade">Demais passagerios</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">770</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Idade">Demais passagerios</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">449</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>Foram consideradas crianças passageiros com menos de 12 anos de idade.</p>
+</div></aside></section>
+<section id="qual-foi-a-chance-de-as-crianças-sobreviverem-em-relação-aos-demais-passageiros-1" class="slide level2">
+<h2>Qual foi a chance de as crianças sobreviverem em relação aos demais passageiros?</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="cbwjcfdjag" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cbwjcfdjag table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#cbwjcfdjag thead, #cbwjcfdjag tbody, #cbwjcfdjag tfoot, #cbwjcfdjag tr, #cbwjcfdjag td, #cbwjcfdjag th {
+  border-style: none;
+}
+
+#cbwjcfdjag p {
+  margin: 0;
+  padding: 0;
+}
+
+#cbwjcfdjag .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 26px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #000000;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#cbwjcfdjag .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#cbwjcfdjag .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#cbwjcfdjag .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#cbwjcfdjag .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cbwjcfdjag .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#cbwjcfdjag .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cbwjcfdjag .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cbwjcfdjag .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cbwjcfdjag .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cbwjcfdjag .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cbwjcfdjag .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cbwjcfdjag .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#cbwjcfdjag .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#cbwjcfdjag .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: middle;
+}
+
+#cbwjcfdjag .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#cbwjcfdjag .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#cbwjcfdjag .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D5D5D5;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D5D5D5;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D5D5D5;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cbwjcfdjag .gt_stub {
+  color: #FFFFFF;
+  background-color: #5F5F5F;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #5F5F5F;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cbwjcfdjag .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#cbwjcfdjag .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#cbwjcfdjag .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#cbwjcfdjag .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cbwjcfdjag .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #5F5F5F;
+}
+
+#cbwjcfdjag .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#cbwjcfdjag .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#cbwjcfdjag .gt_grand_summary_row {
+  color: #333333;
+  background-color: #D5D5D5;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cbwjcfdjag .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #5F5F5F;
+}
+
+#cbwjcfdjag .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #5F5F5F;
+}
+
+#cbwjcfdjag .gt_striped {
+  background-color: #F4F4F4;
+}
+
+#cbwjcfdjag .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#cbwjcfdjag .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cbwjcfdjag .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cbwjcfdjag .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cbwjcfdjag .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cbwjcfdjag .gt_left {
+  text-align: left;
+}
+
+#cbwjcfdjag .gt_center {
+  text-align: center;
+}
+
+#cbwjcfdjag .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cbwjcfdjag .gt_font_normal {
+  font-weight: normal;
+}
+
+#cbwjcfdjag .gt_font_bold {
+  font-weight: bold;
+}
+
+#cbwjcfdjag .gt_font_italic {
+  font-style: italic;
+}
+
+#cbwjcfdjag .gt_super {
+  font-size: 65%;
+}
+
+#cbwjcfdjag .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#cbwjcfdjag .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#cbwjcfdjag .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#cbwjcfdjag .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#cbwjcfdjag .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#cbwjcfdjag .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#cbwjcfdjag .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#cbwjcfdjag .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#cbwjcfdjag div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Idade" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Idade</th>
+<th id="Sobrevivência" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Sobrevivência</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">n</th>
+<th id="Proporção" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Proporção</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="Idade">Criança</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">39</td>
+<td class="gt_row gt_center" headers="Proporção">43.3%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Idade">Criança</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">51</td>
+<td class="gt_row gt_center gt_striped" headers="Proporção">56.7%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Idade">Demais passagerios</td>
+<td class="gt_row gt_center" headers="Sobrevivência">Não</td>
+<td class="gt_row gt_center" headers="n">770</td>
+<td class="gt_row gt_center" headers="Proporção">63.2%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Idade">Demais passagerios</td>
+<td class="gt_row gt_center gt_striped" headers="Sobrevivência">Sim</td>
+<td class="gt_row gt_center gt_striped" headers="n">449</td>
+<td class="gt_row gt_center gt_striped" headers="Proporção">36.8%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="qual-foi-a-chance-de-as-crianças-sobreviverem-em-relação-aos-demais-passageiros-2" class="slide level2">
+<h2><span style="font-size: 24pt;">Qual foi a chance de as crianças sobreviverem em relação aos demais passageiros?</span></h2>
+
+<img data-src="slide-intuicoes-probabilidade_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%" data-fig-pos="h"></section>
+<section id="com-base-nos-dados-qual-dos-ex-alunos-de-pesquisa-quanti-deve-fazer-a-viagem-no-tempo-e-em-qual-classe-deve-embarcar-no-titanic" class="slide level2" style="font-size: 16pt;">
+<h2>Com base nos dados, qual dos ex-alunos de pesquisa quanti deve fazer a viagem no tempo e em qual classe deve embarcar no Titanic?</h2>
+
+<img data-src="img/maquina-do-tempo.png" class="quarto-figure quarto-figure-center r-stretch" width="355"></section></section>
+<section>
+<section id="probabilidade" class="title-slide slide level1 center">
+<h1>Probabilidade</h1>
+
+</section>
+<section id="o-que-é-probabilidade" class="slide level2">
+<h2>O que é probabilidade?</h2>
+<p>Probabilidade é uma maneira de medir o quão provável é que um evento aconteça. Ela vai de 0 (impossível) a 1 (certeza) ou pode ser representada em porcentagem de 0% a 100%.</p>
+</section>
+<section id="alguns-conceitos-básicos" class="slide level2">
+<h2>Alguns conceitos básicos</h2>
 <ul>
-<li><p>Se você precisa encontrar uma fêmea Gentoo e tudo o que sabe é o tamanho…</p></li>
-<li><p>A melhor escolha é: mirar nos pequenos!</p></li>
-<li><p>A chance de acertar uma fêmea entre eles é quase o dobro da chance geral.</p></li>
+<li><p>Experimento aleatório: um experimento cujo resultado não pode ser previsto com certeza. Exemplo: lançar uma moeda</p></li>
+<li><p>Espaço Amostral (S): O conjunto de todos os resultados possíveis de um experimento. Exemplo: ao lançar uma moeda, o espaço amostral é cara ou coroa</p></li>
+<li><p>Evento (E): Um subconjunto do espaço amostral. Exemplo: “sair cara” ao lançar uma moeda.</p></li>
 </ul>
 </section>
-<section id="moral-da-história" class="slide level2">
-<h2>Moral da história</h2>
+<section id="fórmula-da-probabilidade" class="slide level2">
+<h2>Fórmula da Probabilidade</h2>
+<p>A probabilidade de um evento 𝐸 acontecer é calculada como:</p>
+<p><span class="math display">\[
+P(E) = \frac{\text{Número de resultados favoráveis a } E}
+       {\text{Número total de resultados possíveis}}
+\]</span></p>
+</section>
+<section id="aplicações-simples" class="slide level2">
+<h2>Aplicações Simples</h2>
 <ul>
-<li>Esse é o poder do raciocínio probabilístico:
-<ul>
-<li>Você pode tomar decisões melhores mesmo com informação incompleta, desde que saiba usar os dados certos.</li>
-</ul></li>
+<li>Moeda: qual a probabilidade de sair cara?</li>
+<li>Dado: qual a probabilidade de sair um número par?</li>
+<li>Baralho: qual probabilidade de se tirar um ás de um deck com 52 cartas?</li>
 </ul>
-<p>Bem-vindos à pesquisa científica!</p>
+</section>
+<section id="moeda-qual-a-probabilidade-de-sair-cara" class="slide level2">
+<h2>Moeda: Qual a probabilidade de sair cara?</h2>
+<ul>
+<li>E = cara</li>
+<li>Número de resultados favoráveis a E = 1</li>
+<li>Número total de resultados possíveis = 2</li>
+</ul>
+<p><span class="math display">\[
+P(E) = \frac{1}{2} = 0.5 = 50\%
+\]</span></p>
+</section>
+<section id="dado-qual-a-probabilidade-de-sair-um-número-par" class="slide level2">
+<h2>Dado: Qual a probabilidade de sair um número par?</h2>
+<ul>
+<li>E = número par (2, 4 e 6)</li>
+<li>Número de resultados favoráveis a E = 3</li>
+<li>Número total de resultados possíveis = 6</li>
+</ul>
+<p><span class="math display">\[
+P(E) = \frac{3}{6} = \frac{1}{2} = 0.5 = 50\%
+\]</span></p>
+</section>
+<section id="baralho-qual-probabilidade-de-se-tirar-um-ás-de-um-deck-com-52-cartas" class="slide level2">
+<h2>Baralho: qual probabilidade de se tirar um ás de um deck com 52 cartas?</h2>
+<ul>
+<li>E = ás (espadas ♠, paus ♣, copas ♥ e ouros ♦)</li>
+<li>Número de resultados favoráveis a E = 4</li>
+<li>Número total de resultados possíveis = 52</li>
+</ul>
+<p><span class="math display">\[
+P(E) = \frac{4}{52} = 0.0769 = 7.7\%
+\]</span></p>
 
 <div class="quarto-auto-generated-content">
 <p><img src="img/brasao1_horizontal_cor_300dpi.png" class="slide-logo"></p>

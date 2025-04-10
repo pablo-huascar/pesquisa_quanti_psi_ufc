@@ -1020,8 +1020,8 @@
     "objectID": "conceitos-estatisticos.html#teorema-de-bayes",
     "href": "conceitos-estatisticos.html#teorema-de-bayes",
     "title": "Intuições sobre conceitos estatísticos",
-    "section": "",
-    "text": "Slides",
+    "section": "Teorema de Bayes",
+    "text": "Teorema de Bayes\n Slides",
     "crumbs": [
       "Conteúdos",
       "Intuições sobre conceitos estatísticos"
@@ -1116,7 +1116,7 @@
     "href": "slide-intuicoes-teorema-de-bayes.html#conclusão-da-estratégia",
     "title": "Construindo intuições sobre conceitos estatísticos",
     "section": "Conclusão da estratégia",
-    "text": "Conclusão da estratégia\n\nSe você precisa encontrar uma fêmea Gentoo, e tudo o que sabe é o tamanho…\nA melhor escolha é: mirar nos pequenos!\nA chance de acertar uma fêmea entre eles é quase o dobro da chance geral."
+    "text": "Conclusão da estratégia\n\nSe você precisa encontrar uma fêmea Gentoo e tudo o que sabe é o tamanho…\nA melhor escolha é: mirar nos pequenos!\nA chance de acertar uma fêmea entre eles é quase o dobro da chance geral."
   },
   {
     "objectID": "slide-intuicoes-teorema-de-bayes.html#moral-da-história",
@@ -5918,5 +5918,198 @@
     "title": "Construindo intuições sobre conceitos estatísticos",
     "section": "O que cada termo significa?",
     "text": "O que cada termo significa?\n\nP(A∣B): Probabilidade Posterior\n\n“Chance de A ser verdade, depois de observar B”\n\nP(B∣A): Verossimilhança (Likelihood)\n\n“Chance de observar B se A for verdade”\n\n\nP(A): Probabilidade Prior (Inicial)\n\n“Crença inicial sobre A antes de ver os dados”\n\nP(B): Evidência (Probabilidade Total)\n\n“Chance total de observar B em todos os cenários possíveis”"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#titanic",
+    "href": "slide-intuicoes-probabilidade.html#titanic",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Titanic",
+    "text": "Titanic"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#section",
+    "href": "slide-intuicoes-probabilidade.html#section",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "",
+    "text": "#&gt; # A tibble: 6 × 4\n#&gt;   passenger_class survived     n  prop\n#&gt;   &lt;fct&gt;           &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;\n#&gt; 1 1st             no         123 0.381\n#&gt; 2 1st             yes        200 0.619\n#&gt; 3 2nd             no         158 0.570\n#&gt; 4 2nd             yes        119 0.430\n#&gt; 5 3rd             no         528 0.745\n#&gt; 6 3rd             yes        181 0.255"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#section-1",
+    "href": "slide-intuicoes-probabilidade.html#section-1",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "",
+    "text": "#&gt; # A tibble: 6 × 4\n#&gt;   passenger_class survived     n  prop\n#&gt;   &lt;fct&gt;           &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;\n#&gt; 1 1st             no         123 0.381\n#&gt; 2 1st             yes        200 0.619\n#&gt; 3 2nd             no         158 0.570\n#&gt; 4 2nd             yes        119 0.430\n#&gt; 5 3rd             no         528 0.745\n#&gt; 6 3rd             yes        181 0.255"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#os-novos-estagiários",
+    "href": "slide-intuicoes-probabilidade.html#os-novos-estagiários",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Os novos estagiários",
+    "text": "Os novos estagiários\n\n\n\n\nAo terminar a disciplina de pesquisa quantitativa, vocês se tornaram cientistas muito bons e conseguiram criar uma máquina do tempo. Para a primeira expedição temporal, por serem fãs do James Cameron, decidiram testemunhar como foi a viagem no Titanic. O aparelho que vocês construíram, contudo, só permite que uma pessoa faça o salto temporal. Antes de se aventurar, vocês precisam avaliar quem vai ter maiores chances de sobreviver e em qual classe do navio devem viajar. Com base nos dados disponíveis sobre a viagem, vocês vão escolher quem vai testemunhar esse evento histórico e voltar para contar como ele ocorreu."
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#o-que-sabemos-sobre-os-passageiros",
+    "href": "slide-intuicoes-probabilidade.html#o-que-sabemos-sobre-os-passageiros",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "O que sabemos sobre os passageiros",
+    "text": "O que sabemos sobre os passageiros\n\n\n\n\n\n\n\n\nVariável\nn\n%\n\n\n\n\nGênero\n\n\nFeminino\n466\n35.6%\n\n\nMasculino\n843\n64.4%\n\n\nClasse\n\n\nPrimeira\n323\n24.7%\n\n\nSegunda\n277\n21.2%\n\n\nTerceira\n709\n54.2%\n\n\nSobrevientes\n\n\nNão\n809\n61.8%\n\n\nSim\n500\n38.2%"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#qual-a-chance-de-sobrevier-por-classe-do-navio",
+    "href": "slide-intuicoes-probabilidade.html#qual-a-chance-de-sobrevier-por-classe-do-navio",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Qual a chance de sobrevier por classe do navio?",
+    "text": "Qual a chance de sobrevier por classe do navio?\n\n\n\n\n\n\n\n\nClasse\nSobrevivência\nn\n\n\n\n\nPrimeira\nNão\n123\n\n\nPrimeira\nSim\n200\n\n\nSegunda\nNão\n158\n\n\nSegunda\nSim\n119\n\n\nTerceira\nNão\n528\n\n\nTerceira\nSim\n181"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#em-qual-classe-devemos-viajar",
+    "href": "slide-intuicoes-probabilidade.html#em-qual-classe-devemos-viajar",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Em qual classe devemos viajar?",
+    "text": "Em qual classe devemos viajar?\nParece haver uma questão de classe na sobrevivência… Classe social! Os passageiros ricos que viajavam na primeira classe tiveram mais chances de sair com vida."
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#qual-a-chance-de-sobrevier-por-gênero",
+    "href": "slide-intuicoes-probabilidade.html#qual-a-chance-de-sobrevier-por-gênero",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Qual a chance de sobrevier por gênero?",
+    "text": "Qual a chance de sobrevier por gênero?\n\n\n\n\n\n\n\n\nGênero\nSobrevivência\nn\n\n\n\n\nFeminino\nNão\n127\n\n\nFeminino\nSim\n339\n\n\nMasculino\nNão\n682\n\n\nMasculino\nSim\n161"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#qual-a-chance-de-sobrevier-por-classe-do-navio-1",
+    "href": "slide-intuicoes-probabilidade.html#qual-a-chance-de-sobrevier-por-classe-do-navio-1",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Qual a chance de sobrevier por classe do navio?",
+    "text": "Qual a chance de sobrevier por classe do navio?\n\n\n\n\n\n\n\n\nClasse\nSobrevivência\nn\nProporção\n\n\n\n\nPrimeira\nNão\n123\n38.1%\n\n\nPrimeira\nSim\n200\n61.9%\n\n\nSegunda\nNão\n158\n57.0%\n\n\nSegunda\nSim\n119\n43.0%\n\n\nTerceira\nNão\n528\n74.5%\n\n\nTerceira\nSim\n181\n25.5%"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#qual-a-chance-de-sobrevier-por-gênero-1",
+    "href": "slide-intuicoes-probabilidade.html#qual-a-chance-de-sobrevier-por-gênero-1",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Qual a chance de sobrevier por gênero?",
+    "text": "Qual a chance de sobrevier por gênero?\n\n\n\n\n\n\n\n\nGênero\nSobrevivência\nn\nProporção\n\n\n\n\nFeminino\nNão\n127\n27.3%\n\n\nFeminino\nSim\n339\n72.7%\n\n\nMasculino\nNão\n682\n80.9%\n\n\nMasculino\nSim\n161\n19.1%"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#mulheres-e-crianças-primeiro",
+    "href": "slide-intuicoes-probabilidade.html#mulheres-e-crianças-primeiro",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "“Mulheres e crianças primeiro?”",
+    "text": "“Mulheres e crianças primeiro?”\nParece que aquela frase que dizem nos filmes antigos de naufrágio, “Mulheres e crianças primeiro”, era verdade! Vamos ver como isso fica em relação as crianças?"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#qual-foi-a-chance-de-as-crianças-sobreviverem-em-relação-aos-demais-passageiros",
+    "href": "slide-intuicoes-probabilidade.html#qual-foi-a-chance-de-as-crianças-sobreviverem-em-relação-aos-demais-passageiros",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Qual foi a chance de as crianças sobreviverem em relação aos demais passageiros?",
+    "text": "Qual foi a chance de as crianças sobreviverem em relação aos demais passageiros?\n\n\n\n\n\n\n\n\nIdade\nSobrevivência\nn\n\n\n\n\nCriança\nNão\n39\n\n\nCriança\nSim\n51\n\n\nDemais passagerios\nNão\n770\n\n\nDemais passagerios\nSim\n449\n\n\n\n\n\n\n\n\n\nForam consideradas crianças passageiros com menos de 12 anos de idade."
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#qual-foi-a-chance-de-as-crianças-sobreviverem-em-relação-aos-demais-passageiros-1",
+    "href": "slide-intuicoes-probabilidade.html#qual-foi-a-chance-de-as-crianças-sobreviverem-em-relação-aos-demais-passageiros-1",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Qual foi a chance de as crianças sobreviverem em relação aos demais passageiros?",
+    "text": "Qual foi a chance de as crianças sobreviverem em relação aos demais passageiros?\n\n\n\n\n\n\n\n\nIdade\nSobrevivência\nn\nProporção\n\n\n\n\nCriança\nNão\n39\n43.3%\n\n\nCriança\nSim\n51\n56.7%\n\n\nDemais passagerios\nNão\n770\n63.2%\n\n\nDemais passagerios\nSim\n449\n36.8%"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#com-base-nos-dados-qual-dos-ex-alunos-de-pesquisa-quanti-deve-fazer-a-viagem-no-tempo-e-em-qual-classe-deve-embarcar-no-titanic",
+    "href": "slide-intuicoes-probabilidade.html#com-base-nos-dados-qual-dos-ex-alunos-de-pesquisa-quanti-deve-fazer-a-viagem-no-tempo-e-em-qual-classe-deve-embarcar-no-titanic",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Com base nos dados, qual dos ex-alunos de pesquisa quanti deve fazer a viagem no tempo e em qual classe deve embarcar no Titanic?",
+    "text": "Com base nos dados, qual dos ex-alunos de pesquisa quanti deve fazer a viagem no tempo e em qual classe deve embarcar no Titanic?"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#o-que-é-probabilidade",
+    "href": "slide-intuicoes-probabilidade.html#o-que-é-probabilidade",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "O que é probabilidade?",
+    "text": "O que é probabilidade?\nProbabilidade é uma maneira de medir o quão provável é que um evento aconteça. Ela vai de 0 (impossível) a 1 (certeza) ou pode ser representada em porcentagem de 0% a 100%."
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#alguns-conceitos-básicos",
+    "href": "slide-intuicoes-probabilidade.html#alguns-conceitos-básicos",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Alguns conceitos básicos",
+    "text": "Alguns conceitos básicos\n\nExperimento aleatório: um experimento cujo resultado não pode ser previsto com certeza. Exemplo: lançar uma moeda\nEspaço Amostral (S): O conjunto de todos os resultados possíveis de um experimento. Exemplo: ao lançar uma moeda, o espaço amostral é cara ou coroa\nEvento (E): Um subconjunto do espaço amostral. Exemplo: “sair cara” ao lançar uma moeda."
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#fórmula-da-probabilidade",
+    "href": "slide-intuicoes-probabilidade.html#fórmula-da-probabilidade",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Fórmula da Probabilidade",
+    "text": "Fórmula da Probabilidade\nA probabilidade de um evento 𝐸 acontecer é calculada como:\n\\[\nP(E) = \\frac{\\text{Número de resultados favoráveis a } E}\n       {\\text{Número total de resultados possíveis}}\n\\]"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#moeda-qual-a-probabilidade-de-sair-cara",
+    "href": "slide-intuicoes-probabilidade.html#moeda-qual-a-probabilidade-de-sair-cara",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Moeda: Qual a probabilidade de sair cara?",
+    "text": "Moeda: Qual a probabilidade de sair cara?\n\nE = cara\nNúmero de resultados favoráveis a E = 1\nNúmero total de resultados possíveis = 2\n\n\\[\nP(E) = \\frac{1}{2} = 0.5 = 50\\%\n\\]"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#aplicações-simples",
+    "href": "slide-intuicoes-probabilidade.html#aplicações-simples",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Aplicações Simples",
+    "text": "Aplicações Simples\n\nMoeda: qual a probabilidade de sair cara?\nDado: qual a probabilidade de sair um número par?\nBaralho: qual probabilidade de se tirar um ás de um deck com 52 cartas?"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#dado-qual-a-probabilidade-de-sair-um-número-par",
+    "href": "slide-intuicoes-probabilidade.html#dado-qual-a-probabilidade-de-sair-um-número-par",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Dado: Qual a probabilidade de sair um número par?",
+    "text": "Dado: Qual a probabilidade de sair um número par?\n\nE = número par (2, 4 e 6)\nNúmero de resultados favoráveis a E = 3\nNúmero total de resultados possíveis = 6\n\n\\[\nP(E) = \\frac{3}{6} = \\frac{1}{2} = 0.5 = 50\\%\n\\]"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#baralho-qual-probabilidade-de-se-tirar-um-ás-de-um-deck-com-52-cartas",
+    "href": "slide-intuicoes-probabilidade.html#baralho-qual-probabilidade-de-se-tirar-um-ás-de-um-deck-com-52-cartas",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Baralho: qual probabilidade de se tirar um ás de um deck com 52 cartas?",
+    "text": "Baralho: qual probabilidade de se tirar um ás de um deck com 52 cartas?\n\nE = ás (espadas ♠, paus ♣, copas ♥ e ouros ♦)\nNúmero de resultados favoráveis a E = 4\nNúmero total de resultados possíveis = 52\n\n\\[\nP(E) = \\frac{4}{52} = 0.0769 = 7.7\\%\n\\]"
+  },
+  {
+    "objectID": "conceitos-estatisticos.html#probabilidade",
+    "href": "conceitos-estatisticos.html#probabilidade",
+    "title": "Intuições sobre conceitos estatísticos",
+    "section": "",
+    "text": "Slides",
+    "crumbs": [
+      "Conteúdos",
+      "Intuições sobre conceitos estatísticos"
+    ]
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html",
+    "href": "slide-intuicoes-probabilidade.html",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "",
+    "text": "Ao terminar a disciplina de pesquisa quantitativa, vocês se tornaram cientistas muito bons e conseguiram criar uma máquina do tempo. Para a primeira expedição temporal, por serem fãs do James Cameron, decidiram testemunhar como foi a viagem no Titanic. O aparelho que vocês construíram, contudo, só permite que uma pessoa faça o salto temporal. Antes de se aventurar, vocês precisam avaliar quem vai ter maiores chances de sobreviver e em qual classe do navio devem viajar. Com base nos dados disponíveis sobre a viagem, vocês vão escolher quem vai testemunhar esse evento histórico e voltar para contar como ele ocorreu.\n\n\n\n\n\n\n\n\n\nVariável\nn\n%\n\n\n\nGênero\n\n\nFeminino\n466\n35.6%\n\n\nMasculino\n843\n64.4%\n\n\nClasse\n\n\nPrimeira\n323\n24.7%\n\n\nSegunda\n277\n21.2%\n\n\nTerceira\n709\n54.2%\n\n\nSobrevientes\n\n\nNão\n809\n61.8%\n\n\nSim\n500\n38.2%\n\n\n\n\n\n\n\n\n\n\n\n\n\nClasse\nSobrevivência\nn\n\n\n\nPrimeira\nNão\n123\n\n\nPrimeira\nSim\n200\n\n\nSegunda\nNão\n158\n\n\nSegunda\nSim\n119\n\n\nTerceira\nNão\n528\n\n\nTerceira\nSim\n181\n\n\n\n\n\n\n\n\n\n\n\n\n\nClasse\nSobrevivência\nn\nProporção\n\n\n\nPrimeira\nNão\n123\n38.1%\n\n\nPrimeira\nSim\n200\n61.9%\n\n\nSegunda\nNão\n158\n57.0%\n\n\nSegunda\nSim\n119\n43.0%\n\n\nTerceira\nNão\n528\n74.5%\n\n\nTerceira\nSim\n181\n25.5%\n\n\n\n\n\n\n\nParece haver uma questão de classe na sobrevivência… Classe social! Os passageiros ricos que viajavam na primeira classe tiveram mais chances de sair com vida.\n\n\n\n\n\n\n\nGênero\nSobrevivência\nn\n\n\n\nFeminino\nNão\n127\n\n\nFeminino\nSim\n339\n\n\nMasculino\nNão\n682\n\n\nMasculino\nSim\n161\n\n\n\n\n\n\n\n\n\n\n\n\n\nGênero\nSobrevivência\nn\nProporção\n\n\n\nFeminino\nNão\n127\n27.3%\n\n\nFeminino\nSim\n339\n72.7%\n\n\nMasculino\nNão\n682\n80.9%\n\n\nMasculino\nSim\n161\n19.1%\n\n\n\n\n\n\n\nParece que aquela frase que dizem nos filmes antigos de naufrágio, “Mulheres e crianças primeiro”, era verdade! Vamos ver como isso fica em relação as crianças?\n\n\n\n\n\n\n\nIdade\nSobrevivência\nn\n\n\n\nCriança\nNão\n39\n\n\nCriança\nSim\n51\n\n\nDemais passagerios\nNão\n770\n\n\nDemais passagerios\nSim\n449\n\n\n\n\n\n\n\n\nForam consideradas crianças passageiros com menos de 12 anos de idade.\n\n\n\n\n\n\n\nIdade\nSobrevivência\nn\nProporção\n\n\n\nCriança\nNão\n39\n43.3%\n\n\nCriança\nSim\n51\n56.7%\n\n\nDemais passagerios\nNão\n770\n63.2%\n\n\nDemais passagerios\nSim\n449\n36.8%"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#qual-a-chance-de-sobrevier-por-classe-do-navio-2",
+    "href": "slide-intuicoes-probabilidade.html#qual-a-chance-de-sobrevier-por-classe-do-navio-2",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Qual a chance de sobrevier por classe do navio?",
+    "text": "Qual a chance de sobrevier por classe do navio?"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#qual-a-chance-de-sobrevier-por-gênero-2",
+    "href": "slide-intuicoes-probabilidade.html#qual-a-chance-de-sobrevier-por-gênero-2",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Qual a chance de sobrevier por gênero?",
+    "text": "Qual a chance de sobrevier por gênero?"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#qual-foi-a-chance-de-as-crianças-sobreviverem-em-relação-aos-demais-passageiros-2",
+    "href": "slide-intuicoes-probabilidade.html#qual-foi-a-chance-de-as-crianças-sobreviverem-em-relação-aos-demais-passageiros-2",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Qual foi a chance de as crianças sobreviverem em relação aos demais passageiros?",
+    "text": "Qual foi a chance de as crianças sobreviverem em relação aos demais passageiros?"
+  },
+  {
+    "objectID": "slide-intuicoes-probabilidade.html#os-viajantes-do-tempo",
+    "href": "slide-intuicoes-probabilidade.html#os-viajantes-do-tempo",
+    "title": "Construindo intuições sobre conceitos estatísticos",
+    "section": "Os viajantes do tempo",
+    "text": "Os viajantes do tempo\n\n\n\n\nAo terminar a disciplina de pesquisa quantitativa, vocês se tornaram cientistas muito bons e conseguiram criar uma máquina do tempo. Para a primeira expedição temporal, por serem fãs do James Cameron, decidiram testemunhar como foi a viagem no Titanic. O aparelho que vocês construíram, contudo, só permite que uma pessoa faça o salto temporal. Antes de se aventurar, vocês precisam avaliar quem vai ter maiores chances de sobreviver e em qual classe do navio deve viajar. Com base nos dados disponíveis sobre a viagem, vocês vão escolher aquele que vai testemunhar esse evento histórico e voltar para contar como ele ocorreu."
   }
 ]
