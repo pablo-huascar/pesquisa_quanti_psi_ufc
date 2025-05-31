@@ -6111,5 +6111,184 @@
     "title": "Construindo intuições sobre conceitos estatísticos",
     "section": "Os viajantes do tempo",
     "text": "Os viajantes do tempo\n\n\n\n\nAo terminar a disciplina de pesquisa quantitativa, vocês se tornaram cientistas muito bons e conseguiram criar uma máquina do tempo. Para a primeira expedição temporal, por serem fãs do James Cameron, decidiram testemunhar como foi a viagem no Titanic. O aparelho que vocês construíram, contudo, só permite que uma pessoa faça o salto temporal. Antes de se aventurar, vocês precisam avaliar quem vai ter maiores chances de sobreviver e em qual classe do navio deve viajar. Com base nos dados disponíveis sobre a viagem, vocês vão escolher aquele que vai testemunhar esse evento histórico e voltar para contar como ele ocorreu."
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#aprendizados",
+    "href": "slide-estimadores-pontuais-ic.html#aprendizados",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Aprendizados",
+    "text": "Aprendizados\n\nO que vamos aprender:\n\nDesenvolver intuições sobre estimadores pontuais e intervalos de confiança\n\nO que não vamos aprender em profundidade:\n\nOs modelos matemáticos que subjazem esses conceitos\nNesse sentido, pedimos que vocês “aceitem” alguns resultados, mas, posteriormente, podemos tentar entender como eles são formulados"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#definição",
+    "href": "slide-estimadores-pontuais-ic.html#definição",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Definição",
+    "text": "Definição\n\nUm estimador pontual é uma ferramenta estatística (geralmente uma fórmula matemática) usada para fornecer uma “estimativa única” (um único valor) de um parâmetro desconhecido de uma população, com base em dados amostrais.\nPor que “pontual”?: Porque ele nos dá um único ponto (um único valor) como a melhor suposição para o parâmetro da população, em vez de um intervalo de valores (que seria um “estimador intervalar”)."
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#exemplos",
+    "href": "slide-estimadores-pontuais-ic.html#exemplos",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Exemplos",
+    "text": "Exemplos\n\n\n\n\n\n\n\nParâmetro populacional \\(\\theta\\)\nEstimador pontual \\(\\hat\\theta\\)\n\n\n\n\nMédia \\(\\mu\\)\nMédia amostral \\(\\bar X = \\frac1n\\sum_{i=1}^n X_i\\)\n\n\nProporção \\(p\\)\nProporção amostral \\(\\hat p = \\frac{\\text{nº de “sucessos”}}{n}\\)\n\n\nVariância \\(\\sigma^2\\)\nVariância amostral \\(S^2 = \\frac1{n-1}\\sum (X_i - \\bar X)^2\\)\n\n\nParâmetro de Poisson \\(\\lambda\\)\nMédodo da máxima verossimilhança: \\(\\hat\\lambda = \\bar X\\)\n\n\nCoeficiente de regressão \\(\\beta\\)\nEstimador dos mínimos quadrados ordinários (OLS)"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#características-principais",
+    "href": "slide-estimadores-pontuais-ic.html#características-principais",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Características principais",
+    "text": "Características principais\n\nComo depende da amostra, o valor do estimador pontual varia de uma amostra para outra. Dizemos que o estimador é uma variável aleatória."
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#estimador-pontual-como-variável-aleatória",
+    "href": "slide-estimadores-pontuais-ic.html#estimador-pontual-como-variável-aleatória",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Estimador pontual como variável aleatória",
+    "text": "Estimador pontual como variável aleatória\n\n\n\n\nSuponha, para fins didáticos, que o banco de dados penguins contém informações sobre toda a população de pinguins do arquipélogo Palmer. Vamos selecionar 5 amostras de pinguins dessa população (cada uma com 5 pinguins) e calcular a média da massa corporal. O que constatamos sobre cada valor calculado?"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#estimador-pontual-como-variável-aleatória-1",
+    "href": "slide-estimadores-pontuais-ic.html#estimador-pontual-como-variável-aleatória-1",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Estimador pontual como variável aleatória",
+    "text": "Estimador pontual como variável aleatória\n\n\n\n\n\n\n\n\nMassa corporal dos pinguins (g)\n\n\n\nAmostra 1\nAmostra 2\nAmostra 3\nAmostra 4\nAmostra 5\n\n\n\n\n\n5650\n3300\n3550\n3975\n4975\n\n\n\n4400\n6000\n4300\n4050\n5550\n\n\n\n4750\n4750\n4725\n3550\n3550\n\n\n\n4300\n4400\n4900\n4675\n4700\n\n\n\n3350\n5700\n4300\n3975\n4400\n\n\nMédia\n4490\n4830\n4355\n4045\n4635"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#propriedades-desejaveis-de-um-estimador-pontual",
+    "href": "slide-estimadores-pontuais-ic.html#propriedades-desejaveis-de-um-estimador-pontual",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Propriedades desejaveis de um estimador pontual",
+    "text": "Propriedades desejaveis de um estimador pontual\n\n\nNão-viesado (unbiasedness): o valor esperado do estimador é igual ao verdadeiro parâmetro\n\n\\[E[\\hat\\theta] = \\theta \\]\n\nConsistente (consistency): conforme o tamanho da amostra \\(n\\) cresce, o estimador converge em probabilidade para o parâmetro\n\n\\[\\hat{\\theta} \\xrightarrow{p} \\theta \\quad \\text{quando} \\quad n \\rightarrow \\infty\\]"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#estimador-não-viesado",
+    "href": "slide-estimadores-pontuais-ic.html#estimador-não-viesado",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Estimador não viesado",
+    "text": "Estimador não viesado\n\n\n\n\nUm estimador que, em média, acerta o alvo. Se você pudesse repetir o processo de amostragem muitas vezes e calcular a estimativa em cada amostra, a média de todas essas estimativas seria igual ao valor verdadeiro do parâmetro que você está tentando estimar. Ele não superestima nem subestima sistematicamente o parâmetro."
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#estimador-não-viesado-1",
+    "href": "slide-estimadores-pontuais-ic.html#estimador-não-viesado-1",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Estimador não viesado",
+    "text": "Estimador não viesado\n\n\nAinda supondo que o banco de dados penguins contém dados de toda a população de pinguins do arquipélogo Palmer, vamos retirar 1000 amostras, cada uma com 200 pinguins, e calcular as médias de cada amostra. Feito isto, vamos calcular a média das médias das amostras. Note que a média da população se aproxima da média das médias amostrais.\n\n\n\n\n\n\n\n\n\nExemplos de médias calculadas\n\n\nEstatística\nValor\n\n\n\n\nMédia da amostra 749\n4310.125\n\n\nMédia da amostra 485\n4181.750\n\n\nMédia da amostra 931\n4174.500\n\n\nMédia da amostra 550\n4146.500\n\n\nMédia da amostra 469\n4258.875\n\n\n\nMédia da população = 4201.75\n\n\nMédia das médias amostrais = 4203.70"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#estimador-não-viesado-2",
+    "href": "slide-estimadores-pontuais-ic.html#estimador-não-viesado-2",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Estimador não viesado",
+    "text": "Estimador não viesado"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#estimador-consistente",
+    "href": "slide-estimadores-pontuais-ic.html#estimador-consistente",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Estimador consistente",
+    "text": "Estimador consistente\nUm estimador é consistente se ele melhora sua precisão à medida que obtém mais informação (ou seja, à medida que o tamanho da amostra aumenta). Quanto maior a sua amostra, maior a probabilidade de sua estimativa estar muito próxima do valor verdadeiro do parâmetro."
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#estimador-consistente-1",
+    "href": "slide-estimadores-pontuais-ic.html#estimador-consistente-1",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Estimador consistente",
+    "text": "Estimador consistente\n\n\nMais uma vez, suponha que penguins contem toda a população de pinguins das ilhas do arquipélogo Palmer. Dessa vez, vamos gerar 1000 amostras com 10 casos, 1000 com 50 casos, 1000 com 200 casos e, por fim, 1000 com 1000 casos cada. O que acontece com a variância à medida em que o número de casos aumenta? O que isso nos diz sobre os dados e sobre a consistência do estimador?\n\n\n\n\n\n\n\n\n\nTamanho da amostra\nMédia\nVariância\n\n\n\n\n10 casos\n4208.25\n66924.36\n\n\n50 casos\n4200.67\n12866.58\n\n\n200 casos\n4202.74\n3124.80\n\n\n1000 casos\n4200.94\n591.61"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#estimador-consistente-2",
+    "href": "slide-estimadores-pontuais-ic.html#estimador-consistente-2",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Estimador consistente",
+    "text": "Estimador consistente"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#estimador-consistente-3",
+    "href": "slide-estimadores-pontuais-ic.html#estimador-consistente-3",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Estimador consistente",
+    "text": "Estimador consistente"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#estimador-consistente-4",
+    "href": "slide-estimadores-pontuais-ic.html#estimador-consistente-4",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Estimador consistente",
+    "text": "Estimador consistente\n\nDiminuição da Dispersão (Chave para Consistência):\n\nNo gráfico de densidades, as curvas se tornam mais “altas e finas” (menor dispersão) à medida que n aumenta. A curva para n = 1000 é muito mais concentrada em torno de \\(\\mu\\) do que a curva para n = 10\nNo gráfico de boxplots, a “altura” das caixas (o intervalo interquartil) e a extensão dos “bigodes” diminuem visivelmente à medida que n aumenta. Isso indica que a maioria das médias amostrais para n maiores está muito mais próxima de \\(\\mu\\)"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#deficiência-dos-estimadores-pontuais",
+    "href": "slide-estimadores-pontuais-ic.html#deficiência-dos-estimadores-pontuais",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Deficiência dos estimadores pontuais",
+    "text": "Deficiência dos estimadores pontuais\n\nÉ o “melhor palpite” para o valor real na população, mas são imprecisos devido a variabilidade amostral\nÉ improvável que uma única média amostral, por exemplo, coincida com a média populacional\nComo as estimativas pontuais não fornecem informações sobre o grau de imprecisão devido à variabilidade amostral, eles são complementados com intervalos de confiança"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#imprecisão-dos-estimadores-pontuais",
+    "href": "slide-estimadores-pontuais-ic.html#imprecisão-dos-estimadores-pontuais",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Imprecisão dos estimadores pontuais",
+    "text": "Imprecisão dos estimadores pontuais"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#visualizando-o-nível-de-imprecisão-dos-estimadores",
+    "href": "slide-estimadores-pontuais-ic.html#visualizando-o-nível-de-imprecisão-dos-estimadores",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Visualizando o nível de imprecisão dos estimadores",
+    "text": "Visualizando o nível de imprecisão dos estimadores"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#estimando-com-uma-rede-em-vez-de-um-arpão",
+    "href": "slide-estimadores-pontuais-ic.html#estimando-com-uma-rede-em-vez-de-um-arpão",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Estimando com uma “rede” em vez de um “arpão”",
+    "text": "Estimando com uma “rede” em vez de um “arpão”\n\nImagine que, em vez de dar apenas um número como sua estimativa (um “arpão” tentando acertar um peixe específico), fosse possível lançar uma “rede”"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#estimador-pontual-x-intervalo-de-confiança",
+    "href": "slide-estimadores-pontuais-ic.html#estimador-pontual-x-intervalo-de-confiança",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "Estimador pontual X intervalo de confiança",
+    "text": "Estimador pontual X intervalo de confiança\n\n\n\n\n\n\n\n\n\nEstimador pontual\n\n\n\n\n\n\n\nIntervalo de confiança"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#o-que-é-um-intervalo-de-confiança",
+    "href": "slide-estimadores-pontuais-ic.html#o-que-é-um-intervalo-de-confiança",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "O que é um Intervalo de Confiança?",
+    "text": "O que é um Intervalo de Confiança?\n\nUm intervalo de confiança é uma faixa de valores, calculada a partir dos dados de um amostra. Por exemplo, em vez de dizer “acho que a média de peso é 70kg”, você diria “acho que a média de peso está entre 68kg e 72kg”\nHá, portanto, uma margem de erro 70kg ± 2kg\nO objetivo dessa faixa é “capturar” o valor verdadeiro de um parâmetro da população que você não conhece (como a média populacional \\(μ\\) ou a proporção populacional \\(p\\))\nEle fornece um conjunto de valores que são considerados plausíveis para o parâmetro da população, com base nos dados da sua amostra"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#o-que-significa-o-nível-de-confiança-ex-95-de-confiança",
+    "href": "slide-estimadores-pontuais-ic.html#o-que-significa-o-nível-de-confiança-ex-95-de-confiança",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "O que significa o “Nível de Confiança” (Ex: 95% de Confiança)?",
+    "text": "O que significa o “Nível de Confiança” (Ex: 95% de Confiança)?\n\nNÃO é a chance do parâmetro estar dentro do intervalo: Um nível de confiança de 95% NÃO significa que há 95% de probabilidade de que o um intervalo específico já calculado contenha o verdadeiro parâmetro da população\nUma vez que é calculado um intervalo a partir de uma amostra, ou ele contém o parâmetro verdadeiro, ou não contém\nO parâmetro é um valor fixo (embora desconhecido); é o seu intervalo que varia de amostra para amostra"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#o-que-significa-o-nível-de-confiança-ex-95-de-confiança-1",
+    "href": "slide-estimadores-pontuais-ic.html#o-que-significa-o-nível-de-confiança-ex-95-de-confiança-1",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "O que significa o “Nível de Confiança” (Ex: 95% de Confiança)?",
+    "text": "O que significa o “Nível de Confiança” (Ex: 95% de Confiança)?\n\nÉ a Confiança no MÉTODO: O nível de confiança refere-se à confiabilidade do procedimento usado para construir o intervalo\n\nSe fossem coletadas muitas amostras diferentes da mesma população e, para cada amostra, construíssem um intervalo de confiança de 95% usando o mesmo método, seria esperado que aproximadamente 95% desses intervalos contivessem o verdadeiro valor do parâmetro populacional\n95% das “redes” lançadas (uma para cada amostra) conseguiriam “pescar” o verdadeiro valor do parâmetro"
+  },
+  {
+    "objectID": "slide-estimadores-pontuais-ic.html#amostras-diferentes-n-30-cada-uma-gerando-uma-estimativa-pontual-média-amostral",
+    "href": "slide-estimadores-pontuais-ic.html#amostras-diferentes-n-30-cada-uma-gerando-uma-estimativa-pontual-média-amostral",
+    "title": "Estimadores pontuais e intervalos de confiança",
+    "section": "100 amostras diferentes (n = 30), cada uma gerando uma estimativa pontual (média amostral)",
+    "text": "100 amostras diferentes (n = 30), cada uma gerando uma estimativa pontual (média amostral)"
+  },
+  {
+    "objectID": "conceitos-estatisticos.html#estimadores-pontuais-e-intervalos-de-confiança",
+    "href": "conceitos-estatisticos.html#estimadores-pontuais-e-intervalos-de-confiança",
+    "title": "Intuições sobre conceitos estatísticos",
+    "section": "Estimadores pontuais e intervalos de confiança",
+    "text": "Estimadores pontuais e intervalos de confiança\n Slides",
+    "crumbs": [
+      "Conteúdos",
+      "Intuições sobre conceitos estatísticos"
+    ]
   }
 ]
