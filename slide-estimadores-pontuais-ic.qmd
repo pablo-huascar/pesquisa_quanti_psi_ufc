@@ -1,0 +1,610 @@
+---
+title: "Estimadores pontuais e intervalos de confiança"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+message: false
+warning: false
+---
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(palmerpenguins)
+library(gt)
+library(ggthemes)
+```
+
+## Aprendizados
+
+-   O que vamos aprender:
+    -   Desenvolver intuições sobre estimadores pontuais e intervalos de confiança
+-   O que não vamos aprender em profundidade:
+    -   Os modelos matemáticos que subjazem esses conceitos
+    -   Nesse sentido, pedimos que vocês "aceitem" alguns resultados, mas, posteriormente, podemos tentar entender como eles são formulados
+
+# Estimadores pontuais
+
+## Definição {.smaller}
+
+-   Um estimador pontual é uma ferramenta estatística (geralmente uma fórmula matemática) usada para fornecer uma "estimativa única" (um único valor) de um parâmetro desconhecido de uma população, com base em dados amostrais.
+
+-   Por que "pontual"?: Porque ele nos dá um único ponto (um único valor) como a melhor suposição para o parâmetro da população, em vez de um intervalo de valores (que seria um "estimador intervalar").
+
+## Exemplos {.smaller}
+
+| Parâmetro populacional $\theta$ | Estimador pontual $\hat\theta$ |
+|:-------------------------|:---------------------------------------------|
+| Média $\mu$ | Média amostral $\bar X = \frac1n\sum_{i=1}^n X_i$ |
+| Proporção $p$ | Proporção amostral $\hat p = \frac{\text{nº de “sucessos”}}{n}$ |
+| Variância $\sigma^2$ | Variância amostral $S^2 = \frac1{n-1}\sum (X_i - \bar X)^2$ |
+| Parâmetro de Poisson $\lambda$ | Médodo da máxima verossimilhança: $\hat\lambda = \bar X$ |
+| Coeficiente de regressão $\beta$ | Estimador dos mínimos quadrados ordinários (OLS) |
+
+## Características principais {.smaller}
+
+-   Como depende da amostra, o valor do estimador pontual varia de uma amostra para outra. Dizemos que o estimador é uma variável aleatória.
+
+## Estimador pontual como variável aleatória {.smaller}
+
+::::: columns
+::: {.column width="40%"}
+![](img/pinguins-populacao.png)
+:::
+
+::: {.column width="60%"}
+Suponha, para fins didáticos, que o banco de dados `penguins` contém informações sobre toda a população de pinguins do arquipélogo Palmer. Vamos selecionar 5 amostras de pinguins dessa população (cada uma com 5 pinguins) e calcular a média da massa corporal. O que constatamos sobre cada valor calculado?
+:::
+:::::
+
+## Estimador pontual como variável aleatória {.smaller}
+
+```{r}
+set.seed(123)
+
+body_mass_penguins <- penguins |> 
+  select(body_mass_g) |> 
+  drop_na(body_mass_g)
+
+nomes_amostra <- str_c(rep("Amostra", 5), 1:5, sep = " ")
+
+amostras_5 <- map(1:5, ~slice_sample(body_mass_penguins, n = 5, replace = T )) |> 
+  list_cbind() |> 
+  rename_with(~nomes_amostra) 
+```
+
+```{r}
+amostras_5 |> 
+  gt() |> 
+  grand_summary_rows(
+    columns = everything(),                          
+    fns     = list(
+      "Média" = ~mean(.x, na.rm = T)               
+    )
+  ) |> 
+  tab_header(
+    title = "Massa corporal dos pinguins (g)"
+  ) 
+```
+
+## Propriedades desejaveis de um estimador pontual {.smaller}
+
+::: {style="font-size: 18pt"}
+-   Não-viesado (unbiasedness): o valor esperado do estimador é igual ao verdadeiro parâmetro
+
+$$E[\hat\theta] = \theta $$
+
+-   Consistente (consistency): conforme o tamanho da amostra $n$ cresce, o estimador converge em probabilidade para o parâmetro
+
+$$\hat{\theta} \xrightarrow{p} \theta \quad \text{quando} \quad n \rightarrow \infty$$
+:::
+
+## Estimador não viesado
+
+::::: columns
+::: {.column width="40%"}
+![](img/dados-alvo.png)
+:::
+
+::: {.column width="60%"}
+Um estimador que, em média, acerta o alvo. Se você pudesse repetir o processo de amostragem muitas vezes e calcular a estimativa em cada amostra, a média de todas essas estimativas seria igual ao valor verdadeiro do parâmetro que você está tentando estimar. Ele não superestima nem subestima sistematicamente o parâmetro.
+:::
+:::::
+
+## Estimador não viesado
+
+::::: columns
+::: {.column width="60%"}
+Ainda supondo que o banco de dados `penguins` contém dados de toda a população de pinguins do arquipélogo Palmer, vamos retirar 1000 amostras, cada uma com 200 pinguins, e calcular as médias de cada amostra. Feito isto, vamos calcular a média das médias das amostras. Note que a média da população se aproxima da média das médias amostrais.
+:::
+
+::: {.column width="40%"}
+```{r}
+set.seed(234)
+nomes_medias <- str_c(rep("Média da amostra", 1000), 1:1000, sep = " ")
+
+distribuicao_amostral <- map(1:1000, 
+                             ~slice_sample(body_mass_penguins, 
+                                           n = 200, replace = T)) |> 
+  list_cbind() |> 
+  summarise(
+    across(
+      everything(), 
+      mean
+    )
+  ) |> 
+  rename_with(~nomes_medias) |> 
+  pivot_longer(cols = everything()) |> 
+  rename(
+    "Estatística" = name,
+    "Valor" = value
+  ) 
+```
+
+```{r}
+set.seed(456)
+
+distribuicao_amostral |> 
+  slice_sample(n = 5) |> 
+  gt() |> 
+  tab_header(
+    title = "Exemplos de médias calculadas"
+  ) |> 
+  tab_source_note(
+    source_note = "Média da população = 4201.75" 
+  ) |> 
+  tab_source_note(
+    source_note = "Média das médias amostrais = 4203.70" 
+  )
+```
+:::
+:::::
+
+## Estimador não viesado
+
+```{r}
+media_body_mass_pinguins <- mean(penguins$body_mass_g, na.rm = T)
+media_das_medias <- mean(body_mass_penguins$body_mass_g, na.rm = T)
+```
+
+```{r}
+distribuicao_amostral |> 
+  ggplot(
+    aes(Valor)
+  ) + 
+  geom_histogram(
+    color = "gray", fill = "white"
+  ) + 
+  geom_vline(
+    aes(
+      xintercept = media_body_mass_pinguins, 
+      color = "Média da População (μ)"
+    ),
+    linewidth = 1.5, linetype = "dashed"
+  ) + 
+  geom_vline(
+    aes(xintercept = media_das_medias, 
+        color = "Média das Médias Amostrais"),
+    linewidth = 1.5, linetype = "dotted"
+  ) +
+  labs(
+    color = NULL,
+    title = "Distribuição Amostral das Médias da Massa Corporal dos Pinguins (g)"
+  ) + 
+  theme(
+    legend.position = "bottom"
+  )
+```
+
+## Estimador consistente
+
+Um estimador é consistente se ele melhora sua precisão à medida que obtém mais informação (ou seja, à medida que o tamanho da amostra aumenta). Quanto maior a sua amostra, maior a probabilidade de sua estimativa estar muito próxima do valor verdadeiro do parâmetro.
+
+## Estimador consistente {.smaller}
+
+::::: columns
+::: {.column width="60%"}
+Mais uma vez, suponha que `penguins` contem toda a população de pinguins das ilhas do arquipélogo Palmer. Dessa vez, vamos gerar 1000 amostras com 10 casos, 1000 com 50 casos, 1000 com 200 casos e, por fim, 1000 com 1000 casos cada. O que acontece com a variância à medida em que o número de casos aumenta? O que isso nos diz sobre os dados e sobre a consistência do estimador?
+:::
+
+::: {.column width="40%"}
+```{r}
+#| eval: false
+amostras_10_casos <- map(1:1000, ~slice_sample(body_mass_penguins, 
+                                               n = 10, replace = T )) |> 
+  list_cbind() |> 
+  summarise(
+    across(
+      everything(), list(
+        m = \(x) mean(x)
+      )
+    )
+  ) |> 
+  pivot_longer(
+    everything(), names_to = "tamanho_da_amostra", values_to = "m"
+  ) |> 
+  mutate(
+    tamanho_da_amostra = case_when(str_detect(tamanho_da_amostra, "body_mass_g") ~ "10 casos")
+  )
+```
+
+```{r}
+#| eval: false
+amostras_50_casos <- map(1:1000, ~slice_sample(body_mass_penguins, 
+                                               n = 50, replace = T )) |> 
+  list_cbind() |> 
+  summarise(
+    across(
+      everything(), list(
+        m = \(x) mean(x)
+      )
+    )
+  ) |> 
+  pivot_longer(
+    everything(), names_to = "tamanho_da_amostra", values_to = "m"
+  ) |> 
+  mutate(
+    tamanho_da_amostra = case_when(str_detect(tamanho_da_amostra, "body_mass_g") ~ "50 casos")
+  )
+```
+
+```{r}
+#| eval: false
+amostras_200_casos <- map(1:1000, \(x) slice_sample(body_mass_penguins, 
+                                               n = 200, replace = T )) |> 
+  list_cbind() |> 
+  summarise(
+    across(
+      everything(), list(
+        m = \(x) mean(x)
+      )
+    )
+  ) |> 
+  pivot_longer(
+    everything(), names_to = "tamanho_da_amostra", values_to = "m"
+  ) |> 
+  mutate(
+    tamanho_da_amostra = case_when(str_detect(tamanho_da_amostra, "body_mass_g") ~ "200 casos")
+  )
+```
+
+```{r}
+#| eval: false
+amostras_1000_casos <- map(1:1000, ~slice_sample(body_mass_penguins, 
+                                               n = 1000, replace = T )) |> 
+  list_cbind() |> 
+  summarise(
+    across(
+      everything(), list(
+        m = \(x) mean(x)
+      )
+    )
+  ) |> 
+  pivot_longer(
+    everything(), names_to = "tamanho_da_amostra", values_to = "m"
+  ) |> 
+  mutate(
+    tamanho_da_amostra = case_when(str_detect(tamanho_da_amostra, "body_mass_g") ~ "1000 casos")
+  )
+```
+
+```{r}
+#| eval: false
+df_amostras <- amostras_10_casos |> 
+  bind_rows(amostras_50_casos) |> 
+  bind_rows(amostras_200_casos) |> 
+  bind_rows(amostras_1000_casos) 
+```
+
+```{r}
+#| eval: false
+df_amostras |> 
+  write_csv("data/amostras_body_mass.csv")
+```
+
+```{r}
+df_amostras <- read_csv("data/amostras_body_mass.csv")
+```
+
+```{r}
+df_amostras <- df_amostras |> 
+  mutate(
+    tamanho_da_amostra = fct_relevel(tamanho_da_amostra, 
+                                     "10 casos","50 casos", 
+                                     "200 casos", "1000 casos")
+  )
+```
+
+```{r}
+df_amostras |> 
+  summarise(
+    Média = mean(m),
+    Variância = var(m),
+    .by = tamanho_da_amostra
+  ) |> 
+  rename(
+    "Tamanho da amostra" = tamanho_da_amostra
+  ) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 2, use_seps = F
+    )
+```
+:::
+:::::
+
+## Estimador consistente
+
+```{r}
+df_amostras |> 
+  ggplot(
+    aes(m, color = tamanho_da_amostra)
+  ) + 
+  geom_density(
+    linewidth = 0.5, alpha = 0.8
+  ) + 
+  geom_vline(
+    xintercept = media_body_mass_pinguins,
+    color = "black", linetype = "dashed", 
+    linewidth = 0.8
+  ) + 
+  labs(title = "Consistência do Estimador: Distribuições Amostrais da Média",
+       subtitle = "Mil médias amostrais para cada tamanho de amostra (n)",
+       x = "Média Amostral da Massa Corporal (g)",
+       y = "Densidade",
+       color = "Tamanho da Amostra (n)") 
+
+```
+
+## Estimador consistente
+
+```{r}
+df_amostras |>
+  ggplot(
+    aes(x = tamanho_da_amostra, y = m, 
+        color = tamanho_da_amostra)
+    ) +
+  geom_boxplot(
+    alpha = 0.7, show.legend = FALSE
+    ) + 
+  geom_hline(
+    yintercept = media_body_mass_pinguins, 
+    color = "black", linetype = "dashed",
+    linewidth = 0.8
+  ) +
+  labs(
+    title = "Consistência do Estimador: Distribuições Amostrais da Média",
+    subtitle = "Mil médias amostrais para cada tamanho de amostra (n)",
+    x = "Tamanho da Amostra (n)",
+    y = "Média Amostral da Massa Corporal (g)"
+  ) + 
+  coord_flip()
+```
+
+## Estimador consistente {.smaller}
+
+-   Diminuição da Dispersão (Chave para Consistência):
+    -   No gráfico de densidades, as curvas se tornam mais "altas e finas" (menor dispersão) à medida que n aumenta. A curva para n = 1000 é muito mais concentrada em torno de $\mu$ do que a curva para n = 10
+    -   No gráfico de boxplots, a "altura" das caixas (o intervalo interquartil) e a extensão dos "bigodes" diminuem visivelmente à medida que n aumenta. Isso indica que a maioria das médias amostrais para n maiores está muito mais próxima de $\mu$
+
+## Deficiência dos estimadores pontuais
+
+-   É o "melhor palpite" para o valor real na população, mas são imprecisos devido a variabilidade amostral
+-   É improvável que uma única média amostral, por exemplo, coincida com a média populacional
+-   Como as estimativas pontuais não fornecem informações sobre o grau de imprecisão devido à variabilidade amostral, eles são complementados com intervalos de confiança
+
+## Imprecisão dos estimadores pontuais
+
+```{r}
+nomes_amostra <- str_c(rep("Amostra", 15), 1:15, sep = " ")
+
+amostras_15 <- map(1:15, ~slice_sample(body_mass_penguins, 
+                                       n = 30, 
+                                       replace = T)) |> 
+  list_cbind() |> 
+  rename_with(~nomes_amostra)
+```
+
+```{r}
+amostras_15_longo <- amostras_15 |> 
+  summarise(
+    across(
+      everything(), list(
+        m = \(x) mean(x, na.rm = T),
+        ll = \(x) t.test(x, conf.level = 0.95)$conf.int[1],
+        ul = \(x) t.test(x, conf.level = 0.95)$conf.int[2]
+      )
+    )
+  ) |> 
+  pivot_longer(
+    everything(),
+    names_to  = c("Amostra", "stat"),
+    names_sep = "_"
+  )  |> 
+  pivot_wider(
+    names_from  = stat,
+    values_from = value
+  )
+```
+
+```{r}
+amostras_15_longo |> 
+  ggplot(
+    aes(x = Amostra, y = m, 
+        colour = Amostra)
+  ) + 
+  geom_point(
+    size = 3,
+    show.legend = F
+    ) + 
+  geom_hline(
+    yintercept = media_body_mass_pinguins, 
+    colour = "red", linetype = 2
+  ) + 
+  annotate(
+    geom = "text", 
+    label = str_c("Média Populacional Verdadeira (μ) =",
+                  round(media_body_mass_pinguins, 2), sep = " "),
+    x = 14, y = 4300, color = "red"
+  ) +
+  labs(
+    title = "15 amostras diferentes (n = 30), cada uma gerando uma estimativa pontual (média amostral)",
+    y = "Massa Corporal Média Estimada (g)",
+    x = NULL 
+  ) +
+  coord_flip()
+```
+
+## Visualizando o nível de imprecisão dos estimadores
+
+```{r}
+amostras_15_longo |> 
+  ggplot(
+    aes(x = Amostra,  y = m, 
+        colour = Amostra)
+  ) + 
+  geom_point(
+    size = 3,
+    show.legend = F
+  ) + 
+  geom_errorbar(
+    aes(ymin = ll, ymax = ul), show.legend = F 
+  ) +
+  geom_hline(
+    yintercept = media_body_mass_pinguins, 
+    colour = "red", linetype = 2
+  ) +
+  labs(
+    title = "15 amostras diferentes (n = 30), cada uma gerando uma estimativa pontual (média amostral)",
+    subtitle = "Intervalos de confiança",
+    y = "Massa Corporal Média Estimada (g)",
+    x = NULL 
+  ) +
+  coord_flip()
+```
+
+# Intervalos de confiança
+
+## Estimando com uma "rede" em vez de um "arpão"
+
+-   Imagine que, em vez de dar apenas um número como sua estimativa (um "arpão" tentando acertar um peixe específico), fosse possível lançar uma "rede"
+
+## Estimador pontual X intervalo de confiança
+
+::: {layout-ncol="2"}
+![Estimador pontual](img/lata-arpao.png){width="290"}
+
+![Intervalo de confiança](img/lata-rede.png){width="290"}
+:::
+
+## O que é um Intervalo de Confiança? {.smaller}
+
+-   Um intervalo de confiança é uma faixa de valores, calculada a partir dos dados de um amostra. Por exemplo, em vez de dizer "acho que a média de peso é 70kg", você diria "acho que a média de peso está entre 68kg e 72kg"
+-   Há, portanto, uma margem de erro 70kg ± 2kg
+-   O objetivo dessa faixa é "capturar" o valor verdadeiro de um parâmetro da população que você não conhece (como a média populacional $μ$ ou a proporção populacional $p$)
+-   Ele fornece um conjunto de valores que são considerados plausíveis para o parâmetro da população, com base nos dados da sua amostra
+
+## O que significa o "Nível de Confiança" (Ex: 95% de Confiança)? {.smaller}
+
+-   NÃO é a chance do parâmetro estar dentro do intervalo: Um nível de confiança de 95% NÃO significa que há 95% de probabilidade de que o um intervalo específico já calculado contenha o verdadeiro parâmetro da população
+-   Uma vez que é calculado um intervalo a partir de uma amostra, ou ele contém o parâmetro verdadeiro, ou não contém
+-   O parâmetro é um valor fixo (embora desconhecido); é o seu intervalo que varia de amostra para amostra
+
+## O que significa o "Nível de Confiança" (Ex: 95% de Confiança)? {.smaller}
+
+-   É a Confiança no MÉTODO: O nível de confiança refere-se à confiabilidade do procedimento usado para construir o intervalo
+    -   Se fossem coletadas muitas amostras diferentes da mesma população e, para cada amostra, construíssem um intervalo de confiança de 95% usando o mesmo método, seria esperado que aproximadamente 95% desses intervalos contivessem o verdadeiro valor do parâmetro populacional
+    -   95% das "redes" lançadas (uma para cada amostra) conseguiriam "pescar" o verdadeiro valor do parâmetro
+
+## [100 amostras diferentes (n = 30), cada uma gerando uma estimativa pontual (média amostral)]{style="font-size: 20pt"}
+
+```{r}
+set.seed(256)
+
+nomes_amostra_100 <- str_c(rep("Amostra", 100), 1:100, sep = " ")
+
+amostras_100 <- map(1:100, ~slice_sample(body_mass_penguins, 
+                                       n = 30, 
+                                       replace = T)) |> 
+  list_cbind() |> 
+  rename_with(~nomes_amostra_100)
+```
+
+```{r}
+amostras_100_longo <- amostras_100 |> 
+  summarise(
+    across(
+      everything(), list(
+        m = \(x) mean(x, na.rm = T),
+        ll = \(x) t.test(x, conf.level = 0.95)$conf.int[1],
+        ul = \(x) t.test(x, conf.level = 0.95)$conf.int[2]
+      )
+    )
+  ) |> 
+  pivot_longer(
+    everything(),
+    names_to  = c("Amostra", "stat"),
+    names_sep = "_"
+  )  |> 
+  pivot_wider(
+    names_from  = stat,
+    values_from = value
+  )
+```
+
+```{r}
+mbmg <- mean(body_mass_penguins$body_mass_g)
+
+amostras_100_longo <- amostras_100_longo |> 
+  mutate(
+    intervalo = case_when(ll <= mbmg & ul >= mbmg ~ "Dentro",
+                                  .default = "Fora")
+  ) 
+```
+
+```{r}
+#| fig-width: 6
+#| fig-asp: 1.618
+#| fig-align: center
+
+amostras_100_longo |> 
+  ggplot(
+    aes(x = Amostra,  y = m, 
+        colour = intervalo)
+  ) + 
+  geom_point(
+    size = 0.5,
+    show.legend = F
+  ) + 
+  geom_errorbar(
+    aes(ymin = ll, ymax = ul), show.legend = F 
+  ) +
+  geom_hline(
+    yintercept = media_body_mass_pinguins, 
+    colour = "red", linetype = 2
+  ) +
+  labs(
+    y = "Massa Corporal Média Estimada (g)",
+    x = NULL 
+  ) +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) + 
+  coord_flip() + 
+  scale_color_colorblind()
+```
+
