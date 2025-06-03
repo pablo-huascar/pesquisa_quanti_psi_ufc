@@ -2916,7 +2916,7 @@
     "href": "slide-regressao-linear-simples.html#uma-olhada-em-penguins",
     "title": "Regressão linear simples",
     "section": "Uma olhada em penguins\n",
-    "text": "Uma olhada em penguins\n\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\nyear\n\n\n\nGentoo\nBiscoe\n50.2\n14.3\n218\n5700\nmale\n2007\n\n\nAdelie\nBiscoe\n37.6\n17.0\n185\n3600\nfemale\n2008\n\n\nAdelie\nDream\n41.1\n19.0\n182\n3425\nmale\n2007\n\n\nGentoo\nBiscoe\n44.9\n13.3\n213\n5100\nfemale\n2008\n\n\nGentoo\nBiscoe\n50.5\n15.9\n222\n5550\nmale\n2008\n\n\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n2007\n\n\nGentoo\nBiscoe\n47.2\n15.5\n215\n4975\nfemale\n2009\n\n\nAdelie\nBiscoe\n38.2\n18.1\n185\n3950\nmale\n2007\n\n\nChinstrap\nDream\n50.2\n18.8\n202\n3800\nmale\n2009\n\n\nAdelie\nTorgersen\n40.9\n16.8\n191\n3700\nfemale\n2008\n\n\n\n\n\n\n\nTabela 1: Uma amostra aleatória de dez casos do banco de dados penguins"
+    "text": "Uma olhada em penguins\n\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\nyear\n\n\n\nGentoo\nBiscoe\n44.5\n14.3\n216\n4100\nNA\n2007\n\n\nAdelie\nTorgersen\n38.6\n21.2\n191\n3800\nmale\n2007\n\n\nGentoo\nBiscoe\n45.3\n13.7\n210\n4300\nfemale\n2008\n\n\nChinstrap\nDream\n52.8\n20.0\n205\n4550\nmale\n2008\n\n\nAdelie\nTorgersen\n37.3\n20.5\n199\n3775\nmale\n2009\n\n\nChinstrap\nDream\n43.2\n16.6\n187\n2900\nfemale\n2007\n\n\nGentoo\nBiscoe\n47.5\n14.2\n209\n4600\nfemale\n2008\n\n\nGentoo\nBiscoe\n52.2\n17.1\n228\n5400\nmale\n2009\n\n\nChinstrap\nDream\n50.8\n19.0\n210\n4100\nmale\n2009\n\n\nGentoo\nBiscoe\n46.1\n13.2\n211\n4500\nfemale\n2007\n\n\n\n\n\n\n\nTabela 1: Uma amostra aleatória de dez casos do banco de dados penguins"
   },
   {
     "objectID": "slide-regressao-linear-simples.html#iris",
@@ -2930,7 +2930,7 @@
     "href": "slide-regressao-linear-simples.html#uma-olhada-em-iris",
     "title": "Regressão linear simples",
     "section": "Uma olhada em iris\n",
-    "text": "Uma olhada em iris\n\n\n\n\n\n\n\n\n\nSepal.Length\nSepal.Width\nPetal.Length\nPetal.Width\nSpecies\n\n\n\n4.4\n3.2\n1.3\n0.2\nsetosa\n\n\n6.1\n2.6\n5.6\n1.4\nvirginica\n\n\n5.4\n3.4\n1.5\n0.4\nsetosa\n\n\n5.6\n2.5\n3.9\n1.1\nversicolor\n\n\n4.4\n2.9\n1.4\n0.2\nsetosa\n\n\n4.9\n3.1\n1.5\n0.1\nsetosa\n\n\n6.5\n3.0\n5.5\n1.8\nvirginica\n\n\n5.4\n3.9\n1.3\n0.4\nsetosa\n\n\n5.1\n3.7\n1.5\n0.4\nsetosa\n\n\n5.6\n2.7\n4.2\n1.3\nversicolor\n\n\n\n\n\n\n\nTabela 2: Uma amostra aleatória de dez casos do banco de dados iris"
+    "text": "Uma olhada em iris\n\n\n\n\n\n\n\n\n\nSepal.Length\nSepal.Width\nPetal.Length\nPetal.Width\nSpecies\n\n\n\n6.3\n3.4\n5.6\n2.4\nvirginica\n\n\n6.7\n3.0\n5.0\n1.7\nversicolor\n\n\n5.5\n2.4\n3.8\n1.1\nversicolor\n\n\n4.4\n3.2\n1.3\n0.2\nsetosa\n\n\n7.1\n3.0\n5.9\n2.1\nvirginica\n\n\n6.5\n3.0\n5.5\n1.8\nvirginica\n\n\n6.6\n3.0\n4.4\n1.4\nversicolor\n\n\n5.8\n2.7\n5.1\n1.9\nvirginica\n\n\n5.4\n3.4\n1.5\n0.4\nsetosa\n\n\n6.7\n2.5\n5.8\n1.8\nvirginica\n\n\n\n\n\n\n\nTabela 2: Uma amostra aleatória de dez casos do banco de dados iris"
   },
   {
     "objectID": "slide-regressao-linear-simples.html#usos-da-regressão",
@@ -2972,7 +2972,7 @@
     "href": "slide-regressao-linear-simples.html#pergunta-de-partida",
     "title": "Regressão linear simples",
     "section": "Pergunta de partida",
-    "text": "Pergunta de partida\nQuanto a massa corporal dos pinguins (body_mass_g) pode variar em função do comprimento da nadadeira (flipper_length_mm)?"
+    "text": "Pergunta de partida\nQuanto a massa corporal dos pinguins (body_mass_g) pode variar em função do comprimento da nadadeira (flipper_length_mm)? Por hora, vamos trabalhar somente com os pinguins da espécie Adelie."
   },
   {
     "objectID": "slide-regressao-linear-simples.html#estatísticas-e-gráficos",
@@ -2986,7 +2986,7 @@
     "href": "slide-regressao-linear-simples.html#estatísticas-descritivas",
     "title": "Regressão linear simples",
     "section": "Estatísticas descritivas",
-    "text": "Estatísticas descritivas\n\n\n\n\n\n\n\n\nVariável\nN\nNAs\nMédia\nDesvio padrão\nMínimo\nMáximo\n\n\n\nflipper_length_mm\n344\n2\n200.92\n14.06\n172\n231\n\n\nbody_mass_g\n344\n2\n4201.75\n801.95\n2700\n6300\n\n\n\n\n\n\n\nTabela 4: Estatísticas univariadas para o comprimento da nadadeira e a massa corporal"
+    "text": "Estatísticas descritivas\n\n\n\n\n\n\n\n\nVariável\nN\nNAs\nMédia\nDesvio padrão\nMínimo\nMáximo\n\n\n\nflipper_length_mm\n152\n1\n189.95\n6.54\n172\n210\n\n\nbody_mass_g\n152\n1\n3700.66\n458.57\n2850\n4775\n\n\n\n\n\n\n\nTabela 4: Estatísticas univariadas para o comprimento da nadadeira e a massa corporal"
   },
   {
     "objectID": "slide-regressao-linear-simples.html#histogramas",
@@ -3000,7 +3000,7 @@
     "href": "slide-regressao-linear-simples.html#coeficiente-de-correlação",
     "title": "Regressão linear simples",
     "section": "Coeficiente de correlação",
-    "text": "Coeficiente de correlação\n\n\n\n\n\n\n\n\n\n      flipper_length_mm\n      body_mass_g\n    \n\n\nflipper_length_mm\n1\n\n\n\nbody_mass_g\n.87*\n\n1\n\n\n\nt = 32.72; r² = 0.76\n    \n\n\n* Nota. p &lt; .001\n\n    \n\n\n\n\n\nTabela 5: Correlação entre a massa corporal e o comprimento da nadadeira dos pinguins"
+    "text": "Coeficiente de correlação\n\n\n\n\n\n\n\n\n\n      flipper_length_mm\n      body_mass_g\n    \n\n\nflipper_length_mm\n1\n\n\n\nbody_mass_g\n.47*\n\n1\n\n\n\nt = 6.47; r² = 0.22\n    \n\n\n* Nota. p &lt; .001\n\n    \n\n\n\n\n\nTabela 5: Correlação entre a massa corporal e o comprimento da nadadeira dos pinguins"
   },
   {
     "objectID": "slide-regressao-linear-simples.html#o-que-sabemos-até-agora-sobre-a-relação-entre-o-comprimento-da-nadadeira-e-a-massa-corporal-dos-pinguins",
@@ -3021,35 +3021,35 @@
     "href": "slide-regressao-linear-simples.html#tabela-da-regressão",
     "title": "Regressão linear simples",
     "section": "Tabela da regressão",
-    "text": "Tabela da regressão\n\n\n\n\n\n\n\n\nPreditor\nEstimativa\nErro padrão\nt\np\n\n\n\nIntercepto\n-5780.83\n305.81\n-18.90\n&lt; .001\n\n\nflipper_length_mm\n49.69\n1.52\n32.72\n&lt; .001\n\n\n\nr² = 0.76\n\n\n\n\n\n\nTabela 6: Tabela de regressão linear simples - VI contínua"
+    "text": "Tabela da regressão\n\n\n\n\n\n\n\n\nPreditor\nEstimativa\nErro padrão\nt\np\n\n\n\nIntercepto\n-2535.84\n964.80\n-2.63\n0.01\n\n\nflipper_length_mm\n32.83\n5.08\n6.47\n&lt; .001\n\n\n\nr² = 0.22\n\n\n\n\n\n\nTabela 6: Tabela de regressão linear simples - VI contínua"
   },
   {
     "objectID": "slide-regressao-linear-simples.html#interpretando-a-tabela-da-regressão",
     "href": "slide-regressao-linear-simples.html#interpretando-a-tabela-da-regressão",
     "title": "Regressão linear simples",
     "section": "Interpretando a tabela da regressão",
-    "text": "Interpretando a tabela da regressão\n\n\n\n\n\n\nPreditor\nEstimativa\nErro padrão\nt\np\n\n\n\nIntercepto\n-5780.83\n305.81\n-18.90\n&lt; .001\n\n\nflipper_length_mm\n49.69\n1.52\n32.72\n&lt; .001\n\n\n\nr² = 0.76\n\n\n\n\n\n\\[\n\\hat{y} = a + bx\n\\]\n\nEstimativas\n\na = Estimativa do Intercepto = -5780.831\nb = Estimativa de flipper_length_mm = 49.686\n\n\n\n\\[\n\\hat{body\\_mass\\_g} = -5780.831 + 49.686 * flipper\\_length\\_mm\n\\]\n\n\nNeste caso, o intercepto da linha de regressão tem uma interpretação matemática, mas ele não tem nenhuma interpretação prática, pois observar um valor de flipper_length_mm igual a 0 é impossível."
+    "text": "Interpretando a tabela da regressão\n\n\n\n\n\n\nPreditor\nEstimativa\nErro padrão\nt\np\n\n\n\nIntercepto\n-2535.84\n964.80\n-2.63\n0.01\n\n\nflipper_length_mm\n32.83\n5.08\n6.47\n&lt; .001\n\n\n\nr² = 0.22\n\n\n\n\n\n\\[\n\\hat{y} = a + bx\n\\]\n\nEstimativas\n\na = Estimativa do Intercepto = -2535.84\nb = Estimativa de flipper_length_mm = 32.83\n\n\n\n\\[\n\\hat{body\\_mass\\_g} = -2535.84 + 32.83 * flipper\\_length\\_mm\n\\]\n\n\nNeste caso, o intercepto da linha de regressão tem uma interpretação matemática, mas ele não tem nenhuma interpretação prática, pois observar um valor de flipper_length_mm igual a -2535.84 é impossível."
   },
   {
     "objectID": "slide-regressao-linear-simples.html#interpretando-a-equação-da-regressão",
     "href": "slide-regressao-linear-simples.html#interpretando-a-equação-da-regressão",
     "title": "Regressão linear simples",
     "section": "Interpretando a equação da regressão",
-    "text": "Interpretando a equação da regressão\n\\[\nbody\\_mass\\_g = -5780.831 + 49.686 * flipper\\_length\\_mm\n\\]\n\n\nQuais conclusões podemos tirar dessa equação?\n\nO sinal de b é positivo, portanto há uma relação positiva entre as variáveis\n\nQuanto maior a pontuação em flipper_length_mm maior a pontuação em body_mass_g\n\nOu seja: um tamanho maior da nadadeira está associado a maior massa corporal dos pinguins\n\n\nInterpretação do valor de b (estimativa de flipper_length_mm):\n\nO coeficiente associado ao comprimento da nadadeira é 49.7. Isso significa que, para cada aumento de 1 mm no comprimento da nadadeira, o peso dos pinguins aumenta em média 49.7 gramas"
+    "text": "Interpretando a equação da regressão\n\\[\nbody\\_mass\\_g = -2535.84 + 32.83 * flipper\\_length\\_mm\n\\]\n\n\nQuais conclusões podemos tirar dessa equação?\n\nO sinal de b é positivo, portanto há uma relação positiva entre as variáveis\n\nQuanto maior a pontuação em flipper_length_mm maior a pontuação em body_mass_g\n\nOu seja: um tamanho maior da nadadeira está associado a maior massa corporal dos pinguins\n\n\nInterpretação do valor de b (estimativa de flipper_length_mm):\n\nO coeficiente associado ao comprimento da nadadeira é 32.83. Isso significa que, para cada aumento de 1 mm no comprimento da nadadeira, o peso dos pinguins aumenta em média 32.83 gramas"
   },
   {
     "objectID": "slide-regressao-linear-simples.html#valores-observados-valores-ajustados-previstos-e-os-resíduos",
     "href": "slide-regressao-linear-simples.html#valores-observados-valores-ajustados-previstos-e-os-resíduos",
     "title": "Regressão linear simples",
     "section": "Valores observados, valores ajustados (previstos) e os resíduos",
-    "text": "Valores observados, valores ajustados (previstos) e os resíduos\n\\[\nbody\\_mass\\_g = -5780.831 + 49.686*flipper\\_length\\_mm\n\\]\n\n\n\n\n\n\nid\nbody_mass_g\nflipper_length_mm\n\n\n1\n3750\n181\n\n\n\n\n\n\nValor observado de body_mass_g = \\(3750\\)\n\nValor ajustado/previsto\n\n\\(body\\_mass\\_g = -5780.831 + 49.686* 181\\)\n\\(body\\_mass\\_g = 3212.256\\)\n\n\n\n\\(\\text{Resíduo} = \\text{valor observado} - \\text{valor ajustado}\\)\n\n\\(\\text{Resíduo} =  3750 - 3212.256\\)\n\\(\\text{Resíduo} = 537.744\\)"
+    "text": "Valores observados, valores ajustados (previstos) e os resíduos\n\\[\nbody\\_mass\\_g = -2535.84 + 32.83*flipper\\_length\\_mm\n\\]\n\n\n\n\n\n\nid\nbody_mass_g\nflipper_length_mm\n\n\n1\n3750\n181\n\n\n\n\n\n\nValor observado de body_mass_g = \\(3750\\)\n\nValor ajustado/previsto\n\n\\(body\\_mass\\_g = -2535.837 + 32.832* 181\\)\n\\(body\\_mass\\_g = 3406.699\\)\n\n\n\n\\(\\text{Resíduo} = \\text{valor observado} - \\text{valor ajustado}\\)\n\n\\(\\text{Resíduo} =  3750 - 3406.699\\)\n\\(\\text{Resíduo} = 343.301\\)"
   },
   {
     "objectID": "slide-regressao-linear-simples.html#valores-observados-valores-ajustados-previstos-e-os-resíduos-1",
     "href": "slide-regressao-linear-simples.html#valores-observados-valores-ajustados-previstos-e-os-resíduos-1",
     "title": "Regressão linear simples",
     "section": "Valores observados, valores ajustados (previstos) e os resíduos",
-    "text": "Valores observados, valores ajustados (previstos) e os resíduos\n\n\n\n\n\n\n\n\nid\nbody_mass_g\nflipper_length_mm\nValores previstos\nResíduos\n\n\n\n1\n3750\n181\n3212.256\n537.744\n\n\n2\n3800\n186\n3460.684\n339.316\n\n\n3\n3250\n195\n3907.854\n−657.854\n\n\n5\n3450\n193\n3808.483\n−358.483\n\n\n6\n3650\n190\n3659.426\n−9.426\n\n\n7\n3625\n181\n3212.256\n412.744\n\n\n8\n4675\n195\n3907.854\n767.146\n\n\n9\n3475\n193\n3808.483\n−333.483\n\n\n10\n4250\n190\n3659.426\n590.574\n\n\n\n\n\n\n\nTabela 7: Tabela com valores observados, valores previstos e os resíduos"
+    "text": "Valores observados, valores ajustados (previstos) e os resíduos\n\n\n\n\n\n\n\n\nid\nbody_mass_g\nflipper_length_mm\nValores previstos\nResíduos\n\n\n\n1\n3750\n181\n3406.699\n343.301\n\n\n2\n3800\n186\n3570.857\n229.143\n\n\n3\n3250\n195\n3866.343\n−616.343\n\n\n5\n3450\n193\n3800.679\n−350.679\n\n\n6\n3650\n190\n3702.184\n−52.184\n\n\n7\n3625\n181\n3406.699\n218.301\n\n\n8\n4675\n195\n3866.343\n808.657\n\n\n9\n3475\n193\n3800.679\n−325.679\n\n\n10\n4250\n190\n3702.184\n547.816\n\n\n\n\n\n\n\nTabela 7: Tabela com valores observados, valores previstos e os resíduos"
   },
   {
     "objectID": "slide-regressao-linear-simples.html#coeficiente-de-determinação-r2",
@@ -3070,7 +3070,7 @@
     "href": "slide-regressao-linear-simples.html#correlação-e-regressão-linear-simples",
     "title": "Regressão linear simples",
     "section": "Correlação e regressão linear simples",
-    "text": "Correlação e regressão linear simples\n\n\n\n\n\n\nPreditor\nEstimativa\nErro padrão\nt\np\n\n\n\nIntercepto\n-5780.83\n305.81\n-18.90\n&lt; .001\n\n\nflipper_length_mm\n49.69\n1.52\n32.72\n&lt; .001\n\n\n\nr² = 0.76\n\n\n\n\n\n\n\n\n\n\n      flipper_length_mm\n      body_mass_g\n    \n\n\nflipper_length_mm\n1\n\n\n\nbody_mass_g\n.87*\n\n1\n\n\n\nt = 32.72; r² = 0.76\n    \n\n\n* Nota. p &lt; .001"
+    "text": "Correlação e regressão linear simples\n\n\n\n\n\n\nPreditor\nEstimativa\nErro padrão\nt\np\n\n\n\nIntercepto\n-2535.84\n964.80\n-2.63\n0.01\n\n\nflipper_length_mm\n32.83\n5.08\n6.47\n&lt; .001\n\n\n\nr² = 0.22\n\n\n\n\n\n\n\n\n\n\n      flipper_length_mm\n      body_mass_g\n    \n\n\nflipper_length_mm\n1\n\n\n\nbody_mass_g\n.47*\n\n1\n\n\n\nt = 6.47; r² = 0.22\n    \n\n\n* Nota. p &lt; .001"
   },
   {
     "objectID": "slide-regressao-linear-simples.html#pergunta-de-partida-1",
@@ -4005,106 +4005,106 @@
     "objectID": "slide-exploracao-dados-numericos.html#o-que-vamos-aprender",
     "href": "slide-exploracao-dados-numericos.html#o-que-vamos-aprender",
     "title": "Exploração de dados numéricos",
-    "section": "O que vamos aprender?",
-    "text": "O que vamos aprender?\n\nExplorar dados numéricos usando:\n\nEstatisticas descritivas e gráficos"
+    "section": "",
+    "text": "Explorar dados numéricos usando:\n\nEstatisticas descritivas e gráficos"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#father.son",
     "href": "slide-exploracao-dados-numericos.html#father.son",
     "title": "Exploração de dados numéricos",
     "section": "father.son",
-    "text": "father.son\nConjunto de dados de Pearson sobre alturas de pais e filhos\n\nFormato: Um banco de dados com 1078 observações e duas variáveis\n\nfheight: altura do pai em polegadas\nsheight: altura do filho em polegadas"
+    "text": "father.son\nConjunto de dados de Pearson sobre alturas de pais e filhos\n\nFormato: Um banco de dados com 1078 observações e duas variáveis\n\n\nfheight: altura do pai em polegadas\n\nsheight: altura do filho em polegadas"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#uma-olhada-em-father.son",
     "href": "slide-exploracao-dados-numericos.html#uma-olhada-em-father.son",
     "title": "Exploração de dados numéricos",
-    "section": "Uma olhada em father.son",
-    "text": "Uma olhada em father.son\n\n\n\n\n\n\n\n\n\n\n\nfheight\nsheight\n\n\n\n\n66.0\n66.3\n\n\n68.2\n67.6\n\n\n66.2\n67.1\n\n\n69.8\n69.6\n\n\n67.5\n67.0\n\n\n63.1\n74.3\n\n\n66.6\n68.2\n\n\n61.0\n69.1\n\n\n64.5\n68.3\n\n\n67.5\n66.1\n\n\n\n\n\n\n\n\nTabela 1: Uma amostra aleatória de dez casos do banco de dados father.son"
+    "section": "Uma olhada em father.son\n",
+    "text": "Uma olhada em father.son\n\n\n\n\n\n\n\n\n\nfheight\nsheight\n\n\n\n66.0\n66.3\n\n\n68.2\n67.6\n\n\n66.2\n67.1\n\n\n69.8\n69.6\n\n\n67.5\n67.0\n\n\n63.1\n74.3\n\n\n66.6\n68.2\n\n\n61.0\n69.1\n\n\n64.5\n68.3\n\n\n67.5\n66.1\n\n\n\n\n\n\n\nTabela 1: Uma amostra aleatória de dez casos do banco de dados father.son"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#mtcars",
     "href": "slide-exploracao-dados-numericos.html#mtcars",
     "title": "Exploração de dados numéricos",
     "section": "mtcars",
-    "text": "mtcars\n\nOs dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo de combustível e 10 aspectos do design e desempenho de automóveis para 32 carros (modelos de 1973-74)\n\nFormato: Um banco de dados com 32 observações e 11 variáveis.\n\nmpg: milhas/galão (km/l)\ncyl: número de cilindros\ndisp: cilindrada (polegadas cúbicas)\nhp: potência bruta (cavalos de potência)\ndrat: relação de transmissão do eixo traseiro\nwt: peso (1000 lbs)\nqsec: tempo para 1/4 de milha\nvs: motor (0 = em forma de V, 1 = reto)\nam: transmissão (0 = automática, 1 = manual)\ngear: número de marchas para frente\ncarb: número de carburadores"
+    "text": "mtcars\n\nOs dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo de combustível e 10 aspectos do design e desempenho de automóveis para 32 carros (modelos de 1973-74)\n\nFormato: Um banco de dados com 32 observações e 11 variáveis.\n\n\nmpg: milhas/galão (km/l)\n\ncyl: número de cilindros\n\ndisp: cilindrada (polegadas cúbicas)\n\nhp: potência bruta (cavalos de potência)\n\ndrat: relação de transmissão do eixo traseiro\n\nwt: peso (1000 lbs)\n\nqsec: tempo para 1/4 de milha\n\nvs: motor (0 = em forma de V, 1 = reto)\n\nam: transmissão (0 = automática, 1 = manual)\n\ngear: número de marchas para frente\n\ncarb: número de carburadores"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#uma-olhada-em-mtcars",
     "href": "slide-exploracao-dados-numericos.html#uma-olhada-em-mtcars",
     "title": "Exploração de dados numéricos",
-    "section": "Uma olhada em mtcars",
-    "text": "Uma olhada em mtcars\n\n\n\n\n\n\n\n\n\n\n\nModelo\nwt\nmpg\ncyl\n\n\n\n\nMaserati Bora\n3.6\n15.0\n8.0\n\n\nCadillac Fleetwood\n5.2\n10.4\n8.0\n\n\nHonda Civic\n1.6\n30.4\n4.0\n\n\nMerc 450SLC\n3.8\n15.2\n8.0\n\n\nDatsun 710\n2.3\n22.8\n4.0\n\n\nMerc 280\n3.4\n19.2\n6.0\n\n\nFiat 128\n2.2\n32.4\n4.0\n\n\nDodge Challenger\n3.5\n15.5\n8.0\n\n\nMerc 280C\n3.4\n17.8\n6.0\n\n\nHornet Sportabout\n3.4\n18.7\n8.0\n\n\n\n\n\n\n\n\nTabela 2: Uma amostra aleatória de dez casos do banco de dados mtcars"
+    "section": "Uma olhada em mtcars\n",
+    "text": "Uma olhada em mtcars\n\n\n\n\n\n\n\n\n\nModelo\nwt\nmpg\ncyl\n\n\n\nMaserati Bora\n3.6\n15.0\n8.0\n\n\nCadillac Fleetwood\n5.2\n10.4\n8.0\n\n\nHonda Civic\n1.6\n30.4\n4.0\n\n\nMerc 450SLC\n3.8\n15.2\n8.0\n\n\nDatsun 710\n2.3\n22.8\n4.0\n\n\nMerc 280\n3.4\n19.2\n6.0\n\n\nFiat 128\n2.2\n32.4\n4.0\n\n\nDodge Challenger\n3.5\n15.5\n8.0\n\n\nMerc 280C\n3.4\n17.8\n6.0\n\n\nHornet Sportabout\n3.4\n18.7\n8.0\n\n\n\n\n\n\n\nTabela 2: Uma amostra aleatória de dez casos do banco de dados mtcars"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#diamonds",
     "href": "slide-exploracao-dados-numericos.html#diamonds",
     "title": "Exploração de dados numéricos",
     "section": "diamonds",
-    "text": "diamonds\nUm conjunto de dados contendo os preços e outros atributos de quase 54.000 diamantes.\n\nFormato: Um banco de dados com 53940 observações e algumas variáveis. Vamos usar:\n\nprice: preço em dólares americanos\ncarat: peso do diamante (quilates)"
+    "text": "diamonds\nUm conjunto de dados contendo os preços e outros atributos de quase 54.000 diamantes.\n\nFormato: Um banco de dados com 53940 observações e algumas variáveis. Vamos usar:\n\n\nprice: preço em dólares americanos\n\ncarat: peso do diamante (quilates)"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#uma-olhada-em-diamonds",
     "href": "slide-exploracao-dados-numericos.html#uma-olhada-em-diamonds",
     "title": "Exploração de dados numéricos",
-    "section": "Uma olhada em diamonds",
-    "text": "Uma olhada em diamonds\n\n\n\n\n\n\n\n\n\n\n\ncarat\nprice\n\n\n\n\n0.7\n1,771.0\n\n\n0.4\n1,053.0\n\n\n1.1\n4,640.0\n\n\n0.5\n2,467.0\n\n\n0.3\n758.0\n\n\n1.0\n5,755.0\n\n\n1.0\n6,097.0\n\n\n2.0\n17,422.0\n\n\n1.6\n12,343.0\n\n\n1.0\n4,525.0\n\n\n\n\n\n\n\n\nTabela 3: Uma amostra aleatória de dez casos do banco de dados diamonds"
+    "section": "Uma olhada em diamonds\n",
+    "text": "Uma olhada em diamonds\n\n\n\n\n\n\n\n\n\ncarat\nprice\n\n\n\n0.7\n1,771.0\n\n\n0.4\n1,053.0\n\n\n1.1\n4,640.0\n\n\n0.5\n2,467.0\n\n\n0.3\n758.0\n\n\n1.0\n5,755.0\n\n\n1.0\n6,097.0\n\n\n2.0\n17,422.0\n\n\n1.6\n12,343.0\n\n\n1.0\n4,525.0\n\n\n\n\n\n\n\nTabela 3: Uma amostra aleatória de dez casos do banco de dados diamonds"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#airquality",
     "href": "slide-exploracao-dados-numericos.html#airquality",
     "title": "Exploração de dados numéricos",
     "section": "airquality",
-    "text": "airquality\nMedições diárias da qualidade do ar em Nova York, de maio a setembro de 1973\n\nFormato: Um banco de dados com 153 observações e seis variáveis\n\nOzone: quantidade de ozônio (ppb - partes por bilhão)\nSolar.R: irradiaçao solar (lang - 1 lang é igual a um caloria por centímetro quadrado)\nWind: velocidade do vento (mph - milhas por hora)\nTemp: temperatura (F - graus Fahrenheit)\nMonth: mês da medição\nDay: dia da medição"
+    "text": "airquality\nMedições diárias da qualidade do ar em Nova York, de maio a setembro de 1973\n\nFormato: Um banco de dados com 153 observações e seis variáveis\n\n\nOzone: quantidade de ozônio (ppb - partes por bilhão)\n\nSolar.R: irradiaçao solar (lang - 1 lang é igual a um caloria por centímetro quadrado)\n\nWind: velocidade do vento (mph - milhas por hora)\n\nTemp: temperatura (F - graus Fahrenheit)\n\nMonth: mês da medição\n\nDay: dia da medição"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#uma-olhada-em-airquality",
     "href": "slide-exploracao-dados-numericos.html#uma-olhada-em-airquality",
     "title": "Exploração de dados numéricos",
-    "section": "Uma olhada em airquality",
-    "text": "Uma olhada em airquality\n\n\n\n\n\n\n\n\n\n\n\nOzone\nSolar.R\nWind\nTemp\nMonth\nDay\n\n\n\n\n41\n190\n7\n67\n5\n1\n\n\n36\n118\n8\n72\n5\n2\n\n\n12\n149\n13\n74\n5\n3\n\n\n18\n313\n12\n62\n5\n4\n\n\nNA\nNA\n14\n56\n5\n5\n\n\n28\nNA\n15\n66\n5\n6\n\n\n23\n299\n9\n65\n5\n7\n\n\n19\n99\n14\n59\n5\n8\n\n\n8\n19\n20\n61\n5\n9\n\n\nNA\n194\n9\n69\n5\n10\n\n\n\n\n\n\n\n\nTabela 4: Uma amostra dos dez primeiros casos do banco de dados airquality"
+    "section": "Uma olhada em airquality\n",
+    "text": "Uma olhada em airquality\n\n\n\n\n\n\n\n\n\nOzone\nSolar.R\nWind\nTemp\nMonth\nDay\n\n\n\n41\n190\n7\n67\n5\n1\n\n\n36\n118\n8\n72\n5\n2\n\n\n12\n149\n13\n74\n5\n3\n\n\n18\n313\n12\n62\n5\n4\n\n\nNA\nNA\n14\n56\n5\n5\n\n\n28\nNA\n15\n66\n5\n6\n\n\n23\n299\n9\n65\n5\n7\n\n\n19\n99\n14\n59\n5\n8\n\n\n8\n19\n20\n61\n5\n9\n\n\nNA\n194\n9\n69\n5\n10\n\n\n\n\n\n\n\nTabela 4: Uma amostra dos dez primeiros casos do banco de dados airquality"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#age-dataset",
     "href": "slide-exploracao-dados-numericos.html#age-dataset",
     "title": "Exploração de dados numéricos",
     "section": "Age dataset",
-    "text": "Age dataset\nO conjunto de dados contém informações estruturadas sobre a vida, obra e morte de mais de 1 milhão de pessoas famosas falecidas.\n\nFormato: Um banco de dados com 1.223.009 observações e algumas variáveis, por hora vamos usar:\n\nAge of death: idade com que a pessoa morrreu"
+    "text": "Age dataset\nO conjunto de dados contém informações estruturadas sobre a vida, obra e morte de mais de 1 milhão de pessoas famosas falecidas.\n\nFormato: Um banco de dados com 1.223.009 observações e algumas variáveis, por hora vamos usar:\n\n\nAge of death: idade com que a pessoa morrreu"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#uma-olhada-em-age-dataset",
     "href": "slide-exploracao-dados-numericos.html#uma-olhada-em-age-dataset",
     "title": "Exploração de dados numéricos",
-    "section": "Uma olhada em Age dataset",
-    "text": "Uma olhada em Age dataset\n\n\n\n\n\n\n\n\n\n\n\nName\nAge of death\n\n\n\n\nGetúlio Vargas\n72\n\n\nJoão Guimarães Rosa\n59\n\n\nGlauber Rocha\n42\n\n\nSócrates\n57\n\n\nCarlos Lacerda\n63\n\n\nHebe Camargo\n83\n\n\nAyrton Senna\n34\n\n\nPaulo Freire\n76\n\n\nJoão Goulart\n58\n\n\nArthur Bispo do Rosário\n77\n\n\n\n\n\n\n\n\nTabela 5: Uma amostra de dez casos do banco de dados Age dataset"
+    "section": "Uma olhada em Age dataset\n",
+    "text": "Uma olhada em Age dataset\n\n\n\n\n\n\n\n\n\nName\nAge of death\n\n\n\nGetúlio Vargas\n72\n\n\nJoão Guimarães Rosa\n59\n\n\nGlauber Rocha\n42\n\n\nSócrates\n57\n\n\nCarlos Lacerda\n63\n\n\nHebe Camargo\n83\n\n\nAyrton Senna\n34\n\n\nPaulo Freire\n76\n\n\nJoão Goulart\n58\n\n\nArthur Bispo do Rosário\n77\n\n\n\n\n\n\n\nTabela 5: Uma amostra de dez casos do banco de dados Age dataset"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#gráficos-de-dispersão",
     "href": "slide-exploracao-dados-numericos.html#gráficos-de-dispersão",
     "title": "Exploração de dados numéricos",
     "section": "Gráficos de dispersão",
-    "text": "Gráficos de dispersão\n\nEixo x: variável independente1\nEixo y: variável dependente\n\n\nDadosGráfico\n\n\n\n\n\n\n\n\n\n\nid\nx\ny\n\n\n\n\na\n1\n3\n\n\nb\n2\n5\n\n\nc\n3\n7\n\n\nd\n4\n9\n\n\ne\n5\n11\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse os termos dependente e independente com ressalvas, pois estão sendo aplicados fora do contexto de um experimento."
+    "text": "Gráficos de dispersão\n\nEixo x: variável independente1\n\nEixo y: variável dependente\n\n\n\nDados\nGráfico\n\n\n\n\n\n\n\n\n\nid\nx\ny\n\n\n\na\n1\n3\n\n\nb\n2\n5\n\n\nc\n3\n7\n\n\nd\n4\n9\n\n\ne\n5\n11"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#alturas-dos-pais-x-altura-dos-filhos",
     "href": "slide-exploracao-dados-numericos.html#alturas-dos-pais-x-altura-dos-filhos",
     "title": "Exploração de dados numéricos",
     "section": "Alturas dos pais X altura dos Filhos",
-    "text": "Alturas dos pais X altura dos Filhos\n\nComo você imagina que será a realação entre as auturas dos pais e dos filhos?\n\nPais mais altos terão filhos mais altos ou mais baixos?\nE os pais mais baixos?\n\nTente fazer um desenho que represente essa relação"
+    "text": "Alturas dos pais X altura dos Filhos\n\nComo você imagina que será a realação entre as auturas dos pais e dos filhos?\n\nPais mais altos terão filhos mais altos ou mais baixos?\nE os pais mais baixos?\n\n\nTente fazer um desenho que represente essa relação"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#peso-dos-carros-x-milhasgalão-kml",
     "href": "slide-exploracao-dados-numericos.html#peso-dos-carros-x-milhasgalão-kml",
     "title": "Exploração de dados numéricos",
     "section": "Peso dos carros X milhas/galão (Km/l)",
-    "text": "Peso dos carros X milhas/galão (Km/l)\n\nComo você imagina que será a realação entre o peso dos carros e o consumo de combustível, observando a razão milhas/galão (Km/l)?\n\nCarro mais pesados farão mais ou menos milhas/galão (Km/l)?\nE os carros mais leves?\n\nTente fazer um desenho que represente essa relação"
+    "text": "Peso dos carros X milhas/galão (Km/l)\n\nComo você imagina que será a realação entre o peso dos carros e o consumo de combustível, observando a razão milhas/galão (Km/l)?\n\nCarro mais pesados farão mais ou menos milhas/galão (Km/l)?\nE os carros mais leves?\n\n\nTente fazer um desenho que represente essa relação"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#quilate-x-preço-dos-diamantes",
     "href": "slide-exploracao-dados-numericos.html#quilate-x-preço-dos-diamantes",
     "title": "Exploração de dados numéricos",
     "section": "Quilate X Preço dos diamantes",
-    "text": "Quilate X Preço dos diamantes\n\nComo você imagina que será a realação entre o quilate e o preço dos diamantes?\n\nDiamantes com mais quilates serão mais ou menos caros?\nE os diamantes com menos quilates?\n\nTente fazer um desenho que represente essa relação"
+    "text": "Quilate X Preço dos diamantes\n\nComo você imagina que será a realação entre o quilate e o preço dos diamantes?\n\nDiamantes com mais quilates serão mais ou menos caros?\nE os diamantes com menos quilates?\n\n\nTente fazer um desenho que represente essa relação"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#relação-entre-o-quilate-e-o-preço-de-diamantes",
@@ -4132,28 +4132,28 @@
     "href": "slide-exploracao-dados-numericos.html#como-a-média-é-calculada",
     "title": "Exploração de dados numéricos",
     "section": "Como a média é calculada?",
-    "text": "Como a média é calculada?\n\nA fórmula da média:\n\\[\n    \\bar{x} = \\frac{\\sum_{i=1}^n x_i}{n}\n\\]\n\n\nA formula da média em um formato um pouco mais simples: \\[\n    \\bar{x} = \\frac{x_1 + x_2 + \\cdots + x_n}{n}\n\\]"
+    "text": "Como a média é calculada?\n. . .\nA fórmula da média:\n\\[\n    \\bar{x} = \\frac{\\sum_{i=1}^n x_i}{n}\n\\]\n. . .\nA formula da média em um formato um pouco mais simples: \\[\n    \\bar{x} = \\frac{x_1 + x_2 + \\cdots + x_n}{n}\n\\]"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#um-pouco-de-nomenclaura",
     "href": "slide-exploracao-dados-numericos.html#um-pouco-de-nomenclaura",
     "title": "Exploração de dados numéricos",
     "section": "Um pouco de nomenclaura",
-    "text": "Um pouco de nomenclaura\n\n\n\\(\\mu\\): média da popualação\n\\(\\bar{x}\\): média da amostra\n\\(x\\): qualquer caso da amostra\n\\(x_i\\): representa os valores individuais de forma genérica, onde \\(i\\) é um índice que varia de \\(1\\) (primeiro caso) até \\(n\\) (último caso)\n\\(n\\): total de casos"
+    "text": "Um pouco de nomenclaura\n\n\n\n\\(\\mu\\): média da popualação\n\n\\(\\bar{x}\\): média da amostra\n\n\\(x\\): qualquer caso da amostra\n\n\\(x_i\\): representa os valores individuais de forma genérica, onde \\(i\\) é um índice que varia de \\(1\\) (primeiro caso) até \\(n\\) (último caso)\n\n\\(n\\): total de casos"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#o-cáculo-da-média",
     "href": "slide-exploracao-dados-numericos.html#o-cáculo-da-média",
     "title": "Exploração de dados numéricos",
     "section": "O cáculo da média",
-    "text": "O cáculo da média\nQual foi a média de temperatura dos cinco primeiros dias do mês de maio de 1973 em Nova York?\n\n\n\n\n\n\n\n\n\n\n\nMonth\nDay\nTemp\n\n\n\n\n5\n1\n67\n\n\n5\n2\n72\n\n\n5\n3\n74\n\n\n5\n4\n62\n\n\n5\n5\n56\n\n\n\n\n\n\n\n\nTabela 6: Temperatura dos cinco primeiros dias do mês de maio de 1973 em Nova York"
+    "text": "O cáculo da média\nQual foi a média de temperatura dos cinco primeiros dias do mês de maio de 1973 em Nova York?\n\n\n\n\n\n\n\n\nMonth\nDay\nTemp\n\n\n\n5\n1\n67\n\n\n5\n2\n72\n\n\n5\n3\n74\n\n\n5\n4\n62\n\n\n5\n5\n56\n\n\n\n\n\n\n\nTabela 6: Temperatura dos cinco primeiros dias do mês de maio de 1973 em Nova York"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#o-cáculo-da-média-1",
     "href": "slide-exploracao-dados-numericos.html#o-cáculo-da-média-1",
     "title": "Exploração de dados numéricos",
     "section": "O cáculo da média",
-    "text": "O cáculo da média\n\\[\n\\text{Temp} = \\{67, 72, 74, 62, 56\\}\n\\]\n\n\\[\n\\bar{X} = \\frac{67 + 72 + 74 + 62 + 56}{5}\n\\]\n\n\n\\[\n\\bar{X} = \\frac{331}{5}\n\\]\n\n\n\\[\n\\bar{X} = 66.2\n\\]"
+    "text": "O cáculo da média\n\\[\n\\text{Temp} = \\{67, 72, 74, 62, 56\\}\n\\]\n. . .\n\\[\n\\bar{X} = \\frac{67 + 72 + 74 + 62 + 56}{5}\n\\]\n. . .\n\\[\n\\bar{X} = \\frac{331}{5}\n\\]\n. . .\n\\[\n\\bar{X} = 66.2\n\\]"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#consumo-de-combustível-e-peso-de-automóveis",
@@ -4167,7 +4167,7 @@
     "href": "slide-exploracao-dados-numericos.html#resultados",
     "title": "Exploração de dados numéricos",
     "section": "Resultados",
-    "text": "Resultados\n\n\n\n\n\n\n\n\n\n\n\nVariável\nMédia\n\n\n\n\nmpg\n18.8\n\n\nwt\n3.3\n\n\n\n\n\n\n\n\nTabela 7: Médias de mpg e wt para uma amostra de automóveis"
+    "text": "Resultados\n\n\n\n\n\n\n\n\nVariável\nMédia\n\n\n\nmpg\n18.8\n\n\nwt\n3.3\n\n\n\n\n\n\n\nTabela 7: Médias de mpg e wt para uma amostra de automóveis"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#a-média-e-a-padronização-de-medidas",
@@ -4188,21 +4188,21 @@
     "href": "slide-exploracao-dados-numericos.html#resultados-1",
     "title": "Exploração de dados numéricos",
     "section": "Resultados",
-    "text": "Resultados\nQual medicamento é mais eficiente?\n\n\n\n\n\n\n\n\n\n\n\nDroga\nPacientes\nAtaques\n\n\n\n\nNova\n500\n200\n\n\nPadrão\n1000\n300\n\n\n\n\n\n\n\n\nTabela 8: Resultados do experimento sobre o novo remédio pra asma"
+    "text": "Resultados\nQual medicamento é mais eficiente?\n\n\n\n\n\n\n\n\nDroga\nPacientes\nAtaques\n\n\n\nNova\n500\n200\n\n\nPadrão\n1000\n300\n\n\n\n\n\n\n\nTabela 8: Resultados do experimento sobre o novo remédio pra asma"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#resultados-2",
     "href": "slide-exploracao-dados-numericos.html#resultados-2",
     "title": "Exploração de dados numéricos",
     "section": "Resultados",
-    "text": "Resultados\n\n\nQual medicamento é mais eficiente?\n\nAtaques/paciente:\n\nDroga nova: \\(200/500 = 0.4\\)\nMedicamento padrão: \\(300/1000 = 0.3\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDroga\nPacientes\nAtaques\nAtaques/paciente\n\n\n\n\nNova\n500\n200\n0.4\n\n\nPadrão\n1000\n300\n0.3\n\n\n\n\n\n\n\n\nTabela 9: Resultados do experimento sobre o novo remédio pra asma: médias padronizadas"
+    "text": "Resultados\n\n\nQual medicamento é mais eficiente?\n\nAtaques/paciente:\n\nDroga nova: \\(200/500 = 0.4\\)\n\nMedicamento padrão: \\(300/1000 = 0.3\\)\n\n\n\n\n\n\n\n. . .\n\n\n\n\n\n\n\n\nDroga\nPacientes\nAtaques\nAtaques/paciente\n\n\n\nNova\n500\n200\n0.4\n\n\nPadrão\n1000\n300\n0.3\n\n\n\n\n\n\n\nTabela 9: Resultados do experimento sobre o novo remédio pra asma: médias padronizadas"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#a-média-e-a-padronização-de-medidas-2",
     "href": "slide-exploracao-dados-numericos.html#a-média-e-a-padronização-de-medidas-2",
     "title": "Exploração de dados numéricos",
     "section": "A média e a padronização de medidas",
-    "text": "A média e a padronização de medidas\nAvalie qual time de basquete tem melhor desempenho em um campeonato:\n\n\n\n\n\n\n\n\n\n\n\nTime\nJogos\nPontuação Total\n\n\n\n\nMogi\n20\n1500\n\n\nFortaleza B. C. / CFO\n18\n1400\n\n\nPato Basquete\n22\n1600\n\n\nCerrado\n21\n1550\n\n\n\n\n\n\n\n\nTabela 10: Pontuações dos times de basquete"
+    "text": "A média e a padronização de medidas\nAvalie qual time de basquete tem melhor desempenho em um campeonato:\n\n\n\n\n\n\n\n\nTime\nJogos\nPontuação Total\n\n\n\nMogi\n20\n1500\n\n\nFortaleza B. C. / CFO\n18\n1400\n\n\nPato Basquete\n22\n1600\n\n\nCerrado\n21\n1550\n\n\n\n\n\n\n\nTabela 10: Pontuações dos times de basquete"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#tabela-para-os-cálculos",
@@ -4216,7 +4216,7 @@
     "href": "slide-exploracao-dados-numericos.html#resultados-3",
     "title": "Exploração de dados numéricos",
     "section": "Resultados",
-    "text": "Resultados\n\n\n\n\n\n\n\n\n\n\n\nTime\nJogos\nPontuação Total\nPontos/jogo\n\n\n\n\nMogi\n20\n1500\n75.0\n\n\nFortaleza B. C. / CFO\n18\n1400\n77.8\n\n\nPato Basquete\n22\n1600\n72.7\n\n\nCerrado\n21\n1550\n73.8\n\n\n\n\n\n\n\n\nTabela 11: Pontuações dos times de basquete: médias padronizadas"
+    "text": "Resultados\n\n\n\n\n\n\n\n\nTime\nJogos\nPontuação Total\nPontos/jogo\n\n\n\nMogi\n20\n1500\n75.0\n\n\nFortaleza B. C. / CFO\n18\n1400\n77.8\n\n\nPato Basquete\n22\n1600\n72.7\n\n\nCerrado\n21\n1550\n73.8\n\n\n\n\n\n\n\nTabela 11: Pontuações dos times de basquete: médias padronizadas"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#variância-e-desvio-padrão-1",
@@ -4237,28 +4237,28 @@
     "href": "slide-exploracao-dados-numericos.html#avaliações-do-professor-zé",
     "title": "Exploração de dados numéricos",
     "section": "Avaliações do professor Zé",
-    "text": "Avaliações do professor Zé\nNa tabela a seguir, estão as avaliações que o professor Zé recebeu de uma turma de cinco aluno em relação a uma disciplina ministrada. As notas atribuídas pelos alunos à avaliação do professor variavam de 1 a 5, onde 1 significa péssimo e 5 ótimo:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAluno\nAvaliação do professor\n\n\n\n\n\nJoana\n1\n\n\n\nPaulo\n2\n\n\n\nMaria\n3\n\n\n\nAdriana\n3\n\n\n\nPedro\n4\n\n\nMédia\n\n\n2.6\n\n\n\n\n\n\n\n\nTabela 12: Avaliações do professor Zé\n\n\n\n\n\\(\\bar{x} =\\) 2.6"
+    "text": "Avaliações do professor Zé\nNa tabela a seguir, estão as avaliações que o professor Zé recebeu de uma turma de cinco aluno em relação a uma disciplina ministrada. As notas atribuídas pelos alunos à avaliação do professor variavam de 1 a 5, onde 1 significa péssimo e 5 ótimo:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAluno\nAvaliação do professor\n\n\n\n\nJoana\n1\n\n\n\nPaulo\n2\n\n\n\nMaria\n3\n\n\n\nAdriana\n3\n\n\n\nPedro\n4\n\n\nMédia\n\n2.6\n\n\n\n\n\n\n\nTabela 12: Avaliações do professor Zé\n\n\n\n\\(\\bar{x} =\\) 2.6"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#desvios-da-média-x_i---barx",
     "href": "slide-exploracao-dados-numericos.html#desvios-da-média-x_i---barx",
     "title": "Exploração de dados numéricos",
-    "section": "Desvios da média: \\(x_i - \\bar{x}\\)",
-    "text": "Desvios da média: \\(x_i - \\bar{x}\\)\n\\[\ns^2 = \\frac{\\sum_{i=1}^n \\color{red}{(x_i - \\bar{x})}^2}{n-1}\n\\]"
+    "section": "Desvios da média: \\(x_i - \\bar{x}\\)\n",
+    "text": "Desvios da média: \\(x_i - \\bar{x}\\)\n\n\\[\ns^2 = \\frac{\\sum_{i=1}^n \\color{red}{(x_i - \\bar{x})}^2}{n-1}\n\\]"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#desvios-da-média-x_i---barx-1",
     "href": "slide-exploracao-dados-numericos.html#desvios-da-média-x_i---barx-1",
     "title": "Exploração de dados numéricos",
-    "section": "Desvios da média: \\(x_i - \\bar{x}\\)",
-    "text": "Desvios da média: \\(x_i - \\bar{x}\\)\nNote que a média em algums momentos subestima a avaliação dada por cada aluno e, em outros, superestima.\nChamamos de desvio a distância de uma observação da média da variável.\n\\(\\bar{x} =\\) 2.6\n\n\n\n\n\n\n\n\n\n\n\nAluno\nAvaliação do professor\nObservaçao - média\nDesvio da média\n\n\n\n\nJoana\n1\n1 - 2.6\n-1.6\n\n\nPaulo\n2\n2 - 2.6\n-0.6\n\n\nMaria\n3\n3 - 2.6\n0.4\n\n\nAdriana\n3\n3 - 2.6\n0.4\n\n\nPedro\n4\n4 - 2.6\n1.4\n\n\n\n\n\n\n\n\nTabela 13: Desvios da média das avaliações do professor Zé"
+    "section": "Desvios da média: \\(x_i - \\bar{x}\\)\n",
+    "text": "Desvios da média: \\(x_i - \\bar{x}\\)\n\nNote que a média em algums momentos subestima a avaliação dada por cada aluno e, em outros, superestima.\nChamamos de desvio a distância de uma observação da média da variável.\n\\(\\bar{x} =\\) 2.6\n\n\n\n\n\n\n\n\nAluno\nAvaliação do professor\nObservaçao - média\nDesvio da média\n\n\n\nJoana\n1\n1 - 2.6\n-1.6\n\n\nPaulo\n2\n2 - 2.6\n-0.6\n\n\nMaria\n3\n3 - 2.6\n0.4\n\n\nAdriana\n3\n3 - 2.6\n0.4\n\n\nPedro\n4\n4 - 2.6\n1.4\n\n\n\n\n\n\n\nTabela 13: Desvios da média das avaliações do professor Zé"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#soma-dos-desvios",
     "href": "slide-exploracao-dados-numericos.html#soma-dos-desvios",
     "title": "Exploração de dados numéricos",
     "section": "Soma dos desvios",
-    "text": "Soma dos desvios\nAgora que já temos os desvios, para saber a variabilidade total dos dados podemos somá-los, certo?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAluno\nAvaliação do professor\nObservaçao - média\nDesvio da média\n\n\n\n\n\nJoana\n1\n1 - 2.6\n-1.6\n\n\n\nPaulo\n2\n2 - 2.6\n-0.6\n\n\n\nMaria\n3\n3 - 2.6\n0.4\n\n\n\nAdriana\n3\n3 - 2.6\n0.4\n\n\n\nPedro\n4\n4 - 2.6\n1.4\n\n\nSoma\n\n\n\n\n\n\n0\n\n\n\n\n\n\n\n\nTabela 14: Soma dos desvios da média das avaliações do professor Zé\n\n\n\n\nZero? Esse resultado não faz sentido, porque claramente há variabilidade, como visto no gráfico anterior."
+    "text": "Soma dos desvios\nAgora que já temos os desvios, para saber a variabilidade total dos dados podemos somá-los, certo?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAluno\nAvaliação do professor\nObservaçao - média\nDesvio da média\n\n\n\n\nJoana\n1\n1 - 2.6\n-1.6\n\n\n\nPaulo\n2\n2 - 2.6\n-0.6\n\n\n\nMaria\n3\n3 - 2.6\n0.4\n\n\n\nAdriana\n3\n3 - 2.6\n0.4\n\n\n\nPedro\n4\n4 - 2.6\n1.4\n\n\nSoma\n\n\n\n0\n\n\n\n\n\n\n\nTabela 14: Soma dos desvios da média das avaliações do professor Zé\n\n\n\nZero? Esse resultado não faz sentido, porque claramente há variabilidade, como visto no gráfico anterior."
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#soma-dos-desvios-ao-quadrado",
@@ -4279,7 +4279,7 @@
     "href": "slide-exploracao-dados-numericos.html#soma-dos-desvios-ao-quadrado-2",
     "title": "Exploração de dados numéricos",
     "section": "Soma dos desvios ao quadrado",
-    "text": "Soma dos desvios ao quadrado\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAluno\nAvaliação do professor\nObservaçao - média\nDesvio da média\nDesvio ao quadrado\n\n\n\n\n\nJoana\n1\n1 - 2.6\n-1.6\n2.56\n\n\n\nPaulo\n2\n2 - 2.6\n-0.6\n0.36\n\n\n\nMaria\n3\n3 - 2.6\n0.4\n0.16\n\n\n\nAdriana\n3\n3 - 2.6\n0.4\n0.16\n\n\n\nPedro\n4\n4 - 2.6\n1.4\n1.96\n\n\nSoma\n\n\n\n\n\n\n\n\n5.2\n\n\n\n\n\n\n\n\nTabela 15: Soma dos desvios ao quadrado das avaliações do professor Zé\n\n\n\n\n\\(SS =\\) 5.2"
+    "text": "Soma dos desvios ao quadrado\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAluno\nAvaliação do professor\nObservaçao - média\nDesvio da média\nDesvio ao quadrado\n\n\n\n\nJoana\n1\n1 - 2.6\n-1.6\n2.56\n\n\n\nPaulo\n2\n2 - 2.6\n-0.6\n0.36\n\n\n\nMaria\n3\n3 - 2.6\n0.4\n0.16\n\n\n\nAdriana\n3\n3 - 2.6\n0.4\n0.16\n\n\n\nPedro\n4\n4 - 2.6\n1.4\n1.96\n\n\nSoma\n\n\n\n\n5.2\n\n\n\n\n\n\n\nTabela 15: Soma dos desvios ao quadrado das avaliações do professor Zé\n\n\n\n\\(SS =\\) 5.2"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#variância-1",
@@ -4321,21 +4321,21 @@
     "href": "slide-exploracao-dados-numericos.html#section-4",
     "title": "Exploração de dados numéricos",
     "section": "",
-    "text": "Tabela para os cálculosFórmulas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{SS} = \\sum_{i=1}^n (x_i - \\bar{x})^2 =  \\sum(x_i - \\bar{x})(x_i - \\bar{x})\n\\]\n\\[\ns^2 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1} = \\frac{\\text{SS}}{n-1}  \n\\]\n\\[\ns = \\sqrt{\\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1}} = \\sqrt{s^2}\n\\]"
+    "text": "Tabela para os cálculos\nFórmulas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{SS} = \\sum_{i=1}^n (x_i - \\bar{x})^2 =  \\sum(x_i - \\bar{x})(x_i - \\bar{x})\n\\]\n\\[\ns^2 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1} = \\frac{\\text{SS}}{n-1}  \n\\]\n\\[\ns = \\sqrt{\\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1}} = \\sqrt{s^2}\n\\]"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#section-5",
     "href": "slide-exploracao-dados-numericos.html#section-5",
     "title": "Exploração de dados numéricos",
     "section": "",
-    "text": "Tabela para os cálculosFórmulas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{SS} = \\sum_{i=1}^n (x_i - \\bar{x})^2 =  \\sum(x_i - \\bar{x})(x_i - \\bar{x})\n\\]\n\\[\ns^2 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1} = \\frac{\\text{SS}}{n-1}  \n\\]\n\\[\ns = \\sqrt{\\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1}} = \\sqrt{s^2}\n\\]"
+    "text": "Tabela para os cálculos\nFórmulas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n{SS} = \\sum_{i=1}^n (x_i - \\bar{x})^2 =  \\sum(x_i - \\bar{x})(x_i - \\bar{x})\n\\]\n\\[\ns^2 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1} = \\frac{\\text{SS}}{n-1}  \n\\]\n\\[\ns = \\sqrt{\\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1}} = \\sqrt{s^2}\n\\]"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#resultados-4",
     "href": "slide-exploracao-dados-numericos.html#resultados-4",
     "title": "Exploração de dados numéricos",
     "section": "Resultados",
-    "text": "Resultados\nOs dois professores têm a mesma média, mas a desvio padrão no caso da professora Irene é bem mais alto. O que isso nos diz sobre os dados?\n\n\n\n\n\n\n\n\n\n\n\nProfessor\nMédia\nDesvio padrão\n\n\n\n\nIrene\n2.6\n1.82\n\n\nReinaldo\n2.6\n0.55\n\n\n\n\n\n\n\n\nTabela 16: Média e desvio padrão dos professores Reinaldo e Irene"
+    "text": "Resultados\nOs dois professores têm a mesma média, mas a desvio padrão no caso da professora Irene é bem mais alto. O que isso nos diz sobre os dados?\n\n\n\n\n\n\n\n\nProfessor\nMédia\nDesvio padrão\n\n\n\nIrene\n2.6\n1.82\n\n\nReinaldo\n2.6\n0.55\n\n\n\n\n\n\n\nTabela 16: Média e desvio padrão dos professores Reinaldo e Irene"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#section-6",
@@ -4349,7 +4349,7 @@
     "href": "slide-exploracao-dados-numericos.html#aplicativo-para-ver-a-influência-do-desvio-padrão-na-distribuição-dos-dados",
     "title": "Exploração de dados numéricos",
     "section": "Aplicativo para ver a influência do desvio padrão na distribuição dos dados",
-    "text": "Aplicativo para ver a influência do desvio padrão na distribuição dos dados\nUse o qr-code ou o link abaixo para acessar o aplicativo:\n\n\n\n\n\n\n\nhttps://c35bp0-pablo-pinheiro.shinyapps.io/estatistica_apps/"
+    "text": "Aplicativo para ver a influência do desvio padrão na distribuição dos dados\nUse o qr-code ou o link abaixo para acessar o aplicativo:\n\n\n\n\n\nhttps://c35bp0-pablo-pinheiro.shinyapps.io/estatistica_apps/"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#histogramas-e-a-forma-dos-dados-1",
@@ -4377,7 +4377,7 @@
     "href": "slide-exploracao-dados-numericos.html#histogramas-e-a-forma-dos-dados-4",
     "title": "Exploração de dados numéricos",
     "section": "Histogramas e a forma dos dados",
-    "text": "Histogramas e a forma dos dados\n\nTabelaHistograma\n\n\n\n\n\n\n\n\n\n\n\n\n\nbins\nContagem\n\n\n\n\n(0,60]\n8\n\n\n(60,65]\n10\n\n\n(65,70]\n15\n\n\n(70,75]\n19\n\n\n(75,80]\n33\n\n\n(80,85]\n34\n\n\n(85,90]\n20\n\n\n(90,95]\n12\n\n\n(95,100]\n2\n\n\n\n\n\n\n\n\nTabela 17: Contagens para os dados de temperatura agrupados"
+    "text": "Histogramas e a forma dos dados\n\n\nTabela\nHistograma\n\n\n\n\n\n\n\n\n\n\n\nbins\nContagem\n\n\n\n(0,60]\n8\n\n\n(60,65]\n10\n\n\n(65,70]\n15\n\n\n(70,75]\n19\n\n\n(75,80]\n33\n\n\n(80,85]\n34\n\n\n(85,90]\n20\n\n\n(90,95]\n12\n\n\n(95,100]\n2\n\n\n\n\n\n\n\nTabela 17: Contagens para os dados de temperatura agrupados"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#histogramas-e-a-forma-dos-dados-5",
@@ -4405,7 +4405,7 @@
     "href": "slide-exploracao-dados-numericos.html#como-construir-um-histograma-1",
     "title": "Exploração de dados numéricos",
     "section": "Como construir um histograma?",
-    "text": "Como construir um histograma?\nConsidere o seguinte conjunto de dados:\n{52, 57, 53, 59, 62, 65, 67, 68, 69, 70, 72, 75, 78, 78, 79, 80, 82, 83, 85, 88, 90, 92, 93, 95, 96, 97, 98, 100, 102, 105}\n\n1. Coloque os valores em ordem crestente:\n\n\n{52, 53, 57, 59, 62, 65, 67, 68, 69, 70, 72, 75, 78, 78, 79, 80, 82, 83, 85, 88, 90, 92, 93, 95, 96, 97, 98, 100, 102, 105}\n\n\n2. Conte a quantidade de casos no conjunto:\n\n\n\\(n\\) = 30\n\n\n3. Calcule a amplitude: maior caso - menor caso\n\n\n\\(Amplitude =\\) 105 \\(-\\) 52 \\(=\\) 53"
+    "text": "Como construir um histograma?\nConsidere o seguinte conjunto de dados:\n{52, 57, 53, 59, 62, 65, 67, 68, 69, 70, 72, 75, 78, 78, 79, 80, 82, 83, 85, 88, 90, 92, 93, 95, 96, 97, 98, 100, 102, 105}\n. . .\n1. Coloque os valores em ordem crestente:\n. . .\n{52, 53, 57, 59, 62, 65, 67, 68, 69, 70, 72, 75, 78, 78, 79, 80, 82, 83, 85, 88, 90, 92, 93, 95, 96, 97, 98, 100, 102, 105}\n. . .\n2. Conte a quantidade de casos no conjunto:\n. . .\n\\(n\\) = 30\n. . .\n3. Calcule a amplitude: maior caso - menor caso\n. . .\n\\(Amplitude =\\) 105 \\(-\\) 52 \\(=\\) 53"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#como-construir-um-histograma-2",
@@ -4419,21 +4419,21 @@
     "href": "slide-exploracao-dados-numericos.html#como-construir-um-histograma-3",
     "title": "Exploração de dados numéricos",
     "section": "Como construir um histograma?",
-    "text": "Como construir um histograma?\n4. Determine o número de intervalos (bins)\n\\[\n\\text{Bins Ótimos} = \\lceil \\log_2(30) + 1 \\rceil = 6\n\\]\n\n5. Largura dos intervalos: divida a amplitude (53) pelo número de intervalos:\n\n\n\\[\n53/6 = 8.83 \\approx 9\n\\]"
+    "text": "Como construir um histograma?\n4. Determine o número de intervalos (bins)\n\\[\n\\text{Bins Ótimos} = \\lceil \\log_2(30) + 1 \\rceil = 6\n\\]\n. . .\n5. Largura dos intervalos: divida a amplitude (53) pelo número de intervalos:\n. . .\n\\[\n53/6 = 8.83 \\approx 9\n\\]"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#como-construir-um-histograma-4",
     "href": "slide-exploracao-dados-numericos.html#como-construir-um-histograma-4",
     "title": "Exploração de dados numéricos",
     "section": "Como construir um histograma?",
-    "text": "Como construir um histograma?\n6. Calcule o limites dos intervalos: comece com o menor valor e adicione largura dos intervalos para determinar o limite superior da primeira classe\n\n\\(52 + 9 = 61\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntervalo\nLimite\n\n\n\n\n1\n52 - 61\n\n\n2\n62 - 71\n\n\n3\n72 - 81\n\n\n4\n82 - 91\n\n\n5\n92 - 101\n\n\n6\n102 - 111\n\n\n\n\n\n\n\n\nTabela 18: Limites dos intervalos do histograma"
+    "text": "Como construir um histograma?\n6. Calcule o limites dos intervalos: comece com o menor valor e adicione largura dos intervalos para determinar o limite superior da primeira classe\n. . .\n\\(52 + 9 = 61\\)\n. . .\n\n\n\n\n\n\n\n\nIntervalo\nLimite\n\n\n\n1\n52 - 61\n\n\n2\n62 - 71\n\n\n3\n72 - 81\n\n\n4\n82 - 91\n\n\n5\n92 - 101\n\n\n6\n102 - 111\n\n\n\n\n\n\n\nTabela 18: Limites dos intervalos do histograma"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#como-construir-um-histograma-5",
     "href": "slide-exploracao-dados-numericos.html#como-construir-um-histograma-5",
     "title": "Exploração de dados numéricos",
     "section": "Como construir um histograma",
-    "text": "Como construir um histograma\n7. Conte os casos em cada intervalo:\n\n\n\n\n\n\n\n\n\n\n\n\nIntervalo\nLimite\nn\nCasos\n\n\n\n\n1\n52 - 61\n4\n52, 53, 57, 59\n\n\n2\n62 - 71\n6\n62, 65, 67, 68, 69, 70\n\n\n3\n72 - 81\n6\n72, 75, 78, 78, 79, 80\n\n\n4\n82 - 91\n5\n82, 83, 85, 88, 90\n\n\n5\n92 - 101\n7\n92, 93, 95, 96, 97, 98, 100\n\n\n6\n102 - 111\n2\n102, 105\n\n\n\n\n\n\n\n\nTabela 19: Intervalos e casos do histograma"
+    "text": "Como construir um histograma\n7. Conte os casos em cada intervalo:\n. . .\n\n\n\n\n\n\n\n\nIntervalo\nLimite\nn\nCasos\n\n\n\n1\n52 - 61\n4\n52, 53, 57, 59\n\n\n2\n62 - 71\n6\n62, 65, 67, 68, 69, 70\n\n\n3\n72 - 81\n6\n72, 75, 78, 78, 79, 80\n\n\n4\n82 - 91\n5\n82, 83, 85, 88, 90\n\n\n5\n92 - 101\n7\n92, 93, 95, 96, 97, 98, 100\n\n\n6\n102 - 111\n2\n102, 105\n\n\n\n\n\n\n\nTabela 19: Intervalos e casos do histograma"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#resultado",
@@ -4447,7 +4447,7 @@
     "href": "slide-exploracao-dados-numericos.html#histograma-da-altura-dos-alunos",
     "title": "Exploração de dados numéricos",
     "section": "Histograma da altura dos alunos",
-    "text": "Histograma da altura dos alunos\nGere um histograma a partir da amostra abaixo que representa a altura dos alunos de uma turma em centímetros:\n\n\n\n\n\n\n\n\n\n\n\nAluno\nAltura\n\n\n\n\nPedro\n152\n\n\nPaulo\n165\n\n\nAna\n158\n\n\nMariana\n170\n\n\nJoão\n162\n\n\nClara\n168\n\n\nLuiz\n155\n\n\nSofia\n172\n\n\nCarlos\n160\n\n\nBeatriz\n163\n\n\nRicardo\n157\n\n\nFernanda\n166\n\n\nLucas\n159\n\n\nJulia\n171\n\n\nGabriel\n164\n\n\n\n\n\n\n\n\nTabela 20: Altura dos alunos"
+    "text": "Histograma da altura dos alunos\nGere um histograma a partir da amostra abaixo que representa a altura dos alunos de uma turma em centímetros:\n\n\n\n\n\n\n\n\nAluno\nAltura\n\n\n\nPedro\n152\n\n\nPaulo\n165\n\n\nAna\n158\n\n\nMariana\n170\n\n\nJoão\n162\n\n\nClara\n168\n\n\nLuiz\n155\n\n\nSofia\n172\n\n\nCarlos\n160\n\n\nBeatriz\n163\n\n\nRicardo\n157\n\n\nFernanda\n166\n\n\nLucas\n159\n\n\nJulia\n171\n\n\nGabriel\n164\n\n\n\n\n\n\n\nTabela 20: Altura dos alunos"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#histograma-da-altura-dos-alunos-1",
@@ -4475,14 +4475,14 @@
     "href": "slide-exploracao-dados-numericos.html#formas-das-distribuições",
     "title": "Exploração de dados numéricos",
     "section": "Formas das distribuições",
-    "text": "Formas das distribuições\n\nNo slide a seguir, vamos ter as distribuições das seguintes variáveis\n\nPreço de diamantes (price, do banco de dados diamonds)\nAltura dos filhos (sheight, do banco de dados father.son)\nIdade da morte de pessoas famosas (Age of death, do banco de dados Age dataset1)\n\nComo você imagina a forma dessas distribuições? Tente desenhá-las antes de ver os gráficos\n\nMantivemos somente as mortes por causas naturais e de pessoas que faleceram com menos de 80 anos"
+    "text": "Formas das distribuições\n\nNo slide a seguir, vamos ter as distribuições das seguintes variáveis\n\nPreço de diamantes (price, do banco de dados diamonds)\nAltura dos filhos (sheight, do banco de dados father.son)\nIdade da morte de pessoas famosas (Age of death, do banco de dados Age dataset2)\n\n\nComo você imagina a forma dessas distribuições? Tente desenhá-las antes de ver os gráficos"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#formas-das-distribuições-1",
     "href": "slide-exploracao-dados-numericos.html#formas-das-distribuições-1",
     "title": "Exploração de dados numéricos",
     "section": "Formas das distribuições",
-    "text": "Formas das distribuições\n\nAssimetria positivaDistribuição simétricaAssimetria negativa"
+    "text": "Formas das distribuições\n\n\nAssimetria positiva\nDistribuição simétrica\nAssimetria negativa"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#como-a-assimetria-é-calculada",
@@ -4496,21 +4496,21 @@
     "href": "slide-exploracao-dados-numericos.html#section-8",
     "title": "Exploração de dados numéricos",
     "section": "",
-    "text": "Vamos calcular o valor da assimetria a partir de uma nova amostra de dados da altura:\n\n\n\n\nTabela 21: Altura dos alunos: nova amostra\n\n\n\n\n\n\n\n\n\nAluno\nAltura\n\n\n\n\nLeonardo\n152\n\n\nMariana\n153\n\n\nCarlos\n151\n\n\nAna\n154\n\n\nBruno\n156\n\n\nJuliana\n160\n\n\nRenato\n159\n\n\nFernanda\n163\n\n\nLucas\n164\n\n\nPaula\n151\n\n\nGabriel\n168\n\n\nCamila\n170\n\n\nEduardo\n175\n\n\nSofia\n180\n\n\nRicardo\n182"
+    "text": "Vamos calcular o valor da assimetria a partir de uma nova amostra de dados da altura:\n\n\n\nTabela 21: Altura dos alunos: nova amostra\n\n\n\n\n\n\nAluno\nAltura\n\n\n\nLeonardo\n152\n\n\nMariana\n153\n\n\nCarlos\n151\n\n\nAna\n154\n\n\nBruno\n156\n\n\nJuliana\n160\n\n\nRenato\n159\n\n\nFernanda\n163\n\n\nLucas\n164\n\n\nPaula\n151\n\n\nGabriel\n168\n\n\nCamila\n170\n\n\nEduardo\n175\n\n\nSofia\n180\n\n\nRicardo\n182"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#section-9",
     "href": "slide-exploracao-dados-numericos.html#section-9",
     "title": "Exploração de dados numéricos",
     "section": "",
-    "text": "Tabela para os cálculosResultadosFormulas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\gamma_1 = \\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})^3}{n \\cdot s^3}\n\\] \\[\n{SS} = \\sum_{i=1}^n (x_i - \\bar{x})^2 =  \\sum(x_i - \\bar{x})(x_i - \\bar{x})\n\\]\n\\[\ns^2 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1} = \\frac{\\text{SS}}{n-1}\n\\]\n\\[\ns = \\sqrt{\\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1}} = \\sqrt{s^2}\n\\]"
+    "text": "Tabela para os cálculos\nResultados\nFormulas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\gamma_1 = \\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})^3}{n \\cdot s^3}\n\\] \\[\n{SS} = \\sum_{i=1}^n (x_i - \\bar{x})^2 =  \\sum(x_i - \\bar{x})(x_i - \\bar{x})\n\\]\n\\[\ns^2 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1} = \\frac{\\text{SS}}{n-1}\n\\]\n\\[\ns = \\sqrt{\\frac{\\sum_{i=1}^n (x_i - \\bar{x})^2}{n-1}} = \\sqrt{s^2}\n\\]"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#resultados-6",
     "href": "slide-exploracao-dados-numericos.html#resultados-6",
     "title": "Exploração de dados numéricos",
     "section": "Resultados",
-    "text": "Resultados\n\n\n\n\n\n\n\n\nEstatística\nValor\n\n\n\n\nn\n15\n\n\nMédia\n163\n\n\nSS\n1530\n\n\nVariância\n109\n\n\nDesvio parão\n10.45\n\n\nAssimetria\n0.53"
+    "text": "Resultados\n\n\n\n\n\n\nEstatística\nValor\n\n\n\nn\n15\n\n\nMédia\n163\n\n\nSS\n1530\n\n\nVariância\n109\n\n\nDesvio parão\n10.45\n\n\nAssimetria\n0.53"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#histograma-da-altura-dos-alunos-2",
@@ -4552,14 +4552,14 @@
     "href": "slide-exploracao-dados-numericos.html#a-moda-das-distribuições",
     "title": "Exploração de dados numéricos",
     "section": "A moda das distribuições",
-    "text": "A moda das distribuições\n\nUnimodalBimodal"
+    "text": "A moda das distribuições\n\n\nUnimodal\nBimodal"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#a-moda-em-sua-definição-matemática",
     "href": "slide-exploracao-dados-numericos.html#a-moda-em-sua-definição-matemática",
     "title": "Exploração de dados numéricos",
     "section": "A moda em sua definição matemática",
-    "text": "A moda em sua definição matemática\n\nTabelaGráfico de barras\n\n\n\n\n\n\n\n\n\n\n\n\n\ncyl\nn\n\n\n\n\n4\n11\n\n\n6\n7\n\n\n8\n14\n\n\n\nCarros com 8 cilindros são mais frequentes\n\n\n\n\n\n\n\n\n\nTabela 22: Tabela de frequência do número de cilindros dos carros"
+    "text": "A moda em sua definição matemática\n\n\nTabela\nGráfico de barras\n\n\n\n\n\n\n\n\n\n\n\ncyl\nn\n\n\n\n4\n11\n\n\n6\n7\n\n\n8\n14\n\n\n\nCarros com 8 cilindros são mais frequentes\n\n\n\n\n\n\nTabela 22: Tabela de frequência do número de cilindros dos carros"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#o-diagrama-de-caixa",
@@ -4580,28 +4580,28 @@
     "href": "slide-exploracao-dados-numericos.html#mediana",
     "title": "Exploração de dados numéricos",
     "section": "Mediana",
-    "text": "Mediana\n\n\n\nÉ a linha escura dentro da caixa\nDivide os dados pela metade, 50% ficam abaixo desse valor e 50% ficam acima\nQuando a amostra é impar:\n\nÉ observação que está no centro da amostra ordenada\n\\(\\{2, 5, \\color{red}{7}, 11, 15\\}\\)\n\nQuando a amostra é par:\n\nÉ a média das duas observações que estão no centro da amostra ordenada\n\\(\\{2, 5, \\color{red}{7, 9}, 11, 15\\}\\)\n\\(Mediana = \\frac{7+9}{2} = 8\\)"
+    "text": "Mediana\n\n\n\nÉ a linha escura dentro da caixa\nDivide os dados pela metade, 50% ficam abaixo desse valor e 50% ficam acima\n\nQuando a amostra é impar:\n\nÉ observação que está no centro da amostra ordenada\n\\(\\{2, 5, \\color{red}{7}, 11, 15\\}\\)\n\n\n\nQuando a amostra é par:\n\nÉ a média das duas observações que estão no centro da amostra ordenada\n\\(\\{2, 5, \\color{red}{7, 9}, 11, 15\\}\\)\n\\(Mediana = \\frac{7+9}{2} = 8\\)"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#primeiro-quartil-terceiro-quartil-e-intervalo-interquartil",
     "href": "slide-exploracao-dados-numericos.html#primeiro-quartil-terceiro-quartil-e-intervalo-interquartil",
     "title": "Exploração de dados numéricos",
     "section": "Primeiro quartil, terceiro quartil e intervalo interquartil",
-    "text": "Primeiro quartil, terceiro quartil e intervalo interquartil\n\n\n\n\nO comprimento da caixa: intervalo interquartil (IQR, na abreviatura em inglês),\n\nÉ uma medida da variabilidade dos dados: quanto mais variação nos dados, maior o desvio padrão e o intervalo interquartil tendem a ser\n\nOs dois limites da caixa são chamados de:\n\nPrimeiro quartil - o 25º percentil: 25% dos dados estão abaixo deste valor\nTerceiro quartil - o 75º percentil: 75% dos dados estão abaixo deste valor\nSão frequentemente rotulados como Q1 e Q3, respectivamente\n\n\\(IQR = Q1 - Q3\\)\nUm percentil é um número com \\(\\alpha\\%\\) das observações abaixo e 100 - \\(\\alpha\\%\\) das observações acima. Por exemplo, o 90º percentil na média do ENEM tem 90% dos alunos abaixo desse valor e 10% dos alunos acima dele."
+    "text": "Primeiro quartil, terceiro quartil e intervalo interquartil\n\n\n\n\nO comprimento da caixa: intervalo interquartil (IQR, na abreviatura em inglês),\n\nÉ uma medida da variabilidade dos dados: quanto mais variação nos dados, maior o desvio padrão e o intervalo interquartil tendem a ser\n\n\nOs dois limites da caixa são chamados de:\n\nPrimeiro quartil - o 25º percentil: 25% dos dados estão abaixo deste valor\nTerceiro quartil - o 75º percentil: 75% dos dados estão abaixo deste valor\nSão frequentemente rotulados como Q1 e Q3, respectivamente\n\n\n\\(IQR = Q1 - Q3\\)\nUm percentil é um número com \\(\\alpha\\%\\) das observações abaixo e 100 - \\(\\alpha\\%\\) das observações acima. Por exemplo, o 90º percentil na média do ENEM tem 90% dos alunos abaixo desse valor e 10% dos alunos acima dele."
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#o-intervalo-interquartil-como-medida-de-variabilidade",
     "href": "slide-exploracao-dados-numericos.html#o-intervalo-interquartil-como-medida-de-variabilidade",
     "title": "Exploração de dados numéricos",
     "section": "O intervalo interquartil como medida de variabilidade",
-    "text": "O intervalo interquartil como medida de variabilidade\n\n\n\nAmbas as distribuições tem a mesma média\nA distribuição em vermelho tem\n\nDesvio padrão: 4.83\nIQR: 6.28\n\nA distribuição em azul tem:\n\nDesvio padrão: 1.97\nIQR: 2.67"
+    "text": "O intervalo interquartil como medida de variabilidade\n\n\n\nAmbas as distribuições tem a mesma média\nA distribuição em vermelho tem\n\nDesvio padrão: 4.83\nIQR: 6.28\n\n\nA distribuição em azul tem:\n\nDesvio padrão: 1.97\nIQR: 2.67"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#whiskers-bigodes-e-outliers-valores-discrepantes",
     "href": "slide-exploracao-dados-numericos.html#whiskers-bigodes-e-outliers-valores-discrepantes",
     "title": "Exploração de dados numéricos",
     "section": "Whiskers (bigodes) e outliers (valores discrepantes)",
-    "text": "Whiskers (bigodes) e outliers (valores discrepantes)\n\n\n\n\n\nWhiskers: capturaram a maior parte dos dados, excluindo os outliers\n\nSe estendem até os valores máximo e mínimo, exceto quando há outliers\n\nOutliers: pontos excepcionalmente altos ou baixos, marcados separadamente no gráfico\n\nIndicam observações distantes do restante dos dados\nObservações além de 1,5 x IQR dos quartis são outliers\n\nCaixa como corpo, whiskers como braços tentando alcançar os dados até os outliers"
+    "text": "Whiskers (bigodes) e outliers (valores discrepantes)\n\n\n\n\n\n\nWhiskers: capturaram a maior parte dos dados, excluindo os outliers\n\nSe estendem até os valores máximo e mínimo, exceto quando há outliers\n\n\n\nOutliers: pontos excepcionalmente altos ou baixos, marcados separadamente no gráfico\n\nIndicam observações distantes do restante dos dados\nObservações além de 1,5 x IQR dos quartis são outliers\n\n\nCaixa como corpo, whiskers como braços tentando alcançar os dados até os outliers"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#outliers-são-extremos",
@@ -4615,21 +4615,21 @@
     "href": "slide-exploracao-dados-numericos.html#estatísticas-robustas",
     "title": "Exploração de dados numéricos",
     "section": "Estatísticas Robustas",
-    "text": "Estatísticas Robustas\nConsidere os cinco modelos de carro abaixo. Eles são os automóveis mais leves do banco de dados mtcars. O que aconteceria com as estatísticas dessa amostra se trocássemos o veículo mais leve (Lotus Europa) pelo quinto mais pesado de todo o banco de dados (Pontiac Firebird)? E o que aconteceria se o trocássemos pelo caro mais pesado de todos (Lincoln Continental)?\n\n\n\n\n\n\n\n\nModelo\nwt\n\n\n\n\nLotus Europa\n1.51\n\n\nHonda Civic\n1.61\n\n\nToyota Corolla\n1.83\n\n\nFiat X1-9\n1.94\n\n\nPorsche 914-2\n2.14"
+    "text": "Estatísticas Robustas\nConsidere os cinco modelos de carro abaixo. Eles são os automóveis mais leves do banco de dados mtcars. O que aconteceria com as estatísticas dessa amostra se trocássemos o veículo mais leve (Lotus Europa) pelo quinto mais pesado de todo o banco de dados (Pontiac Firebird)? E o que aconteceria se o trocássemos pelo caro mais pesado de todos (Lincoln Continental)?\n\n\n\n\n\n\nModelo\nwt\n\n\n\nLotus Europa\n1.51\n\n\nHonda Civic\n1.61\n\n\nToyota Corolla\n1.83\n\n\nFiat X1-9\n1.94\n\n\nPorsche 914-2\n2.14"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#estatísticas-robustas-1",
     "href": "slide-exploracao-dados-numericos.html#estatísticas-robustas-1",
     "title": "Exploração de dados numéricos",
     "section": "Estatísticas Robustas",
-    "text": "Estatísticas Robustas\n\n\n\n\n\n\n\n\n\n\n\nCenário\nMediana\nIQR\nMédia\nDesvio padrão\n\n\n\n\nDados originais\n1.83\n0.32\n1.81\n0.25\n\n\nSai Lotus Europa e entra Pontiac Firebird\n1.94\n0.31\n2.27\n0.90\n\n\nSai Lotus Europa e entra Lincoln Continental\n1.94\n0.31\n2.59\n1.60\n\n\n\n\n\n\n\n\nTabela 23: Uma comparação de como a mediana, o IQR, a média e o desvio padrão mudam à medida que o valor de uma observação extrema dos dados de interesse originais muda"
+    "text": "Estatísticas Robustas\n\n\n\n\n\n\n\n\nCenário\nMediana\nIQR\nMédia\nDesvio padrão\n\n\n\nDados originais\n1.83\n0.32\n1.81\n0.25\n\n\nSai Lotus Europa e entra Pontiac Firebird\n1.94\n0.31\n2.27\n0.90\n\n\nSai Lotus Europa e entra Lincoln Continental\n1.94\n0.31\n2.59\n1.60\n\n\n\n\n\n\n\nTabela 23: Uma comparação de como a mediana, o IQR, a média e o desvio padrão mudam à medida que o valor de uma observação extrema dos dados de interesse originais muda"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#estatísticas-robustas-2",
     "href": "slide-exploracao-dados-numericos.html#estatísticas-robustas-2",
     "title": "Exploração de dados numéricos",
     "section": "Estatísticas Robustas",
-    "text": "Estatísticas Robustas\n\nEstatísticas robustas: mediana e IQR são menos sensíveis a valores extremos\n\nMover valores extremos tem pouco impacto\n\nEstatísticas não robustas: média e desvio padrão são mais afetados por outliers\nA escolha entre estatísticas robustas e não robustas depende do contexto e da sensibilidade desejada a valores extremos"
+    "text": "Estatísticas Robustas\n\nEstatísticas robustas: mediana e IQR são menos sensíveis a valores extremos\n\nMover valores extremos tem pouco impacto\n\n\nEstatísticas não robustas: média e desvio padrão são mais afetados por outliers\nA escolha entre estatísticas robustas e não robustas depende do contexto e da sensibilidade desejada a valores extremos"
   },
   {
     "objectID": "slide-exploracao-dados-numericos.html#qual-é-melhor-a-média-ou-a-mediana-depende",
@@ -4664,7 +4664,7 @@
     "href": "slide-exploracao-dados-numericos.html#transformação-de-dados-assimétricos-2",
     "title": "Exploração de dados numéricos",
     "section": "Transformação de dados assimétricos",
-    "text": "Transformação de dados assimétricos\n\nOutras transformações possíveis: \\[\n\\sqrt{\\text{variável original}}\n\\]\n\n\\[\n\\frac{1}{\\text{variável original}}\n\\]"
+    "text": "Transformação de dados assimétricos\n\nOutras transformações possíveis: \\[\n\\sqrt{\\text{variável original}}\n\\]\n\n\n\\[\n\\frac{1}{\\text{variável original}}\n\\]"
   },
   {
     "objectID": "respostas-transformacao-dados.html#pacotes-necessários",
@@ -6290,5 +6290,261 @@
       "Conteúdos",
       "Intuições sobre conceitos estatísticos"
     ]
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#você-tem-uma-ideia-brilhante",
+    "href": "slide-teste-de-hipoteses-sig.html#você-tem-uma-ideia-brilhante",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Você tem uma ideia brilhante! ✨",
+    "text": "Você tem uma ideia brilhante! ✨\n\nPode ser um novo tratamento, um método de ensino inovador, uma nova estratégia de marketing…\nVocê acredita que sua ideia vai causar uma mudança, um efeito positivo!"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#a-voz-da-desconfiança-hipótese-nula-h_0",
+    "href": "slide-teste-de-hipoteses-sig.html#a-voz-da-desconfiança-hipótese-nula-h_0",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "A “Voz da Desconfiança”: Hipótese Nula (\\(H_0\\))",
+    "text": "A “Voz da Desconfiança”: Hipótese Nula (\\(H_0\\))\n\nAntes de comemorar, surge uma dúvida:\n\n“E se sua ideia não fizer diferença nenhuma?”\n“E se qualquer resultado for apenas obra do acaso ou variações normais?”\n\nEssa “voz” é a Hipótese Nula (\\(H_0\\)):\n\nAfirma que NÃO HÁ EFEITO ou diferença real\nSua ideia não muda nada em relação ao status quo ou a um grupo controle"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#o-experimento-e-seus-resultados",
+    "href": "slide-teste-de-hipoteses-sig.html#o-experimento-e-seus-resultados",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "O experimento e seus resultados 📊",
+    "text": "O experimento e seus resultados 📊\n\nVocê realiza um estudo para testar sua ideia:\n\nCompara um grupo que recebe sua intervenção com um grupo controle\nColeta dados (ex: notas de alunos, melhora de pacientes, vendas)\n\nVocê observa alguma diferença nos resultados entre os grupos\n\nEx: Seu grupo experimental teve um desempenho 10% melhor"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#a-grande-pergunta-do-valor-p",
+    "href": "slide-teste-de-hipoteses-sig.html#a-grande-pergunta-do-valor-p",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "A grande pergunta do valor-p 🤔",
+    "text": "A grande pergunta do valor-p 🤔\n\nVocê observa uma diferença. Mas…\nSE a sua ideia não tivesse NENHUM efeito real (ou seja, se a Hipótese Nula \\(H_0\\) fosse verdadeira)…\n… Qual seria a CHANCE de você observar uma diferença tão grande quanto a que você viu (ou até maior), só por puro ACASO?"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#valor-p-a-definição",
+    "href": "slide-teste-de-hipoteses-sig.html#valor-p-a-definição",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Valor-p: a definição 💡",
+    "text": "Valor-p: a definição 💡\n\nO Valor-p É ESSA CHANCE!\nÉ uma probabilidade (um número entre 0 e 1, ou 0% e 100%)\nEle quantifica o quão “surpreendente” ou “raro” seria o seu resultado se a Hipótese Nula (\\(H_0\\)) fosse verdadeira (ou seja, se não houvesse efeito real)"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#interpretando-o-valor-p-parte-1",
+    "href": "slide-teste-de-hipoteses-sig.html#interpretando-o-valor-p-parte-1",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Interpretando o valor-p (Parte 1)",
+    "text": "Interpretando o valor-p (Parte 1)\n\nValor-p PEQUENO (ex: 0.01 ou 1%)\n\nSignificado: “Nossa! Se minha ideia não tivesse efeito, a chance de ver um resultado tão bom (ou melhor) só por sorte seria de apenas 1%. Isso é bem raro!”\n\nPensamento: Como é tão improvável obter esse resultado por acaso (se \\(H_0\\) fosse verdadeira), talvez a \\(H_0\\) esteja errada\nImplicação: Os dados parecem “estranhos” para um mundo onde nada acontece. Talvez sua ideia realmente tenha um efeito"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#interpretando-o-valor-p-parte-2",
+    "href": "slide-teste-de-hipoteses-sig.html#interpretando-o-valor-p-parte-2",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Interpretando o Valor-p (Parte 2)",
+    "text": "Interpretando o Valor-p (Parte 2)\n\nValor-p GRANDE (ex: 0.40 ou 40%)\n\nSignificado: “Hmm… Se minha ideia não tivesse efeito, a chance de ver um resultado como este (ou mais extremo) só por sorte seria de 40%. Isso não é tão raro”\n\nPensamento: meus resultados poderiam facilmente ter acontecido por acaso, mesmo que minha ideia não fizesse diferença\nImplicação: os dados NÃO parecem “estranhos” para um mundo onde nada acontece. Não tenho evidências fortes para duvidar da \\(H_0\\)"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#analogia-o-medidor-de-estranheza",
+    "href": "slide-teste-de-hipoteses-sig.html#analogia-o-medidor-de-estranheza",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Analogia: o “medidor de estranheza” 👽",
+    "text": "Analogia: o “medidor de estranheza” 👽\n\nPense no valor-p como um “Medidor de Estranheza” dos seus dados, sempre sob a suposição de que a \\(H_0\\) (nenhum efeito) é verdadeira\nValor-p pequeno: Seus dados são “MUITO ESTRANHOS” para um mundo sem efeito. Talvez algo especial esteja acontecendo!\nValor-p grande: Seus dados “NÃO SÃO NADA ESTRANHOS” para um mundo sem efeito. Encaixam-se na variação normal do acaso"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#o-limiar-decisivo-nível-de-significância-alpha",
+    "href": "slide-teste-de-hipoteses-sig.html#o-limiar-decisivo-nível-de-significância-alpha",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "O limiar decisivo: nível de significância (\\(\\alpha\\))",
+    "text": "O limiar decisivo: nível de significância (\\(\\alpha\\))\n\nFrequentemente, comparamos o valor-p a um nível de significância (\\(\\alpha\\)) pré-definido\n\nComumente, \\(\\alpha = 0.05\\) (ou 5%).\n\nRegra geral:\n\nSe valor-p &lt; \\(\\alpha\\): Resultado “estatisticamente significativo”. Rejeitamos \\(H_0\\). Há evidência de um efeito\nSe valor-p \\(\\ge \\alpha\\): Resultado “não estatisticamente significativo”. Não rejeitamos \\(H_0\\). Não há evidência suficiente de um efeito"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#o-que-o-valor-p-não-é-muito-importante",
+    "href": "slide-teste-de-hipoteses-sig.html#o-que-o-valor-p-não-é-muito-importante",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "O que o valor-p NÃO é! 🚫 (Muito Importante)",
+    "text": "O que o valor-p NÃO é! 🚫 (Muito Importante)\n\nNÃO é a probabilidade da Hipótese Nula (\\(H_0\\)) ser verdadeira\nNÃO é a probabilidade da sua ideia (Hipótese Alternativa) ser verdadeira\nUm valor-p pequeno (significante) NÃO indica o quão grande ou importante é o efeito. Apenas sugere que o efeito provavelmente não é zero"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#em-resumo-o-papel-do-valor-p",
+    "href": "slide-teste-de-hipoteses-sig.html#em-resumo-o-papel-do-valor-p",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Em resumo: o papel do valor-p 🎯",
+    "text": "Em resumo: o papel do valor-p 🎯\n\nO valor-p ajuda a decidir se os resultados do seu estudo são fortes o suficiente para questionar a ideia de que “nada aconteceu” (a Hipótese Nula \\(H_0\\))\nEle quantifica a probabilidade dos seus dados (ou dados mais extremos) ocorrerem SE sua intervenção não tivesse efeito real e tudo fosse obra do acaso\nÉ uma ferramenta para auxiliar na tomada de decisões baseadas em evidências"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#lembre-se",
+    "href": "slide-teste-de-hipoteses-sig.html#lembre-se",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Lembre-se! 🧠",
+    "text": "Lembre-se! 🧠\n\nO valor-p é uma peça do quebra-cabeça, não a imagem inteira.\nConsidere sempre:\n\nO tamanho do efeito\nO desenho do estudo\nO contexto da sua pesquisa\n\nUse o valor-p com sabedoria!"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#o-cenário-do-estudo",
+    "href": "slide-teste-de-hipoteses-sig.html#o-cenário-do-estudo",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "O cenário do estudo",
+    "text": "O cenário do estudo\n\nTemos um biotério com 780 ratos (nossa população)\nQueremos responder a seguinte pergunta:\n\nUma dieta rica em gordura realmente leva a um maior ganho de peso?\n\nPara isso vamos formular a seguinte hipótese:\n\nRatos submetidos a uma dieta rica em gordura (hf) terão, em média, maior peso quando comparados com aqueles submetidos à dieta controle (chow)"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#o-experimento",
+    "href": "slide-teste-de-hipoteses-sig.html#o-experimento",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "O experimento",
+    "text": "O experimento\n\nPasso 1: Selecionamos aleatoriamente 20 ratos do nosso biotério (dos 780)\nPasso 2: Distribuímos aleatoriamente estes 20 ratos em dois grupos:\n\nGrupo Experimental (GE): 10 ratos recebem a dieta rica em gordura (“hf”)\nGrupo Controle (GC): 10 ratos recebem a dieta regular (“chow”)"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#o-que-encontramos-na-amostra",
+    "href": "slide-teste-de-hipoteses-sig.html#o-que-encontramos-na-amostra",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "O que encontramos na amostra?",
+    "text": "O que encontramos na amostra?"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#o-que-encontramos-na-amostra-1",
+    "href": "slide-teste-de-hipoteses-sig.html#o-que-encontramos-na-amostra-1",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "O que encontramos na amostra?",
+    "text": "O que encontramos na amostra?\n\n\n\n\n\n\n\n\nDieta\nMédia\nDiferença\n\n\n\n\nchow\n29.39\n-\n\n\nhf\n38.49\n9.10"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#o-que-encontramos-na-amostra-2",
+    "href": "slide-teste-de-hipoteses-sig.html#o-que-encontramos-na-amostra-2",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "O que encontramos na amostra?",
+    "text": "O que encontramos na amostra?\n\n\n\n\n\n\n\n\nVD\nDiferença observada\nt\ngl\np\n\n\n\n\nbody_weight\n9.10\n2.66\n18.00\n0.02"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#a-pergunta-fundamental-e-se-a-dieta-não-tivesse-efeito",
+    "href": "slide-teste-de-hipoteses-sig.html#a-pergunta-fundamental-e-se-a-dieta-não-tivesse-efeito",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "A pergunta fundamental: e se a dieta não tivesse efeito?",
+    "text": "A pergunta fundamental: e se a dieta não tivesse efeito?\n\nVamos supor, por um momento, que a dieta NÃO TEM NENHUM EFEITO sobre o peso dos ratos\n\nEsta é a nossa Hipótese Nula (\\(H_0\\))\n\nSe \\(H_0\\) é verdadeira, qualquer diferença de peso que observamos entre dois grupos aleatórios seria puramente devido ao ACASO da seleção e atribuição dos ratos\nPergunta-chave: “Quão provável é obter uma diferença de 9.10 (ou maior) apenas por acaso, se a dieta não faz diferença?”"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#simulando-o-acaso-a-ideia-da-distribuição-nula",
+    "href": "slide-teste-de-hipoteses-sig.html#simulando-o-acaso-a-ideia-da-distribuição-nula",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Simulando o “acaso”: a ideia da distribuição nula",
+    "text": "Simulando o “acaso”: a ideia da distribuição nula\nConstruindo um mundo onde a \\(H_0\\) é verdadeira\n\nPara responder à pergunta anterior, vamos simular muitos “experimentos” onde sabemos que a dieta não tem efeito\nUsaremos os 780 ratos do biotério como nossa “população de referência” para essas simulações\nSe repetidamente pegarmos amostras aleatórias de ratos desta “população” e os dividirmos em dois grupos aleatoriamente (sem aplicar dietas diferentes de fato), qual seria a distribuição das diferenças de médias de peso?"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#a-simulação-da-distribuição-nula",
+    "href": "slide-teste-de-hipoteses-sig.html#a-simulação-da-distribuição-nula",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "A simulação da distribuição nula",
+    "text": "A simulação da distribuição nula\n\nPasso a passo da simulação:\n\nLoop (repetir 5000 vezes):\n\nAmostragem: pegue aleatoriamente 20 ratos da “população” de 780\nAtribuição aleatória: divida esses 20 ratos aleatoriamente em dois novos grupos:\n\n“Grupo Simulado A” (10 ratos)\n“Grupo Simulado B” (10 ratos)1\n\nCálculo: calcule a diferença entre o peso médio do “Grupo Simulado A” e do “Grupo Simulado B”\nRegistro: guarde essa diferença\n\nResultado: teremos 5000 diferenças de médias, cada uma gerada sob a suposição de que não há efeito real da “dieta” (pois os grupos foram formados ao acaso)\n\n\nImportante: nesta etapa, os rótulos “hf” ou “chow” originais são ignorados; a atribuição é totalmente aleatória, simulando a ausência de efeito da dieta"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#como-seria-o-conjunto-de-dados",
+    "href": "slide-teste-de-hipoteses-sig.html#como-seria-o-conjunto-de-dados",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Como seria o conjunto de dados?",
+    "text": "Como seria o conjunto de dados?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExemplo de 3 amostras das 5000 simulações geradas\n\n\n\nAmostra 1\n\n\nAmostra 2\n\n\nAmostra 3\n\n\n\nPeso corporal\nGrupo\nPeso corporal\nGrupo\nPeso corporal\nGrupo\n\n\n\n\n53.23\nb\n30.63\na\n53.09\na\n\n\n25.96\na\n45.56\nb\n23.11\na\n\n\n27.87\na\n36.13\nb\n28.65\na\n\n\n35.66\na\n30.88\nb\n33.13\na\n\n\n28.55\na\n41.89\na\n21.02\na\n\n\n38.96\na\n39.62\nb\n41.67\na\n\n\n47.88\na\n33.76\na\n32.12\nb\n\n\n31.08\na\n22.12\na\n34.58\nb\n\n\n40.37\nb\n22.37\na\n46.49\nb\n\n\n24.23\nb\n36.10\na\n26.71\nb\n\n\n\nCada amostra tem 20 casos. Somente 10 casos são apresentados para a tabela caber no slide."
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#as-diferenças-geradas-pelo-puro-acaso",
+    "href": "slide-teste-de-hipoteses-sig.html#as-diferenças-geradas-pelo-puro-acaso",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "As diferenças geradas pelo puro acaso",
+    "text": "As diferenças geradas pelo puro acaso\nEsta distribuição é chamada de Distribuição Nula. Ela representa como as diferenças de médias se comportariam se a dieta não tivesse efeito:"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#onde-se-encaixa-nosso-resultado-real-comparando-o-observado-com-o-simulado",
+    "href": "slide-teste-de-hipoteses-sig.html#onde-se-encaixa-nosso-resultado-real-comparando-o-observado-com-o-simulado",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Onde se encaixa nosso resultado real: comparando o observado com o simulado",
+    "text": "Onde se encaixa nosso resultado real: comparando o observado com o simulado\n\nA pergunta agora é: o quão “extremo” ou “incomum” é a diferença entre as médias observadas no experimento em relação a esta distribuição de diferenças geradas por acaso?\nLembre-se que a hipótese pressupõe um resultado específico: ratos com dieta rica em gordura terão, em média, maior peso. Nesse sentido é uma hipótese unilateral\n\nNo gráfico a seguir, portanto, vamos nos preocupar somente com os casos que estão acima do valor observado no experimento real"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#onde-se-encaixa-nosso-resultado-real-visualizando-o-valor-observado-na-distribuição-nula",
+    "href": "slide-teste-de-hipoteses-sig.html#onde-se-encaixa-nosso-resultado-real-visualizando-o-valor-observado-na-distribuição-nula",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Onde se encaixa nosso resultado real: visualizando o valor observado na distribuição nula",
+    "text": "Onde se encaixa nosso resultado real: visualizando o valor observado na distribuição nula"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#calculando-o-valor-p-unilateral-quantificando-o-quão-extremo",
+    "href": "slide-teste-de-hipoteses-sig.html#calculando-o-valor-p-unilateral-quantificando-o-quão-extremo",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Calculando o valor-p (unilateral): quantificando o “quão extremo?”",
+    "text": "Calculando o valor-p (unilateral): quantificando o “quão extremo?”\nPasso 1: olhando para a Distribuição Nula, contamos quantas das 5000 diferenças simuladas foram maiores ou iguais a nossa difernça observada (9.097).\n\n\n\n\n\n\n\n\nQuantidade\ndif\n\n\n\n\n1\n13.322\n\n\n2\n13.279\n\n\n3\n12.747\n\n\n4\n11.792\n\n\n5\n11.468\n\n\n6\n11.337\n\n\n7\n10.845\n\n\n8\n10.767\n\n\n9\n10.677\n\n\n10\n10.665\n\n\n11\n10.631\n\n\n12\n10.138\n\n\n13\n9.909\n\n\n14\n9.851\n\n\n15\n9.806\n\n\n16\n9.673\n\n\n17\n9.597\n\n\n18\n9.465\n\n\n19\n9.396\n\n\n20\n9.387\n\n\n21\n9.259\n\n\n22\n9.113\n\n\n23\n9.112\n\n\n24\n9.103"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#calculando-o-valor-p-unilateral-quantificando-o-quão-extremo-1",
+    "href": "slide-teste-de-hipoteses-sig.html#calculando-o-valor-p-unilateral-quantificando-o-quão-extremo-1",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Calculando o valor-p (unilateral): quantificando o “quão extremo?”",
+    "text": "Calculando o valor-p (unilateral): quantificando o “quão extremo?”\n\nPasso 2: esse total de médias (24) equivale a qual percentual dentre as 5000?\n\n24/5000 = 0.0048\n0.0048 = 0.48%\nEste percentual (ou proporção) é o valor-p (unilateral).\n\nDefinição: “O valor-p é a probabilidade de observar uma diferença de médias tão grande quanto (ou maior que) a que encontramos no nosso experimento, SE a hipótese nula (de que não há efeito da dieta) fosse verdadeira”\nNo exemplo: há uma chance de ~0.48% de obter uma diferença de peso de 9.097 ou mais, apenas por acaso, se a dieta não tivesse efeito\nEm um universo onde sabemos que essa diferença não existe, com uma chance tão pequena de encontrar a diferença de médias observado no experimento, o que é possível concluir sobre as hipóteses?"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#o-que-o-valor-p-nos-diz",
+    "href": "slide-teste-de-hipoteses-sig.html#o-que-o-valor-p-nos-diz",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "O que o valor-p nos diz?",
+    "text": "O que o valor-p nos diz?\n\nUsamos um limiar (nível de significância, α), geralmente α = 0.05 (ou 5%)\nSe o valor-p &lt; α (ex: 0.0048 &lt; 0.05)\n\nO resultado observado no nosso experimento é incomum ou “surpreendente” se a hipótese nula fosse verdadeira.\nIsso nos dá evidências para rejeitar a Hipótese Nula (\\(H_0\\))\nConcluímos que provavelmente existe um efeito real da dieta\n\nSe o valor-p ≥ α (ex: 0.0696 &gt; 0.05)\n\nO resultado observado não é tão incomum sob a hipótese nula. Ele poderia facilmente ter acontecido por acaso.\nNão temos evidências suficientes para rejeitar a Hipótese Nula (\\(H_0\\))\nImportante: Isso não significa que \\(H_0\\) é verdadeira, apenas que não conseguimos provar o contrário com esta amostra"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#conclusão-para-o-exemplo",
+    "href": "slide-teste-de-hipoteses-sig.html#conclusão-para-o-exemplo",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Conclusão para o exemplo",
+    "text": "Conclusão para o exemplo\n\nO valor observado foi de 9.097\nO valor-p unilateral simulado foi de 0.0048\nComo 0.0048 &lt; 0.05 (nosso α), rejeitamos a \\(H_0\\)\nHá evidências estatísticas (baseadas na nossa simulação e amostra) que sugerem que a dieta rica em gordura (“hf”) de fato leva a um peso corporal maior em comparação com a dieta comum (“chow”)"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#hipótese-bilateral-considerando-extremos-em-ambas-as-direções",
+    "href": "slide-teste-de-hipoteses-sig.html#hipótese-bilateral-considerando-extremos-em-ambas-as-direções",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Hipótese bilateral: considerando extremos em ambas as direções",
+    "text": "Hipótese bilateral: considerando extremos em ambas as direções\n\n\nÀs vezes, queremos saber a probabilidade de uma diferença tão extrema quanto a observada, em qualquer direção (positiva ou negativa)\n\nNo experimento, por exemplo, poderíamos ter a seguinte hipótese: haverá, em média, direnças no peso entre os ratos submetidos a dietas distintas (regular - chow - e rica em gordura - hf)\nNote que não estipulamos qual dos grupos terá maior média peso. Nesse sentido, podemos ter os seguintes cenários:\n\nRatos com dieta rica em gordura mais pesados e ratos com dieta regular mais leves:\n\nhf - chow = valor positivo\n\nRatos com dieta rica em gordura mais leves e ratos com dieta regular mais pesados:\n\nhf - chow = valor negativo\n\n\n\nNuma situação como essa, temos que considerar as duas extremidades da distribuição para levarmos em conta os valores positivos e negativos"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#visualizando-o-valor-observado-na-distribuição-nula-hipótese-bilateral",
+    "href": "slide-teste-de-hipoteses-sig.html#visualizando-o-valor-observado-na-distribuição-nula-hipótese-bilateral",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Visualizando o valor observado na distribuição nula: hipótese bilateral",
+    "text": "Visualizando o valor observado na distribuição nula: hipótese bilateral"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#o-valor-p-na-hipótese-bilateral",
+    "href": "slide-teste-de-hipoteses-sig.html#o-valor-p-na-hipótese-bilateral",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "O valor-p na hipótese bilateral",
+    "text": "O valor-p na hipótese bilateral\n\nNa hipótese bilateral, consideramos as diferenças simuladas que são mais extremas que o valor observado, em ambas as direções. Ou seja, contamos quantas diferenças simuladas são maiores que o valor observado (positivo) OU menores que o o simétrico negativo do nosso valor observado)\n\nO valor-p seria: 0.0112 (1.12%)"
+  },
+  {
+    "objectID": "conceitos-estatisticos.html#teste-de-hipóteses-e-significância-estatística",
+    "href": "conceitos-estatisticos.html#teste-de-hipóteses-e-significância-estatística",
+    "title": "Intuições sobre conceitos estatísticos",
+    "section": "Teste de hipóteses e significância estatística",
+    "text": "Teste de hipóteses e significância estatística\n Slides",
+    "crumbs": [
+      "Conteúdos",
+      "Intuições sobre conceitos estatísticos"
+    ]
+  },
+  {
+    "objectID": "slide-exploracao-dados-numericos.html",
+    "href": "slide-exploracao-dados-numericos.html",
+    "title": "Exploração de dados numéricos",
+    "section": "",
+    "text": "Explorar dados numéricos usando:\n\nEstatisticas descritivas e gráficos"
+  },
+  {
+    "objectID": "slide-exploracao-dados-numericos.html#footnotes",
+    "href": "slide-exploracao-dados-numericos.html#footnotes",
+    "title": "Exploração de dados numéricos",
+    "section": "Notas de rodapé",
+    "text": "Notas de rodapé\n\nUse os termos dependente e independente com ressalvas, pois estão sendo aplicados fora do contexto de um experimento.↩︎\nMantivemos somente as mortes por causas naturais e de pessoas que faleceram com menos de 80 anos↩︎"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html",
+    "href": "slide-teste-de-hipoteses-sig.html",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "",
+    "text": "Pode ser um novo tratamento, um método de ensino inovador, uma nova estratégia de marketing…\nVocê acredita que sua ideia vai causar uma mudança, um efeito positivo!"
+  },
+  {
+    "objectID": "slide-teste-de-hipoteses-sig.html#footnotes",
+    "href": "slide-teste-de-hipoteses-sig.html#footnotes",
+    "title": "Desvendando o valor-p: uma abordagem intuitiva",
+    "section": "Notas de rodapé",
+    "text": "Notas de rodapé\n\nImportante: nesta etapa, os rótulos “hf” ou “chow” originais são ignorados; a atribuição é totalmente aleatória, simulando a ausência de efeito da dieta↩︎"
   }
 ]
