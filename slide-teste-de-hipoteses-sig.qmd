@@ -547,5 +547,5 @@ p_bilateral_percent <- label_percent(accuracy = 0.01)(p_bilateral)
 
 ```
 
--   Na hipótese bilateral, consideramos as diferenças simuladas que são mais extremas que o valor observado, em ambas as direções. Ou seja, contamos quantas diferenças simuladas são maiores que o valor observado (positivo) OU menores que o o simétrico negativo do nosso valor observado)
+-   Na hipótese bilateral, consideramos as diferenças simuladas que são mais extremas que o valor observado, em ambas as direções. Ou seja, contamos quantas diferenças simuladas são maiores que o valor observado (positivo) OU menores que o o simétrico negativo do nosso valor observado
     -   O valor-p seria: `r p_bilateral` (`r p_bilateral_percent`)
