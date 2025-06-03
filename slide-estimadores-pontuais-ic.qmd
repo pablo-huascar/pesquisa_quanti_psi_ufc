@@ -10,9 +10,12 @@ slide-number: true
 editor: visual
 editor_options: 
   chunk_output_type: console
-message: false
-warning: false
 ---
+
+```{r}
+#| include: false
+source("./_common.R")
+```
 
 ```{r}
 library(tidyverse)
@@ -91,7 +94,17 @@ amostras_5 |>
   ) |> 
   tab_header(
     title = "Massa corporal dos pinguins (g)"
-  ) 
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
 ```
 
 ## Propriedades desejaveis de um estimador pontual {.smaller}
@@ -162,7 +175,17 @@ distribuicao_amostral |>
   ) |> 
   tab_source_note(
     source_note = "Média das médias amostrais = 4203.70" 
-  )
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "18px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
 ```
 :::
 :::::
@@ -335,6 +358,16 @@ df_amostras |>
   gt() |> 
   fmt_number(
     decimals = 2, use_seps = F
+    ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
     )
 ```
 :::
@@ -607,4 +640,3 @@ amostras_100_longo |>
   coord_flip() + 
   scale_color_colorblind()
 ```
-

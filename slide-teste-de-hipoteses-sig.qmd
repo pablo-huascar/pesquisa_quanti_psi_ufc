@@ -1,0 +1,551 @@
+---
+title: "Desvendando o valor-p: uma abordagem intuitiva"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("./_common.R")
+```
+
+```{r}
+library(conflicted)
+library(tidyverse)
+library(janitor)
+library(dslabs)
+library(gt)
+library(rstatix)
+library(scales)
+conflicts_prefer(dplyr::filter())
+conflicts_prefer(dplyr::lag)
+```
+
+```{r}
+mice_weights <- mice_weights |> 
+  as_tibble()
+```
+
+```{r}
+set.seed(123)
+
+mice_exp <- mice_weights |> 
+  slice_sample(n = 10, by = diet) |> 
+  mutate(
+    diet = fct_relevel(diet,"hf", "chow")
+  )
+```
+
+## Você tem uma ideia brilhante! ✨
+
+-   Pode ser um novo tratamento, um método de ensino inovador, uma nova estratégia de marketing...
+-   Você acredita que sua ideia vai causar uma **mudança**, um **efeito** positivo!
+
+## A "Voz da Desconfiança": Hipótese Nula ($H_0$) {.smaller}
+
+-   Antes de comemorar, surge uma dúvida:
+    -   *"E se sua ideia não fizer diferença nenhuma?"*
+    -   *"E se qualquer resultado for apenas obra do **acaso** ou variações normais?"*
+-   Essa "voz" é a **Hipótese Nula (**$H_0$):
+    -   Afirma que **NÃO HÁ EFEITO** ou diferença real
+    -   Sua ideia não muda nada em relação ao status quo ou a um grupo controle
+
+## O experimento e seus resultados 📊
+
+-   Você realiza um estudo para testar sua ideia:
+    -   Compara um grupo que recebe sua intervenção com um grupo controle
+    -   Coleta dados (ex: notas de alunos, melhora de pacientes, vendas)
+-   Você observa alguma diferença nos resultados entre os grupos
+    -   Ex: Seu grupo experimental teve um desempenho 10% melhor
+
+## A grande pergunta do valor-p 🤔
+
+-   Você observa uma diferença. Mas...
+-   **SE** a sua ideia não tivesse NENHUM efeito real (ou seja, se a Hipótese Nula $H_0$ fosse verdadeira)...
+-   ... Qual seria a **CHANCE** de você observar uma diferença tão grande quanto a que você viu (ou até maior), só por puro **ACASO**?
+
+## Valor-p: a definição 💡
+
+-   **O Valor-p É ESSA CHANCE!**
+-   É uma probabilidade (um número entre 0 e 1, ou 0% e 100%)
+-   Ele quantifica o quão "surpreendente" ou "raro" seria o seu resultado se a Hipótese Nula ($H_0$) fosse verdadeira (ou seja, se não houvesse efeito real)
+
+## Interpretando o valor-p (Parte 1)
+
+-   Valor-p PEQUENO (ex: 0.01 ou 1%)
+    -   **Significado:** "Nossa! Se minha ideia não tivesse efeito, a chance de ver um resultado tão bom (ou melhor) só por sorte seria de apenas 1%. Isso é bem raro!"
+-   **Pensamento:** Como é tão improvável obter esse resultado por acaso (se $H_0$ fosse verdadeira), talvez a $H_0$ esteja errada
+-   **Implicação:** Os dados parecem "estranhos" para um mundo onde nada acontece. Talvez sua ideia **realmente tenha um efeito**
+
+## Interpretando o Valor-p (Parte 2)
+
+-   Valor-p GRANDE (ex: 0.40 ou 40%)
+    -   **Significado:** "Hmm... Se minha ideia não tivesse efeito, a chance de ver um resultado como este (ou mais extremo) só por sorte seria de 40%. Isso não é tão raro"
+-   **Pensamento:** meus resultados poderiam facilmente ter acontecido por acaso, mesmo que minha ideia não fizesse diferença
+-   **Implicação:** os dados **NÃO** parecem "estranhos" para um mundo onde nada acontece. Não tenho evidências fortes para duvidar da $H_0$
+
+## Analogia: o "medidor de estranheza" 👽
+
+-   Pense no valor-p como um "Medidor de Estranheza" dos seus dados, sempre sob a **suposição de que a** $H_0$ (nenhum efeito) é verdadeira
+-   **Valor-p pequeno:** Seus dados são "MUITO ESTRANHOS" para um mundo sem efeito. Talvez algo especial *esteja* acontecendo!
+-   **Valor-p grande:** Seus dados "NÃO SÃO NADA ESTRANHOS" para um mundo sem efeito. Encaixam-se na variação normal do acaso
+
+## O limiar decisivo: nível de significância ($\alpha$) {.smaller}
+
+-   Frequentemente, comparamos o valor-p a um **nível de significância (**$\alpha$) pré-definido
+    -   Comumente, $\alpha = 0.05$ (ou 5%).
+-   **Regra geral:**
+    -   Se **valor-p \<** $\alpha$: Resultado "estatisticamente significativo". Rejeitamos $H_0$. Há evidência de um efeito
+    -   Se **valor-p** $\ge \alpha$: Resultado "não estatisticamente significativo". Não rejeitamos $H_0$. Não há evidência suficiente de um efeito
+
+## O que o valor-p NÃO é! 🚫 (Muito Importante)
+
+-   **NÃO é** a probabilidade da Hipótese Nula ($H_0$) ser verdadeira
+-   **NÃO é** a probabilidade da sua ideia (Hipótese Alternativa) ser verdadeira
+-   Um valor-p pequeno (significante) **NÃO indica** o quão *grande* ou *importante* é o efeito. Apenas sugere que o efeito provavelmente não é zero
+
+## Em resumo: o papel do valor-p 🎯
+
+-   O valor-p ajuda a decidir se os resultados do seu estudo são fortes o suficiente para **questionar a ideia de que "nada aconteceu"** (a Hipótese Nula $H_0$)
+-   Ele quantifica a probabilidade dos seus dados (ou dados mais extremos) ocorrerem **SE** sua intervenção não tivesse efeito real e tudo fosse obra do acaso
+-   É uma ferramenta para auxiliar na tomada de decisões baseadas em evidências
+
+## Lembre-se! 🧠
+
+-   O valor-p é uma peça do quebra-cabeça, não a imagem inteira.
+-   Considere sempre:
+    -   O tamanho do efeito
+    -   O desenho do estudo
+    -   O contexto da sua pesquisa
+-   Use o valor-p com sabedoria!
+
+# Um exemplo: ratos, dietas e ganho de peso
+
+##  {background-image="img/bioterio.png" background-size="contain"}
+
+## O cenário do estudo
+
+-   Temos um biotério com 780 ratos (nossa população)
+-   Queremos responder a seguinte pergunta:
+    -   Uma dieta rica em gordura realmente leva a um maior ganho de peso?
+-   Para isso vamos formular a seguinte hipótese:
+    -   Ratos submetidos a uma dieta rica em gordura (hf) terão, em média, maior peso quando comparados com aqueles submetidos à dieta controle (chow)
+
+## O experimento
+
+-   Passo 1: Selecionamos aleatoriamente 20 ratos do nosso biotério (dos 780)
+-   Passo 2: Distribuímos aleatoriamente estes 20 ratos em dois grupos:
+    -   Grupo Experimental (GE): 10 ratos recebem a dieta rica em gordura ("hf")
+    -   Grupo Controle (GC): 10 ratos recebem a dieta regular ("chow")
+
+## O que encontramos na amostra?
+
+```{r}
+#| out-width: 70%
+mice_exp |> 
+  ggplot(
+    aes(x = diet, y = body_weight, color = diet)
+    ) + 
+  geom_boxplot(
+    show.legend = F
+    ) + 
+  labs(
+    x = "Dieta",
+    y = "Peso corporal",
+    title = "Distribuição do peso corporal nos grupos amostrais"
+  )
+```
+
+## O que encontramos na amostra?
+
+```{r}
+mice_exp |> 
+  summarise(
+    Média = mean(body_weight),
+    .by = diet
+  ) |> 
+  mutate(
+    Diferença = Média - lag(Média)
+  ) |> 
+  rename(
+    "Dieta" = diet
+  ) |> 
+  gt() |> 
+  sub_missing(
+    missing_text = "-"
+  ) |> 
+  fmt_number(
+    decimals = 2.23
+    ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
+```
+
+```{r}
+valor_observado <- mice_exp |> 
+  summarise(
+    m = mean(body_weight), 
+    .by = diet
+  ) |> 
+  mutate(
+    valor_observado = m - lag(m)
+  ) |> 
+  select(valor_observado) |> 
+  slice(2)
+```
+
+## O que encontramos na amostra?
+
+```{r}
+#| eval: false
+levene_test(mice_exp, body_weight ~ diet)
+
+mice_exp |> 
+  group_by(diet) |> 
+  shapiro_test(body_weight)
+```
+
+```{r}
+mice_exp |> 
+  t_test(body_weight ~ diet,var.equal = T) |> 
+  
+  select(-starts_with("n"), 
+         -starts_with("group")) |> 
+  add_column(valor_observado, .after = 1) |> 
+  rename(
+    VD = .y.,
+    "Diferença observada" = valor_observado,
+    t = statistic,
+    gl = df
+  ) |> 
+  gt() |> 
+  fmt_number() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
+```
+
+## A pergunta fundamental: e se a dieta não tivesse efeito?
+
+-   Vamos supor, por um momento, que a dieta NÃO TEM NENHUM EFEITO sobre o peso dos ratos
+    -   Esta é a nossa Hipótese Nula ($H_0$)
+-   Se $H_0$ é verdadeira, qualquer diferença de peso que observamos entre dois grupos aleatórios seria puramente devido ao ACASO da seleção e atribuição dos ratos
+-   Pergunta-chave: "Quão provável é obter uma diferença de 9.10 (ou maior) apenas por acaso, se a dieta não faz diferença?"
+
+## Simulando o "acaso": a ideia da distribuição nula {.smaller}
+
+Construindo um mundo onde a $H_0$ é verdadeira
+
+-   Para responder à pergunta anterior, vamos simular muitos "experimentos" onde sabemos que a dieta não tem efeito
+-   Usaremos os 780 ratos do biotério como nossa "população de referência" para essas simulações
+-   Se repetidamente pegarmos amostras aleatórias de ratos desta "população" e os dividirmos em dois grupos aleatoriamente (sem aplicar dietas diferentes de fato), qual seria a distribuição das diferenças de médias de peso?
+
+## A simulação da distribuição nula {.smaller}
+
+::: {style="font-size: 18pt"}
+Passo a passo da simulação:
+
+-   Loop (repetir 5000 vezes):
+    -   Amostragem: pegue aleatoriamente 20 ratos da "população" de 780
+    -   Atribuição aleatória: divida esses 20 ratos aleatoriamente em dois novos grupos:
+        -   "Grupo Simulado A" (10 ratos)
+        -   "Grupo Simulado B" (10 ratos)[^1]
+    -   Cálculo: calcule a diferença entre o peso médio do "Grupo Simulado A" e do "Grupo Simulado B"
+    -   Registro: guarde essa diferença
+-   Resultado: teremos 5000 diferenças de médias, cada uma gerada sob a suposição de que não há efeito real da "dieta" (pois os grupos foram formados ao acaso)
+:::
+
+[^1]: Importante: nesta etapa, os rótulos "hf" ou "chow" originais são ignorados; a atribuição é totalmente aleatória, simulando a ausência de efeito da dieta
+
+## Como seria o conjunto de dados?
+
+```{r}
+set.seed(456)
+
+distri_nula <- map(
+  1:5000, \(x)
+  
+  mice_weights |> 
+    select(body_weight) |> 
+    slice_sample(n = 20, replace = T) |> 
+    mutate(
+      group = sample(rep(c("a", "b"), each = 10))
+    )
+  )
+```
+
+```{r}
+distri_nula[c(1, 2, 3)] |> 
+  list_cbind() |> 
+  slice(1:10) |> 
+  gt() |> 
+  cols_align(
+    align = "center"
+    ) |> 
+  cols_label(
+    body_weight...1 = "Peso corporal",
+    body_weight...3 = "Peso corporal",
+    body_weight...5 = "Peso corporal",
+    group...2 = "Grupo",
+    group...4 = "Grupo",
+    group...6 = "Grupo"
+  ) |> 
+  tab_spanner(
+    label = "Amostra 1", columns = c(1,2)
+  ) |> 
+  tab_spanner(
+    label = "Amostra 2", columns = c(3,4)
+  ) |> 
+  tab_spanner(
+    label = "Amostra 3", columns = c(5,6)
+  ) |> 
+  tab_header(
+    title = "Exemplo de 3 amostras das 5000 simulações geradas"
+  ) |> 
+  tab_footnote(
+    footnote = "Cada amostra tem 20 casos. Somente 10 casos são apresentados para a tabela caber no slide."
+      ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "22px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
+```
+
+```{r}
+distri_nula_df <- distri_nula %>%
+  map(
+    \(x) x |> 
+      summarise(m = mean(body_weight), .by = group) |> 
+      mutate(dif = m - lag(m)) |> 
+      filter(!is.na(dif)) |> 
+      select(dif)
+  ) |> 
+  list_rbind() |> 
+  as_tibble()
+```
+
+```{r}
+valor_observado <- valor_observado |> 
+  pull()
+```
+
+## As diferenças geradas pelo puro acaso {.smaller}
+
+Esta distribuição é chamada de Distribuição Nula. Ela representa como as diferenças de médias se comportariam se a dieta não tivesse efeito:
+
+```{r}
+#| out-width: 70%
+#| fig-align: center
+distri_nula_df |> 
+  ggplot(
+    aes(dif)
+    ) + 
+  geom_histogram(
+    fill = "#569BBD",
+    color = "#FFFFFF"
+  ) +
+  labs(
+    title = "Histograma das 5000 diferenças de médias simuladas",
+    subtitle = "Variação esperada apenas por acaso se a H0 for verdadeira"
+  )
+```
+
+## Onde se encaixa nosso resultado real: comparando o observado com o simulado {.smaller}
+
+-   A pergunta agora é: o quão "extremo" ou "incomum" é a diferença entre as médias observadas no experimento em relação a esta distribuição de diferenças geradas por acaso?
+-   Lembre-se que a hipótese pressupõe um resultado específico: ratos com dieta rica em gordura terão, em média, maior peso. Nesse sentido é uma hipótese unilateral
+    -   No gráfico a seguir, portanto, vamos nos preocupar somente com os casos que estão acima do valor observado no experimento real
+
+## Onde se encaixa nosso resultado real: visualizando o valor observado na distribuição nula
+
+```{r}
+#| fig-align: center
+valor_observado_txt <- str_c("Valor observado = ", valor_observado)
+
+distri_nula_df |> 
+  mutate(
+    p_valor = case_when(dif > valor_observado ~ "ressaltar",
+                        .default = "n_ressaltar")
+  ) |> 
+  ggplot(
+    aes(dif, fill = p_valor,
+        color = p_valor)
+    ) + 
+  geom_histogram(
+    show.legend = F
+    ) + 
+  annotate(
+    "text", label = valor_observado_txt, 
+    x = 6, y = 510, size = 4, color = "red"
+    ) +
+  geom_vline(
+    xintercept = valor_observado,
+    color = "red",linetype = 2
+  ) + 
+  labs(
+    y = "Frequência nas Simulações",
+    x = "Diferença entre as médias"
+    ) + 
+  scale_fill_manual(
+    values = c(ressaltar = "#EF7259", n_ressaltar = "white")
+  ) +
+  scale_color_manual(
+    values = c(ressaltar = "gray", n_ressaltar = "gray")
+  )
+```
+
+## Calculando o valor-p (unilateral): quantificando o "quão extremo?" {.smaller .scrollable}
+
+Passo 1: olhando para a Distribuição Nula, contamos quantas das 5000 diferenças simuladas foram maiores ou iguais a nossa difernça observada (`r valor_observado`).
+
+```{r}
+casos_p_uni <- distri_nula_df |> 
+  filter(dif > valor_observado) |> 
+  nrow()
+
+distri_nula_df |> 
+  filter(dif > valor_observado) |> 
+  arrange(desc(dif)) |> 
+  mutate(
+    Quantidade = 1:n(),
+    .before = 1
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(25),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
+  
+```
+
+## Calculando o valor-p (unilateral): quantificando o "quão extremo?" {.smaller}
+
+-   Passo 2: esse total de médias (`r casos_p_uni`) equivale a qual percentual dentre as `r nrow(distri_nula_df)`?
+
+    -   `r casos_p_uni`/`r nrow(distri_nula_df)` = `r casos_p_uni/nrow(distri_nula_df)`
+
+    -   `r casos_p_uni/nrow(distri_nula_df)` = `r label_percent(accuracy = 0.01)(casos_p_uni/nrow(distri_nula_df))`
+
+    -   Este percentual (ou proporção) é o valor-p (unilateral).
+
+-   Definição: "O valor-p é a probabilidade de observar uma diferença de médias tão grande quanto (ou maior que) a que encontramos no nosso experimento, SE a hipótese nula (de que não há efeito da dieta) fosse verdadeira"
+
+-   No exemplo: há uma chance de \~`r label_percent(accuracy = 0.01)(casos_p_uni/nrow(distri_nula_df))` de obter uma diferença de peso de `r valor_observado` ou mais, apenas por acaso, se a dieta não tivesse efeito
+
+-   Em um universo onde sabemos que essa diferença não existe, com uma chance tão pequena de encontrar a diferença de médias observado no experimento, o que é possível concluir sobre as hipóteses?
+
+## O que o valor-p nos diz? {.smaller}
+
+-   Usamos um limiar (nível de significância, α), geralmente α = 0.05 (ou 5%)
+-   Se o valor-p \< α (ex: `r casos_p_uni/nrow(distri_nula_df)` \< 0.05)
+    -   O resultado observado no nosso experimento é incomum ou "surpreendente" se a hipótese nula fosse verdadeira.
+    -   Isso nos dá evidências para rejeitar a Hipótese Nula ($H_0$)
+    -   Concluímos que provavelmente existe um efeito real da dieta
+-   Se o valor-p ≥ α (ex: 0.0696 \> 0.05)
+    -   O resultado observado não é tão incomum sob a hipótese nula. Ele poderia facilmente ter acontecido por acaso.
+    -   Não temos evidências suficientes para rejeitar a Hipótese Nula ($H_0$)
+    -   Importante: Isso não significa que $H_0$ é verdadeira, apenas que não conseguimos provar o contrário com esta amostra
+
+# Voltando aos ratos e as dietas
+
+##  {background-image="img/experimento-computador.png" background-size="contain"}
+
+## Conclusão para o exemplo
+
+-   O valor observado foi de `r valor_observado`
+-   O valor-p unilateral simulado foi de `r casos_p_uni/nrow(distri_nula_df)`
+-   Como `r casos_p_uni/nrow(distri_nula_df)` \< 0.05 (nosso α), rejeitamos a $H_0$
+-   Há evidências estatísticas (baseadas na nossa simulação e amostra) que sugerem que a dieta rica em gordura ("hf") de fato leva a um peso corporal maior em comparação com a dieta comum ("chow")
+
+## Hipótese bilateral: considerando extremos em ambas as direções {.smaller}
+
+::: {style="font-size: 18pt"}
+-   Às vezes, queremos saber a probabilidade de uma diferença tão extrema quanto a observada, em qualquer direção (positiva ou negativa)
+    -   No experimento, por exemplo, poderíamos ter a seguinte hipótese: haverá, em média, direnças no peso entre os ratos submetidos a dietas distintas (regular - chow - e rica em gordura - hf)
+    -   Note que não estipulamos qual dos grupos terá maior média peso. Nesse sentido, podemos ter os seguintes cenários:
+        -   Ratos com dieta rica em gordura mais pesados e ratos com dieta regular mais leves:
+            -   hf - chow = valor positivo
+        -   Ratos com dieta rica em gordura mais leves e ratos com dieta regular mais pesados:
+            -   hf - chow = valor negativo
+-   Numa situação como essa, temos que considerar as duas extremidades da distribuição para levarmos em conta os valores positivos e negativos
+:::
+
+## Visualizando o valor observado na distribuição nula: hipótese bilateral
+
+```{r}
+#| out-width: "70%"
+distri_nula_df |> 
+  mutate(
+    p_valor = case_when(dif > valor_observado ~ "ressaltar",
+                        dif < -valor_observado ~ "ressaltar",
+                        .default = "n_ressaltar")
+  ) |> 
+  ggplot(
+    aes(dif, fill = p_valor,
+        color = p_valor)
+    ) + 
+  geom_histogram(
+    show.legend = F
+    ) + 
+  geom_vline(
+    xintercept = valor_observado,
+    color = "red",linetype = 2
+  ) +
+  geom_vline(
+    xintercept = -valor_observado,
+    color = "red",linetype = 2
+  ) + 
+  labs(
+    y = "Frequência nas Simulações",
+    x = "Diferença entre as médias"
+    ) + 
+  scale_fill_manual(
+    values = c(ressaltar = "#EF7259", n_ressaltar = "white")
+  ) +
+  scale_color_manual(
+    values = c(ressaltar = "gray", n_ressaltar = "gray")
+  )
+```
+
+## O valor-p na hipótese bilateral
+
+```{r}
+p_bilateral <- mean(abs(distri_nula_df$dif) > abs(valor_observado))
+p_bilateral_percent <- label_percent(accuracy = 0.01)(p_bilateral)
+
+```
+
+-   Na hipótese bilateral, consideramos as diferenças simuladas que são mais extremas que o valor observado, em ambas as direções. Ou seja, contamos quantas diferenças simuladas são maiores que o valor observado (positivo) OU menores que o o simétrico negativo do nosso valor observado)
+    -   O valor-p seria: `r p_bilateral` (`r p_bilateral_percent`)

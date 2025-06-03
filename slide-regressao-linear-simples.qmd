@@ -77,6 +77,7 @@ Medidas de tamanho para pinguins forrageadores adultos perto da Estação Palmer
 #| label: tbl-penguins
 #| tbl-cap: Uma amostra aleatória de dez casos do banco de dados `penguins`
 #| tbl-cap-location: bottom
+set.seed(123)
 
 penguins |> 
   slice_sample(n = 10) |> 
@@ -210,7 +211,12 @@ b = 2
 
 ## Pergunta de partida
 
-Quanto a massa corporal dos pinguins (`body_mass_g`) pode variar em função do comprimento da nadadeira (`flipper_length_mm`)?
+Quanto a massa corporal dos pinguins (`body_mass_g`) pode variar em função do comprimento da nadadeira (`flipper_length_mm`)? Por hora, vamos trabalhar somente com os pinguins da espécie Adelie.
+
+```{r}
+penguins <- penguins |> 
+  filter(species == "Adelie")
+```
 
 # Análise de dados exploratória
 
@@ -420,6 +426,15 @@ Por que colocamos um “chapéu” (acento circunflexo) em cima do $y$? É uma f
 modelo_reg_simples_cont <- lm(body_mass_g ~ flipper_length_mm, 
                               data = penguins)
 
+## Avaliação dos pressupotos do  modelo
+### Linearidade
+#lmtest::harvtest(modelo_reg_simples_cont)
+#lmtest::resettest(modelo_reg_simples_cont)
+### Normalidade dos resíduos
+#olsrr::ols_test_normality(modelo_reg_simples_cont)
+### Heteroceadsticidade
+#olsrr::ols_test_breusch_pagan(modelo_reg_simples_cont)
+
 nomes_tabela_regressao <- c("Preditor", "Estimativa",
                             "Erro padrão", "t", "p")
 
@@ -463,9 +478,9 @@ tabela_modelo_reg_simples_cont
 
 ```{r}
 a_cont <- modelo_reg_simples_cont$coefficients[[1]]
-a_cont <- round(a_cont, 3)
+a_cont <- round(a_cont, 2)
 b_cont <- modelo_reg_simples_cont$coefficients[[2]]
-b_cont <- round(b_cont, 3)
+b_cont <- round(b_cont, 2)
 ```
 
 ```{r}
@@ -485,7 +500,7 @@ $$
 $$
 
 ::: aside
-Neste caso, o intercepto da linha de regressão tem uma interpretação matemática, mas ele não tem nenhuma interpretação prática, pois observar um valor de `flipper_length_mm` igual a 0 é impossível.
+Neste caso, o intercepto da linha de regressão tem uma interpretação matemática, mas ele não tem nenhuma interpretação prática, pois observar um valor de `flipper_length_mm` igual a `r a_cont` é impossível.
 :::
 
 ## Interpretando a equação da regressão
@@ -500,7 +515,7 @@ $$
         -   Quanto maior a pontuação em `flipper_length_mm` maior a pontuação em `body_mass_g`
         -   Ou seja: um tamanho maior da nadadeira está associado a maior massa corporal dos pinguins
     -   Interpretação do valor de b (estimativa de `flipper_length_mm`):
-        -   O coeficiente associado ao comprimento da nadadeira é 49.7. Isso significa que, para cada aumento de 1 mm no comprimento da nadadeira, o peso dos pinguins aumenta em média 49.7 gramas
+        -   O coeficiente associado ao comprimento da nadadeira é `r b_cont`. Isso significa que, para cada aumento de 1 mm no comprimento da nadadeira, o peso dos pinguins aumenta em média `r b_cont` gramas
 :::
 
 ## Valores observados, valores ajustados (previstos) e os resíduos {.smaller}
@@ -528,14 +543,12 @@ penguins |>
     style = 1, color = "gray"
   )
 
-
 a <- modelo_reg_simples_cont$coefficients[[1]]
 b <- modelo_reg_simples_cont$coefficients[[2]]
 x <- penguins[[1, 5]]
 ajustado <- a + b*x
 observado <- penguins[[1, 6]]
 residuo <- observado - ajustado
-
 ```
 
 -   Valor observado de body_mass_g = $`r observado`$
@@ -729,7 +742,10 @@ iris_filter |>
     bins = 10,
     fill = "#569BBD",
     color = "#FFFFFF"
-  ) 
+  ) + 
+  labs(
+    y = "Diferenças entre as médias"
+  )
 ```
 
 ## Tabela de frequência e gráfico de barras

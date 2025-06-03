@@ -1506,18 +1506,28 @@ Houve mais dias com temperaturas entre 80°F e 85°F do que com temperaturas ent
 #| label: histogram-Temp-color
 
 airquality |> 
-  ggplot(aes(Temp, fill = destacar,
-             color = destacar)) +
-  geom_histogram(breaks = breaks_temp) + 
+  ggplot(
+    aes(Temp, fill = destacar,
+        color = destacar)
+  ) +
+  geom_histogram(
+    breaks = breaks_temp
+  ) + 
   labs(
     title = "Histograma para a temperatura de Nova York",
     subtitle = "Maio a setembro de 1973",
-    ) +
-  scale_fill_manual(values = c(menor = "#6fc492", maior = "#EF7259", 
-                               outros = "#569BBD")) +
-  scale_color_manual(values = c(menor = "#FFFFFF", maior = "#FFFFFF", 
-                                outros = "#FFFFFF")) +
-  scale_x_continuous(breaks = breaks_temp) +
+  ) +
+  scale_fill_manual(
+    values = c(menor = "#6fc492", maior = "#EF7259", 
+               outros = "#569BBD")
+  ) +
+  scale_color_manual(
+    values = c(menor = "#FFFFFF", maior = "#FFFFFF", 
+               outros = "#FFFFFF")
+  ) +
+  scale_x_continuous(
+    breaks = breaks_temp
+  ) +
   theme(
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),

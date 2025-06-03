@@ -12,5 +12,8 @@ title: "Intuições sobre conceitos estatísticos"
 
 ## Estimadores pontuais e intervalos de confiança
 
-![](img/slide.png){width="18"}
-[Slides](slide-estimadores-pontuais-ic.qmd){target="_blank"}
+![](img/slide.png){width="18"} [Slides](slide-estimadores-pontuais-ic.qmd){target="_blank"}
+
+## Teste de hipóteses e significância estatística
+
+![](img/slide.png){width="18"} [Slides](slide-teste-de-hipoteses-sig.qmd){target="_blank"}
