@@ -6506,7 +6506,7 @@
     "href": "slide-teste-de-hipoteses-sig.html#o-valor-p-na-hipótese-bilateral",
     "title": "Desvendando o valor-p: uma abordagem intuitiva",
     "section": "O valor-p na hipótese bilateral",
-    "text": "O valor-p na hipótese bilateral\n\nNa hipótese bilateral, consideramos as diferenças simuladas que são mais extremas que o valor observado, em ambas as direções. Ou seja, contamos quantas diferenças simuladas são maiores que o valor observado (positivo) OU menores que o o simétrico negativo do nosso valor observado)\n\nO valor-p seria: 0.0112 (1.12%)"
+    "text": "O valor-p na hipótese bilateral\n\nNa hipótese bilateral, consideramos as diferenças simuladas que são mais extremas que o valor observado, em ambas as direções. Ou seja, contamos quantas diferenças simuladas são maiores que o valor observado (positivo) OU menores que o o simétrico negativo do nosso valor observado\n\nO valor-p seria: 0.0112 (1.12%)"
   },
   {
     "objectID": "conceitos-estatisticos.html#teste-de-hipóteses-e-significância-estatística",
