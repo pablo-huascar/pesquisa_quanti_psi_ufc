@@ -45,6 +45,7 @@ website:
         - href: inferencia-estatistica.qmd
         - href: regressao.qmd
         - href: conceitos-estatisticos.qmd
+        - href: revisao-de-literatura.qmd
    
 format:
   html:
