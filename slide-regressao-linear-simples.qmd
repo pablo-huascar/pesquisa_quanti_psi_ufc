@@ -87,7 +87,7 @@ penguins |>
   ) |> 
   tab_options(
     table.width = pct(100),
-    table.font.size = "18px"
+    table.font.size = "22px"
   ) |> 
   opt_stylize(
     style = 1, color = "gray"
