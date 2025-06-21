@@ -1,7 +1,0 @@
----
-title: "Revisão de literatura"
----
-
-## Google acadêmico
-
-![](img/slide.png){width="18"} [Slides](slide-busca-google-academico.qmd){target="_blank"}

@@ -1,0 +1,7 @@
+---
+title: "Pesquisa em bases de dados"
+---
+
+## Google acadêmico
+
+![](img/slide.png){width="18"} [Slides](slide-busca-google-academico.qmd){target="_blank"}

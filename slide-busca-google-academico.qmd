@@ -1,6 +1,6 @@
 ---
 title: "Pesquisa em Bases de Dados Acadêmicos para Psicologia"
-subtitle: "Google Acadêmico e Introdução a Outras Plataformas"
+subtitle: "Google Acadêmico"
 format: 
   revealjs:
       logo: img/brasao1_horizontal_cor_300dpi.png
@@ -16,7 +16,6 @@ chalkboard: true
 
 -   Entender a importância da pesquisa em bases de dados acadêmicos.
 -   Aprender o que é o Google Acadêmico, suas funcionalidades e como realizar buscas eficazes.
--   Conhecer de forma geral as plataformas Web of Science e Scopus.
 -   Compreender como acessar artigos pagos através do Portal de Periódicos da CAPES via CAFe.
 -   Praticar a busca de artigos científicos.
 
@@ -215,62 +214,6 @@ Muitos artigos que aparecem em bases de dados como Google Acadêmico, Web of Sci
 2.  Acesse o **Portal de Periódicos da CAPES** (<http://periodicos.capes.gov.br/>).
 3.  Faça login via **CAFe** com suas credenciais institucionais.
 4.  Utilize a busca do Portal (por assunto, periódico, base de dados) para localizar o artigo.
-
-# Introdução a Outras Bases de Dados
-
-## Web of Science (WoS) {.smaller}
-
--   **O que é?** Base de dados multidisciplinar por assinatura, mantida pela Clarivate Analytics.
--   **Foco:** Principalmente em periódicos de alto impacto, com forte ênfase na análise de citações.
--   **Cobertura:** Milhares de periódicos, anais de conferências, livros. Coleção principal inclui Science Citation Index Expanded, Social Sciences Citation Index, Arts & Humanities Citation Index.
--   **Recursos:**
-    -   Pesquisa por tópico, autor, afiliação.
-    -   Ferramentas de refinamento de resultados.
-    -   Análise de citações (quem citou, referências citadas).
-    -   Métricas como Fator de Impacto de periódicos (Journal Citation Reports - JCR).
--   **Acesso:** Via Portal de Periódicos da CAPES (após login CAFe, buscar pela base "Web of Science").
-
-## Scopus {.smaller}
-
--   **O que é?** Base de dados multidisciplinar de resumos e citações por assinatura, mantida pela Elsevier.
--   **Foco:** Ampla cobertura de literatura revisada por pares (periódicos, livros, anais de conferências).
--   **Cobertura:** Maior número de títulos indexados em comparação com a WoS, especialmente para publicações mais recentes e de áreas emergentes ou não anglófonas. Boa cobertura em Ciências Sociais.
--   **Recursos:**
-    -   Pesquisa por documento, autor, afiliação.
-    -   Opções de busca avançada e filtros.
-    -   Ferramentas de análise de pesquisa (tendências, impacto de autores/instituições).
-    -   Métricas como CiteScore, SJR, SNIP para periódicos.
--   **Acesso:** Via Portal de Periódicos da CAPES (após login CAFe, buscar pela base "Scopus").
-
-## PsycArticles (APA): Textos Completos e Ligação com PsycINFO {.smaller}
-
-::: {style="font-size: 18pt"}
--   **Ponto de Partida no Portal CAPES:** - O acesso a esses recursos da APA geralmente se inicia buscando por **"PsycArticles (APA)"** no Portal de Periódicos.
-    -   **O que é PsycArticles (APA)?**
-        -   Uma base de dados que fornece **TEXTO COMPLETO** de periódicos.
-        -   Inclui aproximadamente **70 títulos** chave.
-        -   Publicadores: American Psychological Association (APA), Canadian Psychological Association e Hogrefe Publishing Group.
-        -   Disponibilidade dos textos completos: varia, com alguns títulos disponíveis desde **1894**.
-    -   **A Conexão Essencial:**
-        -   Este acesso via PsycArticles **OFERECE O RECURSO PsycINFO**.
-        -   **PsycINFO** é a ampla base de dados referencial que detalharemos no próximo slide.
-:::
-
-## PsycINFO: A Base Referencial Detalhada da APA {.smaller}
-
-::: {style="font-size: 16pt"}
--   **O que é PsycINFO?**
-    -   Uma **BASE REFERENCIAL** (contém referências e resumos) muito abrangente.
-    -   Cobre aproximadamente **2.450 periódicos**, além de livros, capítulos de livros e dissertações.
-    -   Mantida pela **American Psychological Association (APA)**.
-    -   **Foco Principal:** É a base de dados especializada líder em Psicologia e áreas correlatas (ciências comportamentais e sociais).
-    -   **Cobertura Temporal Ampla:** Registros desde **1806** até o presente.
--   **Recurso Chave do PsycINFO:**
-    -   Indexação detalhada com o **"Thesaurus of Psychological Index Terms®"**: um vocabulário controlado que permite buscas temáticas de alta precisão.
--   **Plataforma, Acesso via CAPES e Recomendação:**
-    -   Ambos os recursos são acessados através da plataforma **PsycNET**.
-    -   **Recomendação:** Para pesquisas aprofundadas em Psicologia, use **PsycINFO** para encontrar uma vasta gama de literatura relevante com busca precisa, e acesse os **textos completos** disponíveis diretamente via **PsycArticles**.
-:::
 
 ## Google Acadêmico vs. WoS/Scopus/PsycINFO {.smaller}
 
