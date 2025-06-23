@@ -22,10 +22,67 @@ source("./_common.R")
 #| label: setup
 library(conflicted)
 library(tidyverse)
-conflicts_prefer(dplyr::lag)
-conflicts_prefer(dplyr::filter)
+library(truncnorm)
 library(gt)
 library(rstatix)
+library(magick)
+conflicts_prefer(dplyr::lag)
+conflicts_prefer(dplyr::filter)
+```
+
+```{r}
+# Simulação de dados para pesquisa fictícia
+set.seed(123)
+
+notas_leitores <- rtruncnorm(
+  n = 50,
+  a = 0,     
+  b = 10,     
+  mean = 8,   
+  sd = 1.2    
+)
+
+notas_nao_leitores <- rtruncnorm(
+  n = 48,
+  a = 0,
+  b = 10,
+  mean = 6.8,
+  sd = 1.3
+)
+
+nota <- c(notas_leitores, notas_nao_leitores)
+
+grupo <- c(rep("leitor", 50), (rep("não leitor", 48)))
+
+pesquisa_fic <- tibble(
+  nota = nota,
+  grupo = as_factor(grupo)
+)
+
+pesquisa_fic <- pesquisa_fic |> 
+  mutate(
+    nota = round(nota, 1)
+  )
+```
+
+```{r}
+#| eval: false
+pesquisa_fic |> 
+  summarise(
+    m = mean(nota),
+    .by = grupo
+  )
+
+pesquisa_fic |> 
+  group_by(grupo) |> 
+  shapiro_test(nota)
+
+pesquisa_fic |> 
+  levene_test(formula = nota ~ grupo)
+
+pesquisa_fic |> 
+  t_test(nota ~ grupo, var.equal = T, 
+         alternative = "two.sided", detailed = T)
 ```
 
 # Bancos de dados utilizados
@@ -93,6 +150,88 @@ library(rstatix)
 
 # Teste t para amostras independentes {style="font-size: 22pt;"}
 
+## Pesquisa fictícia {.smaller}
+
+-   Pergunta de partida:
+    -   Qual é o efeito do hábito de leitura prévia dos textos sobre as médias de avaliação de discentes do curso de psicologia?
+        -   Grupo de leitores X Grupo de não leitores
+
+![](img/pesquisa-fic-teste-t.png){fig-align="center"}
+
+## Hipóteses {.smaller}
+
+-   Hipótese nula ($H_0$ - é a hipótese que tentaremos rejeitar): não há diferença entre as médias das notas dos dois grupos
+    -   $H_0: \mu_{leitores} = \mu_{não-leitores}$[^1]
+-   Hipótese alternativa ($H_1$): há uma diferença entre as médias das notas dos dois grupos
+    -   $H_1: \mu_{leitores} \neq \mu_{não-leitores}$
+
+[^1]: Onde $μ_1$ é a média da população de alunos que leem e $μ_2$ é a média da população de alunos que não leem
+
+## O que os nossos dados sugerem?
+
+```{r}
+#| out-width: "70%"
+#| fig-align: "center"
+pesquisa_fic |> 
+  ggplot(
+    aes(x = grupo, y = nota, 
+        colour = grupo)
+    ) + 
+  geom_boxplot(
+    show.legend = F
+    ) + 
+  labs(
+    x = "Grupo",
+    y = "Nota"
+  ) + 
+  scale_x_discrete(
+    labels = c("Leitor", "Não leitor")
+  )
+```
+
+## Delineamento entre participantes: dois grupos em condições diferentes
+
+```{r}
+colchete <- image_read("img/curly-brackets-left.png")
+
+image_rotate(colchete,degrees = 180) |> 
+  image_write(path = "img/curly-brackets-right.png", format = "png")
+```
+
+![](img/teste-t-grupo-leitor.png){.absolute width="100" top="350" left="0"} ![](img/teste-t-grupo-nao-leitor.png){.absolute width="100" top="350" right="0"} ![](img/curly-brackets-left){.absolute width="100" top="350" left="85"} ![](img/curly-brackets-right.png){.absolute width="100" top="350" right="85"} ![](img/linha-vertical.png){.absolute width="200" top="200" right="450"} ![](img/pesquisadora-negra-sozinha.png){.absolute width="100" top="250" left="180"} ![](img/pesquisadora-cabelo-loiro-sozinha.png){.absolute width="100" top="450" left="250"} ![](img/pesquisador-indigena-sozinho.png){.absolute width="100" top="270" left="370"} ![](img/pesquisador-cabelo-preto-sozinho.png){.absolute width="100" top="250" right="180"} ![](img/pesquisador-asiatico-sozinho.png){.absolute width="100" top="450" right="250"} ![](img/pesquisadora-cabelo-preto-sozinha.png){.absolute width="100" top="270" right="370"}
+
+<div class="absolute" style="top: 450px; left: 0px; width: 250px; text-align: center; font-weight: bold; font-size: 22px;">
+Grupo leitor
+</div>
+
+<div class="absolute" style="top: 450px; right: 0; width: 250px; text-align: center; font-weight: bold; font-size: 22px;">
+Grupo não Leitor
+</div>
+
+## Teste t para Amostras Independentes
+
+-   Finalidade: examina se existe uma diferença estatisticamente significativa entre as médias de uma variável quantitativa em dois grupos independentes
+-   Aplicação: ideal para delineamentos entre participantes
+    -   Ex: comparar níveis de ansiedade entre pessoas com e sem filhos
+    -   Ex: comparar a pressão sanguínea entre quem usa um medicamento e um grupo controle
+    -   Ex: comparar o estresse entre praticantes de atividades físicas e sedentários
+
+## Teste t para Amostras Independentes
+
+-   As Hipóteses (em um teste bidirecional):
+    -   Hipótese Nula ($H_0$): Afirma que não há diferença entre as médias dos grupos na população.
+        -   $H_0: \mu_1 = \mu_2$
+    -   Hipótese Alternativa ($H_1$): Afirma que existe uma diferença entre as médias.
+        -   $H_1: \mu_1 \neq \mu_2$
+
+## Teste t para Amostras Independentes
+
+-   A Regra de Decisão (usando o p-valor):
+    -   Se p ≤ 0,05: Rejeitamos a Hipótese Nula. A diferença observada é estatisticamente significativa
+    -   Se p \> 0,05: Falhamos em rejeitar a Hipótese Nula. Não há evidência suficiente para afirmar que existe uma diferença
+    
+## Pressupostos do Teste T para amostras independentes
+
 ## Exemplo {.smaller}
 
 -   Há diferença no consumo de combustível (`mpg`) entre carros com motores em V e retos (`vs`)?
@@ -117,20 +256,22 @@ library(rstatix)
 data("mtcars") 
 
 dados_teste_t <- mtcars |>
-  # Converter os rótulos das linhas
-  rownames_to_column(var = "modelo") |> 
-  # Transformar em tibble
-  as_tibble() |>
+  rownames_to_column(var = "modelo") |> # <1>
+  as_tibble() |> # <2>
   mutate(
-    # Recodficar a variável independente
-    vs = case_when(vs == 0 ~ "V", 
-                   .default = "reto"),
-    # Transformar em fator
-    vs = as_factor(vs), 
+    vs = case_when( 
+      vs == 0 ~ "V", .default = "reto" #<3>
+    ),
+    vs = as_factor(vs), #<4>
   ) |> 
-  # Selecionar as variáveis
-  select(modelo, mpg, vs) 
+  select(modelo, mpg, vs) #<5> 
 ```
+
+1.    Converter os rótulos das linhas
+2.    Transformar em tibble
+3.    Recodficar a variável independente  
+4.    Transformar em fator
+5.    Selecionar as variáveis
 
 ### Resultado
 
