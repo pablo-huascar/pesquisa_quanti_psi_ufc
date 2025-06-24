@@ -83,6 +83,9 @@ pesquisa_fic |>
 pesquisa_fic |> 
   t_test(nota ~ grupo, var.equal = T, 
          alternative = "two.sided", detailed = T)
+
+pesquisa_fic |> 
+  write_csv("data/pesquisa-fic-teste-t.csv")
 ```
 
 # Bancos de dados utilizados
@@ -153,7 +156,7 @@ library(rstatix)
 ## Pesquisa fictícia {.smaller}
 
 -   Pergunta de partida:
-    -   Qual é o efeito do hábito de leitura prévia dos textos sobre as médias de avaliação de discentes do curso de psicologia?
+    -   Qual é o efeito do hábito de leitura dos textos antes das aulas sobre as médias de avaliação de discentes do curso de psicologia?
         -   Grupo de leitores X Grupo de não leitores
 
 ![](img/pesquisa-fic-teste-t.png){fig-align="center"}
@@ -219,9 +222,9 @@ Grupo não Leitor
 ## Teste t para Amostras Independentes
 
 -   As Hipóteses (em um teste bidirecional):
-    -   Hipótese Nula ($H_0$): Afirma que não há diferença entre as médias dos grupos na população.
+    -   Hipótese Nula ($H_0$): afirma que não há diferença entre as médias dos grupos na população
         -   $H_0: \mu_1 = \mu_2$
-    -   Hipótese Alternativa ($H_1$): Afirma que existe uma diferença entre as médias.
+    -   Hipótese Alternativa ($H_1$): afirma que existe uma diferença entre as médias
         -   $H_1: \mu_1 \neq \mu_2$
 
 ## Teste t para Amostras Independentes
@@ -230,7 +233,15 @@ Grupo não Leitor
     -   Se p ≤ 0,05: Rejeitamos a Hipótese Nula. A diferença observada é estatisticamente significativa
     -   Se p \> 0,05: Falhamos em rejeitar a Hipótese Nula. Não há evidência suficiente para afirmar que existe uma diferença
     
-## Pressupostos do Teste T para amostras independentes
+## Pressupostos do Teste T para amostras independentes {.smaller}
+
+-   Variável Independente (VI): deve ser categórica com dois níveis (dicotômica)
+-   Variável Dependente (VD): Deve ser contínua (ou quantitativa).
+    -   A decisão sobre os tipos de variáveis é feita no desenho do estudo, guiada pela pergunta de pesquisa!
+-   Independência das observações: os grupos devem ser mutuamente exclusivos (um participante não pode estar em ambos os grupos)
+-   Verificação de outliers: o teste é sensível a valores atípicos. É importante inspecionar os dados para identificá-los e tratá-los
+-   Os dados da VD em cada grupo devem ser provenientes de uma população com distribuição aproximadamente normal
+-   Homogeneidade das Variâncias (Homocedasticidade): as variâncias da VD devem ser aproximadamente iguais entre os grupos
 
 ## Exemplo {.smaller}
 
