@@ -1669,7 +1669,7 @@
     "href": "slide-inferencia-duas-medias-matematico-r.html#manipulação-dos-dados",
     "title": "Inferência",
     "section": "Manipulação dos dados",
-    "text": "Manipulação dos dados\n\nAçõesCódigoResultado\n\n\n\nCarregar o conjunto de dados mtcars: data(\"mtcars\")\nConverter os rótulos das linhas para uma coluna: rownames_to_column()\nTransformar em tibble para melhorar a visualização: as_tibble()\nRecodficar a variável independente (vs) para facilitar a interpretação dos resultados\nTransformar a variável independente em fator: as_factor()\nSelecionar e salvar as variáveis que serão utilizadas em um novo objeto para facilitar a visualização: select()\n\n\n\n\n# Carregar os dados\ndata(\"mtcars\") \n\ndados_teste_t &lt;- mtcars |&gt;\n  # Converter os rótulos das linhas\n  rownames_to_column(var = \"modelo\") |&gt; \n  # Transformar em tibble\n  as_tibble() |&gt;\n  mutate(\n    # Recodficar a variável independente\n    vs = case_when(vs == 0 ~ \"V\", \n                   .default = \"reto\"),\n    # Transformar em fator\n    vs = as_factor(vs), \n  ) |&gt; \n  # Selecionar as variáveis\n  select(modelo, mpg, vs) \n\n\n\n\ndados_teste_t\n#&gt; # A tibble: 32 × 3\n#&gt;   modelo              mpg vs   \n#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;fct&gt;\n#&gt; 1 Mazda RX4          21   V    \n#&gt; 2 Mazda RX4 Wag      21   V    \n#&gt; 3 Datsun 710         22.8 reto \n#&gt; 4 Hornet 4 Drive     21.4 reto \n#&gt; 5 Hornet Sportabout  18.7 V    \n#&gt; 6 Valiant            18.1 reto \n#&gt; # ℹ 26 more rows"
+    "text": "Manipulação dos dados\n\nAçõesCódigoResultado\n\n\n\nCarregar o conjunto de dados mtcars: data(\"mtcars\")\nConverter os rótulos das linhas para uma coluna: rownames_to_column()\nTransformar em tibble para melhorar a visualização: as_tibble()\nRecodficar a variável independente (vs) para facilitar a interpretação dos resultados\nTransformar a variável independente em fator: as_factor()\nSelecionar e salvar as variáveis que serão utilizadas em um novo objeto para facilitar a visualização: select()\n\n\n\n\n# Carregar os dados\ndata(\"mtcars\") \n\ndados_teste_t &lt;- mtcars |&gt;\n1  rownames_to_column(var = \"modelo\") |&gt;\n2  as_tibble() |&gt;\n  mutate(\n    vs = case_when( \n3      vs == 0 ~ \"V\", .default = \"reto\"\n    ),\n4    vs = as_factor(vs),\n  ) |&gt; \n5  select(modelo, mpg, vs)\n\n\n1\n\nConverter os rótulos das linhas\n\n2\n\nTransformar em tibble\n\n3\n\nRecodficar a variável independente\n\n\n4\n\nTransformar em fator\n\n5\n\nSelecionar as variáveis\n\n\n\n\n\n\n\ndados_teste_t\n#&gt; # A tibble: 32 × 3\n#&gt;   modelo              mpg vs   \n#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;fct&gt;\n#&gt; 1 Mazda RX4          21   V    \n#&gt; 2 Mazda RX4 Wag      21   V    \n#&gt; 3 Datsun 710         22.8 reto \n#&gt; 4 Hornet 4 Drive     21.4 reto \n#&gt; 5 Hornet Sportabout  18.7 V    \n#&gt; 6 Valiant            18.1 reto \n#&gt; # ℹ 26 more rows"
   },
   {
     "objectID": "slide-inferencia-duas-medias-matematico-r.html#exploração-dos-dados",
@@ -1731,8 +1731,8 @@
     "objectID": "slide-inferencia-duas-medias-matematico-r.html#homogeneidade-de-variâncias-teste-de-levene",
     "href": "slide-inferencia-duas-medias-matematico-r.html#homogeneidade-de-variâncias-teste-de-levene",
     "title": "Inferência",
-    "section": "Homogeneidade de Variâncias: teste de Levene",
-    "text": "Homogeneidade de Variâncias: teste de Levene\n\nHipóteses:\n\n\\(H_0\\): As variâncias populacionais são iguais entre os grupos\n\\(H_a\\): As variâncias populacionais não são iguais entre os grupos\n\nAvaliar a homogeneidade de variâncias da VD (mpg) entre os grupos da VI (vs):\n\n“V” e “reto”"
+    "section": "Homogeneidade de variâncias: teste de Levene",
+    "text": "Homogeneidade de variâncias: teste de Levene\n\nHipóteses:\n\n\\(H_0\\): As variâncias populacionais são iguais entre os grupos\n\\(H_a\\): As variâncias populacionais não são iguais entre os grupos\n\n\n\n\n\n\n\n\n\n\n\nF\ndf1\ndf2\np\n\n\n\n\nNota\n1.97\n1\n96\n0.164"
   },
   {
     "objectID": "slide-inferencia-duas-medias-matematico-r.html#homogeneidade-de-variâncias-rstatixlevene_test",
@@ -1752,8 +1752,8 @@
     "objectID": "slide-inferencia-duas-medias-matematico-r.html#teste-t-para-amostras-independentes-1",
     "href": "slide-inferencia-duas-medias-matematico-r.html#teste-t-para-amostras-independentes-1",
     "title": "Inferência",
-    "section": "Teste t para amostras independentes",
-    "text": "Teste t para amostras independentes\n\nHipóteses (Bilateral):\n\nHipótese nula: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos \\[H_0: \\mu_{\\text{V}} = \\mu_{\\text{reto}}\\]\nHipótese alternativa: a média do consumo de combustível dos carros com motores em V é diferente da média dos carros com motores retos \\[H_a: \\mu_{\\text{V}} \\ne \\mu_{\\text{reto}}\\]"
+    "section": "Teste t para Amostras Independentes",
+    "text": "Teste t para Amostras Independentes\n\nFinalidade: examina se existe uma diferença estatisticamente significativa entre as médias de uma variável quantitativa em dois grupos independentes\nAplicação: ideal para delineamentos entre participantes. Por exemplo:\n\nComparar níveis de ansiedade entre pessoas com e sem filhos\nComparar a pressão sanguínea entre quem usa um medicamento e um grupo controle\nComparar o estresse entre praticantes de atividades físicas e sedentários"
   },
   {
     "objectID": "slide-inferencia-duas-medias-matematico-r.html#teste-t-para-amostras-independentes-rstatixt_test",
@@ -1788,7 +1788,7 @@
     "href": "slide-inferencia-duas-medias-matematico-r.html#método",
     "title": "Inferência",
     "section": "Método",
-    "text": "Método\nProcedimentos\nAnálise de Dados\nUm teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores retos e motores em V. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e homogeneidade das variâncias (teste de Levene)."
+    "text": "Método\nProcedimentos\nAnálise de Dados\nUm teste t para amostras independentes foi realizado para comparar a nota de alunos que separados em dois grupos: aqueles que liam os textos antes das aulas e aqueles que não tinha esse hábido. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e de homogeneidade das variâncias (teste de Levene)."
   },
   {
     "objectID": "slide-inferencia-duas-medias-matematico-r.html#resultados",
@@ -1858,7 +1858,7 @@
     "href": "slide-inferencia-duas-medias-matematico-r.html#método-1",
     "title": "Inferência",
     "section": "Método",
-    "text": "Método\nProcedimentos\nAnálise de Dados\nUm teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores de 4 e 6 cilindros. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e homogeneidade das variâncias (teste de Levene)."
+    "text": "Método\nProcedimentos\nAnálise de Dados\nUm teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores retos e motores em V. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e de homogeneidade das variâncias (teste de Levene)."
   },
   {
     "objectID": "slide-inferencia-duas-medias-matematico-r.html#resultados-1",
@@ -6659,5 +6659,264 @@
     "title": "Introdução ao R",
     "section": "Exercício 20",
     "text": "Exercício 20\nCrie um objeto nomes com os nomes de 5 pessoas: João, Maria, Pedro, Ana e Carlos. Em seguida, ordene os nomes em ordem alfabética.\n\n\n\n\n\n\nDica\n\n\n\n\nsort()"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#pesquisa-fictícia",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#pesquisa-fictícia",
+    "title": "Inferência",
+    "section": "Pesquisa fictícia",
+    "text": "Pesquisa fictícia\n\nPergunta de partida:\n\nQual é o efeito do hábito de ler dos textos antes das aulas sobre as médias de avaliação de discentes do curso de psicologia?\n\nGrupo de leitores X Grupo de não leitores"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#hipóteses",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#hipóteses",
+    "title": "Inferência",
+    "section": "Hipóteses",
+    "text": "Hipóteses\n\nHipótese nula (\\(H_0\\) - é a hipótese que tentaremos rejeitar): não há diferença entre as médias das notas dos dois grupos\n\n\\(H_0: \\mu_{leitores} = \\mu_{não-leitores}\\)1\n\\(H_0: \\mu_{leitores} - \\mu_{não-leitores} = 0\\)\n\nHipótese alternativa (\\(H_1\\)): há uma diferença entre as médias das notas dos dois grupos\n\n\\(H_1: \\mu_{leitores} \\neq \\mu_{não-leitores}\\)\n\\(H_1: \\mu_{leitores} - \\mu_{não-leitores} \\neq 0\\)\n\n\nOnde \\(\\mu_{leitores}\\) é a média da população de alunos que leem e \\(\\mu_{não-leitores}\\) é a média da população de alunos que não leem"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#o-que-os-nossos-dados-sugerem",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#o-que-os-nossos-dados-sugerem",
+    "title": "Inferência",
+    "section": "O que os nossos dados sugerem?",
+    "text": "O que os nossos dados sugerem?"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#delineamento-entre-participantes-independente-ou-não-relacionado-2-grupos-em-condições-diferentes",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#delineamento-entre-participantes-independente-ou-não-relacionado-2-grupos-em-condições-diferentes",
+    "title": "Inferência",
+    "section": "Delineamento entre participantes, independente ou não relacionado (2 grupos em condições diferentes)",
+    "text": "Delineamento entre participantes, independente ou não relacionado (2 grupos em condições diferentes)"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#teste-t-para-amostras-independentes-2",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#teste-t-para-amostras-independentes-2",
+    "title": "Inferência",
+    "section": "Teste t para Amostras Independentes",
+    "text": "Teste t para Amostras Independentes\n\nAs Hipóteses (em um teste bidirecional):\n\nHipótese Nula (\\(H_0\\)): afirma que não há diferença entre as médias dos grupos na população\n\n\\(H_0: \\mu_a = \\mu_b\\)\n\\(H_0: \\mu_a - \\mu_b = 0\\)\n\nHipótese Alternativa (\\(H_1\\)): afirma que existe uma diferença entre as médias\n\n\\(H_1: \\mu_a \\neq \\mu_a\\)\n\\(H_1: \\mu_a - \\mu_a \\neq 0\\)"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#teste-t-para-amostras-independentes-3",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#teste-t-para-amostras-independentes-3",
+    "title": "Inferência",
+    "section": "Teste t para Amostras Independentes",
+    "text": "Teste t para Amostras Independentes\n\nA Regra de Decisão (usando o p-valor):\n\nSe p ≤ 0,05: Rejeitamos a Hipótese Nula. A diferença observada é estatisticamente significativa\nSe p &gt; 0,05: Falhamos em rejeitar a Hipótese Nula. Não há evidência suficiente para afirmar que existe uma diferença"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#teste-t-para-amostras-independentes-4",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#teste-t-para-amostras-independentes-4",
+    "title": "Inferência",
+    "section": "Teste t para amostras independentes",
+    "text": "Teste t para amostras independentes\n\nHipóteses (Bilateral):\n\nHipótese nula: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos \\[H_0: \\mu_{\\text{V}} = \\mu_{\\text{reto}}\\]\nHipótese alternativa: a média do consumo de combustível dos carros com motores em V é diferente da média dos carros com motores retos \\[H_a: \\mu_{\\text{V}} \\ne \\mu_{\\text{reto}}\\]"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#delineamento-entre-participantes-ou-independente-dois-grupos-em-condições-diferentes",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#delineamento-entre-participantes-ou-independente-dois-grupos-em-condições-diferentes",
+    "title": "Inferência",
+    "section": "Delineamento entre participantes ou independente: dois grupos em condições diferentes",
+    "text": "Delineamento entre participantes ou independente: dois grupos em condições diferentes"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#delineamento-entre-participantes-ou-independente-dois-grupos-em-condições-diferentesstylefont-size-28pt",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#delineamento-entre-participantes-ou-independente-dois-grupos-em-condições-diferentesstylefont-size-28pt",
+    "title": "Inferência",
+    "section": "[Delineamento entre participantes ou independente: dois grupos em condições diferentes]{style=“font-size: 28pt;}",
+    "text": "[Delineamento entre participantes ou independente: dois grupos em condições diferentes]{style=“font-size: 28pt;}"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#delineamento-entre-participantes-dois-grupos-em-condições-diferentes",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#delineamento-entre-participantes-dois-grupos-em-condições-diferentes",
+    "title": "Inferência",
+    "section": "Delineamento entre participantes: dois grupos em condições diferentes",
+    "text": "Delineamento entre participantes: dois grupos em condições diferentes\n          \n\nGrupo leitor\n\n\nGrupo não Leitor"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#pressupostos-do-teste-t-para-amostras-independentes",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#pressupostos-do-teste-t-para-amostras-independentes",
+    "title": "Inferência",
+    "section": "Pressupostos do Teste T para amostras independentes",
+    "text": "Pressupostos do Teste T para amostras independentes\n\nVariável Independente (VI): deve ser categórica com dois níveis (dicotômica)\nVariável Dependente (VD): Deve ser escalar ou intervalar.\n\nA decisão sobre os tipos de variáveis é feita no desenho do estudo, guiada pela pergunta de pesquisa!\n\nIndependência das observações: os grupos devem ser mutuamente exclusivos (um participante não pode estar em ambos os grupos)\nVerificação de outliers: o teste é sensível a valores atípicos. É importante inspecionar os dados para identificá-los e tratá-los, se for caso\nOs dados da VD em cada grupo devem ser provenientes de uma população com distribuição aproximadamente normal\nHomogeneidade das Variâncias (Homocedasticidade): as variâncias da VD devem ser aproximadamente iguais entre os grupos"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#hipótese-alternativa",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#hipótese-alternativa",
+    "title": "Inferência",
+    "section": "Hipótese alternativa",
+    "text": "Hipótese alternativa"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#hipótese-nula",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#hipótese-nula",
+    "title": "Inferência",
+    "section": "Hipótese nula",
+    "text": "Hipótese nula"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#o-que-os-nossos-dados-da-pesquisa-fictícia-sugerem",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#o-que-os-nossos-dados-da-pesquisa-fictícia-sugerem",
+    "title": "Inferência",
+    "section": "O que os nossos dados da pesquisa fictícia sugerem?",
+    "text": "O que os nossos dados da pesquisa fictícia sugerem?"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#visualização-da-hipótese-alternativa-h1",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#visualização-da-hipótese-alternativa-h1",
+    "title": "Inferência",
+    "section": "Visualização da Hipótese Alternativa (H1)",
+    "text": "Visualização da Hipótese Alternativa (H1)"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#visualização-da-hipótese-nula-h0",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#visualização-da-hipótese-nula-h0",
+    "title": "Inferência",
+    "section": "Visualização da Hipótese Nula (H0)",
+    "text": "Visualização da Hipótese Nula (H0)"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#o-que-os-dados-da-pesquisa-fictícia-sugerem",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#o-que-os-dados-da-pesquisa-fictícia-sugerem",
+    "title": "Inferência",
+    "section": "O que os dados da pesquisa fictícia sugerem?",
+    "text": "O que os dados da pesquisa fictícia sugerem?"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#o-que-os-dados-da-pesquisa-fictícia-sugerem-1",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#o-que-os-dados-da-pesquisa-fictícia-sugerem-1",
+    "title": "Inferência",
+    "section": "O que os dados da pesquisa fictícia sugerem?",
+    "text": "O que os dados da pesquisa fictícia sugerem?\n\n\n\n\n\n\n\n\nGrupo\nMédia\nDiferença entre as médias\n\n\n\n\nnão leitor\n6.98\n-\n\n\nleitor\n7.91\n0.93"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#vi-categórica-e-dicotômica",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#vi-categórica-e-dicotômica",
+    "title": "Inferência",
+    "section": "VI categórica e dicotômica",
+    "text": "VI categórica e dicotômica\n  \n\nGrupo leitor\n\n\nGrupo não Leitor"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#vd-escalar-ou-intervalar",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#vd-escalar-ou-intervalar",
+    "title": "Inferência",
+    "section": "VD escalar ou intervalar",
+    "text": "VD escalar ou intervalar\n\n\n\n\n\n\n\n\n\nAluno a\nAluno b\nAluno c\nAluno d\nAluno e\n\n\n\n\nNota\n7.4\n8.5\n9.4\n8.2\n7.6"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#as-observações-devem-ser-independentes",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#as-observações-devem-ser-independentes",
+    "title": "Inferência",
+    "section": "As observações devem ser independentes",
+    "text": "As observações devem ser independentes\nO que há de errado nessa tabela?\n\n\n\n\n\n\n\n\nNota\nGrupo\nAluno\n\n\n\n\n9.1\nleitor\nPedro\n\n\n7.7\nleitor\nJoana\n\n\n8.8\nleitor\nTércia\n\n\n9.5\nnão leitor\nJoão\n\n\n6.9\nnão leitor\nJosé\n\n\n7.1\nnão leitor\nJoana"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#as-observações-devem-ser-independentes-1",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#as-observações-devem-ser-independentes-1",
+    "title": "Inferência",
+    "section": "As observações devem ser independentes",
+    "text": "As observações devem ser independentes\nO que há de errado nessa tabela?\n\n\n\n\n\n\n\n\nNota\nGrupo\nAluno\n\n\n\n\n9.1\nleitor\nPedro\n\n\n7.7\nleitor\nJoana\n\n\n8.8\nleitor\nTércia\n\n\n9.5\nnão leitor\nJoão\n\n\n6.9\nnão leitor\nJosé\n\n\n7.1\nnão leitor\nJoana"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#análise-de-outliers",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#análise-de-outliers",
+    "title": "Inferência",
+    "section": "Análise de outliers",
+    "text": "Análise de outliers"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#distribuição-normal-da-vd-em-cada-grupo",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#distribuição-normal-da-vd-em-cada-grupo",
+    "title": "Inferência",
+    "section": "Distribuição normal da VD em cada grupo",
+    "text": "Distribuição normal da VD em cada grupo"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#distribuição-normal-da-vd-em-cada-grupo-1",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#distribuição-normal-da-vd-em-cada-grupo-1",
+    "title": "Inferência",
+    "section": "Distribuição normal da VD em cada grupo",
+    "text": "Distribuição normal da VD em cada grupo"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#homogeneidade-de-variâncias",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#homogeneidade-de-variâncias",
+    "title": "Inferência",
+    "section": "Homogeneidade de Variâncias",
+    "text": "Homogeneidade de Variâncias"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#distribuição-normal-da-vd-em-cada-grupo-gráfico-q-q",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#distribuição-normal-da-vd-em-cada-grupo-gráfico-q-q",
+    "title": "Inferência",
+    "section": "Distribuição normal da VD em cada grupo: gráfico Q-Q",
+    "text": "Distribuição normal da VD em cada grupo: gráfico Q-Q"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#distribuição-normal-da-vd-em-cada-grupo-teste-de-shapiro-wilk",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#distribuição-normal-da-vd-em-cada-grupo-teste-de-shapiro-wilk",
+    "title": "Inferência",
+    "section": "Distribuição normal da VD em cada grupo: teste de Shapiro-Wilk",
+    "text": "Distribuição normal da VD em cada grupo: teste de Shapiro-Wilk\n\nHipóteses:\n\n\\(H_0\\): a variável de interesse é oriunda de uma população com distribuição normal\n\\(H_a\\): a variável de interesse não é oriunda de uma população com distribuição normal\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngrupo\n\nShapiro-Wilk\n\n\n\nW\np\n\n\n\n\nleitor\n0.991\n0.958\n\n\nnão leitor\n0.990\n0.953"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#homogeneidade-de-variâncias-gráfico-de-caixas",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#homogeneidade-de-variâncias-gráfico-de-caixas",
+    "title": "Inferência",
+    "section": "Homogeneidade de variâncias: gráfico de caixas",
+    "text": "Homogeneidade de variâncias: gráfico de caixas"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#homogeneidade-de-variâncias-teste-de-levene-1",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#homogeneidade-de-variâncias-teste-de-levene-1",
+    "title": "Inferência",
+    "section": "Homogeneidade de Variâncias: teste de Levene",
+    "text": "Homogeneidade de Variâncias: teste de Levene\n\nHipóteses:\n\n\\(H_0\\): As variâncias populacionais são iguais entre os grupos\n\\(H_a\\): As variâncias populacionais não são iguais entre os grupos\n\nAvaliar a homogeneidade de variâncias da VD (mpg) entre os grupos da VI (vs):\n\n“V” e “reto”"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#resultado",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#resultado",
+    "title": "Inferência",
+    "section": "Resultado",
+    "text": "Resultado\n\n\n\n\n\n\n\n\n\n\nEstatística\ngl\np\n\n\n\n\nnota\nt de Student\n4.22\n96.00\n&lt; .001"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#teste",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#teste",
+    "title": "Inferência",
+    "section": "Teste",
+    "text": "Teste"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#teste-1",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#teste-1",
+    "title": "Inferência",
+    "section": "Teste",
+    "text": "Teste\n\n#&gt; \n#&gt;  INDEPENDENT SAMPLES T-TEST\n#&gt; \n#&gt;  Independent Samples T-Test                                    \n#&gt;  ───────────────────────────────────────────────────────────── \n#&gt;                           Statistic    df          p           \n#&gt;  ───────────────────────────────────────────────────────────── \n#&gt;    nota    Student's t     4.220428    96.00000    0.0000553   \n#&gt;  ───────────────────────────────────────────────────────────── \n#&gt;    Note. Hₐ μ &lt;sub&gt;leitor&lt;/sub&gt; ≠ μ &lt;sub&gt;não leitor&lt;/sub&gt;"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#section-1",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#section-1",
+    "title": "Inferência",
+    "section": "",
+    "text": "Estatística\ngl\np\nErro padrão da diferença\nDiferença média\n\nIntervalo de Confiança a 95%\n\n\n\nLimite inferior\nLimite superior\n\n\n\n\nnota\nT-test\n4.22\n96.00\n&lt; .001\n0.22\n0.93\n0.49\n1.37"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#teste-t",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#teste-t",
+    "title": "Inferência",
+    "section": "Teste T",
+    "text": "Teste T\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstatística\ngl\np\nErro padrão da diferença\nDiferença média\n\nIntervalo de Confiança a 95%\n\n\n\nLimite inferior\nLimite superior\n\n\n\n\nnota\nT-test\n4.22\n96.00\n&lt; .001\n0.22\n0.93\n0.49\n1.37"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#método-2",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#método-2",
+    "title": "Inferência",
+    "section": "Método",
+    "text": "Método\nProcedimentos\nAnálise de Dados\nUm teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores de 4 e 6 cilindros. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e homogeneidade das variâncias (teste de Levene)."
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#tamanho-de-efeito-d-de-cohen",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#tamanho-de-efeito-d-de-cohen",
+    "title": "Inferência",
+    "section": "Tamanho de efeito: D de Cohen",
+    "text": "Tamanho de efeito: D de Cohen\n\n#&gt; # A tibble: 1 × 9\n#&gt;   .y.   group1 group2     effsize    n1    n2 conf.low conf.high magnitude\n#&gt; * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;ord&gt;    \n#&gt; 1 nota  leitor não leitor   0.853    50    48     0.44      1.32 large"
   }
 ]
