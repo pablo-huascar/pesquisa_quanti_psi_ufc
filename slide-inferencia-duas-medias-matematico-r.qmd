@@ -156,7 +156,7 @@ library(rstatix)
 ## Pesquisa fictícia {.smaller}
 
 -   Pergunta de partida:
-    -   Qual é o efeito do hábito de leitura dos textos antes das aulas sobre as médias de avaliação de discentes do curso de psicologia?
+    -   Qual é o efeito do hábito de ler dos textos antes das aulas sobre as médias de avaliação de discentes do curso de psicologia?
         -   Grupo de leitores X Grupo de não leitores
 
 ![](img/pesquisa-fic-teste-t.png){fig-align="center"}
@@ -165,16 +165,17 @@ library(rstatix)
 
 -   Hipótese nula ($H_0$ - é a hipótese que tentaremos rejeitar): não há diferença entre as médias das notas dos dois grupos
     -   $H_0: \mu_{leitores} = \mu_{não-leitores}$[^1]
+    -   $H_0: \mu_{leitores} - \mu_{não-leitores} = 0$
 -   Hipótese alternativa ($H_1$): há uma diferença entre as médias das notas dos dois grupos
     -   $H_1: \mu_{leitores} \neq \mu_{não-leitores}$
+    -   $H_1: \mu_{leitores} - \mu_{não-leitores} \neq 0$
 
-[^1]: Onde $μ_1$ é a média da população de alunos que leem e $μ_2$ é a média da população de alunos que não leem
+[^1]: Onde $\mu_{leitores}$ é a média da população de alunos que leem e $\mu_{não-leitores}$ é a média da população de alunos que não leem
 
-## O que os nossos dados sugerem?
+## O que os dados da pesquisa fictícia sugerem?
 
 ```{r}
 #| out-width: "70%"
-#| fig-align: "center"
 pesquisa_fic |> 
   ggplot(
     aes(x = grupo, y = nota, 
@@ -189,6 +190,40 @@ pesquisa_fic |>
   ) + 
   scale_x_discrete(
     labels = c("Leitor", "Não leitor")
+  )
+```
+
+## O que os dados da pesquisa fictícia sugerem?
+
+```{r}
+pesquisa_fic |> 
+  summarise(
+    Média = mean(nota),
+    .by = grupo
+  ) |> 
+  arrange(Média) |> 
+  mutate(
+    "Diferença entre as médias" = Média - lag(Média)
+  ) |> 
+  rename(
+    Grupo = grupo
+  ) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 2
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  sub_missing(
+    missing_text = "-"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
   )
 ```
 
@@ -214,18 +249,163 @@ Grupo não Leitor
 ## Teste t para Amostras Independentes
 
 -   Finalidade: examina se existe uma diferença estatisticamente significativa entre as médias de uma variável quantitativa em dois grupos independentes
--   Aplicação: ideal para delineamentos entre participantes
-    -   Ex: comparar níveis de ansiedade entre pessoas com e sem filhos
-    -   Ex: comparar a pressão sanguínea entre quem usa um medicamento e um grupo controle
-    -   Ex: comparar o estresse entre praticantes de atividades físicas e sedentários
+-   Aplicação: ideal para delineamentos entre participantes. Por exemplo:
+    -   Comparar níveis de ansiedade entre pessoas com e sem filhos
+    -   Comparar a pressão sanguínea entre quem usa um medicamento e um grupo controle
+    -   Comparar o estresse entre praticantes de atividades físicas e sedentários
 
 ## Teste t para Amostras Independentes
 
 -   As Hipóteses (em um teste bidirecional):
     -   Hipótese Nula ($H_0$): afirma que não há diferença entre as médias dos grupos na população
-        -   $H_0: \mu_1 = \mu_2$
+        -   $H_0: \mu_a = \mu_b$
+        -   $H_0: \mu_a - \mu_b = 0$
     -   Hipótese Alternativa ($H_1$): afirma que existe uma diferença entre as médias
-        -   $H_1: \mu_1 \neq \mu_2$
+        -   $H_1: \mu_a \neq \mu_a$
+        -   $H_1: \mu_a - \mu_a \neq 0$
+        
+## Visualização da Hipótese Alternativa (H1)
+
+```{r}
+set.seed(234)
+
+grupo_experimental <- rtruncnorm(
+  n = 10000, a = 0, b = 100, 
+  mean = 80, sd = 10
+  )
+
+grupo_controle <- rtruncnorm(
+  n = 10000, a = 0, b = 100, 
+  mean = 30, sd = 10
+  )
+
+grupos <- rep(c("Experimental", "Controle"), each = 10000)
+
+hipotese_alternativa <- tibble(
+  medida = c(grupo_experimental, grupo_controle),
+  Grupo = grupos
+)
+```
+
+```{r}
+medias_alternativa <- hipotese_alternativa |> 
+  summarise(
+    m = mean(medida),
+    .by = Grupo
+  )
+
+m_exp <- medias_alternativa[[1, 2]] 
+m_ctrl <- medias_alternativa[[2, 2]]
+```
+
+```{r}
+#| out-width: "70%"
+
+hipotese_alternativa |> 
+  ggplot(
+    aes(x = medida, fill = Grupo),
+  ) + 
+  geom_density(
+    alpha = 0.6, color = "white"
+    ) + 
+  geom_vline(
+    xintercept = m_exp, linetype = 2,
+    color = "blue"
+  ) + 
+  geom_vline(
+    xintercept = m_ctrl, linetype = 2,
+    color = "blue"
+  ) + 
+  geom_segment(
+    x = m_ctrl, xend = m_exp, 
+    y = 1400, yend = 1400,
+    linetype = 2,
+    color = "red"
+  ) + 
+  labs(
+    title = "As populações de onde as amostras foram retiradas \ntêm médias diferentes",
+    x = "Medida da Variável de Interesse",
+    y = "Densidade (Probabilidade Relativa)",
+    fill = "Grupo"
+  ) +
+  scale_fill_manual(
+    values = c("Experimental" = "#0072B2", 
+               "Controle" = "#D55E00")
+  ) +
+  theme(legend.position = "bottom")
+  
+```
+
+## Visualização da Hipótese Nula (H0)
+
+```{r}
+set.seed(234)
+
+grupo_experimental <- rtruncnorm(
+  n = 1000, a = 0, b = 100, 
+  mean = 80, sd = 10
+  )
+
+grupo_controle <- rtruncnorm(
+  n = 1000, a = 0, b = 100, 
+  mean = 79, sd = 10
+  )
+
+grupos <- rep(c("Experimental", "Controle"), each = 1000)
+
+hipotese_nula <- tibble(
+  medida = c(grupo_experimental, grupo_controle),
+  Grupo = grupos
+)
+```
+
+```{r}
+medias_nula <- hipotese_nula |> 
+  summarise(
+    m = mean(medida),
+    .by = Grupo
+  )
+
+m_exp <- medias_nula[[1, 2]] 
+m_ctrl <- medias_nula[[2, 2]]
+```
+
+```{r}
+#| out-width: "70%"
+
+hipotese_nula |> 
+  ggplot(
+    aes(x = medida, fill = Grupo),
+    ) + 
+  geom_density(
+    alpha = 0.6, color = "white"
+    ) +
+  geom_vline(
+    xintercept = m_exp, linetype = 2,
+    color = "blue"
+      ) + 
+  geom_vline(
+    xintercept = m_ctrl, linetype = 2,
+    color = "blue"
+  ) + 
+  geom_segment(
+    x = m_ctrl, xend = m_exp, 
+    y = 1400, yend = 1400,
+    linetype = 2,
+    color = "red"
+    ) + 
+  labs(
+    title = "As populações de onde as amostras foram retiradas \ntêm médias quase iguais",
+    x = "Medida da Variável de Interesse",
+    y = "Densidade (Probabilidade Relativa)",
+    fill = "Grupo"
+  ) +
+  scale_fill_manual(
+    values = c("Experimental" = "#0072B2", 
+               "Controle" = "#D55E00")
+    ) + 
+  theme(legend.position = "bottom")
+```
 
 ## Teste t para Amostras Independentes
 
@@ -236,12 +416,357 @@ Grupo não Leitor
 ## Pressupostos do Teste T para amostras independentes {.smaller}
 
 -   Variável Independente (VI): deve ser categórica com dois níveis (dicotômica)
--   Variável Dependente (VD): Deve ser contínua (ou quantitativa).
+-   Variável Dependente (VD): Deve ser escalar ou intervalar.
     -   A decisão sobre os tipos de variáveis é feita no desenho do estudo, guiada pela pergunta de pesquisa!
 -   Independência das observações: os grupos devem ser mutuamente exclusivos (um participante não pode estar em ambos os grupos)
--   Verificação de outliers: o teste é sensível a valores atípicos. É importante inspecionar os dados para identificá-los e tratá-los
+-   Verificação de outliers: o teste é sensível a valores atípicos. É importante inspecionar os dados para identificá-los e tratá-los, se for caso
 -   Os dados da VD em cada grupo devem ser provenientes de uma população com distribuição aproximadamente normal
 -   Homogeneidade das Variâncias (Homocedasticidade): as variâncias da VD devem ser aproximadamente iguais entre os grupos
+
+# Avaliação dos pressupostos na pesquisa fictícia
+
+## VI categórica e dicotômica
+
+![](img/teste-t-grupo-leitor.png){.absolute width="300" top="170" left="0"}
+![](img/linha-vertical.png){.absolute width="200" down="300" right="450"}
+![](img/teste-t-grupo-nao-leitor.png){.absolute width="300" top="170" right="0"}
+<div class="absolute" style="top: 480px; left: 0px; width: 250px; text-align: center; font-weight: bold; font-size: 32px;">
+Grupo leitor
+</div>
+
+<div class="absolute" style="top: 480px; right: 25px; width: 250px; text-align: center; font-weight: bold; font-size: 32px;">
+Grupo não Leitor
+</div>
+
+## VD escalar ou intervalar
+
+```{r}
+set.seed(789)
+
+pesquisa_fic |> 
+  slice_sample(n = 5)  |> 
+  select(Nota = nota) |> 
+  mutate(
+    Aluno = letters[seq( from = 1, to = 5)],
+    Aluno = str_c("Aluno ", Aluno),
+    Texto = rep("Nota", 5)
+  ) |> 
+  pivot_wider(
+    names_from = Aluno, values_from = Nota, id_cols = "Texto") |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  cols_label(
+    Texto = " "
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    ) 
+```
+
+## As observações devem ser independentes
+
+O que há de errado nessa tabela?
+
+```{r}
+set.seed(90)
+
+pesquisa_fic |> 
+  group_by(grupo) |> 
+  slice_sample(n = 3) |> 
+  ungroup() |> 
+  mutate(
+    Aluno = c("Pedro", "Joana", "Tércia",
+              "João", "José", "Joana")
+    ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  cols_label(
+    nota = "Nota",
+    grupo = "Grupo"
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
+```
+
+## As observações devem ser independentes
+
+O que há de errado nessa tabela?
+
+```{r}
+set.seed(90)
+
+pesquisa_fic |> 
+  group_by(grupo) |> 
+  slice_sample(n = 3) |> 
+  ungroup() |> 
+  mutate(
+    Aluno = c("Pedro", "Joana", "Tércia",
+              "João", "José", "Joana")
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  cols_label(
+    nota = "Nota",
+    grupo = "Grupo"
+  ) |> 
+  tab_style(
+    style = list(
+      cell_fill(color = "red"),
+      cell_text(color = "white")
+      ),
+    locations = cells_body(columns = everything(), rows = c(2,6))
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Análise de outliers
+
+```{r}
+#| out-width: "70%"
+pesquisa_fic |> 
+  mutate(
+    nota = case_when(nota == 9.9 ~ 15,
+                     .default = nota)
+  ) |> 
+  ggplot(
+    aes(nota), 
+  ) + 
+  geom_boxplot(
+    color = "#569BBD"
+    ) + 
+  coord_flip()
+```
+
+## Distribuição normal da VD em cada grupo: gráfico Q-Q
+
+```{r}
+pesquisa_fic |> 
+  ggplot(
+    aes(sample = nota)
+    ) + 
+  stat_qq(
+    aes(color = grupo), alpha = 0.8, 
+    show.legend = FALSE
+    ) + 
+  stat_qq_line(
+    color = "black", linetype = "dashed"
+  ) + 
+  labs(
+    subtitle = "Distribuição normal: pontos que seguem de perto a linha diagonal",
+    x = "Quantis Teóricos (da Distribuição Normal)",
+    y = "Quantis da Amostra (Notas)"
+  ) + 
+  facet_wrap(vars(grupo))
+```
+
+## Distribuição normal da VD em cada grupo: teste de Shapiro-Wilk
+
+-   Hipóteses:
+    -   $H_0$: a variável de interesse é oriunda de uma população com distribuição normal
+    -   $H_a$: a variável de interesse não é oriunda de uma população com distribuição normal
+    
+```{r}
+pesquisa_fic |> 
+  group_by(grupo) |> 
+  shapiro_test(nota) |> 
+  select(-variable) |> 
+  rename(
+    W = statistic
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_spanner(
+    label = "Shapiro-Wilk",
+    columns = c(W, p)
+  ) |> 
+  fmt_number(
+    decimals = 3
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+
+## Homogeneidade de variâncias: gráfico de caixas
+
+```{r}
+pesquisa_fic |> 
+  ggplot(
+    aes(x = grupo, y = nota, color = grupo)
+    ) +
+  geom_boxplot(
+    show.legend = FALSE
+    ) +
+  labs(
+    subtitle = "As alturas das caixas são semelhantes, sugerindo variâncias homogêneas.",
+    x = "Grupo",
+    y = "Nota na Avaliação"
+  )
+```
+
+## Homogeneidade de variâncias: teste de Levene
+
+-   Hipóteses:
+    -   $H_0$: As variâncias populacionais são iguais entre os grupos
+    -   $H_a$: As variâncias populacionais não são iguais entre os grupos
+
+```{r}
+pesquisa_fic |> 
+  levene_test(nota ~ grupo, center = "mean") |> 
+  relocate(
+    statistic, .before = 1
+  ) |> 
+  rename(
+    "F" = statistic
+  ) |> 
+  mutate(
+    nota = "Nota", 
+    .before = 1
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+ ) |>
+  cols_label(
+    nota = " " 
+  ) |> 
+  fmt_number(
+    decimals = 3,
+    columns = p
+  ) |>
+  fmt_number(
+    decimals = 2,
+    columns = "F"
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+# Análise e redação dos resultados para a pesquisa fictícia
+
+## Teste T
+
+```{r}
+teste_t_pesquisa_fic <- 
+  pesquisa_fic |> 
+  t_test(
+    nota ~ grupo, 
+    var.equal = T, 
+    comparisons = c("leitor", "não leitor"), detailed = T
+  )
+
+var_combinada <- pesquisa_fic |> 
+  summarise(
+    n = n(),
+    var = var(nota),
+    .by = grupo
+  ) 
+  
+n1 <- var_combinada[[1, 2]]
+n2 <- var_combinada[[2, 2]]
+var1 <- var_combinada[[1, 3]]
+var2 <- var_combinada[[2, 3]]
+var_combinada <- ((n1 - 1)*var1 + (n2 - 1)*var2)/(n1 + n2 - 2)
+ep_dif_medias <- sqrt(var_combinada*(1/n1 + 1/n2))
+
+teste_t_pesquisa_fic <- teste_t_pesquisa_fic |> 
+  mutate(
+    "Diferença média" = estimate1 - estimate2,
+    "Erro padrão da diferença" = ep_dif_medias
+  ) |> 
+  select(.y., method, "Estatística" = statistic, 
+         gl = df, p, "Erro padrão da diferença",
+         "Diferença média", "Limite inferior" = conf.low, 
+         "Limite superior" = conf.high) |> 
+  mutate(
+    p = "< .001" 
+  )
+```
+
+```{r}
+teste_t_pesquisa_fic |>
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |>
+  cols_label(
+    .y. = " ",
+    method = " "
+  ) |> 
+  tab_spanner(
+    label = "Intervalo de Confiança a 95%",
+    columns = c("Limite inferior", "Limite superior")
+  ) |> 
+  fmt_number(
+    decimals = 3,
+    columns = p
+  ) |>
+  fmt_number(
+    decimals = 2
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Tamanho de efeito: D de Cohen
+
+```{r}
+set.seed(234)
+pesquisa_fic |> 
+  cohens_d(
+    formula = nota ~ grupo,  
+    ref.group = "leitor", 
+    var.equal = T, ci = T
+  )
+```
+
+
+## Método 
+
+**Procedimentos**
+
+***Análise de Dados***
+
+Um teste t para amostras independentes foi realizado para comparar a nota de alunos que separados em dois grupos: aqueles que liam os textos antes das aulas e aqueles que não tinha esse hábido. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e de homogeneidade das variâncias (teste de Levene).
+
 
 ## Exemplo {.smaller}
 
@@ -557,7 +1082,7 @@ resultado_cohens_d
 
 ***Análise de Dados***
 
-Um teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores retos e motores em V. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e homogeneidade das variâncias (teste de Levene).
+Um teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores retos e motores em V. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e de homogeneidade das variâncias (teste de Levene).
 
 ## Resultados {.smaller}
 
