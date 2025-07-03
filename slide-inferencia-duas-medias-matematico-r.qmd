@@ -230,6 +230,7 @@ pesquisa_fic |>
 ## Delineamento entre participantes: dois grupos em condições diferentes
 
 ```{r}
+#| eval: false
 colchete <- image_read("img/curly-brackets-left.png")
 
 image_rotate(colchete,degrees = 180) |> 
@@ -748,19 +749,29 @@ teste_t_pesquisa_fic |>
 
 ```{r}
 set.seed(234)
-pesquisa_fic |> 
+
+d_de_cohen <- pesquisa_fic |> 
   cohens_d(
     formula = nota ~ grupo,  
     ref.group = "leitor", 
     var.equal = T, ci = T
-  ) |> 
+  )
+```
+
+```{r}
+d_de_cohen |> 
   select(
     "Dimensão do efeito" = effsize,
     "Limite inferior" = conf.low,
-    "Limite superior" = conf.high
+    "Limite superior" = conf.high,
+    "Magnitude" = magnitude
   ) |> 
   mutate(
     teste = "d de Cohen",
+    "Magnitude" = "Grande"
+  ) |> 
+  relocate(
+    teste,
     .before = 1
   ) |> 
   gt() |> 
@@ -786,7 +797,108 @@ pesquisa_fic |>
   )
 ```
 
-## Método
+## Para que serve o Tamanho de Efeito? {.smaller}
+
+Imagine dois estudos que testam uma nova terapia para ansiedade:
+
+-   Estudo A: Usa uma escala de 0 a 10. A diferença entre os grupos foi de 2 pontos
+
+-   Estudo B: Usa uma escala de 0 a 100. A diferença entre os grupos também foi de 2 pontos
+
+Pergunta: O efeito da terapia foi o mesmo nos dois estudos?
+
+> A diferença "bruta" não tem significado sem um padrão. Precisamos de uma forma de medir o tamanho do efeito que seja comparável entre estudos.
+
+## O que é o d de Cohen?
+
+É uma medida padronizada do tamanho do efeito que responde à pergunta:
+
+> "Quão grande é a diferença entre as médias de dois grupos, se usarmos o desvio padrão como nossa unidade de medida?"
+
+Ele transforma a diferença em uma unidade universal, permitindo a comparação e a interpretação da magnitude do efeito
+
+## Entendendo o d de Cohen com uma Analogia {.smaller}
+
+Podemos pensar no cálculo de uma forma bem simples:
+
+-   A Diferença entre as Médias $M_1 - M_2$
+    -   É a distância que queremos medir
+-   O Desvio Padrão Combinado $(s_p)$
+    -   É a nossa régua. Representa a variabilidade "típica" dos dados
+-   O d de Cohen
+    -   É a medição final: quantas vezes a nossa "régua" (desvio padrão) cabe na "distância" (diferença entre as médias)
+
+## A Fórmula desmistificada {.smaller}
+
+A fórmula matemática reflete exatamente a analogia da régua:
+
+$$ 
+d = \dfrac{M_1 - M_2}{s_p}
+$$
+
+Ou seja:
+
+$$
+d = \frac{\text{Distância entre as Médias}}{\text{A nossa 'Régua' (Desvio Padrão)}}
+$$
+
+## O que significa o resultado? (Regras de Bolso)[^2] {.smaller}
+
+[^2]: O contexto da pesquisa é crucial! Um efeito "pequeno" pode ser clinicamente muito importante
+
+As convenções de Cohen (1988) nos ajudam a ter um ponto de partida para a interpretação:
+
+-   d ≈ 0.2 (Efeito Pequeno):
+    -   A diferença é pequena. As distribuições dos grupos se sobrepõem muito.
+-   d ≈ 0.5 (Efeito Médio):
+    -   A diferença é moderada e visível a olho nu.
+-   d ≈ 0.8 (Efeito Grande):
+    -   A diferença é grande. Há pouca sobreposição entre as distribuições dos grupos.
+
+## Visualização do d de Cohen
+
+[![](img/qrcode_ddecohen.png){fig-alt="QR-code para o link https://rpsychologist.com/cohend/" fig-align="center"}](https://rpsychologist.com/cohend/)
+
+## d de Cohen vs. p-valor
+
+Eles não são inimigos, são parceiros! Eles respondem a perguntas diferentes e complementares
+
+```{r}
+comparacao <- tibble::tibble(
+  Categoria = c("Pergunta que responde", "Função", "O que nos diz"),
+  `p valor` = c("Existe uma diferença?", 
+                "Significância Estatística", 
+                "Se o efeito é \"real\" (não devido ao acaso)"),
+  `d de Cohen` = c("Quão GRANDE é a diferença?", 
+                   "Significância Prática / Clínica", 
+                   "A magnitude do efeito no mundo real")
+)
+```
+
+```{r}
+comparacao |> 
+  gt() |> 
+  cols_align(
+    align = "center", 
+    columns = c("p valor", "d de Cohen")  
+  ) |>
+  cols_label(
+    Categoria = " "
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Redação do Método
+
+<center>
+**Método**
+</center>
 
 **Procedimentos**
 
@@ -794,9 +906,30 @@ pesquisa_fic |>
 
 Um teste t para amostras independentes foi realizado para comparar a nota de alunos que separados em dois grupos: aqueles que liam os textos antes das aulas e aqueles que não tinha esse hábido. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e de homogeneidade das variâncias (teste de Levene).
 
-## Resultados {.smaller}
+## Redação dos Resultados {.smaller}
 
-O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo de alunos leitores (W = 0.991, p = 0.958), nem para o grupo de alunos não leitores (W = 0.99, p = 0.953). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (F(1, 96) = 1.95, p = 0.166). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, t(96) = 4.22, p < .001. Alunos leitores (n = 50, M = 7.91, DP = 0.96) apresentaram um desempenho melhor do que os não leitores (n = 48, M = 6.98, DP = 1.21). A diferença média foi de 0.93 pontos (IC 95% [0.49, 1.37]). O tamanho de efeito foi grande (d = 0.853, IC 95% [0.44, 1.32] ). Esses resultados sugerem que ler os textos antes das aulas influencia no desempenho dos discentes nas avaliações.
+<center>
+**Resultados**
+</center>
+
+O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo de alunos leitores (W = 0.991, p = 0.958), nem para o grupo de alunos não leitores (W = 0.99, p = 0.953). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (F(1, 96) = 1.95, p = 0.166). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, t(96) = 4.22, p \< .001. Alunos leitores (n = 50, M = 7.91, DP = 0.96) apresentaram um desempenho melhor do que os não leitores (n = 48, M = 6.98, DP = 1.21). A diferença média foi de 0.93 pontos (IC 95% \[0.49, 1.37\]). O tamanho de efeito foi grande (d = 0.853, IC 95% \[0.44, 1.32\] ). Esses resultados sugerem que ler os textos antes das aulas influencia no desempenho dos discentes nas avaliações.
+
+# Violação de pressupostos: homogeneidade de variâncias
+
+## Pesquisa fictícia 2
+
+-   Pergunta de partida:
+    -   Qual é o efeito do hábito de ler dos textos antes das aulas sobre as médias de ansiedade frente a provas discentes do curso de psicologia antes das avaliações?
+        -   Grupo de leitores X Grupo de não leitores
+        
+        
+## Hipóteses {.smaller}
+
+-   Hipótese nula: não há diferença entre as médias das notas dos dois grupos
+    -   $H_0: \mu_{leitores} = \mu_{não-leitores}$
+-   Hipótese alternativa ($H_1$): há uma diferença entre as médias das notas dos dois grupos
+    -   $H_1: \mu_{leitores} \neq \mu_{não-leitores}$
+    
 
 ## Exemplo {.smaller}
 
@@ -1314,7 +1447,7 @@ resultado_cohens_d
 
 # Redação do método e dos resultados
 
-## Método {.smaller}
+## [Método]{style="text-align: center;"} {.smaller}
 
 **Procedimentos**
 
@@ -1322,7 +1455,7 @@ resultado_cohens_d
 
 Um teste t para amostras independentes foi realizado para comparar o consumo de combustível entre carros com motores de 4 e 6 cilindros. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e homogeneidade das variâncias (teste de Levene).
 
-## Resultados {.smaller}
+## [Resultados]{style="text-align: center;"} {.smaller}
 
 ```{r}
 w_s_teste_4 <- resultado_shapiro[[1, "statistic"]] |> round(2)
