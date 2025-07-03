@@ -238,13 +238,13 @@ image_rotate(colchete,degrees = 180) |>
 
 ![](img/teste-t-grupo-leitor.png){.absolute width="100" top="350" left="0"} ![](img/teste-t-grupo-nao-leitor.png){.absolute width="100" top="350" right="0"} ![](img/curly-brackets-left){.absolute width="100" top="350" left="85"} ![](img/curly-brackets-right.png){.absolute width="100" top="350" right="85"} ![](img/linha-vertical.png){.absolute width="200" top="200" right="450"} ![](img/pesquisadora-negra-sozinha.png){.absolute width="100" top="250" left="180"} ![](img/pesquisadora-cabelo-loiro-sozinha.png){.absolute width="100" top="450" left="250"} ![](img/pesquisador-indigena-sozinho.png){.absolute width="100" top="270" left="370"} ![](img/pesquisador-cabelo-preto-sozinho.png){.absolute width="100" top="250" right="180"} ![](img/pesquisador-asiatico-sozinho.png){.absolute width="100" top="450" right="250"} ![](img/pesquisadora-cabelo-preto-sozinha.png){.absolute width="100" top="270" right="370"}
 
-<div class="absolute" style="top: 450px; left: 0px; width: 250px; text-align: center; font-weight: bold; font-size: 22px;">
+::: {.absolute style="top: 450px; left: 0px; width: 250px; text-align: center; font-weight: bold; font-size: 22px;"}
 Grupo leitor
-</div>
+:::
 
-<div class="absolute" style="top: 450px; right: 0; width: 250px; text-align: center; font-weight: bold; font-size: 22px;">
+::: {.absolute style="top: 450px; right: 0; width: 250px; text-align: center; font-weight: bold; font-size: 22px;"}
 Grupo não Leitor
-</div>
+:::
 
 ## Teste t para Amostras Independentes
 
@@ -263,7 +263,7 @@ Grupo não Leitor
     -   Hipótese Alternativa ($H_1$): afirma que existe uma diferença entre as médias
         -   $H_1: \mu_a \neq \mu_a$
         -   $H_1: \mu_a - \mu_a \neq 0$
-        
+
 ## Visualização da Hipótese Alternativa (H1)
 
 ```{r}
@@ -412,7 +412,7 @@ hipotese_nula |>
 -   A Regra de Decisão (usando o p-valor):
     -   Se p ≤ 0,05: Rejeitamos a Hipótese Nula. A diferença observada é estatisticamente significativa
     -   Se p \> 0,05: Falhamos em rejeitar a Hipótese Nula. Não há evidência suficiente para afirmar que existe uma diferença
-    
+
 ## Pressupostos do Teste T para amostras independentes {.smaller}
 
 -   Variável Independente (VI): deve ser categórica com dois níveis (dicotômica)
@@ -427,16 +427,15 @@ hipotese_nula |>
 
 ## VI categórica e dicotômica
 
-![](img/teste-t-grupo-leitor.png){.absolute width="300" top="170" left="0"}
-![](img/linha-vertical.png){.absolute width="200" down="300" right="450"}
-![](img/teste-t-grupo-nao-leitor.png){.absolute width="300" top="170" right="0"}
-<div class="absolute" style="top: 480px; left: 0px; width: 250px; text-align: center; font-weight: bold; font-size: 32px;">
-Grupo leitor
-</div>
+![](img/teste-t-grupo-leitor.png){.absolute width="300" top="170" left="0"} ![](img/linha-vertical.png){.absolute width="200" down="300" right="450"} ![](img/teste-t-grupo-nao-leitor.png){.absolute width="300" top="170" right="0"}
 
-<div class="absolute" style="top: 480px; right: 25px; width: 250px; text-align: center; font-weight: bold; font-size: 32px;">
+::: {.absolute style="top: 480px; left: 0px; width: 250px; text-align: center; font-weight: bold; font-size: 32px;"}
+Grupo leitor
+:::
+
+::: {.absolute style="top: 480px; right: 25px; width: 250px; text-align: center; font-weight: bold; font-size: 32px;"}
 Grupo não Leitor
-</div>
+:::
 
 ## VD escalar ou intervalar
 
@@ -585,7 +584,7 @@ pesquisa_fic |>
 -   Hipóteses:
     -   $H_0$: a variável de interesse é oriunda de uma população com distribuição normal
     -   $H_a$: a variável de interesse não é oriunda de uma população com distribuição normal
-    
+
 ```{r}
 pesquisa_fic |> 
   group_by(grupo) |> 
@@ -613,7 +612,6 @@ pesquisa_fic |>
     style = 1, color = "gray"
   )
 ```
-
 
 ## Homogeneidade de variâncias: gráfico de caixas
 
@@ -755,11 +753,40 @@ pesquisa_fic |>
     formula = nota ~ grupo,  
     ref.group = "leitor", 
     var.equal = T, ci = T
+  ) |> 
+  select(
+    "Dimensão do efeito" = effsize,
+    "Limite inferior" = conf.low,
+    "Limite superior" = conf.high
+  ) |> 
+  mutate(
+    teste = "d de Cohen",
+    .before = 1
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |>
+  cols_label(
+    teste = " "
+  ) |> 
+  tab_spanner(
+    label = "Intervalo de Confiança a 95%",
+    columns = c("Limite inferior", "Limite superior")
+  ) |> 
+  fmt_number(
+    decimals = 3,
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
   )
 ```
 
-
-## Método 
+## Método
 
 **Procedimentos**
 
@@ -767,6 +794,9 @@ pesquisa_fic |>
 
 Um teste t para amostras independentes foi realizado para comparar a nota de alunos que separados em dois grupos: aqueles que liam os textos antes das aulas e aqueles que não tinha esse hábido. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e de homogeneidade das variâncias (teste de Levene).
 
+## Resultados {.smaller}
+
+O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo de alunos leitores (W = 0.991, p = 0.958), nem para o grupo de alunos não leitores (W = 0.99, p = 0.953). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (F(1, 96) = 1.95, p = 0.166). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, t(96) = 4.22, p < .001. Alunos leitores (n = 50, M = 7.91, DP = 0.96) apresentaram um desempenho melhor do que os não leitores (n = 48, M = 6.98, DP = 1.21). A diferença média foi de 0.93 pontos (IC 95% [0.49, 1.37]). O tamanho de efeito foi grande (d = 0.853, IC 95% [0.44, 1.32] ). Esses resultados sugerem que ler os textos antes das aulas influencia no desempenho dos discentes nas avaliações.
 
 ## Exemplo {.smaller}
 
@@ -803,11 +833,11 @@ dados_teste_t <- mtcars |>
   select(modelo, mpg, vs) #<5> 
 ```
 
-1.    Converter os rótulos das linhas
-2.    Transformar em tibble
-3.    Recodficar a variável independente  
-4.    Transformar em fator
-5.    Selecionar as variáveis
+1.  Converter os rótulos das linhas
+2.  Transformar em tibble
+3.  Recodficar a variável independente\
+4.  Transformar em fator
+5.  Selecionar as variáveis
 
 ### Resultado
 
