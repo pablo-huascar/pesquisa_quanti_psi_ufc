@@ -31,7 +31,7 @@ conflicts_prefer(dplyr::filter)
 ```
 
 ```{r}
-# Simulação de dados para pesquisa fictícia
+# Simulação de dados para pesquisa fictícia 1
 set.seed(123)
 
 notas_leitores <- rtruncnorm(
@@ -70,6 +70,7 @@ pesquisa_fic <- pesquisa_fic |>
 pesquisa_fic |> 
   summarise(
     m = mean(nota),
+    dp = sd(nota),
     .by = grupo
   )
 
@@ -87,6 +88,67 @@ pesquisa_fic |>
 pesquisa_fic |> 
   write_csv("data/pesquisa-fic-teste-t.csv")
 ```
+
+##
+
+```{r}
+# Simulação de dados para pesquisa fictícia 2
+set.seed(239)
+
+ansiedade_leitores <- rtruncnorm(
+  n = 100,
+  a = 0,      
+  b = 100,    
+  mean = 60,  
+  sd = 20      
+)
+
+ansiedade_nao_leitores <- rtruncnorm(
+  n = 100,
+  a = 0,
+  b = 100,
+  mean = 75,
+  sd = 8     
+)
+
+ansiedade <- c(ansiedade_leitores, ansiedade_nao_leitores)
+grupo <- c(rep("leitor", 100), rep("não leitor", 100))
+
+pesquisa_fic_2 <- tibble(
+  ansiedade = ansiedade,
+  grupo = as_factor(grupo)
+)
+
+pesquisa_fic_2 <- tibble(
+  ansiedade = ansiedade,
+  grupo = as.factor(grupo)
+) 
+```
+
+```{r}
+#| eval: false
+pesquisa_fic_2 |> 
+  summarise(
+    m = mean(ansiedade),
+    dp = sd(ansiedade),
+    .by = grupo
+  )
+
+pesquisa_fic_2 |> 
+  group_by(grupo) |> 
+  shapiro_test(ansiedade)
+
+pesquisa_fic_2 |> 
+  levene_test(formula = ansiedade ~ grupo)
+
+pesquisa_fic_2 |> 
+  t_test(ansiedade ~ grupo, var.equal = F, 
+         alternative = "two.sided", detailed = T)
+
+pesquisa_fic_2 |> 
+  write_csv("data/pesquisa-fic-2-teste-t.csv")
+```
+
 
 # Bancos de dados utilizados
 
@@ -199,11 +261,13 @@ pesquisa_fic |>
 pesquisa_fic |> 
   summarise(
     Média = mean(nota),
+    "Desvio padrão" = sd(nota),
     .by = grupo
   ) |> 
   arrange(Média) |> 
   mutate(
-    "Diferença entre as médias" = Média - lag(Média)
+    "Diferença entre as médias" = Média - lag(Média),
+    .after = Média
   ) |> 
   rename(
     Grupo = grupo
@@ -930,6 +994,42 @@ O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para 
 -   Hipótese alternativa ($H_1$): há uma diferença entre as médias das notas dos dois grupos
     -   $H_1: \mu_{leitores} \neq \mu_{não-leitores}$
     
+## Exploração dos dados
+
+```{r}
+pesquisa_fic_2 |> 
+  summarise(
+    Média = mean(ansiedade),
+    "Desvio padrão" = sd(ansiedade),
+    .by = grupo
+  ) |> 
+  arrange(Média) |> 
+  mutate(
+    "Diferença entre as médias" = Média - lag(Média),
+    .after = Média
+  ) |> 
+  rename(
+    Grupo = grupo
+  ) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 2
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  sub_missing(
+    missing_text = "-"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
 
 ## Exemplo {.smaller}
 
