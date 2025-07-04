@@ -1,0 +1,2961 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Exploração de dados: exercícios – Pesquisa Quantitativa</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Pesquisa Quantitativa</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Proposta</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../conteudos.html"> 
+<span class="menu-text">Conteúdos</span></a>
+  </li>  
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pablo-huascar/pesquisa_quanti_psi_ufc"> <i class="bi bi-{{< fa brands github >}}" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/pablo-huascar/pesquisa_quanti_psi_ufc"> 
+<span class="menu-text"><i class="fa-brands fa-github fa-2x" aria-label="github"></i></span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+<li><a href="#pesquisa-sobre-ass%C3%A9dio-moral-no-trabalho-e-sa%C3%BAde-mental" id="toc-pesquisa-sobre-assédio-moral-no-trabalho-e-saúde-mental" class="nav-link active" data-scroll-target="#pesquisa-sobre-ass%C3%A9dio-moral-no-trabalho-e-sa%C3%BAde-mental">Pesquisa sobre assédio moral no trabalho e saúde mental</a></li>
+  <li>
+<a href="#banco-de-dados-tmcs_assedio_moral" id="toc-banco-de-dados-tmcs_assedio_moral" class="nav-link" data-scroll-target="#banco-de-dados-tmcs_assedio_moral">Banco de Dados <code>tmcs_assedio_moral</code></a>
+  <ul class="collapse">
+<li><a href="#livro-de-c%C3%B3digos" id="toc-livro-de-códigos" class="nav-link" data-scroll-target="#livro-de-c%C3%B3digos">Livro de códigos</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#instrumentos" id="toc-instrumentos" class="nav-link" data-scroll-target="#instrumentos">Instrumentos</a>
+  <ul class="collapse">
+<li><a href="#transtornos-mentais-comuns" id="toc-transtornos-mentais-comuns" class="nav-link" data-scroll-target="#transtornos-mentais-comuns">Transtornos Mentais Comuns</a></li>
+  <li><a href="#ass%C3%A9dio-moral-no-local-de-trabalho" id="toc-assédio-moral-no-local-de-trabalho" class="nav-link" data-scroll-target="#ass%C3%A9dio-moral-no-local-de-trabalho">Assédio Moral no Local de Trabalho</a></li>
+  </ul>
+</li>
+  <li><a href="#manipula%C3%A7%C3%A3o-dos-dados" id="toc-manipulação-dos-dados" class="nav-link" data-scroll-target="#manipula%C3%A7%C3%A3o-dos-dados">Manipulação dos dados</a></li>
+  <li>
+<a href="#participantes" id="toc-participantes" class="nav-link" data-scroll-target="#participantes">Participantes</a>
+  <ul class="collapse">
+<li><a href="#descri%C3%A7%C3%A3o-dos-dados-e-tabela" id="toc-descrição-dos-dados-e-tabela" class="nav-link" data-scroll-target="#descri%C3%A7%C3%A3o-dos-dados-e-tabela">Descrição dos dados e tabela</a></li>
+  <li><a href="#gr%C3%A1ficos" id="toc-gráficos" class="nav-link" data-scroll-target="#gr%C3%A1ficos">Gráficos</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#associa%C3%A7%C3%A3o-entre-vari%C3%A1veis-num%C3%A9ricas" id="toc-associação-entre-variáveis-numéricas" class="nav-link" data-scroll-target="#associa%C3%A7%C3%A3o-entre-vari%C3%A1veis-num%C3%A9ricas">Associação entre variáveis numéricas</a>
+  <ul class="collapse">
+<li><a href="#tmcs" id="toc-tmcs" class="nav-link" data-scroll-target="#tmcs">TMCs</a></li>
+  <li><a href="#ass%C3%A9dio-moral" id="toc-assédio-moral" class="nav-link" data-scroll-target="#ass%C3%A9dio-moral">Assédio moral</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#compara%C3%A7%C3%A3o-entre-grupos" id="toc-comparação-entre-grupos" class="nav-link" data-scroll-target="#compara%C3%A7%C3%A3o-entre-grupos">Comparação entre grupos</a>
+  <ul class="collapse">
+<li><a href="#tmcs-1" id="toc-tmcs-1" class="nav-link" data-scroll-target="#tmcs-1">TMCs</a></li>
+  <li><a href="#ass%C3%A9dio-moral-1" id="toc-assédio-moral-1" class="nav-link" data-scroll-target="#ass%C3%A9dio-moral-1">Assédio moral</a></li>
+  </ul>
+</li>
+  <li><a href="#associa%C3%A7%C3%A3o-entre-vari%C3%A1veis-categ%C3%B3ricas" id="toc-associação-entre-variáveis-categóricas" class="nav-link" data-scroll-target="#associa%C3%A7%C3%A3o-entre-vari%C3%A1veis-categ%C3%B3ricas">Associação entre variáveis categóricas</a></li>
+  <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography">Referências</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Exploração de dados: exercícios</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><section id="pesquisa-sobre-assédio-moral-no-trabalho-e-saúde-mental" class="level2"><h2 class="anchored" data-anchor-id="pesquisa-sobre-assédio-moral-no-trabalho-e-saúde-mental">Pesquisa sobre assédio moral no trabalho e saúde mental</h2>
+<p>Um estudo foi realizado com professores de escolas públicas de todo o Brasil (n = 1500) para avaliar a repercussão do assédio moral no trabalho para a saúde mental. A partir das orientações a seguir, explore o banco de dados do estudo utilizando gráficos e tabelas.</p>
+</section><section id="banco-de-dados-tmcs_assedio_moral" class="level2"><h2 class="anchored" data-anchor-id="banco-de-dados-tmcs_assedio_moral">Banco de Dados <code>tmcs_assedio_moral</code>
+</h2>
+<ul>
+<li>Formato: um banco de dados com 1500 casos e 51 variáveis descritas no livro de códigos apresentado adiante.</li>
+</ul>
+<section id="livro-de-códigos" class="level3"><h3 class="anchored" data-anchor-id="livro-de-códigos">Livro de códigos</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwlefoodfi table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mwlefoodfi thead, #mwlefoodfi tbody, #mwlefoodfi tfoot, #mwlefoodfi tr, #mwlefoodfi td, #mwlefoodfi th {
+  border-style: none;
+}
+
+#mwlefoodfi p {
+  margin: 0;
+  padding: 0;
+}
+
+#mwlefoodfi .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mwlefoodfi .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mwlefoodfi .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mwlefoodfi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mwlefoodfi .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mwlefoodfi .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mwlefoodfi .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mwlefoodfi .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mwlefoodfi .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mwlefoodfi .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mwlefoodfi .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mwlefoodfi .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mwlefoodfi .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mwlefoodfi .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mwlefoodfi .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwlefoodfi .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mwlefoodfi .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mwlefoodfi .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mwlefoodfi .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwlefoodfi .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mwlefoodfi .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwlefoodfi .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mwlefoodfi .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwlefoodfi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwlefoodfi .gt_left {
+  text-align: left;
+}
+
+#mwlefoodfi .gt_center {
+  text-align: center;
+}
+
+#mwlefoodfi .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mwlefoodfi .gt_font_normal {
+  font-weight: normal;
+}
+
+#mwlefoodfi .gt_font_bold {
+  font-weight: bold;
+}
+
+#mwlefoodfi .gt_font_italic {
+  font-style: italic;
+}
+
+#mwlefoodfi .gt_super {
+  font-size: 65%;
+}
+
+#mwlefoodfi .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mwlefoodfi .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mwlefoodfi .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mwlefoodfi .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mwlefoodfi .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mwlefoodfi .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mwlefoodfi .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#mwlefoodfi .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mwlefoodfi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="header gt_col_headings">
+<th id="aÍndice" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Índice</th>
+<th id="Descrição" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Descrição</th>
+<th id="Item" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Item</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">1</td>
+<td class="gt_row gt_left" headers="Descrição">Alguém reteve informações que podem afetar o seu desempenho no trabalho.</td>
+<td class="gt_row gt_center" headers="Item">n1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">2</td>
+<td class="gt_row gt_left" headers="Descrição">Foi humilhado(a) ou ridicularizado(a) em relação ao seu trabalho.</td>
+<td class="gt_row gt_center" headers="Item">n2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">3</td>
+<td class="gt_row gt_left" headers="Descrição">Foi obrigado(a) a realizar um trabalho abaixo do seu nível de competência.</td>
+<td class="gt_row gt_center" headers="Item">n3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">4</td>
+<td class="gt_row gt_left" headers="Descrição">Áreas ou tarefas de sua responsabilidade foram retiradas ou substituídas por tarefas mais desagradáveis ou mais simples.</td>
+<td class="gt_row gt_center" headers="Item">n4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">5</td>
+<td class="gt_row gt_left" headers="Descrição">Espalharam boatos ou rumores sobre você.</td>
+<td class="gt_row gt_center" headers="Item">n5</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">6</td>
+<td class="gt_row gt_left" headers="Descrição">Foi ignorado(a), excluído(a) ou “colocado(a) na geladeira”.</td>
+<td class="gt_row gt_center" headers="Item">n6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">7</td>
+<td class="gt_row gt_left" headers="Descrição">Foram feitos comentários ofensivos sobre a sua pessoa, suas atitudes ou sobre sua vida privada.</td>
+<td class="gt_row gt_center" headers="Item">n7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">8</td>
+<td class="gt_row gt_left" headers="Descrição">Gritaram com você ou você foi alvo de agressividade gratuita.</td>
+<td class="gt_row gt_center" headers="Item">n8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">9</td>
+<td class="gt_row gt_left" headers="Descrição">Foi alvo de comportamentos intimidativos, tais como “apontar o dedo”, invasão do seu espaço pessoal, empurrões.</td>
+<td class="gt_row gt_center" headers="Item">n9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">10</td>
+<td class="gt_row gt_left" headers="Descrição">Recebeu sinais ou dicas de que você deve pedir demissão ou largar o emprego (transferir-se para outra unidade).</td>
+<td class="gt_row gt_center" headers="Item">n10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">11</td>
+<td class="gt_row gt_left" headers="Descrição">Foi constantemente lembrado dos seus erros ou omissões.</td>
+<td class="gt_row gt_center" headers="Item">n11</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">12</td>
+<td class="gt_row gt_left" headers="Descrição">Foi ignorado ou foi recebido com uma reação hostil quando tentou uma aproximação.</td>
+<td class="gt_row gt_center" headers="Item">n12</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">13</td>
+<td class="gt_row gt_left" headers="Descrição">Recebeu críticas persistentes ao seu trabalho e esforço.</td>
+<td class="gt_row gt_center" headers="Item">n13</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">14</td>
+<td class="gt_row gt_left" headers="Descrição">Suas opiniões e pontos de vista foram ignorados.</td>
+<td class="gt_row gt_center" headers="Item">n14</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">15</td>
+<td class="gt_row gt_left" headers="Descrição">Pessoas com as quais você não tem intimidade lhe aplicaram “pegadinhas".</td>
+<td class="gt_row gt_center" headers="Item">n15</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">16</td>
+<td class="gt_row gt_left" headers="Descrição">Foi solicitado(a) a realizar tarefas despropositadas ou com um prazo impossível de ser cumprido.</td>
+<td class="gt_row gt_center" headers="Item">n16</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">17</td>
+<td class="gt_row gt_left" headers="Descrição">Foram feitas alegações contra você.</td>
+<td class="gt_row gt_center" headers="Item">n17</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">18</td>
+<td class="gt_row gt_left" headers="Descrição">Sofreu supervisão excessiva de seu trabalho.</td>
+<td class="gt_row gt_center" headers="Item">n18</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">19</td>
+<td class="gt_row gt_left" headers="Descrição">Foi pressionado a não reclamar um direito que você tem.</td>
+<td class="gt_row gt_center" headers="Item">n19</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">20</td>
+<td class="gt_row gt_left" headers="Descrição">Foi submetido(a) a sarcasmos ou alvo de brincadeiras excessivas.</td>
+<td class="gt_row gt_center" headers="Item">n20</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">21</td>
+<td class="gt_row gt_left" headers="Descrição">Foi exposto(a) a uma carga de trabalho excessiva.</td>
+<td class="gt_row gt_center" headers="Item">n21</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">22</td>
+<td class="gt_row gt_left" headers="Descrição">Foi ameaçado(a) de violência ou abuso físico ou foi alvo de violência real.</td>
+<td class="gt_row gt_center" headers="Item">n22</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">23</td>
+<td class="gt_row gt_left" headers="Descrição">Tem dores de cabeça com frequência?</td>
+<td class="gt_row gt_center" headers="Item">srq_1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">24</td>
+<td class="gt_row gt_left" headers="Descrição">Tem falta de apetite?</td>
+<td class="gt_row gt_center" headers="Item">srq_2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">25</td>
+<td class="gt_row gt_left" headers="Descrição">Dorme mal?</td>
+<td class="gt_row gt_center" headers="Item">srq_3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">26</td>
+<td class="gt_row gt_left" headers="Descrição">Fica com medo com facilidade?</td>
+<td class="gt_row gt_center" headers="Item">srq_4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">27</td>
+<td class="gt_row gt_left" headers="Descrição">Suas mãos tremem?</td>
+<td class="gt_row gt_center" headers="Item">srq_5</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">28</td>
+<td class="gt_row gt_left" headers="Descrição">Sente-se nervoso (a), tenso (a) ou preocupado (a)?</td>
+<td class="gt_row gt_center" headers="Item">srq_6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">29</td>
+<td class="gt_row gt_left" headers="Descrição">Sua digestão não é boa ou sofre de perturbação digestiva?</td>
+<td class="gt_row gt_center" headers="Item">srq_7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">30</td>
+<td class="gt_row gt_left" headers="Descrição">Não consegue pensar com clareza?</td>
+<td class="gt_row gt_center" headers="Item">srq_8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">31</td>
+<td class="gt_row gt_left" headers="Descrição">Sente-se infeliz?</td>
+<td class="gt_row gt_center" headers="Item">srq_9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">32</td>
+<td class="gt_row gt_left" headers="Descrição">Chora mais que o comum?</td>
+<td class="gt_row gt_center" headers="Item">srq_10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">33</td>
+<td class="gt_row gt_left" headers="Descrição">Acha difícil apreciar (gostar de) suas atividades diárias?</td>
+<td class="gt_row gt_center" headers="Item">srq_11</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">34</td>
+<td class="gt_row gt_left" headers="Descrição">Acha difícil tomar decisões?</td>
+<td class="gt_row gt_center" headers="Item">srq_12</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">35</td>
+<td class="gt_row gt_left" headers="Descrição">Seu trabalho diário é um sofrimento? Tormento? Tem dificuldade de fazer seu trabalho?</td>
+<td class="gt_row gt_center" headers="Item">srq_13</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">36</td>
+<td class="gt_row gt_left" headers="Descrição">Não é capaz de ter um papel útil na vida?</td>
+<td class="gt_row gt_center" headers="Item">srq_14</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">37</td>
+<td class="gt_row gt_left" headers="Descrição">Perdeu o interesse nas coisas?</td>
+<td class="gt_row gt_center" headers="Item">srq_15</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">38</td>
+<td class="gt_row gt_left" headers="Descrição">Acha que é uma pessoa que não vale nada?</td>
+<td class="gt_row gt_center" headers="Item">srq_16</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">39</td>
+<td class="gt_row gt_left" headers="Descrição">O pensamento de acabar com a sua vida já passou por sua cabeça?</td>
+<td class="gt_row gt_center" headers="Item">srq_17</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">40</td>
+<td class="gt_row gt_left" headers="Descrição">Sente-se cansado(a) todo o tempo?</td>
+<td class="gt_row gt_center" headers="Item">srq_18</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">41</td>
+<td class="gt_row gt_left" headers="Descrição">Têm sensações desagradáveis no estômago?</td>
+<td class="gt_row gt_center" headers="Item">srq_19</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">42</td>
+<td class="gt_row gt_left" headers="Descrição">Fica cansado(a) com facilidade?</td>
+<td class="gt_row gt_center" headers="Item">srq_20</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">43</td>
+<td class="gt_row gt_left" headers="Descrição">Qual seu sexo?</td>
+<td class="gt_row gt_center" headers="Item">sexo</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">44</td>
+<td class="gt_row gt_left" headers="Descrição">Qual a sua idade?</td>
+<td class="gt_row gt_center" headers="Item">idade</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">45</td>
+<td class="gt_row gt_left" headers="Descrição">Qual a sua cor/raça?</td>
+<td class="gt_row gt_center" headers="Item">raca</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">46</td>
+<td class="gt_row gt_left" headers="Descrição">Qual o seu nível de escolaridade?</td>
+<td class="gt_row gt_center" headers="Item">escolaridade</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">47</td>
+<td class="gt_row gt_left" headers="Descrição">Em que região você trabalha</td>
+<td class="gt_row gt_center" headers="Item">regiao</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">48</td>
+<td class="gt_row gt_left" headers="Descrição">Em que série(s) você atua? Você pode escolher mais de um item caso atue em mais de um nível de ensino.</td>
+<td class="gt_row gt_center" headers="Item">nivel_de_ensino</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">49</td>
+<td class="gt_row gt_left" headers="Descrição">Quanto anos de experiência você tem como professor, considerando a sua carreira como um todo?</td>
+<td class="gt_row gt_center" headers="Item">experiencia_de_ensino</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Índice">50</td>
+<td class="gt_row gt_left" headers="Descrição">Qual a renda mensal da sua família (estime o valor somado de todos que trabalham e colaboram com as despesas)?</td>
+<td class="gt_row gt_center" headers="Item">renda_familiar_mensal</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Índice">51</td>
+<td class="gt_row gt_left" headers="Descrição">Quantas pessoas moram com você e dependem da renda da sua família?</td>
+<td class="gt_row gt_center" headers="Item">dependentes_da_renda_familiar</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section></section><section id="instrumentos" class="level2"><h2 class="anchored" data-anchor-id="instrumentos">Instrumentos</h2>
+<section id="transtornos-mentais-comuns" class="level3"><h3 class="anchored" data-anchor-id="transtornos-mentais-comuns">Transtornos Mentais Comuns</h3>
+<p>O Self-Reporting Questionnaire-20 (SRQ-20) é uma ferramenta de triagem para transtornos mentais não psicóticos (transtornos mentais comuns - TMC), como insônia, dificuldade de concentração, fadiga, dores de cabeça e falta de apetite (por exemplo, “Faça você se cansa facilmente?”). Este instrumento é composto por 20 afirmações com opções binárias de resposta (“sim” ou “não”). As respostas negativas são pontuadas como zero, enquanto as respostas positivas são pontuadas como 1. As pontuações são então somadas, com ponto de corte estabelecido em 7/8 para distinguir entre ausência e presença de TMC, respectivamente <span class="citation" data-cites="gonçalves_stein_kapczinski_2008">(<a href="#ref-gon%C3%A7alves_stein_kapczinski_2008" role="doc-biblioref">Gonçalves et al., 2008</a>)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eexombwkke table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#eexombwkke thead, #eexombwkke tbody, #eexombwkke tfoot, #eexombwkke tr, #eexombwkke td, #eexombwkke th {
+  border-style: none;
+}
+
+#eexombwkke p {
+  margin: 0;
+  padding: 0;
+}
+
+#eexombwkke .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#eexombwkke .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#eexombwkke .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#eexombwkke .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#eexombwkke .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eexombwkke .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eexombwkke .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eexombwkke .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#eexombwkke .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#eexombwkke .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#eexombwkke .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#eexombwkke .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#eexombwkke .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#eexombwkke .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#eexombwkke .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#eexombwkke .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#eexombwkke .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#eexombwkke .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#eexombwkke .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eexombwkke .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#eexombwkke .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#eexombwkke .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#eexombwkke .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eexombwkke .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#eexombwkke .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#eexombwkke .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eexombwkke .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eexombwkke .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#eexombwkke .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eexombwkke .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#eexombwkke .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eexombwkke .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eexombwkke .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eexombwkke .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eexombwkke .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eexombwkke .gt_left {
+  text-align: left;
+}
+
+#eexombwkke .gt_center {
+  text-align: center;
+}
+
+#eexombwkke .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#eexombwkke .gt_font_normal {
+  font-weight: normal;
+}
+
+#eexombwkke .gt_font_bold {
+  font-weight: bold;
+}
+
+#eexombwkke .gt_font_italic {
+  font-style: italic;
+}
+
+#eexombwkke .gt_super {
+  font-size: 65%;
+}
+
+#eexombwkke .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#eexombwkke .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#eexombwkke .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#eexombwkke .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#eexombwkke .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#eexombwkke .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#eexombwkke .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#eexombwkke .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#eexombwkke div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="header gt_col_headings">
+<th id="Item" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Item</th>
+<th id="Descrição" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Descrição</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">srq_1</td>
+<td class="gt_row gt_left" headers="Descrição">Tem dores de cabeça com frequência?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">srq_2</td>
+<td class="gt_row gt_left" headers="Descrição">Tem falta de apetite?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">srq_3</td>
+<td class="gt_row gt_left" headers="Descrição">Dorme mal?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">srq_4</td>
+<td class="gt_row gt_left" headers="Descrição">Fica com medo com facilidade?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">srq_5</td>
+<td class="gt_row gt_left" headers="Descrição">Suas mãos tremem?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">srq_6</td>
+<td class="gt_row gt_left" headers="Descrição">Sente-se nervoso (a), tenso (a) ou preocupado (a)?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">srq_7</td>
+<td class="gt_row gt_left" headers="Descrição">Sua digestão não é boa ou sofre de perturbação digestiva?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">srq_8</td>
+<td class="gt_row gt_left" headers="Descrição">Não consegue pensar com clareza?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">srq_9</td>
+<td class="gt_row gt_left" headers="Descrição">Sente-se infeliz?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">srq_10</td>
+<td class="gt_row gt_left" headers="Descrição">Chora mais que o comum?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">srq_11</td>
+<td class="gt_row gt_left" headers="Descrição">Acha difícil apreciar (gostar de) suas atividades diárias?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">srq_12</td>
+<td class="gt_row gt_left" headers="Descrição">Acha difícil tomar decisões?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">srq_13</td>
+<td class="gt_row gt_left" headers="Descrição">Seu trabalho diário é um sofrimento? Tormento? Tem dificuldade de fazer seu trabalho?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">srq_14</td>
+<td class="gt_row gt_left" headers="Descrição">Não é capaz de ter um papel útil na vida?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">srq_15</td>
+<td class="gt_row gt_left" headers="Descrição">Perdeu o interesse nas coisas?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">srq_16</td>
+<td class="gt_row gt_left" headers="Descrição">Acha que é uma pessoa que não vale nada?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">srq_17</td>
+<td class="gt_row gt_left" headers="Descrição">O pensamento de acabar com a sua vida já passou por sua cabeça?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">srq_18</td>
+<td class="gt_row gt_left" headers="Descrição">Sente-se cansado(a) todo o tempo?</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">srq_19</td>
+<td class="gt_row gt_left" headers="Descrição">Têm sensações desagradáveis no estômago?</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">srq_20</td>
+<td class="gt_row gt_left" headers="Descrição">Fica cansado(a) com facilidade?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section><section id="assédio-moral-no-local-de-trabalho" class="level3"><h3 class="anchored" data-anchor-id="assédio-moral-no-local-de-trabalho">Assédio Moral no Local de Trabalho</h3>
+<p>O NAQ-R mede a exposição ao assédio moral no local de trabalho durante os seis meses anteriores, utilizando uma escala de resposta de cinco níveis que varia de nunca a diariamente <span class="citation" data-cites="einarsen2009measuring">(<a href="#ref-einarsen2009measuring" role="doc-biblioref">Einarsen et al., 2009</a>)</span>. A versão do NAQ-R validada para professores <span class="citation" data-cites="cunha2023contexto">(<a href="#ref-cunha2023contexto" role="doc-biblioref">Cunha, 2023</a>)</span> compreende 21 itens categorizados em dois fatores: assédio moral pessoal (e. g., “Foram feitos comentários ofensivos sobre a sua pessoa, suas atitudes ou sobre sua vida privada.”), assédio moral relacionado ao trabalho (por exemplo, “Foi obrigado(a) a realizar um trabalho abaixo do seu nível de competência”). Os itens da escala não mencionam explicitamente “assédio moral”; em vez disso, a avaliação baseia-se na autopercepção do entrevistado sobre a exposição a comportamentos característicos do bullying no local de trabalho <span class="citation" data-cites="silva2017caracteristicas">(<a href="#ref-silva2017caracteristicas" role="doc-biblioref">Silva et al., 2017</a>)</span>. As pontuações para cada fator são derivadas do cálculo das médias de seus respectivos itens, conforme a tabela a seguir:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ulbfdpbcyv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ulbfdpbcyv thead, #ulbfdpbcyv tbody, #ulbfdpbcyv tfoot, #ulbfdpbcyv tr, #ulbfdpbcyv td, #ulbfdpbcyv th {
+  border-style: none;
+}
+
+#ulbfdpbcyv p {
+  margin: 0;
+  padding: 0;
+}
+
+#ulbfdpbcyv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ulbfdpbcyv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ulbfdpbcyv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ulbfdpbcyv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ulbfdpbcyv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ulbfdpbcyv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ulbfdpbcyv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ulbfdpbcyv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ulbfdpbcyv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ulbfdpbcyv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ulbfdpbcyv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ulbfdpbcyv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ulbfdpbcyv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ulbfdpbcyv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ulbfdpbcyv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ulbfdpbcyv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ulbfdpbcyv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ulbfdpbcyv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ulbfdpbcyv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ulbfdpbcyv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_left {
+  text-align: left;
+}
+
+#ulbfdpbcyv .gt_center {
+  text-align: center;
+}
+
+#ulbfdpbcyv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ulbfdpbcyv .gt_font_normal {
+  font-weight: normal;
+}
+
+#ulbfdpbcyv .gt_font_bold {
+  font-weight: bold;
+}
+
+#ulbfdpbcyv .gt_font_italic {
+  font-style: italic;
+}
+
+#ulbfdpbcyv .gt_super {
+  font-size: 65%;
+}
+
+#ulbfdpbcyv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ulbfdpbcyv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ulbfdpbcyv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ulbfdpbcyv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ulbfdpbcyv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ulbfdpbcyv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ulbfdpbcyv .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ulbfdpbcyv .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ulbfdpbcyv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="header gt_col_headings">
+<th id="Item" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Item</th>
+<th id="Descrição" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Descrição</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item"><br></td>
+<td class="gt_row gt_left" headers="Descrição" style="font-weight: bold">Assédio moral pessoal</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">n2</td>
+<td class="gt_row gt_left" headers="Descrição">Foi humilhado(a) ou ridicularizado(a) em relação ao seu trabalho.</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">n5</td>
+<td class="gt_row gt_left" headers="Descrição">Espalharam boatos ou rumores sobre você.</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">n6</td>
+<td class="gt_row gt_left" headers="Descrição">Foi ignorado(a), excluído(a) ou “colocado(a) na geladeira”.</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">n7</td>
+<td class="gt_row gt_left" headers="Descrição">Foram feitos comentários ofensivos sobre a sua pessoa, suas atitudes ou sobre sua vida privada.</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">n8</td>
+<td class="gt_row gt_left" headers="Descrição">Gritaram com você ou você foi alvo de agressividade gratuita.</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">n9</td>
+<td class="gt_row gt_left" headers="Descrição">Foi alvo de comportamentos intimidativos, tais como “apontar o dedo”, invasão do seu espaço pessoal, empurrões.</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">n10</td>
+<td class="gt_row gt_left" headers="Descrição">Recebeu sinais ou dicas de que você deve pedir demissão ou largar o emprego (transferir-se para outra unidade).</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">n11</td>
+<td class="gt_row gt_left" headers="Descrição">Foi constantemente lembrado dos seus erros ou omissões.</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">n12</td>
+<td class="gt_row gt_left" headers="Descrição">Foi ignorado ou foi recebido com uma reação hostil quando tentou uma aproximação.</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">n13</td>
+<td class="gt_row gt_left" headers="Descrição">Recebeu críticas persistentes ao seu trabalho e esforço.</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">n14</td>
+<td class="gt_row gt_left" headers="Descrição">Suas opiniões e pontos de vista foram ignorados.</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">n15</td>
+<td class="gt_row gt_left" headers="Descrição">Pessoas com as quais você não tem intimidade lhe aplicaram “pegadinhas".</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">n17</td>
+<td class="gt_row gt_left" headers="Descrição">Foram feitas alegações contra você.</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">n20</td>
+<td class="gt_row gt_left" headers="Descrição">Foi submetido(a) a sarcasmos ou alvo de brincadeiras excessivas.</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">n22</td>
+<td class="gt_row gt_left" headers="Descrição">Foi ameaçado(a) de violência ou abuso físico ou foi alvo de violência real.</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item"><br></td>
+<td class="gt_row gt_left" headers="Descrição" style="font-weight: bold">Assédio moral relacionado ao trabalho</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">n3</td>
+<td class="gt_row gt_left" headers="Descrição">Foi obrigado(a) a realizar um trabalho abaixo do seu nível de competência.</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">n4</td>
+<td class="gt_row gt_left" headers="Descrição">Áreas ou tarefas de sua responsabilidade foram retiradas ou substituídas por tarefas mais desagradáveis ou mais simples.</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">n16</td>
+<td class="gt_row gt_left" headers="Descrição">Foi solicitado(a) a realizar tarefas despropositadas ou com um prazo impossível de ser cumprido.</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">n18</td>
+<td class="gt_row gt_left" headers="Descrição">Sofreu supervisão excessiva de seu trabalho.</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Item">n19</td>
+<td class="gt_row gt_left" headers="Descrição">Foi pressionado a não reclamar um direito que você tem.</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Item">n21</td>
+<td class="gt_row gt_left" headers="Descrição">Foi exposto(a) a uma carga de trabalho excessiva.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section></section><section id="manipulação-dos-dados" class="level2"><h2 class="anchored" data-anchor-id="manipulação-dos-dados">Manipulação dos dados</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tmcs_assedio_moral</span> <span class="op">&lt;-</span> <span class="va">tmcs_assedio_moral</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">rowwise</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span></span>
+<span>    tmcs_total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu">c_across</span><span class="op">(</span><span class="va">srq_1</span><span class="op">:</span><span class="va">srq_20</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    assedio_pessoal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">n2</span>, <span class="va">n5</span>, <span class="va">n6</span>, <span class="va">n7</span>,</span>
+<span>                             <span class="va">n8</span>, <span class="va">n9</span>, <span class="va">n10</span>, <span class="va">n11</span>, </span>
+<span>                             <span class="va">n12</span>, <span class="va">n13</span>, <span class="va">n14</span>, <span class="va">n15</span>, </span>
+<span>                             <span class="va">n17</span>,<span class="va">n20</span>, <span class="va">n22</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>    assedio_profissional <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">n3</span>, <span class="va">n4</span>, <span class="va">n16</span>, <span class="va">n18</span>, </span>
+<span>                                  <span class="va">n19</span>, <span class="va">n21</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span></span>
+<span>    renda_per_capita <span class="op">=</span> <span class="va">renda_familiar_mensal</span><span class="op">/</span><span class="va">dependentes_da_renda_familiar</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="participantes" class="level2"><h2 class="anchored" data-anchor-id="participantes">Participantes</h2>
+<section id="descrição-dos-dados-e-tabela" class="level3"><h3 class="anchored" data-anchor-id="descrição-dos-dados-e-tabela">Descrição dos dados e tabela</h3>
+<p>Descreva o perfil sociodemográfico dos participantes do estudo e gere uma tabela que sintetize estes dados. Utilize as normas da APA para a construção desta tabela e de todas as outras demandadas nesta atividade, conforme exemplos que podem ser encontrados <a href="https://apastyle.apa.org/style-grammar-guidelines/tables-figures/sample-tables" class="external" target="_blank">aqui</a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">levels_cat</span> <span class="op">&lt;-</span> <span class="va">tmcs_assedio_moral</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">sexo</span>, <span class="va">raca</span>, <span class="va">escolaridade</span>,</span>
+<span>         <span class="va">regiao</span>, <span class="va">nivel_de_ensino</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">tmcs_assedio_moral</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">sexo</span>, <span class="va">raca</span>, <span class="va">escolaridade</span>,</span>
+<span>         <span class="va">regiao</span>, <span class="va">nivel_de_ensino</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu">everything</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">count</span><span class="op">(</span><span class="va">name</span>, <span class="va">value</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span></span>
+<span>    prop <span class="op">=</span> <span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,</span>
+<span>    prop <span class="op">=</span> <span class="fu">percent_format</span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span><span class="op">(</span><span class="va">prop</span><span class="op">)</span>,</span>
+<span>    .by <span class="op">=</span> <span class="va">name</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">fct_relevel</span><span class="op">(</span><span class="va">name</span>, <span class="va">levels_cat</span><span class="op">)</span>,<span class="va">n</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>n <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 25 × 4</span></span>
+<span><span class="co">#&gt;    name            value                                  n prop </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;           &lt;chr&gt;                              &lt;int&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt;  1 sexo            Masculino                            306 20.4%</span></span>
+<span><span class="co">#&gt;  2 sexo            Feminino                            1194 79.6%</span></span>
+<span><span class="co">#&gt;  3 raca            Indígena                               8 0.5% </span></span>
+<span><span class="co">#&gt;  4 raca            Amarelo                               20 1.3% </span></span>
+<span><span class="co">#&gt;  5 raca            Preto                                190 12.7%</span></span>
+<span><span class="co">#&gt;  6 raca            Branco                               528 35.2%</span></span>
+<span><span class="co">#&gt;  7 raca            Pardo                                754 50.3%</span></span>
+<span><span class="co">#&gt;  8 escolaridade    Ensino Médio                           8 0.5% </span></span>
+<span><span class="co">#&gt;  9 escolaridade    Doutorado                             33 2.2% </span></span>
+<span><span class="co">#&gt; 10 escolaridade    Curso superior incompleto             40 2.7% </span></span>
+<span><span class="co">#&gt; 11 escolaridade    Mestrado                             134 8.9% </span></span>
+<span><span class="co">#&gt; 12 escolaridade    Curso superior completo              328 21.9%</span></span>
+<span><span class="co">#&gt; 13 escolaridade    Especialização                       957 63.8%</span></span>
+<span><span class="co">#&gt; 14 regiao          Sul                                   37 2.5% </span></span>
+<span><span class="co">#&gt; 15 regiao          Norte                                 86 5.7% </span></span>
+<span><span class="co">#&gt; 16 regiao          Centro-oeste                         103 6.9% </span></span>
+<span><span class="co">#&gt; 17 regiao          Sudeste                              386 25.7%</span></span>
+<span><span class="co">#&gt; 18 regiao          Nordeste                             888 59.2%</span></span>
+<span><span class="co">#&gt; 19 nivel_de_ensino AEE                                   29 1.9% </span></span>
+<span><span class="co">#&gt; 20 nivel_de_ensino EJA                                   31 2.1% </span></span>
+<span><span class="co">#&gt; 21 nivel_de_ensino Ensino Médio                         193 12.9%</span></span>
+<span><span class="co">#&gt; 22 nivel_de_ensino Educação Infantil                    242 16.1%</span></span>
+<span><span class="co">#&gt; 23 nivel_de_ensino Ensino Fundamental 2                 273 18.2%</span></span>
+<span><span class="co">#&gt; 24 nivel_de_ensino Ensino Fundamental 1                 329 21.9%</span></span>
+<span><span class="co">#&gt; 25 nivel_de_ensino Atua em mais de um nível de ensino   403 26.9%</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="gráficos" class="level3"><h3 class="anchored" data-anchor-id="gráficos">Gráficos</h3>
+<p>Gere gráficos para uma apresentação sobre as características sociodemográficas dos participantes da investigação.</p>
+</section></section><section id="associação-entre-variáveis-numéricas" class="level2"><h2 class="anchored" data-anchor-id="associação-entre-variáveis-numéricas">Associação entre variáveis numéricas</h2>
+<section id="tmcs" class="level3"><h3 class="anchored" data-anchor-id="tmcs">TMCs</h3>
+<p>A partir da pontuação total do SRQ-20, construa gráficos que analisem a associação entre TMCs e:</p>
+<ul>
+<li>os dois tipos de assédio moral avaliados pelo NAQ-R;</li>
+<li>a idade;</li>
+<li>o tempo de experiência como professor e;</li>
+<li>a renda familiar per capita.</li>
+</ul>
+<p>Discuta os gráficos obtidos.</p>
+</section><section id="assédio-moral" class="level3"><h3 class="anchored" data-anchor-id="assédio-moral">Assédio moral</h3>
+<p>A partir das pontuações das duas variáveis pertinentes ao assédio moral, construa gráficos que avaliem a associação destas variáveis com:</p>
+<ul>
+<li>a idade;</li>
+<li>o tempo de experiência como professor e;</li>
+<li>a renda familiar per capita.</li>
+</ul>
+<p>Discuta os gráficos obtidos.</p>
+</section></section><section id="comparação-entre-grupos" class="level2"><h2 class="anchored" data-anchor-id="comparação-entre-grupos">Comparação entre grupos</h2>
+<section id="tmcs-1" class="level3"><h3 class="anchored" data-anchor-id="tmcs-1">TMCs</h3>
+<p>Construa gráficos e tabelas que comparem os grupos de participantes gerados a partir da variável que faz o rastreio qualitativo de TMCs em relação:</p>
+<ul>
+<li>aos dois tipos de assédio avaliados pelo NAQ-R (pessoal e relacionado ao trabalho);</li>
+<li>à idade;</li>
+<li>ao tempo de experiência como professor e;</li>
+<li>à renda familiar per capita.</li>
+</ul>
+<p>Discuta as tabelas e os gráficos obtidos.</p>
+</section><section id="assédio-moral-1" class="level3"><h3 class="anchored" data-anchor-id="assédio-moral-1">Assédio moral</h3>
+<p>Formule gráficos e tabelas que comparem as pontuações dos dois tipos de assédio moral entre os grupos das seguintes variáveis:</p>
+<ul>
+<li>
+<code>sexo</code>;</li>
+<li>
+<code>idade</code>: compare pessoas que estão acima e abaixo da média ou da mediana da idade (avalie qual estatística é mais adequada para avaliar um caso típico);</li>
+<li>
+<code>raca</code>: compare somente as pontuações de negros (pretos e partos) e brancos;</li>
+<li>
+<code>escolaridade</code>: compare os participantes que tem até curso superior completo com aquelas que tem algum tipo de pós-graduação;</li>
+<li>
+<code>regiao</code>: compare os casos da região nordeste, sudeste e demais regiões agrupadas;</li>
+<li>Renda per capita: compare pessoas que estão acima e abaixo da média ou da mediana da renda per capita (avalie qual estatística é mais adequada para avaliar um caso típico);</li>
+<li>
+<code>nivel_de_ensino</code>: compare somente os professores que atuam em mais de um nível de ensino com aqueles que atuam no ensino fundamental</li>
+</ul>
+<p>Discuta as tabelas e os gráficos obtidos.</p>
+</section></section><section id="associação-entre-variáveis-categóricas" class="level2"><h2 class="anchored" data-anchor-id="associação-entre-variáveis-categóricas">Associação entre variáveis categóricas</h2>
+<p>Crie gráficos e tabelas que analisem a associação entre os grupos de participantes gerados a partir da variável que faz rastreio qualitativo de TMCs e os grupos das seguintes variáveis:</p>
+<ul>
+<li>
+<code>sexo</code>;</li>
+<li>
+<code>idade</code>: compare pessoas que estão acima e abaixo da média ou da mediana da idade (avalie qual estatística é mais adequada para avaliar um caso típico);</li>
+<li>
+<code>raca</code>: compare somente as pontuações de negros (pretos e partos) e brancos;</li>
+<li>
+<code>escolaridade</code>: compare os participantes que tem até curso superior completo com aquelas que tem algum tipo de pós-graduação;</li>
+<li>
+<code>regiao</code>: compare os casos da região nordeste, sudeste e demais regiões agrupadas;</li>
+<li>Renda per capita: compare pessoas que estão acima e abaixo da média ou da mediana da renda per capita (avalie qual estatística é mais adequada para avaliar um caso típico);</li>
+<li>
+<code>nivel_de_ensino</code>: compare somente os professores que atuam em mais de um nível de ensino com aqueles que atuam no ensino fundamental</li>
+</ul>
+<p>Discuta os gráficos e tabelas obtidos.</p>
+
+
+<!-- -->
+
+</section><section id="bibliography" class="level1 unnumbered">
+
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referências</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-cunha2023contexto" class="csl-entry" role="listitem">
+Cunha, E. S. (2023). <em>Contexto de trabalho docente e assédio moral: construção e validação de instrumentos</em> [Dissertação de metrado, Universidade Federal do Ceará]. Repositório Institucional da UFC. <a href="http://repositorio.ufc.br/handle/riufc/74289">http://repositorio.ufc.br/handle/riufc/74289</a>
+</div>
+<div id="ref-einarsen2009measuring" class="csl-entry" role="listitem">
+Einarsen, S., Hoel, H., &amp; Notelaers, G. (2009). Measuring exposure to bullying and harassment at work: Validity, factor structure and psychometric properties of the Negative Acts Questionnaire-Revised. <em>Work &amp; Stress</em>, <em>23</em>(1), 24–44. <a href="https://doi.org/10.1080/02678370902815673">https://doi.org/10.1080/02678370902815673</a>
+</div>
+<div id="ref-gonçalves_stein_kapczinski_2008" class="csl-entry" role="listitem">
+Gonçalves, D. M., Stein, A. T., &amp; Kapczinski, F. (2008). Avaliação de desempenho do Self-Reporting Questionnaire como instrumento de rastreamento psiquiátrico: um estudo comparativo com o Structured Clinical Interview for DSM-IV-TR. <em>Cadernos de Saúde Pública</em>, <em>24</em>(2), 380–390. <a href="https://doi.org/10.1590/S0102-311X2008000200017">https://doi.org/10.1590/S0102-311X2008000200017</a>
+</div>
+<div id="ref-silva2017caracteristicas" class="csl-entry" role="listitem">
+Silva, I. V., Aquino, E. M. L., &amp; Pinto, I. C. M. (2017). Características psicométricas do Negative Acts Questionnaire para detecção do assédio moral no trabalho: estudo avaliativo do instrumento com uma amostra de servidores estaduais da saúde. <em>Revista Brasileira de Saúde Ocupacional</em>, <em>42</em>, 1–9. <a href="https://doi.org/10.1590/2317-6369000128715">https://doi.org/10.1590/2317-6369000128715</a>
+</div>
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/fphap\.quarto\.pub\/pesquisa-quanti-ufc");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Exploração de dados: exercícios"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> pt-br</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">     fig.retina: 2</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">     fig.width: 6</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">     fig.asp: 2/3</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">     fig-dpi: 300</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">     fig-align: center</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">     toc: true</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="an">echo:</span><span class="co"> false</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="an">message:</span><span class="co"> false</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="an">warning:</span><span class="co"> false</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> exercios.bib</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="an">reference-section-title:</span><span class="co"> Referências</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> apa.csl</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"C:/projetos-r/pesquisa-quanti-psi-ufc/_common.R"</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>code_book <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"C:/projetos-r/pesquisa-quanti-psi-ufc/data/tmcs_assedio_moral_code_book.csv"</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>tmcs_assedio_moral <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"C:/projetos-r/pesquisa-quanti-psi-ufc/data/tmcs_assedio_moral.csv"</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pesquisa sobre assédio moral no trabalho e saúde mental</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>Um estudo foi realizado com professores de escolas públicas de todo o Brasil (n = <span class="in">`r nrow(tmcs_assedio_moral)`</span>) para avaliar a repercussão do assédio moral no trabalho para a saúde mental. A partir das orientações a seguir, explore o banco de dados do estudo utilizando gráficos e tabelas.</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## Banco de Dados `tmcs_assedio_moral`</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Formato: um banco de dados com <span class="in">`r nrow(tmcs_assedio_moral)`</span> casos e <span class="in">`r ncol(tmcs_assedio_moral)`</span> variáveis descritas no livro de códigos apresentado adiante.</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="fu">### Livro de códigos</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>code_book <span class="sc">|&gt;</span> </span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span>  <span class="st">"center"</span>,</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(Índice, Item)</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">align =</span> <span class="st">"center"</span>),</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> Descrição)</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Instrumentos</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transtornos Mentais Comuns</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>O Self-Reporting Questionnaire-20 (SRQ-20) é uma ferramenta de triagem para transtornos mentais não psicóticos (transtornos mentais comuns - TMC), como insônia, dificuldade de concentração, fadiga, dores de cabeça e falta de apetite (por exemplo, “Faça você se cansa facilmente?”). Este instrumento é composto por 20 afirmações com opções binárias de resposta (“sim” ou “não”). As respostas negativas são pontuadas como zero, enquanto as respostas positivas são pontuadas como 1. As pontuações são então somadas, com ponto de corte estabelecido em 7/8 para distinguir entre ausência e presença de TMC, respectivamente <span class="co">[</span><span class="ot">@gonçalves_stein_kapczinski_2008</span><span class="co">]</span>.</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>code_book <span class="sc">|&gt;</span> </span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item, Descrição) <span class="sc">|&gt;</span> </span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(Item, <span class="st">"srq"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span>  <span class="st">"center"</span>,</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(Item)</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">align =</span> <span class="st">"center"</span>),</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> Descrição)</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span>  <span class="st">"left"</span>,</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(Descrição)  </span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_width</span>(</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>    Item <span class="sc">~</span> <span class="fu">px</span>(<span class="dv">50</span>)</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="fu">### Assédio Moral no Local de Trabalho</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>O NAQ-R mede a exposição ao assédio moral no local de trabalho durante os seis meses anteriores, utilizando uma escala de resposta de cinco níveis que varia de nunca a diariamente <span class="co">[</span><span class="ot">@einarsen2009measuring</span><span class="co">]</span>. A versão do NAQ-R validada para professores <span class="co">[</span><span class="ot">@cunha2023contexto</span><span class="co">]</span> compreende 21 itens categorizados em dois fatores: assédio moral pessoal (e. g., “Foram feitos comentários ofensivos sobre a sua pessoa, suas atitudes ou sobre sua vida privada.”), assédio moral relacionado ao trabalho (por exemplo, “Foi obrigado(a) a realizar um trabalho abaixo do seu nível de competência”). Os itens da escala não mencionam explicitamente “assédio moral”; em vez disso, a avaliação baseia-se na autopercepção do entrevistado sobre a exposição a comportamentos característicos do bullying no local de trabalho <span class="co">[</span><span class="ot">@silva2017caracteristicas</span><span class="co">]</span>. As pontuações para cada fator são derivadas do cálculo das médias de seus respectivos itens, conforme a tabela a seguir:</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>naq_tabela <span class="ot">&lt;-</span> code_book <span class="sc">|&gt;</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Item, Descrição) <span class="sc">|&gt;</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(Item, <span class="st">"^n2$|n5|n6|n7|n8|n9|n10|n11|n12|n13|n14|n15|n17|n20|n22|n3|n4|n16|n18|n19|n21"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">fct_relevel</span>(Item, <span class="st">"n2"</span>,<span class="st">"n5"</span>,<span class="st">"n6"</span>,<span class="st">"n7"</span>,<span class="st">"n8"</span>,<span class="st">"n9"</span>,<span class="st">"n10"</span>,<span class="st">"n11"</span>,<span class="st">"n12"</span>,<span class="st">"n13"</span>,<span class="st">"n14"</span>,<span class="st">"n15"</span>,<span class="st">"n17"</span>,<span class="st">"n20"</span>,<span class="st">"n22"</span>,<span class="st">"n3"</span>,<span class="st">"n4"</span>,<span class="st">"n16"</span>,<span class="st">"n18"</span>,<span class="st">"n19"</span>,<span class="st">"n21"</span>))</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>naq_tabela <span class="ot">&lt;-</span> naq_tabela <span class="sc">|&gt;</span> </span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>    Descrição <span class="ot">=</span> <span class="st">"Assédio moral pessoal"</span>, <span class="at">Item =</span> <span class="cn">NA</span>,</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>    <span class="at">.before =</span> <span class="dv">1</span></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>    Descrição <span class="ot">=</span> <span class="st">"Assédio moral relacionado ao trabalho"</span>,</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>    <span class="at">.before =</span> <span class="dv">17</span></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>naq_tabela <span class="sc">|&gt;</span> </span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sub_missing</span>(<span class="at">missing_text =</span> <span class="st">""</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">"bold"</span>),</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_body</span>(</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> Descrição,</span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>      <span class="at">rows =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">17</span>)</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span>  <span class="st">"center"</span>,</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(Item)</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">align =</span> <span class="st">"center"</span>),</span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> Descrição)</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span>  <span class="st">"left"</span>,</span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(Descrição)  </span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_width</span>(</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>    Item <span class="sc">~</span> <span class="fu">px</span>(<span class="dv">50</span>)</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a><span class="fu">## Manipulação dos dados</span></span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>tmcs_assedio_moral <span class="ot">&lt;-</span> tmcs_assedio_moral <span class="sc">|&gt;</span></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>    <span class="at">tmcs_total =</span> <span class="fu">sum</span>(<span class="fu">c_across</span>(srq_1<span class="sc">:</span>srq_20)),</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>    <span class="at">assedio_pessoal =</span> <span class="fu">mean</span>(<span class="fu">c</span>(n2, n5, n6, n7,</span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>                             n8, n9, n10, n11, </span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>                             n12, n13, n14, n15, </span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>                             n17,n20, n22)), </span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>    <span class="at">assedio_profissional =</span> <span class="fu">mean</span>(<span class="fu">c</span>(n3, n4, n16, n18, </span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>                                  n19, n21))</span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>    <span class="at">renda_per_capita =</span> renda_familiar_mensal<span class="sc">/</span>dependentes_da_renda_familiar</span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a><span class="fu">## Participantes</span></span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a><span class="fu">### Descrição dos dados e tabela</span></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>Descreva o perfil sociodemográfico dos participantes do estudo e gere uma tabela que sintetize estes dados. Utilize as normas da APA para a construção desta tabela e de todas as outras demandadas nesta atividade, conforme exemplos que podem ser encontrados <span class="co">[</span><span class="ot">aqui</span><span class="co">](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/sample-tables)</span>{.external target="_blank"}.</span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a>levels_cat <span class="ot">&lt;-</span> tmcs_assedio_moral <span class="sc">|&gt;</span> </span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sexo, raca, escolaridade,</span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a>         regiao, nivel_de_ensino) <span class="sc">|&gt;</span> </span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>()</span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>tmcs_assedio_moral <span class="sc">|&gt;</span> </span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sexo, raca, escolaridade,</span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a>         regiao, nivel_de_ensino) <span class="sc">|&gt;</span> </span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(name, value) <span class="sc">|&gt;</span> </span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n),</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop =</span> <span class="fu">percent_format</span>(<span class="fl">0.1</span>)(prop),</span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> name</span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">fct_relevel</span>(name, levels_cat),n) <span class="sc">|&gt;</span> </span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a><span class="fu">### Gráficos</span></span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a>Gere gráficos para uma apresentação sobre as características sociodemográficas dos participantes da investigação.</span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a><span class="fu">## Associação entre variáveis numéricas</span></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a><span class="fu">### TMCs</span></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a>A partir da pontuação total do SRQ-20, construa gráficos que analisem a associação entre TMCs e:</span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>os dois tipos de assédio moral avaliados pelo NAQ-R;</span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>a idade;</span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>o tempo de experiência como professor e;</span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>a renda familiar per capita.</span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a>Discuta os gráficos obtidos.</span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a><span class="fu">### Assédio moral</span></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>A partir das pontuações das duas variáveis pertinentes ao assédio moral, construa gráficos que avaliem a associação destas variáveis com:</span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>a idade;</span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>o tempo de experiência como professor e;</span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>a renda familiar per capita.</span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>Discuta os gráficos obtidos.</span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparação entre grupos</span></span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a><span class="fu">### TMCs</span></span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>Construa gráficos e tabelas que comparem os grupos de participantes gerados a partir da variável que faz o rastreio qualitativo de TMCs em relação:</span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>aos dois tipos de assédio avaliados pelo NAQ-R (pessoal e relacionado ao trabalho);</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>à idade;</span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>ao tempo de experiência como professor e;</span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>à renda familiar per capita.</span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>Discuta as tabelas e os gráficos obtidos.</span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a><span class="fu">### Assédio moral</span></span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a>Formule gráficos e tabelas que comparem as pontuações dos dois tipos de assédio moral entre os grupos das seguintes variáveis:</span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`sexo`</span>;</span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`idade`</span>: compare pessoas que estão acima e abaixo da média ou da mediana da idade (avalie qual estatística é mais adequada para avaliar um caso típico);</span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`raca`</span>: compare somente as pontuações de negros (pretos e partos) e brancos;</span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`escolaridade`</span>: compare os participantes que tem até curso superior completo com aquelas que tem algum tipo de pós-graduação;</span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`regiao`</span>: compare os casos da região nordeste, sudeste e demais regiões agrupadas;</span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Renda per capita: compare pessoas que estão acima e abaixo da média ou da mediana da renda per capita (avalie qual estatística é mais adequada para avaliar um caso típico);</span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`nivel_de_ensino`</span>: compare somente os professores que atuam em mais de um nível de ensino com aqueles que atuam no ensino fundamental</span>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a>Discuta as tabelas e os gráficos obtidos.</span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a><span class="fu">## Associação entre variáveis categóricas</span></span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a>Crie gráficos e tabelas que analisem a associação entre os grupos de participantes gerados a partir da variável que faz rastreio qualitativo de TMCs e os grupos das seguintes variáveis:</span>
+<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`sexo`</span>;</span>
+<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`idade`</span>: compare pessoas que estão acima e abaixo da média ou da mediana da idade (avalie qual estatística é mais adequada para avaliar um caso típico);</span>
+<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`raca`</span>: compare somente as pontuações de negros (pretos e partos) e brancos;</span>
+<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`escolaridade`</span>: compare os participantes que tem até curso superior completo com aquelas que tem algum tipo de pós-graduação;</span>
+<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`regiao`</span>: compare os casos da região nordeste, sudeste e demais regiões agrupadas;</span>
+<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Renda per capita: compare pessoas que estão acima e abaixo da média ou da mediana da renda per capita (avalie qual estatística é mais adequada para avaliar um caso típico);</span>
+<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`nivel_de_ensino`</span>: compare somente os professores que atuam em mais de um nível de ensino com aqueles que atuam no ensino fundamental</span>
+<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a>Discuta os gráficos e tabelas obtidos.</span>
+</code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Esta página foi construída com <a href="https://quarto.org/">Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><img src="img/brasao1_horizontal_cor_300dpi.png" width="200"></p>
+</div>
+  </div>
+</footer>
+
+
+</body></html>
