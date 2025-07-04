@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="pt-br"><head>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <title>Pesquisa Quantitativa – Introdução ao R</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-8f3eebe07241f08526c91a7e9cbef8fd.css">
+  <link rel="stylesheet" href="logo.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link href="site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
+
+  <script src="site_libs/countdown-0.4.0/countdown.js"></script>
+
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Introdução ao R</h1>
+  <p class="subtitle">Transformação de dados: linhas</p>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section>
+<section id="introdução" class="title-slide slide level1 center" data-transition="slide">
+<h1>Introdução</h1>
+
+</section>
+<section id="transformações" class="slide level2 smaller">
+<h2>Transformações</h2>
+<ul>
+<li>É raro que os dados estejam da forma certa para fazer análises ou gráficos</li>
+<li>Transformações:
+<ul>
+<li>Criar novas variáveis</li>
+<li>Resumir dados</li>
+<li>Renomear variáveis</li>
+<li>Reordenar casos</li>
+</ul></li>
+<li><a href="https://dplyr.tidyverse.org/index.html"><code>dplyr</code></a></li>
+<li><a href="https://rdrr.io/cran/nycflights13/man/flights.html"><code>nycflights13</code></a></li>
+</ul>
+</section>
+<section id="pacotes" class="slide level2">
+<h2>Pacotes</h2>
+<p>Carregue os pacotes abaixo:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(nycflights13)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="nycflights13flights" class="slide level2 smaller">
+<h2><a href="https://rdrr.io/cran/nycflights13/man/flights.html"><code>nycflights13::flights</code></a></h2>
+<div style="font-size: 14pt;">
+<p>Dados de pontualidade de todos os voos que partiram de Nova York (ou seja, JFK, LGA ou EWR) em 2013 retirados do <a href="http://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&amp;Link=0">US Bureau of Transportation Statistics</a></p>
+<ul>
+<li>Formato: um banco de dados com 336776 observações e 19 variáveis
+<ul>
+<li><code>year</code>, <code>month</code>, <code>day</code>: data de partida</li>
+<li><code>dep_time</code>, <code>arr_time</code>: Horários reais de partida e chegada (formato HHMM ou HMM), fuzo horário local</li>
+<li><code>sched_dep_time</code>, <code>sched_arr_time</code>: horários programados de partida e chegada (formato HHMM ou HMM), fuzo horário local</li>
+<li><code>dep_delay</code>, <code>arr_delay</code>: atrasos de partida e chegada, em minutos. Tempos negativos representam partidas/chegadas antecipadas</li>
+<li><code>carrier</code>: abreviação de transportadora de duas letras. Veja o banco de dados <code>airlines</code> para obter os nome</li>
+<li><code>flight</code>: número do voo</li>
+<li><code>tailnum</code>: Número da cauda do avião. Veja o banco de dados <code>planes</code> para metadados adicionais</li>
+<li><code>origin, dest</code>: Origem e destino. Veja o banco de dados <code>airports</code> para metadados adicionais</li>
+<li><code>air_time</code>: quantidade de tempo gasto no ar, em minutos</li>
+<li><code>distance</code>: distância entre aeroportos, em milhas</li>
+<li><code>hour</code>, <code>minute</code>: horário de partida programado dividido em horas e minutos</li>
+<li><code>time_hour</code>: Data e hora programadas do voo como uma data <code>POSIXct</code>. Junto com a <code>origin</code>, pode ser usado para unir dados de voos a dados meteorológicos (veja o banco de dados <code>weather</code>)</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="nycflights13flights-1" class="slide level2">
+<h2><a href="https://rdrr.io/cran/nycflights13/man/flights.html"><code>nycflights13::flights</code></a></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>flights</span>
+<span id="cb2-2"><a></a><span class="co">#&gt; # A tibble: 336,776 × 19</span></span>
+<span id="cb2-3"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb2-4"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb2-5"><a></a><span class="co">#&gt; 1  2013     1     1      517            515         2      830            819</span></span>
+<span id="cb2-6"><a></a><span class="co">#&gt; 2  2013     1     1      533            529         4      850            830</span></span>
+<span id="cb2-7"><a></a><span class="co">#&gt; 3  2013     1     1      542            540         2      923            850</span></span>
+<span id="cb2-8"><a></a><span class="co">#&gt; 4  2013     1     1      544            545        -1     1004           1022</span></span>
+<span id="cb2-9"><a></a><span class="co">#&gt; 5  2013     1     1      554            600        -6      812            837</span></span>
+<span id="cb2-10"><a></a><span class="co">#&gt; 6  2013     1     1      554            558        -4      740            728</span></span>
+<span id="cb2-11"><a></a><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
+<span id="cb2-12"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="nycflights13flights-2" class="slide level2 smaller">
+<h2><a href="https://rdrr.io/cran/nycflights13/man/flights.html"><code>nycflights13::flights</code></a></h2>
+<ul>
+<li>tibble: tipo especial de banco de dados usado pelo <a href="https://www.tidyverse.org/"><code>tydiverse</code></a></li>
+<li>projetados para grandes conjuntos de dados
+<ul>
+<li>mostram apenas as primeiras linhas e apenas as colunas que cabem na tela</li>
+<li>para ver todas as colunas: <code>glimpse</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="nycflights13flights-3" class="slide level2">
+<h2><a href="https://rdrr.io/cran/nycflights13/man/flights.html"><code>nycflights13::flights</code></a></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">glimpse</span>(flights)</span>
+<span id="cb3-2"><a></a><span class="co">#&gt; Rows: 336,776</span></span>
+<span id="cb3-3"><a></a><span class="co">#&gt; Columns: 19</span></span>
+<span id="cb3-4"><a></a><span class="co">#&gt; $ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013…</span></span>
+<span id="cb3-5"><a></a><span class="co">#&gt; $ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span></span>
+<span id="cb3-6"><a></a><span class="co">#&gt; $ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span></span>
+<span id="cb3-7"><a></a><span class="co">#&gt; $ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 55…</span></span>
+<span id="cb3-8"><a></a><span class="co">#&gt; $ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 60…</span></span>
+<span id="cb3-9"><a></a><span class="co">#&gt; $ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2,…</span></span>
+<span id="cb3-10"><a></a><span class="co">#&gt; $ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 8…</span></span>
+<span id="cb3-11"><a></a><span class="co">#&gt; $ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 8…</span></span>
+<span id="cb3-12"><a></a><span class="co">#&gt; $ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7,…</span></span>
+<span id="cb3-13"><a></a><span class="co">#&gt; $ carrier        &lt;chr&gt; "UA", "UA", "AA", "B6", "DL", "UA", "B6", "EV", "B6"…</span></span>
+<span id="cb3-14"><a></a><span class="co">#&gt; $ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301…</span></span>
+<span id="cb3-15"><a></a><span class="co">#&gt; $ tailnum        &lt;chr&gt; "N14228", "N24211", "N619AA", "N804JB", "N668DN", "N…</span></span>
+<span id="cb3-16"><a></a><span class="co">#&gt; $ origin         &lt;chr&gt; "EWR", "LGA", "JFK", "JFK", "LGA", "EWR", "EWR", "LG…</span></span>
+<span id="cb3-17"><a></a><span class="co">#&gt; $ dest           &lt;chr&gt; "IAH", "IAH", "MIA", "BQN", "ATL", "ORD", "FLL", "IA…</span></span>
+<span id="cb3-18"><a></a><span class="co">#&gt; $ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149…</span></span>
+<span id="cb3-19"><a></a><span class="co">#&gt; $ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 73…</span></span>
+<span id="cb3-20"><a></a><span class="co">#&gt; $ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6…</span></span>
+<span id="cb3-21"><a></a><span class="co">#&gt; $ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59…</span></span>
+<span id="cb3-22"><a></a><span class="co">#&gt; $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-0…</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="nycflights13flights-4" class="slide level2 smaller">
+<h2><a href="https://rdrr.io/cran/nycflights13/man/flights.html"><code>nycflights13::flights</code></a></h2>
+<ul>
+<li>Tipo de cada variável
+<ul>
+<li><code>&lt;int&gt;</code>: números inteiros</li>
+<li><code>&lt;dbl&gt;</code>: números reais</li>
+<li><code>&lt;chr&gt;</code>: caracteres</li>
+<li><code>&lt;dttm&gt;</code>: data e hora</li>
+</ul></li>
+</ul>
+</section>
+<section id="banco-para-exercícios-mpg" class="slide level2 smaller">
+<h2>Banco para exercícios: <a href="https://ggplot2.tidyverse.org/reference/mpg.html"><code>mpg</code></a></h2>
+<div style="font-size: 14pt;">
+<p>Este conjunto de dados contém um subconjunto dos dados de economia de combustível que a EPA disponibiliza em https://fueleconomy.gov/. Ele contém apenas modelos que tiveram um novo lançamento a cada ano entre 1999 e 2008 - isso foi usado como um proxy para a popularidade do carro.</p>
+<ul>
+<li>Formato: Um banco de dados com 234 observações e 11 variáveis
+<ul>
+<li><code>manufacturer</code>: nome do fabricante</li>
+<li><code>model</code>: nome do modelo</li>
+<li><code>displ</code>: cilindrada do motor, em litros</li>
+<li><code>year</code>: ano de fabricação</li>
+<li><code>cyl</code>: número de cilindros</li>
+<li><code>trans</code>: tipo de câmbio (transmissão)</li>
+<li><code>drv</code>: tipo de tração</li>
+<li><code>cty</code>: milhas por galão na cidade</li>
+<li><code>hwy</code>: milhas por galão na estrada</li>
+<li><code>fl</code>: tipo de combustível</li>
+<li><code>class</code>: tipo de carro</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="exercício" class="slide level2 smaller">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_a9a8488f" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<ul>
+<li>Use a função <code>glimpse</code> para olhar as variáveis do banco <code>mpg</code></li>
+</ul>
+</section>
+<section id="resposta" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">glimpse</span>(mpg)</span>
+<span id="cb4-2"><a></a><span class="co">#&gt; Rows: 234</span></span>
+<span id="cb4-3"><a></a><span class="co">#&gt; Columns: 11</span></span>
+<span id="cb4-4"><a></a><span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "audi"…</span></span>
+<span id="cb4-5"><a></a><span class="co">#&gt; $ model        &lt;chr&gt; "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro"…</span></span>
+<span id="cb4-6"><a></a><span class="co">#&gt; $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0,…</span></span>
+<span id="cb4-7"><a></a><span class="co">#&gt; $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, …</span></span>
+<span id="cb4-8"><a></a><span class="co">#&gt; $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, …</span></span>
+<span id="cb4-9"><a></a><span class="co">#&gt; $ trans        &lt;chr&gt; "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "a…</span></span>
+<span id="cb4-10"><a></a><span class="co">#&gt; $ drv          &lt;chr&gt; "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4",…</span></span>
+<span id="cb4-11"><a></a><span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17…</span></span>
+<span id="cb4-12"><a></a><span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25…</span></span>
+<span id="cb4-13"><a></a><span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p",…</span></span>
+<span id="cb4-14"><a></a><span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact",…</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="o-básico-do-dplyr" class="slide level2 smaller">
+<h2>O Básico do <code>dplyr</code></h2>
+<ul>
+<li>Verbos do dplyr (funções): manipulação de dados
+<ul>
+<li>Primeiro argumento: banco de dados</li>
+<li>Argumentos subsequentes: quais colunas operar
+<ul>
+<li>Nomes das variáveis sem aspas</li>
+</ul></li>
+<li>Saída: novo banco de dados</li>
+</ul></li>
+</ul>
+</section>
+<section id="o-básico-do-dplyr-1" class="slide level2">
+<h2>O Básico do <code>dplyr</code></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">filter</span>(mpg, manufacturer <span class="sc">==</span> <span class="st">"ford"</span>)</span>
+<span id="cb5-2"><a></a><span class="co">#&gt; # A tibble: 25 × 11</span></span>
+<span id="cb5-3"><a></a><span class="co">#&gt;   manufacturer model          displ  year   cyl trans      drv     cty   hwy</span></span>
+<span id="cb5-4"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb5-5"><a></a><span class="co">#&gt; 1 ford         expedition 2wd   4.6  1999     8 auto(l4)   r        11    17</span></span>
+<span id="cb5-6"><a></a><span class="co">#&gt; 2 ford         expedition 2wd   5.4  1999     8 auto(l4)   r        11    17</span></span>
+<span id="cb5-7"><a></a><span class="co">#&gt; 3 ford         expedition 2wd   5.4  2008     8 auto(l6)   r        12    18</span></span>
+<span id="cb5-8"><a></a><span class="co">#&gt; 4 ford         explorer 4wd     4    1999     6 auto(l5)   4        14    17</span></span>
+<span id="cb5-9"><a></a><span class="co">#&gt; 5 ford         explorer 4wd     4    1999     6 manual(m5) 4        15    19</span></span>
+<span id="cb5-10"><a></a><span class="co">#&gt; 6 ford         explorer 4wd     4    1999     6 auto(l5)   4        14    17</span></span>
+<span id="cb5-11"><a></a><span class="co">#&gt; # ℹ 19 more rows</span></span>
+<span id="cb5-12"><a></a><span class="co">#&gt; # ℹ 2 more variables: fl &lt;chr&gt;, class &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="o-básico-do-dplyr-2" class="slide level2">
+<h2>O Básico do <code>dplyr</code></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">select</span>(mpg, model)</span>
+<span id="cb6-2"><a></a><span class="co">#&gt; # A tibble: 234 × 1</span></span>
+<span id="cb6-3"><a></a><span class="co">#&gt;   model</span></span>
+<span id="cb6-4"><a></a><span class="co">#&gt;   &lt;chr&gt;</span></span>
+<span id="cb6-5"><a></a><span class="co">#&gt; 1 a4   </span></span>
+<span id="cb6-6"><a></a><span class="co">#&gt; 2 a4   </span></span>
+<span id="cb6-7"><a></a><span class="co">#&gt; 3 a4   </span></span>
+<span id="cb6-8"><a></a><span class="co">#&gt; 4 a4   </span></span>
+<span id="cb6-9"><a></a><span class="co">#&gt; 5 a4   </span></span>
+<span id="cb6-10"><a></a><span class="co">#&gt; 6 a4   </span></span>
+<span id="cb6-11"><a></a><span class="co">#&gt; # ℹ 228 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="o-básico-do-dplyr-3" class="slide level2 smaller">
+<h2>O Básico do <code>dplyr</code></h2>
+<p>pipe: <code>|&gt;</code>: “e então”</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a></a>  <span class="fu">glimpse</span>()</span>
+<span id="cb7-3"><a></a><span class="co">#&gt; Rows: 234</span></span>
+<span id="cb7-4"><a></a><span class="co">#&gt; Columns: 11</span></span>
+<span id="cb7-5"><a></a><span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "audi"…</span></span>
+<span id="cb7-6"><a></a><span class="co">#&gt; $ model        &lt;chr&gt; "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro"…</span></span>
+<span id="cb7-7"><a></a><span class="co">#&gt; $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0,…</span></span>
+<span id="cb7-8"><a></a><span class="co">#&gt; $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, …</span></span>
+<span id="cb7-9"><a></a><span class="co">#&gt; $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, …</span></span>
+<span id="cb7-10"><a></a><span class="co">#&gt; $ trans        &lt;chr&gt; "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "a…</span></span>
+<span id="cb7-11"><a></a><span class="co">#&gt; $ drv          &lt;chr&gt; "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4",…</span></span>
+<span id="cb7-12"><a></a><span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17…</span></span>
+<span id="cb7-13"><a></a><span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25…</span></span>
+<span id="cb7-14"><a></a><span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p",…</span></span>
+<span id="cb7-15"><a></a><span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact",…</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="configurar-o-rstudio-para-usar-o-pipe-nativo" class="slide level2">
+<h2>Configurar o RStudio para usar o pipe nativo (<code>|&gt;</code>)</h2>
+
+<img data-src="img/config-pipe-nativo.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="section" class="slide level2">
+<h2><code>|&gt;</code></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a></a>  <span class="fu">filter</span>(manufacturer <span class="sc">==</span> <span class="st">"audi"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a></a>  <span class="fu">group_by</span>(trans) <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb8-5"><a></a>    <span class="st">"média na cidade"</span> <span class="ot">=</span> <span class="fu">mean</span>(cty),</span>
+<span id="cb8-6"><a></a>    <span class="st">"média na rodovia"</span> <span class="ot">=</span> <span class="fu">mean</span>(hwy)</span>
+<span id="cb8-7"><a></a>    )</span>
+<span id="cb8-8"><a></a><span class="co">#&gt; # A tibble: 5 × 3</span></span>
+<span id="cb8-9"><a></a><span class="co">#&gt;   trans      `média na cidade` `média na rodovia`</span></span>
+<span id="cb8-10"><a></a><span class="co">#&gt;   &lt;chr&gt;                  &lt;dbl&gt;              &lt;dbl&gt;</span></span>
+<span id="cb8-11"><a></a><span class="co">#&gt; 1 auto(av)                19.5               28.5</span></span>
+<span id="cb8-12"><a></a><span class="co">#&gt; 2 auto(l5)                16                 25.8</span></span>
+<span id="cb8-13"><a></a><span class="co">#&gt; 3 auto(s6)                17.2               25  </span></span>
+<span id="cb8-14"><a></a><span class="co">#&gt; 4 manual(m5)              18.5               26.5</span></span>
+<span id="cb8-15"><a></a><span class="co">#&gt; 5 manual(m6)              18.3               28</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-1" class="slide level2 smaller">
+<h2><code>|&gt;</code></h2>
+<ul>
+<li>Atalho de teclado (windows)
+<ul>
+<li>ctrl + shift + m</li>
+</ul></li>
+<li>Atalho de teclado (mac os)
+<ul>
+<li>cmd + shift + m</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="linhas---rows" class="title-slide slide level1 center">
+<h1>Linhas - rows</h1>
+
+</section>
+<section id="funções-para-as-linhas-casossujeitosobservações" class="slide level2 smaller">
+<h2>Funções para as linhas (casos/sujeitos/observações)</h2>
+<ul>
+<li><a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code></a></li>
+<li><a href="https://dplyr.tidyverse.org/reference/arrange.html"><code>arrange()</code></a></li>
+<li><a href="https://dplyr.tidyverse.org/reference/arrange.html"><code>distinct()</code></a></li>
+</ul>
+</section>
+<section id="filter" class="slide level2 smaller">
+<h2><a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code></a></h2>
+<ul>
+<li>filtra (mantém | deixa passar) linhas baseado em valores das colunas (variáveis)</li>
+<li>primeiro argumento: banco de dados</li>
+<li>segundo e subsequentes: condições que devem ser verdade para manter a linha (caso)</li>
+</ul>
+</section>
+<section id="filter-1" class="slide level2">
+<h2><a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code></a></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a></a>  <span class="fu">filter</span>(dep_delay <span class="sc">&gt;</span> <span class="dv">120</span>)</span>
+<span id="cb9-3"><a></a><span class="co">#&gt; # A tibble: 9,723 × 19</span></span>
+<span id="cb9-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb9-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb9-6"><a></a><span class="co">#&gt; 1  2013     1     1      848           1835       853     1001           1950</span></span>
+<span id="cb9-7"><a></a><span class="co">#&gt; 2  2013     1     1      957            733       144     1056            853</span></span>
+<span id="cb9-8"><a></a><span class="co">#&gt; 3  2013     1     1     1114            900       134     1447           1222</span></span>
+<span id="cb9-9"><a></a><span class="co">#&gt; 4  2013     1     1     1540           1338       122     2020           1825</span></span>
+<span id="cb9-10"><a></a><span class="co">#&gt; 5  2013     1     1     1815           1325       290     2120           1542</span></span>
+<span id="cb9-11"><a></a><span class="co">#&gt; 6  2013     1     1     1842           1422       260     1958           1535</span></span>
+<span id="cb9-12"><a></a><span class="co">#&gt; # ℹ 9,717 more rows</span></span>
+<span id="cb9-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-1" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_812ab221" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>No banco de dados <code>mpg</code>, encontre os carros que tem um rendimento na cidade maior do que 17 milhas por galão (<code>cty</code>)</p>
+</section>
+<section id="resposta-1" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a></a>  <span class="fu">filter</span>(cty <span class="sc">&gt;</span> <span class="dv">17</span>)</span>
+<span id="cb10-3"><a></a><span class="co">#&gt; # A tibble: 102 × 11</span></span>
+<span id="cb10-4"><a></a><span class="co">#&gt;   manufacturer model displ  year   cyl trans      drv     cty   hwy fl   </span></span>
+<span id="cb10-5"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;</span></span>
+<span id="cb10-6"><a></a><span class="co">#&gt; 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p    </span></span>
+<span id="cb10-7"><a></a><span class="co">#&gt; 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p    </span></span>
+<span id="cb10-8"><a></a><span class="co">#&gt; 3 audi         a4      2    2008     4 manual(m6) f        20    31 p    </span></span>
+<span id="cb10-9"><a></a><span class="co">#&gt; 4 audi         a4      2    2008     4 auto(av)   f        21    30 p    </span></span>
+<span id="cb10-10"><a></a><span class="co">#&gt; 5 audi         a4      2.8  1999     6 manual(m5) f        18    26 p    </span></span>
+<span id="cb10-11"><a></a><span class="co">#&gt; 6 audi         a4      3.1  2008     6 auto(av)   f        18    27 p    </span></span>
+<span id="cb10-12"><a></a><span class="co">#&gt; # ℹ 96 more rows</span></span>
+<span id="cb10-13"><a></a><span class="co">#&gt; # ℹ 1 more variable: class &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="operadores-lógicos" class="slide level2 smaller">
+<h2>Operadores lógicos</h2>
+<ul>
+<li><code>&gt;</code> maior que</li>
+<li><code>&gt;=</code> maior ou igual que</li>
+<li><code>&lt;</code> menor que</li>
+<li><code>&lt;=</code> menor ou igual que</li>
+<li><code>==</code> igual a</li>
+<li><code>!=</code> não é igual a</li>
+</ul>
+</section>
+<section id="operadores-lógicos-1" class="slide level2 smaller">
+<h2>Operadores lógicos</h2>
+<ul>
+<li>Combinar codições:
+<ul>
+<li><code>&amp;</code> “e” (“verifique ambas as condições”)</li>
+<li><code>,</code> “e” (“verifique ambas as condições”)</li>
+<li><code>|</code> “ou” (“verifique qualquer uma das condições”)</li>
+</ul></li>
+</ul>
+</section>
+<section id="operadores-lógicos-2" class="slide level2">
+<h2>Operadores lógicos</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a></a>  <span class="fu">filter</span>(day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> month <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb11-3"><a></a><span class="co">#&gt; # A tibble: 842 × 19</span></span>
+<span id="cb11-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb11-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb11-6"><a></a><span class="co">#&gt; 1  2013     1     1      517            515         2      830            819</span></span>
+<span id="cb11-7"><a></a><span class="co">#&gt; 2  2013     1     1      533            529         4      850            830</span></span>
+<span id="cb11-8"><a></a><span class="co">#&gt; 3  2013     1     1      542            540         2      923            850</span></span>
+<span id="cb11-9"><a></a><span class="co">#&gt; 4  2013     1     1      544            545        -1     1004           1022</span></span>
+<span id="cb11-10"><a></a><span class="co">#&gt; 5  2013     1     1      554            600        -6      812            837</span></span>
+<span id="cb11-11"><a></a><span class="co">#&gt; 6  2013     1     1      554            558        -4      740            728</span></span>
+<span id="cb11-12"><a></a><span class="co">#&gt; # ℹ 836 more rows</span></span>
+<span id="cb11-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-2" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_15276ac6" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>No banco de dados <code>mpg</code>, encontre os carros da fabricante (<code>manufacturer</code>) “jeep” que têm 6 cilindros (<code>cyl</code>)</p>
+</section>
+<section id="resposta-2" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a></a>  <span class="fu">filter</span>(manufacturer <span class="sc">==</span> <span class="st">"jeep"</span> <span class="sc">&amp;</span> cyl <span class="sc">==</span> <span class="dv">6</span>)</span>
+<span id="cb12-3"><a></a><span class="co">#&gt; # A tibble: 3 × 11</span></span>
+<span id="cb12-4"><a></a><span class="co">#&gt;   manufacturer model             displ  year   cyl trans    drv     cty   hwy</span></span>
+<span id="cb12-5"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;             &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb12-6"><a></a><span class="co">#&gt; 1 jeep         grand cherokee 4…   3    2008     6 auto(l5) 4        17    22</span></span>
+<span id="cb12-7"><a></a><span class="co">#&gt; 2 jeep         grand cherokee 4…   3.7  2008     6 auto(l5) 4        15    19</span></span>
+<span id="cb12-8"><a></a><span class="co">#&gt; 3 jeep         grand cherokee 4…   4    1999     6 auto(l4) 4        15    20</span></span>
+<span id="cb12-9"><a></a><span class="co">#&gt; # ℹ 2 more variables: fl &lt;chr&gt;, class &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="resposta-3" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a></a>  <span class="fu">filter</span>(manufacturer <span class="sc">==</span> <span class="st">"jeep"</span>, cyl <span class="sc">==</span> <span class="dv">6</span>)</span>
+<span id="cb13-3"><a></a><span class="co">#&gt; # A tibble: 3 × 11</span></span>
+<span id="cb13-4"><a></a><span class="co">#&gt;   manufacturer model             displ  year   cyl trans    drv     cty   hwy</span></span>
+<span id="cb13-5"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;             &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb13-6"><a></a><span class="co">#&gt; 1 jeep         grand cherokee 4…   3    2008     6 auto(l5) 4        17    22</span></span>
+<span id="cb13-7"><a></a><span class="co">#&gt; 2 jeep         grand cherokee 4…   3.7  2008     6 auto(l5) 4        15    19</span></span>
+<span id="cb13-8"><a></a><span class="co">#&gt; 3 jeep         grand cherokee 4…   4    1999     6 auto(l4) 4        15    20</span></span>
+<span id="cb13-9"><a></a><span class="co">#&gt; # ℹ 2 more variables: fl &lt;chr&gt;, class &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="operadores-lógicos-3" class="slide level2">
+<h2>Operadores lógicos</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> month <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb14-3"><a></a><span class="co">#&gt; # A tibble: 51,955 × 19</span></span>
+<span id="cb14-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb14-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb14-6"><a></a><span class="co">#&gt; 1  2013     1     1      517            515         2      830            819</span></span>
+<span id="cb14-7"><a></a><span class="co">#&gt; 2  2013     1     1      533            529         4      850            830</span></span>
+<span id="cb14-8"><a></a><span class="co">#&gt; 3  2013     1     1      542            540         2      923            850</span></span>
+<span id="cb14-9"><a></a><span class="co">#&gt; 4  2013     1     1      544            545        -1     1004           1022</span></span>
+<span id="cb14-10"><a></a><span class="co">#&gt; 5  2013     1     1      554            600        -6      812            837</span></span>
+<span id="cb14-11"><a></a><span class="co">#&gt; 6  2013     1     1      554            558        -4      740            728</span></span>
+<span id="cb14-12"><a></a><span class="co">#&gt; # ℹ 51,949 more rows</span></span>
+<span id="cb14-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="operadores-lógicos-4" class="slide level2">
+<h2>Operadores lógicos</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># jução do `==` e do `|`</span></span>
+<span id="cb15-2"><a></a></span>
+<span id="cb15-3"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb15-4"><a></a>  <span class="fu">filter</span>(month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb15-5"><a></a><span class="co">#&gt; # A tibble: 51,955 × 19</span></span>
+<span id="cb15-6"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb15-7"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb15-8"><a></a><span class="co">#&gt; 1  2013     1     1      517            515         2      830            819</span></span>
+<span id="cb15-9"><a></a><span class="co">#&gt; 2  2013     1     1      533            529         4      850            830</span></span>
+<span id="cb15-10"><a></a><span class="co">#&gt; 3  2013     1     1      542            540         2      923            850</span></span>
+<span id="cb15-11"><a></a><span class="co">#&gt; 4  2013     1     1      544            545        -1     1004           1022</span></span>
+<span id="cb15-12"><a></a><span class="co">#&gt; 5  2013     1     1      554            600        -6      812            837</span></span>
+<span id="cb15-13"><a></a><span class="co">#&gt; 6  2013     1     1      554            558        -4      740            728</span></span>
+<span id="cb15-14"><a></a><span class="co">#&gt; # ℹ 51,949 more rows</span></span>
+<span id="cb15-15"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="operadores-lógicos-5" class="slide level2">
+<h2>Operadores lógicos</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># jução do `==` e do `|`</span></span>
+<span id="cb16-2"><a></a></span>
+<span id="cb16-3"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb16-4"><a></a>  <span class="fu">filter</span>(month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">11</span>))</span>
+<span id="cb16-5"><a></a><span class="co">#&gt; # A tibble: 107,466 × 19</span></span>
+<span id="cb16-6"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb16-7"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb16-8"><a></a><span class="co">#&gt; 1  2013     1     1      517            515         2      830            819</span></span>
+<span id="cb16-9"><a></a><span class="co">#&gt; 2  2013     1     1      533            529         4      850            830</span></span>
+<span id="cb16-10"><a></a><span class="co">#&gt; 3  2013     1     1      542            540         2      923            850</span></span>
+<span id="cb16-11"><a></a><span class="co">#&gt; 4  2013     1     1      544            545        -1     1004           1022</span></span>
+<span id="cb16-12"><a></a><span class="co">#&gt; 5  2013     1     1      554            600        -6      812            837</span></span>
+<span id="cb16-13"><a></a><span class="co">#&gt; 6  2013     1     1      554            558        -4      740            728</span></span>
+<span id="cb16-14"><a></a><span class="co">#&gt; # ℹ 107,460 more rows</span></span>
+<span id="cb16-15"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-3" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_4f9769be" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>No banco de dados <code>mpg</code>, localize os carros que tem 6 ou 8 cilindors (<code>cyl</code>)</p>
+</section>
+<section id="resposta-4" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a></a>  <span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">6</span> <span class="sc">|</span> cyl <span class="sc">==</span> <span class="dv">8</span>)</span>
+<span id="cb17-3"><a></a><span class="co">#&gt; # A tibble: 149 × 11</span></span>
+<span id="cb17-4"><a></a><span class="co">#&gt;   manufacturer model      displ  year   cyl trans      drv     cty   hwy</span></span>
+<span id="cb17-5"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb17-6"><a></a><span class="co">#&gt; 1 audi         a4           2.8  1999     6 auto(l5)   f        16    26</span></span>
+<span id="cb17-7"><a></a><span class="co">#&gt; 2 audi         a4           2.8  1999     6 manual(m5) f        18    26</span></span>
+<span id="cb17-8"><a></a><span class="co">#&gt; 3 audi         a4           3.1  2008     6 auto(av)   f        18    27</span></span>
+<span id="cb17-9"><a></a><span class="co">#&gt; 4 audi         a4 quattro   2.8  1999     6 auto(l5)   4        15    25</span></span>
+<span id="cb17-10"><a></a><span class="co">#&gt; 5 audi         a4 quattro   2.8  1999     6 manual(m5) 4        17    25</span></span>
+<span id="cb17-11"><a></a><span class="co">#&gt; 6 audi         a4 quattro   3.1  2008     6 auto(s6)   4        17    25</span></span>
+<span id="cb17-12"><a></a><span class="co">#&gt; # ℹ 143 more rows</span></span>
+<span id="cb17-13"><a></a><span class="co">#&gt; # ℹ 2 more variables: fl &lt;chr&gt;, class &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="resposta-5" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a></a>  <span class="fu">filter</span>(cyl <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">8</span>))</span>
+<span id="cb18-3"><a></a><span class="co">#&gt; # A tibble: 149 × 11</span></span>
+<span id="cb18-4"><a></a><span class="co">#&gt;   manufacturer model      displ  year   cyl trans      drv     cty   hwy</span></span>
+<span id="cb18-5"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb18-6"><a></a><span class="co">#&gt; 1 audi         a4           2.8  1999     6 auto(l5)   f        16    26</span></span>
+<span id="cb18-7"><a></a><span class="co">#&gt; 2 audi         a4           2.8  1999     6 manual(m5) f        18    26</span></span>
+<span id="cb18-8"><a></a><span class="co">#&gt; 3 audi         a4           3.1  2008     6 auto(av)   f        18    27</span></span>
+<span id="cb18-9"><a></a><span class="co">#&gt; 4 audi         a4 quattro   2.8  1999     6 auto(l5)   4        15    25</span></span>
+<span id="cb18-10"><a></a><span class="co">#&gt; 5 audi         a4 quattro   2.8  1999     6 manual(m5) 4        17    25</span></span>
+<span id="cb18-11"><a></a><span class="co">#&gt; 6 audi         a4 quattro   3.1  2008     6 auto(s6)   4        17    25</span></span>
+<span id="cb18-12"><a></a><span class="co">#&gt; # ℹ 143 more rows</span></span>
+<span id="cb18-13"><a></a><span class="co">#&gt; # ℹ 2 more variables: fl &lt;chr&gt;, class &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-4" class="slide level2">
+<h2>Exercício</h2>
+<p>No banco de dados <code>mpg</code>, ache os carros que foram fabricados (<code>manufacturer</code>) pelas marcas honda, nissan ou toyota</p>
+</section>
+<section id="resposta-6" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a></a>  <span class="fu">filter</span>(manufacturer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"honda"</span>, <span class="st">"nissan"</span>, <span class="st">"toyota"</span>))</span>
+<span id="cb19-3"><a></a><span class="co">#&gt; # A tibble: 56 × 11</span></span>
+<span id="cb19-4"><a></a><span class="co">#&gt;   manufacturer model displ  year   cyl trans      drv     cty   hwy fl   </span></span>
+<span id="cb19-5"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;</span></span>
+<span id="cb19-6"><a></a><span class="co">#&gt; 1 honda        civic   1.6  1999     4 manual(m5) f        28    33 r    </span></span>
+<span id="cb19-7"><a></a><span class="co">#&gt; 2 honda        civic   1.6  1999     4 auto(l4)   f        24    32 r    </span></span>
+<span id="cb19-8"><a></a><span class="co">#&gt; 3 honda        civic   1.6  1999     4 manual(m5) f        25    32 r    </span></span>
+<span id="cb19-9"><a></a><span class="co">#&gt; 4 honda        civic   1.6  1999     4 manual(m5) f        23    29 p    </span></span>
+<span id="cb19-10"><a></a><span class="co">#&gt; 5 honda        civic   1.6  1999     4 auto(l4)   f        24    32 r    </span></span>
+<span id="cb19-11"><a></a><span class="co">#&gt; 6 honda        civic   1.8  2008     4 manual(m5) f        26    34 r    </span></span>
+<span id="cb19-12"><a></a><span class="co">#&gt; # ℹ 50 more rows</span></span>
+<span id="cb19-13"><a></a><span class="co">#&gt; # ℹ 1 more variable: class &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="resposta-7" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a></a>  <span class="fu">filter</span>(manufacturer <span class="sc">==</span> <span class="st">"honda"</span> <span class="sc">|</span> manufacturer <span class="sc">==</span> <span class="st">"nissan"</span> <span class="sc">|</span> manufacturer <span class="sc">==</span> <span class="st">"toyota"</span>)</span>
+<span id="cb20-3"><a></a><span class="co">#&gt; # A tibble: 56 × 11</span></span>
+<span id="cb20-4"><a></a><span class="co">#&gt;   manufacturer model displ  year   cyl trans      drv     cty   hwy fl   </span></span>
+<span id="cb20-5"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;</span></span>
+<span id="cb20-6"><a></a><span class="co">#&gt; 1 honda        civic   1.6  1999     4 manual(m5) f        28    33 r    </span></span>
+<span id="cb20-7"><a></a><span class="co">#&gt; 2 honda        civic   1.6  1999     4 auto(l4)   f        24    32 r    </span></span>
+<span id="cb20-8"><a></a><span class="co">#&gt; 3 honda        civic   1.6  1999     4 manual(m5) f        25    32 r    </span></span>
+<span id="cb20-9"><a></a><span class="co">#&gt; 4 honda        civic   1.6  1999     4 manual(m5) f        23    29 p    </span></span>
+<span id="cb20-10"><a></a><span class="co">#&gt; 5 honda        civic   1.6  1999     4 auto(l4)   f        24    32 r    </span></span>
+<span id="cb20-11"><a></a><span class="co">#&gt; 6 honda        civic   1.8  2008     4 manual(m5) f        26    34 r    </span></span>
+<span id="cb20-12"><a></a><span class="co">#&gt; # ℹ 50 more rows</span></span>
+<span id="cb20-13"><a></a><span class="co">#&gt; # ℹ 1 more variable: class &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="filter-2" class="slide level2 smaller">
+<h2><a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code></a></h2>
+<ul>
+<li>Nunca altera o banco de dados original</li>
+<li>É criado um novo banco de dados</li>
+<li>Para salvar o novo banco de dados, use o operador de atribuição <code>&lt;-</code></li>
+</ul>
+</section>
+<section id="filter-3" class="slide level2">
+<h2><a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code></a></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>jan1 <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb21-3"><a></a></span>
+<span id="cb21-4"><a></a>jan1</span>
+<span id="cb21-5"><a></a><span class="co">#&gt; # A tibble: 842 × 19</span></span>
+<span id="cb21-6"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb21-7"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb21-8"><a></a><span class="co">#&gt; 1  2013     1     1      517            515         2      830            819</span></span>
+<span id="cb21-9"><a></a><span class="co">#&gt; 2  2013     1     1      533            529         4      850            830</span></span>
+<span id="cb21-10"><a></a><span class="co">#&gt; 3  2013     1     1      542            540         2      923            850</span></span>
+<span id="cb21-11"><a></a><span class="co">#&gt; 4  2013     1     1      544            545        -1     1004           1022</span></span>
+<span id="cb21-12"><a></a><span class="co">#&gt; 5  2013     1     1      554            600        -6      812            837</span></span>
+<span id="cb21-13"><a></a><span class="co">#&gt; 6  2013     1     1      554            558        -4      740            728</span></span>
+<span id="cb21-14"><a></a><span class="co">#&gt; # ℹ 836 more rows</span></span>
+<span id="cb21-15"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-5" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_91229a00" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>A partir do banco de dados <code>mpg</code>, salve um novo banco de dados chamado <code>ford</code> com todos os carros fabricados (<code>manufacturer</code>) por esta marca.</p>
+</section>
+<section id="resposta-8" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>ford <span class="ot">&lt;-</span> mpg <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a></a>  <span class="fu">filter</span>(manufacturer <span class="sc">==</span> <span class="st">"ford"</span>)</span>
+<span id="cb22-3"><a></a></span>
+<span id="cb22-4"><a></a>ford</span>
+<span id="cb22-5"><a></a><span class="co">#&gt; # A tibble: 25 × 11</span></span>
+<span id="cb22-6"><a></a><span class="co">#&gt;   manufacturer model          displ  year   cyl trans      drv     cty   hwy</span></span>
+<span id="cb22-7"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb22-8"><a></a><span class="co">#&gt; 1 ford         expedition 2wd   4.6  1999     8 auto(l4)   r        11    17</span></span>
+<span id="cb22-9"><a></a><span class="co">#&gt; 2 ford         expedition 2wd   5.4  1999     8 auto(l4)   r        11    17</span></span>
+<span id="cb22-10"><a></a><span class="co">#&gt; 3 ford         expedition 2wd   5.4  2008     8 auto(l6)   r        12    18</span></span>
+<span id="cb22-11"><a></a><span class="co">#&gt; 4 ford         explorer 4wd     4    1999     6 auto(l5)   4        14    17</span></span>
+<span id="cb22-12"><a></a><span class="co">#&gt; 5 ford         explorer 4wd     4    1999     6 manual(m5) 4        15    19</span></span>
+<span id="cb22-13"><a></a><span class="co">#&gt; 6 ford         explorer 4wd     4    1999     6 auto(l5)   4        14    17</span></span>
+<span id="cb22-14"><a></a><span class="co">#&gt; # ℹ 19 more rows</span></span>
+<span id="cb22-15"><a></a><span class="co">#&gt; # ℹ 2 more variables: fl &lt;chr&gt;, class &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="arrange" class="slide level2 smaller">
+<h2><a href="https://dplyr.tidyverse.org/reference/arrange.html"><code>arrange()</code></a></h2>
+<ul>
+<li>Muda a ordem das linhas baseado nos valores das colunas</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Sem ordem</a></li><li><a href="#tabset-1-2">Atraso na partida</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>flights  </span>
+<span id="cb23-2"><a></a><span class="co">#&gt; # A tibble: 336,776 × 19</span></span>
+<span id="cb23-3"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb23-4"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb23-5"><a></a><span class="co">#&gt; 1  2013     1     1      517            515         2      830            819</span></span>
+<span id="cb23-6"><a></a><span class="co">#&gt; 2  2013     1     1      533            529         4      850            830</span></span>
+<span id="cb23-7"><a></a><span class="co">#&gt; 3  2013     1     1      542            540         2      923            850</span></span>
+<span id="cb23-8"><a></a><span class="co">#&gt; 4  2013     1     1      544            545        -1     1004           1022</span></span>
+<span id="cb23-9"><a></a><span class="co">#&gt; 5  2013     1     1      554            600        -6      812            837</span></span>
+<span id="cb23-10"><a></a><span class="co">#&gt; 6  2013     1     1      554            558        -4      740            728</span></span>
+<span id="cb23-11"><a></a><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
+<span id="cb23-12"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a></a>  <span class="fu">arrange</span>(dep_delay)</span>
+<span id="cb24-3"><a></a><span class="co">#&gt; # A tibble: 336,776 × 19</span></span>
+<span id="cb24-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb24-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb24-6"><a></a><span class="co">#&gt; 1  2013    12     7     2040           2123       -43       40           2352</span></span>
+<span id="cb24-7"><a></a><span class="co">#&gt; 2  2013     2     3     2022           2055       -33     2240           2338</span></span>
+<span id="cb24-8"><a></a><span class="co">#&gt; 3  2013    11    10     1408           1440       -32     1549           1559</span></span>
+<span id="cb24-9"><a></a><span class="co">#&gt; 4  2013     1    11     1900           1930       -30     2233           2243</span></span>
+<span id="cb24-10"><a></a><span class="co">#&gt; 5  2013     1    29     1703           1730       -27     1947           1957</span></span>
+<span id="cb24-11"><a></a><span class="co">#&gt; 6  2013     8     9      729            755       -26     1002            955</span></span>
+<span id="cb24-12"><a></a><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
+<span id="cb24-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="arrange-1" class="slide level2 smaller">
+<h2><a href="https://dplyr.tidyverse.org/reference/arrange.html"><code>arrange()</code></a></h2>
+<ul>
+<li>Mais de um nome de coluna
+<ul>
+<li>Cada coluna adicional desempata os valores das colunas anteriores</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a></a>  <span class="fu">arrange</span>(dep_delay, arr_time)</span>
+<span id="cb25-3"><a></a><span class="co">#&gt; # A tibble: 336,776 × 19</span></span>
+<span id="cb25-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb25-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb25-6"><a></a><span class="co">#&gt; 1  2013    12     7     2040           2123       -43       40           2352</span></span>
+<span id="cb25-7"><a></a><span class="co">#&gt; 2  2013     2     3     2022           2055       -33     2240           2338</span></span>
+<span id="cb25-8"><a></a><span class="co">#&gt; 3  2013    11    10     1408           1440       -32     1549           1559</span></span>
+<span id="cb25-9"><a></a><span class="co">#&gt; 4  2013     1    11     1900           1930       -30     2233           2243</span></span>
+<span id="cb25-10"><a></a><span class="co">#&gt; 5  2013     1    29     1703           1730       -27     1947           1957</span></span>
+<span id="cb25-11"><a></a><span class="co">#&gt; 6  2013     8     9      729            755       -26     1002            955</span></span>
+<span id="cb25-12"><a></a><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
+<span id="cb25-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="arrange-2" class="slide level2 smaller">
+<h2><a href="https://dplyr.tidyverse.org/reference/arrange.html"><code>arrange()</code></a></h2>
+<ul>
+<li>Para ver do maior pro menor: <code>desc()</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb26-2"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(dep_delay))</span>
+<span id="cb26-3"><a></a><span class="co">#&gt; # A tibble: 336,776 × 19</span></span>
+<span id="cb26-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb26-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb26-6"><a></a><span class="co">#&gt; 1  2013     1     9      641            900      1301     1242           1530</span></span>
+<span id="cb26-7"><a></a><span class="co">#&gt; 2  2013     6    15     1432           1935      1137     1607           2120</span></span>
+<span id="cb26-8"><a></a><span class="co">#&gt; 3  2013     1    10     1121           1635      1126     1239           1810</span></span>
+<span id="cb26-9"><a></a><span class="co">#&gt; 4  2013     9    20     1139           1845      1014     1457           2210</span></span>
+<span id="cb26-10"><a></a><span class="co">#&gt; 5  2013     7    22      845           1600      1005     1044           1815</span></span>
+<span id="cb26-11"><a></a><span class="co">#&gt; 6  2013     4    10     1100           1900       960     1342           2211</span></span>
+<span id="cb26-12"><a></a><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
+<span id="cb26-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-6" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_7c7cc438" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>No banco <code>mpg</code>, identifique o modelo com pior rendimento na cidade (<code>cty</code>)</p>
+</section>
+<section id="resposta-9" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb27-2"><a></a>  <span class="fu">arrange</span>(cty)</span>
+<span id="cb27-3"><a></a><span class="co">#&gt; # A tibble: 234 × 11</span></span>
+<span id="cb27-4"><a></a><span class="co">#&gt;   manufacturer model           displ  year   cyl trans      drv     cty   hwy</span></span>
+<span id="cb27-5"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb27-6"><a></a><span class="co">#&gt; 1 dodge        dakota pickup …   4.7  2008     8 auto(l5)   4         9    12</span></span>
+<span id="cb27-7"><a></a><span class="co">#&gt; 2 dodge        durango 4wd       4.7  2008     8 auto(l5)   4         9    12</span></span>
+<span id="cb27-8"><a></a><span class="co">#&gt; 3 dodge        ram 1500 picku…   4.7  2008     8 auto(l5)   4         9    12</span></span>
+<span id="cb27-9"><a></a><span class="co">#&gt; 4 dodge        ram 1500 picku…   4.7  2008     8 manual(m6) 4         9    12</span></span>
+<span id="cb27-10"><a></a><span class="co">#&gt; 5 jeep         grand cherokee…   4.7  2008     8 auto(l5)   4         9    12</span></span>
+<span id="cb27-11"><a></a><span class="co">#&gt; 6 chevrolet    c1500 suburban…   5.3  2008     8 auto(l4)   r        11    15</span></span>
+<span id="cb27-12"><a></a><span class="co">#&gt; # ℹ 228 more rows</span></span>
+<span id="cb27-13"><a></a><span class="co">#&gt; # ℹ 2 more variables: fl &lt;chr&gt;, class &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-7" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_5888cd2c" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>No banco <code>mpg</code>, encontre o modelo com melhor rendimento na estrada (<code>hwy</code>)</p>
+</section>
+<section id="resposta-10" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb28-2"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(hwy))</span>
+<span id="cb28-3"><a></a><span class="co">#&gt; # A tibble: 234 × 11</span></span>
+<span id="cb28-4"><a></a><span class="co">#&gt;   manufacturer model      displ  year   cyl trans      drv     cty   hwy</span></span>
+<span id="cb28-5"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb28-6"><a></a><span class="co">#&gt; 1 volkswagen   jetta        1.9  1999     4 manual(m5) f        33    44</span></span>
+<span id="cb28-7"><a></a><span class="co">#&gt; 2 volkswagen   new beetle   1.9  1999     4 manual(m5) f        35    44</span></span>
+<span id="cb28-8"><a></a><span class="co">#&gt; 3 volkswagen   new beetle   1.9  1999     4 auto(l4)   f        29    41</span></span>
+<span id="cb28-9"><a></a><span class="co">#&gt; 4 toyota       corolla      1.8  2008     4 manual(m5) f        28    37</span></span>
+<span id="cb28-10"><a></a><span class="co">#&gt; 5 honda        civic        1.8  2008     4 auto(l5)   f        25    36</span></span>
+<span id="cb28-11"><a></a><span class="co">#&gt; 6 honda        civic        1.8  2008     4 auto(l5)   f        24    36</span></span>
+<span id="cb28-12"><a></a><span class="co">#&gt; # ℹ 228 more rows</span></span>
+<span id="cb28-13"><a></a><span class="co">#&gt; # ℹ 2 more variables: fl &lt;chr&gt;, class &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-8" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_f93f1b77" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>No banco <code>mpg</code>, ache o carro da marca ford (<code>manufacturer</code>) com melhor rendimento na cidade (<code>cty</code>)</p>
+</section>
+<section id="resposta-11" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb29-2"><a></a>  <span class="fu">filter</span>(manufacturer <span class="sc">==</span> <span class="st">"ford"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb29-3"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(cty))</span>
+<span id="cb29-4"><a></a><span class="co">#&gt; # A tibble: 25 × 11</span></span>
+<span id="cb29-5"><a></a><span class="co">#&gt;   manufacturer model        displ  year   cyl trans      drv     cty   hwy</span></span>
+<span id="cb29-6"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb29-7"><a></a><span class="co">#&gt; 1 ford         mustang        3.8  1999     6 manual(m5) r        18    26</span></span>
+<span id="cb29-8"><a></a><span class="co">#&gt; 2 ford         mustang        3.8  1999     6 auto(l4)   r        18    25</span></span>
+<span id="cb29-9"><a></a><span class="co">#&gt; 3 ford         mustang        4    2008     6 manual(m5) r        17    26</span></span>
+<span id="cb29-10"><a></a><span class="co">#&gt; 4 ford         mustang        4    2008     6 auto(l5)   r        16    24</span></span>
+<span id="cb29-11"><a></a><span class="co">#&gt; 5 ford         explorer 4wd   4    1999     6 manual(m5) 4        15    19</span></span>
+<span id="cb29-12"><a></a><span class="co">#&gt; 6 ford         mustang        4.6  1999     8 auto(l4)   r        15    21</span></span>
+<span id="cb29-13"><a></a><span class="co">#&gt; # ℹ 19 more rows</span></span>
+<span id="cb29-14"><a></a><span class="co">#&gt; # ℹ 2 more variables: fl &lt;chr&gt;, class &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="distinct" class="slide level2 smaller">
+<h2><a href="https://dplyr.tidyverse.org/reference/distinct.html"><code>distinct()</code></a></h2>
+<ul>
+<li>Localiza todas as linhas únicas em um conjunto de dados</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Origem</a></li><li><a href="#tabset-2-2">Destino</a></li><li><a href="#tabset-2-3">Selecionar todas as combinações únicas de origem e destino</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a></a>  <span class="fu">distinct</span>(origin)</span>
+<span id="cb30-3"><a></a><span class="co">#&gt; # A tibble: 3 × 1</span></span>
+<span id="cb30-4"><a></a><span class="co">#&gt;   origin</span></span>
+<span id="cb30-5"><a></a><span class="co">#&gt;   &lt;chr&gt; </span></span>
+<span id="cb30-6"><a></a><span class="co">#&gt; 1 EWR   </span></span>
+<span id="cb30-7"><a></a><span class="co">#&gt; 2 LGA   </span></span>
+<span id="cb30-8"><a></a><span class="co">#&gt; 3 JFK</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb31-2"><a></a>  <span class="fu">distinct</span>(dest)</span>
+<span id="cb31-3"><a></a><span class="co">#&gt; # A tibble: 105 × 1</span></span>
+<span id="cb31-4"><a></a><span class="co">#&gt;   dest </span></span>
+<span id="cb31-5"><a></a><span class="co">#&gt;   &lt;chr&gt;</span></span>
+<span id="cb31-6"><a></a><span class="co">#&gt; 1 IAH  </span></span>
+<span id="cb31-7"><a></a><span class="co">#&gt; 2 MIA  </span></span>
+<span id="cb31-8"><a></a><span class="co">#&gt; 3 BQN  </span></span>
+<span id="cb31-9"><a></a><span class="co">#&gt; 4 ATL  </span></span>
+<span id="cb31-10"><a></a><span class="co">#&gt; 5 ORD  </span></span>
+<span id="cb31-11"><a></a><span class="co">#&gt; 6 FLL  </span></span>
+<span id="cb31-12"><a></a><span class="co">#&gt; # ℹ 99 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-3">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a></a>  <span class="fu">distinct</span>(origin,dest)</span>
+<span id="cb32-3"><a></a><span class="co">#&gt; # A tibble: 224 × 2</span></span>
+<span id="cb32-4"><a></a><span class="co">#&gt;   origin dest </span></span>
+<span id="cb32-5"><a></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;</span></span>
+<span id="cb32-6"><a></a><span class="co">#&gt; 1 EWR    IAH  </span></span>
+<span id="cb32-7"><a></a><span class="co">#&gt; 2 LGA    IAH  </span></span>
+<span id="cb32-8"><a></a><span class="co">#&gt; 3 JFK    MIA  </span></span>
+<span id="cb32-9"><a></a><span class="co">#&gt; 4 JFK    BQN  </span></span>
+<span id="cb32-10"><a></a><span class="co">#&gt; 5 LGA    ATL  </span></span>
+<span id="cb32-11"><a></a><span class="co">#&gt; 6 EWR    ORD  </span></span>
+<span id="cb32-12"><a></a><span class="co">#&gt; # ℹ 218 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercício-9" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_2f0529ae" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>Quais são os fabricantes (<code>manufacturer</code>) encontrados no banco <code>mpg</code></p>
+</section>
+<section id="resposta-12" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb33-2"><a></a>  <span class="fu">distinct</span>(manufacturer)</span>
+<span id="cb33-3"><a></a><span class="co">#&gt; # A tibble: 15 × 1</span></span>
+<span id="cb33-4"><a></a><span class="co">#&gt;   manufacturer</span></span>
+<span id="cb33-5"><a></a><span class="co">#&gt;   &lt;chr&gt;       </span></span>
+<span id="cb33-6"><a></a><span class="co">#&gt; 1 audi        </span></span>
+<span id="cb33-7"><a></a><span class="co">#&gt; 2 chevrolet   </span></span>
+<span id="cb33-8"><a></a><span class="co">#&gt; 3 dodge       </span></span>
+<span id="cb33-9"><a></a><span class="co">#&gt; 4 ford        </span></span>
+<span id="cb33-10"><a></a><span class="co">#&gt; 5 honda       </span></span>
+<span id="cb33-11"><a></a><span class="co">#&gt; 6 hyundai     </span></span>
+<span id="cb33-12"><a></a><span class="co">#&gt; # ℹ 9 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercícios" class="slide level2">
+<h2>Exercícios</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_67e82ae5" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>No banco <code>mpg</code>, crie uma tabela com os fabricantes (<code>manufacturer</code>) e seus respectivos modelos (<code>model</code>)</p>
+</section>
+<section id="resposta-13" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb34-2"><a></a>  <span class="fu">distinct</span>(manufacturer,model) </span>
+<span id="cb34-3"><a></a><span class="co">#&gt; # A tibble: 38 × 2</span></span>
+<span id="cb34-4"><a></a><span class="co">#&gt;   manufacturer model             </span></span>
+<span id="cb34-5"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;             </span></span>
+<span id="cb34-6"><a></a><span class="co">#&gt; 1 audi         a4                </span></span>
+<span id="cb34-7"><a></a><span class="co">#&gt; 2 audi         a4 quattro        </span></span>
+<span id="cb34-8"><a></a><span class="co">#&gt; 3 audi         a6 quattro        </span></span>
+<span id="cb34-9"><a></a><span class="co">#&gt; 4 chevrolet    c1500 suburban 2wd</span></span>
+<span id="cb34-10"><a></a><span class="co">#&gt; 5 chevrolet    corvette          </span></span>
+<span id="cb34-11"><a></a><span class="co">#&gt; 6 chevrolet    k1500 tahoe 4wd   </span></span>
+<span id="cb34-12"><a></a><span class="co">#&gt; # ℹ 32 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="count" class="slide level2 smaller">
+<h2><a href="https://dplyr.tidyverse.org/reference/count.html"><code>count()</code></a></h2>
+<ul>
+<li>Conta o número de ocorrências em cada categoria</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1"><em>N</em> de voos na origem</a></li><li><a href="#tabset-3-2"><em>N</em> de voos no destino</a></li><li><a href="#tabset-3-3"><em>N</em> de voos no destino agrupados pela origem</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb35-2"><a></a>  <span class="fu">count</span>(origin)</span>
+<span id="cb35-3"><a></a><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span id="cb35-4"><a></a><span class="co">#&gt;   origin      n</span></span>
+<span id="cb35-5"><a></a><span class="co">#&gt;   &lt;chr&gt;   &lt;int&gt;</span></span>
+<span id="cb35-6"><a></a><span class="co">#&gt; 1 EWR    120835</span></span>
+<span id="cb35-7"><a></a><span class="co">#&gt; 2 JFK    111279</span></span>
+<span id="cb35-8"><a></a><span class="co">#&gt; 3 LGA    104662</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb36-2"><a></a>  <span class="fu">count</span>(dest)</span>
+<span id="cb36-3"><a></a><span class="co">#&gt; # A tibble: 105 × 2</span></span>
+<span id="cb36-4"><a></a><span class="co">#&gt;   dest      n</span></span>
+<span id="cb36-5"><a></a><span class="co">#&gt;   &lt;chr&gt; &lt;int&gt;</span></span>
+<span id="cb36-6"><a></a><span class="co">#&gt; 1 ABQ     254</span></span>
+<span id="cb36-7"><a></a><span class="co">#&gt; 2 ACK     265</span></span>
+<span id="cb36-8"><a></a><span class="co">#&gt; 3 ALB     439</span></span>
+<span id="cb36-9"><a></a><span class="co">#&gt; 4 ANC       8</span></span>
+<span id="cb36-10"><a></a><span class="co">#&gt; 5 ATL   17215</span></span>
+<span id="cb36-11"><a></a><span class="co">#&gt; 6 AUS    2439</span></span>
+<span id="cb36-12"><a></a><span class="co">#&gt; # ℹ 99 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-3">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb37-2"><a></a>  <span class="fu">count</span>(origin, dest) </span>
+<span id="cb37-3"><a></a><span class="co">#&gt; # A tibble: 224 × 3</span></span>
+<span id="cb37-4"><a></a><span class="co">#&gt;   origin dest      n</span></span>
+<span id="cb37-5"><a></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;</span></span>
+<span id="cb37-6"><a></a><span class="co">#&gt; 1 EWR    ALB     439</span></span>
+<span id="cb37-7"><a></a><span class="co">#&gt; 2 EWR    ANC       8</span></span>
+<span id="cb37-8"><a></a><span class="co">#&gt; 3 EWR    ATL    5022</span></span>
+<span id="cb37-9"><a></a><span class="co">#&gt; 4 EWR    AUS     968</span></span>
+<span id="cb37-10"><a></a><span class="co">#&gt; 5 EWR    AVL     265</span></span>
+<span id="cb37-11"><a></a><span class="co">#&gt; 6 EWR    BDL     443</span></span>
+<span id="cb37-12"><a></a><span class="co">#&gt; # ℹ 218 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="count-1" class="slide level2 smaller">
+<h2><a href="https://dplyr.tidyverse.org/reference/count.html"><code>count()</code></a></h2>
+<ul>
+<li>O argumento <code>sort = TRUE</code> mostra o número de ocorrências em ordem descendente</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb38-2"><a></a>  <span class="fu">count</span>(dest, <span class="at">sort =</span> T)</span>
+<span id="cb38-3"><a></a><span class="co">#&gt; # A tibble: 105 × 2</span></span>
+<span id="cb38-4"><a></a><span class="co">#&gt;   dest      n</span></span>
+<span id="cb38-5"><a></a><span class="co">#&gt;   &lt;chr&gt; &lt;int&gt;</span></span>
+<span id="cb38-6"><a></a><span class="co">#&gt; 1 ORD   17283</span></span>
+<span id="cb38-7"><a></a><span class="co">#&gt; 2 ATL   17215</span></span>
+<span id="cb38-8"><a></a><span class="co">#&gt; 3 LAX   16174</span></span>
+<span id="cb38-9"><a></a><span class="co">#&gt; 4 BOS   15508</span></span>
+<span id="cb38-10"><a></a><span class="co">#&gt; 5 MCO   14082</span></span>
+<span id="cb38-11"><a></a><span class="co">#&gt; 6 CLT   14064</span></span>
+<span id="cb38-12"><a></a><span class="co">#&gt; # ℹ 99 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-10" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_863f66c9" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>A partir do banco <code>mpg</code>, crie uma tabela de frequência dos fabricandes (<code>manufacturer</code>)</p>
+</section>
+<section id="resposta-14" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb39-2"><a></a>  <span class="fu">count</span>(manufacturer)</span>
+<span id="cb39-3"><a></a><span class="co">#&gt; # A tibble: 15 × 2</span></span>
+<span id="cb39-4"><a></a><span class="co">#&gt;   manufacturer     n</span></span>
+<span id="cb39-5"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;int&gt;</span></span>
+<span id="cb39-6"><a></a><span class="co">#&gt; 1 audi            18</span></span>
+<span id="cb39-7"><a></a><span class="co">#&gt; 2 chevrolet       19</span></span>
+<span id="cb39-8"><a></a><span class="co">#&gt; 3 dodge           37</span></span>
+<span id="cb39-9"><a></a><span class="co">#&gt; 4 ford            25</span></span>
+<span id="cb39-10"><a></a><span class="co">#&gt; 5 honda            9</span></span>
+<span id="cb39-11"><a></a><span class="co">#&gt; 6 hyundai         14</span></span>
+<span id="cb39-12"><a></a><span class="co">#&gt; # ℹ 9 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-11" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_493dac84" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>Agora, mostre a quantidade de ocorrências somente do fabricante (<code>manufacturer</code>) jeep</p>
+</section>
+<section id="resposta-15" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb40-2"><a></a>  <span class="fu">filter</span>(manufacturer <span class="sc">==</span> <span class="st">"jeep"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb40-3"><a></a>  <span class="fu">count</span>(manufacturer)</span>
+<span id="cb40-4"><a></a><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span id="cb40-5"><a></a><span class="co">#&gt;   manufacturer     n</span></span>
+<span id="cb40-6"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;int&gt;</span></span>
+<span id="cb40-7"><a></a><span class="co">#&gt; 1 jeep             8</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-12" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_c6b21f85" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>A partir do banco <code>mpg</code>, crie uma tabela de frequência dos fabricandes (<code>manufacturer</code>) e seus respectivos modelos (<code>model</code>)</p>
+</section>
+<section id="resposta-16" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb41-2"><a></a>  <span class="fu">count</span>(manufacturer, model)</span>
+<span id="cb41-3"><a></a><span class="co">#&gt; # A tibble: 38 × 3</span></span>
+<span id="cb41-4"><a></a><span class="co">#&gt;   manufacturer model                  n</span></span>
+<span id="cb41-5"><a></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;              &lt;int&gt;</span></span>
+<span id="cb41-6"><a></a><span class="co">#&gt; 1 audi         a4                     7</span></span>
+<span id="cb41-7"><a></a><span class="co">#&gt; 2 audi         a4 quattro             8</span></span>
+<span id="cb41-8"><a></a><span class="co">#&gt; 3 audi         a6 quattro             3</span></span>
+<span id="cb41-9"><a></a><span class="co">#&gt; 4 chevrolet    c1500 suburban 2wd     5</span></span>
+<span id="cb41-10"><a></a><span class="co">#&gt; 5 chevrolet    corvette               5</span></span>
+<span id="cb41-11"><a></a><span class="co">#&gt; 6 chevrolet    k1500 tahoe 4wd        4</span></span>
+<span id="cb41-12"><a></a><span class="co">#&gt; # ℹ 32 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-13" class="slide level2 smaller">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_73042b22" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">06</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<ul>
+<li>Em um único pipeline para cada condição, encontre todos os voos que atendem à condição:
+<ul>
+<li>Tiveram um atraso de chegada de duas ou mais horas;</li>
+<li>Voaram para Houston (IAH ou HOU);</li>
+<li>Foram operados pela United, American ou Delta;</li>
+<li>Partiram no verão (julho, agosto e setembro);</li>
+<li>Chegaram com mais de duas horas de atraso, mas não saíram atrasados.</li>
+</ul></li>
+</ul>
+</section>
+<section id="exercício-14" class="slide level2">
+<h2>Exercício</h2>
+<p>Tiveram um atraso de chegada (<code>arr_delay</code>) de duas ou mais horas</p>
+</section>
+<section id="resposta-17" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb42-2"><a></a>  <span class="fu">filter</span>(arr_delay <span class="sc">&gt;=</span> <span class="dv">120</span>)</span>
+<span id="cb42-3"><a></a><span class="co">#&gt; # A tibble: 10,200 × 19</span></span>
+<span id="cb42-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb42-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb42-6"><a></a><span class="co">#&gt; 1  2013     1     1      811            630       101     1047            830</span></span>
+<span id="cb42-7"><a></a><span class="co">#&gt; 2  2013     1     1      848           1835       853     1001           1950</span></span>
+<span id="cb42-8"><a></a><span class="co">#&gt; 3  2013     1     1      957            733       144     1056            853</span></span>
+<span id="cb42-9"><a></a><span class="co">#&gt; 4  2013     1     1     1114            900       134     1447           1222</span></span>
+<span id="cb42-10"><a></a><span class="co">#&gt; 5  2013     1     1     1505           1310       115     1638           1431</span></span>
+<span id="cb42-11"><a></a><span class="co">#&gt; 6  2013     1     1     1525           1340       105     1831           1626</span></span>
+<span id="cb42-12"><a></a><span class="co">#&gt; # ℹ 10,194 more rows</span></span>
+<span id="cb42-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-15" class="slide level2">
+<h2>Exercício</h2>
+<p>Voaram para Houston (IAH ou HOU - <code>dest</code>)</p>
+</section>
+<section id="resposta-18" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb43-2"><a></a>  <span class="fu">filter</span>(dest <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"IAH"</span>,<span class="st">"HOU"</span>))</span>
+<span id="cb43-3"><a></a><span class="co">#&gt; # A tibble: 9,313 × 19</span></span>
+<span id="cb43-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb43-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb43-6"><a></a><span class="co">#&gt; 1  2013     1     1      517            515         2      830            819</span></span>
+<span id="cb43-7"><a></a><span class="co">#&gt; 2  2013     1     1      533            529         4      850            830</span></span>
+<span id="cb43-8"><a></a><span class="co">#&gt; 3  2013     1     1      623            627        -4      933            932</span></span>
+<span id="cb43-9"><a></a><span class="co">#&gt; 4  2013     1     1      728            732        -4     1041           1038</span></span>
+<span id="cb43-10"><a></a><span class="co">#&gt; 5  2013     1     1      739            739         0     1104           1038</span></span>
+<span id="cb43-11"><a></a><span class="co">#&gt; 6  2013     1     1      908            908         0     1228           1219</span></span>
+<span id="cb43-12"><a></a><span class="co">#&gt; # ℹ 9,307 more rows</span></span>
+<span id="cb43-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-16" class="slide level2">
+<h2>Exercício</h2>
+<p>Foram operados (<code>carrier</code>) pela United, American ou Delta. Podemos encontrar os códigos da transportadora para as companhias aéreas no banco de dados <code>airlines</code></p>
+</section>
+<section id="resposta-19" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb44-2"><a></a>  <span class="fu">filter</span>(carrier <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"UA"</span>,<span class="st">"AA"</span>,<span class="st">"DL"</span>))</span>
+<span id="cb44-3"><a></a><span class="co">#&gt; # A tibble: 139,504 × 19</span></span>
+<span id="cb44-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb44-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb44-6"><a></a><span class="co">#&gt; 1  2013     1     1      517            515         2      830            819</span></span>
+<span id="cb44-7"><a></a><span class="co">#&gt; 2  2013     1     1      533            529         4      850            830</span></span>
+<span id="cb44-8"><a></a><span class="co">#&gt; 3  2013     1     1      542            540         2      923            850</span></span>
+<span id="cb44-9"><a></a><span class="co">#&gt; 4  2013     1     1      554            600        -6      812            837</span></span>
+<span id="cb44-10"><a></a><span class="co">#&gt; 5  2013     1     1      554            558        -4      740            728</span></span>
+<span id="cb44-11"><a></a><span class="co">#&gt; 6  2013     1     1      558            600        -2      753            745</span></span>
+<span id="cb44-12"><a></a><span class="co">#&gt; # ℹ 139,498 more rows</span></span>
+<span id="cb44-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-17" class="slide level2">
+<h2>Exercício</h2>
+<p>Partiram no verão (julho, agosto e setembro - <code>month</code>).</p>
+</section>
+<section id="resposta-20" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb45-2"><a></a>  <span class="fu">filter</span>(month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>))</span>
+<span id="cb45-3"><a></a><span class="co">#&gt; # A tibble: 86,326 × 19</span></span>
+<span id="cb45-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb45-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb45-6"><a></a><span class="co">#&gt; 1  2013     7     1        1           2029       212      236           2359</span></span>
+<span id="cb45-7"><a></a><span class="co">#&gt; 2  2013     7     1        2           2359         3      344            344</span></span>
+<span id="cb45-8"><a></a><span class="co">#&gt; 3  2013     7     1       29           2245       104      151              1</span></span>
+<span id="cb45-9"><a></a><span class="co">#&gt; 4  2013     7     1       43           2130       193      322             14</span></span>
+<span id="cb45-10"><a></a><span class="co">#&gt; 5  2013     7     1       44           2150       174      300            100</span></span>
+<span id="cb45-11"><a></a><span class="co">#&gt; 6  2013     7     1       46           2051       235      304           2358</span></span>
+<span id="cb45-12"><a></a><span class="co">#&gt; # ℹ 86,320 more rows</span></span>
+<span id="cb45-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-18" class="slide level2">
+<h2>Exercício</h2>
+<p>Chegaram com mais de duas horas de atraso (<code>arr_delay</code>), mas não saíram atrasados (<code>dep_delay</code>).</p>
+</section>
+<section id="resposta-21" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb46-2"><a></a>   <span class="fu">filter</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">120</span> <span class="sc">&amp;</span>  dep_delay <span class="sc">&lt;=</span> <span class="dv">0</span>)</span>
+<span id="cb46-3"><a></a><span class="co">#&gt; # A tibble: 29 × 19</span></span>
+<span id="cb46-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb46-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb46-6"><a></a><span class="co">#&gt; 1  2013     1    27     1419           1420        -1     1754           1550</span></span>
+<span id="cb46-7"><a></a><span class="co">#&gt; 2  2013    10     7     1350           1350         0     1736           1526</span></span>
+<span id="cb46-8"><a></a><span class="co">#&gt; 3  2013    10     7     1357           1359        -2     1858           1654</span></span>
+<span id="cb46-9"><a></a><span class="co">#&gt; 4  2013    10    16      657            700        -3     1258           1056</span></span>
+<span id="cb46-10"><a></a><span class="co">#&gt; 5  2013    11     1      658            700        -2     1329           1015</span></span>
+<span id="cb46-11"><a></a><span class="co">#&gt; 6  2013     3    18     1844           1847        -3       39           2219</span></span>
+<span id="cb46-12"><a></a><span class="co">#&gt; # ℹ 23 more rows</span></span>
+<span id="cb46-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-19" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_b17ca4da" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>Organize o banco de dados <code>flights</code> para encontrar os voos com os maiores atrasos de partida (<code>dep_delay</code>) mais longos</p>
+</section>
+<section id="resposta-22" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb47-2"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(dep_delay))</span>
+<span id="cb47-3"><a></a><span class="co">#&gt; # A tibble: 336,776 × 19</span></span>
+<span id="cb47-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb47-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb47-6"><a></a><span class="co">#&gt; 1  2013     1     9      641            900      1301     1242           1530</span></span>
+<span id="cb47-7"><a></a><span class="co">#&gt; 2  2013     6    15     1432           1935      1137     1607           2120</span></span>
+<span id="cb47-8"><a></a><span class="co">#&gt; 3  2013     1    10     1121           1635      1126     1239           1810</span></span>
+<span id="cb47-9"><a></a><span class="co">#&gt; 4  2013     9    20     1139           1845      1014     1457           2210</span></span>
+<span id="cb47-10"><a></a><span class="co">#&gt; 5  2013     7    22      845           1600      1005     1044           1815</span></span>
+<span id="cb47-11"><a></a><span class="co">#&gt; 6  2013     4    10     1100           1900       960     1342           2211</span></span>
+<span id="cb47-12"><a></a><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
+<span id="cb47-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercícios-1" class="slide level2">
+<h2>Exercícios</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_f1a4cb1f" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>Houve um voo em todos os dias de 2013?</p>
+</section>
+<section id="resposta-1-1" class="slide level2">
+<h2>Resposta 1</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>flights  <span class="sc">|&gt;</span> </span>
+<span id="cb48-2"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2013</span>)  <span class="sc">|&gt;</span></span>
+<span id="cb48-3"><a></a>  <span class="fu">distinct</span>(month, day) <span class="sc">|&gt;</span> </span>
+<span id="cb48-4"><a></a>  <span class="fu">count</span>(month)</span>
+<span id="cb48-5"><a></a><span class="co">#&gt; # A tibble: 12 × 2</span></span>
+<span id="cb48-6"><a></a><span class="co">#&gt;   month     n</span></span>
+<span id="cb48-7"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb48-8"><a></a><span class="co">#&gt; 1     1    31</span></span>
+<span id="cb48-9"><a></a><span class="co">#&gt; 2     2    28</span></span>
+<span id="cb48-10"><a></a><span class="co">#&gt; 3     3    31</span></span>
+<span id="cb48-11"><a></a><span class="co">#&gt; 4     4    30</span></span>
+<span id="cb48-12"><a></a><span class="co">#&gt; 5     5    31</span></span>
+<span id="cb48-13"><a></a><span class="co">#&gt; 6     6    30</span></span>
+<span id="cb48-14"><a></a><span class="co">#&gt; # ℹ 6 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="resposta-2-1" class="slide level2">
+<h2>Resposta 2</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb49-2"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2013</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb49-3"><a></a>  <span class="fu">distinct</span>(month,day) <span class="sc">|&gt;</span> </span>
+<span id="cb49-4"><a></a>  <span class="fu">count</span>(day) <span class="sc">|&gt;</span> </span>
+<span id="cb49-5"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span>
+<span id="cb49-6"><a></a><span class="co">#&gt; # A tibble: 31 × 2</span></span>
+<span id="cb49-7"><a></a><span class="co">#&gt;      day     n</span></span>
+<span id="cb49-8"><a></a><span class="co">#&gt;    &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb49-9"><a></a><span class="co">#&gt;  1     1    12</span></span>
+<span id="cb49-10"><a></a><span class="co">#&gt;  2     2    12</span></span>
+<span id="cb49-11"><a></a><span class="co">#&gt;  3     3    12</span></span>
+<span id="cb49-12"><a></a><span class="co">#&gt;  4     4    12</span></span>
+<span id="cb49-13"><a></a><span class="co">#&gt;  5     5    12</span></span>
+<span id="cb49-14"><a></a><span class="co">#&gt;  6     6    12</span></span>
+<span id="cb49-15"><a></a><span class="co">#&gt;  7     7    12</span></span>
+<span id="cb49-16"><a></a><span class="co">#&gt;  8     8    12</span></span>
+<span id="cb49-17"><a></a><span class="co">#&gt;  9     9    12</span></span>
+<span id="cb49-18"><a></a><span class="co">#&gt; 10    10    12</span></span>
+<span id="cb49-19"><a></a><span class="co">#&gt; 11    11    12</span></span>
+<span id="cb49-20"><a></a><span class="co">#&gt; 12    12    12</span></span>
+<span id="cb49-21"><a></a><span class="co">#&gt; 13    13    12</span></span>
+<span id="cb49-22"><a></a><span class="co">#&gt; 14    14    12</span></span>
+<span id="cb49-23"><a></a><span class="co">#&gt; 15    15    12</span></span>
+<span id="cb49-24"><a></a><span class="co">#&gt; 16    16    12</span></span>
+<span id="cb49-25"><a></a><span class="co">#&gt; 17    17    12</span></span>
+<span id="cb49-26"><a></a><span class="co">#&gt; 18    18    12</span></span>
+<span id="cb49-27"><a></a><span class="co">#&gt; 19    19    12</span></span>
+<span id="cb49-28"><a></a><span class="co">#&gt; 20    20    12</span></span>
+<span id="cb49-29"><a></a><span class="co">#&gt; 21    21    12</span></span>
+<span id="cb49-30"><a></a><span class="co">#&gt; 22    22    12</span></span>
+<span id="cb49-31"><a></a><span class="co">#&gt; 23    23    12</span></span>
+<span id="cb49-32"><a></a><span class="co">#&gt; 24    24    12</span></span>
+<span id="cb49-33"><a></a><span class="co">#&gt; 25    25    12</span></span>
+<span id="cb49-34"><a></a><span class="co">#&gt; 26    26    12</span></span>
+<span id="cb49-35"><a></a><span class="co">#&gt; 27    27    12</span></span>
+<span id="cb49-36"><a></a><span class="co">#&gt; 28    28    12</span></span>
+<span id="cb49-37"><a></a><span class="co">#&gt; 29    29    11</span></span>
+<span id="cb49-38"><a></a><span class="co">#&gt; 30    30    11</span></span>
+<span id="cb49-39"><a></a><span class="co">#&gt; 31    31     7</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="resposta-3-1" class="slide level2">
+<h2>Resposta 3</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb50-2"><a></a>  <span class="fu">distinct</span>(year, month, day) <span class="sc">|&gt;</span> </span>
+<span id="cb50-3"><a></a>  <span class="fu">nrow</span>()</span>
+<span id="cb50-4"><a></a><span class="co">#&gt; [1] 365</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercício-20" class="slide level2">
+<h2>Exercício</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_1e51f7f5" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>Quais voos viajaram a maior distância (<code>distance</code>)? Quais viajaram a menor distância?</p>
+</section>
+<section id="resposta-23" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a></a>  <span class="fu">arrange</span>(distance)</span>
+<span id="cb51-3"><a></a><span class="co">#&gt; # A tibble: 336,776 × 19</span></span>
+<span id="cb51-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb51-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb51-6"><a></a><span class="co">#&gt; 1  2013     7    27       NA            106        NA       NA            245</span></span>
+<span id="cb51-7"><a></a><span class="co">#&gt; 2  2013     1     3     2127           2129        -2     2222           2224</span></span>
+<span id="cb51-8"><a></a><span class="co">#&gt; 3  2013     1     4     1240           1200        40     1333           1306</span></span>
+<span id="cb51-9"><a></a><span class="co">#&gt; 4  2013     1     4     1829           1615       134     1937           1721</span></span>
+<span id="cb51-10"><a></a><span class="co">#&gt; 5  2013     1     4     2128           2129        -1     2218           2224</span></span>
+<span id="cb51-11"><a></a><span class="co">#&gt; 6  2013     1     5     1155           1200        -5     1241           1306</span></span>
+<span id="cb51-12"><a></a><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
+<span id="cb51-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="resposta-24" class="slide level2">
+<h2>Resposta</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb52-2"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(distance)) </span>
+<span id="cb52-3"><a></a><span class="co">#&gt; # A tibble: 336,776 × 19</span></span>
+<span id="cb52-4"><a></a><span class="co">#&gt;    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></span>
+<span id="cb52-5"><a></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb52-6"><a></a><span class="co">#&gt; 1  2013     1     1      857            900        -3     1516           1530</span></span>
+<span id="cb52-7"><a></a><span class="co">#&gt; 2  2013     1     2      909            900         9     1525           1530</span></span>
+<span id="cb52-8"><a></a><span class="co">#&gt; 3  2013     1     3      914            900        14     1504           1530</span></span>
+<span id="cb52-9"><a></a><span class="co">#&gt; 4  2013     1     4      900            900         0     1516           1530</span></span>
+<span id="cb52-10"><a></a><span class="co">#&gt; 5  2013     1     5      858            900        -2     1519           1530</span></span>
+<span id="cb52-11"><a></a><span class="co">#&gt; 6  2013     1     6     1019            900        79     1558           1530</span></span>
+<span id="cb52-12"><a></a><span class="co">#&gt; # ℹ 336,770 more rows</span></span>
+<span id="cb52-13"><a></a><span class="co">#&gt; # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="img/brasao1_horizontal_cor_300dpi.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copiada");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copiada");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/pablo-huascar\.github\.io\/pesquisa_quanti_psi_ufc\/");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

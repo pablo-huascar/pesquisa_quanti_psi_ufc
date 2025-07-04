@@ -1,1 +1,1 @@
-Sitemap: https://fphap.quarto.pub/pesquisa-quanti-ufc/sitemap.xml
+Sitemap: https://pablo-huascar.github.io/pesquisa_quanti_psi_ufc/sitemap.xml
