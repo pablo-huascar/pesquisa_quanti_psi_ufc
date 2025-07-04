@@ -89,7 +89,7 @@ pesquisa_fic |>
   write_csv("data/pesquisa-fic-teste-t.csv")
 ```
 
-##
+## 
 
 ```{r}
 # Simulação de dados para pesquisa fictícia 2
@@ -148,7 +148,6 @@ pesquisa_fic_2 |>
 pesquisa_fic_2 |> 
   write_csv("data/pesquisa-fic-2-teste-t.csv")
 ```
-
 
 # Bancos de dados utilizados
 
@@ -960,9 +959,7 @@ comparacao |>
 
 ## Redação do Método
 
-<center>
-**Método**
-</center>
+<center>**Método**</center>
 
 **Procedimentos**
 
@@ -972,9 +969,7 @@ Um teste t para amostras independentes foi realizado para comparar a nota de alu
 
 ## Redação dos Resultados {.smaller}
 
-<center>
-**Resultados**
-</center>
+<center>**Resultados**</center>
 
 O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo de alunos leitores (W = 0.991, p = 0.958), nem para o grupo de alunos não leitores (W = 0.99, p = 0.953). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (F(1, 96) = 1.95, p = 0.166). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, t(96) = 4.22, p \< .001. Alunos leitores (n = 50, M = 7.91, DP = 0.96) apresentaram um desempenho melhor do que os não leitores (n = 48, M = 6.98, DP = 1.21). A diferença média foi de 0.93 pontos (IC 95% \[0.49, 1.37\]). O tamanho de efeito foi grande (d = 0.853, IC 95% \[0.44, 1.32\] ). Esses resultados sugerem que ler os textos antes das aulas influencia no desempenho dos discentes nas avaliações.
 
@@ -985,15 +980,14 @@ O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para 
 -   Pergunta de partida:
     -   Qual é o efeito do hábito de ler dos textos antes das aulas sobre as médias de ansiedade frente a provas discentes do curso de psicologia antes das avaliações?
         -   Grupo de leitores X Grupo de não leitores
-        
-        
+
 ## Hipóteses {.smaller}
 
 -   Hipótese nula: não há diferença entre as médias das notas dos dois grupos
     -   $H_0: \mu_{leitores} = \mu_{não-leitores}$
 -   Hipótese alternativa ($H_1$): há uma diferença entre as médias das notas dos dois grupos
     -   $H_1: \mu_{leitores} \neq \mu_{não-leitores}$
-    
+
 ## Exploração dos dados
 
 ```{r}
@@ -1030,6 +1024,26 @@ pesquisa_fic_2 |>
   )
 ```
 
+## Exploração dos dados
+
+```{r}
+#| out-width: "70%"
+pesquisa_fic_2 |> 
+  ggplot(
+    aes(x = grupo, y = ansiedade, 
+        colour = grupo)
+    ) + 
+  geom_boxplot(
+    show.legend = F
+    ) + 
+  labs(
+    x = "Grupo",
+    y = "Nota"
+  ) + 
+  scale_x_discrete(
+    labels = c("Leitor", "Não leitor")
+  )
+```
 
 ## Exemplo {.smaller}
 
