@@ -1,0 +1,905 @@
+---
+title: "Modelos matemáticos"
+subtitle: "Covariância e correlação de Pearson "
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+echo: false
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+source("./_common.R")
+```
+
+```{r}
+library(tidyverse)
+library(gt)
+```
+
+```{r}
+df <- tibble(
+  x = c(1, 2, 3, 4, 5),
+  y = c(2, 3, 4, 6, 5)
+)
+```
+
+```{r}
+dados_psico <- tibble(
+  Participante = c("P1", "P2", "P3", "P4", "P5"),
+  Estresse = c(8, 6, 7, 4, 3),
+  Sono = c(4, 5, 3, 6, 7)
+)
+```
+
+## Covariância {.smaller}
+
+$$
+\text{cov}_{x,y} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{N - 1}
+$$
+
+Onde,
+
+-   $\sum$ = símbolo de somatório (soma de termos)
+-   $x_i$ = valor observado da variável $x$ no caso $i$
+-   $y_i$ = valor observado da variável $y$ no caso $i$
+-   $\bar{x}$ = média dos valores de $x$
+-   $\bar{y}$ = média dos valores de $y$
+
+## Exemplo
+
+```{r}
+df |>
+  rowid_to_column(var = "Caso") |>
+  gt() |>
+  cols_align(
+    align = "center"
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px",
+    column_labels.border.top.width = px(2),
+    column_labels.border.bottom.width = px(2),
+    column_labels.border.bottom.color = "black",
+    table.border.right.width = px(2),
+    table.border.left.width = px(2),
+    table.border.right.color = "black",
+    table.border.left.color = "black"
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "gray",
+      weight = px(1)
+    ),
+    locations = cells_body(columns = everything())
+  )
+```
+
+## Gráfico de dispersão
+
+```{r}
+df |>
+  ggplot(aes(x = x, y = y)) +
+  geom_point(
+    color = "red",
+    size = 3
+  ) +
+  geom_smooth(
+    method = "lm",
+    se = F,
+    linetype = 2
+  )
+```
+
+## Covariância
+
+$$
+\text{cov}_{x,y} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{N - 1}
+$$
+
+$x_i - \bar{x}$ e $y_i - \bar{y}$ = desvios da média
+
+## Desvios da média
+
+```{r}
+df_plot <- df |>
+  rowid_to_column(var = "caso") |>
+  pivot_longer(
+    cols = -caso,
+    cols_vary = "slowest"
+  ) |>
+  mutate(
+    desvios = value - mean(value),
+    m = mean(value),
+    texto_y = (value + mean(value)) / 2,
+    caso = as_factor(caso),
+    .by = name
+  )
+```
+
+```{r}
+df_plot |>
+  ggplot(
+    aes(fct_reorder(caso, value, min), value)
+  ) +
+  geom_point() +
+  labs(
+    y = NULL,
+    x = "Caso"
+  ) +
+  geom_hline(
+    aes(yintercept = m),
+    color = "red",
+    linetype = 2,
+    linewidth = 1
+  ) +
+  geom_segment(
+    aes(x = caso, xend = caso, y = value, yend = m)
+  ) +
+  geom_text(
+    aes(x = caso, y = texto_y, label = round(desvios, 1)),
+    vjust = -0.5,
+    hjust = -0.5,
+    size = 4
+  ) +
+  facet_wrap(vars(name))
+```
+
+## Cálculo
+
+```{r}
+df_calculo <- df |>
+  mutate(
+    a = NA,
+    b = NA,
+    c = NA
+  )
+```
+
+```{r}
+df_calculo |>
+  gt() |>
+  sub_missing(missing_text = " ") |>
+  cols_label(
+    a = md("$x_i - \\bar{x}$"),
+    b = md("$y_i - \\bar{y}$"),
+    c = md("$(x_i - \\bar{x})(y_i - \\bar{y})$")
+  ) |>
+  grand_summary_rows(
+    columns = c,
+    fns = list("Soma" = ~NA_real_),
+    missing_text = " "
+  ) |>
+  grand_summary_rows(
+    columns = c(x, y),
+    fns = list("Média" = ~NA_real_),
+    missing_text = " "
+  ) |>
+  cols_align(
+    align = "center"
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px",
+    column_labels.border.top.width = px(2),
+    column_labels.border.bottom.width = px(2),
+    column_labels.border.bottom.color = "black",
+    table.border.right.width = px(2),
+    table.border.left.width = px(2),
+    table.border.right.color = "black",
+    table.border.left.color = "black"
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "gray",
+      weight = px(1)
+    ),
+    locations = cells_body(columns = everything())
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "gray",
+      weight = px(1)
+    ),
+    locations = cells_grand_summary(columns = everything())
+  )
+```
+
+::: aside
+$$
+\text{cov}_{x,y} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{N - 1}
+$$
+:::
+
+## Resultado
+
+```{r}
+#| echo: true
+cov(df$x, df$y)
+
+```
+
+## Exercício {.smaller}
+
+Você está conduzindo uma pesquisa com 5 participantes para investigar a relação entre nível de estresse e qualidade do sono. Os dados foram coletados por meio de escalas padronizadas:
+
+-   Estresse: pontuação de 1 a 10 (quanto maior, mais estressado)
+-   Qualidade do sono: pontuação de 1 a 10 (quanto maior, melhor sono)
+
+Os dados abaixo representam os níveis de estresse e qualidade do sono coletados. Calcule a covariância entre as duas variáveis.
+
+```{r}
+dados_psico |>
+  gt() |>
+  cols_align(
+    align = "center"
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px",
+    column_labels.border.top.width = px(2),
+    column_labels.border.bottom.width = px(2),
+    column_labels.border.bottom.color = "black",
+    table.border.right.width = px(2),
+    table.border.left.width = px(2),
+    table.border.right.color = "black",
+    table.border.left.color = "black"
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "gray",
+      weight = px(1)
+    ),
+    locations = cells_body(columns = everything())
+  )
+```
+
+## Gráfico de dispersão
+
+```{r}
+dados_psico |>
+  ggplot(aes(Estresse, Sono)) +
+  geom_point(
+    color = "red",
+    size = 3
+  ) +
+  geom_smooth(
+    method = "lm",
+    se = F,
+    linetype = 2
+  )
+```
+
+## Cálculo
+
+```{r}
+colunas_calculo <- tibble(
+  a = rep(NA, 5),
+  b = rep(NA, 5),
+  c = rep(NA, 5)
+)
+
+calculo_psico <- dados_psico |>
+  add_column(colunas_calculo) |>
+  select(-Participante)
+```
+
+```{r}
+calculo_psico |>
+  gt() |>
+  fmt_missing(missing_text = " ") |>
+  cols_label(
+    a = md("$x_i - \\bar{x}$"),
+    b = md("$y_i - \\bar{y}$"),
+    c = md("$(x_i - \\bar{x})(y_i - \\bar{y})$")
+  ) |>
+  grand_summary_rows(
+    columns = c,
+    fns = list("Soma" = ~NA_real_),
+    missing_text = " "
+  ) |>
+  grand_summary_rows(
+    columns = c(Estresse, Sono),
+    fns = list("Média" = ~NA_real_),
+    missing_text = " "
+  ) |>
+
+  cols_align(
+    align = "center"
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px",
+    column_labels.border.top.width = px(2),
+    column_labels.border.bottom.width = px(2),
+    column_labels.border.bottom.color = "black",
+    table.border.right.width = px(2),
+    table.border.left.width = px(2),
+    table.border.right.color = "black",
+    table.border.left.color = "black"
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "gray",
+      weight = px(1)
+    ),
+    locations = cells_body(columns = everything())
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "gray",
+      weight = px(1)
+    ),
+    locations = cells_grand_summary(columns = everything())
+  )
+```
+
+::: aside
+$$
+\text{cov}_{x,y} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{N - 1}
+$$
+:::
+
+## Resposta
+
+```{r}
+#| echo: true
+cov(dados_psico$Estresse, dados_psico$Sono)
+```
+
+## Correlação de Pearson a partir da covariância {.smaller}
+
+$$
+r = \frac{\text{Cov}(X, Y)}{\sigma_X \cdot \sigma_Y}
+$$
+
+Onde,
+
+-   $\text{Cov}(X, Y)$ = covariância entre $X$ e $Y$
+-   $\sigma_X,  \sigma_Y$ = desvios padrão de $X$ e $Y$
+
+::: aside
+$$
+s = \sqrt{ \frac{ \sum_{i=1}^n (x_i - \bar{x})^2 }{ n - 1 } }
+$$
+:::
+
+## Cálculo
+
+Cov = `r cov(df$x, df$y)`
+
+```{r}
+df_calculo |>
+  select(-c) |>
+  gt() |>
+  fmt_missing(missing_text = " ") |>
+  cols_label(
+    a = md("$(x_i - \\bar{x})^2$"),
+    b = md("$(y_i - \\bar{y})^2$")
+  ) |>
+  grand_summary_rows(
+    columns = c(a, b),
+    fns = list("Soma" = ~NA_real_),
+    missing_text = " "
+  ) |>
+  grand_summary_rows(
+    columns = c(a, b),
+    fns = list("Média" = ~NA_real_),
+    missing_text = " "
+  ) |>
+  cols_align(
+    align = "center"
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px",
+    column_labels.border.top.width = px(2),
+    column_labels.border.bottom.width = px(2),
+    column_labels.border.bottom.color = "black",
+    table.border.right.width = px(2),
+    table.border.left.width = px(2),
+    table.border.right.color = "black",
+    table.border.left.color = "black"
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "gray",
+      weight = px(1)
+    ),
+    locations = cells_body(columns = everything())
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "gray",
+      weight = px(1)
+    ),
+    locations = cells_grand_summary(columns = everything())
+  )
+```
+
+:::::: aside
+::::: columns
+::: {.column width="50%" style="font-size: 12pt;"}
+$$
+s = \sqrt{ \frac{ \sum_{i=1}^n (x_i - \bar{x})^2 }{ n - 1 } }
+$$
+:::
+
+::: {.column width="50%" style="font-size: 12pt;"}
+$$
+r = \frac{\text{Cov}(X, Y)}{\sigma_X \cdot \sigma_Y}
+$$
+:::
+:::::
+::::::
+
+## Resposta
+
+```{r}
+#| echo: true
+cor(df$x, df$y)
+```
+
+## Exercício
+
+Com base na covariância obtida anteriormente, calcule o coeficiente de correlação de Pearson entre as variáveis Estresse e Qualidade do Sono.
+
+## Cáculo
+
+Cov = `r cov(dados_psico$Estresse, dados_psico$Sono)`
+
+```{r}
+calculo_psico |>
+  select(-c) |>
+  gt() |>
+  fmt_missing(missing_text = " ") |>
+  cols_label(
+    a = md("$(x_i - \\bar{x})^2$"),
+    b = md("$(y_i - \\bar{y})^2$")
+  ) |>
+  grand_summary_rows(
+    columns = c(a, b),
+    fns = list("Soma" = ~NA_real_),
+    missing_text = " "
+  ) |>
+  grand_summary_rows(
+    columns = c(a, b),
+    fns = list("Média" = ~NA_real_),
+    missing_text = " "
+  ) |>
+  cols_align(
+    align = "center"
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px",
+    column_labels.border.top.width = px(2),
+    column_labels.border.bottom.width = px(2),
+    column_labels.border.bottom.color = "black",
+    table.border.right.width = px(2),
+    table.border.left.width = px(2),
+    table.border.right.color = "black",
+    table.border.left.color = "black"
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "gray",
+      weight = px(1)
+    ),
+    locations = cells_body(columns = everything())
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "gray",
+      weight = px(1)
+    ),
+    locations = cells_grand_summary(columns = everything())
+  )
+```
+
+:::::: aside
+::::: columns
+::: {.column width="50%" style="font-size: 12pt;"}
+$$
+s = \sqrt{ \frac{ \sum_{i=1}^n (x_i - \bar{x})^2 }{ n - 1 } }
+$$
+:::
+
+::: {.column width="50%" style="font-size: 12pt;"}
+$$
+r = \frac{\text{Cov}(X, Y)}{\sigma_X \cdot \sigma_Y}
+$$
+:::
+:::::
+::::::
+
+## Resposta
+
+```{r}
+#| echo: true
+cor(dados_psico$Estresse, dados_psico$Sono)
+```
+
+## Correlação de Pearson: fórmula expandida {.smaller}
+
+$$ 
+r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})} {\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \;\sum_{i=1}^n (y_i - \bar{y})^2}} 
+$$
+
+Onde,
+
+-   $\sum$ = símbolo de somatório (soma de termos)
+-   $x_i$ = valor observado da variável $x$ no caso $i$
+-   $y_i$ = valor observado da variável $y$ no caso $i$
+-   $\bar{x}$ = média dos valores de $x$
+-   $\bar{y}$ = média dos valores de $y$
+-   $n$ = número total de casos (ou observações)
+-   $\sum_{i=1}^n$ = soma dos termos do índice $i = 1$ até $i = n$
+
+## Cálculo
+
+```{r}
+
+df_cor <- df_calculo |>
+  mutate(
+    d = NA,
+    e = NA
+  )
+```
+
+```{r}
+df_cor |>
+  gt() |>
+  fmt_missing(missing_text = " ") |>
+  cols_label(
+    a = md("$x_i - \\bar{x}$"),
+    b = md("$y_i - \\bar{y}$"),
+    c = md("$(x_i - \\bar{x})(y_i - \\bar{y})$"),
+    d = md("$(x_i - \\bar{x})^2$"),
+    e = md("$(y_i - \\bar{y})^2$")
+  ) |>
+  grand_summary_rows(
+    columns = c(c, d, e),
+    fns = list("Soma" = ~NA_real_),
+    missing_text = " "
+  ) |>
+  grand_summary_rows(
+    columns = c(x, y),
+    fns = list("Média" = ~NA_real_),
+    missing_text = " "
+  ) |>
+  cols_align(
+    align = "center"
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px",
+    column_labels.border.top.width = px(2),
+    column_labels.border.bottom.width = px(2),
+    column_labels.border.bottom.color = "black",
+    table.border.right.width = px(2),
+    table.border.left.width = px(2),
+    table.border.right.color = "black",
+    table.border.left.color = "black"
+  ) |>
+  tab_style(
+    style = cell_fill(color = "#f0f0f0"),
+    locations = cells_body(columns = c(x, b, d))
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "gray",
+      weight = px(1)
+    ),
+    locations = cells_grand_summary(columns = everything())
+  )
+```
+
+::: aside
+$$ 
+r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})} {\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \;\sum_{i=1}^n (y_i - \bar{y})^2}} 
+$$
+:::
+
+## Resposta
+
+```{r}
+#| echo: true
+cor(df$x, df$y)
+```
+
+## Exercício
+
+Usando a fórmula expandida, calcule o coeficiente de correlação de Pearson entre as variáveis Estresse e Qualidade do Sono.
+
+## Cálculo
+
+```{r}
+calculo_psico_cor <- calculo_psico |>
+  mutate(
+    d = NA,
+    e = NA
+  )
+```
+
+```{r}
+calculo_psico_cor |>
+  gt() |>
+  fmt_missing(missing_text = " ") |>
+  cols_label(
+    a = md("$x_i - \\bar{x}$"),
+    b = md("$y_i - \\bar{y}$"),
+    c = md("$(x_i - \\bar{x})(y_i - \\bar{y})$"),
+    d = md("$(x_i - \\bar{x})^2$"),
+    e = md("$(y_i - \\bar{y})^2$")
+  ) |>
+  grand_summary_rows(
+    columns = c(c, d, e),
+    fns = list("Soma" = ~NA_real_),
+    missing_text = " "
+  ) |>
+  grand_summary_rows(
+    columns = everything(),
+    fns = list("Média" = ~NA_real_),
+    missing_text = " "
+  ) |>
+  cols_align(
+    align = "center"
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px",
+    column_labels.border.top.width = px(2),
+    column_labels.border.bottom.width = px(2),
+    column_labels.border.bottom.color = "black",
+    table.border.right.width = px(2),
+    table.border.left.width = px(2),
+    table.border.right.color = "black",
+    table.border.left.color = "black"
+  ) |>
+  tab_style(
+    style = cell_fill(color = "#f0f0f0"),
+    locations = cells_body(columns = c(Estresse, b, d))
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "gray",
+      weight = px(1)
+    ),
+    locations = cells_grand_summary(columns = everything())
+  )
+
+```
+
+::: aside
+$$ 
+r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})} {\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \;\sum_{i=1}^n (y_i - \bar{y})^2}} 
+$$
+:::
+
+## Resposta
+
+```{r}
+#| echo: true
+cor(dados_psico$Estresse, dados_psico$Sono) 
+```
+
+## Significância: o teste t para a correlação de Pearson {.smaller}
+
+Para determinar a significância do teste:
+
+1.  Estabelecer um nível de significância ($\alpha = 0.05$, por exemplo)
+2.  Calcular os graus de liberdade para a correlação: n - 2
+3.  Calcular o valor de t
+4.  Encontrar o valor crítico ($t_{crítico}$):
+    -   Numa tabela de distribuição t, encontra-se o valor que cruza os graus de liberdade com o nível de significância estabelecido para um teste bicaudal $\frac{\alpha}{2} = 0.025$
+5.  Se o módulo do valor t calculado for maior o valor do $t_{crítico}$, rejeita-se a hipótese nula
+    -   $|t_{calculado}|$ \> $t_{crítico}$ =\> Rejeitar $H_{0}$
+
+## Tabela de distribuição t
+
+```{r}
+tabela_t <- tribble(
+  ~cum.prob,    ~`t.50`,  ~`t.75`,  ~`t.80`,  ~`t.85`,  ~`t.90`,  ~`t.95`,   ~`t.975`, ~`t.99`,  ~`t.995`,  ~`t.999`,  ~`t.9995`,
+  # thresholds
+  "one-tail",   "0.50",   "0.25",   "0.20",   "0.15",   "0.10",   "0.05",    "0.025",  "0.01",   "0.005",   "0.001",   "0.0005",
+  "two-tails",  "1.00",   "0.50",   "0.40",   "0.30",   "0.20",   "0.10",    "0.05",   "0.02",   "0.01",    "0.002",   "0.001",
+  # placeholder for df header
+  "df",         NA,       NA,       NA,       NA,       NA,       NA,        NA,       NA,       NA,        NA,        NA,
+  # degrees of freedom
+  "1",          "0.000",  "1.000",  "1.376",  "1.963",  "3.078",  "6.314",   "12.71",  "31.82",  "63.66",   "318.31",  "636.62",
+  "2",          "0.000",  "0.816",  "1.061",  "1.386",  "1.886",  "2.920",   "4.303",  "6.965",  "9.925",   "22.327",  "31.599",
+  "3",          "0.000",  "0.765",  "0.978",  "1.250",  "1.638",  "2.353",   "3.182",  "4.541",  "5.841",   "10.215",  "12.924",
+  "4",          "0.000",  "0.741",  "0.941",  "1.190",  "1.533",  "2.132",   "2.776",  "3.747",  "4.604",   "7.173",   "8.610",
+  "5",          "0.000",  "0.727",  "0.920",  "1.156",  "1.476",  "2.015",   "2.571",  "3.365",  "4.032",   "5.893",   "6.869",
+  "6",          "0.000",  "0.718",  "0.906",  "1.134",  "1.440",  "1.943",   "2.447",  "3.143",  "3.707",   "5.208",   "5.959",
+  "7",          "0.000",  "0.711",  "0.896",  "1.119",  "1.415",  "1.895",   "2.365",  "2.998",  "3.499",   "4.785",   "5.408",
+  "8",          "0.000",  "0.706",  "0.889",  "1.108",  "1.397",  "1.860",   "2.306",  "2.896",  "3.355",   "4.501",   "5.041",
+  "9",          "0.000",  "0.703",  "0.883",  "1.100",  "1.383",  "1.833",   "2.262",  "2.821",  "3.250",   "4.297",   "4.781",
+  "10",         "0.000",  "0.700",  "0.879",  "1.093",  "1.372",  "1.812",   "2.228",  "2.764",  "3.169",   "4.144",   "4.587"
+)
+```
+
+```{r}
+ tabela_t <- tabela_t |>
+  gt() |>
+  sub_missing(
+    missing_text = ""
+  ) |>
+  cols_align(
+    align = "center"
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    #table.font.size = "26px",
+    column_labels.border.top.width = px(2),
+    column_labels.border.bottom.width = px(2),
+    column_labels.border.bottom.color = "black",
+    table.border.right.width = px(2),
+    table.border.left.width = px(2),
+    table.border.right.color = "black",
+    table.border.left.color = "black"
+  ) |>
+  opt_stylize(
+    style = 1,
+    color = "gray"
+  )
+
+tabela_t
+```
+
+## Fórmula para o valor de t na correlação de Pearson
+
+$$
+t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}
+$$
+
+Onde,
+
+-   $r$ = coeficiente de correlação de Pearson
+-   $n$ = número de pares de dados (observações)
+
+## Cálculo do Valor de T e graus de liberdade da amostra de exemplo
+
+-   r = `r cor(df$x, df$y)`
+-   n = `r nrow(df)`
+
+:::::: aside
+::::: columns
+::: {.column width="50%"}
+$$
+t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}
+$$
+:::
+
+::: {.column width="50%"}
+$$
+gl = n - 2
+$$
+:::
+:::::
+::::::
+
+## Resposta
+
+```{r}
+#| echo: true
+cor_exemplo <- cor.test(df$x, df$y)
+cor_exemplo$statistic
+cor_exemplo$parameter
+```
+
+## Valor crítico de t com $\alpha$ de 0.05 em uma hipótese bilateral
+
+```{r}
+tabela_t
+```
+
+## Resposta
+
+```{r}
+tabela_t |> 
+   tab_style(
+    style = list(
+      cell_fill(color = "red"),
+      cell_text(weight = "bold")
+      ),
+    locations = cells_body(
+      columns = t.975,
+      rows = cum.prob == 3
+    )
+  )
+```
+
+## Resposta
+
+```{r}
+#| echo: true
+alfa <- 0.05
+gl <- nrow(df) - 2
+t_critico <- qt(p = 1 - alfa/2, df = gl)
+t_critico
+```
+
+## Conclusão
+
+-   $|t_{calculado}|$ = `r cor_exemplo$statistic`
+-   $t_{crítico}$ = `r t_critico`
+-   $|t_{calculado}|$ \> $t_{crítico}$ =\> Rejeitar $H_{0}$
+
+```{r}
+#| echo: true
+unname(cor_exemplo$statistic) > t_critico
+```
+
+Portanto, rejeitamos a hipótese nula
+
+## Exercício
+
+Com base no coeficiente de correlação de pearson obtido anteriormente, teste a hipótese pertinente variáveis Estresse e Qualidade do Sono.
+
+-   r = `r cor(dados_psico$Estresse, dados_psico$Sono) |> round(3)`
+-   n = `r nrow(dados_psico)`
+
+:::::: aside
+::::: columns
+::: {.column width="50%"}
+$$
+t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}
+$$
+:::
+
+::: {.column width="50%"}
+$$
+gl = n - 2
+$$
+:::
+:::::
+::::::
+
+## Resposta
+
+```{r}
+cor_dados_psico <- cor.test(dados_psico$Estresse, dados_psico$Sono)
+```
+
+```{r}
+#| echo: true
+alfa <- 0.05
+gl <- nrow(df) - 2
+t_critico <- qt(p = 1 - alfa/2, df = gl)
+t_critico
+cor_dados_psico$statistic
+```
+
+## Conclusão
+
+-   $|t_{calculado}|$ = `r cor_dados_psico$statistic`
+-   $t_{crítico}$ = `r t_critico`
+-   $|t_{calculado}|$ \> $t_{crítico}$ =\> Rejeitar $H_{0}$
+
+```{r}
+#| echo: true
+unname(abs(cor_dados_psico$statistic)) > t_critico
+```
+
+Portanto, rejeitamos a hipótese nula

@@ -10,4 +10,7 @@ title: "Inferência estatística"
 
 ## Inferência para avaliar a associação entre duas variáveis contínuas
 
+![](img/slide.png){width="18"} [Slides: modelo matemático](slide-calculos-correlacao.qmd){target="_blank"}
+
 ![](img/slide.png){width="18"} [Slides: aplicação do modelo matemático no R](slide-inferencia-correlacao.qmd){target="_blank"}
+
