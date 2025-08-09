@@ -1,0 +1,983 @@
+---
+title: "Teste t"
+subtitle: "Para amostras independentes"
+format: 
+  revealjs:
+      logo: img/brasao1_horizontal_cor_300dpi.png
+      theme: simple
+      css: logo.css
+progress: true
+slide-number: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+```{r}
+#| include: false
+source("./_common.R")
+```
+
+```{r}
+#| label: setup
+library(conflicted)
+library(tidyverse)
+library(truncnorm)
+library(gt)
+library(rstatix)
+library(magick)
+conflicts_prefer(dplyr::lag)
+conflicts_prefer(dplyr::filter)
+```
+
+```{r}
+# Simulação de dados para pesquisa fictícia 1
+set.seed(123)
+
+notas_leitores <- rtruncnorm(
+  n = 50,
+  a = 0,     
+  b = 10,     
+  mean = 8,   
+  sd = 1.2    
+)
+
+notas_nao_leitores <- rtruncnorm(
+  n = 48,
+  a = 0,
+  b = 10,
+  mean = 6.8,
+  sd = 1.3
+)
+
+nota <- c(notas_leitores, notas_nao_leitores)
+
+grupo <- c(rep("leitor", 50), (rep("não leitor", 48)))
+
+pesquisa_fic <- tibble(
+  nota = nota,
+  grupo = as_factor(grupo)
+)
+
+pesquisa_fic <- pesquisa_fic |> 
+  mutate(
+    nota = round(nota, 1)
+  )
+```
+
+```{r}
+#| eval: false
+pesquisa_fic |> 
+  summarise(
+    m = mean(nota),
+    dp = sd(nota),
+    .by = grupo
+  )
+
+pesquisa_fic |> 
+  group_by(grupo) |> 
+  shapiro_test(nota)
+
+pesquisa_fic |> 
+  levene_test(formula = nota ~ grupo)
+
+pesquisa_fic |> 
+  t_test(nota ~ grupo, var.equal = T, 
+         alternative = "two.sided", detailed = T)
+
+pesquisa_fic |> 
+  write_csv("data/pesquisa-fic-teste-t.csv")
+```
+
+```{r}
+# Simulação de dados para pesquisa fictícia 2
+set.seed(239)
+
+ansiedade_leitores <- rtruncnorm(
+  n = 100,
+  a = 0,      
+  b = 100,    
+  mean = 60,  
+  sd = 20      
+)
+
+ansiedade_nao_leitores <- rtruncnorm(
+  n = 100,
+  a = 0,
+  b = 100,
+  mean = 75,
+  sd = 8     
+)
+
+ansiedade <- c(ansiedade_leitores, ansiedade_nao_leitores)
+grupo <- c(rep("leitor", 100), rep("não leitor", 100))
+
+pesquisa_fic_2 <- tibble(
+  ansiedade = ansiedade,
+  grupo = as_factor(grupo)
+)
+
+pesquisa_fic_2 <- tibble(
+  ansiedade = ansiedade,
+  grupo = as.factor(grupo)
+) 
+```
+
+```{r}
+#| eval: false
+pesquisa_fic_2 |> 
+  summarise(
+    m = mean(ansiedade),
+    dp = sd(ansiedade),
+    .by = grupo
+  )
+
+pesquisa_fic_2 |> 
+  group_by(grupo) |> 
+  shapiro_test(ansiedade)
+
+pesquisa_fic_2 |> 
+  levene_test(formula = ansiedade ~ grupo)
+
+pesquisa_fic_2 |> 
+  t_test(ansiedade ~ grupo, var.equal = F, 
+         alternative = "two.sided", detailed = T)
+
+pesquisa_fic_2 |> 
+  write_csv("data/pesquisa-fic-2-teste-t.csv")
+```
+
+
+# Teste t para amostras independentes {style="font-size: 22pt;"}
+
+## Pesquisa fictícia {.smaller}
+
+-   Pergunta de partida:
+    -   Qual é o efeito do hábito de ler dos textos antes das aulas sobre as médias de avaliação de discentes do curso de psicologia?
+        -   Grupo de leitores X Grupo de não leitores
+
+![](img/pesquisa-fic-teste-t.png){fig-align="center"}
+
+## Hipóteses {.smaller}
+
+-   Hipótese nula ($H_0$ - é a hipótese que tentaremos rejeitar): não há diferença entre as médias das notas dos dois grupos
+    -   $H_0: \mu_{leitores} = \mu_{não-leitores}$[^1]
+    -   $H_0: \mu_{leitores} - \mu_{não-leitores} = 0$
+-   Hipótese alternativa ($H_1$): há uma diferença entre as médias das notas dos dois grupos
+    -   $H_1: \mu_{leitores} \neq \mu_{não-leitores}$
+    -   $H_1: \mu_{leitores} - \mu_{não-leitores} \neq 0$
+
+[^1]: Onde $\mu_{leitores}$ é a média da população de alunos que leem e $\mu_{não-leitores}$ é a média da população de alunos que não leem
+
+## O que os dados da pesquisa fictícia sugerem?
+
+```{r}
+#| out-width: "70%"
+pesquisa_fic |> 
+  ggplot(
+    aes(x = grupo, y = nota, 
+        colour = grupo)
+    ) + 
+  geom_boxplot(
+    show.legend = F
+    ) + 
+  labs(
+    x = "Grupo",
+    y = "Nota"
+  ) + 
+  scale_x_discrete(
+    labels = c("Leitor", "Não leitor")
+  )
+```
+
+## O que os dados da pesquisa fictícia sugerem?
+
+```{r}
+pesquisa_fic |> 
+  summarise(
+    Média = mean(nota),
+    "Desvio padrão" = sd(nota),
+    .by = grupo
+  ) |> 
+  arrange(Média) |> 
+  mutate(
+    "Diferença entre as médias" = Média - lag(Média),
+    .after = Média
+  ) |> 
+  rename(
+    Grupo = grupo
+  ) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 2
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  sub_missing(
+    missing_text = "-"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Delineamento entre participantes: dois grupos em condições diferentes
+
+```{r}
+#| eval: false
+colchete <- image_read("img/curly-brackets-left.png")
+
+image_rotate(colchete,degrees = 180) |> 
+  image_write(path = "img/curly-brackets-right.png", format = "png")
+```
+
+![](img/teste-t-grupo-leitor.png){.absolute width="100" top="350" left="0"} ![](img/teste-t-grupo-nao-leitor.png){.absolute width="100" top="350" right="0"} ![](img/curly-brackets-left){.absolute width="100" top="350" left="85"} ![](img/curly-brackets-right.png){.absolute width="100" top="350" right="85"} ![](img/linha-vertical.png){.absolute width="200" top="200" right="450"} ![](img/pesquisadora-negra-sozinha.png){.absolute width="100" top="250" left="180"} ![](img/pesquisadora-cabelo-loiro-sozinha.png){.absolute width="100" top="450" left="250"} ![](img/pesquisador-indigena-sozinho.png){.absolute width="100" top="270" left="370"} ![](img/pesquisador-cabelo-preto-sozinho.png){.absolute width="100" top="250" right="180"} ![](img/pesquisador-asiatico-sozinho.png){.absolute width="100" top="450" right="250"} ![](img/pesquisadora-cabelo-preto-sozinha.png){.absolute width="100" top="270" right="370"}
+
+::: {.absolute style="top: 450px; left: 0px; width: 250px; text-align: center; font-weight: bold; font-size: 22px;"}
+Grupo leitor
+:::
+
+::: {.absolute style="top: 450px; right: 0; width: 250px; text-align: center; font-weight: bold; font-size: 22px;"}
+Grupo não Leitor
+:::
+
+## Teste t para Amostras Independentes
+
+-   Finalidade: examina se existe uma diferença estatisticamente significativa entre as médias de uma variável quantitativa em dois grupos independentes
+-   Aplicação: ideal para delineamentos entre participantes. Por exemplo:
+    -   Comparar níveis de ansiedade entre pessoas com e sem filhos
+    -   Comparar a pressão sanguínea entre quem usa um medicamento e um grupo controle
+    -   Comparar o estresse entre praticantes de atividades físicas e sedentários
+
+## Teste t para Amostras Independentes
+
+-   As Hipóteses (em um teste bidirecional):
+    -   Hipótese Nula ($H_0$): afirma que não há diferença entre as médias dos grupos na população
+        -   $H_0: \mu_a = \mu_b$
+        -   $H_0: \mu_a - \mu_b = 0$
+    -   Hipótese Alternativa ($H_1$): afirma que existe uma diferença entre as médias
+        -   $H_1: \mu_a \neq \mu_a$
+        -   $H_1: \mu_a - \mu_a \neq 0$
+
+## Visualização da Hipótese Alternativa (H1)
+
+```{r}
+set.seed(234)
+
+grupo_experimental <- rtruncnorm(
+  n = 10000, a = 0, b = 100, 
+  mean = 80, sd = 10
+  )
+
+grupo_controle <- rtruncnorm(
+  n = 10000, a = 0, b = 100, 
+  mean = 30, sd = 10
+  )
+
+grupos <- rep(c("Experimental", "Controle"), each = 10000)
+
+hipotese_alternativa <- tibble(
+  medida = c(grupo_experimental, grupo_controle),
+  Grupo = grupos
+)
+```
+
+```{r}
+medias_alternativa <- hipotese_alternativa |> 
+  summarise(
+    m = mean(medida),
+    .by = Grupo
+  )
+
+m_exp <- medias_alternativa[[1, 2]] 
+m_ctrl <- medias_alternativa[[2, 2]]
+```
+
+```{r}
+#| out-width: "70%"
+
+hipotese_alternativa |> 
+  ggplot(
+    aes(x = medida, fill = Grupo),
+  ) + 
+  geom_density(
+    alpha = 0.6, color = "white"
+    ) + 
+  geom_vline(
+    xintercept = m_exp, linetype = 2,
+    color = "blue"
+  ) + 
+  geom_vline(
+    xintercept = m_ctrl, linetype = 2,
+    color = "blue"
+  ) + 
+  geom_segment(
+    x = m_ctrl, xend = m_exp, 
+    y = 1400, yend = 1400,
+    linetype = 2,
+    color = "red"
+  ) + 
+  labs(
+    title = "As populações de onde as amostras foram retiradas \ntêm médias diferentes",
+    x = "Medida da Variável de Interesse",
+    y = "Densidade (Probabilidade Relativa)",
+    fill = "Grupo"
+  ) +
+  scale_fill_manual(
+    values = c("Experimental" = "#0072B2", 
+               "Controle" = "#D55E00")
+  ) +
+  theme(legend.position = "bottom")
+  
+```
+
+## Visualização da Hipótese Nula (H0)
+
+```{r}
+set.seed(234)
+
+grupo_experimental <- rtruncnorm(
+  n = 1000, a = 0, b = 100, 
+  mean = 80, sd = 10
+  )
+
+grupo_controle <- rtruncnorm(
+  n = 1000, a = 0, b = 100, 
+  mean = 79, sd = 10
+  )
+
+grupos <- rep(c("Experimental", "Controle"), each = 1000)
+
+hipotese_nula <- tibble(
+  medida = c(grupo_experimental, grupo_controle),
+  Grupo = grupos
+)
+```
+
+```{r}
+medias_nula <- hipotese_nula |> 
+  summarise(
+    m = mean(medida),
+    .by = Grupo
+  )
+
+m_exp <- medias_nula[[1, 2]] 
+m_ctrl <- medias_nula[[2, 2]]
+```
+
+```{r}
+#| out-width: "70%"
+
+hipotese_nula |> 
+  ggplot(
+    aes(x = medida, fill = Grupo),
+    ) + 
+  geom_density(
+    alpha = 0.6, color = "white"
+    ) +
+  geom_vline(
+    xintercept = m_exp, linetype = 2,
+    color = "blue"
+      ) + 
+  geom_vline(
+    xintercept = m_ctrl, linetype = 2,
+    color = "blue"
+  ) + 
+  geom_segment(
+    x = m_ctrl, xend = m_exp, 
+    y = 1400, yend = 1400,
+    linetype = 2,
+    color = "red"
+    ) + 
+  labs(
+    title = "As populações de onde as amostras foram retiradas \ntêm médias quase iguais",
+    x = "Medida da Variável de Interesse",
+    y = "Densidade (Probabilidade Relativa)",
+    fill = "Grupo"
+  ) +
+  scale_fill_manual(
+    values = c("Experimental" = "#0072B2", 
+               "Controle" = "#D55E00")
+    ) + 
+  theme(legend.position = "bottom")
+```
+
+## Teste t para Amostras Independentes
+
+-   A Regra de Decisão (usando o p-valor):
+    -   Se p ≤ 0,05: Rejeitamos a Hipótese Nula. A diferença observada é estatisticamente significativa
+    -   Se p \> 0,05: Falhamos em rejeitar a Hipótese Nula. Não há evidência suficiente para afirmar que existe uma diferença
+
+## Pressupostos do Teste T para amostras independentes {.smaller}
+
+-   Variável Independente (VI): deve ser categórica com dois níveis (dicotômica)
+-   Variável Dependente (VD): Deve ser escalar ou intervalar.
+    -   A decisão sobre os tipos de variáveis é feita no desenho do estudo, guiada pela pergunta de pesquisa!
+-   Independência das observações: os grupos devem ser mutuamente exclusivos (um participante não pode estar em ambos os grupos)
+-   Verificação de outliers: o teste é sensível a valores atípicos. É importante inspecionar os dados para identificá-los e tratá-los, se for caso
+-   Os dados da VD em cada grupo devem ser provenientes de uma população com distribuição aproximadamente normal
+-   Homogeneidade das Variâncias (Homocedasticidade): as variâncias da VD devem ser aproximadamente iguais entre os grupos
+
+# Avaliação dos pressupostos na pesquisa fictícia
+
+## VI categórica e dicotômica
+
+![](img/teste-t-grupo-leitor.png){.absolute width="300" top="170" left="0"} ![](img/linha-vertical.png){.absolute width="200" down="300" right="450"} ![](img/teste-t-grupo-nao-leitor.png){.absolute width="300" top="170" right="0"}
+
+::: {.absolute style="top: 480px; left: 0px; width: 250px; text-align: center; font-weight: bold; font-size: 32px;"}
+Grupo leitor
+:::
+
+::: {.absolute style="top: 480px; right: 25px; width: 250px; text-align: center; font-weight: bold; font-size: 32px;"}
+Grupo não Leitor
+:::
+
+## VD escalar ou intervalar
+
+```{r}
+set.seed(789)
+
+pesquisa_fic |> 
+  slice_sample(n = 5)  |> 
+  select(Nota = nota) |> 
+  mutate(
+    Aluno = letters[seq( from = 1, to = 5)],
+    Aluno = str_c("Aluno ", Aluno),
+    Texto = rep("Nota", 5)
+  ) |> 
+  pivot_wider(
+    names_from = Aluno, values_from = Nota, id_cols = "Texto") |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  cols_label(
+    Texto = " "
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    ) 
+```
+
+## As observações devem ser independentes
+
+O que há de errado nessa tabela?
+
+```{r}
+set.seed(90)
+
+pesquisa_fic |> 
+  group_by(grupo) |> 
+  slice_sample(n = 3) |> 
+  ungroup() |> 
+  mutate(
+    Aluno = c("Pedro", "Joana", "Tércia",
+              "João", "José", "Joana")
+    ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  cols_label(
+    nota = "Nota",
+    grupo = "Grupo"
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+    )
+```
+
+## As observações devem ser independentes
+
+O que há de errado nessa tabela?
+
+```{r}
+set.seed(90)
+
+pesquisa_fic |> 
+  group_by(grupo) |> 
+  slice_sample(n = 3) |> 
+  ungroup() |> 
+  mutate(
+    Aluno = c("Pedro", "Joana", "Tércia",
+              "João", "José", "Joana")
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  cols_label(
+    nota = "Nota",
+    grupo = "Grupo"
+  ) |> 
+  tab_style(
+    style = list(
+      cell_fill(color = "red"),
+      cell_text(color = "white")
+      ),
+    locations = cells_body(columns = everything(), rows = c(2,6))
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Análise de outliers
+
+```{r}
+#| out-width: "70%"
+pesquisa_fic |> 
+  mutate(
+    nota = case_when(nota == 9.9 ~ 15,
+                     .default = nota)
+  ) |> 
+  ggplot(
+    aes(nota), 
+  ) + 
+  geom_boxplot(
+    color = "#569BBD"
+    ) + 
+  coord_flip()
+```
+
+## Distribuição normal da VD em cada grupo: gráfico Q-Q
+
+```{r}
+pesquisa_fic |> 
+  ggplot(
+    aes(sample = nota)
+    ) + 
+  stat_qq(
+    aes(color = grupo), alpha = 0.8, 
+    show.legend = FALSE
+    ) + 
+  stat_qq_line(
+    color = "black", linetype = "dashed"
+  ) + 
+  labs(
+    subtitle = "Distribuição normal: pontos que seguem de perto a linha diagonal",
+    x = "Quantis Teóricos (da Distribuição Normal)",
+    y = "Quantis da Amostra (Notas)"
+  ) + 
+  facet_wrap(vars(grupo))
+```
+
+## Distribuição normal da VD em cada grupo: teste de Shapiro-Wilk
+
+-   Hipóteses:
+    -   $H_0$: a variável de interesse é oriunda de uma população com distribuição normal
+    -   $H_a$: a variável de interesse não é oriunda de uma população com distribuição normal
+
+```{r}
+pesquisa_fic |> 
+  group_by(grupo) |> 
+  shapiro_test(nota) |> 
+  select(-variable) |> 
+  rename(
+    W = statistic
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_spanner(
+    label = "Shapiro-Wilk",
+    columns = c(W, p)
+  ) |> 
+  fmt_number(
+    decimals = 3
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Homogeneidade de variâncias: gráfico de caixas
+
+```{r}
+pesquisa_fic |> 
+  ggplot(
+    aes(x = grupo, y = nota, color = grupo)
+    ) +
+  geom_boxplot(
+    show.legend = FALSE
+    ) +
+  labs(
+    subtitle = "As alturas das caixas são semelhantes, sugerindo variâncias homogêneas.",
+    x = "Grupo",
+    y = "Nota na Avaliação"
+  )
+```
+
+## Homogeneidade de variâncias: teste de Levene
+
+-   Hipóteses:
+    -   $H_0$: As variâncias populacionais são iguais entre os grupos
+    -   $H_a$: As variâncias populacionais não são iguais entre os grupos
+
+```{r}
+pesquisa_fic |> 
+  levene_test(nota ~ grupo, center = "mean") |> 
+  relocate(
+    statistic, .before = 1
+  ) |> 
+  rename(
+    "F" = statistic
+  ) |> 
+  mutate(
+    nota = "Nota", 
+    .before = 1
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+ ) |>
+  cols_label(
+    nota = " " 
+  ) |> 
+  fmt_number(
+    decimals = 3,
+    columns = p
+  ) |>
+  fmt_number(
+    decimals = 2,
+    columns = "F"
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+# Análise e redação dos resultados para a pesquisa fictícia
+
+## Teste T
+
+```{r}
+teste_t_pesquisa_fic <- 
+  pesquisa_fic |> 
+  t_test(
+    nota ~ grupo, 
+    var.equal = T, 
+    comparisons = c("leitor", "não leitor"), detailed = T
+  )
+
+var_combinada <- pesquisa_fic |> 
+  summarise(
+    n = n(),
+    var = var(nota),
+    .by = grupo
+  ) 
+  
+n1 <- var_combinada[[1, 2]]
+n2 <- var_combinada[[2, 2]]
+var1 <- var_combinada[[1, 3]]
+var2 <- var_combinada[[2, 3]]
+var_combinada <- ((n1 - 1)*var1 + (n2 - 1)*var2)/(n1 + n2 - 2)
+ep_dif_medias <- sqrt(var_combinada*(1/n1 + 1/n2))
+
+teste_t_pesquisa_fic <- teste_t_pesquisa_fic |> 
+  mutate(
+    "Diferença média" = estimate1 - estimate2,
+    "Erro padrão da diferença" = ep_dif_medias
+  ) |> 
+  select(.y., method, "Estatística" = statistic, 
+         gl = df, p, "Erro padrão da diferença",
+         "Diferença média", "Limite inferior" = conf.low, 
+         "Limite superior" = conf.high) |> 
+  mutate(
+    p = "< .001" 
+  )
+```
+
+```{r}
+teste_t_pesquisa_fic |>
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |>
+  cols_label(
+    .y. = " ",
+    method = " "
+  ) |> 
+  tab_spanner(
+    label = "Intervalo de Confiança a 95%",
+    columns = c("Limite inferior", "Limite superior")
+  ) |> 
+  fmt_number(
+    decimals = 3,
+    columns = p
+  ) |>
+  fmt_number(
+    decimals = 2
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Tamanho de efeito: D de Cohen
+
+```{r}
+set.seed(234)
+
+d_de_cohen <- pesquisa_fic |> 
+  cohens_d(
+    formula = nota ~ grupo,  
+    ref.group = "leitor", 
+    var.equal = T, ci = T
+  )
+```
+
+```{r}
+d_de_cohen |> 
+  select(
+    "Dimensão do efeito" = effsize,
+    "Limite inferior" = conf.low,
+    "Limite superior" = conf.high,
+    "Magnitude" = magnitude
+  ) |> 
+  mutate(
+    teste = "d de Cohen",
+    "Magnitude" = "Grande"
+  ) |> 
+  relocate(
+    teste,
+    .before = 1
+  ) |> 
+  gt() |> 
+  cols_align(
+    align = "center"  
+  ) |>
+  cols_label(
+    teste = " "
+  ) |> 
+  tab_spanner(
+    label = "Intervalo de Confiança a 95%",
+    columns = c("Limite inferior", "Limite superior")
+  ) |> 
+  fmt_number(
+    decimals = 3,
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Para que serve o Tamanho de Efeito? {.smaller}
+
+Imagine dois estudos que testam uma nova terapia para ansiedade:
+
+-   Estudo A: Usa uma escala de 0 a 10. A diferença entre os grupos foi de 2 pontos
+
+-   Estudo B: Usa uma escala de 0 a 100. A diferença entre os grupos também foi de 2 pontos
+
+Pergunta: O efeito da terapia foi o mesmo nos dois estudos?
+
+> A diferença "bruta" não tem significado sem um padrão. Precisamos de uma forma de medir o tamanho do efeito que seja comparável entre estudos.
+
+## O que é o d de Cohen?
+
+É uma medida padronizada do tamanho do efeito que responde à pergunta:
+
+> "Quão grande é a diferença entre as médias de dois grupos, se usarmos o desvio padrão como nossa unidade de medida?"
+
+Ele transforma a diferença em uma unidade universal, permitindo a comparação e a interpretação da magnitude do efeito
+
+## Entendendo o d de Cohen com uma Analogia {.smaller}
+
+Podemos pensar no cálculo de uma forma bem simples:
+
+-   A Diferença entre as Médias $M_1 - M_2$
+    -   É a distância que queremos medir
+-   O Desvio Padrão Combinado $(s_p)$
+    -   É a nossa régua. Representa a variabilidade "típica" dos dados
+-   O d de Cohen
+    -   É a medição final: quantas vezes a nossa "régua" (desvio padrão) cabe na "distância" (diferença entre as médias)
+
+## A Fórmula desmistificada {.smaller}
+
+A fórmula matemática reflete exatamente a analogia da régua:
+
+$$ 
+d = \dfrac{M_1 - M_2}{s_p}
+$$
+
+Ou seja:
+
+$$
+d = \frac{\text{Distância entre as Médias}}{\text{A nossa 'Régua' (Desvio Padrão)}}
+$$
+
+## O que significa o resultado? (Regras de Bolso)[^2] {.smaller}
+
+[^2]: O contexto da pesquisa é crucial! Um efeito "pequeno" pode ser clinicamente muito importante
+
+As convenções de Cohen (1988) nos ajudam a ter um ponto de partida para a interpretação:
+
+-   d ≈ 0.2 (Efeito Pequeno):
+    -   A diferença é pequena. As distribuições dos grupos se sobrepõem muito.
+-   d ≈ 0.5 (Efeito Médio):
+    -   A diferença é moderada e visível a olho nu.
+-   d ≈ 0.8 (Efeito Grande):
+    -   A diferença é grande. Há pouca sobreposição entre as distribuições dos grupos.
+
+## Visualização do d de Cohen
+
+[![](img/qrcode_ddecohen.png){fig-alt="QR-code para o link https://rpsychologist.com/cohend/" fig-align="center"}](https://rpsychologist.com/cohend/)
+
+## d de Cohen vs. p-valor
+
+Eles não são inimigos, são parceiros! Eles respondem a perguntas diferentes e complementares
+
+```{r}
+comparacao <- tibble::tibble(
+  Categoria = c("Pergunta que responde", "Função", "O que nos diz"),
+  `p valor` = c("Existe uma diferença?", 
+                "Significância Estatística", 
+                "Se o efeito é \"real\" (não devido ao acaso)"),
+  `d de Cohen` = c("Quão GRANDE é a diferença?", 
+                   "Significância Prática / Clínica", 
+                   "A magnitude do efeito no mundo real")
+)
+```
+
+```{r}
+comparacao |> 
+  gt() |> 
+  cols_align(
+    align = "center", 
+    columns = c("p valor", "d de Cohen")  
+  ) |>
+  cols_label(
+    Categoria = " "
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Redação do Método
+
+<center>**Método**</center>
+
+**Procedimentos**
+
+***Análise de Dados***
+
+Um teste t para amostras independentes foi realizado para comparar a nota de alunos que separados em dois grupos: aqueles que liam os textos antes das aulas e aqueles que não tinha esse hábido. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e de homogeneidade das variâncias (teste de Levene).
+
+## Redação dos Resultados {.smaller}
+
+<center>**Resultados**</center>
+
+O teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo de alunos leitores (W = 0.991, p = 0.958), nem para o grupo de alunos não leitores (W = 0.99, p = 0.953). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (F(1, 96) = 1.95, p = 0.166). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, t(96) = 4.22, p \< .001. Alunos leitores (n = 50, M = 7.91, DP = 0.96) apresentaram um desempenho melhor do que os não leitores (n = 48, M = 6.98, DP = 1.21). A diferença média foi de 0.93 pontos (IC 95% \[0.49, 1.37\]). O tamanho de efeito foi grande (d = 0.853, IC 95% \[0.44, 1.32\] ). Esses resultados sugerem que ler os textos antes das aulas influencia no desempenho dos discentes nas avaliações.
+
+# Violação de pressupostos: homogeneidade de variâncias
+
+## Pesquisa fictícia 2
+
+-   Pergunta de partida:
+    -   Qual é o efeito do hábito de ler dos textos antes das aulas sobre as médias de ansiedade frente a provas discentes do curso de psicologia antes das avaliações?
+        -   Grupo de leitores X Grupo de não leitores
+
+## Hipóteses {.smaller}
+
+-   Hipótese nula: não há diferença entre as médias das notas dos dois grupos
+    -   $H_0: \mu_{leitores} = \mu_{não-leitores}$
+-   Hipótese alternativa ($H_1$): há uma diferença entre as médias das notas dos dois grupos
+    -   $H_1: \mu_{leitores} \neq \mu_{não-leitores}$
+
+## Exploração dos dados
+
+```{r}
+pesquisa_fic_2 |> 
+  summarise(
+    Média = mean(ansiedade),
+    "Desvio padrão" = sd(ansiedade),
+    .by = grupo
+  ) |> 
+  arrange(Média) |> 
+  mutate(
+    "Diferença entre as médias" = Média - lag(Média),
+    .after = Média
+  ) |> 
+  rename(
+    Grupo = grupo
+  ) |> 
+  gt() |> 
+  fmt_number(
+    decimals = 2
+  ) |> 
+  cols_align(
+    align = "center"  
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "26px"
+  ) |> 
+  sub_missing(
+    missing_text = "-"
+  ) |> 
+  opt_stylize(
+    style = 1, color = "gray"
+  )
+```
+
+## Exploração dos dados
+
+```{r}
+#| out-width: "70%"
+pesquisa_fic_2 |> 
+  ggplot(
+    aes(x = grupo, y = ansiedade, 
+        colour = grupo)
+    ) + 
+  geom_boxplot(
+    show.legend = F
+    ) + 
+  labs(
+    x = "Grupo",
+    y = "Nota"
+  ) + 
+  scale_x_discrete(
+    labels = c("Leitor", "Não leitor")
+  )
+```
+
+

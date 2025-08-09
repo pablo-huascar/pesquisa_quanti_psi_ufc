@@ -100,7 +100,7 @@ library(rstatix)
 
 # Correlação de pearson {style="font-size: 22pt;"}
 
-## Exemplo {.smaller}
+## Exemplo 
 
 -   Há uma associação entre o consumo de combustível (`mpg`) com o peso dos carros (`wt`) e com a relação do eixo traseiro[^1] (`drat`)?
 
