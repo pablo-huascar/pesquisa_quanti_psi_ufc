@@ -219,19 +219,19 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">epi.2by2</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">comida_de_gato</span>, method <span class="op">=</span> <span class="st">"cross.sectional"</span>, </span>
 <span>         conf.level <span class="op">=</span> <span class="fl">0.95</span>, units <span class="op">=</span> <span class="fl">100</span>, </span>
 <span>         interpret <span class="op">=</span> <span class="cn">F</span>, outcome <span class="op">=</span> <span class="st">"as.columns"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;              Outcome +    Outcome -      Total               Prev risk *</span></span>
-<span><span class="co">#&gt; Exposed +           13         2163       2176       0.60 (0.32 to 1.02)</span></span>
-<span><span class="co">#&gt; Exposed -            5         3349       3354       0.15 (0.05 to 0.35)</span></span>
-<span><span class="co">#&gt; Total               18         5512       5530       0.33 (0.19 to 0.51)</span></span>
+<span><span class="co">#&gt;           Outcome+ Outcome- Total               Prev risk *</span></span>
+<span><span class="co">#&gt; Exposure+       13     2163  2176       0.60 (0.32 to 1.02)</span></span>
+<span><span class="co">#&gt; Exposure-        5     3349  3354       0.15 (0.05 to 0.35)</span></span>
+<span><span class="co">#&gt; Total           18     5512  5530       0.33 (0.19 to 0.51)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Point estimates and 95% CIs:</span></span>
 <span><span class="co">#&gt; -------------------------------------------------------------------</span></span>
 <span><span class="co">#&gt; Prev risk ratio                                4.01 (1.43, 11.23)</span></span>
 <span><span class="co">#&gt; Prev odds ratio                                4.03 (1.43, 11.31)</span></span>
 <span><span class="co">#&gt; Attrib prev in the exposed *                   0.45 (0.10, 0.80)</span></span>
-<span><span class="co">#&gt; Attrib fraction in the exposed (%)            75.05 (30.11, 91.09)</span></span>
+<span><span class="co">#&gt; Attrib fraction in the exposed (%)            75.05 (32.91, 90.72)</span></span>
 <span><span class="co">#&gt; Attrib prev in the population *                0.18 (-0.02, 0.38)</span></span>
-<span><span class="co">#&gt; Attrib fraction in the population (%)         54.20 (3.61, 78.24)</span></span>
+<span><span class="co">#&gt; Attrib fraction in the population (%)         54.20 (32.38, 74.91)</span></span>
 <span><span class="co">#&gt; -------------------------------------------------------------------</span></span>
 <span><span class="co">#&gt; Uncorrected chi2 test that OR = 1: chi2(1) = 8.177 Pr&gt;chi2 = 0.004</span></span>
 <span><span class="co">#&gt; Fisher exact test that OR = 1: Pr&gt;chi2 = 0.006</span></span>
@@ -246,19 +246,19 @@
 <p>Cada linha deste conjunto de dados representa as informações de uma única mãe. Estamos interessados na associação entre smoke (o status tabagista da mãe durante a gravidez) e low (parto de um bebê com menos de 2,5 kg de peso corporal).</p>
 <p>É importante que a tabela que você apresenta para o epi.2by2 esteja no formato correto: resultados positivos na primeira coluna, resultados negativos na segunda coluna, exposições positivas na primeira linha e exposições negativas na segunda linha.</p>
 <div class="cell" data-layout-align="center">
-<pre><code>#&gt;              Outcome +    Outcome -      Total                 Inc risk *
-#&gt; Exposed +           30           44         74     40.54 (29.27 to 52.59)
-#&gt; Exposed -           29           86        115     25.22 (17.58 to 34.17)
-#&gt; Total               59          130        189     31.22 (24.69 to 38.35)
+<pre><code>#&gt;              Outcome+    Outcome-      Total                 Inc risk *
+#&gt; Exposure+          30          44         74     40.54 (29.27 to 52.59)
+#&gt; Exposure-          29          86        115     25.22 (17.58 to 34.17)
+#&gt; Total              59         130        189     31.22 (24.69 to 38.35)
 #&gt; 
 #&gt; Point estimates and 95% CIs:
 #&gt; -------------------------------------------------------------------
 #&gt; Inc risk ratio                                 1.61 (1.06, 2.44)
 #&gt; Inc odds ratio                                 2.02 (1.08, 3.78)
 #&gt; Attrib risk in the exposed *                   15.32 (1.61, 29.04)
-#&gt; Attrib fraction in the exposed (%)            37.80 (5.47, 59.07)
+#&gt; Attrib fraction in the exposed (%)            37.80 (5.38, 58.95)
 #&gt; Attrib risk in the population *                6.00 (-4.33, 16.33)
-#&gt; Attrib fraction in the population (%)         19.22 (-0.21, 34.88)
+#&gt; Attrib fraction in the population (%)         19.22 (10.89, 28.78)
 #&gt; -------------------------------------------------------------------
 #&gt; Uncorrected chi2 test that OR = 1: chi2(1) = 4.924 Pr&gt;chi2 = 0.026
 #&gt; Fisher exact test that OR = 1: Pr&gt;chi2 = 0.036
@@ -479,10 +479,10 @@
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
         }
-    
+
         function fireSlideChanged(previousSlide, currentSlide) {
           fireSlideEnter();
-    
+
           // dispatch for shiny
           if (window.jQuery) {
             if (previousSlide) {
@@ -493,7 +493,7 @@
             }
           }
         }
-    
+
         // hookup for slidy
         if (window.w3c_slidy) {
           window.w3c_slidy.add_observer(function (slide_num) {
@@ -501,7 +501,7 @@
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
           });
         }
-    
+
       })();
     </script><script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
