@@ -4424,29 +4424,29 @@
     "objectID": "slide-inferencia-correlacao.html#mtcars",
     "href": "slide-inferencia-correlacao.html#mtcars",
     "title": "Inferência",
-    "section": "",
-    "text": "Os dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo de combustível e 10 aspectos do design e desempenho de automóveis para 32 carros (modelos de 1973-74)\n\nFormato: Um banco de dados com 32 observações e 11 variáveis.\n\nmpg: milhas/galão (km/l)\ncyl: número de cilindros\ndisp: cilindrada (polegadas cúbicas)\nhp: potência bruta (cavalos de potência)\ndrat: relação de transmissão do eixo traseiro\nwt: peso (1000 lbs)\nqsec: tempo para 1/4 de milha\nvs: motor (0 = em forma de V, 1 = reto)\nam: transmissão (0 = automática, 1 = manual)\ngear: número de marchas para frente\ncarb: número de carburadores"
+    "section": "mtcars",
+    "text": "mtcars\n\nOs dados foram extraídos da revista Motor Trend US de 1974 e abrangem o consumo de combustível e 10 aspectos do design e desempenho de automóveis para 32 carros (modelos de 1973-74)\n\nFormato: Um banco de dados com 32 observações e 11 variáveis.\n\nmpg: milhas/galão (km/l)\ncyl: número de cilindros\ndisp: cilindrada (polegadas cúbicas)\nhp: potência bruta (cavalos de potência)\ndrat: relação de transmissão do eixo traseiro\nwt: peso (1000 lbs)\nqsec: tempo para 1/4 de milha\nvs: motor (0 = em forma de V, 1 = reto)\nam: transmissão (0 = automática, 1 = manual)\ngear: número de marchas para frente\ncarb: número de carburadores"
   },
   {
     "objectID": "slide-inferencia-correlacao.html#uma-olhada-em-mtcars",
     "href": "slide-inferencia-correlacao.html#uma-olhada-em-mtcars",
     "title": "Inferência",
-    "section": "",
-    "text": "Modelo\nwt\nmpg\ncyl\ndrat\n\n\n\n\nMaserati Bora\n3.6\n15.0\n8.0\n3.5\n\n\nCadillac Fleetwood\n5.2\n10.4\n8.0\n2.9\n\n\nHonda Civic\n1.6\n30.4\n4.0\n4.9\n\n\nMerc 450SLC\n3.8\n15.2\n8.0\n3.1\n\n\nDatsun 710\n2.3\n22.8\n4.0\n3.9\n\n\nMerc 280\n3.4\n19.2\n6.0\n3.9\n\n\nFiat 128\n2.2\n32.4\n4.0\n4.1\n\n\nDodge Challenger\n3.5\n15.5\n8.0\n2.8\n\n\nMerc 280C\n3.4\n17.8\n6.0\n3.9\n\n\nHornet Sportabout\n3.4\n18.7\n8.0\n3.1\n\n\n\n\n\n\n\n\nTabela 1: Uma amostra aleatória de dez casos do banco de dados mtcars"
+    "section": "Uma olhada em mtcars",
+    "text": "Uma olhada em mtcars\n\n\n\n\n\n\n\n\n\n\n\nModelo\nwt\nmpg\ncyl\ndrat\n\n\n\n\nMaserati Bora\n3.6\n15.0\n8.0\n3.5\n\n\nCadillac Fleetwood\n5.2\n10.4\n8.0\n2.9\n\n\nHonda Civic\n1.6\n30.4\n4.0\n4.9\n\n\nMerc 450SLC\n3.8\n15.2\n8.0\n3.1\n\n\nDatsun 710\n2.3\n22.8\n4.0\n3.9\n\n\nMerc 280\n3.4\n19.2\n6.0\n3.9\n\n\nFiat 128\n2.2\n32.4\n4.0\n4.1\n\n\nDodge Challenger\n3.5\n15.5\n8.0\n2.8\n\n\nMerc 280C\n3.4\n17.8\n6.0\n3.9\n\n\nHornet Sportabout\n3.4\n18.7\n8.0\n3.1\n\n\n\n\n\n\n\n\nTabela 1: Uma amostra aleatória de dez casos do banco de dados mtcars"
   },
   {
     "objectID": "slide-inferencia-correlacao.html#pacotes",
     "href": "slide-inferencia-correlacao.html#pacotes",
     "title": "Inferência",
-    "section": "",
-    "text": "Carregue os pacotes abaixo:\n\nlibrary(tidyverse)\nlibrary(rstatix)"
+    "section": "Pacotes",
+    "text": "Pacotes\nCarregue os pacotes abaixo:\n\nlibrary(tidyverse)\nlibrary(rstatix)"
   },
   {
     "objectID": "slide-inferencia-correlacao.html#exemplo",
     "href": "slide-inferencia-correlacao.html#exemplo",
     "title": "Inferência",
     "section": "Exemplo",
-    "text": "Exemplo\n\nHá uma associação entre o consumo de combustível (mpg) com o peso dos carros (wt) e com a relação do eixo traseiro1 (drat)?"
+    "text": "Exemplo\n\nHá uma associação entre o consumo de combustível (mpg) com o peso dos carros (wt) e com a relação do eixo traseiro1 (drat)?\n\nRefere-se à relação do eixo traseiro (“Rear axle ratio”). Essa métrica é o quociente entre o número de rotações do eixo de transmissão para cada rotação completa do eixo traseiro do veículo"
   },
   {
     "objectID": "slide-inferencia-correlacao.html#manipulação-dos-dados",
