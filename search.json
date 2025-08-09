@@ -1676,7 +1676,7 @@
     "href": "slide-inferencia-duas-medias-matematico-r.html#exploração-dos-dados",
     "title": "Inferência",
     "section": "Exploração dos dados",
-    "text": "Exploração dos dados\n\n\n\n\n\n\n\n\nGrupo\nMédia\nDiferença entre as médias\nDesvio padrão\n\n\n\n\nleitor\n56.95\n-\n19.15\n\n\nnão leitor\n73.71\n16.76\n7.24"
+    "text": "Exploração dos dados\n\nTabelaGráfico\n\n\n\ndescritivos_grupos &lt;- dados_teste_t |&gt; \n  summarise(\n    n = n(),\n    m = mean(mpg), \n    sd = sd(mpg),\n    .by = vs\n  ) |&gt; \n  mutate(\n    diferenca = m - lag(m)\n    )\n\ndescritivos_grupos\n#&gt; # A tibble: 2 × 5\n#&gt;   vs        n     m    sd diferenca\n#&gt;   &lt;fct&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;\n#&gt; 1 V        18  16.6  3.86     NA   \n#&gt; 2 reto     14  24.6  5.38      7.94\n\n\n\n\ndados_teste_t |&gt; \n  ggplot(\n    aes(vs, mpg)\n    ) +\n  geom_boxplot(\n    color = \"#569BBD\"\n    ) +\n  stat_boxplot(\n    geom = 'errorbar', color = \"#569BBD\"\n    )"
   },
   {
     "objectID": "slide-inferencia-duas-medias-matematico-r.html#avaliação-de-pressupostos",
@@ -1731,8 +1731,8 @@
     "objectID": "slide-inferencia-duas-medias-matematico-r.html#homogeneidade-de-variâncias-teste-de-levene",
     "href": "slide-inferencia-duas-medias-matematico-r.html#homogeneidade-de-variâncias-teste-de-levene",
     "title": "Inferência",
-    "section": "Homogeneidade de variâncias: teste de Levene",
-    "text": "Homogeneidade de variâncias: teste de Levene\n\nHipóteses:\n\n\\(H_0\\): As variâncias populacionais são iguais entre os grupos\n\\(H_a\\): As variâncias populacionais não são iguais entre os grupos\n\n\n\n\n\n\n\n\n\n\n\nF\ndf1\ndf2\np\n\n\n\n\nNota\n1.97\n1\n96\n0.164"
+    "section": "Homogeneidade de Variâncias: teste de Levene",
+    "text": "Homogeneidade de Variâncias: teste de Levene\n\nHipóteses:\n\n\\(H_0\\): As variâncias populacionais são iguais entre os grupos\n\\(H_a\\): As variâncias populacionais não são iguais entre os grupos\n\nAvaliar a homogeneidade de variâncias da VD (mpg) entre os grupos da VI (vs):\n\n“V” e “reto”"
   },
   {
     "objectID": "slide-inferencia-duas-medias-matematico-r.html#homogeneidade-de-variâncias-rstatixlevene_test",
@@ -1816,7 +1816,7 @@
     "href": "slide-inferencia-duas-medias-matematico-r.html#exploração-dos-dados-1",
     "title": "Inferência",
     "section": "Exploração dos dados",
-    "text": "Exploração dos dados"
+    "text": "Exploração dos dados\n\nTabelaGráfico\n\n\n\ndescritivos_grupos &lt;- dados_teste_t |&gt; \n  summarise(\n    n = n(),\n    m = mean(mpg), \n    sd = sd(mpg),\n    .by = cyl\n  ) |&gt; \n  mutate(\n    diferenca = m - lag(m)\n    )\n\ndescritivos_grupos\n#&gt; # A tibble: 2 × 5\n#&gt;   cyl       n     m    sd diferenca\n#&gt;   &lt;fct&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;\n#&gt; 1 6         7  19.7  1.45     NA   \n#&gt; 2 4        11  26.7  4.51      6.92\n\n\n\n\ndados_teste_t |&gt; \n  ggplot(\n    aes(cyl, mpg)\n    ) +\n  geom_boxplot(\n    color = \"#569BBD\"\n    ) +\n  stat_boxplot(\n    geom = 'errorbar', color = \"#569BBD\"\n    )"
   },
   {
     "objectID": "slide-inferencia-duas-medias-matematico-r.html#avaliação-de-pressupostos-1",
@@ -3734,7 +3734,7 @@
     "href": "inferencia-estatistica.html",
     "title": "Inferência estatística",
     "section": "",
-    "text": "Leitura\n Slides: aplicação do modelo matemático no R",
+    "text": "Leitura\n Slides: conhecendo o teste t\n Slides: aplicação do modelo matemático no R",
     "crumbs": [
       "Conteúdos",
       "Inferência estatística"
@@ -3745,7 +3745,7 @@
     "href": "inferencia-estatistica.html#inferência-para-comparar-duas-médias-independentes",
     "title": "Inferência estatística",
     "section": "",
-    "text": "Leitura\n Slides: aplicação do modelo matemático no R",
+    "text": "Leitura\n Slides: conhecendo o teste t\n Slides: aplicação do modelo matemático no R",
     "crumbs": [
       "Conteúdos",
       "Inferência estatística"
@@ -7275,5 +7275,516 @@
     "title": "Inferência",
     "section": "Notas de rodapé",
     "text": "Notas de rodapé\n\n\nRefere-se à relação do eixo traseiro (“Rear axle ratio”). Essa métrica é o quociente entre o número de rotações do eixo de transmissão para cada rotação completa do eixo traseiro do veículo↩︎"
+  },
+  {
+    "objectID": "slide-inferencia-duas-medias-matematico-r.html#teste-t-para-amostras-independentes",
+    "href": "slide-inferencia-duas-medias-matematico-r.html#teste-t-para-amostras-independentes",
+    "title": "Inferência",
+    "section": "Teste t para amostras independentes",
+    "text": "Teste t para amostras independentes\n\nHipóteses (Bilateral):\n\nHipótese nula: a média do consumo de combustível dos carros com motores em V é igual à média dos carros com motores retos \\[H_0: \\mu_{\\text{V}} = \\mu_{\\text{reto}}\\]\nHipótese alternativa: a média do consumo de combustível dos carros com motores em V é diferente da média dos carros com motores retos \\[H_a: \\mu_{\\text{V}} \\ne \\mu_{\\text{reto}}\\]"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#pesquisa-fictícia",
+    "href": "rascunho-teste-t.html#pesquisa-fictícia",
+    "title": "Inferência",
+    "section": "Pesquisa fictícia",
+    "text": "Pesquisa fictícia\n\nPergunta de partida:\n\nQual é o efeito do hábito de ler dos textos antes das aulas sobre as médias de avaliação de discentes do curso de psicologia?\n\nGrupo de leitores X Grupo de não leitores"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#hipóteses",
+    "href": "rascunho-teste-t.html#hipóteses",
+    "title": "Inferência",
+    "section": "Hipóteses",
+    "text": "Hipóteses\n\nHipótese nula (\\(H_0\\) - é a hipótese que tentaremos rejeitar): não há diferença entre as médias das notas dos dois grupos\n\n\\(H_0: \\mu_{leitores} = \\mu_{não-leitores}\\)1\n\\(H_0: \\mu_{leitores} - \\mu_{não-leitores} = 0\\)\n\nHipótese alternativa (\\(H_1\\)): há uma diferença entre as médias das notas dos dois grupos\n\n\\(H_1: \\mu_{leitores} \\neq \\mu_{não-leitores}\\)\n\\(H_1: \\mu_{leitores} - \\mu_{não-leitores} \\neq 0\\)\n\n\nOnde \\(\\mu_{leitores}\\) é a média da população de alunos que leem e \\(\\mu_{não-leitores}\\) é a média da população de alunos que não leem"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#o-que-os-dados-da-pesquisa-fictícia-sugerem",
+    "href": "rascunho-teste-t.html#o-que-os-dados-da-pesquisa-fictícia-sugerem",
+    "title": "Inferência",
+    "section": "O que os dados da pesquisa fictícia sugerem?",
+    "text": "O que os dados da pesquisa fictícia sugerem?"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#o-que-os-dados-da-pesquisa-fictícia-sugerem-1",
+    "href": "rascunho-teste-t.html#o-que-os-dados-da-pesquisa-fictícia-sugerem-1",
+    "title": "Inferência",
+    "section": "O que os dados da pesquisa fictícia sugerem?",
+    "text": "O que os dados da pesquisa fictícia sugerem?\n\n\n\n\n\n\n\n\nGrupo\nMédia\nDiferença entre as médias\nDesvio padrão\n\n\n\n\nnão leitor\n6.98\n-\n1.21\n\n\nleitor\n7.91\n0.93\n0.96"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#delineamento-entre-participantes-dois-grupos-em-condições-diferentes",
+    "href": "rascunho-teste-t.html#delineamento-entre-participantes-dois-grupos-em-condições-diferentes",
+    "title": "Inferência",
+    "section": "Delineamento entre participantes: dois grupos em condições diferentes",
+    "text": "Delineamento entre participantes: dois grupos em condições diferentes\n          \n\nGrupo leitor\n\n\nGrupo não Leitor"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#teste-t-para-amostras-independentes-1",
+    "href": "rascunho-teste-t.html#teste-t-para-amostras-independentes-1",
+    "title": "Inferência",
+    "section": "Teste t para Amostras Independentes",
+    "text": "Teste t para Amostras Independentes\n\nFinalidade: examina se existe uma diferença estatisticamente significativa entre as médias de uma variável quantitativa em dois grupos independentes\nAplicação: ideal para delineamentos entre participantes. Por exemplo:\n\nComparar níveis de ansiedade entre pessoas com e sem filhos\nComparar a pressão sanguínea entre quem usa um medicamento e um grupo controle\nComparar o estresse entre praticantes de atividades físicas e sedentários"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#teste-t-para-amostras-independentes-2",
+    "href": "rascunho-teste-t.html#teste-t-para-amostras-independentes-2",
+    "title": "Inferência",
+    "section": "Teste t para Amostras Independentes",
+    "text": "Teste t para Amostras Independentes\n\nAs Hipóteses (em um teste bidirecional):\n\nHipótese Nula (\\(H_0\\)): afirma que não há diferença entre as médias dos grupos na população\n\n\\(H_0: \\mu_a = \\mu_b\\)\n\\(H_0: \\mu_a - \\mu_b = 0\\)\n\nHipótese Alternativa (\\(H_1\\)): afirma que existe uma diferença entre as médias\n\n\\(H_1: \\mu_a \\neq \\mu_a\\)\n\\(H_1: \\mu_a - \\mu_a \\neq 0\\)"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#visualização-da-hipótese-alternativa-h1",
+    "href": "rascunho-teste-t.html#visualização-da-hipótese-alternativa-h1",
+    "title": "Inferência",
+    "section": "Visualização da Hipótese Alternativa (H1)",
+    "text": "Visualização da Hipótese Alternativa (H1)"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#visualização-da-hipótese-nula-h0",
+    "href": "rascunho-teste-t.html#visualização-da-hipótese-nula-h0",
+    "title": "Inferência",
+    "section": "Visualização da Hipótese Nula (H0)",
+    "text": "Visualização da Hipótese Nula (H0)"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#teste-t-para-amostras-independentes-3",
+    "href": "rascunho-teste-t.html#teste-t-para-amostras-independentes-3",
+    "title": "Inferência",
+    "section": "Teste t para Amostras Independentes",
+    "text": "Teste t para Amostras Independentes\n\nA Regra de Decisão (usando o p-valor):\n\nSe p ≤ 0,05: Rejeitamos a Hipótese Nula. A diferença observada é estatisticamente significativa\nSe p &gt; 0,05: Falhamos em rejeitar a Hipótese Nula. Não há evidência suficiente para afirmar que existe uma diferença"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#pressupostos-do-teste-t-para-amostras-independentes",
+    "href": "rascunho-teste-t.html#pressupostos-do-teste-t-para-amostras-independentes",
+    "title": "Inferência",
+    "section": "Pressupostos do Teste T para amostras independentes",
+    "text": "Pressupostos do Teste T para amostras independentes\n\nVariável Independente (VI): deve ser categórica com dois níveis (dicotômica)\nVariável Dependente (VD): Deve ser escalar ou intervalar.\n\nA decisão sobre os tipos de variáveis é feita no desenho do estudo, guiada pela pergunta de pesquisa!\n\nIndependência das observações: os grupos devem ser mutuamente exclusivos (um participante não pode estar em ambos os grupos)\nVerificação de outliers: o teste é sensível a valores atípicos. É importante inspecionar os dados para identificá-los e tratá-los, se for caso\nOs dados da VD em cada grupo devem ser provenientes de uma população com distribuição aproximadamente normal\nHomogeneidade das Variâncias (Homocedasticidade): as variâncias da VD devem ser aproximadamente iguais entre os grupos"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#vi-categórica-e-dicotômica",
+    "href": "rascunho-teste-t.html#vi-categórica-e-dicotômica",
+    "title": "Inferência",
+    "section": "VI categórica e dicotômica",
+    "text": "VI categórica e dicotômica\n  \n\nGrupo leitor\n\n\nGrupo não Leitor"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#vd-escalar-ou-intervalar",
+    "href": "rascunho-teste-t.html#vd-escalar-ou-intervalar",
+    "title": "Inferência",
+    "section": "VD escalar ou intervalar",
+    "text": "VD escalar ou intervalar\n\n\n\n\n\n\n\n\n\nAluno a\nAluno b\nAluno c\nAluno d\nAluno e\n\n\n\n\nNota\n7.4\n8.5\n9.4\n8.2\n7.6"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#as-observações-devem-ser-independentes",
+    "href": "rascunho-teste-t.html#as-observações-devem-ser-independentes",
+    "title": "Inferência",
+    "section": "As observações devem ser independentes",
+    "text": "As observações devem ser independentes\nO que há de errado nessa tabela?\n\n\n\n\n\n\n\n\nNota\nGrupo\nAluno\n\n\n\n\n9.1\nleitor\nPedro\n\n\n7.7\nleitor\nJoana\n\n\n8.8\nleitor\nTércia\n\n\n9.5\nnão leitor\nJoão\n\n\n6.9\nnão leitor\nJosé\n\n\n7.1\nnão leitor\nJoana"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#as-observações-devem-ser-independentes-1",
+    "href": "rascunho-teste-t.html#as-observações-devem-ser-independentes-1",
+    "title": "Inferência",
+    "section": "As observações devem ser independentes",
+    "text": "As observações devem ser independentes\nO que há de errado nessa tabela?\n\n\n\n\n\n\n\n\nNota\nGrupo\nAluno\n\n\n\n\n9.1\nleitor\nPedro\n\n\n7.7\nleitor\nJoana\n\n\n8.8\nleitor\nTércia\n\n\n9.5\nnão leitor\nJoão\n\n\n6.9\nnão leitor\nJosé\n\n\n7.1\nnão leitor\nJoana"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#análise-de-outliers",
+    "href": "rascunho-teste-t.html#análise-de-outliers",
+    "title": "Inferência",
+    "section": "Análise de outliers",
+    "text": "Análise de outliers"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#distribuição-normal-da-vd-em-cada-grupo-gráfico-q-q",
+    "href": "rascunho-teste-t.html#distribuição-normal-da-vd-em-cada-grupo-gráfico-q-q",
+    "title": "Inferência",
+    "section": "Distribuição normal da VD em cada grupo: gráfico Q-Q",
+    "text": "Distribuição normal da VD em cada grupo: gráfico Q-Q"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#distribuição-normal-da-vd-em-cada-grupo-teste-de-shapiro-wilk",
+    "href": "rascunho-teste-t.html#distribuição-normal-da-vd-em-cada-grupo-teste-de-shapiro-wilk",
+    "title": "Inferência",
+    "section": "Distribuição normal da VD em cada grupo: teste de Shapiro-Wilk",
+    "text": "Distribuição normal da VD em cada grupo: teste de Shapiro-Wilk\n\nHipóteses:\n\n\\(H_0\\): a variável de interesse é oriunda de uma população com distribuição normal\n\\(H_a\\): a variável de interesse não é oriunda de uma população com distribuição normal\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngrupo\n\nShapiro-Wilk\n\n\n\nW\np\n\n\n\n\nleitor\n0.991\n0.958\n\n\nnão leitor\n0.990\n0.953"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#homogeneidade-de-variâncias-gráfico-de-caixas",
+    "href": "rascunho-teste-t.html#homogeneidade-de-variâncias-gráfico-de-caixas",
+    "title": "Inferência",
+    "section": "Homogeneidade de variâncias: gráfico de caixas",
+    "text": "Homogeneidade de variâncias: gráfico de caixas"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#homogeneidade-de-variâncias-teste-de-levene",
+    "href": "rascunho-teste-t.html#homogeneidade-de-variâncias-teste-de-levene",
+    "title": "Inferência",
+    "section": "Homogeneidade de variâncias: teste de Levene",
+    "text": "Homogeneidade de variâncias: teste de Levene\n\nHipóteses:\n\n\\(H_0\\): As variâncias populacionais são iguais entre os grupos\n\\(H_a\\): As variâncias populacionais não são iguais entre os grupos\n\n\n\n\n\n\n\n\n\n\n\nF\ndf1\ndf2\np\n\n\n\n\nNota\n1.97\n1\n96\n0.164"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#teste-t",
+    "href": "rascunho-teste-t.html#teste-t",
+    "title": "Inferência",
+    "section": "Teste T",
+    "text": "Teste T\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstatística\ngl\np\nErro padrão da diferença\nDiferença média\n\nIntervalo de Confiança a 95%\n\n\n\nLimite inferior\nLimite superior\n\n\n\n\nnota\nT-test\n4.22\n96.00\n&lt; .001\n0.22\n0.93\n0.49\n1.37"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#tamanho-de-efeito-d-de-cohen",
+    "href": "rascunho-teste-t.html#tamanho-de-efeito-d-de-cohen",
+    "title": "Inferência",
+    "section": "Tamanho de efeito: D de Cohen",
+    "text": "Tamanho de efeito: D de Cohen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDimensão do efeito\n\nIntervalo de Confiança a 95%\n\nMagnitude\n\n\nLimite inferior\nLimite superior\n\n\n\n\nd de Cohen\n0.853\n0.440\n1.320\nGrande"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#para-que-serve-o-tamanho-de-efeito",
+    "href": "rascunho-teste-t.html#para-que-serve-o-tamanho-de-efeito",
+    "title": "Inferência",
+    "section": "Para que serve o Tamanho de Efeito?",
+    "text": "Para que serve o Tamanho de Efeito?\nImagine dois estudos que testam uma nova terapia para ansiedade:\n\nEstudo A: Usa uma escala de 0 a 10. A diferença entre os grupos foi de 2 pontos\nEstudo B: Usa uma escala de 0 a 100. A diferença entre os grupos também foi de 2 pontos\n\nPergunta: O efeito da terapia foi o mesmo nos dois estudos?\n\nA diferença “bruta” não tem significado sem um padrão. Precisamos de uma forma de medir o tamanho do efeito que seja comparável entre estudos."
+  },
+  {
+    "objectID": "rascunho-teste-t.html#o-que-é-o-d-de-cohen",
+    "href": "rascunho-teste-t.html#o-que-é-o-d-de-cohen",
+    "title": "Inferência",
+    "section": "O que é o d de Cohen?",
+    "text": "O que é o d de Cohen?\nÉ uma medida padronizada do tamanho do efeito que responde à pergunta:\n\n“Quão grande é a diferença entre as médias de dois grupos, se usarmos o desvio padrão como nossa unidade de medida?”\n\nEle transforma a diferença em uma unidade universal, permitindo a comparação e a interpretação da magnitude do efeito"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#entendendo-o-d-de-cohen-com-uma-analogia",
+    "href": "rascunho-teste-t.html#entendendo-o-d-de-cohen-com-uma-analogia",
+    "title": "Inferência",
+    "section": "Entendendo o d de Cohen com uma Analogia",
+    "text": "Entendendo o d de Cohen com uma Analogia\nPodemos pensar no cálculo de uma forma bem simples:\n\nA Diferença entre as Médias \\(M_1 - M_2\\)\n\nÉ a distância que queremos medir\n\nO Desvio Padrão Combinado \\((s_p)\\)\n\nÉ a nossa régua. Representa a variabilidade “típica” dos dados\n\nO d de Cohen\n\nÉ a medição final: quantas vezes a nossa “régua” (desvio padrão) cabe na “distância” (diferença entre as médias)"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#a-fórmula-desmistificada",
+    "href": "rascunho-teste-t.html#a-fórmula-desmistificada",
+    "title": "Inferência",
+    "section": "A Fórmula desmistificada",
+    "text": "A Fórmula desmistificada\nA fórmula matemática reflete exatamente a analogia da régua:\n\\[\nd = \\dfrac{M_1 - M_2}{s_p}\n\\]\nOu seja:\n\\[\nd = \\frac{\\text{Distância entre as Médias}}{\\text{A nossa 'Régua' (Desvio Padrão)}}\n\\]"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#o-que-significa-o-resultado-regras-de-bolso2",
+    "href": "rascunho-teste-t.html#o-que-significa-o-resultado-regras-de-bolso2",
+    "title": "Inferência",
+    "section": "O que significa o resultado? (Regras de Bolso)1",
+    "text": "O que significa o resultado? (Regras de Bolso)1\nAs convenções de Cohen (1988) nos ajudam a ter um ponto de partida para a interpretação:\n\nd ≈ 0.2 (Efeito Pequeno):\n\nA diferença é pequena. As distribuições dos grupos se sobrepõem muito.\n\nd ≈ 0.5 (Efeito Médio):\n\nA diferença é moderada e visível a olho nu.\n\nd ≈ 0.8 (Efeito Grande):\n\nA diferença é grande. Há pouca sobreposição entre as distribuições dos grupos.\n\n\nO contexto da pesquisa é crucial! Um efeito “pequeno” pode ser clinicamente muito importante"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#visualização-do-d-de-cohen",
+    "href": "rascunho-teste-t.html#visualização-do-d-de-cohen",
+    "title": "Inferência",
+    "section": "Visualização do d de Cohen",
+    "text": "Visualização do d de Cohen"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#d-de-cohen-vs.-p-valor",
+    "href": "rascunho-teste-t.html#d-de-cohen-vs.-p-valor",
+    "title": "Inferência",
+    "section": "d de Cohen vs. p-valor",
+    "text": "d de Cohen vs. p-valor\nEles não são inimigos, são parceiros! Eles respondem a perguntas diferentes e complementares\n\n\n\n\n\n\n\n\n\np valor\nd de Cohen\n\n\n\n\nPergunta que responde\nExiste uma diferença?\nQuão GRANDE é a diferença?\n\n\nFunção\nSignificância Estatística\nSignificância Prática / Clínica\n\n\nO que nos diz\nSe o efeito é \"real\" (não devido ao acaso)\nA magnitude do efeito no mundo real"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#redação-do-método",
+    "href": "rascunho-teste-t.html#redação-do-método",
+    "title": "Inferência",
+    "section": "Redação do Método",
+    "text": "Redação do Método\n\nMétodo\n\nProcedimentos\nAnálise de Dados\nUm teste t para amostras independentes foi realizado para comparar a nota de alunos que separados em dois grupos: aqueles que liam os textos antes das aulas e aqueles que não tinha esse hábido. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e de homogeneidade das variâncias (teste de Levene)."
+  },
+  {
+    "objectID": "rascunho-teste-t.html#redação-dos-resultados",
+    "href": "rascunho-teste-t.html#redação-dos-resultados",
+    "title": "Inferência",
+    "section": "Redação dos Resultados",
+    "text": "Redação dos Resultados\n\nResultados\n\nO teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo de alunos leitores (W = 0.991, p = 0.958), nem para o grupo de alunos não leitores (W = 0.99, p = 0.953). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (F(1, 96) = 1.95, p = 0.166). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, t(96) = 4.22, p &lt; .001. Alunos leitores (n = 50, M = 7.91, DP = 0.96) apresentaram um desempenho melhor do que os não leitores (n = 48, M = 6.98, DP = 1.21). A diferença média foi de 0.93 pontos (IC 95% [0.49, 1.37]). O tamanho de efeito foi grande (d = 0.853, IC 95% [0.44, 1.32] ). Esses resultados sugerem que ler os textos antes das aulas influencia no desempenho dos discentes nas avaliações."
+  },
+  {
+    "objectID": "rascunho-teste-t.html#pesquisa-fictícia-2",
+    "href": "rascunho-teste-t.html#pesquisa-fictícia-2",
+    "title": "Inferência",
+    "section": "Pesquisa fictícia 2",
+    "text": "Pesquisa fictícia 2\n\nPergunta de partida:\n\nQual é o efeito do hábito de ler dos textos antes das aulas sobre as médias de ansiedade frente a provas discentes do curso de psicologia antes das avaliações?\n\nGrupo de leitores X Grupo de não leitores"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#hipóteses-1",
+    "href": "rascunho-teste-t.html#hipóteses-1",
+    "title": "Inferência",
+    "section": "Hipóteses",
+    "text": "Hipóteses\n\nHipótese nula: não há diferença entre as médias das notas dos dois grupos\n\n\\(H_0: \\mu_{leitores} = \\mu_{não-leitores}\\)\n\nHipótese alternativa (\\(H_1\\)): há uma diferença entre as médias das notas dos dois grupos\n\n\\(H_1: \\mu_{leitores} \\neq \\mu_{não-leitores}\\)"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#exploração-dos-dados",
+    "href": "rascunho-teste-t.html#exploração-dos-dados",
+    "title": "Inferência",
+    "section": "Exploração dos dados",
+    "text": "Exploração dos dados\n\n\n\n\n\n\n\n\nGrupo\nMédia\nDiferença entre as médias\nDesvio padrão\n\n\n\n\nleitor\n56.95\n-\n19.15\n\n\nnão leitor\n73.71\n16.76\n7.24"
+  },
+  {
+    "objectID": "rascunho-teste-t.html#exploração-dos-dados-1",
+    "href": "rascunho-teste-t.html#exploração-dos-dados-1",
+    "title": "Inferência",
+    "section": "Exploração dos dados",
+    "text": "Exploração dos dados"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html",
+    "href": "slide-teoria-teste-t.html",
+    "title": "Inferência",
+    "section": "",
+    "text": "Pergunta de partida:\n\nQual é o efeito do hábito de ler dos textos antes das aulas sobre as médias de avaliação de discentes do curso de psicologia?\n\nGrupo de leitores X Grupo de não leitores\n\n\n\n\n\n\n\n\n\n\n\n\nHipótese nula (\\(H_0\\) - é a hipótese que tentaremos rejeitar): não há diferença entre as médias das notas dos dois grupos\n\n\\(H_0: \\mu_{leitores} = \\mu_{não-leitores}\\)1\n\\(H_0: \\mu_{leitores} - \\mu_{não-leitores} = 0\\)\n\nHipótese alternativa (\\(H_1\\)): há uma diferença entre as médias das notas dos dois grupos\n\n\\(H_1: \\mu_{leitores} \\neq \\mu_{não-leitores}\\)\n\\(H_1: \\mu_{leitores} - \\mu_{não-leitores} \\neq 0\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGrupo\nMédia\nDiferença entre as médias\nDesvio padrão\n\n\n\n\nnão leitor\n6.98\n-\n1.21\n\n\nleitor\n7.91\n0.93\n0.96\n\n\n\n\n\n\n\n\n\n\n          \n\nGrupo leitor\n\n\nGrupo não Leitor\n\n\n\n\n\nFinalidade: examina se existe uma diferença estatisticamente significativa entre as médias de uma variável quantitativa em dois grupos independentes\nAplicação: ideal para delineamentos entre participantes. Por exemplo:\n\nComparar níveis de ansiedade entre pessoas com e sem filhos\nComparar a pressão sanguínea entre quem usa um medicamento e um grupo controle\nComparar o estresse entre praticantes de atividades físicas e sedentários\n\n\n\n\n\n\nAs Hipóteses (em um teste bidirecional):\n\nHipótese Nula (\\(H_0\\)): afirma que não há diferença entre as médias dos grupos na população\n\n\\(H_0: \\mu_a = \\mu_b\\)\n\\(H_0: \\mu_a - \\mu_b = 0\\)\n\nHipótese Alternativa (\\(H_1\\)): afirma que existe uma diferença entre as médias\n\n\\(H_1: \\mu_a \\neq \\mu_a\\)\n\\(H_1: \\mu_a - \\mu_a \\neq 0\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Regra de Decisão (usando o p-valor):\n\nSe p ≤ 0,05: Rejeitamos a Hipótese Nula. A diferença observada é estatisticamente significativa\nSe p &gt; 0,05: Falhamos em rejeitar a Hipótese Nula. Não há evidência suficiente para afirmar que existe uma diferença\n\n\n\n\n\n\nVariável Independente (VI): deve ser categórica com dois níveis (dicotômica)\nVariável Dependente (VD): Deve ser escalar ou intervalar.\n\nA decisão sobre os tipos de variáveis é feita no desenho do estudo, guiada pela pergunta de pesquisa!\n\nIndependência das observações: os grupos devem ser mutuamente exclusivos (um participante não pode estar em ambos os grupos)\nVerificação de outliers: o teste é sensível a valores atípicos. É importante inspecionar os dados para identificá-los e tratá-los, se for caso\nOs dados da VD em cada grupo devem ser provenientes de uma população com distribuição aproximadamente normal\nHomogeneidade das Variâncias (Homocedasticidade): as variâncias da VD devem ser aproximadamente iguais entre os grupos"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#pesquisa-fictícia",
+    "href": "slide-teoria-teste-t.html#pesquisa-fictícia",
+    "title": "Teste t",
+    "section": "Pesquisa fictícia",
+    "text": "Pesquisa fictícia\n\nPergunta de partida:\n\nQual é o efeito do hábito de ler dos textos antes das aulas sobre as médias de avaliação de discentes do curso de psicologia?\n\nGrupo de leitores X Grupo de não leitores"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#hipóteses",
+    "href": "slide-teoria-teste-t.html#hipóteses",
+    "title": "Teste t",
+    "section": "Hipóteses",
+    "text": "Hipóteses\n\nHipótese nula (\\(H_0\\) - é a hipótese que tentaremos rejeitar): não há diferença entre as médias das notas dos dois grupos\n\n\\(H_0: \\mu_{leitores} = \\mu_{não-leitores}\\)1\n\\(H_0: \\mu_{leitores} - \\mu_{não-leitores} = 0\\)\n\nHipótese alternativa (\\(H_1\\)): há uma diferença entre as médias das notas dos dois grupos\n\n\\(H_1: \\mu_{leitores} \\neq \\mu_{não-leitores}\\)\n\\(H_1: \\mu_{leitores} - \\mu_{não-leitores} \\neq 0\\)\n\n\nOnde \\(\\mu_{leitores}\\) é a média da população de alunos que leem e \\(\\mu_{não-leitores}\\) é a média da população de alunos que não leem"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#o-que-os-dados-da-pesquisa-fictícia-sugerem-1",
+    "href": "slide-teoria-teste-t.html#o-que-os-dados-da-pesquisa-fictícia-sugerem-1",
+    "title": "Teste t",
+    "section": "O que os dados da pesquisa fictícia sugerem?",
+    "text": "O que os dados da pesquisa fictícia sugerem?\n\n\n\n\n\n\n\n\nGrupo\nMédia\nDiferença entre as médias\nDesvio padrão\n\n\n\n\nnão leitor\n6.98\n-\n1.21\n\n\nleitor\n7.91\n0.93\n0.96"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#delineamento-entre-participantes-dois-grupos-em-condições-diferentes",
+    "href": "slide-teoria-teste-t.html#delineamento-entre-participantes-dois-grupos-em-condições-diferentes",
+    "title": "Teste t",
+    "section": "Delineamento entre participantes: dois grupos em condições diferentes",
+    "text": "Delineamento entre participantes: dois grupos em condições diferentes\n          \n\nGrupo leitor\n\n\nGrupo não Leitor"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#teste-t-para-amostras-independentes-1",
+    "href": "slide-teoria-teste-t.html#teste-t-para-amostras-independentes-1",
+    "title": "Teste t",
+    "section": "Teste t para Amostras Independentes",
+    "text": "Teste t para Amostras Independentes\n\nFinalidade: examina se existe uma diferença estatisticamente significativa entre as médias de uma variável quantitativa em dois grupos independentes\nAplicação: ideal para delineamentos entre participantes. Por exemplo:\n\nComparar níveis de ansiedade entre pessoas com e sem filhos\nComparar a pressão sanguínea entre quem usa um medicamento e um grupo controle\nComparar o estresse entre praticantes de atividades físicas e sedentários"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#teste-t-para-amostras-independentes-2",
+    "href": "slide-teoria-teste-t.html#teste-t-para-amostras-independentes-2",
+    "title": "Teste t",
+    "section": "Teste t para Amostras Independentes",
+    "text": "Teste t para Amostras Independentes\n\nAs Hipóteses (em um teste bidirecional):\n\nHipótese Nula (\\(H_0\\)): afirma que não há diferença entre as médias dos grupos na população\n\n\\(H_0: \\mu_a = \\mu_b\\)\n\\(H_0: \\mu_a - \\mu_b = 0\\)\n\nHipótese Alternativa (\\(H_1\\)): afirma que existe uma diferença entre as médias\n\n\\(H_1: \\mu_a \\neq \\mu_a\\)\n\\(H_1: \\mu_a - \\mu_a \\neq 0\\)"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#teste-t-para-amostras-independentes-3",
+    "href": "slide-teoria-teste-t.html#teste-t-para-amostras-independentes-3",
+    "title": "Teste t",
+    "section": "Teste t para Amostras Independentes",
+    "text": "Teste t para Amostras Independentes\n\nA Regra de Decisão (usando o p-valor):\n\nSe p ≤ 0,05: Rejeitamos a Hipótese Nula. A diferença observada é estatisticamente significativa\nSe p &gt; 0,05: Falhamos em rejeitar a Hipótese Nula. Não há evidência suficiente para afirmar que existe uma diferença"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#pressupostos-do-teste-t-para-amostras-independentes",
+    "href": "slide-teoria-teste-t.html#pressupostos-do-teste-t-para-amostras-independentes",
+    "title": "Teste t",
+    "section": "Pressupostos do Teste T para amostras independentes",
+    "text": "Pressupostos do Teste T para amostras independentes\n\nVariável Independente (VI): deve ser categórica com dois níveis (dicotômica)\nVariável Dependente (VD): Deve ser escalar ou intervalar.\n\nA decisão sobre os tipos de variáveis é feita no desenho do estudo, guiada pela pergunta de pesquisa!\n\nIndependência das observações: os grupos devem ser mutuamente exclusivos (um participante não pode estar em ambos os grupos)\nVerificação de outliers: o teste é sensível a valores atípicos. É importante inspecionar os dados para identificá-los e tratá-los, se for caso\nOs dados da VD em cada grupo devem ser provenientes de uma população com distribuição aproximadamente normal\nHomogeneidade das Variâncias (Homocedasticidade): as variâncias da VD devem ser aproximadamente iguais entre os grupos"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#vi-categórica-e-dicotômica",
+    "href": "slide-teoria-teste-t.html#vi-categórica-e-dicotômica",
+    "title": "Teste t",
+    "section": "VI categórica e dicotômica",
+    "text": "VI categórica e dicotômica\n  \n\nGrupo leitor\n\n\nGrupo não Leitor"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#vd-escalar-ou-intervalar",
+    "href": "slide-teoria-teste-t.html#vd-escalar-ou-intervalar",
+    "title": "Teste t",
+    "section": "VD escalar ou intervalar",
+    "text": "VD escalar ou intervalar\n\n\n\n\n\n\n\n\n\nAluno a\nAluno b\nAluno c\nAluno d\nAluno e\n\n\n\n\nNota\n7.4\n8.5\n9.4\n8.2\n7.6"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#as-observações-devem-ser-independentes",
+    "href": "slide-teoria-teste-t.html#as-observações-devem-ser-independentes",
+    "title": "Teste t",
+    "section": "As observações devem ser independentes",
+    "text": "As observações devem ser independentes\nO que há de errado nessa tabela?\n\n\n\n\n\n\n\n\nNota\nGrupo\nAluno\n\n\n\n\n9.1\nleitor\nPedro\n\n\n7.7\nleitor\nJoana\n\n\n8.8\nleitor\nTércia\n\n\n9.5\nnão leitor\nJoão\n\n\n6.9\nnão leitor\nJosé\n\n\n7.1\nnão leitor\nJoana"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#as-observações-devem-ser-independentes-1",
+    "href": "slide-teoria-teste-t.html#as-observações-devem-ser-independentes-1",
+    "title": "Teste t",
+    "section": "As observações devem ser independentes",
+    "text": "As observações devem ser independentes\nO que há de errado nessa tabela?\n\n\n\n\n\n\n\n\nNota\nGrupo\nAluno\n\n\n\n\n9.1\nleitor\nPedro\n\n\n7.7\nleitor\nJoana\n\n\n8.8\nleitor\nTércia\n\n\n9.5\nnão leitor\nJoão\n\n\n6.9\nnão leitor\nJosé\n\n\n7.1\nnão leitor\nJoana"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#análise-de-outliers",
+    "href": "slide-teoria-teste-t.html#análise-de-outliers",
+    "title": "Teste t",
+    "section": "Análise de outliers",
+    "text": "Análise de outliers"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#distribuição-normal-da-vd-em-cada-grupo-gráfico-q-q",
+    "href": "slide-teoria-teste-t.html#distribuição-normal-da-vd-em-cada-grupo-gráfico-q-q",
+    "title": "Teste t",
+    "section": "Distribuição normal da VD em cada grupo: gráfico Q-Q",
+    "text": "Distribuição normal da VD em cada grupo: gráfico Q-Q"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#distribuição-normal-da-vd-em-cada-grupo-teste-de-shapiro-wilk",
+    "href": "slide-teoria-teste-t.html#distribuição-normal-da-vd-em-cada-grupo-teste-de-shapiro-wilk",
+    "title": "Teste t",
+    "section": "Distribuição normal da VD em cada grupo: teste de Shapiro-Wilk",
+    "text": "Distribuição normal da VD em cada grupo: teste de Shapiro-Wilk\n\nHipóteses:\n\n\\(H_0\\): a variável de interesse é oriunda de uma população com distribuição normal\n\\(H_a\\): a variável de interesse não é oriunda de uma população com distribuição normal\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngrupo\n\nShapiro-Wilk\n\n\n\nW\np\n\n\n\n\nleitor\n0.991\n0.958\n\n\nnão leitor\n0.990\n0.953"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#homogeneidade-de-variâncias-gráfico-de-caixas",
+    "href": "slide-teoria-teste-t.html#homogeneidade-de-variâncias-gráfico-de-caixas",
+    "title": "Teste t",
+    "section": "Homogeneidade de variâncias: gráfico de caixas",
+    "text": "Homogeneidade de variâncias: gráfico de caixas"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#homogeneidade-de-variâncias-teste-de-levene",
+    "href": "slide-teoria-teste-t.html#homogeneidade-de-variâncias-teste-de-levene",
+    "title": "Teste t",
+    "section": "Homogeneidade de variâncias: teste de Levene",
+    "text": "Homogeneidade de variâncias: teste de Levene\n\nHipóteses:\n\n\\(H_0\\): As variâncias populacionais são iguais entre os grupos\n\\(H_a\\): As variâncias populacionais não são iguais entre os grupos\n\n\n\n\n\n\n\n\n\n\n\nF\ndf1\ndf2\np\n\n\n\n\nNota\n1.97\n1\n96\n0.164"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#teste-t",
+    "href": "slide-teoria-teste-t.html#teste-t",
+    "title": "Teste t",
+    "section": "Teste T",
+    "text": "Teste T\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstatística\ngl\np\nErro padrão da diferença\nDiferença média\n\nIntervalo de Confiança a 95%\n\n\n\nLimite inferior\nLimite superior\n\n\n\n\nnota\nT-test\n4.22\n96.00\n&lt; .001\n0.22\n0.93\n0.49\n1.37"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#tamanho-de-efeito-d-de-cohen",
+    "href": "slide-teoria-teste-t.html#tamanho-de-efeito-d-de-cohen",
+    "title": "Teste t",
+    "section": "Tamanho de efeito: D de Cohen",
+    "text": "Tamanho de efeito: D de Cohen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDimensão do efeito\n\nIntervalo de Confiança a 95%\n\nMagnitude\n\n\nLimite inferior\nLimite superior\n\n\n\n\nd de Cohen\n0.853\n0.440\n1.320\nGrande"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#para-que-serve-o-tamanho-de-efeito",
+    "href": "slide-teoria-teste-t.html#para-que-serve-o-tamanho-de-efeito",
+    "title": "Teste t",
+    "section": "Para que serve o Tamanho de Efeito?",
+    "text": "Para que serve o Tamanho de Efeito?\nImagine dois estudos que testam uma nova terapia para ansiedade:\n\nEstudo A: Usa uma escala de 0 a 10. A diferença entre os grupos foi de 2 pontos\nEstudo B: Usa uma escala de 0 a 100. A diferença entre os grupos também foi de 2 pontos\n\nPergunta: O efeito da terapia foi o mesmo nos dois estudos?\n\nA diferença “bruta” não tem significado sem um padrão. Precisamos de uma forma de medir o tamanho do efeito que seja comparável entre estudos."
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#o-que-é-o-d-de-cohen",
+    "href": "slide-teoria-teste-t.html#o-que-é-o-d-de-cohen",
+    "title": "Teste t",
+    "section": "O que é o d de Cohen?",
+    "text": "O que é o d de Cohen?\nÉ uma medida padronizada do tamanho do efeito que responde à pergunta:\n\n“Quão grande é a diferença entre as médias de dois grupos, se usarmos o desvio padrão como nossa unidade de medida?”\n\nEle transforma a diferença em uma unidade universal, permitindo a comparação e a interpretação da magnitude do efeito"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#entendendo-o-d-de-cohen-com-uma-analogia",
+    "href": "slide-teoria-teste-t.html#entendendo-o-d-de-cohen-com-uma-analogia",
+    "title": "Teste t",
+    "section": "Entendendo o d de Cohen com uma Analogia",
+    "text": "Entendendo o d de Cohen com uma Analogia\nPodemos pensar no cálculo de uma forma bem simples:\n\nA Diferença entre as Médias \\(M_1 - M_2\\)\n\nÉ a distância que queremos medir\n\nO Desvio Padrão Combinado \\((s_p)\\)\n\nÉ a nossa régua. Representa a variabilidade “típica” dos dados\n\nO d de Cohen\n\nÉ a medição final: quantas vezes a nossa “régua” (desvio padrão) cabe na “distância” (diferença entre as médias)"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#a-fórmula-desmistificada",
+    "href": "slide-teoria-teste-t.html#a-fórmula-desmistificada",
+    "title": "Teste t",
+    "section": "A Fórmula desmistificada",
+    "text": "A Fórmula desmistificada\nA fórmula matemática reflete exatamente a analogia da régua:\n\\[\nd = \\dfrac{M_1 - M_2}{s_p}\n\\]\nOu seja:\n\\[\nd = \\frac{\\text{Distância entre as Médias}}{\\text{A nossa 'Régua' (Desvio Padrão)}}\n\\]"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#o-que-significa-o-resultado-regras-de-bolso2",
+    "href": "slide-teoria-teste-t.html#o-que-significa-o-resultado-regras-de-bolso2",
+    "title": "Teste t",
+    "section": "O que significa o resultado? (Regras de Bolso)1",
+    "text": "O que significa o resultado? (Regras de Bolso)1\nAs convenções de Cohen (1988) nos ajudam a ter um ponto de partida para a interpretação:\n\nd ≈ 0.2 (Efeito Pequeno):\n\nA diferença é pequena. As distribuições dos grupos se sobrepõem muito.\n\nd ≈ 0.5 (Efeito Médio):\n\nA diferença é moderada e visível a olho nu.\n\nd ≈ 0.8 (Efeito Grande):\n\nA diferença é grande. Há pouca sobreposição entre as distribuições dos grupos.\n\n\nO contexto da pesquisa é crucial! Um efeito “pequeno” pode ser clinicamente muito importante"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#visualização-do-d-de-cohen",
+    "href": "slide-teoria-teste-t.html#visualização-do-d-de-cohen",
+    "title": "Teste t",
+    "section": "Visualização do d de Cohen",
+    "text": "Visualização do d de Cohen"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#d-de-cohen-vs.-p-valor",
+    "href": "slide-teoria-teste-t.html#d-de-cohen-vs.-p-valor",
+    "title": "Teste t",
+    "section": "d de Cohen vs. p-valor",
+    "text": "d de Cohen vs. p-valor\nEles não são inimigos, são parceiros! Eles respondem a perguntas diferentes e complementares\n\n\n\n\n\n\n\n\n\np valor\nd de Cohen\n\n\n\n\nPergunta que responde\nExiste uma diferença?\nQuão GRANDE é a diferença?\n\n\nFunção\nSignificância Estatística\nSignificância Prática / Clínica\n\n\nO que nos diz\nSe o efeito é \"real\" (não devido ao acaso)\nA magnitude do efeito no mundo real"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#redação-do-método",
+    "href": "slide-teoria-teste-t.html#redação-do-método",
+    "title": "Teste t",
+    "section": "Redação do Método",
+    "text": "Redação do Método\n\nMétodo\n\nProcedimentos\nAnálise de Dados\nUm teste t para amostras independentes foi realizado para comparar a nota de alunos que separados em dois grupos: aqueles que liam os textos antes das aulas e aqueles que não tinha esse hábido. Foram avaliados os pressupostos de normalidade (teste de Shapiro-Wilk) e de homogeneidade das variâncias (teste de Levene)."
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#redação-dos-resultados",
+    "href": "slide-teoria-teste-t.html#redação-dos-resultados",
+    "title": "Teste t",
+    "section": "Redação dos Resultados",
+    "text": "Redação dos Resultados\n\nResultados\n\nO teste de Shapiro-Wilk não indicou desvios significativos da normalidade para o grupo de alunos leitores (W = 0.991, p = 0.958), nem para o grupo de alunos não leitores (W = 0.99, p = 0.953). O teste de Levene também não mostrou diferença significativa nas variâncias entre os grupos, (F(1, 96) = 1.95, p = 0.166). Os resultados indicaram uma diferença estatisticamente significativa entre as médias dos dois grupos, t(96) = 4.22, p &lt; .001. Alunos leitores (n = 50, M = 7.91, DP = 0.96) apresentaram um desempenho melhor do que os não leitores (n = 48, M = 6.98, DP = 1.21). A diferença média foi de 0.93 pontos (IC 95% [0.49, 1.37]). O tamanho de efeito foi grande (d = 0.853, IC 95% [0.44, 1.32] ). Esses resultados sugerem que ler os textos antes das aulas influencia no desempenho dos discentes nas avaliações."
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#pesquisa-fictícia-2",
+    "href": "slide-teoria-teste-t.html#pesquisa-fictícia-2",
+    "title": "Teste t",
+    "section": "Pesquisa fictícia 2",
+    "text": "Pesquisa fictícia 2\n\nPergunta de partida:\n\nQual é o efeito do hábito de ler dos textos antes das aulas sobre as médias de ansiedade frente a provas discentes do curso de psicologia antes das avaliações?\n\nGrupo de leitores X Grupo de não leitores"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#hipóteses-1",
+    "href": "slide-teoria-teste-t.html#hipóteses-1",
+    "title": "Teste t",
+    "section": "Hipóteses",
+    "text": "Hipóteses\n\nHipótese nula: não há diferença entre as médias das notas dos dois grupos\n\n\\(H_0: \\mu_{leitores} = \\mu_{não-leitores}\\)\n\nHipótese alternativa (\\(H_1\\)): há uma diferença entre as médias das notas dos dois grupos\n\n\\(H_1: \\mu_{leitores} \\neq \\mu_{não-leitores}\\)"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#exploração-dos-dados",
+    "href": "slide-teoria-teste-t.html#exploração-dos-dados",
+    "title": "Teste t",
+    "section": "Exploração dos dados",
+    "text": "Exploração dos dados\n\n\n\n\n\n\n\n\nGrupo\nMédia\nDiferença entre as médias\nDesvio padrão\n\n\n\n\nleitor\n56.95\n-\n19.15\n\n\nnão leitor\n73.71\n16.76\n7.24"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#exploração-dos-dados-1",
+    "href": "slide-teoria-teste-t.html#exploração-dos-dados-1",
+    "title": "Teste t",
+    "section": "Exploração dos dados",
+    "text": "Exploração dos dados"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#footnotes",
+    "href": "slide-teoria-teste-t.html#footnotes",
+    "title": "Inferência",
+    "section": "Notas de rodapé",
+    "text": "Notas de rodapé\n\n\nOnde \\(\\mu_{leitores}\\) é a média da população de alunos que leem e \\(\\mu_{não-leitores}\\) é a média da população de alunos que não leem↩︎\nO contexto da pesquisa é crucial! Um efeito “pequeno” pode ser clinicamente muito importante↩︎"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#o-que-os-dados-da-pesquisa-fictícia-sugerem",
+    "href": "slide-teoria-teste-t.html#o-que-os-dados-da-pesquisa-fictícia-sugerem",
+    "title": "Teste t",
+    "section": "O que os dados da pesquisa fictícia sugerem?",
+    "text": "O que os dados da pesquisa fictícia sugerem?"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#visualização-da-hipótese-alternativa-h1",
+    "href": "slide-teoria-teste-t.html#visualização-da-hipótese-alternativa-h1",
+    "title": "Teste t",
+    "section": "Visualização da Hipótese Alternativa (H1)",
+    "text": "Visualização da Hipótese Alternativa (H1)"
+  },
+  {
+    "objectID": "slide-teoria-teste-t.html#visualização-da-hipótese-nula-h0",
+    "href": "slide-teoria-teste-t.html#visualização-da-hipótese-nula-h0",
+    "title": "Teste t",
+    "section": "Visualização da Hipótese Nula (H0)",
+    "text": "Visualização da Hipótese Nula (H0)"
   }
 ]
